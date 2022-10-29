@@ -6,7 +6,7 @@ module NightsOutProject {
     requires java.sql;
     requires mysql.connector.java;
 
-    opens NightsOut;
-    opens NightsOut.control.guiController.interface1 to javafx.fxml ;
+    opens nightsout;
+    opens nightsout.control.guicontroller.interface1 to javafx.fxml ;
 
 }

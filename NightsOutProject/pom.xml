@@ -17,16 +17,16 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/java/NightsOut/utils/db/prop</directory>
+                <directory>src/main/java/nightsout/utils/db/prop</directory>
             </resource>
             <resource>
-                <directory>src/main/java/NightsOut/view</directory>
+                <directory>src/main/java/nightsout/view</directory>
             </resource>
             <resource>
-                <directory>src/main/java/NightsOut/view/interface1</directory>
+                <directory>src/main/java/nightsout/view/interface1</directory>
             </resource>
             <resource>
-                <directory>src/main/java/NightsOut/view/interface2</directory>
+                <directory>src/main/java/nightsout/view/interface2</directory>
             </resource>
         </resources>
     </build>
