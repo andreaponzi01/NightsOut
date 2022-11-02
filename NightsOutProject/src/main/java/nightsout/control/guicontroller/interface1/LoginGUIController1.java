@@ -8,7 +8,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.LoginAppController;
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.interface1.LoginBean1;
+import nightsout.utils.exception.myexception.WrongPasswordException;
+
+//IMPORTANTE
+import nightsout.utils.scenes.ReplaceScene;
+import org.controlsfx.control.Notifications;
 
 public class LoginGUIController1 {
 
@@ -32,23 +38,24 @@ public class LoginGUIController1 {
             type = "ClubOwner";
         }
 
-      //  try {
+        try {
             LoginBean1 loginBean = new LoginBean1(textFieldUsername.getText(), passwordField.getText(), type);
             LoginAppController.login(loginBean);
-            /*
-            ReplaceSceneAndInitializePage rsip = new ReplaceSceneAndInitializePage();
-            if (type == 1) {
-                rsip.replaceSceneAndInitializePage(ae, "/JFX1/JFX1ClubProfile.fxml");
+
+            //ReplaceSceneAndInitializePage rsip = new ReplaceSceneAndInitializePage();
+            if (type == "ClubOwner") {
+                //rsip.replaceSceneAndInitializePage(ae, "/JFX1/JFX1ClubProfile.fxml");
+                ReplaceScene.replaceScene(ae, "/ClubOwnerPage1.fxml");
             } else {
-                rsip.replaceSceneAndInitializePage(ae, "/JFX1/JFX1UserProfile.fxml");
+                ReplaceScene.replaceScene(ae, "/UserPage1.fxml");
+                //rsip.replaceSceneAndInitializePage(ae, "/JFX1/JFX1UserProfile.fxml");
             }
 
+        //} catch (WrongPasswordException| SystemException e ){
 
-        } catch (WrongPasswordException| SystemException e ){
-            JFX1AlertCreator.createAlert(e);
+        } catch (WrongPasswordException e){
+            MyNotification.createNotification(e);
         }
-
-         */
     }
 
 

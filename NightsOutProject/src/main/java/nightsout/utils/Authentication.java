@@ -18,6 +18,7 @@ public class Authentication {
                 return 1;
             }
         } catch (SQLException e) {
+            //Da gestire
             e.printStackTrace();
         }
         return 0;

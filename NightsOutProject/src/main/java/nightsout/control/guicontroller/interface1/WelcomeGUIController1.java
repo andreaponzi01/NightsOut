@@ -11,7 +11,6 @@ public class WelcomeGUIController1 {
 
     @FXML
     protected void onSignInClick(ActionEvent actionEvent) {
-        //welcomeText.setText("This is NightsOut!");
         ReplaceScene.replaceScene(actionEvent, "/Login1.fxml");
     }
 }
