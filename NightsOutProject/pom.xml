@@ -28,6 +28,9 @@
             <resource>
                 <directory>src/main/java/nightsout/view/interface2</directory>
             </resource>
+            <resource>
+                <directory>src/main/java/nightsout/view/img</directory>
+            </resource>
         </resources>
     </build>
 </project>
