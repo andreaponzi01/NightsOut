@@ -10,7 +10,7 @@ public class WelcomeGUIController1 {
     private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick(ActionEvent actionEvent) {
+    protected void onSignInClick(ActionEvent actionEvent) {
         //welcomeText.setText("This is NightsOut!");
         ReplaceScene.replaceScene(actionEvent, "/Login1.fxml");
     }
