@@ -14,6 +14,7 @@ public class Main extends Application {
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.setTitle("NightsOut");
+            scene.getStylesheets().clear();
             stage.show();
     }
 
