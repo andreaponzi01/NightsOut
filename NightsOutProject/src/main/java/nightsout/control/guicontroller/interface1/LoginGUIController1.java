@@ -1,6 +1,5 @@
 package nightsout.control.guicontroller.interface1;
 
-import com.mysql.cj.log.Log;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,12 +8,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.LoginAppController;
 import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.ProfileBean;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.LoginBean1;
 import nightsout.utils.exception.myexception.WrongPasswordException;
-
-//IMPORTANTE
-import nightsout.utils.scenes.ReplaceScene;
-import org.controlsfx.control.Notifications;
+import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 public class LoginGUIController1 {
 
@@ -40,20 +39,22 @@ public class LoginGUIController1 {
 
         try {
             LoginBean1 loginBean = new LoginBean1(textFieldUsername.getText(), passwordField.getText(), type);
-            LoginAppController.login(loginBean);
+            ProfileBean profileBean = LoginAppController.login(loginBean);
 
-            //ReplaceSceneAndInitializePage rsip = new ReplaceSceneAndInitializePage();
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             if (type == "ClubOwner") {
-                //rsip.replaceSceneAndInitializePage(ae, "/JFX1/JFX1ClubProfile.fxml");
-                ReplaceScene.replaceScene(ae, "/ClubOwnerPage1.fxml");
+                ClubOwnerBean clubOwnerBean = (ClubOwnerBean) profileBean;
+                System.out.println(clubOwnerBean.getUsername());
+                replacer.switchAndSetScene(ae, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
             } else {
-                ReplaceScene.replaceScene(ae, "/UserPage1.fxml");
-                //rsip.replaceSceneAndInitializePage(ae, "/JFX1/JFX1UserProfile.fxml");
+                UserBean userBean = (UserBean) profileBean;
+                System.out.println(userBean.getSurname());
+                replacer.switchAndSetScene(ae, "/UserPage1.fxml", userBean, null);
             }
 
         //} catch (WrongPasswordException| SystemException e ){
 
-        } catch (WrongPasswordException e){
+        } catch (WrongPasswordException e) {
             MyNotification.createNotification(e);
         }
     }

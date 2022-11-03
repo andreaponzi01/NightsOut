@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import nightsout.utils.scenes.ReplaceScene;
 
 public class WelcomeGUIController1 {
+
     @FXML
     private Label welcomeText;
 

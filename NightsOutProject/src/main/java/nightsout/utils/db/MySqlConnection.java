@@ -16,7 +16,10 @@ public class MySqlConnection {
         Statement statement = null;
         try {
             connect();
-            statement = connection.createStatement();
+            /*
+            ** ResultSet.CONCUR_READ_ONLY --> ResultSet.CONCUR_UPDATABLE (capire quale sia più indicato!)
+            */
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -48,19 +51,5 @@ public class MySqlConnection {
             }
 
         }
-        /*
-        String query = "select * from Credentials";
-        ResultSet resultSet = statement.executeQuery(query);
-
-        int i = 1;
-        while(resultSet.next()) {
-            System.out.print("Row "+i+":\n");
-            System.out.print("Username: " + resultSet.getString(1) + " ");
-            System.out.print("Password: " + resultSet.getString(2) + " ");
-            System.out.print("Type: " + resultSet.getString(3) + " ");
-            ++i;
-
-        }
-         */
     }
 }

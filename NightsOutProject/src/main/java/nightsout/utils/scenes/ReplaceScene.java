@@ -3,6 +3,7 @@ package nightsout.utils.scenes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nightsout.Main;
@@ -25,6 +26,16 @@ public class ReplaceScene{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /*
+    * Root già caricato, non c'è bisogno di fare il loader.load()
+    */
+    public static void showStage(ActionEvent ae, Parent root){
+        Stage stage = (Stage) ((Node) ae.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
