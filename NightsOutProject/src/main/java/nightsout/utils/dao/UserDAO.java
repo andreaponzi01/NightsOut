@@ -14,7 +14,7 @@ public class UserDAO {
         //ignored
     }
 
-    public static UserModel getUserByUsername(String username) throws Exception {
+    public static UserModel getUserByUsername(String username) throws SQLException {
 
         Statement stm = null;
         UserModel userModel = null ;

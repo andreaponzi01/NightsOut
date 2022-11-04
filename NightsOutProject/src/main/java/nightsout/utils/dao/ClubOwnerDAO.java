@@ -10,7 +10,11 @@ import java.sql.Statement;
 
 public class ClubOwnerDAO {
 
-    public static ClubOwnerModel getClubOwnerByUsername(String username) throws Exception {
+    private ClubOwnerDAO() {
+        //ignored
+    }
+
+    public static ClubOwnerModel getClubOwnerByUsername(String username) throws SQLException {
 
         Statement stm = null;
         ClubOwnerModel clubOwnerModel = null ;

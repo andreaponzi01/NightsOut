@@ -9,7 +9,11 @@ import java.sql.Statement;
 
 public class Authentication {
 
-    public static int checkIsRegistered(String username, String password, String type) throws Exception {
+    private Authentication() {
+        //ignored
+    }
+
+    public static int checkIsRegistered(String username, String password, String type) throws SQLException {
         Statement stm = null;
         try {
             stm = MySqlConnection.tryConnect();

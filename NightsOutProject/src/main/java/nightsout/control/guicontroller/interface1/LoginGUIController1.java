@@ -9,11 +9,12 @@ import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.LoginAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.ProfileBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.LoginBean1;
 import nightsout.utils.exception.myexception.WrongPasswordException;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
+
+import java.util.Objects;
 
 public class LoginGUIController1 {
 
@@ -39,24 +40,17 @@ public class LoginGUIController1 {
 
         try {
             LoginBean1 loginBean = new LoginBean1(textFieldUsername.getText(), passwordField.getText(), type);
-            ProfileBean profileBean = LoginAppController.login(loginBean);
-
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            if (type == "ClubOwner") {
-                ClubOwnerBean clubOwnerBean = (ClubOwnerBean) profileBean;
-                System.out.println(clubOwnerBean.getUsername());
+
+            if (Objects.equals(type,"ClubOwner")) {
+                ClubOwnerBean clubOwnerBean = LoginAppController.loginClubOwner(loginBean);
                 replacer.switchAndSetScene(ae, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
             } else {
-                UserBean userBean = (UserBean) profileBean;
-                System.out.println(userBean.getSurname());
+                UserBean userBean = LoginAppController.loginUser(loginBean);
                 replacer.switchAndSetScene(ae, "/UserPage1.fxml", userBean, null);
             }
 
-        //} catch (WrongPasswordException| SystemException e ){
-
-        } catch (WrongPasswordException e) {
-            MyNotification.createNotification(e);
-        }
+        } catch (WrongPasswordException e) { MyNotification.createNotification(e); }
     }
 
 
