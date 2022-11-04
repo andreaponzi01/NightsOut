@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ConcludeRegisterClubOwnerGUIController1">
+<AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ConcludeRegisterUserGUIController1">
    <children>
       <Button fx:id="buttonBack" layoutX="43.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToRegister" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
          <font>
