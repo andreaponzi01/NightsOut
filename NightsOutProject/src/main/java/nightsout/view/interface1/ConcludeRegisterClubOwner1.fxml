@@ -21,7 +21,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="labelEmail" alignment="CENTER" layoutX="262.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert email" style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldEmail" alignment="CENTER" layoutX="262.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert email" style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
@@ -42,12 +42,12 @@
             <Font name="Arial Bold" size="55.0" />
          </font>
       </Label>
-      <TextField fx:id="labelPassword" alignment="CENTER" layoutX="260.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert password" style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldPassword" alignment="CENTER" layoutX="260.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert password" style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <TextField fx:id="labelUsername" alignment="CENTER" layoutX="265.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert username" style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldUsername" alignment="CENTER" layoutX="265.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert username" style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>

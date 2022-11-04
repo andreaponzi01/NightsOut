@@ -6,6 +6,10 @@ import java.net.URL;
 
 public class ClubOwnerBean extends ProfileBean {
 
+    public ClubOwnerBean() {
+
+    }
+
     // Attributi ClubManager
     protected String address;
     protected URL website;

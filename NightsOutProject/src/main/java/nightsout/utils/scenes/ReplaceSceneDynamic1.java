@@ -6,9 +6,11 @@ import javafx.scene.Parent;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.interface1.ClubOwnerPageSetter1;
+import nightsout.utils.scenes.interface1.RegisterSetter1;
 import nightsout.utils.scenes.interface1.UserPageSetter1;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ReplaceSceneDynamic1 {
 
@@ -26,6 +28,24 @@ public class ReplaceSceneDynamic1 {
                ClubOwnerPageSetter1.setter(clubOwnerBean, loader.getController());
             }
 
+            ReplaceScene.showStage(ae, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneRegister(ActionEvent ae, String fxml, String[] personalInfo, String type) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+
+        try {
+            if (Objects.equals(type, "ClubOwner")) {
+                RegisterSetter1.setter(personalInfo, type, loader.getController());
+
+            } else {
+                //
+            }
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();

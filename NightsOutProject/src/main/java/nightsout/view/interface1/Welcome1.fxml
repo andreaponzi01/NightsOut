@@ -22,7 +22,7 @@
             <Font name="Futura Medium" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="204.0" layoutY="329.0" prefHeight="157.0" prefWidth="638.0" style="-fx-background-color: white; -fx-background-radius: 100;" text="Sign On" textFill="#3c00ff" AnchorPane.leftAnchor="204.0" AnchorPane.rightAnchor="198.0">
+      <Button layoutX="204.0" layoutY="329.0" onAction="#onSignOnClick" prefHeight="157.0" prefWidth="638.0" style="-fx-background-color: white; -fx-background-radius: 100;" text="Sign On" textFill="#3c00ff" AnchorPane.leftAnchor="204.0" AnchorPane.rightAnchor="198.0">
          <font>
             <Font size="23.0" />
          </font>

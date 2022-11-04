@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kapta.control.guicontroller.interfacetwo.RegisterChoiceGUIController1">
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.RegisterChoiceGUIController1">
    <children>
       <VBox alignment="CENTER" layoutX="32.0" layoutY="21.0" prefHeight="359.0" prefWidth="537.0" style="-fx-background-color: white; -fx-background-radius: 28;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -26,7 +26,7 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="238.0" prefWidth="940.0" spacing="30.0">
                <children>
-                  <Button fx:id="buttonClubOwner" mnemonicParsing="false" onAction="#gotoClubOwnerRegister" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Club Owner" textFill="WHITE">
+                  <Button fx:id="buttonClubOwner" mnemonicParsing="false" onAction="#goToClubOwnerRegister" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Club Owner" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>
@@ -36,7 +36,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="buttonUser" mnemonicParsing="false" onAction="#gotoUserRegister" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: e5e5e5; -fx-background-radius: 28;" text=" Normal User">
+                  <Button fx:id="buttonUser" mnemonicParsing="false" onAction="#goToUserRegister" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: e5e5e5; -fx-background-radius: 28;" text=" Normal User">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
                      </font>

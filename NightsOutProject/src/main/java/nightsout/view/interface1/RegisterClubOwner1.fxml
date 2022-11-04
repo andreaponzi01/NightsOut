@@ -21,7 +21,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="labelName" alignment="CENTER" layoutX="262.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert club name " style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldName" alignment="CENTER" layoutX="262.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert club name " style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
@@ -42,17 +42,17 @@
             <Font name="Arial Bold" size="55.0" />
          </font>
       </Label>
-      <TextField fx:id="labelDiscount" alignment="CENTER" layoutX="260.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert vip discount" style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldDiscount" alignment="CENTER" layoutX="260.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert vip discount" style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <TextField fx:id="labelCity" alignment="CENTER" layoutX="267.0" layoutY="432.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert city " style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldCity" alignment="CENTER" layoutX="267.0" layoutY="432.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert city " style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <TextField fx:id="labelAddress" alignment="CENTER" layoutX="265.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert address " style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldAddress" alignment="CENTER" layoutX="265.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert address " style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>

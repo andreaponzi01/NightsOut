@@ -14,4 +14,7 @@ public class WelcomeGUIController1 {
     protected void onSignInClick(ActionEvent actionEvent) {
         ReplaceScene.replaceScene(actionEvent, "/Login1.fxml");
     }
+
+    @FXML
+    protected void onSignOnClick(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
 }
