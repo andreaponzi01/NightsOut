@@ -1,9 +1,11 @@
 package nightsout.utils.dao;
 
 import nightsout.model.ClubOwnerModel;
+import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,5 +51,32 @@ public class ClubOwnerDAO {
             e.printStackTrace();
         }
         return clubOwnerModel;
+    }
+
+    public static void insertClubOwner(ClubOwnerModel clubOwnerModel) {
+        Statement stm = null;
+
+        try {
+            stm= MySqlConnection.tryConnect();
+            // Inserimento credenziali (tabella Credentials)
+            CRUD.insertCredentials(clubOwnerModel.getUsername(), clubOwnerModel.getPassword(), "ClubOwner", stm);
+
+            // Inserimento dati personali (tabella ClubOwners)
+            PreparedStatement ps = MySqlConnection.insertClubOwner();
+
+            ps.setString(1,clubOwnerModel.getUsername());
+            ps.setString(2, clubOwnerModel.getEmail());
+            ps.setString(3 , clubOwnerModel.getCity());
+            ps.setString(4, clubOwnerModel.getAddress());
+            ps.setString(5, clubOwnerModel.getClubName());
+            ps.setInt(6, clubOwnerModel.getDiscountVIP());
+            // Manca la set dell'immagine del profilo
+
+            ps.executeUpdate();
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
+           // ErrorHandler.getInstance().handleException(m);
+            m.printStackTrace();
+        }
     }
 }

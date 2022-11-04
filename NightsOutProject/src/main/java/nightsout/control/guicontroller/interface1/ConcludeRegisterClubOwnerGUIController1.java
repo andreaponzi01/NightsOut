@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import nightsout.control.appcontroller.RegisterAppController;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.scenes.ReplaceScene;
 
@@ -25,7 +26,9 @@ public class ConcludeRegisterClubOwnerGUIController1 {
         clubOwnerBean.setUsername(textFieldUsername.getText());
         clubOwnerBean.setPassword(textFieldPassword.getText());
         clubOwnerBean.setEmail(textFieldEmail.getText());
-        //CRUD
+
+        RegisterAppController.registerClubOwner(clubOwnerBean);
+
         ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
     }
 

@@ -49,7 +49,12 @@ public class MySqlConnection {
             } catch (ClassNotFoundException | IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
+
+    // PreparedStatements
+    public  static java.sql.PreparedStatement insertClubOwner() throws SQLException {
+        return connection.prepareStatement( "INSERT INTO `ClubOwners`(`username`, `email`, `city`, `address`, `clubName`, `VIPdiscount` ) VALUES (?, ?, ?, ?, ?, ?)" );
+    }
+
 }

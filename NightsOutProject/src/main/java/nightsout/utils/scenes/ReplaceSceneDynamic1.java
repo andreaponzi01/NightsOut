@@ -42,14 +42,12 @@ public class ReplaceSceneDynamic1 {
         try {
             if (Objects.equals(type, "ClubOwner")) {
                 RegisterSetter1.setter(personalInfo, type, loader.getController());
-
             } else {
-                //
+                // User
             }
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();
         }
     }
-
 }

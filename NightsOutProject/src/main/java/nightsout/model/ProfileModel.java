@@ -10,29 +10,41 @@ public abstract class ProfileModel {
     e i Club Owners. Inoltre, contiene le CREDENZIALI ottenute successivamente a un login
     effettuato con successo.
  */
-    private int id ;
-    private File profileImg;
-    private Credentials cred;
+    protected int id ;
+    protected File profileImg;
+    protected Credentials cred;
+
+    private String email;
 
     public String getEmail() {
         return email;
     }
 
-    private String email;
+    protected ProfileModel() {
+
+    }
 
     protected ProfileModel(String username) {
         this.cred = new Credentials(username);
     }
 
+    protected ProfileModel(Credentials cred, String myEmail) {
+        setCredentials(cred);
+        this.email = myEmail;
+    }
+
+    /*
     protected ProfileModel(Credentials cred, File profileImg) {
         setProfileImg(profileImg);
         setCredentials(cred);
     }
+
     protected ProfileModel (int id, Credentials cred, File profileImg){
         setId(id);
         setCredentials(cred);
         setProfileImg(profileImg);
     }
+    */
 
     // Getter
     public String getUsername() {

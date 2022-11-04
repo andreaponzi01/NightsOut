@@ -1,9 +1,5 @@
 package nightsout.model;
 
-import nightsout.utils.bean.Credentials;
-
-import java.io.File;
-
 public class UserModel extends ProfileModel {
     private String name;
     private String surname="";
@@ -15,10 +11,12 @@ public class UserModel extends ProfileModel {
 
     public UserModel(String username){ super(username); }
 
+    /*
     public UserModel(Credentials cred, String name, File profileImg ) {
         super(cred, profileImg) ;
         setName(name);
     }
+     */
 
     public void setName(String name) {
         this.name = name;
