@@ -49,4 +49,17 @@ public class ReplaceSceneDynamic1 {
             e.printStackTrace();
         }
     }
+
+    public void switchAndSetSceneCreateEvent(ActionEvent ae, String fxml, int idClubOwner) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+                RegisterSetter1.setterCreateEvent(idClubOwner, loader.getController());
+
+            ReplaceScene.showStage(ae, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
 }
