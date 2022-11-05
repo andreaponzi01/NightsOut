@@ -4,19 +4,20 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.RegisterUserGUIController1">
+<AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.CreateEventGUIController1">
    <children>
       <TextField fx:id="textFieldName" alignment="CENTER" layoutX="262.0" layoutY="162.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert name " style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <Button fx:id="buttonNextStep" layoutX="348.0" layoutY="496.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToConcludeRegister" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Next Step" textFill="WHITE">
+      <Button fx:id="buttonCreateEvent" layoutX="348.0" layoutY="496.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToCreateEvent" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Next Step" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -32,7 +33,7 @@
             <Font name="Arial Bold" size="50.0" />
          </font>
       </Label>
-      <Button fx:id="buttonBack" layoutX="14.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToChoice" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
+      <Button fx:id="buttonBack" layoutX="14.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -43,11 +44,28 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="textFieldSurname" alignment="CENTER" layoutX="261.0" layoutY="233.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert Surname " style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldPrice" alignment="CENTER" layoutX="261.0" layoutY="233.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert Price " style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <DatePicker fx:id="dateBirthday" layoutX="290.0" layoutY="312.0" promptText="insert birthday" />
+      <DatePicker fx:id="dateEvent" layoutX="273.0" layoutY="312.0" promptText="insert Date Event" />
+      <Slider fx:id="sliderTime" blockIncrement="1.0" layoutX="273.0" layoutY="399.0" majorTickUnit="1.0" max="6.0" min="1.0" minorTickCount="0" prefHeight="26.0" prefWidth="220.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+      <Label layoutX="280.0" layoutY="373.0" prefHeight="17.0" prefWidth="52.0" text="Hour" />
+      <TextField fx:id="textFieldHours" alignment="CENTER" layoutX="484.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="179.0" promptText="Hours" style="-fx-background-radius: 28;">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="textFieldMinutes" alignment="CENTER" layoutX="675.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="179.0" promptText="Minutes" style="-fx-background-radius: 28;">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font>
+      </TextField>
+      <Label layoutX="665.0" layoutY="295.0" prefHeight="52.0" prefWidth="15.0" text=":">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
