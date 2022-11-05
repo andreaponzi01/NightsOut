@@ -24,6 +24,7 @@ public class ClubOwnerPageGUIController1 {
     public void goToCreateEventPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneCreateEvent(actionEvent, "/CreateEventPage1.fxml", loggedClubOwner.getId());
+
     }
 
     public void setAll(ClubOwnerBean clubOwnerBean) {

@@ -14,9 +14,9 @@ public class EventDAO {
     public static void createEvent(EventModel eventModel) {
         Statement stm= null;
         try{
+
             stm= MySqlConnection.tryConnect();
             LocalTime time = LocalTime.of(eventModel.getHours(), eventModel.getMinutes(), 0);
-
             CRUD.insertEvent(eventModel.getIdClubOwner(), eventModel.getName(), eventModel.getEventDate().toString(), Time.valueOf(time).toString(), eventModel.getDuration(), eventModel.getPrice(), stm);
 
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {

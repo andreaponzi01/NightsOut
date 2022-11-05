@@ -11,6 +11,16 @@ public class EventModel {
         //ignore
     }
 
+    protected int idClubOwner;
+
+    protected String name;
+    protected Double price;
+
+    protected int hours;
+    protected int minutes;
+    protected int duration;
+    protected LocalDate eventDate;
+
     public EventModel(EventBean eventBean) {
         this.idClubOwner = eventBean.getIdClubOwner();
         this.eventDate = eventBean.getEventDate();
@@ -22,9 +32,6 @@ public class EventModel {
     }
 
     //Attributi User
-    protected int idClubOwner;
-    protected String name;
-    protected Double price;
 
     public int getIdClubOwner() {
         return idClubOwner;
@@ -82,9 +89,6 @@ public class EventModel {
         this.eventDate = eventDate;
     }
 
-    protected int hours;
-    protected int minutes;
-    protected int duration;
-    protected LocalDate eventDate;
+
 
 }

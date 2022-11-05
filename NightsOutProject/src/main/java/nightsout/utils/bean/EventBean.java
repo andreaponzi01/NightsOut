@@ -8,10 +8,15 @@ public class EventBean {
         //ignore
     }
 
+
     //Attributi User
     protected int idClubOwner;
     protected String name;
     protected Double price;
+    protected int hours;
+    protected int minutes;
+    protected int duration;
+    protected LocalDate eventDate;
 
     public int getIdClubOwner() {
         return idClubOwner;
@@ -69,8 +74,4 @@ public class EventBean {
         this.eventDate = eventDate;
     }
 
-    protected int hours;
-    protected int minutes;
-    protected int duration;
-    protected LocalDate eventDate;
 }

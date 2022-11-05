@@ -17,7 +17,7 @@
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <Button fx:id="buttonCreateEvent" layoutX="348.0" layoutY="496.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToCreateEvent" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Next Step" textFill="WHITE">
+      <Button fx:id="buttonCreateEvent" layoutX="348.0" layoutY="496.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Next Step" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
