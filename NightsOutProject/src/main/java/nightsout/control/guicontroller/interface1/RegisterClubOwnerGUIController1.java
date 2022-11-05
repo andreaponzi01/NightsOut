@@ -32,7 +32,7 @@ public class RegisterClubOwnerGUIController1 {
     protected void backToChoice(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
 
     @FXML
-    protected void goToRegisterConclude(ActionEvent actionEvent) throws IOException {
+    protected void goToConcludeRegister(ActionEvent actionEvent) throws IOException {
         setPersonalInfo();
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneRegister(actionEvent,"/ConcludeRegisterClubOwner1.fxml", personalInfo, "ClubOwner");

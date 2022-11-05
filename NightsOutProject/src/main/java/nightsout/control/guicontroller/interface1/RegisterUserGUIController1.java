@@ -10,20 +10,29 @@ import nightsout.utils.scenes.ReplaceScene;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class RegisterUserGUIController1 {
 
     private String[] personalInfo;
+    //private LocalDate birthday;
 
     private void setPersonalInfo(){
-        /*
-        String name = textFieldName.getText();
-        String address = textFieldAddress.getText();
-        String city = textFieldCity.getText();
-        String discount = textFieldDiscount.getText();
 
-        personalInfo = new String[]{name, address, city, discount};
-         */
+        String name = textFieldName.getText();
+        String surname = textFieldSurname.getText();
+        String gender="";
+        if(radioFemale.isSelected()){
+            gender = "Female";
+        }
+        else{
+            gender = "Male";
+        }
+
+        String birthday= dateBirthday.getValue().toString();
+        System.out.println("\n\nmiao1\n\n");
+        //birthday = dateBirthday.getValue();
+        personalInfo = new String[]{name, surname, gender, birthday};
     }
 
     @FXML

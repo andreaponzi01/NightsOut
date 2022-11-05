@@ -1,12 +1,11 @@
 package nightsout.utils.dao;
 
 import nightsout.model.UserModel;
+import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UserDAO {
 
@@ -52,4 +51,29 @@ public class UserDAO {
         return userModel;
     }
 
+    public static void insertUser(UserModel userModel) {
+        Statement stm= null;
+        try{
+            stm=MySqlConnection.tryConnect();
+
+            // Inserimento credenziali (tabella Credentials)
+            CRUD.insertCredentials(userModel.getUsername(), userModel.getPassword(), "Free", stm);
+            PreparedStatement ps = MySqlConnection.insertUser();
+            // Inserimento dati personali (tabella ClubOwners)
+            ps.setString(1,userModel.getUsername());
+            ps.setString(2, userModel.getEmail());
+            ps.setString(3 , userModel.getName());
+            ps.setString(4, userModel.getSurname());
+            ps.setDate(5, Date.valueOf(userModel.getBirthday()));
+            ps.setString(6, userModel.getGender());
+
+            // Manca la set dell'immagine del profilo
+
+            ps.executeUpdate();
+
+        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
+            // ErrorHandler.getInstance().handleException(m);
+            m.printStackTrace();
+        }
+    }
 }

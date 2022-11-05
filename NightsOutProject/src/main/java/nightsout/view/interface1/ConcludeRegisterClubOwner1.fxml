@@ -37,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" layoutX="94.0" layoutY="83.0" prefHeight="84.0" prefWidth="862.0" text="2° step: What's your club name?" textFill="#200f54">
+      <Label alignment="CENTER" layoutX="94.0" layoutY="83.0" prefHeight="84.0" prefWidth="862.0" text="Credentials:" textFill="#200f54">
          <font>
             <Font name="Arial Bold" size="55.0" />
          </font>

@@ -57,4 +57,8 @@ public class MySqlConnection {
         return connection.prepareStatement( "INSERT INTO `ClubOwners`(`username`, `email`, `city`, `address`, `clubName`, `VIPdiscount` ) VALUES (?, ?, ?, ?, ?, ?)" );
     }
 
+    public  static java.sql.PreparedStatement insertUser() throws SQLException {
+        return connection.prepareStatement( "INSERT INTO `Users`(`username`, `email`, `name`, `surname`, `birthday`, `gender` ) VALUES (?, ?, ?, ?, ?, ?)" );
+    }
+
 }

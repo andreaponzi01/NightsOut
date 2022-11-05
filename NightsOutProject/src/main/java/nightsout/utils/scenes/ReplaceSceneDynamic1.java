@@ -38,12 +38,11 @@ public class ReplaceSceneDynamic1 {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
-
         try {
             if (Objects.equals(type, "ClubOwner")) {
-                RegisterSetter1.setter(personalInfo, type, loader.getController());
-            } else {
-                // User
+                RegisterSetter1.setterClubOwner(personalInfo, type, loader.getController());
+            } else if (Objects.equals(type, "Free")){
+                RegisterSetter1.setterUser(personalInfo, type, loader.getController());
             }
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
