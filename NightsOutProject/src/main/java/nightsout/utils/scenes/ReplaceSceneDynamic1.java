@@ -7,6 +7,7 @@ import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.interface1.ClubOwnerPageSetter1;
 import nightsout.utils.scenes.interface1.RegisterSetter1;
+import nightsout.utils.scenes.interface1.SubscriptionPageSetter1;
 import nightsout.utils.scenes.interface1.UserPageSetter1;
 
 import java.io.IOException;
@@ -26,6 +27,9 @@ public class ReplaceSceneDynamic1 {
             }
             if (fxml.equals("/ClubOwnerPage1.fxml")) {
                ClubOwnerPageSetter1.setter(clubOwnerBean, loader.getController());
+            }
+            if (fxml.equals("/SubscriptionPage1.fxml")) {
+                SubscriptionPageSetter1.setter(userBean, loader.getController());
             }
 
             ReplaceScene.showStage(ae, root);

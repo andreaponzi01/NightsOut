@@ -12,6 +12,8 @@ public class UserBean extends ProfileBean {
 
     protected LocalDate birthday;
 
+    protected boolean vip;
+
     public UserBean(){
         //ignore
     }
@@ -31,6 +33,7 @@ public class UserBean extends ProfileBean {
         this.setType(userModel.getType());
         this.setImg((userModel.getProfileImg()));
         this.setBirthday(userModel.getBirthday());
+        this.setVip(userModel.getVip());
     }
 
     // Getter
@@ -44,5 +47,13 @@ public class UserBean extends ProfileBean {
     public void setGender(String gender) { this.gender = gender; }
 
     public void setBirthday(LocalDate birthday) { this.birthday = birthday; }
+
+    public boolean getVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
+    }
 
 }

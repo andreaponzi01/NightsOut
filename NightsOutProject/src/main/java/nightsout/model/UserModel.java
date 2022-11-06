@@ -12,6 +12,8 @@ public class UserModel extends ProfileModel {
 
     private LocalDate birthday;
 
+    private boolean vip;
+
     /*
        Mancano: data della sottoscrizione VIP
      */
@@ -56,4 +58,7 @@ public class UserModel extends ProfileModel {
     public LocalDate getBirthday() { return birthday; }
 
 
+    public boolean getVip() { return vip; }
+
+    public void setVip(boolean vip) { this.vip = vip; }
 }

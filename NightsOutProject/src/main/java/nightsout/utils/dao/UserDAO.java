@@ -31,6 +31,7 @@ public class UserDAO {
             userModel.setGender(rs.getString(7));
             userModel.setEmail(rs.getString(4));
             userModel.setId(rs.getInt(1));
+            userModel.setVip(rs.getBoolean(9));
 
             /* Capire come funziona la gestione delle immagini tramite file
 
