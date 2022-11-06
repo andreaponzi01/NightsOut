@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.UserPageGUIController1">
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.UserPageGUIController1">
    <children>
-      <Label fx:id="usernameLabel" layoutX="505.0" layoutY="278.0" text="Label" />
-      <Label fx:id="name" layoutX="505.0" layoutY="317.0" text="Label" />
-      <Label fx:id="surname" layoutX="505.0" layoutY="360.0" text="Label" />
+      <Label fx:id="usernameLabel" layoutX="852.0" layoutY="23.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+      <AnchorPane layoutX="40.0" layoutY="66.0" prefHeight="555.0" prefWidth="960.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="66.0" />
+      <Button layoutX="227.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" styleClass="navBarButton" stylesheets="@style.css" text="Booking Event" textFill="WHITE" />
+      <Label layoutX="784.0" layoutY="23.0" text="Hello" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Button layoutX="942.0" layoutY="19.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="86.0" styleClass="red-button-rounded" stylesheets="@style.css" text="Logout" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button layoutX="375.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="199.0" styleClass="navBarButton" stylesheets="@style.css" text="Check Request Status" textFill="WHITE" />
+      <Button layoutX="585.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="140.0" styleClass="navBarButton" stylesheets="@style.css" text="Pass To VIP" textFill="WHITE" />
    </children>
 </AnchorPane>

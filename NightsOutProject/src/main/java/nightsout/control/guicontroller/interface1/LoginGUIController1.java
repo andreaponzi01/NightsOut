@@ -12,6 +12,7 @@ import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.LoginBean1;
 import nightsout.utils.exception.myexception.WrongPasswordException;
+import nightsout.utils.scenes.ReplaceScene;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 import java.util.Objects;
@@ -26,6 +27,9 @@ public class LoginGUIController1 {
 
     @FXML
     Button buttonLogin;
+
+    @FXML
+    Button buttonBack;
 
     @FXML
     CheckBox checkBoxClubOwner;
@@ -52,6 +56,6 @@ public class LoginGUIController1 {
 
         } catch (WrongPasswordException e) { MyNotification.createNotification(e); }
     }
-
-
+    @FXML
+    protected void backToWelcomePage(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml"); }
 }

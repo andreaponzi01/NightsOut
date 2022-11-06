@@ -19,7 +19,7 @@ public class ClubOwnerPageGUIController1 {
     @FXML
     private Button buttonCreateEvent;
 
-    public void setLabelUserName(String username) { usernameLabel.setText(username); }
+    public void setLabelUserName(String username) { this.usernameLabel.setText(username); }
 
     public void goToCreateEventPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
@@ -30,10 +30,8 @@ public class ClubOwnerPageGUIController1 {
     public void setAll(ClubOwnerBean clubOwnerBean) {
         // Passaggio bean del club owner loggato
         loggedClubOwner = clubOwnerBean;
-
         // Settaggio informazioni "dinamiche"
         setLabelUserName(clubOwnerBean.getUsername());
-
     }
 
 }
