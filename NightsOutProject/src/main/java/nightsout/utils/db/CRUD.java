@@ -18,5 +18,9 @@ public class CRUD {
         String saveStm = String.format("INSERT INTO `Events` (`clubOwner`, `price`, `name`, `date`, `duration`, `time`) VALUES ('%d', '%s', '%s', '%s', '%d', '%s');", idClubOwner, String.valueOf(price), name, date, duration, time);
         stm.executeUpdate(saveStm);
     }
+    public static void subscriptionVipUser( String username, Statement stm) throws SQLException {
+        String saveStm = String.format("UPDATE `Users` SET `VIP` = '1', creationDateVIP=CURRENT_DATE WHERE (`username` = '%s');", username);
+        stm.executeUpdate(saveStm);
 
+    }
 }

@@ -6,6 +6,9 @@ import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
 
 import java.sql.*;
+import java.time.LocalDate;
+
+import static java.lang.Boolean.TRUE;
 
 public class UserDAO {
 
@@ -71,6 +74,25 @@ public class UserDAO {
             // Manca la set dell'immagine del profilo
 
             ps.executeUpdate();
+
+        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
+            // ErrorHandler.getInstance().handleException(m);
+            m.printStackTrace();
+        }
+    }
+
+    public static void subscriptionVip(UserModel userModel) {
+        Statement stm= null;
+        try{
+
+            stm=MySqlConnection.tryConnect();
+            // Inserimento credenziali (tabella Credentials)
+            CRUD.subscriptionVipUser(userModel.getUsername(), stm);
+
+            //QUA HO SETTATO IL MODEL è giusto????
+            userModel.setVip(TRUE);
+            userModel.setCreationDateVip(LocalDate.now());
+
 
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);

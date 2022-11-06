@@ -12,6 +12,8 @@ public class UserBean extends ProfileBean {
 
     protected LocalDate birthday;
 
+    protected LocalDate creationDateVIP;
+
     protected boolean vip;
 
     public UserBean(){
@@ -34,6 +36,7 @@ public class UserBean extends ProfileBean {
         this.setImg((userModel.getProfileImg()));
         this.setBirthday(userModel.getBirthday());
         this.setVip(userModel.getVip());
+        this.setCreationDateVIP(userModel.getCreationDateVip());
     }
 
     // Getter
@@ -54,6 +57,14 @@ public class UserBean extends ProfileBean {
 
     public void setVip(boolean vip) {
         this.vip = vip;
+    }
+
+    public LocalDate getCreationDateVIP() {
+        return creationDateVIP;
+    }
+
+    public void setCreationDateVIP(LocalDate creationDateVIP) {
+        this.creationDateVIP = creationDateVIP;
     }
 
 }

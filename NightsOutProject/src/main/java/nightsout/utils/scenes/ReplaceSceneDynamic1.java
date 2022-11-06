@@ -3,6 +3,8 @@ package nightsout.utils.scenes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.Pane;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.interface1.ClubOwnerPageSetter1;
@@ -27,9 +29,6 @@ public class ReplaceSceneDynamic1 {
             }
             if (fxml.equals("/ClubOwnerPage1.fxml")) {
                ClubOwnerPageSetter1.setter(clubOwnerBean, loader.getController());
-            }
-            if (fxml.equals("/SubscriptionPage1.fxml")) {
-                SubscriptionPageSetter1.setter(userBean, loader.getController());
             }
 
             ReplaceScene.showStage(ae, root);
@@ -62,6 +61,23 @@ public class ReplaceSceneDynamic1 {
                 RegisterSetter1.setterCreateEvent(idClubOwner, loader.getController());
 
             ReplaceScene.showStage(ae, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneSubscription(ActionEvent ae, String fxml, UserBean userBean) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            if(userBean.getVip()){
+                SubscriptionPageSetter1.setter2(userBean, loader.getController());
+                ReplaceScene.showStage(ae, root);
+            }else{
+                SubscriptionPageSetter1.setter1(userBean, loader.getController());
+                ReplaceScene.showStage(ae, root);
+            }
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();
         }

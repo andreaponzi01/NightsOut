@@ -61,4 +61,5 @@ public class MySqlConnection {
         return connection.prepareStatement( "INSERT INTO `Users`(`username`, `email`, `name`, `surname`, `birthday`, `gender` ) VALUES (?, ?, ?, ?, ?, ?)" );
     }
 
+
 }

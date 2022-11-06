@@ -7,6 +7,9 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
+import static java.lang.Boolean.TRUE;
 
 public class UserPageGUIController1 {
 
@@ -17,20 +20,25 @@ public class UserPageGUIController1 {
     public void setLabelUserName(String username) { this.usernameLabel.setText(username); }
 
     public void setAll(UserBean userBean) {
-
         this.userBean = userBean;
         setLabelUserName(userBean.getUsername());
-
     }
 
     @FXML
     private void goToSubscriptionPage(ActionEvent actionEvent) throws IOException {
         if (userBean.getVip()) {
             System.out.println("Sei un pirla");
-            // Sei già iscritto...
-        } else {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetScene(actionEvent, "/SubscriptionPage1.fxml", userBean, null);
+            replacer.switchAndSetSceneSubscription(actionEvent, "/SubscriptionedVipPage1.fxml", userBean);
+        }
+        else
+        {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneSubscription(actionEvent, "/SubscriptionVipPage1.fxml", userBean);
+            //é giusto settarli qui i BEAN?
+            //devo settare anche il model? se si dove lo setto il MODEL?
+            userBean.setVip(TRUE);
+            userBean.setCreationDateVIP(LocalDate.now());
         }
     }
 

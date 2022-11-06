@@ -9,9 +9,8 @@ public class UserModel extends ProfileModel {
     private String name;
     private String surname;
     private String gender;
-
     private LocalDate birthday;
-
+    private LocalDate creationDateVip;
     private boolean vip;
 
     /*
@@ -57,8 +56,15 @@ public class UserModel extends ProfileModel {
 
     public LocalDate getBirthday() { return birthday; }
 
-
     public boolean getVip() { return vip; }
 
     public void setVip(boolean vip) { this.vip = vip; }
+
+    public LocalDate getCreationDateVip() {
+        return creationDateVip;
+    }
+
+    public void setCreationDateVip(LocalDate creationDateVip) {
+        this.creationDateVip = creationDateVip;
+    }
 }

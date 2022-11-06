@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="bg" fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.SubscriptionPageGUIController1">
+<AnchorPane id="bg" fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.SubscriptionVipPageGUIController1">
    <children>
       <VBox alignment="CENTER" layoutX="314.0" layoutY="71.0" prefHeight="448.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 28;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="314.0" AnchorPane.rightAnchor="286.0" AnchorPane.topAnchor="71.0">
          <children>

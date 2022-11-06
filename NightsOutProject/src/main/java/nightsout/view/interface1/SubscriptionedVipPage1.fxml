@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="bg" fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.SubscriptionedVipPageGUIController1">
+   <children>
+      <VBox alignment="CENTER" layoutX="314.0" layoutY="71.0" prefHeight="448.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 28;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="314.0" AnchorPane.rightAnchor="286.0" AnchorPane.topAnchor="71.0">
+         <children>
+            <Label prefHeight="56.0" prefWidth="217.0" text="You Are already registered in date: ">
+               <font>
+                  <Font name="Futura Medium" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="100.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="labelDate" text="Label">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Button fx:id="buttonSearch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToSearchPage" prefHeight="50.0" prefWidth="120.0" styleClass="green-button-rectangular" text="Search Page">
+               <font>
+                  <Font name="Arial Bold" size="25.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
