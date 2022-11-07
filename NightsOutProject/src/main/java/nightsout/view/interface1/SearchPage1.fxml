@@ -28,7 +28,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ListView fx:id="listView" layoutX="92.0" layoutY="246.0" prefHeight="173.0" prefWidth="699.0" style="-fx-border-color: lightGrey; -fx-border-width: 5;" />
+            <ListView fx:id="listView" layoutX="92.0" layoutY="246.0" prefHeight="242.0" prefWidth="699.0" style="-fx-border-color: lightGrey; -fx-border-width: 5;" />
             <Button fx:id="buttonBack" layoutX="9.0" layoutY="18.0" mnemonicParsing="false" onAction="#backToUserPage" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" text="Back" textFill="#200f54">
                <font>
                   <Font name="Arial Bold" size="21.0" />

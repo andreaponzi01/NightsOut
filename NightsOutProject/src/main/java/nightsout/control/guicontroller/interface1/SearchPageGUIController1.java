@@ -2,7 +2,10 @@ package nightsout.control.guicontroller.interface1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import nightsout.utils.Observer;
 import nightsout.utils.SearchEngineering;
 import nightsout.utils.bean.UserBean;
@@ -18,6 +21,9 @@ public class SearchPageGUIController1 implements Observer {
     @FXML
     private TextField textFieldSearch;
 
+    @FXML
+    private ListView listView;
+
     public void setAll(UserBean userBean) {
         this.userBean = userBean;
     }
@@ -31,13 +37,31 @@ public class SearchPageGUIController1 implements Observer {
     @FXML
     private void search() {
         String input = textFieldSearch.getText();
-        SearchEngineering.search(this, input);
+        this.listView.getItems().clear();
+        if(!input.isBlank())
+            SearchEngineering.search(this, input);
     }
 
-    // Poiché il "nuovo" Observer è un'interfaccia
     @Override
-    public void update(Object ob) {}
+    public void update(Object object) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Pane pane = null;
 
+        if(object instanceof UserBean userBean) {
+            try {
+                pane = fxmlLoader.load(getClass().getResource("/UserItem1.fxml").openStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            UserItemGUIController1 controller = fxmlLoader.getController();
+            controller.setAll(userBean);
+
+            this.listView.getItems().add(pane);
+        }
+    }
+/*
     @Override
     public void updateFrom(Object ob, Object from) {}
+ */
 }

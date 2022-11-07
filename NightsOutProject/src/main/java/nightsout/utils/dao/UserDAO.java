@@ -131,7 +131,7 @@ public class UserDAO {
 
         } catch (/*MysqlConnectionFailed |*/ SQLException e){
             // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        e.printStackTrace();
         }
         return list;
     }

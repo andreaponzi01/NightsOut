@@ -16,7 +16,7 @@ public class SearchAppController {
     public static ArrayList<UserBean> searchUserByUsername(String input) {
         try {
             ArrayList<UserModel> list = UserDAO.getUsersByUsername(input);
-            ArrayList<UserBean> listBean = new ArrayList<UserBean>();
+            ArrayList<UserBean> listBean = new ArrayList<>();
 
             for(UserModel um : list){
                 UserBean bean = new UserBean(um);
