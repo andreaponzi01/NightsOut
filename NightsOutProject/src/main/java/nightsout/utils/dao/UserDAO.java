@@ -6,9 +6,6 @@ import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
 
 import java.sql.*;
-import java.time.LocalDate;
-
-import static java.lang.Boolean.TRUE;
 
 public class UserDAO {
 
@@ -84,14 +81,16 @@ public class UserDAO {
     public static void subscriptionVip(UserModel userModel) {
         Statement stm= null;
         try{
-
             stm=MySqlConnection.tryConnect();
+
             // Inserimento credenziali (tabella Credentials)
             CRUD.subscriptionVipUser(userModel.getUsername(), stm);
 
-            //QUA HO SETTATO IL MODEL è giusto????
-            userModel.setVip(TRUE);
-            userModel.setCreationDateVip(LocalDate.now());
+            ResultSet rs = Query.searchUserByUsername(stm, userModel.getUsername());
+            rs.next();
+
+            userModel.setVip(rs.getBoolean(9));
+            userModel.setCreationDateVip(rs.getDate(10).toLocalDate());
 
 
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {

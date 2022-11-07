@@ -21,13 +21,13 @@ public class SubscriptionVipPageGUIController1 {
     @FXML
     private void confirmSubscription(ActionEvent actionEvent) throws IOException {
         //effettiva subscription
-        SubscriptionVipAppController.subscription(userBean.getUsername());
+        UserBean userBeanUpdated = SubscriptionVipAppController.subscription(userBean.getUsername());
 
         //vai alla pagina
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean,null);
+        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBeanUpdated,null);
     }
 
-    public void setAll(UserBean userBean) {this.userBean = userBean;}
+    public void setAll(UserBean userBean) { this.userBean = userBean; }
 
 }

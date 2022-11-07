@@ -3,8 +3,6 @@ package nightsout.utils.scenes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.Pane;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.interface1.ClubOwnerPageSetter1;
@@ -74,7 +72,7 @@ public class ReplaceSceneDynamic1 {
             if(userBean.getVip()){
                 SubscriptionPageSetter1.setter2(userBean, loader.getController());
                 ReplaceScene.showStage(ae, root);
-            }else{
+            } else {
                 SubscriptionPageSetter1.setter1(userBean, loader.getController());
                 ReplaceScene.showStage(ae, root);
             }
