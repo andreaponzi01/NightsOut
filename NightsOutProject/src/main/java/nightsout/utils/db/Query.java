@@ -31,4 +31,14 @@ public class Query {
         String sql = "SELECT * FROM ClubOwners where username = '" + username + "' ;";
         return stm.executeQuery(sql);
     }
+
+    public static ResultSet searchUsersByUsername(Statement stm, String username) throws SQLException {
+        String sql = "SELECT * FROM Users where username like '" + username + "%' ;";
+        return stm.executeQuery(sql);
+    }
+
+    public static ResultSet searchEventsByName(Statement stm, String name) throws SQLException {
+        String sql = "SELECT * FROM Events where name like '" + name + "%' ;";
+        return stm.executeQuery(sql);
+    }
 }

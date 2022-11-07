@@ -1,13 +1,18 @@
 package nightsout.utils.bean;
 
+import nightsout.model.EventModel;
+
 import java.time.LocalDate;
 
-public class EventBean {
+public class EventBean implements GenericBean {
 
     public EventBean(){
-        //ignore
     }
 
+    public EventBean(EventModel eventModel) {
+        this.name = eventModel.getName();
+        //Aggiungere altre this.attr = eventModel.getAttr()
+    }
 
     //Attributi User
     protected int idClubOwner;

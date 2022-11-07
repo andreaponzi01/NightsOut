@@ -2,7 +2,7 @@ package nightsout.utils.bean;
 
 import java.io.File;
 
-public abstract class ProfileBean {
+public abstract class ProfileBean implements GenericBean {
 
     // Attributi comuni a User e ClubOwner
     protected String username;

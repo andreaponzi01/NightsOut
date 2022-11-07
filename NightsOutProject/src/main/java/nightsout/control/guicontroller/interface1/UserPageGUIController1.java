@@ -32,14 +32,13 @@ public class UserPageGUIController1 {
         {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneSubscription(actionEvent, "/SubscriptionVipPage1.fxml", userBean);
-
-            //é giusto settarli qui i BEAN?
-            //devo settare anche il model? se si dove lo setto il MODEL?
-
-
-            //  userBean.setVip(TRUE);
-            //  userBean.setCreationDateVIP(LocalDate.now());
         }
+    }
+
+    @FXML
+    private void goToSearchPage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneSearch(actionEvent, "/SearchPage1.fxml", userBean);
     }
 
 }

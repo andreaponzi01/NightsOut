@@ -4,7 +4,7 @@ import nightsout.utils.bean.Credentials;
 
 import java.io.File;
 
-public abstract class ProfileModel {
+public abstract class ProfileModel implements GenericModel {
 /*
     Questo è il Model del profilo, cioè contiene le informazioni IN COMUNE per gli Users
     e i Club Owners. Inoltre, contiene le CREDENZIALI ottenute successivamente a un login

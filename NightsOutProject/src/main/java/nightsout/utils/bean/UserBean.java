@@ -27,6 +27,7 @@ public class UserBean extends ProfileBean {
         */
 
         this.setSurname(userModel.getSurname());
+        this.setName(userModel.getName());
         this.setUsername(userModel.getUsername());
         this.setGender(userModel.getGender());
         this.setPassword(userModel.getPassword());

@@ -3,11 +3,14 @@ package nightsout.utils.dao;
 import nightsout.model.EventModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
+import nightsout.utils.db.Query;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class EventDAO {
 
@@ -24,4 +27,35 @@ public class EventDAO {
             m.printStackTrace();
         }
     }
+
+    public static ArrayList<EventModel> getEventByName(String name) {
+
+            ArrayList<EventModel> list = null;
+            Statement stm = null;
+            EventModel eventModel = null;
+            try {
+                list = new ArrayList<EventModel>();
+                stm = MySqlConnection.tryConnect();
+
+                ResultSet rs = Query.searchEventsByName(stm, name);
+                rs.next();
+
+                do {
+                    eventModel = new EventModel();
+                    eventModel.setName(rs.getString(5));
+                    //Aggiungere altre set
+
+                    list.add(eventModel);
+
+                } while(rs.next());
+
+                return list;
+
+            } catch (/*MysqlConnectionFailed |*/ SQLException e){
+                // ErrorHandler.getInstance().handleException(e);
+                e.printStackTrace();
+            }
+            return list;
+    }
+
 }

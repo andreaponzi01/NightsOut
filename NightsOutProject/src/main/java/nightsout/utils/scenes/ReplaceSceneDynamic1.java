@@ -5,10 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.scenes.interface1.ClubOwnerPageSetter1;
-import nightsout.utils.scenes.interface1.RegisterSetter1;
-import nightsout.utils.scenes.interface1.SubscriptionPageSetter1;
-import nightsout.utils.scenes.interface1.UserPageSetter1;
+import nightsout.utils.scenes.interface1.*;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -76,6 +73,18 @@ public class ReplaceSceneDynamic1 {
                 SubscriptionPageSetter1.setter1(userBean, loader.getController());
                 ReplaceScene.showStage(ae, root);
             }
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneSearch(ActionEvent ae, String fxml, UserBean userBean) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+                SearchPageSetter1.setter(userBean, loader.getController());
+                ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();
         }

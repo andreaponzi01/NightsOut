@@ -6,6 +6,7 @@ import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UserDAO {
 
@@ -97,5 +98,41 @@ public class UserDAO {
             // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
         }
+    }
+
+    public static ArrayList<UserModel> getUsersByUsername(String username) throws SQLException {
+
+        ArrayList<UserModel> list = null;
+        Statement stm = null;
+        UserModel userModel = null ;
+
+        try {
+            list = new ArrayList<UserModel>();
+            stm = MySqlConnection.tryConnect();
+
+            ResultSet rs = Query.searchUsersByUsername(stm, username);
+            rs.next();
+
+            do {
+                userModel = new UserModel(rs.getString(2));
+                userModel.setName(rs.getString(6));
+                userModel.setSurname(rs.getString(8));
+                userModel.setGender(rs.getString(7));
+                userModel.setEmail(rs.getString(4));
+                userModel.setId(rs.getInt(1));
+                userModel.setVip(rs.getBoolean(9));
+
+
+                list.add(userModel);
+
+            } while(rs.next());
+
+            return list;
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return list;
     }
 }
