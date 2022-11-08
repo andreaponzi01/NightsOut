@@ -19,6 +19,20 @@ public class UserModel extends ProfileModel {
 
     public UserModel(String username){ super(username); }
 
+    public UserModel(UserBean userBean){
+
+        this.cred = new Credentials();
+        this.cred.setUsername(userBean.getUsername());
+        this.cred.setPassword(userBean.getPassword());
+        this.cred.setType(userBean.getType());
+        this.id = userBean.getId();
+        this.name = userBean.getName();
+        this.surname = userBean.getSurname();
+        this.gender = userBean.getGender();
+        this.birthday = userBean.getBirthday();
+
+    }
+
     public UserModel(UserBean userBean, Credentials myCred){
 
         super(myCred, userBean.getEmail());

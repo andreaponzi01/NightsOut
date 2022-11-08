@@ -43,6 +43,7 @@ public class EventDAO {
                 do {
                     eventModel = new EventModel();
                     eventModel.setName(rs.getString(5));
+                    eventModel.setIdEvent(rs.getInt(1));
                     //Aggiungere altre set
 
                     list.add(eventModel);

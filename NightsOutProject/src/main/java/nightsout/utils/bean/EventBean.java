@@ -11,10 +11,12 @@ public class EventBean implements GenericBean {
 
     public EventBean(EventModel eventModel) {
         this.name = eventModel.getName();
+        this.idEvent = eventModel.getIdEvent();
         //Aggiungere altre this.attr = eventModel.getAttr()
     }
 
     //Attributi User
+    protected int idEvent;
     protected int idClubOwner;
     protected String name;
     protected Double price;
@@ -75,6 +77,14 @@ public class EventBean implements GenericBean {
 
     public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
+    }
+
+    public int getIdEvent() {
+        return idEvent;
+    }
+
+    public void setIdEvent(int idEvent) {
+        this.idEvent = idEvent;
     }
 
 }

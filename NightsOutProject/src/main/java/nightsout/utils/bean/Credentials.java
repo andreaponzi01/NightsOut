@@ -5,6 +5,12 @@ public class Credentials {
     private String password;
     private String type;
 
+    public Credentials() {
+        this.username = null;
+        this.password = null;
+        this.type = null;
+    }
+
     public Credentials(String username, String password, String type){
         setUsername(username);
         setPassword(password);

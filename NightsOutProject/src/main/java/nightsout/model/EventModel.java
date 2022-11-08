@@ -11,6 +11,7 @@ public class EventModel {
         //ignore
     }
 
+    protected int idEvent;
     protected int idClubOwner;
 
     protected String name;
@@ -22,6 +23,7 @@ public class EventModel {
     protected LocalDate eventDate;
 
     public EventModel(EventBean eventBean) {
+        this.idEvent = eventBean.getIdEvent();
         this.idClubOwner = eventBean.getIdClubOwner();
         this.eventDate = eventBean.getEventDate();
         this.price = eventBean.getPrice();
@@ -88,6 +90,15 @@ public class EventModel {
     public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
     }
+
+    public int getIdEvent() {
+        return idEvent;
+    }
+
+    public void setIdEvent(int idEvent) {
+        this.idEvent = idEvent;
+    }
+
 
 
 

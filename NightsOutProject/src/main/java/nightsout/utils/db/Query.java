@@ -1,6 +1,8 @@
 package nightsout.utils.db;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Query {
 
@@ -39,6 +41,11 @@ public class Query {
 
     public static ResultSet searchEventsByName(Statement stm, String name) throws SQLException {
         String sql = "SELECT * FROM Events where name like '" + name + "%' ;";
+        return stm.executeQuery(sql);
+    }
+
+    public static ResultSet searchRequest(Statement stm, int idUser, int idEvent) throws SQLException {
+        String sql = "SELECT * FROM Requests where user = '" + idUser  + "' and event = '" + idEvent+"' ;";
         return stm.executeQuery(sql);
     }
 }

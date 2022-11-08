@@ -23,4 +23,14 @@ public class CRUD {
         stm.executeUpdate(saveStm);
 
     }
+
+    public static void insertRequest(int id, int idEvent, Statement stm) throws SQLException {
+        String saveStm = String.format("INSERT INTO `Requests` (`user`, `event`, `status`) VALUES ('%d', '%d', '%s')", id, idEvent, "pending");
+        stm.executeUpdate(saveStm);
+    }
+
+    public static void updateRequest(int id, int idEvent, Statement stm, String status) throws SQLException {
+        String saveStm = String.format("UPDATE `Requests` SET `status` = '%s' WHERE (`user` = '%d' AND `event` = '%d')", status, id, idEvent);
+        stm.executeUpdate(saveStm);
+    }
 }

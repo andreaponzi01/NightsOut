@@ -16,8 +16,8 @@ import java.io.IOException;
 
 public class SearchPageGUIController1 implements Observer {
 
-    @FXML
     private UserBean userBean;
+    private String input;
 
     @FXML
     private TextField textFieldSearch;
@@ -29,6 +29,12 @@ public class SearchPageGUIController1 implements Observer {
         this.userBean = userBean;
     }
 
+    public void setAllOldInput(UserBean userBean, String oldInput) {
+        this.userBean = userBean;
+        textFieldSearch.setText(oldInput);
+        this.search();
+    }
+
     @FXML
     private void backToUserPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
@@ -37,7 +43,7 @@ public class SearchPageGUIController1 implements Observer {
 
     @FXML
     private void search() {
-        String input = textFieldSearch.getText();
+        input = textFieldSearch.getText();
         this.listView.getItems().clear();
         if(!input.isBlank())
             SearchEngineering.search(this, input);
@@ -68,9 +74,9 @@ public class SearchPageGUIController1 implements Observer {
                 e.printStackTrace();
             }
 
-            EventItemGUIController1 controller = fxmlLoader.getController();
             //EventItemGUIController1 controller = new EventItemGUIController1(); perche? NON FUNZIA CINZIa
-            controller.setAll(eventBean);
+            EventItemGUIController1 controller = fxmlLoader.getController();
+            controller.setAll(userBean, eventBean, input);
 
             this.listView.getItems().add(pane);
         }
