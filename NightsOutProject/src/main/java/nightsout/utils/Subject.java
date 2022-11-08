@@ -7,7 +7,7 @@ public abstract class Subject {
     private List<Observer> observers;
 
     protected Subject(Observer observer) {
-        this(new ArrayList<>());//perche mi chiamo un costruttore dentro un altro costruttore?
+        this(new ArrayList<>());//inizializzo la lista di observer con un ArrayList vuoto
         this.attach(observer);
     }
 

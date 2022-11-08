@@ -10,17 +10,17 @@ import java.util.List;
 //ConcreteSubject
 public class GenericBeanList extends Subject {
 
-    private List<GenericBean> list;
+    private List<GenericBean> beans;
 
     public GenericBeanList(Observer observer) {
         super(observer);
-        list = new ArrayList<>();
+        beans = new ArrayList<>();
     }
 
     public void addUsersToList(ArrayList<UserBean> listBean) {
         if (listBean != null && !listBean.isEmpty()) {
             for (UserBean userBean : listBean) {
-                list.add(userBean);
+                beans.add(userBean);
                 notify(userBean);
             }
         }
@@ -29,36 +29,10 @@ public class GenericBeanList extends Subject {
     public void addEventsToList(ArrayList<EventBean> listBean) {
         if (listBean != null && !listBean.isEmpty()) {
             for (EventBean eventBean : listBean) {
-                list.add(eventBean);
+                beans.add(eventBean);
                 notify(eventBean);
             }
         }
     }
 
-
-
-
-/*
-    public GenericBeanList() {
-        list = new ArrayList<GenericBean>();
-    }
-
- */
-
-    /*
-    public GenericList(ArrayList<GenericBean>) {
-        list = new ArrayList<GenericBean>();
-    }
-
-    public GenericList(GenericBean model) {
-        //List<GenericBean> list = new ArrayList<>();
-
-        this(new ArrayList<GenericBean>());
-        if(model!= null){
-            this.attach(model);
-        }
-    }
-
-    public void attach(GenericBean model){ this.list.add(model); }
-     */
 }

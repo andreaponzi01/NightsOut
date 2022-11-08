@@ -69,7 +69,7 @@ public class SearchPageGUIController1 implements Observer {
             }
 
             EventItemGUIController1 controller = fxmlLoader.getController();
-            //EventItemGUIController1 controller = new EventItemGUIController1();  che cambia se faccio cosi? non funziona ma perhce?
+            //EventItemGUIController1 controller = new EventItemGUIController1(); perche? NON FUNZIA CINZIa
             controller.setAll(eventBean);
 
             this.listView.getItems().add(pane);

@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.UserBean;
 
 public class EventItemGUIController1 {
 
@@ -17,6 +16,7 @@ public class EventItemGUIController1 {
     private void goToEventPage(ActionEvent actionEvent) {
         System.out.println("(nome evento) "+eventBean.getName());
     }
+
 
     public void setAll(EventBean eventBean) {
         this.eventBean = eventBean;
