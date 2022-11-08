@@ -33,6 +33,7 @@ public class UserDAO {
             userModel.setEmail(rs.getString(4));
             userModel.setId(rs.getInt(1));
             userModel.setVip(rs.getBoolean(9));
+            userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
 
             /* Capire come funziona la gestione delle immagini tramite file
 

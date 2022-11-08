@@ -24,7 +24,7 @@ public class UserPageGUIController1 {
     @FXML
     private void goToSubscriptionPage(ActionEvent actionEvent) throws IOException {
         if (userBean.getVip()) {
-            System.out.println("Already subscriptioned");
+            System.out.println("Already subscriptioned ");
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneSubscription(actionEvent, "/SubscriptionedVipPage1.fxml", userBean);
         }

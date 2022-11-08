@@ -43,9 +43,7 @@ public class EventBean implements GenericBean {
         return price;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+    public void setPrice(Double price) { this.price = price; }
 
     public int getHours() {
         return hours;

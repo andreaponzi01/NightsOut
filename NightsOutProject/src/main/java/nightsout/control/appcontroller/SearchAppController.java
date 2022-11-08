@@ -14,36 +14,39 @@ public class SearchAppController {
     private SearchAppController() {}
 
     public static ArrayList<UserBean> searchUserByUsername(String input) {
+        ArrayList<UserModel> list = null;
+        ArrayList<UserBean> listBean = null;
         try {
-            ArrayList<UserModel> list = UserDAO.getUsersByUsername(input);
-            ArrayList<UserBean> listBean = new ArrayList<>();
+            list = UserDAO.getUsersByUsername(input);
+            listBean = new ArrayList<>();
 
             for(UserModel um : list){
                 UserBean bean = new UserBean(um);
                 listBean.add(bean);
             }
 
-            return listBean;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return listBean;
     }
 
     public static ArrayList<EventBean> searchEventsByName(String input) {
+        ArrayList<EventModel> list = null;
+        ArrayList<EventBean> listBean = null;
+
         try {
-            ArrayList<EventModel> list = EventDAO.getEventByName(input);
-            ArrayList<EventBean> listBean = new ArrayList<EventBean>();
+            list = EventDAO.getEventByName(input);
+            listBean = new ArrayList<EventBean>();
 
             for(EventModel eventModel : list){
                 EventBean bean = new EventBean(eventModel);
                 listBean.add(bean);
             }
 
-            return listBean;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return listBean;
     }
 }
