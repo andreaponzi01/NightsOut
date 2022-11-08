@@ -21,7 +21,6 @@ public class SearchEngineering {
         aggiunge un Item (fxml) alla pagina.
         */
 
-
         /*
         Creiamo l'oggetto Subject, aggiugendo sin da subito il riferimento all'observer chiamante, che ci
         passiamo alla chiamata della funzione search (cioè, SearchPageGUIController1).
@@ -29,10 +28,7 @@ public class SearchEngineering {
         GenericBeanList list = new GenericBeanList(observer);
 
         list.addUsersToList(searchUsers(input));
-
-        //list.addEventsToList(searchEvents(input));
-
-        //list.printItems();
+        list.addEventsToList(searchEvents(input));
 
     }
 

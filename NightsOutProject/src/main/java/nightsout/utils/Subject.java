@@ -7,14 +7,9 @@ public abstract class Subject {
     private List<Observer> observers;
 
     protected Subject(Observer observer) {
-        this(new ArrayList<>());
+        this(new ArrayList<>());//perche mi chiamo un costruttore dentro un altro costruttore?
         this.attach(observer);
     }
-   /*
-    protected Subject() {
-        this(new ArrayList<>());
-    }
-    */
 
     protected Subject(List<Observer> list) {
         this.observers = list;

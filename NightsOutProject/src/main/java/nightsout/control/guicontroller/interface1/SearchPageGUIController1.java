@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import nightsout.utils.Observer;
 import nightsout.utils.SearchEngineering;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
@@ -56,6 +57,20 @@ public class SearchPageGUIController1 implements Observer {
 
             UserItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(userBean);
+
+            this.listView.getItems().add(pane);
+        }
+
+        if(object instanceof EventBean eventBean) {
+            try {
+                pane = fxmlLoader.load(getClass().getResource("/EventItem1.fxml").openStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            EventItemGUIController1 controller = fxmlLoader.getController();
+            //EventItemGUIController1 controller = new EventItemGUIController1();  che cambia se faccio cosi? non funziona ma perhce?
+            controller.setAll(eventBean);
 
             this.listView.getItems().add(pane);
         }

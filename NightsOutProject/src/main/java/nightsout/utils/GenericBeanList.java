@@ -1,5 +1,6 @@
 package nightsout.utils;
 
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.GenericBean;
 import nightsout.utils.bean.UserBean;
 
@@ -24,13 +25,16 @@ public class GenericBeanList extends Subject {
             }
         }
     }
-/*
+
     public void addEventsToList(ArrayList<EventBean> listBean) {
-        for(EventBean eventBean : list){
-            list.add(eventBean);
+        if (listBean != null && !listBean.isEmpty()) {
+            for (EventBean eventBean : listBean) {
+                list.add(eventBean);
+                notify(eventBean);
+            }
         }
     }
- */
+
 
 
 
