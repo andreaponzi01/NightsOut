@@ -7,12 +7,16 @@ import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class RequestDAO {
 
+    private RequestDAO() {
+        //ignored
+    }
     public static void createRequest(UserModel userModel, EventModel eventModel) {
         Statement stm= null;
         try{
@@ -27,13 +31,13 @@ public class RequestDAO {
     }
 
     public static RequestModel checkRequestStatus(UserModel userModel, EventModel eventModel) {
-        Statement stm= null;
         RequestModel requestModel = null;
+        PreparedStatement preparedStatement = null;
 
         try{
-            stm= MySqlConnection.tryConnect();
             System.out.println(userModel.getId() + " " + eventModel.getIdEvent());
-            ResultSet rs = Query.searchRequest(stm, userModel.getId(), eventModel.getIdEvent());
+            preparedStatement = Query.searchRequest(userModel.getId(), eventModel.getIdEvent());
+            ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
             requestModel = new RequestModel();
@@ -42,6 +46,7 @@ public class RequestDAO {
             requestModel.setIdEvent(rs.getInt(4));
             requestModel.setStatus(rs.getString(3));
 
+            preparedStatement.close();
             return requestModel;
 
 

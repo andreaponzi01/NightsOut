@@ -6,6 +6,9 @@ import nightsout.utils.dao.EventDAO;
 
 public class CreateEventAppController {
 
+    private CreateEventAppController() {
+        //ignored
+    }
     public static void createEvent(EventBean eventBean) {
         EventModel eventModel = new EventModel(eventBean);
         EventDAO.createEvent(eventModel);

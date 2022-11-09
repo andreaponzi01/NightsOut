@@ -13,10 +13,15 @@ public class ConcludeRegisterClubOwnerGUIController1 {
     private ClubOwnerBean clubOwnerBean;
 
     @FXML
-    Button buttonBack, buttonSubmit;
+    Button buttonBack;
+    Button buttonSubmit;
 
     @FXML
-    TextField textFieldUsername, textFieldPassword, textFieldEmail;
+    TextField textFieldUsername;
+    @FXML
+    TextField textFieldPassword;
+    @FXML
+    TextField textFieldEmail;
 
     @FXML
     protected void backToRegister(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterClubOwner1.fxml"); }

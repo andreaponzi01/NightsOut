@@ -10,6 +10,10 @@ import nightsout.utils.dao.RequestDAO;
 
 public class RequestAppController {
 
+    private RequestAppController() {
+        //ignored
+    }
+
     public static void sendRequest(UserBean userBean, EventBean eventBean) {
         UserModel userModel = new UserModel(userBean);
         EventModel eventModel = new EventModel(eventBean);

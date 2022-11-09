@@ -7,6 +7,7 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class SubscriptionVipPageGUIController1 {
 
@@ -19,7 +20,7 @@ public class SubscriptionVipPageGUIController1 {
     }
 
     @FXML
-    private void confirmSubscription(ActionEvent actionEvent) throws IOException {
+    private void confirmSubscription(ActionEvent actionEvent) throws IOException, SQLException {
         //effettiva subscription
         UserBean userBeanUpdated = SubscriptionVipAppController.subscription(userBean.getUsername());
 

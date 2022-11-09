@@ -11,6 +11,7 @@ import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class EventPageSendRequestGUIController1 {
 
@@ -20,9 +21,18 @@ public class EventPageSendRequestGUIController1 {
 
     @FXML
     Button buttonUsername;
-
     @FXML
-    Label labelEventName, labelEventPrice, labelEventDate, labelEventTime, labelEventDuration;
+    Button buttonSendRequest;
+    @FXML
+    Label labelEventName;
+    @FXML
+    Label labelEventPrice;
+    @FXML
+    Label labelEventDate;
+    @FXML
+    Label labelEventTime;
+    @FXML
+    Label labelEventDuration;
 
     @FXML
     private void backToSearchPage(ActionEvent actionEvent) throws IOException {
@@ -36,22 +46,22 @@ public class EventPageSendRequestGUIController1 {
         RequestAppController.sendRequest(userBean, eventBean);
         System.out.println("Daje");
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        //replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean, null);
         replacer.switchAndSetSceneEvent(actionEvent, "/EventPageAlreadySentRequest1.fxml", eventBean, userBean, oldInput);
     }
 
     @FXML
     private void goToClubOwnerPage(ActionEvent actionEvent) {
-
+        //Da implementare
     }
 
     public void setAll(UserBean userBean, EventBean eventBean, String oldInput) {
         this.userBean = userBean;
         this.eventBean = eventBean;
         this.oldInput = oldInput;
+        this.buttonUsername.setText(String.valueOf(eventBean.getIdClubOwner()));
         this.labelEventName.setText(eventBean.getName());
         this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
-        this.labelEventDate.setText(String.valueOf(eventBean.getEventDate()));
+        this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
         this.labelEventDuration.setText(String.valueOf(eventBean.getDuration()));
         this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));
 

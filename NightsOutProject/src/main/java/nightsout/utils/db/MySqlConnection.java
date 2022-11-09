@@ -52,12 +52,14 @@ public class MySqlConnection {
         }
     }
 
+    public static Connection getConnection() { return connection; }
+
     // PreparedStatements
-    public  static java.sql.PreparedStatement insertClubOwner() throws SQLException {
+    public static java.sql.PreparedStatement insertClubOwner() throws SQLException {
         return connection.prepareStatement( "INSERT INTO `ClubOwners`(`username`, `email`, `city`, `address`, `clubName`, `VIPdiscount` ) VALUES (?, ?, ?, ?, ?, ?)" );
     }
 
-    public  static java.sql.PreparedStatement insertUser() throws SQLException {
+    public static java.sql.PreparedStatement insertUser() throws SQLException {
         return connection.prepareStatement( "INSERT INTO `Users`(`username`, `email`, `name`, `surname`, `birthday`, `gender` ) VALUES (?, ?, ?, ?, ?, ?)" );
     }
 

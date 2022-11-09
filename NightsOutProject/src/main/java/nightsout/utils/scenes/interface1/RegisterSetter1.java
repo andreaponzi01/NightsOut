@@ -10,11 +10,11 @@ public class RegisterSetter1 {
         //ignored
     }
 
-    public static void setterClubOwner(String[] personalInfo, String type, ConcludeRegisterClubOwnerGUIController1 concludeRegisterClubOwnerGUIController1) {
+    public static void setterClubOwner(String[] personalInfo, ConcludeRegisterClubOwnerGUIController1 concludeRegisterClubOwnerGUIController1) {
         concludeRegisterClubOwnerGUIController1.setAll(personalInfo);
     }
 
-    public static void setterUser(String[] personalInfo, String type, ConcludeRegisterUserGUIController1 concludeRegisterUserGUIController1) {
+    public static void setterUser(String[] personalInfo, ConcludeRegisterUserGUIController1 concludeRegisterUserGUIController1) {
         concludeRegisterUserGUIController1.setAll(personalInfo);
     }
 

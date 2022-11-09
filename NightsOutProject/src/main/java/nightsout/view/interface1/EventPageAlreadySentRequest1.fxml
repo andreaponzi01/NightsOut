@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.EventPageSendRequestGUIController1">
+<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.EventPageAlreadySentRequestGUIController1">
    <children>
       <HBox layoutX="89.0" layoutY="56.0" prefHeight="241.0" prefWidth="414.0" style="-fx-background-color:  #200f54; -fx-background-radius: 50;" AnchorPane.bottomAnchor="353.0" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="56.0">
          <children>

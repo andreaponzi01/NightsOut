@@ -31,6 +31,7 @@ public class EventItemGUIController1 {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneEvent(actionEvent, "/EventPageAlreadySentRequest1.fxml", eventBean, userBean, input);
         }
+
     }
 
     public void setAll(UserBean userBean, EventBean eventBean, String oldInput) {

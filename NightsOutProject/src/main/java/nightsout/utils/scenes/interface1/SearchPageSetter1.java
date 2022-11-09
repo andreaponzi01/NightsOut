@@ -5,6 +5,10 @@ import nightsout.utils.bean.UserBean;
 
 public class SearchPageSetter1 {
 
+    private SearchPageSetter1() {
+        //ignored
+    }
+
     public static void setter(UserBean userBean, SearchPageGUIController1 searchPageGUIController1) {
         searchPageGUIController1.setAll(userBean);
     }

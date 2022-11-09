@@ -8,7 +8,11 @@ import nightsout.utils.scenes.ReplaceScene;
 public class RegisterChoiceGUIController1 {
 
     @FXML
-    Button buttonClubOwner, buttonUser, backToWelcomePane;
+    Button buttonClubOwner;
+    @FXML
+    Button buttonUser;
+    @FXML
+    Button backToWelcomePane;
 
     @FXML
     protected void goToClubOwnerRegister(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterClubOwner1.fxml"); }

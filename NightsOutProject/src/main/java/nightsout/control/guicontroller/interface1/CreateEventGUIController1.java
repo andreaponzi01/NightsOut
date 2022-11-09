@@ -17,16 +17,21 @@ public class CreateEventGUIController1 {
     private EventBean eventBean;
 
     @FXML
-    Button buttonBack, buttonCreateEvent;
-
+    Button buttonBack;
+    @FXML
+    Button buttonCreateEvent;
     @FXML
     Slider sliderTime;
-
     @FXML
     DatePicker dateEvent;
-
     @FXML
-    TextField textFieldName, textFieldPrice, textFieldHours, textFieldMinutes;
+    TextField textFieldName;
+    @FXML
+    TextField textFieldPrice;
+    @FXML
+    TextField textFieldHours;
+    @FXML
+    TextField textFieldMinutes;
 
     public void setIdClubOwner(int id) {
         this.idClubOwner = id;

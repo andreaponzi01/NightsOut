@@ -14,10 +14,15 @@ public class ConcludeRegisterUserGUIController1 {
 
     private UserBean userBean;
     @FXML
-    TextField textFieldEmail, textFieldUsername, textFieldPassword;
-
+    TextField textFieldEmail;
     @FXML
-    Button buttonBack, buttonSubmit;
+    TextField textFieldUsername;
+    @FXML
+    TextField textFieldPassword;
+    @FXML
+    Button buttonBack;
+    @FXML
+    Button buttonSubmit;
 
     @FXML
     protected void backToRegister(ActionEvent actionEvent) {ReplaceScene.replaceScene(actionEvent, "/RegisterUser1.fxml");}

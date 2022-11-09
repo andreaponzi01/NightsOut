@@ -3,6 +3,7 @@ package nightsout.model;
 import nightsout.utils.bean.EventBean;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class EventModel {
 
@@ -16,9 +17,7 @@ public class EventModel {
 
     protected String name;
     protected Double price;
-
-    protected int hours;
-    protected int minutes;
+    protected LocalTime time;
     protected int duration;
     protected LocalDate eventDate;
 
@@ -29,8 +28,7 @@ public class EventModel {
         this.price = eventBean.getPrice();
         this.name = eventBean.getName();
         this.duration = eventBean.getDuration();
-        this.hours = eventBean.getHours();
-        this.minutes = eventBean.getMinutes();
+        this.time = eventBean.getTime();
     }
 
     //Attributi User
@@ -59,22 +57,6 @@ public class EventModel {
         this.price = price;
     }
 
-    public int getHours() {
-        return hours;
-    }
-
-    public void setHours(int hours) {
-        this.hours = hours;
-    }
-
-    public int getMinutes() {
-        return minutes;
-    }
-
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
-    }
-
     public int getDuration() {
         return duration;
     }
@@ -99,7 +81,9 @@ public class EventModel {
         this.idEvent = idEvent;
     }
 
+    public LocalTime getTime() { return time; }
 
+    public void setTime(LocalTime time) { this.time = time; }
 
 
 }

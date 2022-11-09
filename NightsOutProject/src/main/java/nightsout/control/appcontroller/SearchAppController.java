@@ -8,14 +8,15 @@ import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.UserDAO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchAppController {
 
     private SearchAppController() {}
 
-    public static ArrayList<UserBean> searchUserByUsername(String input) {
-        ArrayList<UserModel> list = null;
-        ArrayList<UserBean> listBean = null;
+    public static List<UserBean> searchUserByUsername(String input) {
+        List<UserModel> list = null;
+        List<UserBean> listBean = null;
         try {
             list = UserDAO.getUsersByUsername(input);
             listBean = new ArrayList<>();
@@ -31,13 +32,13 @@ public class SearchAppController {
         return listBean;
     }
 
-    public static ArrayList<EventBean> searchEventsByName(String input) {
-        ArrayList<EventModel> list = null;
-        ArrayList<EventBean> listBean = null;
+    public static List<EventBean> searchEventsByName(String input) {
+        List<EventModel> list = null;
+        List<EventBean> listBean = null;
 
         try {
             list = EventDAO.getEventByName(input);
-            listBean = new ArrayList<EventBean>();
+            listBean = new ArrayList<>();
 
             for(EventModel eventModel : list){
                 EventBean bean = new EventBean(eventModel);

@@ -39,9 +39,9 @@ public class ReplaceSceneDynamic1 {
         Parent root = loader.load();
         try {
             if (Objects.equals(type, "ClubOwner")) {
-                RegisterSetter1.setterClubOwner(personalInfo, type, loader.getController());
+                RegisterSetter1.setterClubOwner(personalInfo, loader.getController());
             } else if (Objects.equals(type, "Free")){
-                RegisterSetter1.setterUser(personalInfo, type, loader.getController());
+                RegisterSetter1.setterUser(personalInfo, loader.getController());
             }
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
@@ -95,7 +95,12 @@ public class ReplaceSceneDynamic1 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
         try {
-            EventPageSetter1.setter(userBean, eventBean, oldInput, loader.getController());
+            if(fxml.equals("/EventPageSendRequest1.fxml")) {
+                EventPageSetter1.setter1(userBean, eventBean, oldInput, loader.getController());
+            }
+            if(fxml.equals("/EventPageAlreadySentRequest1.fxml")) {
+                EventPageSetter1.setter2(userBean, eventBean, oldInput, loader.getController());
+            }
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();

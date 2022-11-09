@@ -3,6 +3,7 @@ package nightsout.utils.bean;
 import nightsout.model.EventModel;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class EventBean implements GenericBean {
 
@@ -12,7 +13,12 @@ public class EventBean implements GenericBean {
     public EventBean(EventModel eventModel) {
         this.name = eventModel.getName();
         this.idEvent = eventModel.getIdEvent();
-        //Aggiungere altre this.attr = eventModel.getAttr()
+        this.idClubOwner = eventModel.getIdClubOwner();
+        this.price = eventModel.getPrice();
+        this.eventDate = eventModel.getEventDate();
+        this.duration = eventModel.getDuration();
+        this.hours = eventModel.getTime().getHour();
+        this.minutes = eventModel.getTime().getMinute();
     }
 
     //Attributi User
@@ -87,4 +93,7 @@ public class EventBean implements GenericBean {
         this.idEvent = idEvent;
     }
 
+    public LocalTime getTime() {
+        return LocalTime.of(this.hours, this.minutes);
+    }
 }

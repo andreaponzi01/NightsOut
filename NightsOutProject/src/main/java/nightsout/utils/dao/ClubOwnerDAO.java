@@ -18,12 +18,12 @@ public class ClubOwnerDAO {
 
     public static ClubOwnerModel getClubOwnerByUsername(String username) throws SQLException {
 
-        Statement stm = null;
+        PreparedStatement preparedStatement = null;
         ClubOwnerModel clubOwnerModel = null ;
 
         try {
-            stm = MySqlConnection.tryConnect();
-            ResultSet rs = Query.searchClubOwnerByUsername(stm, username);
+            preparedStatement = Query.searchClubOwnerByUsername(username);
+            ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
             // username
@@ -44,6 +44,7 @@ public class ClubOwnerDAO {
                 clubOwnerModel.setProfileImg(file);
             */
 
+            preparedStatement.close();
             return clubOwnerModel;
 
         } catch (/*MysqlConnectionFailed |*/ SQLException e){
@@ -62,18 +63,18 @@ public class ClubOwnerDAO {
             CRUD.insertCredentials(clubOwnerModel.getUsername(), clubOwnerModel.getPassword(), "ClubOwner", stm);
 
             // Inserimento dati personali (tabella ClubOwners)
-            PreparedStatement ps = MySqlConnection.insertClubOwner();
+            PreparedStatement preparedStatement = MySqlConnection.insertClubOwner();
 
-            ps.setString(1,clubOwnerModel.getUsername());
-            ps.setString(2, clubOwnerModel.getEmail());
-            ps.setString(3 , clubOwnerModel.getCity());
-            ps.setString(4, clubOwnerModel.getAddress());
-            ps.setString(5, clubOwnerModel.getClubName());
-            ps.setInt(6, clubOwnerModel.getDiscountVIP());
+            preparedStatement.setString(1,clubOwnerModel.getUsername());
+            preparedStatement.setString(2, clubOwnerModel.getEmail());
+            preparedStatement.setString(3 , clubOwnerModel.getCity());
+            preparedStatement.setString(4, clubOwnerModel.getAddress());
+            preparedStatement.setString(5, clubOwnerModel.getClubName());
+            preparedStatement.setInt(6, clubOwnerModel.getDiscountVIP());
             // Manca la set dell'immagine del profilo
 
-            ps.executeUpdate();
-
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
            // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();

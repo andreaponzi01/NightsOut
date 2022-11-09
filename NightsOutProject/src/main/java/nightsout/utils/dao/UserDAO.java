@@ -7,6 +7,7 @@ import nightsout.utils.db.Query;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
@@ -16,12 +17,12 @@ public class UserDAO {
 
     public static UserModel getUserByUsername(String username) throws SQLException {
 
-        Statement stm = null;
+        PreparedStatement preparedStatement = null;
         UserModel userModel = null ;
 
         try {
-            stm = MySqlConnection.tryConnect();
-            ResultSet rs = Query.searchUserByUsername(stm, username);
+            preparedStatement = Query.searchUserByUsername(preparedStatement, username);
+            ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
 
@@ -45,17 +46,18 @@ public class UserDAO {
                 userModel.setProfileImg(file);
             */
 
+            preparedStatement.close();
             return userModel;
 
         } catch (/*MysqlConnectionFailed |*/ SQLException e){
-           // ErrorHandler.getInstance().handleException(e);
+            // ErrorHandler.getInstance().handleException(e);
             e.printStackTrace();
         }
         return userModel;
     }
 
     public static void insertUser(UserModel userModel) {
-        Statement stm= null;
+        Statement stm = null;
         try{
             stm=MySqlConnection.tryConnect();
 
@@ -73,6 +75,7 @@ public class UserDAO {
             // Manca la set dell'immagine del profilo
 
             ps.executeUpdate();
+            ps.close();
 
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
@@ -80,20 +83,22 @@ public class UserDAO {
         }
     }
 
-    public static void subscriptionVip(UserModel userModel) {
+    public static void subscriptionVip(UserModel userModel) throws SQLException {
         Statement stm= null;
+        PreparedStatement preparedStatement = null;
         try{
-            stm=MySqlConnection.tryConnect();
 
             // Inserimento credenziali (tabella Credentials)
+            stm = MySqlConnection.tryConnect();
             CRUD.subscriptionVipUser(userModel.getUsername(), stm);
-
-            ResultSet rs = Query.searchUserByUsername(stm, userModel.getUsername());
+            preparedStatement = Query.searchUserByUsername(preparedStatement, userModel.getUsername());
+            ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
             userModel.setVip(rs.getBoolean(9));
             userModel.setCreationDateVip(rs.getDate(10).toLocalDate());
 
+            preparedStatement.close();
 
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
@@ -101,17 +106,17 @@ public class UserDAO {
         }
     }
 
-    public static ArrayList<UserModel> getUsersByUsername(String username) throws SQLException {
+    public static List<UserModel> getUsersByUsername(String username) throws SQLException {
 
         ArrayList<UserModel> list = null;
-        Statement stm = null;
+        PreparedStatement preparedStatement = null;
         UserModel userModel = null ;
 
         try {
-            list = new ArrayList<UserModel>();
-            stm = MySqlConnection.tryConnect();
+            list = new ArrayList<>();
 
-            ResultSet rs = Query.searchUsersByUsername(stm, username);
+            preparedStatement = Query.searchUsersByUsername(username);
+            ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
             do {
@@ -128,6 +133,7 @@ public class UserDAO {
 
             } while(rs.next());
 
+            preparedStatement.close();
             return list;
 
         } catch (/*MysqlConnectionFailed |*/ SQLException e){

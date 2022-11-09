@@ -13,6 +13,19 @@ public class RegisterClubOwnerGUIController1 {
 
     private String[] personalInfo;
 
+    @FXML
+    Button buttonNextStep;
+    @FXML
+    Button buttonBack;
+    @FXML
+    TextField textFieldName;
+    @FXML
+    TextField textFieldCity;
+    @FXML
+    TextField textFieldAddress;
+    @FXML
+    TextField textFieldDiscount;
+
     private void setPersonalInfo(){
         String name = textFieldName.getText();
         String address = textFieldAddress.getText();
@@ -21,12 +34,6 @@ public class RegisterClubOwnerGUIController1 {
 
         personalInfo = new String[]{name, address, city, discount};
     }
-
-    @FXML
-    Button buttonNextStep, buttonBack;
-
-    @FXML
-    TextField textFieldName, textFieldCity, textFieldAddress, textFieldDiscount;
 
     @FXML
     protected void backToChoice(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }

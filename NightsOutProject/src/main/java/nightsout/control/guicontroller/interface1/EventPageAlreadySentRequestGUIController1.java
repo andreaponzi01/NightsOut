@@ -10,6 +10,7 @@ import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class EventPageAlreadySentRequestGUIController1 {
 
@@ -19,9 +20,16 @@ public class EventPageAlreadySentRequestGUIController1 {
 
     @FXML
     Button buttonUsername;
-
     @FXML
-    Label labelEventName, labelEventPrice, labelEventDate, labelEventTime, labelEventDuration;
+    Label labelEventName;
+    @FXML
+    Label labelEventPrice;
+    @FXML
+    Label labelEventDate;
+    @FXML
+    Label labelEventTime;
+    @FXML
+    Label labelEventDuration;
 
     @FXML
     private void backToSearchPage(ActionEvent actionEvent) throws IOException {
@@ -40,7 +48,7 @@ public class EventPageAlreadySentRequestGUIController1 {
         this.oldInput = oldInput;
         this.labelEventName.setText(eventBean.getName());
         this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
-        this.labelEventDate.setText(String.valueOf(eventBean.getEventDate()));
+        this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
         this.labelEventDuration.setText(String.valueOf(eventBean.getDuration()));
         this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));
     }

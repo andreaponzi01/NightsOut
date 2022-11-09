@@ -21,16 +21,12 @@ public class LoginGUIController1 {
 
     @FXML
     TextField textFieldUsername;
-
     @FXML
     PasswordField passwordField;
-
     @FXML
     Button buttonLogin;
-
     @FXML
     Button buttonBack;
-
     @FXML
     CheckBox checkBoxClubOwner;
 

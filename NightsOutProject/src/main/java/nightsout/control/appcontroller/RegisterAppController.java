@@ -10,6 +10,10 @@ import nightsout.utils.dao.UserDAO;
 
 public class RegisterAppController {
 
+    private RegisterAppController() {
+        //ignored
+    }
+
     public static void registerClubOwner(ClubOwnerBean clubOwnerBean) {
         Credentials myCred = new Credentials(clubOwnerBean.getUsername(), clubOwnerBean.getPassword(), "ClubOwner");
         ClubOwnerModel clubOwnerModel = new ClubOwnerModel(clubOwnerBean, myCred);

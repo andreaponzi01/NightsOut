@@ -4,7 +4,7 @@ import nightsout.control.appcontroller.SearchAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SearchEngineering {
 
@@ -32,9 +32,8 @@ public class SearchEngineering {
 
     }
 
-    private static ArrayList<UserBean> searchUsers(String input) {
-        ArrayList<UserBean> listBean = new ArrayList<UserBean>();
-        listBean = SearchAppController.searchUserByUsername(input);
+    private static List<UserBean> searchUsers(String input) {
+        List<UserBean> listBean = SearchAppController.searchUserByUsername(input);
 
         System.out.println("searchUsers");
         for(UserBean bean : listBean) {
@@ -44,9 +43,8 @@ public class SearchEngineering {
         return listBean;
     }
 
-    private static ArrayList<EventBean> searchEvents(String input) {
-        ArrayList<EventBean> listBean = new ArrayList<EventBean>();
-        listBean = SearchAppController.searchEventsByName(input);
+    private static List<EventBean> searchEvents(String input) {
+        List<EventBean> listBean = SearchAppController.searchEventsByName(input);
 
         for(EventBean bean : listBean) {
             System.out.println("Risultato: " + bean.getName());

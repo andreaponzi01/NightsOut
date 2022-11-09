@@ -13,6 +13,7 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SearchPageGUIController1 implements Observer {
 
@@ -21,7 +22,6 @@ public class SearchPageGUIController1 implements Observer {
 
     @FXML
     private TextField textFieldSearch;
-
     @FXML
     private ListView listView;
 
@@ -54,29 +54,29 @@ public class SearchPageGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(object instanceof UserBean userBean) {
+        if(object instanceof UserBean uBean) {
             try {
-                pane = fxmlLoader.load(getClass().getResource("/UserItem1.fxml").openStream());
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             UserItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(userBean);
+            controller.setAll(uBean);
 
             this.listView.getItems().add(pane);
         }
 
-        if(object instanceof EventBean eventBean) {
+        if(object instanceof EventBean eBean) {
             try {
-                pane = fxmlLoader.load(getClass().getResource("/EventItem1.fxml").openStream());
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             //EventItemGUIController1 controller = new EventItemGUIController1(); perche? NON FUNZIA CINZIa
             EventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(userBean, eventBean, input);
+            controller.setAll(userBean, eBean, input);
 
             this.listView.getItems().add(pane);
         }

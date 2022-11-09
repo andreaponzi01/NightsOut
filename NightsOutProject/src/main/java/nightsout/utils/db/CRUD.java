@@ -10,7 +10,7 @@ public class CRUD {
     }
 
     public static void insertCredentials(String username, String password, String type, Statement stm) throws SQLException {
-        String saveStm = String.format("INSERT INTO `Credentials` (`Username`, `Password`, `Type`) VALUES ('" + username + "', '%s', '%s');", password, type);
+        String saveStm = String.format("INSERT INTO `Credentials` (`Username`, `Password`, `Type`) VALUES ('%s', '%s', '%s');", username, password, type);
         stm.executeUpdate(saveStm);
     }
 

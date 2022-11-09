@@ -3,9 +3,9 @@ package nightsout.utils;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Authentication {
 
@@ -14,10 +14,11 @@ public class Authentication {
     }
 
     public static int checkIsRegistered(String username, String password, String type) throws SQLException {
-        Statement stm = null;
+        PreparedStatement preparedStatement = null;
         try {
-            stm = MySqlConnection.tryConnect();
-            ResultSet rs = Query.searchUserInLogged(username, password, type, stm);
+            MySqlConnection.tryConnect();
+            preparedStatement = Query.searchUserInLogged(preparedStatement, username, password, type);
+            ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 return 1;
             }

@@ -10,9 +10,23 @@ import nightsout.utils.scenes.ReplaceScene;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class RegisterUserGUIController1 {
+
+    @FXML
+    Button buttonNextStep;
+    @FXML
+    Button buttonBack;
+    @FXML
+    TextField textFieldName;
+    @FXML
+    TextField textFieldSurname;
+    @FXML
+    RadioButton radioMale;
+    @FXML
+    RadioButton radioFemale;
+    @FXML
+    DatePicker dateBirthday;
 
     private String[] personalInfo;
     //private LocalDate birthday;
@@ -34,18 +48,6 @@ public class RegisterUserGUIController1 {
         //birthday = dateBirthday.getValue();
         personalInfo = new String[]{name, surname, gender, birthday};
     }
-
-    @FXML
-    Button buttonNextStep, buttonBack;
-
-    @FXML
-    TextField textFieldName, textFieldSurname;
-
-    @FXML
-    RadioButton radioMale, radioFemale;
-
-    @FXML
-    DatePicker dateBirthday;
 
     @FXML
     protected void backToChoice(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml"); }

@@ -17,7 +17,7 @@ public class GenericBeanList extends Subject {
         beans = new ArrayList<>();
     }
 
-    public void addUsersToList(ArrayList<UserBean> listBean) {
+    public void addUsersToList(List<UserBean> listBean) {
         if (listBean != null && !listBean.isEmpty()) {
             for (UserBean userBean : listBean) {
                 beans.add(userBean);
@@ -26,7 +26,7 @@ public class GenericBeanList extends Subject {
         }
     }
 
-    public void addEventsToList(ArrayList<EventBean> listBean) {
+    public void addEventsToList(List<EventBean> listBean) {
         if (listBean != null && !listBean.isEmpty()) {
             for (EventBean eventBean : listBean) {
                 beans.add(eventBean);
