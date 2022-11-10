@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.scene.interface1.scenesetter.*;
 import nightsout.utils.scene.scenesetter.*;
 
 import java.io.IOException;
@@ -125,6 +124,17 @@ public class ReplaceSceneDynamic1 {
         try {
             ManageRequestSetter1.setter(clubOwnerBean, loader.getController());
             ReplaceScene.showStage(ae, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneCheckRequests(ActionEvent actionEvent, String fxml, UserBean userBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            CheckRequestSetter.setter(userBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();
         }

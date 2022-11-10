@@ -41,4 +41,10 @@ public class UserPageGUIController1 {
         replacer.switchAndSetSceneSearch(actionEvent, "/SearchPage1.fxml", userBean);
     }
 
+    @FXML
+    private void goToCheckRequestsPage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneCheckRequests(actionEvent, "/CheckRequests1.fxml", userBean);
+    }
+
 }

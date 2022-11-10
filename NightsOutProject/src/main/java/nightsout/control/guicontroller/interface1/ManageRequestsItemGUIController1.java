@@ -7,7 +7,7 @@ import nightsout.utils.bean.ManageRequestBean;
 
 import java.time.format.DateTimeFormatter;
 
-public class ManageRequestItemGUIController1 {
+public class ManageRequestsItemGUIController1 {
 
     @FXML
     Label labelEventName;

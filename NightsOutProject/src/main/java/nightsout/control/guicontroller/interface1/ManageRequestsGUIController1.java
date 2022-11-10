@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.ManageEngineering;
+import nightsout.utils.ManageRequestsEngineering;
 import nightsout.utils.Observer;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.ManageRequestBean;
@@ -14,7 +14,7 @@ import nightsout.utils.scene.ReplaceSceneDynamic1;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ManageRequestGUIController1 implements Observer {
+public class ManageRequestsGUIController1 implements Observer {
 
     private ClubOwnerBean clubOwnerBean;
 
@@ -29,7 +29,8 @@ public class ManageRequestGUIController1 implements Observer {
 
     @FXML
     private void manageRequests(ActionEvent actionEvent) {
-        ManageEngineering.manageRequests(this, clubOwnerBean.getId());
+        this.listViewPendingRequests.getItems().clear();
+        ManageRequestsEngineering.manageRequests(this, clubOwnerBean.getId());
     }
 
     public void setAll(ClubOwnerBean clubOwnerBean) {
@@ -46,7 +47,7 @@ public class ManageRequestGUIController1 implements Observer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ManageRequestItemGUIController1 controller = fxmlLoader.getController();
+            ManageRequestsItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(mRBean);
 
             this.listViewPendingRequests.getItems().add(pane);

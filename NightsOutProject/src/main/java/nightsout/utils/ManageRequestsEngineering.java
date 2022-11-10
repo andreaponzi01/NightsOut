@@ -1,13 +1,13 @@
 package nightsout.utils;
 
-import nightsout.control.appcontroller.ManageRequestAppController;
+import nightsout.control.appcontroller.ManageRequestsAppController;
 import nightsout.utils.bean.ManageRequestBean;
 
 import java.util.List;
 
-public class ManageEngineering {
+public class ManageRequestsEngineering {
 
-    private ManageEngineering() {
+    private ManageRequestsEngineering() {
         //ignored
     }
 
@@ -18,7 +18,7 @@ public class ManageEngineering {
     }
 
     private static List<ManageRequestBean> searchRequests(int idClubOwner) {
-        return (ManageRequestAppController.searchRequestsByIdClubOwner(idClubOwner));
+        return (ManageRequestsAppController.searchRequestsByIdClubOwner(idClubOwner));
     }
 
 }

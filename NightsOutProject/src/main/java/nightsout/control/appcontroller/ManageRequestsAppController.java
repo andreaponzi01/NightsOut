@@ -7,9 +7,9 @@ import nightsout.utils.dao.RequestDAO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManageRequestAppController {
+public class ManageRequestsAppController {
 
-    private ManageRequestAppController() {
+    private ManageRequestsAppController() {
         //ignored
     }
     public static List<ManageRequestBean> searchRequestsByIdClubOwner(int idClubOwner) {

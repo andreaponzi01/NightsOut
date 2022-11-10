@@ -96,8 +96,7 @@ public class RequestDAO {
         return list;
     }
 
-    /*
-    public static List<RequestModel> getRequestsByIdClubOwner(int idClubOwner) {
+    public static List<RequestModel> getRequestsByIdUser(int idUser) {
         List<RequestModel> list = null;
         PreparedStatement preparedStatement = null;
         RequestModel requestModel = null ;
@@ -105,13 +104,17 @@ public class RequestDAO {
         try {
             list = new ArrayList<>();
 
-            preparedStatement = Query.searchRequestsByIdClubOwner(idClubOwner);
+            preparedStatement = Query.searchRequestsByIdUser(idUser);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
             do {
+                //R.idRequest, R.status, U.name, U.surname, E.name
                 requestModel = new RequestModel();
-
+                requestModel.setIdRequest(rs.getInt(1));
+                requestModel.setIdEvent(rs.getInt(4));
+                requestModel.setIdUser(rs.getInt(2));
+                requestModel.setStatus(rs.getString(3));
 
                 list.add(requestModel);
 
@@ -120,12 +123,10 @@ public class RequestDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ /*SQLException e){*/
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
             // ErrorHandler.getInstance().handleException(e);
-        /*
             e.printStackTrace();
         }
         return list;
     }
-    */
 }

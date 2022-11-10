@@ -105,4 +105,16 @@ public class Query {
         }
             return preparedStatement;
     }
+
+    public static PreparedStatement searchRequestsByIdUser(int idUser) {
+        String query = "SELECT * FROM Requests WHERE user = ?;";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.getConnection().prepareStatement(query) ;
+            preparedStatement.setInt(1, idUser);
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
 }
