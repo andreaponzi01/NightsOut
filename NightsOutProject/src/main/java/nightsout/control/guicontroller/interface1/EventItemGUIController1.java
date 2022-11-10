@@ -7,7 +7,7 @@ import nightsout.control.appcontroller.RequestAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.scenes.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.util.Objects;

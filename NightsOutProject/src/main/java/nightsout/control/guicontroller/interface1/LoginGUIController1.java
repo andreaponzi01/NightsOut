@@ -12,8 +12,8 @@ import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.LoginBean1;
 import nightsout.utils.exception.myexception.WrongPasswordException;
-import nightsout.utils.scenes.ReplaceScene;
-import nightsout.utils.scenes.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceScene;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.util.Objects;
 

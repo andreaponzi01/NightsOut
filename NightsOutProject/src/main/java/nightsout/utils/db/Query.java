@@ -1,7 +1,6 @@
 package nightsout.utils.db;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Query {
@@ -25,7 +24,6 @@ public class Query {
 
     public static PreparedStatement searchUserByUsername(PreparedStatement preparedStatement, String username) throws SQLException{
         String query = "SELECT * FROM Users where username = ?;";
-        ResultSet resultSet = null;
         try {
             preparedStatement = MySqlConnection.getConnection().prepareStatement(query);
             preparedStatement.setString(1, username);

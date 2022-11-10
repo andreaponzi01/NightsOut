@@ -9,8 +9,8 @@ import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.scenes.ReplaceScene;
-import nightsout.utils.scenes.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceScene;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 

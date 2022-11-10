@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.scenes.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.time.LocalTime;
@@ -39,7 +39,7 @@ public class EventPageAlreadySentRequestGUIController1 {
 
     @FXML
     private void goToClubOwnerPage(ActionEvent actionEvent) {
-
+        // Da implementare
     }
 
     public void setAll(UserBean userBean, EventBean eventBean, String oldInput) {

@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import nightsout.utils.scenes.ReplaceScene;
-import nightsout.utils.scenes.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceScene;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 

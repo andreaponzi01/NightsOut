@@ -3,7 +3,7 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import nightsout.utils.scenes.ReplaceScene;
+import nightsout.utils.scene.ReplaceScene;
 
 public class WelcomeGUIController1 {
 

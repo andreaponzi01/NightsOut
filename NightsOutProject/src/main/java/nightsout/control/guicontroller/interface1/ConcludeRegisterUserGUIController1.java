@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.RegisterAppController;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.scenes.ReplaceScene;
+import nightsout.utils.scene.ReplaceScene;
 
 import java.time.LocalDate;
 

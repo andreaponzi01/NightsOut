@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManageRequestAppController {
+
+    private ManageRequestAppController() {
+        //ignored
+    }
     public static List<ManageRequestBean> searchRequestsByIdClubOwner(int idClubOwner) {
         List<ManageRequestModel> list = null;
         List<ManageRequestBean> listBean = null;

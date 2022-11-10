@@ -4,8 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.scenes.ReplaceScene;
-import nightsout.utils.scenes.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 

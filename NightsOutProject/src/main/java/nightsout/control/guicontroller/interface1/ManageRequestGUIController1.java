@@ -9,7 +9,7 @@ import nightsout.utils.ManageEngineering;
 import nightsout.utils.Observer;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.scenes.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.util.Objects;

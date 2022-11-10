@@ -18,10 +18,11 @@ public class ManageRequestItemGUIController1 {
 
     @FXML
     public void acceptRequest(ActionEvent actionEvent) {
+        // Da implementare
     }
 
     public void rejectRequest(ActionEvent actionEvent) {
-
+        // Da implementare
     }
 
     public void setAll(ManageRequestBean manageRequestBean) {
