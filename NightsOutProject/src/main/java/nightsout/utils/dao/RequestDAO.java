@@ -1,6 +1,7 @@
 package nightsout.utils.dao;
 
 import nightsout.model.EventModel;
+import nightsout.model.ManageRequestModel;
 import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
@@ -11,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RequestDAO {
 
@@ -58,4 +61,71 @@ public class RequestDAO {
         return requestModel;
     }
 
+    public static List<ManageRequestModel> getRequestsByIdClubOwner(int idClubOwner) {
+        List<ManageRequestModel> list = null;
+        PreparedStatement preparedStatement = null;
+        ManageRequestModel manageRequestModel = null ;
+
+        try {
+            list = new ArrayList<>();
+
+            preparedStatement = Query.searchRequestsByIdClubOwner(idClubOwner);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+
+            do {
+                //R.idRequest, R.status, U.name, U.surname, E.name
+                manageRequestModel = new ManageRequestModel();
+                manageRequestModel.setIdRequest(rs.getInt(1));
+                manageRequestModel.setRequestDate(rs.getDate(2));
+                manageRequestModel.setUserName(rs.getString(3));
+                manageRequestModel.setUserSurname(rs.getString(4));
+                manageRequestModel.setEventName(rs.getString(5));
+
+                list.add(manageRequestModel);
+
+            } while(rs.next());
+
+            preparedStatement.close();
+            return list;
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    /*
+    public static List<RequestModel> getRequestsByIdClubOwner(int idClubOwner) {
+        List<RequestModel> list = null;
+        PreparedStatement preparedStatement = null;
+        RequestModel requestModel = null ;
+
+        try {
+            list = new ArrayList<>();
+
+            preparedStatement = Query.searchRequestsByIdClubOwner(idClubOwner);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+
+            do {
+                requestModel = new RequestModel();
+
+
+                list.add(requestModel);
+
+            } while(rs.next());
+
+            preparedStatement.close();
+            return list;
+
+        } catch (/*MysqlConnectionFailed |*/ /*SQLException e){*/
+            // ErrorHandler.getInstance().handleException(e);
+        /*
+            e.printStackTrace();
+        }
+        return list;
+    }
+    */
 }

@@ -24,6 +24,6 @@
          </font>
       </Button>
       <Button layoutX="375.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="199.0" styleClass="navBarButton" stylesheets="@style.css" text="Respond rewiew" textFill="WHITE" />
-      <Button layoutX="585.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="157.0" styleClass="navBarButton" stylesheets="@style.css" text="Manage Request" textFill="WHITE" />
+      <Button layoutX="585.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToManageRequestsPage" prefHeight="40.0" prefWidth="157.0" styleClass="navBarButton" stylesheets="@style.css" text="Manage Request" textFill="WHITE" />
    </children>
 </AnchorPane>

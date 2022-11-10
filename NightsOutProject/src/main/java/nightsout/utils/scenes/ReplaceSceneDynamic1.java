@@ -49,12 +49,12 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneCreateEvent(ActionEvent ae, String fxml, int idClubOwner) throws IOException {
+    public void switchAndSetSceneCreateEvent(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
         try {
-                RegisterSetter1.setterCreateEvent(idClubOwner, loader.getController());
+                RegisterSetter1.setterCreateEvent(clubOwnerBean, loader.getController());
 
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
@@ -112,6 +112,17 @@ public class ReplaceSceneDynamic1 {
         Parent root = loader.load();
         try {
             SearchPageSetter1.setter2(userBean, oldInput, loader.getController());
+            ReplaceScene.showStage(ae, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneManageRequest(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            ManageRequestSetter1.setter(clubOwnerBean, loader.getController());
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();

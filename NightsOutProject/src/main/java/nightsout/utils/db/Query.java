@@ -58,6 +58,19 @@ public class Query {
         }
         return preparedStatement;
     }
+
+    public static PreparedStatement searchClubOwnersByUsername(String username) throws SQLException {
+        String query = "SELECT * FROM ClubOwners where username like ?;";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, username + "%");
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
+
     public static PreparedStatement searchEventsByName(String name) throws SQLException {
         String query = "SELECT * FROM Events where name like ?;";
         PreparedStatement preparedStatement = null;
@@ -81,5 +94,17 @@ public class Query {
             //
         }
         return preparedStatement;
+    }
+
+    public static PreparedStatement searchRequestsByIdClubOwner(int idClubOwner) {
+            String query = "SELECT R.idRequest, R.creationDateTime, U.name, U.surname, E.name FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE E.clubOwner = ? and R.status='pending';";
+            PreparedStatement preparedStatement = null;
+            try {
+            preparedStatement = MySqlConnection.getConnection().prepareStatement(query) ;
+            preparedStatement.setInt(1, idClubOwner);
+        } catch (Exception e) {
+            //
+        }
+            return preparedStatement;
     }
 }

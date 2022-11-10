@@ -31,39 +31,39 @@ public class EventDAO {
         }
     }
 
-    public static List<EventModel> getEventByName(String name) {
+    public static List<EventModel> getEventsByName(String name) {
 
-        ArrayList<EventModel> list = null;
-            PreparedStatement preparedStatement = null;
-            EventModel eventModel = null;
-            try {
-                list = new ArrayList<>();
-                preparedStatement = Query.searchEventsByName(name);
-                ResultSet rs = preparedStatement.executeQuery();
-                rs.next();
+        List<EventModel> list = null;
+        PreparedStatement preparedStatement = null;
+        EventModel eventModel = null;
+        try {
+            list = new ArrayList<>();
+            preparedStatement = Query.searchEventsByName(name);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
 
-                do {
-                    eventModel = new EventModel();
-                    eventModel.setName(rs.getString(5));
-                    eventModel.setIdEvent(rs.getInt(1));
-                    eventModel.setIdClubOwner(rs.getInt(2));
-                    eventModel.setTime(rs.getTime(10).toLocalTime());
-                    eventModel.setPrice(rs.getDouble(4));
-                    eventModel.setDuration(rs.getInt(7));
-                    eventModel.setEventDate(rs.getDate(6).toLocalDate());
+            do {
+                eventModel = new EventModel();
+                eventModel.setName(rs.getString(5));
+                eventModel.setIdEvent(rs.getInt(1));
+                eventModel.setIdClubOwner(rs.getInt(2));
+                eventModel.setTime(rs.getTime(10).toLocalTime());
+                eventModel.setPrice(rs.getDouble(4));
+                eventModel.setDuration(rs.getInt(7));
+                eventModel.setEventDate(rs.getDate(6).toLocalDate());
 
-                    list.add(eventModel);
+                list.add(eventModel);
 
-                } while(rs.next());
+            } while(rs.next());
 
-                preparedStatement.close();
-                return list;
-
-            } catch (/*MysqlConnectionFailed |*/ SQLException e){
-                // ErrorHandler.getInstance().handleException(e);
-                e.printStackTrace();
-            }
+            preparedStatement.close();
             return list;
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

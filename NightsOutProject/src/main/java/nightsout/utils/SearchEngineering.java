@@ -1,6 +1,7 @@
 package nightsout.utils;
 
 import nightsout.control.appcontroller.SearchAppController;
+import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 
@@ -8,7 +9,9 @@ import java.util.List;
 
 public class SearchEngineering {
 
-    private SearchEngineering() {}
+    private SearchEngineering() {
+        //ignored
+    }
 
     public static void search(Observer observer, String input){
         /*
@@ -27,29 +30,24 @@ public class SearchEngineering {
         */
         GenericBeanList list = new GenericBeanList(observer);
 
-        list.addUsersToList(searchUsers(input));
         list.addEventsToList(searchEvents(input));
+        list.addUsersToList(searchUsers(input));
+        list.addClubOwnersToList(searchClubOwners(input));
 
     }
 
     private static List<UserBean> searchUsers(String input) {
-        List<UserBean> listBean = SearchAppController.searchUserByUsername(input);
-
-        System.out.println("searchUsers");
-        for(UserBean bean : listBean) {
-            System.out.println("Risultato: " + bean.getName());
-        }
-
+        List<UserBean> listBean = SearchAppController.searchUsersByUsername(input);
         return listBean;
     }
 
     private static List<EventBean> searchEvents(String input) {
         List<EventBean> listBean = SearchAppController.searchEventsByName(input);
+        return listBean;
+    }
 
-        for(EventBean bean : listBean) {
-            System.out.println("Risultato: " + bean.getName());
-        }
-
+    private static List<ClubOwnerBean> searchClubOwners(String input) {
+        List<ClubOwnerBean> listBean = SearchAppController.searchClubOwnersByUsername(input);
         return listBean;
     }
 

@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClubOwnerDAO {
 
@@ -79,5 +81,35 @@ public class ClubOwnerDAO {
            // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
         }
+    }
+
+    public static List<ClubOwnerModel> getClubOwnersByUsername(String input) {
+        List<ClubOwnerModel> list = null;
+        PreparedStatement preparedStatement = null;
+        ClubOwnerModel clubOwnerModel = null ;
+
+        try {
+            list = new ArrayList<>();
+            preparedStatement = Query.searchClubOwnersByUsername(input);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            do {
+                clubOwnerModel = new ClubOwnerModel(rs.getString(2));
+                clubOwnerModel.setClubName(rs.getString(7));
+                clubOwnerModel.setEmail(rs.getString(4));
+                clubOwnerModel.setCity(rs.getString(5));
+                clubOwnerModel.setAddress(rs.getString(6));
+                clubOwnerModel.setId(rs.getInt(1));
+                list.add(clubOwnerModel);
+            } while(rs.next());
+
+            preparedStatement.close();
+            return list;
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return list;
     }
 }

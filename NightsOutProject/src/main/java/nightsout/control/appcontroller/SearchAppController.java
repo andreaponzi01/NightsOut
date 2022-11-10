@@ -1,9 +1,12 @@
 package nightsout.control.appcontroller;
 
+import nightsout.model.ClubOwnerModel;
 import nightsout.model.EventModel;
 import nightsout.model.UserModel;
+import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.UserDAO;
 
@@ -14,7 +17,7 @@ public class SearchAppController {
 
     private SearchAppController() {}
 
-    public static List<UserBean> searchUserByUsername(String input) {
+    public static List<UserBean> searchUsersByUsername(String input) {
         List<UserModel> list = null;
         List<UserBean> listBean = null;
         try {
@@ -37,11 +40,30 @@ public class SearchAppController {
         List<EventBean> listBean = null;
 
         try {
-            list = EventDAO.getEventByName(input);
+            list = EventDAO.getEventsByName(input);
             listBean = new ArrayList<>();
 
             for(EventModel eventModel : list){
                 EventBean bean = new EventBean(eventModel);
+                listBean.add(bean);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listBean;
+    }
+
+    public static List<ClubOwnerBean> searchClubOwnersByUsername(String input) {
+        List<ClubOwnerModel> list = null;
+        List<ClubOwnerBean> listBean = null;
+
+        try {
+            list = ClubOwnerDAO.getClubOwnersByUsername(input);
+            listBean = new ArrayList<>();
+
+            for(ClubOwnerModel clubOwnerModel : list){
+                ClubOwnerBean bean = new ClubOwnerBean(clubOwnerModel);
                 listBean.add(bean);
             }
 

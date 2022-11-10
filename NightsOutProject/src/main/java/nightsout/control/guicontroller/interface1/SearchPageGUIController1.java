@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import nightsout.utils.Observer;
 import nightsout.utils.SearchEngineering;
+import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scenes.ReplaceSceneDynamic1;
@@ -50,11 +51,11 @@ public class SearchPageGUIController1 implements Observer {
     }
 
     @Override
-    public void update(Object object) {
+    public void update(Object ob) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(object instanceof UserBean uBean) {
+        if(ob instanceof UserBean uBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
             } catch (IOException e) {
@@ -67,7 +68,7 @@ public class SearchPageGUIController1 implements Observer {
             this.listView.getItems().add(pane);
         }
 
-        if(object instanceof EventBean eBean) {
+        if(ob instanceof EventBean eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
             } catch (IOException e) {
@@ -77,6 +78,20 @@ public class SearchPageGUIController1 implements Observer {
             //EventItemGUIController1 controller = new EventItemGUIController1(); perche? NON FUNZIA CINZIa
             EventItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(userBean, eBean, input);
+
+            this.listView.getItems().add(pane);
+        }
+
+        if(ob instanceof ClubOwnerBean cBean) {
+            try {
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //EventItemGUIController1 controller = new EventItemGUIController1(); perche? NON FUNZIA CINZIa
+            UserItemGUIController1 controller = fxmlLoader.getController();
+            controller.setAll(cBean);
 
             this.listView.getItems().add(pane);
         }

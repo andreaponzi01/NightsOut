@@ -1,5 +1,6 @@
 package nightsout.utils;
 
+import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.GenericBean;
 import nightsout.utils.bean.UserBean;
@@ -31,6 +32,15 @@ public class GenericBeanList extends Subject {
             for (EventBean eventBean : listBean) {
                 beans.add(eventBean);
                 notify(eventBean);
+            }
+        }
+    }
+
+    public void addClubOwnersToList(List<ClubOwnerBean> listBean) {
+        if (listBean != null && !listBean.isEmpty()) {
+            for (ClubOwnerBean clubOwnerBean : listBean) {
+                beans.add(clubOwnerBean);
+                notify(clubOwnerBean);
             }
         }
     }

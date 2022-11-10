@@ -108,7 +108,7 @@ public class UserDAO {
 
     public static List<UserModel> getUsersByUsername(String username) throws SQLException {
 
-        ArrayList<UserModel> list = null;
+        List<UserModel> list = null;
         PreparedStatement preparedStatement = null;
         UserModel userModel = null ;
 

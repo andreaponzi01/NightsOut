@@ -7,13 +7,16 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.CreateEventAppController;
+import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.scenes.ReplaceScene;
+import nightsout.utils.scenes.ReplaceSceneDynamic1;
+
+import java.io.IOException;
 
 public class CreateEventGUIController1 {
 
-    private int idClubOwner;
-
+    private ClubOwnerBean clubOwnerBean;
     private EventBean eventBean;
 
     @FXML
@@ -33,13 +36,14 @@ public class CreateEventGUIController1 {
     @FXML
     TextField textFieldMinutes;
 
-    public void setIdClubOwner(int id) {
-        this.idClubOwner = id;
+    public void setAll(ClubOwnerBean clubOwnerBean) {
+        this.clubOwnerBean = clubOwnerBean;
     }
 
     @FXML
-    private void backToWelcomePage(ActionEvent actionEvent) {
-        ReplaceScene.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
+    private void backToWelcomePage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
     }
 
 
@@ -51,7 +55,7 @@ public class CreateEventGUIController1 {
         eventBean.setHours(Integer.parseInt(textFieldHours.getText()));
         eventBean.setMinutes(Integer.parseInt(textFieldMinutes.getText()));
         eventBean.setName(textFieldName.getText());
-        eventBean.setIdClubOwner(idClubOwner);
+        eventBean.setIdClubOwner(this.clubOwnerBean.getId());
         eventBean.setPrice(Double.valueOf(textFieldPrice.getText()));
 
         CreateEventAppController.createEvent(eventBean);

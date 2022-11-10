@@ -58,6 +58,7 @@ public class EventPageSendRequestGUIController1 {
         this.userBean = userBean;
         this.eventBean = eventBean;
         this.oldInput = oldInput;
+        // buttonUsername deve visualizzare l'username non l'id del Club Owner!
         this.buttonUsername.setText(String.valueOf(eventBean.getIdClubOwner()));
         this.labelEventName.setText(eventBean.getName());
         this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
