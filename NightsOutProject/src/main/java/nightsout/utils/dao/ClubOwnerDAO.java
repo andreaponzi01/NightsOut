@@ -58,27 +58,19 @@ public class ClubOwnerDAO {
 
     public static void insertClubOwner(ClubOwnerModel clubOwnerModel) {
         Statement stm = null;
+        PreparedStatement preparedStatement = null;
 
         try {
             stm= MySqlConnection.tryConnect();
             // Inserimento credenziali (tabella Credentials)
             CRUD.insertCredentials(clubOwnerModel.getUsername(), clubOwnerModel.getPassword(), "ClubOwner", stm);
 
-            // Inserimento dati personali (tabella ClubOwners)
-            PreparedStatement preparedStatement = MySqlConnection.insertClubOwner();
-
-            preparedStatement.setString(1,clubOwnerModel.getUsername());
-            preparedStatement.setString(2, clubOwnerModel.getEmail());
-            preparedStatement.setString(3 , clubOwnerModel.getCity());
-            preparedStatement.setString(4, clubOwnerModel.getAddress());
-            preparedStatement.setString(5, clubOwnerModel.getClubName());
-            preparedStatement.setInt(6, clubOwnerModel.getDiscountVIP());
-            // Manca la set dell'immagine del profilo
-
+            preparedStatement = Query.insertClubOwner(clubOwnerModel);
             preparedStatement.executeUpdate();
             preparedStatement.close();
+
         } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-           // ErrorHandler.getInstance().handleException(m);
+            // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
         }
     }
@@ -92,7 +84,11 @@ public class ClubOwnerDAO {
             list = new ArrayList<>();
             preparedStatement = Query.searchClubOwnersByUsername(input);
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
+            assert rs != null;
+            if (!rs.next()) {
+                return list;
+            }
+            //rs.next();
             do {
                 clubOwnerModel = new ClubOwnerModel(rs.getString(2));
                 clubOwnerModel.setClubName(rs.getString(7));
@@ -109,7 +105,48 @@ public class ClubOwnerDAO {
         } catch (/*MysqlConnectionFailed |*/ SQLException e){
             // ErrorHandler.getInstance().handleException(e);
             e.printStackTrace();
+
         }
         return list;
     }
+
+    public static ClubOwnerModel getClubOwnerById(int idClubOwner) {
+
+        PreparedStatement preparedStatement = null;
+        ClubOwnerModel clubOwnerModel = null ;
+
+        try {
+            preparedStatement = Query.searchClubOwnerById(idClubOwner);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+
+            // username
+            clubOwnerModel = new ClubOwnerModel(rs.getString(2));
+            clubOwnerModel.setClubName(rs.getString(7));
+            clubOwnerModel.setEmail(rs.getString(4));
+            clubOwnerModel.setCity(rs.getString(5));
+            clubOwnerModel.setAddress(rs.getString(6));
+            clubOwnerModel.setId(rs.getInt(1));
+
+            /* Capire come funziona la gestione delle immagini tramite file
+
+
+                InputStream in = (rs.getBinaryStream(3));
+                String filePath = username + "pic" + ".png";
+                File file = new File(filePath);
+                ImageConverter.copyInputStreamToFile(in, file);
+                clubOwnerModel.setProfileImg(file);
+            */
+
+            preparedStatement.close();
+            return clubOwnerModel;
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return clubOwnerModel;
+    }
+
+
 }

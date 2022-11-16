@@ -24,7 +24,6 @@ public class RequestDAO {
         Statement stm= null;
         try{
             stm= MySqlConnection.tryConnect();
-            System.out.println(userModel.getId() + " " + eventModel.getIdEvent());
             CRUD.insertRequest(userModel.getId(), eventModel.getIdEvent(), stm);
 
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
@@ -41,13 +40,17 @@ public class RequestDAO {
             System.out.println(userModel.getId() + " " + eventModel.getIdEvent());
             preparedStatement = Query.searchRequest(userModel.getId(), eventModel.getIdEvent());
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-
+            assert rs != null;
+            if (!rs.next()) {
+                return null;
+            }
+            //rs.next();
             requestModel = new RequestModel();
             requestModel.setIdRequest(rs.getInt(1));
             requestModel.setIdUser(rs.getInt(2));
             requestModel.setIdEvent(rs.getInt(4));
             requestModel.setStatus(rs.getString(3));
+            requestModel.setRequestDate(rs.getDate(5).toLocalDate());
 
             preparedStatement.close();
             return requestModel;
@@ -71,7 +74,11 @@ public class RequestDAO {
 
             preparedStatement = Query.searchRequestsByIdClubOwner(idClubOwner);
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
+            assert rs != null;
+            if (!rs.next()) {
+                return list;
+            }
+            //rs.next();
 
             do {
                 //R.idRequest, R.status, U.name, U.surname, E.name
@@ -106,8 +113,11 @@ public class RequestDAO {
 
             preparedStatement = Query.searchRequestsByIdUser(idUser);
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-
+            assert rs != null;
+            if (!rs.next()) {
+                return list;
+            }
+            //rs.next();
             do {
                 //R.idRequest, R.status, U.name, U.surname, E.name
                 requestModel = new RequestModel();
@@ -115,6 +125,7 @@ public class RequestDAO {
                 requestModel.setIdEvent(rs.getInt(4));
                 requestModel.setIdUser(rs.getInt(2));
                 requestModel.setStatus(rs.getString(3));
+                requestModel.setRequestDate(rs.getDate(5).toLocalDate());
 
                 list.add(requestModel);
 
@@ -128,5 +139,17 @@ public class RequestDAO {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public static void UpdateRequestStatus(int idRequest,String status) throws SQLException {
+        Statement stm= null;
+        try{
+            stm = MySqlConnection.tryConnect();
+            CRUD.updateRequest(idRequest,status, stm);
+
+        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
+            // ErrorHandler.getInstance().handleException(m);
+            m.printStackTrace();
+        }
     }
 }

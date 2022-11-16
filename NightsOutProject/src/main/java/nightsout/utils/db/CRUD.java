@@ -18,6 +18,7 @@ public class CRUD {
         String saveStm = String.format("INSERT INTO `Events` (`clubOwner`, `price`, `name`, `date`, `duration`, `time`) VALUES ('%d', '%s', '%s', '%s', '%d', '%s');", idClubOwner, String.valueOf(price), name, date, duration, time);
         stm.executeUpdate(saveStm);
     }
+
     public static void subscriptionVipUser( String username, Statement stm) throws SQLException {
         String saveStm = String.format("UPDATE `Users` SET `VIP` = '1', creationDateVIP=CURRENT_DATE WHERE (`username` = '%s');", username);
         stm.executeUpdate(saveStm);
@@ -29,8 +30,10 @@ public class CRUD {
         stm.executeUpdate(saveStm);
     }
 
-    public static void updateRequest(int id, int idEvent, Statement stm, String status) throws SQLException {
-        String saveStm = String.format("UPDATE `Requests` SET `status` = '%s' WHERE (`user` = '%d' AND `event` = '%d')", status, id, idEvent);
+    public static void updateRequest(int id, String status, Statement stm) throws SQLException {
+        String saveStm = String.format("UPDATE `Requests` SET `status` = '%s' WHERE `idRequest` = '%d'", status, id);
         stm.executeUpdate(saveStm);
     }
+
+
 }

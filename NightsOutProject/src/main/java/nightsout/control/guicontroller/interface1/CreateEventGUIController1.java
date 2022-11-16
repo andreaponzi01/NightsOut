@@ -48,7 +48,7 @@ public class CreateEventGUIController1 {
 
 
     @FXML
-    private void createEvent(ActionEvent actionEvent) {
+    private void createEvent(ActionEvent actionEvent) throws IOException {
         eventBean = new EventBean();
         eventBean.setEventDate(dateEvent.getValue());
         eventBean.setDuration((int) sliderTime.getValue());
@@ -59,7 +59,8 @@ public class CreateEventGUIController1 {
         eventBean.setPrice(Double.valueOf(textFieldPrice.getText()));
 
         CreateEventAppController.createEvent(eventBean);
-        ReplaceScene.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
 
     }
 }

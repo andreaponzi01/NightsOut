@@ -2,6 +2,8 @@ package nightsout.utils.bean;
 
 import nightsout.model.RequestModel;
 
+import java.time.LocalDate;
+
 public class RequestBean {
 
     public RequestBean(RequestModel requestModel) {
@@ -9,12 +11,24 @@ public class RequestBean {
         this.idUser = requestModel.getIdUser();
         this.idEvent = requestModel.getIdEvent();
         this.status = requestModel.getStatus();
+        this.requestDate=requestModel.getRequestDate();
     }
 
     private int idRequest;
     private int idUser;
     private int idEvent;
     private String status;
+    private LocalDate requestDate;
+
+    public LocalDate getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(LocalDate requestDate) {
+        this.requestDate = requestDate;
+    }
+
+
 
     public int getIdRequest() {
         return idRequest;

@@ -27,13 +27,14 @@ public class CheckRequestsGUIController1 implements Observer {
     }
 
     @FXML
-    private void checkRequests(ActionEvent actionEvent) {
+    private void checkRequests() {
         this.listViewPendingRequests.getItems().clear();
         CheckRequestsEngineering.checkRequests(this, userBean.getId());
     }
 
     public void setAll(UserBean userBean) {
         this.userBean = userBean;
+        this.checkRequests();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package nightsout.model;
 
+import java.time.LocalDate;
+
 public class RequestModel {
 
     public RequestModel() {
@@ -14,7 +16,15 @@ public class RequestModel {
     private int idUser;
     private int idEvent;
     private String status;
+    private LocalDate requestDate;
 
+    public LocalDate getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(LocalDate requestDate) {
+        this.requestDate = requestDate;
+    }
     public int getIdRequest() {
         return idRequest;
     }

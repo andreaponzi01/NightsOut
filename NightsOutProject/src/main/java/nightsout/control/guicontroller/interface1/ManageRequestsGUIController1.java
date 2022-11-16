@@ -28,13 +28,15 @@ public class ManageRequestsGUIController1 implements Observer {
     }
 
     @FXML
-    private void manageRequests(ActionEvent actionEvent) {
+    private void manageRequests() {
         this.listViewPendingRequests.getItems().clear();
         ManageRequestsEngineering.manageRequests(this, clubOwnerBean.getId());
     }
 
-    public void setAll(ClubOwnerBean clubOwnerBean) {
+    public void setAll(ClubOwnerBean clubOwnerBean){
+
         this.clubOwnerBean = clubOwnerBean;
+        this.manageRequests();
     }
 
     @Override
@@ -42,14 +44,15 @@ public class ManageRequestsGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         if(ob instanceof ManageRequestBean mRBean) {
+
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ManageRequestsItem1.fxml")).openStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ManageRequestsItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(mRBean);
 
+            ManageRequestsItemGUIController1 controller = fxmlLoader.getController();
+            controller.setAll(mRBean,clubOwnerBean);
             this.listViewPendingRequests.getItems().add(pane);
         }
     }

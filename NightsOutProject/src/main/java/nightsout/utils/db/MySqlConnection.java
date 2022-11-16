@@ -20,20 +20,20 @@ public class MySqlConnection {
             ** ResultSet.CONCUR_READ_ONLY --> ResultSet.CONCUR_UPDATABLE (capire quale sia più indicato!)
             */
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return statement;
     }
 
-    private static void connect() throws SQLException, ClassNotFoundException {
+    public static Connection connect() throws SQLException{
 
         String user;
         String pass;
         String dbUrl;
         String driverClassName;
 
-        if(connection==null){
+        if(connection==null || connection.isClosed()){
             try {
                 String resourceName = "config.properties";
                 InputStream inputStream = MySqlConnection.class.getClassLoader().getResourceAsStream(resourceName);
@@ -46,22 +46,17 @@ public class MySqlConnection {
                 Class.forName(driverClassName);
                 DriverManager.setLoginTimeout(5);
                 connection = DriverManager.getConnection(dbUrl, user, pass);
-            } catch (ClassNotFoundException | IOException e) {
+            } catch ( IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static Connection getConnection() { return connection; }
-
-    // PreparedStatements
-    public static java.sql.PreparedStatement insertClubOwner() throws SQLException {
-        return connection.prepareStatement( "INSERT INTO `ClubOwners`(`username`, `email`, `city`, `address`, `clubName`, `VIPdiscount` ) VALUES (?, ?, ?, ?, ?, ?)" );
-    }
-
-    public static java.sql.PreparedStatement insertUser() throws SQLException {
-        return connection.prepareStatement( "INSERT INTO `Users`(`username`, `email`, `name`, `surname`, `birthday`, `gender` ) VALUES (?, ?, ?, ?, ?, ?)" );
+        return connection;
     }
 
 
+    public static void closeConnection() throws SQLException {
+        connection.close();
+        //connection=null;
+
+    }
 }

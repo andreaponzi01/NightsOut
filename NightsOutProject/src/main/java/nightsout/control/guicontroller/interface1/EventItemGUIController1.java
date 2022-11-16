@@ -24,14 +24,19 @@ public class EventItemGUIController1 {
     @FXML
     private void goToEventPage(ActionEvent actionEvent) throws IOException {
         RequestBean requestBean = RequestAppController.checkRequestStatus(userBean, eventBean);
-        if(Objects.equals(requestBean.getStatus(), null)) {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageSendRequest1.fxml", eventBean, userBean, input);
+        if(requestBean==null){
+                ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageSendRequest1.fxml", eventBean, userBean, input);
         } else if(Objects.equals(requestBean.getStatus(), "pending")) {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageAlreadySentRequest1.fxml", eventBean, userBean, input);
+            replacer.switchAndSetSceneEvent(actionEvent, "/EventPagePendingRequest1.fxml", eventBean, userBean, input);
+        } else if(Objects.equals(requestBean.getStatus(), "accepted")) {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageAcceptedRequest1.fxml", eventBean, userBean, input);
+        }else if(Objects.equals(requestBean.getStatus(), "declined")) {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDeclinedRequest1.fxml", eventBean, userBean, input);
         }
-
     }
 
     public void setAll(UserBean userBean, EventBean eventBean, String oldInput) {

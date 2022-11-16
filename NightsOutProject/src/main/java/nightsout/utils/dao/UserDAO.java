@@ -1,5 +1,6 @@
 package nightsout.utils.dao;
 
+import nightsout.model.ClubOwnerModel;
 import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
@@ -58,30 +59,23 @@ public class UserDAO {
 
     public static void insertUser(UserModel userModel) {
         Statement stm = null;
-        try{
-            stm=MySqlConnection.tryConnect();
+        PreparedStatement preparedStatement = null;
 
+        try {
+            stm= MySqlConnection.tryConnect();
             // Inserimento credenziali (tabella Credentials)
             CRUD.insertCredentials(userModel.getUsername(), userModel.getPassword(), "Free", stm);
-            PreparedStatement ps = MySqlConnection.insertUser();
-            // Inserimento dati personali (tabella ClubOwners)
-            ps.setString(1,userModel.getUsername());
-            ps.setString(2, userModel.getEmail());
-            ps.setString(3 , userModel.getName());
-            ps.setString(4, userModel.getSurname());
-            ps.setDate(5, Date.valueOf(userModel.getBirthday()));
-            ps.setString(6, userModel.getGender());
 
-            // Manca la set dell'immagine del profilo
+            preparedStatement = Query.insertUser(userModel);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
 
-            ps.executeUpdate();
-            ps.close();
-
-        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
+        } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
         }
     }
+
 
     public static void subscriptionVip(UserModel userModel) throws SQLException {
         Statement stm= null;
@@ -114,12 +108,15 @@ public class UserDAO {
 
         try {
             list = new ArrayList<>();
-
             preparedStatement = Query.searchUsersByUsername(username);
             ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
+            assert rs != null;
+            if (!rs.next()) {
+                return list;
+            }
 
             do {
+
                 userModel = new UserModel(rs.getString(2));
                 userModel.setName(rs.getString(6));
                 userModel.setSurname(rs.getString(8));
@@ -127,7 +124,6 @@ public class UserDAO {
                 userModel.setEmail(rs.getString(4));
                 userModel.setId(rs.getInt(1));
                 userModel.setVip(rs.getBoolean(9));
-
 
                 list.add(userModel);
 
@@ -139,6 +135,45 @@ public class UserDAO {
         } catch (/*MysqlConnectionFailed |*/ SQLException e){
             // ErrorHandler.getInstance().handleException(e);
         e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static List<UserModel> getUsersByIdEvent(int idEvent) throws SQLException {
+
+        List<UserModel> list = null;
+        PreparedStatement preparedStatement = null;
+        UserModel userModel = null ;
+
+        try {
+            list = new ArrayList<>();
+            preparedStatement = Query.searchUsersByIdEvent(idEvent);
+            ResultSet rs = preparedStatement.executeQuery();
+            assert rs != null;
+            if (!rs.next()) {
+                return list;
+            }
+
+            do {
+
+                userModel = new UserModel(rs.getString(2));
+                userModel.setName(rs.getString(6));
+                userModel.setSurname(rs.getString(8));
+                userModel.setGender(rs.getString(7));
+                userModel.setEmail(rs.getString(4));
+                userModel.setId(rs.getInt(1));
+                userModel.setVip(rs.getBoolean(9));
+
+                list.add(userModel);
+
+            } while(rs.next());
+
+            preparedStatement.close();
+            return list;
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
         }
         return list;
     }

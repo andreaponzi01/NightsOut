@@ -24,7 +24,17 @@ public class RequestAppController {
         UserModel userModel = new UserModel(userBean);
         EventModel eventModel = new EventModel(eventBean);
         RequestModel requestModel = RequestDAO.checkRequestStatus(userModel, eventModel);
+        if(requestModel==null)
+            return null;
         return (new RequestBean(requestModel));
     }
+
+    /*
+    public static void manageRequest(UserBean userBean, EventBean eventBean) {
+        UserModel userModel = new UserModel(userBean);
+        EventModel eventModel = new EventModel(eventBean);
+        RequestDAO.manageRequest(userModel, eventModel);
+    }
+    */
 
 }

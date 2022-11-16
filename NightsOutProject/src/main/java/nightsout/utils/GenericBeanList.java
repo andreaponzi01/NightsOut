@@ -18,6 +18,8 @@ public class GenericBeanList extends Subject {
         beans = new ArrayList<>();
     }
 
+
+    //perche aggiungo sempre i bean a beans?? a me beans non serve o sbaglio?
     public void addUsersToList(List<UserBean> listBean) {
         if (listBean != null && !listBean.isEmpty()) {
             for (UserBean userBean : listBean) {

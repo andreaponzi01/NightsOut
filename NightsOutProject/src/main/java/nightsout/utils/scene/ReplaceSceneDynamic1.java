@@ -19,7 +19,6 @@ public class ReplaceSceneDynamic1 {
         Parent root = loader.load();
 
         try {
-
             if (fxml.equals("/UserPage1.fxml")) {
                 UserPageSetter1.setter(userBean, loader.getController());
             }
@@ -54,8 +53,7 @@ public class ReplaceSceneDynamic1 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
         try {
-                RegisterSetter1.setterCreateEvent(clubOwnerBean, loader.getController());
-
+            RegisterSetter1.setterCreateEvent(clubOwnerBean, loader.getController());
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();
@@ -98,7 +96,13 @@ public class ReplaceSceneDynamic1 {
             if(fxml.equals("/EventPageSendRequest1.fxml")) {
                 EventPageSetter1.setter1(userBean, eventBean, oldInput, loader.getController());
             }
-            if(fxml.equals("/EventPageAlreadySentRequest1.fxml")) {
+            if(fxml.equals("/EventPagePendingRequest1.fxml")) {
+                EventPageSetter1.setter2(userBean, eventBean, oldInput, loader.getController());
+            }
+            if(fxml.equals("/EventPageAcceptedRequest1.fxml")) {
+                EventPageSetter1.setter2(userBean, eventBean, oldInput, loader.getController());
+            }
+            if(fxml.equals("/EventPageDeclinedRequest1.fxml")) {
                 EventPageSetter1.setter2(userBean, eventBean, oldInput, loader.getController());
             }
             ReplaceScene.showStage(ae, root);
@@ -133,7 +137,29 @@ public class ReplaceSceneDynamic1 {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
         try {
-            CheckRequestSetter.setter(userBean, loader.getController());
+            CheckRequestSetter1.setter(userBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneNextEvents(ActionEvent actionEvent, String fxml, UserBean userBean, EventBean eventBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            EventPageSetter1.setter3(userBean,eventBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneCreatedEvents(ActionEvent actionEvent, String fxml, ClubOwnerBean clubOwnerBean, EventBean eventBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            EventPageSetter1.setterClubOwner(clubOwnerBean,eventBean, loader.getController());
             ReplaceScene.showStage(actionEvent, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();

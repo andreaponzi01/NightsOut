@@ -4,7 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.control.appcontroller.RequestAppController;
+import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
@@ -42,31 +44,29 @@ public class EventPageSendRequestGUIController1 {
 
     @FXML
     private void sendRequest(ActionEvent actionEvent) throws IOException {
-        //System.out.println("idEvent: " + eventBean.getIdEvent() + " idUser: " + userBean.getId());
         RequestAppController.sendRequest(userBean, eventBean);
-        System.out.println("Daje");
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneEvent(actionEvent, "/EventPageAlreadySentRequest1.fxml", eventBean, userBean, oldInput);
+        replacer.switchAndSetSceneEvent(actionEvent, "/EventPagePendingRequest1.fxml", eventBean, userBean, oldInput);
     }
 
     @FXML
-    private void goToClubOwnerPage(ActionEvent actionEvent) {
-        //Da implementare
+    private void goToClubOwnerPage(ActionEvent actionEvent) throws IOException {
+        ClubOwnerBean clubOwnerBean= EventPageAppController.getClubOwner(eventBean.getIdClubOwner());
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
     }
+
 
     public void setAll(UserBean userBean, EventBean eventBean, String oldInput) {
         this.userBean = userBean;
         this.eventBean = eventBean;
         this.oldInput = oldInput;
-        // buttonUsername deve visualizzare l'username non l'id del Club Owner!
-        this.buttonUsername.setText(String.valueOf(eventBean.getIdClubOwner()));
+        this.buttonUsername.setText(eventBean.getName());
         this.labelEventName.setText(eventBean.getName());
         this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
         this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
         this.labelEventDuration.setText(String.valueOf(eventBean.getDuration()));
         this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));
-
-
     }
 
 }

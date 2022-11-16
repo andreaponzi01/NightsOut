@@ -12,7 +12,6 @@ public class ManageRequestsEngineering {
     }
 
     public static void manageRequests(Observer observer, int idClubOwner) {
-
         ManageRequestBeanList list = new ManageRequestBeanList(observer);
         list.addRequestsToList(searchRequests(idClubOwner));
     }

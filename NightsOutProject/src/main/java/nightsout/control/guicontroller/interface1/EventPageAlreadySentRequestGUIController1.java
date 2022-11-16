@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import nightsout.control.appcontroller.EventPageAppController;
+import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
@@ -16,6 +18,7 @@ public class EventPageAlreadySentRequestGUIController1 {
 
     private UserBean userBean;
     private EventBean eventBean;
+
     private String oldInput;
 
     @FXML
@@ -38,16 +41,23 @@ public class EventPageAlreadySentRequestGUIController1 {
     }
 
     @FXML
-    private void goToClubOwnerPage(ActionEvent actionEvent) {
-        // Da implementare
+    private void backToUserPage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean,null);
+    }
+
+    @FXML
+    private void goToClubOwnerPage(ActionEvent actionEvent) throws IOException {
+        ClubOwnerBean clubOwnerBean= EventPageAppController.getClubOwner(eventBean.getIdClubOwner());
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
     }
 
     public void setAll(UserBean userBean, EventBean eventBean, String oldInput) {
         this.userBean = userBean;
         this.eventBean = eventBean;
         this.oldInput = oldInput;
-        // buttonUsername deve visualizzare l'username non l'id del Club Owner!
-        this.buttonUsername.setText(String.valueOf(eventBean.getIdClubOwner()));
+        this.buttonUsername.setText(eventBean.getName());
         this.labelEventName.setText(eventBean.getName());
         this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
         this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));

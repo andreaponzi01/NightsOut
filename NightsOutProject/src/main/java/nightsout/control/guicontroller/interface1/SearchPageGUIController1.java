@@ -75,7 +75,6 @@ public class SearchPageGUIController1 implements Observer {
                 e.printStackTrace();
             }
 
-            //EventItemGUIController1 controller = new EventItemGUIController1(); perche? NON FUNZIA CINZIa
             EventItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(userBean, eBean, input);
 
@@ -89,7 +88,6 @@ public class SearchPageGUIController1 implements Observer {
                 e.printStackTrace();
             }
 
-            //EventItemGUIController1 controller = new EventItemGUIController1(); perche? NON FUNZIA CINZIa
             UserItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(cBean);
 

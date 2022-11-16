@@ -13,4 +13,6 @@ public class UserPageSetter1 {
         userPageGUIController1.setAll(userBean);
     }
 
+
+
 }
