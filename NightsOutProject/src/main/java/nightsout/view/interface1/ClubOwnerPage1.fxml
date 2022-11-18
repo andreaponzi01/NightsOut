@@ -31,7 +31,7 @@
             <Font size="10.0" />
          </font>
       </Button>
-      <Button layoutX="375.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="199.0" styleClass="navBarButton" stylesheets="@style.css" text="Respond rewiew" textFill="WHITE" />
+      <Button layoutX="375.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToResponsePage" prefHeight="40.0" prefWidth="199.0" styleClass="navBarButton" stylesheets="@style.css" text="Respond rewiew" textFill="WHITE" />
       <Button layoutX="585.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToManageRequestsPage" prefHeight="40.0" prefWidth="157.0" styleClass="navBarButton" stylesheets="@style.css" text="Manage Request" textFill="WHITE" />
       <ListView fx:id="listViewCreatedEvents" layoutX="454.0" layoutY="178.0" prefHeight="374.0" prefWidth="502.0" style="-fx-border-color: red;" />
       <Label layoutX="655.0" layoutY="79.0" prefHeight="69.0" prefWidth="208.0" text="Created Events">

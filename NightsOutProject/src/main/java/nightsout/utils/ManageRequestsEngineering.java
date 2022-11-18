@@ -3,6 +3,7 @@ package nightsout.utils;
 import nightsout.control.appcontroller.ManageRequestsAppController;
 import nightsout.utils.bean.ManageRequestBean;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ManageRequestsEngineering {
@@ -11,7 +12,7 @@ public class ManageRequestsEngineering {
         //ignored
     }
 
-    public static void manageRequests(Observer observer, int idClubOwner) {
+    public static void manageRequests(Observer observer, int idClubOwner) throws SQLException {
         ManageRequestBeanList list = new ManageRequestBeanList(observer);
         list.addRequestsToList(searchRequests(idClubOwner));
     }

@@ -19,14 +19,12 @@ public class SubscriptionedVipPageGUIController1 {
 
 
     public void setAll(UserBean userBean) {
-
         this.userBean = userBean;
         setLabelDate(userBean.getCreationDateVIP().toString());
     }
 
-    public void goToSearchPage(ActionEvent actionEvent) throws IOException {
+    public void goToUserPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean,null);
-        //ReplaceScene.replaceScene(actionEvent, "/UserPage1.fxml");
     }
 }

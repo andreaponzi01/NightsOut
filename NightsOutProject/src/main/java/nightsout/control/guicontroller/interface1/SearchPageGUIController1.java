@@ -14,6 +14,7 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class SearchPageGUIController1 implements Observer {
@@ -30,7 +31,7 @@ public class SearchPageGUIController1 implements Observer {
         this.userBean = userBean;
     }
 
-    public void setAllOldInput(UserBean userBean, String oldInput) {
+    public void setAllOldInput(UserBean userBean, String oldInput) throws SQLException {
         this.userBean = userBean;
         textFieldSearch.setText(oldInput);
         this.search();
@@ -43,7 +44,7 @@ public class SearchPageGUIController1 implements Observer {
     }
 
     @FXML
-    private void search() {
+    private void search() throws SQLException {
         input = textFieldSearch.getText();
         this.listView.getItems().clear();
         if(!input.isBlank())

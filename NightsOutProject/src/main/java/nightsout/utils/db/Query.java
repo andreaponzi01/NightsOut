@@ -1,6 +1,8 @@
 package nightsout.utils.db;
 
 import nightsout.model.ClubOwnerModel;
+import nightsout.model.ResponseModel;
+import nightsout.model.ReviewModel;
 import nightsout.model.UserModel;
 
 import java.sql.Date;
@@ -55,6 +57,18 @@ public class Query {
         try {
             preparedStatement = MySqlConnection.connect().prepareStatement(query);
             preparedStatement.setString(1, username + "%");
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
+
+    public static PreparedStatement searchUsersByIdUser(int idUser) throws SQLException {
+        String query = "SELECT * FROM Users where idUser = ?;";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query);
+            preparedStatement.setInt(1, idUser);
         } catch (Exception e) {
             //
         }
@@ -204,5 +218,74 @@ public class Query {
             //
         }
         return preparedStatement;
+    }
+
+    public static PreparedStatement searchEndedEventsByIdUser(int idUser) {
+        String query = "SELECT E.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE U.idUser = ? and R.status='accepted' and DATEDIFF(E.date, CURRENT_TIMESTAMP)<0 and E.idEvent NOT IN (SELECT Events.idEvent FROM Events JOIN Reviews ON Reviews.event=Events.idEvent WHERE Reviews.sender = ? );";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
+            preparedStatement.setInt(1, idUser);
+            preparedStatement.setInt(2, idUser);
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
+
+    public static PreparedStatement insertEventReview(ReviewModel reviewModel) throws SQLException {
+        String query = "INSERT INTO Reviews (sender, reviewText, event) VALUES (?, ?, ?);";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query);
+            preparedStatement.setInt(1,reviewModel.getIdUser());
+            preparedStatement.setString(2 , reviewModel.getComment());
+            preparedStatement.setInt(3, reviewModel.getIdEvent());
+
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
+
+    public static PreparedStatement searchReviewsByIdClubOwner(int idClubOwner) {
+        String query = "SELECT R.* FROM Reviews as R JOIN Events as E ON R.event = E.idEvent JOIN ClubOwners as C ON E.clubOwner = C.idClubOwner WHERE C.idClubOwner = ? AND R.idReview NOT IN (SELECT Responses.review FROM Responses WHERE Responses.clubOwner = ?);";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
+            preparedStatement.setInt(1, idClubOwner);
+            preparedStatement.setInt(2, idClubOwner);
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
+
+    public static PreparedStatement insertResponse(ResponseModel responseModel) throws SQLException {
+        String query = "INSERT INTO Responses (clubOwner, review, responseText) VALUES (?, ?, ?);";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query);
+            preparedStatement.setInt(1,responseModel.getIdClubOwner());
+            preparedStatement.setInt(2 , responseModel.getReview());
+            preparedStatement.setString(3, responseModel.getResponse());
+
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
+
+    public static PreparedStatement searchEventByIdEvent(int idEvent) {
+        String query = "SELECT * FROM Events where idEvent = ?;";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
+            preparedStatement.setInt(1, idEvent);
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+
     }
 }

@@ -44,7 +44,7 @@ public class ClubOwnerPageGUIController1 implements Observer {
         replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml", loggedClubOwner);
     }
 
-    public void setAll(ClubOwnerBean clubOwnerBean) {
+    public void setAll(ClubOwnerBean clubOwnerBean) throws SQLException {
         loggedClubOwner = clubOwnerBean;
         setLabelUserName(clubOwnerBean.getUsername());
         CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
@@ -75,5 +75,10 @@ public class ClubOwnerPageGUIController1 implements Observer {
             controller.setAll(loggedClubOwner, eBean);
             this.listViewCreatedEvents.getItems().add(pane);
         }
+    }
+
+    public void goToResponsePage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml", loggedClubOwner);
     }
 }

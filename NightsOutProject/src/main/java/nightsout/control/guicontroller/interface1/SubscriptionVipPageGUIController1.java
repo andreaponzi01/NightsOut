@@ -21,10 +21,7 @@ public class SubscriptionVipPageGUIController1 {
 
     @FXML
     private void confirmSubscription(ActionEvent actionEvent) throws IOException, SQLException {
-        //effettiva subscription
-        UserBean userBeanUpdated = SubscriptionVipAppController.subscription(userBean.getUsername());
-
-        //vai alla pagina
+        UserBean userBeanUpdated = SubscriptionVipAppController.subscription(userBean);
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBeanUpdated,null);
     }

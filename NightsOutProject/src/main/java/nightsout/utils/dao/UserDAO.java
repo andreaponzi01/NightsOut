@@ -91,7 +91,6 @@ public class UserDAO {
 
             userModel.setVip(rs.getBoolean(9));
             userModel.setCreationDateVip(rs.getDate(10).toLocalDate());
-
             preparedStatement.close();
 
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
@@ -176,5 +175,46 @@ public class UserDAO {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public static UserModel getUserByidUser(int idUser) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+        UserModel userModel = null ;
+
+        try {
+            preparedStatement = Query.searchUsersByIdUser(idUser);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+
+
+            userModel = new UserModel(rs.getString(2));
+
+            userModel.setName(rs.getString(6));
+            userModel.setSurname(rs.getString(8));
+            userModel.setGender(rs.getString(7));
+            userModel.setEmail(rs.getString(4));
+            userModel.setId(rs.getInt(1));
+            userModel.setVip(rs.getBoolean(9));
+            userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
+
+            /* Capire come funziona la gestione delle immagini tramite file
+
+
+                InputStream in = (rs.getBinaryStream(3));
+                String filePath = username + "pic" + ".png";
+                File file = new File(filePath);
+                ImageConverter.copyInputStreamToFile(in, file);
+                userModel.setProfileImg(file);
+            */
+
+            preparedStatement.close();
+            return userModel;
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return userModel;
     }
 }

@@ -25,7 +25,6 @@ public class UserBean extends ProfileBean {
         /*
         **  I setter  dovrebbero essere utilizzati solo esternamente alla classe (?)
         */
-
         this.setSurname(userModel.getSurname());
         this.setName(userModel.getName());
         this.setUsername(userModel.getUsername());

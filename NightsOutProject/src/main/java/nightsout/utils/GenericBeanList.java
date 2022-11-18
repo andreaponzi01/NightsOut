@@ -5,6 +5,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.GenericBean;
 import nightsout.utils.bean.UserBean;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class GenericBeanList extends Subject {
 
 
     //perche aggiungo sempre i bean a beans?? a me beans non serve o sbaglio?
-    public void addUsersToList(List<UserBean> listBean) {
+    public void addUsersToList(List<UserBean> listBean) throws SQLException {
         if (listBean != null && !listBean.isEmpty()) {
             for (UserBean userBean : listBean) {
                 beans.add(userBean);
@@ -29,7 +30,7 @@ public class GenericBeanList extends Subject {
         }
     }
 
-    public void addEventsToList(List<EventBean> listBean) {
+    public void addEventsToList(List<EventBean> listBean) throws SQLException {
         if (listBean != null && !listBean.isEmpty()) {
             for (EventBean eventBean : listBean) {
                 beans.add(eventBean);
@@ -38,7 +39,7 @@ public class GenericBeanList extends Subject {
         }
     }
 
-    public void addClubOwnersToList(List<ClubOwnerBean> listBean) {
+    public void addClubOwnersToList(List<ClubOwnerBean> listBean) throws SQLException {
         if (listBean != null && !listBean.isEmpty()) {
             for (ClubOwnerBean clubOwnerBean : listBean) {
                 beans.add(clubOwnerBean);

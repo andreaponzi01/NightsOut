@@ -13,11 +13,9 @@ public class UserModel extends ProfileModel {
     private LocalDate creationDateVip;
     private boolean vip;
 
-    /*
-       Mancano: data della sottoscrizione VIP
-     */
-
-    public UserModel(String username){ super(username); }
+    public UserModel(String username){
+        super(username);
+    }
 
     public UserModel(UserBean userBean){
 
@@ -40,6 +38,10 @@ public class UserModel extends ProfileModel {
         this.surname = userBean.getSurname();
         this.gender = userBean.getGender();
         this.birthday = userBean.getBirthday();
+
+    }
+
+    public UserModel() {
 
     }
 

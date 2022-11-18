@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.scenesetter.*;
 
@@ -160,6 +161,72 @@ public class ReplaceSceneDynamic1 {
         Parent root = loader.load();
         try {
             EventPageSetter1.setterClubOwner(clubOwnerBean,eventBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneEndedBookedEvents(ActionEvent actionEvent, String fxml, UserBean userBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            EndedBookedEventsPageSetter1.setter(userBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneEventUser(ActionEvent actionEvent, String fxml, EventBean eventBean, UserBean userBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            EventPageSetter1.setterUser(userBean,eventBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneCreateEventReview(ActionEvent actionEvent, String fxml, EventBean eventBean, UserBean userBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            ReviewPageSetter1.setter(userBean,eventBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneReviewResponse(ActionEvent actionEvent, String fxml, ClubOwnerBean clubOwnerBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            ResponsePageSetter1.setter(clubOwnerBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneMakeResponse(ActionEvent actionEvent, String fxml, ClubOwnerBean clubOwnerBean, UserBean userBean, ReviewBean reviewBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            ResponsePageSetter1.setter2(clubOwnerBean,userBean,reviewBean, loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneReviewAndResponse(ActionEvent actionEvent, String fxml, EventBean eventBean, UserBean userBean) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            ReviewAndResponsePageSetter1.setter(eventBean,userBean, loader.getController());
             ReplaceScene.showStage(actionEvent, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();

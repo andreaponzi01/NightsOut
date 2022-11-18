@@ -31,7 +31,7 @@ public class UserPageGUIController1 implements Observer {
 
     public void setLabelUserName(String username) { this.usernameLabel.setText(username); }
 
-    public void setAll(UserBean userBean) {
+    public void setAll(UserBean userBean) throws SQLException {
         this.userBean = userBean;
         setLabelUserName(userBean.getUsername());
         NextEventsEngineering.nextEvents(this, userBean.getId());
@@ -86,5 +86,10 @@ public class UserPageGUIController1 implements Observer {
             controller.setAll(userBean, eBean);
             this.listViewNextEvents.getItems().add(pane);
         }
+    }
+    @FXML
+    public void goToReviewPage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneEndedBookedEvents(actionEvent, "/EndedBookedEventsPage1.fxml", userBean);
     }
 }

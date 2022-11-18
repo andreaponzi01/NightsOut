@@ -32,4 +32,23 @@ public class UserPageAppController {
 
     }
 
+    public static List<EventBean> searchEndedEventsByIdUser(int idUser) {
+        List<EventModel> list = null;
+        List<EventBean> listBean = null;
+
+        try {
+            list = EventDAO.getEndedEventsByIdUser(idUser);
+            listBean = new ArrayList<>();
+
+            for(EventModel eventModel : list){
+                EventBean bean = new EventBean(eventModel);
+                listBean.add(bean);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listBean;
+
+    }
 }

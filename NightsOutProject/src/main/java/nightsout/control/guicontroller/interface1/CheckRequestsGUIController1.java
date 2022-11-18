@@ -12,6 +12,7 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class CheckRequestsGUIController1 implements Observer {
@@ -27,12 +28,12 @@ public class CheckRequestsGUIController1 implements Observer {
     }
 
     @FXML
-    private void checkRequests() {
+    private void checkRequests() throws SQLException {
         this.listViewPendingRequests.getItems().clear();
         CheckRequestsEngineering.checkRequests(this, userBean.getId());
     }
 
-    public void setAll(UserBean userBean) {
+    public void setAll(UserBean userBean) throws SQLException {
         this.userBean = userBean;
         this.checkRequests();
     }

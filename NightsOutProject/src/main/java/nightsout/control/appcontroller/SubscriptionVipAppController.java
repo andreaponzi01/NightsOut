@@ -12,10 +12,10 @@ public class SubscriptionVipAppController {
         //ignored
     }
 
-    public static UserBean subscription(String username) throws SQLException {
-        UserModel userModel = new UserModel(username);
-        UserDAO.subscriptionVip(userModel);
+    public static UserBean subscription(UserBean userBean) throws SQLException {
+        UserModel userModel = new UserModel(userBean);
 
+        UserDAO.subscriptionVip(userModel);
         return (new UserBean(userModel));
     }
 }

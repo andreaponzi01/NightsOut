@@ -2,6 +2,7 @@ package nightsout.utils;
 
 import nightsout.utils.bean.RequestBean;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class RequestBeanList extends Subject {
         beans = new ArrayList<>();
     }
 
-    public void addRequestsToList(List<RequestBean> listBean) {
+    public void addRequestsToList(List<RequestBean> listBean) throws SQLException {
         if (listBean != null && !listBean.isEmpty()) {
             for (RequestBean requestBean : listBean) {
                 beans.add(requestBean);

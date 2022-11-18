@@ -24,7 +24,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Button fx:id="buttonSearch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToSearchPage" prefHeight="50.0" prefWidth="120.0" styleClass="green-button-rectangular" text="Search Page">
+            <Button fx:id="buttonSearch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="50.0" prefWidth="120.0" styleClass="green-button-rectangular" text="Search Page">
                <font>
                   <Font name="Arial Bold" size="25.0" />
                </font>

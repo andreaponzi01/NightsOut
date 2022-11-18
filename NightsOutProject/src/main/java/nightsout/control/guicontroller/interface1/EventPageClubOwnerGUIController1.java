@@ -17,6 +17,7 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -46,7 +47,7 @@ public class EventPageClubOwnerGUIController1 implements Observer {
         replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null,clubOwnerBean);
     }
 
-    public void setAll(ClubOwnerBean clubOwnerBean, EventBean eventBean) {
+    public void setAll(ClubOwnerBean clubOwnerBean, EventBean eventBean) throws SQLException {
         this.clubOwnerBean = clubOwnerBean;
         this.eventBean = eventBean;
         this.labelUsername.setText(eventBean.getName());
