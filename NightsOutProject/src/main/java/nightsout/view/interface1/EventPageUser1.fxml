@@ -130,16 +130,5 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonReview" layoutX="846.0" layoutY="463.0" mnemonicParsing="false" onAction="#goToReviewsPage" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" text="Reviews" textFill="#200f54">
-         <font>
-            <Font name="Arial Bold" size="21.0" />
-         </font>
-         <effect>
-            <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
    </children>
 </AnchorPane>

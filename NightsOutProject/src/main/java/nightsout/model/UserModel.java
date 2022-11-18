@@ -28,6 +28,7 @@ public class UserModel extends ProfileModel {
         this.surname = userBean.getSurname();
         this.gender = userBean.getGender();
         this.birthday = userBean.getBirthday();
+        this.creationDateVip=userBean.getCreationDateVIP();
 
     }
 

@@ -1,6 +1,7 @@
 package nightsout.utils;
 
 import nightsout.utils.bean.RequestBean;
+import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 
 import java.sql.SQLException;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class ReviewBeanList extends Subject {
 
-    private List<ReviewBean> beans; // da fare
+    private List<ReviewBean> beans;
 
     public ReviewBeanList(Observer observer) {
         super(observer);

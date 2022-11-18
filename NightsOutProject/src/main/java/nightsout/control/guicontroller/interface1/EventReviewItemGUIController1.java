@@ -39,4 +39,5 @@ public class EventReviewItemGUIController1 {
         this.eventBean = eventBean;
         labelEventName.setText(this.eventBean.getName());
     }
+
 }

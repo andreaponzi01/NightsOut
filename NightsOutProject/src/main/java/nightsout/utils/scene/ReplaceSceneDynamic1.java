@@ -26,6 +26,12 @@ public class ReplaceSceneDynamic1 {
             if (fxml.equals("/ClubOwnerPage1.fxml")) {
                ClubOwnerPageSetter1.setter(clubOwnerBean, loader.getController());
             }
+            if (fxml.equals("/User1.fxml")) {
+                UserPageSetter1.setterSimple(userBean, loader.getController());
+            }
+            if (fxml.equals("/ClubOwner1.fxml")) {
+                ClubOwnerPageSetter1.setter(clubOwnerBean, loader.getController());
+            }
 
             ReplaceScene.showStage(ae, root);
         } catch (Exception /*| IOException*/ e) {
@@ -222,11 +228,11 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneReviewAndResponse(ActionEvent actionEvent, String fxml, EventBean eventBean, UserBean userBean) throws IOException {
+    public void switchAndSetSceneReviewAndResponse(ActionEvent actionEvent, String fxml, ClubOwnerBean clubOwnerBean) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();
         try {
-            ReviewAndResponsePageSetter1.setter(eventBean,userBean, loader.getController());
+            ReviewAndResponsePageSetter1.setter(clubOwnerBean, loader.getController());
             ReplaceScene.showStage(actionEvent, root);
         } catch (Exception /*| IOException*/ e) {
             e.printStackTrace();

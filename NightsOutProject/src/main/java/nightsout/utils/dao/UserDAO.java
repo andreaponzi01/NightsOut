@@ -123,6 +123,7 @@ public class UserDAO {
                 userModel.setEmail(rs.getString(4));
                 userModel.setId(rs.getInt(1));
                 userModel.setVip(rs.getBoolean(9));
+                userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
 
                 list.add(userModel);
 
@@ -162,6 +163,7 @@ public class UserDAO {
                 userModel.setEmail(rs.getString(4));
                 userModel.setId(rs.getInt(1));
                 userModel.setVip(rs.getBoolean(9));
+                userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
 
                 list.add(userModel);
 

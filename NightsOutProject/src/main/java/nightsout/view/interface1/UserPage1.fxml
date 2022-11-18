@@ -14,8 +14,8 @@
          </font></Label>
       <AnchorPane layoutX="40.0" layoutY="66.0" prefHeight="555.0" prefWidth="960.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="66.0">
          <children>
-            <ListView fx:id="listViewNextEvents" layoutX="444.0" layoutY="168.0" prefHeight="374.0" prefWidth="502.0" style="-fx-border-color: red;" />
-            <Label layoutX="645.0" layoutY="69.0" prefHeight="69.0" prefWidth="156.0" text="Next Events">
+            <ListView fx:id="listViewNextEvents" layoutX="276.0" layoutY="168.0" prefHeight="374.0" prefWidth="670.0" style="-fx-border-color: red;" />
+            <Label layoutX="501.0" layoutY="81.0" prefHeight="69.0" prefWidth="156.0" text="Next Events">
                <font>
                   <Font size="29.0" />
                </font>

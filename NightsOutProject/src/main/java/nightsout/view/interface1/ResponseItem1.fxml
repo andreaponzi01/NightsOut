@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ap" prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ResponseItemGUIController1">
+   <children>
+      <HBox alignment="CENTER" layoutX="155.0" prefHeight="150.0" prefWidth="395.0" style="-fx-background-color: FFE5CC; -fx-background-radius: 50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="150.0" prefWidth="615.0">
+               <children>
+                  <Label layoutX="73.0" layoutY="12.0" prefHeight="29.0" prefWidth="162.0" text="CLUBOWNER:" textFill="#200f54" underline="true">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelUsername" alignment="CENTER" layoutX="228.0" layoutY="5.0" prefHeight="44.0" prefWidth="162.0" text="\@Username" textFill="#200f54">
+                     <font>
+                        <Font name="Arial Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="textAreaResponse" editable="false" layoutX="154.0" layoutY="48.0" prefHeight="93.0" prefWidth="218.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -81,4 +81,11 @@ public class ClubOwnerPageGUIController1 implements Observer {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml", loggedClubOwner);
     }
+
+    @FXML
+    public void goToReviewsPage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml", loggedClubOwner);
+        //replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml", loggedClubOwner,userBean); dovrò passargli anche l' utente per poi tornare indietro
+    }
 }

@@ -261,6 +261,18 @@ public class Query {
         return preparedStatement;
     }
 
+    public static PreparedStatement searchAllReviewsByIdClubOwner(int idClubOwner) {
+        String query = "SELECT R.* FROM Reviews as R JOIN Events as E ON R.event = E.idEvent JOIN ClubOwners as C ON E.clubOwner = C.idClubOwner WHERE C.idClubOwner = ?;";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
+            preparedStatement.setInt(1, idClubOwner);
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
+
     public static PreparedStatement insertResponse(ResponseModel responseModel) throws SQLException {
         String query = "INSERT INTO Responses (clubOwner, review, responseText) VALUES (?, ?, ?);";
         PreparedStatement preparedStatement = null;
@@ -287,5 +299,17 @@ public class Query {
         }
         return preparedStatement;
 
+    }
+
+    public static PreparedStatement searchResponseByIdReview(int idReview) {
+        String query = "SELECT * FROM Responses where review = ?;";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
+            preparedStatement.setInt(1, idReview);
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
     }
 }

@@ -40,7 +40,7 @@ public class UserItemGUIController1 {
     private void goToProfile(ActionEvent actionEvent) throws IOException {
         if(clubOwnerBean == null) {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean, null);
+            replacer.switchAndSetScene(actionEvent, "/User1.fxml", userBean, null);
         } else{
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);

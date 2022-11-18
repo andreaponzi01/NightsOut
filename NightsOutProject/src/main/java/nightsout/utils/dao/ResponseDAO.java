@@ -3,6 +3,7 @@ package nightsout.utils.dao;
 import nightsout.model.ResponseModel;
 import nightsout.model.ReviewModel;
 import nightsout.utils.db.Query;
+import org.xml.sax.ErrorHandler;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +28,31 @@ public class ResponseDAO {
             // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
         }
+    }
+
+    public static ResponseModel getResponseByIdReview(int idReview) {
+        PreparedStatement preparedStatement=null;
+        ResponseModel responseModel=null;
+        try{
+            preparedStatement = Query.searchResponseByIdReview(idReview);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (!rs.next()) {
+                return responseModel;
+            }
+
+            responseModel = new ResponseModel();
+            responseModel.setIdAnswer(rs.getInt(1));
+            System.out.println("\n"+rs.getInt(1)+"\n");
+            responseModel.setIdClubOwner(rs.getInt(2));
+            responseModel.setReview(rs.getInt(3));
+            responseModel.setResponse(rs.getString(4));
+            preparedStatement.close();
+            return responseModel;
+        }catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return responseModel;
     }
 
 

@@ -44,11 +44,7 @@ public class EventPageUserGUIController1 implements Observer {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneEndedBookedEvents(actionEvent, "/EndedBookedEventsPage1.fxml", userBean);
     }
-    @FXML
-    public void goToReviewsPage(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml", eventBean,userBean);
-    }
+
 
     public void setAll(UserBean userBean, EventBean eventBean) throws SQLException {
         this.userBean = userBean;

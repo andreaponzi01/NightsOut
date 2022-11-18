@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -19,6 +21,17 @@
                   <Font size="29.0" />
                </font>
             </Label>
+            <Button fx:id="buttonReview" layoutX="248.0" layoutY="28.0" mnemonicParsing="false" onAction="#goToReviewsPage" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" text="Reviews" textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children></AnchorPane>
       <Button fx:id="buttonCreateEvent" layoutX="227.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToCreateEventPage" prefHeight="40.0" prefWidth="140.0" styleClass="navBarButton" stylesheets="@style.css" text="Create Event" textFill="WHITE" />
       <Label layoutX="784.0" layoutY="23.0" text="Hello" textFill="WHITE">
