@@ -7,6 +7,9 @@ import java.util.List;
 public abstract class Subject {
     private List<Observer> observers;
 
+    public Subject() {
+
+    }
     protected Subject(Observer observer) {
         this(new ArrayList<>()); //inizializzo la lista di observer con un ArrayList vuoto
         this.attach(observer);
@@ -15,6 +18,8 @@ public abstract class Subject {
     protected Subject(List<Observer> list) {
         this.observers = list;
     }
+
+
 
     public void attach(Observer obs) {
         this.observers.add(obs);

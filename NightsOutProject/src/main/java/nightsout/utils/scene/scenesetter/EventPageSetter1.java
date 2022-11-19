@@ -15,11 +15,12 @@ public class EventPageSetter1 {
     public static void setter1(UserBean userBean, EventBean eventBean, String oldInput, EventPageSendRequestGUIController1 eventPageSendRequestGUIController1) {
         eventPageSendRequestGUIController1.setAll(userBean, eventBean, oldInput);
     }
-    public static void setter2(UserBean userBean, EventBean eventBean, String oldInput, EventPageAlreadySentRequestGUIController1 eventPageAlreadySentRequestGUIController1) {
+
+    public static void setter2(UserBean userBean, EventBean eventBean, String oldInput, EventPageAlreadySentRequestGUIController1 eventPageAlreadySentRequestGUIController1) throws SQLException {
         eventPageAlreadySentRequestGUIController1.setAll(userBean, eventBean, oldInput);
     }
 
-    public static void setter3(UserBean userBean, EventBean eventBean, EventPageAlreadySentRequestGUIController1 eventPageAlreadySentRequestGUIController1) {
+    public static void setter3(UserBean userBean, EventBean eventBean, EventPageAlreadySentRequestGUIController1 eventPageAlreadySentRequestGUIController1) throws SQLException {
         eventPageAlreadySentRequestGUIController1.setAll(userBean, eventBean, "");
     }
 

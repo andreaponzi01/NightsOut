@@ -26,6 +26,9 @@ public class EventBean implements GenericBean {
     protected int idClubOwner;
     protected String name;
     protected Double price;
+    protected Double vipPrice;
+
+
     protected int hours;
     protected int minutes;
     protected int duration;

@@ -123,7 +123,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="buttonAlreadySent" layoutX="728.0" layoutY="305.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 28; -fx-background-color: #fccf03;" text="ACCEPTED" textFill="#200f54">
+      <Button fx:id="buttonAlreadySent" layoutX="728.0" layoutY="305.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 28; -fx-background-color: #fccf03;" text="Booked" textFill="#200f54">
          <font>
             <Font name="Arial Bold" size="21.0" />
          </font>

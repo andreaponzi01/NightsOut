@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.utils.EventParticipantsEngineering;
 import nightsout.utils.Observer;
 import nightsout.utils.bean.ClubOwnerBean;
@@ -38,6 +39,7 @@ public class EventPageUserGUIController1 implements Observer {
     private Label labelEventDuration;
     @FXML
     private ListView listViewUsers;
+    private ClubOwnerBean clubOwnerBean;
 
     @FXML
     private void backToUserPage(ActionEvent actionEvent) throws IOException {
@@ -51,7 +53,13 @@ public class EventPageUserGUIController1 implements Observer {
         this.eventBean = eventBean;
         this.labelUsername.setText(eventBean.getName());
         this.labelEventName.setText(eventBean.getName());
-        this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
+        this.clubOwnerBean= EventPageAppController.getClubOwner(eventBean.getIdClubOwner());
+        if(userBean.getVip()){
+            this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()-((eventBean.getPrice()/100)*clubOwnerBean.getDiscountVIP())));
+        }else{
+            this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
+
+        }
         this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
         this.labelEventDuration.setText(String.valueOf(eventBean.getDuration()));
         this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));

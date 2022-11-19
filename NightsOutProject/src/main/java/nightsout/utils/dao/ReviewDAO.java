@@ -107,4 +107,35 @@ public class ReviewDAO {
         }
         return list;
     }
+
+    public static ReviewModel getReviewByIdEventAndIdUser(int idEvent,int idUser) {
+
+        PreparedStatement preparedStatement = null;
+        ReviewModel reviewModel = null;
+        try {
+
+            preparedStatement = Query.searchReviewByIdEventAndByIdUser( idUser, idEvent) ;
+            ResultSet rs = preparedStatement.executeQuery();
+            assert rs != null;
+            if (!rs.next()) {
+                return null;
+            }
+            //rs.next();
+
+            reviewModel = new ReviewModel();
+            reviewModel.setIdReview(rs.getInt(1));
+            reviewModel.setIdEvent(rs.getInt(4));
+            reviewModel.setIdUser(rs.getInt(2));
+            reviewModel.setComment(rs.getString(3));
+
+
+            preparedStatement.close();
+            return reviewModel;
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e){
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return reviewModel;
+    }
 }

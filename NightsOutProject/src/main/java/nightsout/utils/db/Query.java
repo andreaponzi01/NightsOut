@@ -125,11 +125,12 @@ public class Query {
     }
 
     public static PreparedStatement searchRequestsByIdUser(int idUser) {
-        String query = "SELECT * FROM Requests WHERE user = ?;";
+        String query = "SELECT * FROM Requests WHERE user = ? and Requests.status <> ?;";
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
             preparedStatement.setInt(1, idUser);
+            preparedStatement.setString(2, "accepted");
         } catch (Exception e) {
             //
         }
@@ -207,13 +208,14 @@ public class Query {
         }
         return preparedStatement;
     }
-
+//modificata
     public static PreparedStatement searchUsersByIdEvent(int idEvent) throws SQLException {
-        String query = "SELECT U.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE E.idEvent = ? ;"; //GIUSTA??
+        String query = "SELECT U.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE E.idEvent = ? and R.status = ?;"; //GIUSTA??
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = MySqlConnection.connect().prepareStatement(query);
             preparedStatement.setInt(1, idEvent);
+            preparedStatement.setString(2, "accepted");
         } catch (Exception e) {
             //
         }
@@ -221,12 +223,13 @@ public class Query {
     }
 
     public static PreparedStatement searchEndedEventsByIdUser(int idUser) {
-        String query = "SELECT E.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE U.idUser = ? and R.status='accepted' and DATEDIFF(E.date, CURRENT_TIMESTAMP)<0 and E.idEvent NOT IN (SELECT Events.idEvent FROM Events JOIN Reviews ON Reviews.event=Events.idEvent WHERE Reviews.sender = ? );";
+        //String query = "SELECT E.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE U.idUser = ? and R.status='accepted' and DATEDIFF(E.date, CURRENT_TIMESTAMP)<0 and E.idEvent NOT IN (SELECT Events.idEvent FROM Events JOIN Reviews ON Reviews.event=Events.idEvent WHERE Reviews.sender = ? );";
+        //DA FARE
+        String query = "SELECT E.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE U.idUser = ? and R.status='accepted' and DATEDIFF(E.date, CURRENT_TIMESTAMP)<0 ;";
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
             preparedStatement.setInt(1, idUser);
-            preparedStatement.setInt(2, idUser);
         } catch (Exception e) {
             //
         }
@@ -307,6 +310,20 @@ public class Query {
         try {
             preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
             preparedStatement.setInt(1, idReview);
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
+
+    public static PreparedStatement searchReviewByIdEventAndByIdUser(int idUser, int idEvent) {
+        String query = "SELECT R.* FROM Reviews as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.sender = U.idUser WHERE U.idUser = ? and E.idEvent= ?;";
+        //DA FARE QUERY
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
+            preparedStatement.setInt(1, idUser);
+            preparedStatement.setInt(2, idEvent);
         } catch (Exception e) {
             //
         }

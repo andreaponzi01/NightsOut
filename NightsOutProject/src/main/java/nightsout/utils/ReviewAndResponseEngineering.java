@@ -4,6 +4,7 @@ import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
 import nightsout.control.appcontroller.ReviewAndResponseAppController;
 import nightsout.control.appcontroller.UserPageAppController;
 import nightsout.control.guicontroller.interface1.ReviewAndResponseGUIController1;
+import nightsout.utils.bean.ResponseBean;
 
 import java.sql.SQLException;
 
@@ -14,8 +15,8 @@ public class ReviewAndResponseEngineering {
     }
 
     public static void ResponseOfOneReview(Observer observer, int idReview) throws SQLException {
-        ResponseBeanList list = new ResponseBeanList(observer);
-        list.addResponseToList(ReviewAndResponseAppController.searchResponseByIdReview(idReview));
+        ResponseBean response = new ResponseBean(observer);
+        response.addResponse(ReviewAndResponseAppController.searchResponseByIdReview(idReview));
     }
 
     public static void eventReviews(Observer observer, int idClubOwner) throws SQLException {

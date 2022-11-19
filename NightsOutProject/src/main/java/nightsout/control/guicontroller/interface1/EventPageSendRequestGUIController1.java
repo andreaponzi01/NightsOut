@@ -35,6 +35,7 @@ public class EventPageSendRequestGUIController1 {
     Label labelEventTime;
     @FXML
     Label labelEventDuration;
+    private ClubOwnerBean clubOwnerBean;
 
     @FXML
     private void backToSearchPage(ActionEvent actionEvent) throws IOException {
@@ -63,7 +64,13 @@ public class EventPageSendRequestGUIController1 {
         this.oldInput = oldInput;
         this.buttonUsername.setText(eventBean.getName());
         this.labelEventName.setText(eventBean.getName());
-        this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
+        this.clubOwnerBean= EventPageAppController.getClubOwner(eventBean.getIdClubOwner());
+        if(userBean.getVip()){
+            this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()-((eventBean.getPrice()/100)*clubOwnerBean.getDiscountVIP())));
+        }else{
+            this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
+
+        }
         this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
         this.labelEventDuration.setText(String.valueOf(eventBean.getDuration()));
         this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));

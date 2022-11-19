@@ -2,19 +2,27 @@ package nightsout.utils.bean;
 
 import nightsout.model.ResponseModel;
 import nightsout.model.ReviewModel;
+import nightsout.utils.Observer;
+import nightsout.utils.Subject;
 
-public class ResponseBean {
+import java.sql.SQLException;
 
-
-    public ResponseBean() {
-
-    }
+public class ResponseBean extends Subject {
 
     private int idAnswer;
     private int idClubOwner;
     private int review;
     private String response;
 
+    public ResponseBean() {
+        super();
+
+    }
+
+    public ResponseBean(Observer observer) {
+        super(observer);
+
+    }
 
     public ResponseBean(ResponseModel responseModel) {
         this.idAnswer = responseModel.getIdAnswer();
@@ -22,7 +30,6 @@ public class ResponseBean {
         this.review = responseModel.getReview();
         this.response = responseModel.getResponse();
     }
-
 
     public int getIdAnswer() {
         return idAnswer;
@@ -56,5 +63,8 @@ public class ResponseBean {
         this.response = response;
     }
 
+    public void addResponse(ResponseBean responseBean) throws SQLException {
+        notify(responseBean);
+    }
 
 }
