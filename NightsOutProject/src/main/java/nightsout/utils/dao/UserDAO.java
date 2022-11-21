@@ -1,12 +1,14 @@
 package nightsout.utils.dao;
 
-import nightsout.model.ClubOwnerModel;
 import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class UserDAO {
             userModel.setId(rs.getInt(1));
             userModel.setVip(rs.getBoolean(9));
             userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
+            userModel.setType("Free");
 
             /* Capire come funziona la gestione delle immagini tramite file
 

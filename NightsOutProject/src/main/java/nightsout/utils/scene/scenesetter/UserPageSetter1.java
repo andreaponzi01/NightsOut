@@ -19,7 +19,4 @@ public class UserPageSetter1 {
     public static void setterSimple(UserBean userBean, UserGUIController1 userGUIController1) throws SQLException {
         userGUIController1.setAll(userBean);
     }
-
-
-
 }

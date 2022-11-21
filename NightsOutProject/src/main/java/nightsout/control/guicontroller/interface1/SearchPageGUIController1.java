@@ -77,7 +77,7 @@ public class SearchPageGUIController1 implements Observer {
             }
 
             EventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(userBean, eBean, input);
+            controller.setAll(userBean, eBean, "/SearchPage1.fxml");
 
             this.listView.getItems().add(pane);
         }

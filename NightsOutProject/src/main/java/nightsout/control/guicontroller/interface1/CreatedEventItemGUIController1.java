@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
@@ -25,6 +24,6 @@ public class CreatedEventItemGUIController1 {
     }
     public void goToEventPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneCreatedEvents(actionEvent, "/EventPageClubOwner1.fxml",  clubOwnerBean, eventBean);
+        replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecorator1.fxml",  clubOwnerBean, eventBean, "/ClubOwnerPage1.fxml");
     }
 }

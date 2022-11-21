@@ -3,12 +3,10 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.utils.CreatedEventsEngineering;
-import nightsout.utils.NextEventsEngineering;
 import nightsout.utils.Observer;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
@@ -88,4 +86,15 @@ public class ClubOwnerPageGUIController1 implements Observer {
         replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml", loggedClubOwner);
         //replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml", loggedClubOwner,userBean); dovrò passargli anche l' utente per poi tornare indietro
     }
+
+    /*
+    // PROVA DECORATOR
+    @FXML
+    private void goToDecoratedPage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
+        replaceSceneDynamic1.switchAndSetSceneDecorator(actionEvent, "/DecoratedPage1.fxml", loggedClubOwner);
+    }
+     */
 }
+
+

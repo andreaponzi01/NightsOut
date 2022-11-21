@@ -12,7 +12,6 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -43,7 +42,6 @@ public class UserGUIController1 implements Observer {
        // this.labelBirthday.setText(userBean.getBirthday());
         NextEventsEngineering.nextEvents(this, userBean.getId());
     }
-
 
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException, SQLException {

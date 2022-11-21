@@ -24,6 +24,8 @@ public class NextEventItemGUIController1 {
     }
     public void goToEventPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneNextEvents(actionEvent, "/EventPageAcceptedRequest1.fxml",  userBean, eventBean);
+
+        // Da rivedere oldFxml
+        replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecorator1.fxml",  userBean, eventBean, "/UserPage1.fxml");
     }
 }

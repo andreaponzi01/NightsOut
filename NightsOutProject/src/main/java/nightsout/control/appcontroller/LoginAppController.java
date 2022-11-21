@@ -25,6 +25,7 @@ public class LoginAppController {
                 System.out.println("Username (" + loginBean.getUsername() + ") e password corretti");
                 userModel = UserDAO.getUserByUsername(loginBean.getUsername());
                 userBean = new UserBean(userModel);
+                userBean.setType("Free");
             } else {
                 System.out.println("Username o password errati");
                 Trigger.throwWrongPassword();
@@ -42,6 +43,7 @@ public class LoginAppController {
                 System.out.println("Username (" + loginBean.getUsername() + ") e password corretti");
                 clubOwnerModel = ClubOwnerDAO.getClubOwnerByUsername(loginBean.getUsername());
                 clubOwnerBean = new ClubOwnerBean(clubOwnerModel);
+                clubOwnerBean.setType("Club Owner");
             } else {
                 System.out.println("Username o password errati");
                 Trigger.throwWrongPassword();

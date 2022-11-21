@@ -14,8 +14,8 @@ import org.controlsfx.control.Notifications;
         }
 
         public static void createNotification(Exception e){
-            Notifications notifications = Notifications.create();
-            notify("Attenzione", notifications, e.getMessage());
+            Notifications notification = Notifications.create();
+            notify("Attenzione", notification, e.getMessage());
         }
 
 }

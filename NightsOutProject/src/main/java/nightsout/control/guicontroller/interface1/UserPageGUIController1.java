@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.ManageRequestsEngineering;
 import nightsout.utils.NextEventsEngineering;
 import nightsout.utils.Observer;
 import nightsout.utils.bean.EventBean;
@@ -93,4 +92,12 @@ public class UserPageGUIController1 implements Observer {
         replacer.switchAndSetSceneEndedBookedEvents(actionEvent, "/EndedBookedEventsPage1.fxml", userBean);
     }
 
+    /*
+    // PROVA DECORATOR
+    @FXML
+    private void goToDecoratedPage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
+        replaceSceneDynamic1.switchAndSetSceneDecorator(actionEvent, "/DecoratedPage1.fxml", userBean);
+    }
+     */
 }

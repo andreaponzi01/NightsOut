@@ -3,46 +3,31 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import nightsout.control.appcontroller.RequestAppController;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.RequestBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.ProfileBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class EventItemGUIController1 {
 
-    private UserBean userBean;
+    private ProfileBean bean;
     private EventBean eventBean;
-    private String input;
+    private String oldFxml;
 
     @FXML
     Label labelEventName;
 
     @FXML
     private void goToEventPage(ActionEvent actionEvent) throws IOException {
-        RequestBean requestBean = RequestAppController.checkRequestStatus(userBean, eventBean);
-        if(requestBean==null){
-                ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageSendRequest1.fxml", eventBean, userBean, input);
-        } else if(Objects.equals(requestBean.getStatus(), "pending")) {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEvent(actionEvent, "/EventPagePendingRequest1.fxml", eventBean, userBean, input);
-        } else if(Objects.equals(requestBean.getStatus(), "accepted")) {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageAcceptedRequest1.fxml", eventBean, userBean, input);
-        }else if(Objects.equals(requestBean.getStatus(), "declined")) {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDeclinedRequest1.fxml", eventBean, userBean, input);
-        }
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecorator1.fxml", bean, eventBean, oldFxml);
     }
 
-    public void setAll(UserBean userBean, EventBean eventBean, String oldInput) {
-        this.userBean = userBean;
+    public void setAll(ProfileBean bean, EventBean eventBean, String oldFxml) {
+        this.bean = bean;
         this.eventBean = eventBean;
-        this.input = oldInput;
+        this.oldFxml = oldFxml;
         labelEventName.setText(this.eventBean.getName());
     }
 }

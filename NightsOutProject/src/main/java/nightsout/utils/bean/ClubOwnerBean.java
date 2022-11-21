@@ -33,6 +33,7 @@ public class ClubOwnerBean extends ProfileBean {
         this.discountVIP = clubOwnerModel.getDiscountVIP();
         this.email = clubOwnerModel.getEmail();
         this.id = clubOwnerModel.getId();
+        this.type = clubOwnerModel.getType();
     }
 
     // Getter

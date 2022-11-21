@@ -65,6 +65,7 @@ public abstract class ProfileModel implements GenericModel {
     // Setter
     public void setCredentials(Credentials cred) {this.cred = cred;}
     public void setId(int id) {this.id = id;}
+    public void setType(String type) {this.cred.setType(type);}
     public void setProfileImg(File profileImg) {this.profileImg= profileImg ;}
     public void setEmail(String email) { this.email = email; }
 
