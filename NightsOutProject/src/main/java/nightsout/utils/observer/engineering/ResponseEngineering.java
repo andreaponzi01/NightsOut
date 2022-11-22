@@ -1,6 +1,8 @@
-package nightsout.utils;
+package nightsout.utils.observer.engineering;
 
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.ReviewBeanList;
 
 import java.sql.SQLException;
 

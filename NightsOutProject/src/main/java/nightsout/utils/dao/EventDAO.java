@@ -1,10 +1,11 @@
 package nightsout.utils.dao;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.EventModel;
-import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +30,8 @@ public class EventDAO {
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
+        } catch (DBConnectionFailedException e) {
+            MyNotification.createNotification(e);
         }
     }
 

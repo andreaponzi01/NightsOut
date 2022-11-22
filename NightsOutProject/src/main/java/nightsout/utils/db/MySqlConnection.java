@@ -1,5 +1,8 @@
 package nightsout.utils.db;
 
+import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -12,7 +15,7 @@ public class MySqlConnection {
         //ignore
     }
 
-    public static Statement tryConnect() {
+    public static Statement tryConnect() throws DBConnectionFailedException {
         Statement statement = null;
         try {
             connect();
@@ -21,7 +24,7 @@ public class MySqlConnection {
             */
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Trigger.throwDBConnectionFailedException();
         }
         return statement;
     }
@@ -47,6 +50,7 @@ public class MySqlConnection {
                 DriverManager.setLoginTimeout(5);
                 connection = DriverManager.getConnection(dbUrl, user, pass);
             } catch ( IOException | ClassNotFoundException e) {
+                // Non gestite
                 e.printStackTrace();
             }
         }
@@ -54,9 +58,5 @@ public class MySqlConnection {
     }
 
 
-    public static void closeConnection() throws SQLException {
-        connection.close();
-        //connection=null;
-
-    }
+    public static void closeConnection() throws SQLException { connection.close(); }
 }

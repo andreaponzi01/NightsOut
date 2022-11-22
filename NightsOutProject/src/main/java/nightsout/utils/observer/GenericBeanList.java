@@ -1,9 +1,11 @@
-package nightsout.utils;
+package nightsout.utils.observer;
 
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.GenericBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.Subject;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -17,14 +17,11 @@ public class UserBean extends ProfileBean {
     protected boolean vip;
 
     public UserBean(){
-        //ignore
+        setType("Free");
     }
 
     public UserBean(UserModel userModel) {
 
-        /*
-        **  I setter  dovrebbero essere utilizzati solo esternamente alla classe (?)
-        */
         this.setSurname(userModel.getSurname());
         this.setName(userModel.getName());
         this.setUsername(userModel.getUsername());
@@ -32,11 +29,13 @@ public class UserBean extends ProfileBean {
         this.setPassword(userModel.getPassword());
         this.setEmail(userModel.getEmail());
         this.setId(userModel.getId());
-        this.setType(userModel.getType());
+        //this.setType(userModel.getType());
         this.setImg((userModel.getProfileImg()));
         this.setBirthday(userModel.getBirthday());
         this.setVip(userModel.getVip());
         this.setCreationDateVIP(userModel.getCreationDateVip());
+
+        this.setType("Free");
     }
 
     // Getter

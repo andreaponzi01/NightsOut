@@ -6,8 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.NextEventsEngineering;
-import nightsout.utils.Observer;
+import nightsout.utils.observer.engineering.NextEventsEngineering;
+import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.db.MySqlConnection;
@@ -59,7 +59,7 @@ public class UserPageGUIController1 implements Observer {
     @FXML
     private void goToCheckRequestsPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneCheckRequests(actionEvent, "/CheckRequests1.fxml", userBean);
+        replacer.switchAndSetSceneCheckRequests(actionEvent, "/CheckRequestsPage1.fxml", userBean);
     }
 
     @FXML

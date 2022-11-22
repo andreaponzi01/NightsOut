@@ -5,10 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.Observer;
-import nightsout.utils.ResponseEngineering;
-import nightsout.utils.ReviewAndResponseEngineering;
-import nightsout.utils.ReviewEngineering;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.engineering.ReviewAndResponseEngineering;
 import nightsout.utils.bean.*;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 

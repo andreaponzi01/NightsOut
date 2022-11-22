@@ -1,5 +1,10 @@
 package nightsout.utils.bean;
 
+import nightsout.utils.CheckEmail;
+import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.EmailNotValidException;
+import nightsout.utils.exception.myexception.EmptyInputException;
+
 import java.io.File;
 
 public abstract class ProfileBean implements GenericBean {
@@ -31,8 +36,21 @@ public abstract class ProfileBean implements GenericBean {
         this.name = name;
     }
     public void setPassword(String password) {this.password = password;}
+
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setEmailException(String email) throws EmptyInputException, EmailNotValidException {
+        if(email.isEmpty()) {
+            Trigger.emptyField("email");
+        }
+        boolean correctFormat = CheckEmail.validate(email);
+        if(correctFormat){this.email = email;}
+        else{
+            throw new EmailNotValidException(email);
+        }
     }
     public void setType(String type) {
         this.type = type;

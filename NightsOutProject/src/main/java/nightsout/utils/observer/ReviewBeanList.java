@@ -1,8 +1,8 @@
-package nightsout.utils;
+package nightsout.utils.observer;
 
-import nightsout.utils.bean.RequestBean;
-import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.Subject;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

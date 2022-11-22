@@ -1,5 +1,6 @@
 package nightsout.utils.dao;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.EventModel;
 import nightsout.model.ManageRequestModel;
 import nightsout.model.RequestModel;
@@ -7,6 +8,7 @@ import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +31,8 @@ public class RequestDAO {
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
+        } catch (DBConnectionFailedException e) {
+            MyNotification.createNotification(e);
         }
     }
 
@@ -150,6 +154,36 @@ public class RequestDAO {
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
+        } catch (DBConnectionFailedException e) {
+            MyNotification.createNotification(e);
         }
+    }
+
+    public static EventModel getEventByIdEvent(int idEvent) {
+        EventModel eventModel = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+
+            preparedStatement = Query.searchEventByIdEvent(idEvent);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+
+            eventModel = new EventModel();
+            eventModel.setName(rs.getString(5));
+            eventModel.setIdEvent(rs.getInt(1));
+            eventModel.setIdClubOwner(rs.getInt(2));
+            eventModel.setTime(rs.getTime(10).toLocalTime());
+            eventModel.setPrice(rs.getDouble(4));
+            eventModel.setDuration(rs.getInt(7));
+            eventModel.setEventDate(rs.getDate(6).toLocalDate());
+
+            preparedStatement.close();
+
+        } catch (/*MysqlConnectionFailed |*/ SQLException e) {
+            // ErrorHandler.getInstance().handleException(e);
+            e.printStackTrace();
+        }
+        return eventModel;
     }
 }

@@ -7,6 +7,7 @@ import nightsout.utils.bean.*;
 import nightsout.utils.scene.scenesetter.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class ReplaceSceneDynamic1 {
@@ -23,11 +24,33 @@ public class ReplaceSceneDynamic1 {
             if (fxml.equals("/ClubOwnerPage1.fxml")) {
                ClubOwnerPageSetter1.setter(clubOwnerBean, loader.getController());
             }
-            if (fxml.equals("/User1.fxml")) {
-                UserPageSetter1.setterSimple(userBean, loader.getController());
-            }
-            if (fxml.equals("/ClubOwner1.fxml")) {
-                ClubOwnerPageSetter1.setter(clubOwnerBean, loader.getController());
+
+
+            ReplaceScene.showStage(ae, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneViewUserPage(ActionEvent ae, UserBean userBean, EventBean eventBean, String oldFxml, String previousOldFxml) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ViewUserPage1.fxml"));
+        Parent root = loader.load();
+
+        try {
+                UserPageSetter1.setterSimple(userBean, eventBean,oldFxml, previousOldFxml,loader.getController());
+                ReplaceScene.showStage(ae, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchAndSetSceneViewClubOwnerPage(ActionEvent ae, String fxml, UserBean userBean, ClubOwnerBean clubOwnerBean, String oldFxml) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+
+        try {
+            if (fxml.equals("/ViewClubOwnerPage1.fxml")) {
+                ClubOwnerPageSetter1.setterSimple(userBean, clubOwnerBean, oldFxml, loader.getController());
             }
 
             ReplaceScene.showStage(ae, root);
@@ -104,6 +127,7 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
+    // Vogliamo implementarla?
     public void switchAndSetSceneOldSearch(ActionEvent ae, String fxml, UserBean userBean, String oldInput) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         Parent root = loader.load();

@@ -1,9 +1,11 @@
 package nightsout.utils.dao;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +20,7 @@ public class UserDAO {
         //ignored
     }
 
-    public static UserModel getUserByUsername(String username) throws SQLException {
+    public static UserModel getUserByUsername(String username) {
 
         PreparedStatement preparedStatement = null;
         UserModel userModel = null ;
@@ -73,9 +75,11 @@ public class UserDAO {
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
+        } catch (DBConnectionFailedException e) {
             // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+            MyNotification.createNotification(e);
+        } catch (SQLException /*| FileNotFoundException*/ m) {
+            //
         }
     }
 
@@ -99,7 +103,9 @@ public class UserDAO {
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
-        }
+        } catch (DBConnectionFailedException e) {
+            MyNotification.createNotification(e);
+         }
     }
 
     public static List<UserModel> getUsersByUsername(String username) throws SQLException {

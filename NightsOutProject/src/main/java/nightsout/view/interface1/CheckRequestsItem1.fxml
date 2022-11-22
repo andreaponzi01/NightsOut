@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.CheckRequestsItemGUIController1">
+<AnchorPane prefHeight="150.0" prefWidth="750.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.CheckRequestsItemGUIController1">
    <children>
       <Line endX="227.71786499023438" layoutX="134.0" layoutY="91.0" startX="-112.66917419433594" startY="-1.1444091796875E-5" stroke="#e8e7fc" />
       <Label layoutX="29.0" layoutY="92.0" prefHeight="22.0" prefWidth="121.0" text="Event name:" textFill="WHITE">
@@ -54,5 +54,16 @@
             <Font name="Arial Bold" size="19.0" />
          </font>
       </Label>
+      <Button fx:id="buttonEventInfo" layoutX="572.0" layoutY="39.0" mnemonicParsing="false" onAction="#goToEventPage" prefHeight="70.0" prefWidth="146.0" style="-fx-background-color: #FDEF19; -fx-background-radius: 14;" text="EVENT INFO" textFill="WHITE">
+         <effect>
+            <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

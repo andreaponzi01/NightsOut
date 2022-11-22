@@ -3,19 +3,20 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import nightsout.control.appcontroller.RequestAppController;
 import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.RequestBean;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.sql.SQLException;
 
 public class UserItemGUIController1 {
 
     private UserBean userBean;
     private ClubOwnerBean clubOwnerBean;
+    private EventBean eventBean;
+    private String oldFxml;
 
     @FXML
     Label labelType;
@@ -28,22 +29,30 @@ public class UserItemGUIController1 {
         labelType.setText("USER");
     }
 
-    public void setAll(ClubOwnerBean clubOwnerBean) {
+    public void setAll(UserBean userBean, ClubOwnerBean clubOwnerBean) {
+        this.userBean = userBean;
         this.clubOwnerBean = clubOwnerBean;
         labelUsername.setText(this.clubOwnerBean.getUsername());
         labelType.setText("CLUB OWNER");
     }
 
 
-    //da completare perche cosi io cambio proprio utente mentre io devo vedere solo le info di un utente
+    public void setAll(UserBean userBean, EventBean eventBean, String oldFxml) {
+        this.userBean = userBean;
+        this.eventBean = eventBean;
+        this.oldFxml = oldFxml;
+    }
+
     @FXML
-    private void goToProfile(ActionEvent actionEvent) throws IOException {
+    private void goToProfile(ActionEvent actionEvent) throws IOException, SQLException {
         if(clubOwnerBean == null) {
+            //ATTENZIONE: PROVVISORIO
+            //userBean.setType("Free");
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetScene(actionEvent, "/User1.fxml", userBean, null);
-        } else{
+            replacer.switchAndSetSceneViewUserPage(actionEvent,  userBean, eventBean, "/EventPageDecorator1.fxml", oldFxml);
+        } else {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
+            replacer.switchAndSetSceneViewClubOwnerPage(actionEvent, "/ViewClubOwnerPage1.fxml", userBean, clubOwnerBean, "/SearchPage1.fxml");
         }
 
     }

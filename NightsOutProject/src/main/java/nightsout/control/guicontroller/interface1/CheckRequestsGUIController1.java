@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.CheckRequestsEngineering;
-import nightsout.utils.Observer;
+import nightsout.control.appcontroller.CheckRequestsAppController;
+import nightsout.utils.observer.engineering.CheckRequestsEngineering;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
@@ -49,7 +51,8 @@ public class CheckRequestsGUIController1 implements Observer {
                 e.printStackTrace();
             }
             CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(rBean);
+            EventBean eventBean = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
+            controller.setAll(rBean, userBean, eventBean);
 
             this.listViewPendingRequests.getItems().add(pane);
         }

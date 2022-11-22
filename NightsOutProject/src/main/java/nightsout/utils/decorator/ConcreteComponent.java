@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 public class ConcreteComponent implements VisualComponent {
     private Button button;
 
-    public ConcreteComponent(Button myButton){
-        this.button = myButton;
+    public ConcreteComponent(){
+        this.button = new Button();
         this.button.setMinWidth(50);
         this.button.setMinHeight(50);
        // this.button.setStyle("-fx-background-color: white");

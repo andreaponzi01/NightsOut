@@ -45,7 +45,7 @@ public class ManageRequestsItemGUIController1 {
     public void goToUserPage(ActionEvent actionEvent) throws IOException, SQLException {
         UserBean userBean =ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUserName());
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/User1.fxml", userBean ,null);
+        replacer.switchAndSetScene(actionEvent, "/ViewUserPage1.fxml", userBean ,null);
     }
 
     public void setAll(ManageRequestBean manageRequestBean,ClubOwnerBean clubOwnerBean) {

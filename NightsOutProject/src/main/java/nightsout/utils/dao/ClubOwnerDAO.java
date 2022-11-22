@@ -1,9 +1,11 @@
 package nightsout.utils.dao;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ClubOwnerModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +20,7 @@ public class ClubOwnerDAO {
         //ignored
     }
 
-    public static ClubOwnerModel getClubOwnerByUsername(String username) throws SQLException {
+    public static ClubOwnerModel getClubOwnerByUsername(String username) {
 
         PreparedStatement preparedStatement = null;
         ClubOwnerModel clubOwnerModel = null ;
@@ -73,6 +75,8 @@ public class ClubOwnerDAO {
         } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
             m.printStackTrace();
+        } catch (DBConnectionFailedException e) {
+            MyNotification.createNotification(e);
         }
     }
 

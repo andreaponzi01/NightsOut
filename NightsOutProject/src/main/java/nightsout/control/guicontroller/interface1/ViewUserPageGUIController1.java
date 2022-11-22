@@ -6,18 +6,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.NextEventsEngineering;
-import nightsout.utils.Observer;
+import nightsout.utils.observer.engineering.NextEventsEngineering;
+import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.scene.ReplaceScene;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class UserGUIController1 implements Observer {
+public class ViewUserPageGUIController1 implements Observer {
 
     @FXML
     protected Label labelUsername;
@@ -28,14 +29,30 @@ public class UserGUIController1 implements Observer {
     @FXML
     protected Label labelVip;
 
-    protected UserBean userBean;
+    private UserBean userBean;
+    private EventBean eventBean;
+    private String oldFxml;
+    private String previousOldFxml;
 
     @FXML
     private ListView listViewNextEvents;
 
 
-    public void setAll(UserBean userBean) throws SQLException {
+    @FXML
+    public void goToBack(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        if(oldFxml.equals("/EventPageDecorator1.fxml")) {
+            replacer.switchAndSetSceneEvent(actionEvent, oldFxml, userBean, eventBean, previousOldFxml);
+        }
+        //Da completare
+    }
+
+
+    public void setAll(UserBean userBean, EventBean eventBean, String oldFxml, String previousOldFxml) throws SQLException {
         this.userBean = userBean;
+        this.eventBean = eventBean;
+        this.previousOldFxml = previousOldFxml;
+        this.oldFxml = oldFxml;
         //this.labelUsername.setText(userBean.getUsername());
         this.labelName.setText(userBean.getName());
         this.labelVip.setText(String.valueOf(userBean.getVip()));
@@ -66,9 +83,5 @@ public class UserGUIController1 implements Observer {
             controller.setAll(userBean, eBean);
             this.listViewNextEvents.getItems().add(pane);
         }
-    }
-
-    public void goToBack(ActionEvent actionEvent) {
-
     }
 }

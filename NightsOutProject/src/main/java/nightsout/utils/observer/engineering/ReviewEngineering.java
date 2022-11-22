@@ -1,11 +1,10 @@
-package nightsout.utils;
+package nightsout.utils.observer.engineering;
 
-import nightsout.control.appcontroller.CheckRequestsAppController;
 import nightsout.control.appcontroller.UserPageAppController;
-import nightsout.utils.bean.RequestBean;
+import nightsout.utils.observer.GenericBeanList;
+import nightsout.utils.observer.Observer;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class ReviewEngineering {
 

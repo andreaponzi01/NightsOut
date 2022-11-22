@@ -6,8 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import nightsout.utils.Observer;
-import nightsout.utils.SearchEngineering;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.engineering.SearchEngineering;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
@@ -90,7 +90,7 @@ public class SearchPageGUIController1 implements Observer {
             }
 
             UserItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(cBean);
+            controller.setAll(this.userBean, cBean);
 
             this.listView.getItems().add(pane);
         }

@@ -9,13 +9,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
-import nightsout.utils.EventParticipantsEngineering;
-import nightsout.utils.Observer;
+import nightsout.utils.observer.engineering.EventParticipantsEngineering;
+import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.*;
-import nightsout.utils.decorator.ConcreteComponent;
-import nightsout.utils.decorator.ConcreteDecoratorPending;
-import nightsout.utils.decorator.ConcreteDecoratorSendRequest;
-import nightsout.utils.decorator.VisualComponent;
+import nightsout.utils.decorator.*;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
@@ -56,9 +53,17 @@ public class EventPageDecoratorGUIController1 implements Observer {
     private VisualComponent contents;
 
     @FXML
-    private void backToClubOwnerPage(ActionEvent actionEvent) throws IOException {
+    private void back(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         if(oldFxml.equals("/SearchPage1.fxml")) {
+            replacer.switchAndSetSceneSearch(actionEvent, oldFxml, this.userBean);
+        } else if(oldFxml.equals("/EndedBookedEventsPage1.fxml")) {
+            replacer.switchAndSetSceneEndedBookedEvents(actionEvent, oldFxml, this.userBean);
+        } else if(oldFxml.equals("/ClubOwnerPage1.fxml")) {
+            replacer.switchAndSetScene(actionEvent, oldFxml, null, this.clubOwnerBean);
+        } else if (oldFxml.equals("/CheckRequestsPage1.fxml")) {
+            replacer.switchAndSetSceneCheckRequests(actionEvent, oldFxml, this.userBean);
+        } else if (oldFxml.equals("/UserPage1.fxml")) {
             replacer.switchAndSetScene(actionEvent, oldFxml, userBean, null);
         }
     }
@@ -90,8 +95,7 @@ public class EventPageDecoratorGUIController1 implements Observer {
 
     private void myStart() throws SQLException {
 
-        this.myButton = new Button();
-        this.myConcreteComponent = new ConcreteComponent(myButton);
+        this.myConcreteComponent = new ConcreteComponent();
 
         if(type.equals("Free")){
             RequestBean requestBean = EventPageDecoratorAppController.checkRequestStatus(this.userBean, this.eventBean);
@@ -101,16 +105,12 @@ public class EventPageDecoratorGUIController1 implements Observer {
             else if (requestBean.getStatus().equals("pending")) {
                 actionDecoratePending();
             } else if (requestBean.getStatus().equals("accepted")) {
-                //actionDecorateAccepted(this.userBean);
-                System.out.println("Accepted");
+                actionDecorateAccepted();
             } else if (requestBean.getStatus().equals("declined")){
-                //actionDecorateDeclined(this.userBean);
-                System.out.println("Declined");
+                actionDecorateDeclined();
             }
-        }
-        else {
-            //actionDecorateDelete(this.clubOwnerBean);
-            System.out.println("Delete");
+        } else {
+            actionDecorateDelete();
         }
     }
 
@@ -126,10 +126,26 @@ public class EventPageDecoratorGUIController1 implements Observer {
         this.display();
     }
 
+    private void actionDecorateAccepted() {
+        ConcreteDecoratorAccepted concreteDecoratorAccepted = new ConcreteDecoratorAccepted(this.myConcreteComponent, this.userBean);
+        this.contents = concreteDecoratorAccepted;
+        this.display();
+    }
+
+    private void actionDecorateDeclined() {
+        ConcreteDecoratorDeclined concreteDecoratorDeclined = new ConcreteDecoratorDeclined(this.myConcreteComponent, this.userBean);
+        this.contents = concreteDecoratorDeclined;
+        this.display();
+    }
+
+    private void actionDecorateDelete() {
+        ConcreteDecoratorDelete concreteDecoratorDelete = new ConcreteDecoratorDelete(this.myConcreteComponent, this.clubOwnerBean);
+        this.contents = concreteDecoratorDelete;
+        this.display();
+    }
+
     public void display() {
-       // if(this.contents.getButton() != null) {
-            this.root.getChildren().add(this.contents.getButton());
-        //}
+        this.root.getChildren().add(this.contents.getButton());
     }
 
     @Override
@@ -146,7 +162,7 @@ public class EventPageDecoratorGUIController1 implements Observer {
             }
 
             UserItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(userBean);
+            controller.setAll(userBean, this.eventBean, this.oldFxml);
             this.listViewUsers.getItems().add(pane);
         }
 

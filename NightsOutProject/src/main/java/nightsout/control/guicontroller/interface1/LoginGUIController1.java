@@ -11,7 +11,7 @@ import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.LoginBean1;
-import nightsout.utils.exception.myexception.WrongPasswordException;
+import nightsout.utils.exception.myexception.WrongCredentialsException;
 import nightsout.utils.scene.ReplaceScene;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -50,7 +50,7 @@ public class LoginGUIController1 {
                 replacer.switchAndSetScene(ae, "/UserPage1.fxml", userBean, null);
             }
 
-        } catch (WrongPasswordException e) { MyNotification.createNotification(e); }
+        } catch (WrongCredentialsException e) { MyNotification.createNotification(e); }
     }
     @FXML
     protected void backToWelcomePage(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml"); }

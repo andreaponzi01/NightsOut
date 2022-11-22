@@ -1,7 +1,9 @@
-package nightsout.utils;
+package nightsout.utils.observer.engineering;
 
 import nightsout.control.appcontroller.CheckRequestsAppController;
 import nightsout.utils.bean.RequestBean;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.RequestBeanList;
 
 import java.sql.SQLException;
 import java.util.List;

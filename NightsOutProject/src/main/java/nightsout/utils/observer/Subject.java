@@ -1,4 +1,4 @@
-package nightsout.utils;
+package nightsout.utils.observer;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

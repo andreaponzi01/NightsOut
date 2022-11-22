@@ -6,11 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EndedBookedEventsAppController;
-import nightsout.utils.CheckRequestsEngineering;
-import nightsout.utils.Observer;
-import nightsout.utils.ReviewEngineering;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.engineering.ReviewEngineering;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
@@ -48,9 +46,9 @@ public class EndedBookedEventsGUIController1 implements Observer {
                 if(reviewBean!=null){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                     EventItemGUIController1 controller = fxmlLoader.getController();
-                    controller.setAll(userBean, eBean,"");
+                    controller.setAll(userBean, eBean,"/EndedBookedEventsPage1.fxml");
                     this.listViewEvents.getItems().add(pane);
-                }else{
+                } else {
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem1.fxml")).openStream());
                     EventReviewItemGUIController1 controller = fxmlLoader.getController();
                     controller.setAll(userBean, eBean);

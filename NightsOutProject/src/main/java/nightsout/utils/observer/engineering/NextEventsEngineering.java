@@ -1,11 +1,10 @@
-package nightsout.utils;
+package nightsout.utils.observer.engineering;
 
 import nightsout.control.appcontroller.UserPageAppController;
-import nightsout.utils.bean.EventBean;
-import org.w3c.dom.events.Event;
+import nightsout.utils.observer.GenericBeanList;
+import nightsout.utils.observer.Observer;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class NextEventsEngineering {
 

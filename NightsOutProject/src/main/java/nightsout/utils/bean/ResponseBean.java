@@ -1,9 +1,8 @@
 package nightsout.utils.bean;
 
 import nightsout.model.ResponseModel;
-import nightsout.model.ReviewModel;
-import nightsout.utils.Observer;
-import nightsout.utils.Subject;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.Subject;
 
 import java.sql.SQLException;
 
