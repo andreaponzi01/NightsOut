@@ -18,6 +18,6 @@ public class ClubOwnerPageSetter1 {
     }
 
     public static void setterSimple(UserBean userBean, ClubOwnerBean clubOwnerBean, String oldFxml, ViewClubOwnerPageGUIController1 viewClubOwnerPageGUIController1) throws SQLException {
-        viewClubOwnerPageGUIController1.setAll(userBean, clubOwnerBean, oldFxml);
+        viewClubOwnerPageGUIController1.setAll(userBean,clubOwnerBean, oldFxml);
     }
 }

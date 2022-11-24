@@ -35,5 +35,10 @@ public class CRUD {
         stm.executeUpdate(saveStm);
     }
 
+    public static void deleteEventById(int idEvent, Statement stm) throws SQLException {
+        String saveStm = String.format("DELETE FROM `Events` WHERE `idEvent` = '%d'", idEvent);
+        stm.execute(saveStm);
+    }
+
 
 }

@@ -26,7 +26,7 @@ public class ConcreteDecoratorAccepted extends Decorator {
         myButton.setMinWidth(125);
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
-        myButton.setStyle("-fx-background-color: #d00000;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
+        myButton.setStyle("-fx-background-color: #32a844;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
         myButton.setOnAction((ActionEvent ae) -> backToWelcomePage(ae, "/UserPage1.fxml", this.userBean));
     }
 

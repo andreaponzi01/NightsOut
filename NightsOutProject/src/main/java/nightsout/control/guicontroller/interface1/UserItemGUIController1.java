@@ -46,8 +46,6 @@ public class UserItemGUIController1 {
     @FXML
     private void goToProfile(ActionEvent actionEvent) throws IOException, SQLException {
         if(clubOwnerBean == null) {
-            //ATTENZIONE: PROVVISORIO
-            //userBean.setType("Free");
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneViewUserPage(actionEvent,  userBean, eventBean, "/EventPageDecorator1.fxml", oldFxml);
         } else {

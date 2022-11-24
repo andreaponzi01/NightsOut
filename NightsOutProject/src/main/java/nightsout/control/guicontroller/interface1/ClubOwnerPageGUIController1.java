@@ -3,6 +3,8 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
@@ -51,9 +53,16 @@ public class ClubOwnerPageGUIController1 implements Observer {
 
 
     @FXML
-    private void logout(ActionEvent actionEvent) throws IOException, SQLException {
-        ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
-        MySqlConnection.closeConnection();
+    private void logout(ActionEvent actionEvent) throws SQLException {
+        var alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You're about to logout!");
+        alert.setContentText("Are you sure you want to logout?: ");
+
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
+            MySqlConnection.closeConnection();
+        }
     }
 
     @Override
@@ -70,7 +79,7 @@ public class ClubOwnerPageGUIController1 implements Observer {
             }
 
             CreatedEventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(loggedClubOwner, eBean);
+            controller.setAll(loggedClubOwner, eBean, "/ClubOwnerPage1.fxml");
             this.listViewCreatedEvents.getItems().add(pane);
         }
     }

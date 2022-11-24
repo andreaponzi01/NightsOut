@@ -95,8 +95,4 @@ public class SearchPageGUIController1 implements Observer {
             this.listView.getItems().add(pane);
         }
     }
-/*
-    @Override
-    public void updateFrom(Object ob, Object from) {}
- */
 }

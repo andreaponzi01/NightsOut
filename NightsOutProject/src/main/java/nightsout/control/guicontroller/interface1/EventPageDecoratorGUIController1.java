@@ -48,6 +48,7 @@ public class EventPageDecoratorGUIController1 implements Observer {
     private ProfileBean bean;
     private String type;
     private String oldFxml;
+    private String prevOldFxml;
     private Button myButton;
     private ConcreteComponent myConcreteComponent;
     private VisualComponent contents;
@@ -65,6 +66,8 @@ public class EventPageDecoratorGUIController1 implements Observer {
             replacer.switchAndSetSceneCheckRequests(actionEvent, oldFxml, this.userBean);
         } else if (oldFxml.equals("/UserPage1.fxml")) {
             replacer.switchAndSetScene(actionEvent, oldFxml, userBean, null);
+        } else if (oldFxml.equals("/ViewClubOwnerPage1.fxml")) {
+            replacer.switchAndSetSceneViewClubOwnerPage(actionEvent, "/ViewClubOwnerPage1.fxml", this.userBean, this.clubOwnerBean, this.prevOldFxml);
         }
     }
 
@@ -84,11 +87,41 @@ public class EventPageDecoratorGUIController1 implements Observer {
         this.bean = bean;
         this.type = bean.getType();
 
-        if(this.type.equals("Free")) {
+        /*if (this.type.equals("Free") && ) {
+
+        } else*/ if (this.type.equals("Free")) {
             this.userBean = EventPageDecoratorAppController.searchUsersByUsername(bean.getUsername());
         } else {
             this.clubOwnerBean = EventPageDecoratorAppController.searchClubOwnerByUsername(bean.getUsername());
         }
+
+        myStart();
+    }
+
+    /*
+        PROBLEMA: per come avevo implementato la ViewClubOwnerPage e il Decorator,
+        se si visualizzava la pagina dell'evento dalla ricerca (quindi lato Free User)
+        veniva visualizzata la decorazione del Club Owner e non quella dell'User.
+
+        IMPORTANTE: Da sistemare questo utilizzo di setAll2 e setterDecorator2! Capire se va bene utilizzare prevOldFxml
+     */
+    public void setAll2(UserBean userBean, ClubOwnerBean clubOwnerBean, EventBean eventBean, String oldFxml, String prevOldFxml) throws SQLException {
+        this.bean = userBean;
+        this.clubOwnerBean = clubOwnerBean;
+        this.oldFxml = oldFxml;
+        this.prevOldFxml = prevOldFxml;
+        this.eventBean = eventBean;
+
+        this.labelUsername.setText(eventBean.getName());
+        this.labelEventName.setText(eventBean.getName());
+        this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
+        this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
+        this.labelEventDuration.setText(String.valueOf(eventBean.getDuration()));
+        this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));
+        EventParticipantsEngineering.eventParticipants(this, eventBean.getIdEvent());
+
+        this.type = bean.getType();
+        this.userBean = EventPageDecoratorAppController.searchUsersByUsername(bean.getUsername());
 
         myStart();
     }
@@ -139,7 +172,7 @@ public class EventPageDecoratorGUIController1 implements Observer {
     }
 
     private void actionDecorateDelete() {
-        ConcreteDecoratorDelete concreteDecoratorDelete = new ConcreteDecoratorDelete(this.myConcreteComponent, this.clubOwnerBean);
+        ConcreteDecoratorDelete concreteDecoratorDelete = new ConcreteDecoratorDelete(this.myConcreteComponent, this.clubOwnerBean, this.eventBean);
         this.contents = concreteDecoratorDelete;
         this.display();
     }
@@ -167,4 +200,6 @@ public class EventPageDecoratorGUIController1 implements Observer {
         }
 
     }
+
+
 }

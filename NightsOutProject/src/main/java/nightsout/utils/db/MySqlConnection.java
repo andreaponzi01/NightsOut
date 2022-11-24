@@ -36,7 +36,7 @@ public class MySqlConnection {
         String dbUrl;
         String driverClassName;
 
-        if(connection==null || connection.isClosed()){
+        if(connection == null || connection.isClosed()){
             try {
                 String resourceName = "config.properties";
                 InputStream inputStream = MySqlConnection.class.getClassLoader().getResourceAsStream(resourceName);

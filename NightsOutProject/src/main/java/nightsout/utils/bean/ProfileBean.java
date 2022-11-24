@@ -37,7 +37,6 @@ public abstract class ProfileBean implements GenericBean {
     }
     public void setPassword(String password) {this.password = password;}
 
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -64,55 +63,5 @@ public abstract class ProfileBean implements GenericBean {
     public void setId(int id) {
         this.id = id;
     }
-
-/*
-    protected GenericUserBean(){
-
-    }
-
-    protected GenericUserBean (UserModel userModel){
-        this.setSecondName(userModel.getSecondName());
-        this.setUsername(userModel.getUsername());
-        this.setGender(userModel.getGender());
-        this.setPassword(userModel.getPassword());
-        this.setEmail(userModel.getEmail());
-        this.setId(userModel.getId());
-        this.setNumFollower(userModel.getNumFollower());
-        this.setNumFollowing(userModel.getNumFollowing());
-        this.setType(userModel.getType());
-        this.setImg((userModel.getProfileImg()));
-    }
-
-    protected GenericUserBean(ClubModel clubModel){
-        setEmail(clubModel.getEmail());
-        setUsername(clubModel.getUsername());
-        setName(clubModel.getClubName());
-        setPassword(clubModel.getPassword());
-        setType(clubModel.getType());
-        setImg(clubModel.getProfileImg());
-        setId(clubModel.getId());
-        setAddress(clubModel.getAddress());
-        setWebsite(clubModel.getWebsite());
-        setCity(clubModel.getCity());
-
-
-    }
-    protected GenericUserBean(ClubModel clubModel, CreatedEventList cr){
-
-        setEmail(clubModel.getEmail());
-        setUsername(clubModel.getUsername());
-        setName(clubModel.getClubName());
-        setPassword(clubModel.getPassword());
-        setType(clubModel.getType());
-        setImg(clubModel.getProfileImg());
-
-        setAddress(clubModel.getAddress());
-        setWebsite(clubModel.getWebsite());
-        setCity(clubModel.getCity());
-
-        setNumCreatedEvents(cr.getSize());
-
-    }
-*/
 
 }

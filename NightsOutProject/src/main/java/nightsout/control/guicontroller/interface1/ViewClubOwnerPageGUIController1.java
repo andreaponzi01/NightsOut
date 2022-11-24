@@ -25,7 +25,6 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
     private Label labelName;
     @FXML
     private ListView listViewCreatedEvents;
-
     private ClubOwnerBean clubOwnerBean;
     private UserBean userBean;
     private String oldFxml;
@@ -36,10 +35,8 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
     @FXML
     public void goToBack(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        System.out.println("Ehilà " + userBean.getUsername());
-        if(oldFxml.equals("/SearchPage1.fxml"))
-            replacer.switchAndSetSceneSearch(actionEvent, oldFxml, userBean);
-        //Da completare
+        replacer.switchAndSetSceneSearch(actionEvent, oldFxml, userBean);
+
     }
 
     public void setAll(UserBean userBean, ClubOwnerBean clubOwnerBean, String oldFxml) throws SQLException {
@@ -70,7 +67,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
             }
 
             CreatedEventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(clubOwnerBean, eBean);
+            controller.setAllView(userBean, clubOwnerBean, eBean, "/ViewClubOwnerPage1.fxml", oldFxml);
             this.listViewCreatedEvents.getItems().add(pane);
         }
     }

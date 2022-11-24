@@ -217,4 +217,15 @@ public class ReplaceSceneDynamic1 {
             e.printStackTrace();
         }
     }
+
+    public void switchAndSetSceneEvent2(ActionEvent ae, String fxml, UserBean userBean, ClubOwnerBean clubOwnerBean, EventBean eventBean, String oldFxml, String prevOldFxml) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        try {
+            EventPageSetter1.setterDecorator2(userBean, clubOwnerBean, eventBean, oldFxml, prevOldFxml, loader.getController());
+            ReplaceScene.showStage(ae, root);
+        } catch (Exception /*| IOException*/ e) {
+            e.printStackTrace();
+        }
+    }
 }

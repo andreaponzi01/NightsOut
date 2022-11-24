@@ -1,23 +1,34 @@
 package nightsout.utils.decorator;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
+import nightsout.utils.db.CRUD;
+import nightsout.utils.db.MySqlConnection;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConcreteDecoratorDelete extends Decorator {
 
     private ClubOwnerBean clubOwnerBean;
+    private EventBean eventBean;
 
     String toWrite;
 
-    public ConcreteDecoratorDelete(VisualComponent component, ClubOwnerBean clubOwnerBean) {
+    public ConcreteDecoratorDelete(VisualComponent component, ClubOwnerBean clubOwnerBean, EventBean eventBean) {
         super(component);
         this.clubOwnerBean = clubOwnerBean;
+        this.eventBean = eventBean;
     }
 
     protected void applyDecorationDelete(Button myButton) {
@@ -27,9 +38,32 @@ public class ConcreteDecoratorDelete extends Decorator {
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
         myButton.setStyle("-fx-background-color: #d00000;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
-        myButton.setOnAction((ActionEvent ae) -> backToWelcomePage(ae, "/UserPage1.fxml", this.clubOwnerBean));
+        myButton.setOnAction((ActionEvent ae) -> deleteEvent(ae));
     }
 
+    private void deleteEvent(ActionEvent ae) {
+        var alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Event");
+        alert.setHeaderText("You're about to delete the event!");
+        alert.setContentText("Are you sure you want to delete the event?: ");
+
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            Statement stm = null;
+            try {
+                ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
+                replaceSceneDynamic1.switchAndSetScene(ae, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
+                stm = MySqlConnection.tryConnect();
+                CRUD.deleteEventById(eventBean.getIdEvent(), stm);
+
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
+            } catch (DBConnectionFailedException e) {
+                MyNotification.createNotification(e);
+            }
+        }
+    }
+
+    /*
     private void backToWelcomePage(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) {
         try {
             ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
@@ -38,6 +72,7 @@ public class ConcreteDecoratorDelete extends Decorator {
             e.printStackTrace();
         }
     }
+     */
 
     @Override
     public Button getButton() {

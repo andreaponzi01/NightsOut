@@ -3,6 +3,8 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
@@ -64,8 +66,15 @@ public class UserPageGUIController1 implements Observer {
 
     @FXML
     private void logout(ActionEvent actionEvent) throws IOException, SQLException {
-        ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
-        MySqlConnection.closeConnection();
+        var alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You're about to logout!");
+        alert.setContentText("Are you sure you want to logout?: ");
+
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
+            MySqlConnection.closeConnection();
+        }
     }
 
     @Override

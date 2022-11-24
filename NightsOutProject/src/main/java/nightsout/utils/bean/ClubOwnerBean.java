@@ -7,7 +7,7 @@ import java.net.URL;
 public class ClubOwnerBean extends ProfileBean {
 
     public ClubOwnerBean() {
-
+        this.type = "Club Owner";
     }
 
     // Attributi ClubManager
@@ -25,6 +25,8 @@ public class ClubOwnerBean extends ProfileBean {
 
     protected int discountVIP;
 
+
+
     public ClubOwnerBean(ClubOwnerModel clubOwnerModel) {
         this.username = clubOwnerModel.getUsername();
         this.name = clubOwnerModel.getClubName();
@@ -33,7 +35,7 @@ public class ClubOwnerBean extends ProfileBean {
         this.discountVIP = clubOwnerModel.getDiscountVIP();
         this.email = clubOwnerModel.getEmail();
         this.id = clubOwnerModel.getId();
-        this.type = clubOwnerModel.getType();
+        this.type = "Club Owner";
     }
 
     // Getter
