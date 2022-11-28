@@ -2,6 +2,7 @@ package nightsout.utils.bean;
 
 import nightsout.model.EventModel;
 import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
 
 import java.time.LocalDate;
@@ -34,8 +35,7 @@ public class EventBean implements GenericBean {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String description) { this.description = description;
     }
 
     protected String description;
@@ -58,7 +58,10 @@ public class EventBean implements GenericBean {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws EmptyInputException {
+
+        if (name.equals(""))
+            Trigger.emptyField("Name");
         this.name = name;
     }
 
@@ -66,8 +69,10 @@ public class EventBean implements GenericBean {
         return price;
     }
 
-    public void setPrice(String price) throws WrongInputTypeException {
+    public void setPrice(String price) throws WrongInputTypeException, EmptyInputException {
         try {
+            if (price.equals(""))
+                Trigger.emptyField("Price");
             this.price = Double.valueOf(price);
         } catch(NumberFormatException e) {
             Trigger.throwWrongInputTypeException(e, "Price");
@@ -78,16 +83,28 @@ public class EventBean implements GenericBean {
         return hours;
     }
 
-    public void setHours(int hours) {
-        this.hours = hours;
+    public void setHours(String hours) throws WrongInputTypeException, EmptyInputException {
+        try {
+            if (hours.equals(""))
+                Trigger.emptyField("Hours");
+            this.hours = Integer.parseInt(hours);
+        } catch (NumberFormatException e) {
+            Trigger.throwWrongInputTypeException(e, "Hours");
+        }
     }
 
     public int getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
+    public void setMinutes(String minutes) throws WrongInputTypeException, EmptyInputException {
+        try {
+            if (minutes.equals(""))
+                Trigger.emptyField("Minutes");
+            this.minutes = Integer.parseInt(minutes);
+        } catch (NumberFormatException e) {
+            Trigger.throwWrongInputTypeException(e, "Minutes");
+        }
     }
 
     public int getDuration() {
@@ -102,7 +119,9 @@ public class EventBean implements GenericBean {
         return eventDate;
     }
 
-    public void setEventDate(LocalDate eventDate) {
+    public void setEventDate(LocalDate eventDate) throws EmptyInputException {
+        if (eventDate == null)
+            Trigger.emptyField("Date");
         this.eventDate = eventDate;
     }
 

@@ -45,8 +45,6 @@ public class LoginGUIController1 {
                 ClubOwnerBean clubOwnerBean = LoginAppController.loginClubOwner(loginBean);
                 replacer.switchAndSetScene(ae, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
             } else {
-                //UserBean userBean = LoginAppController.loginUser(loginBean);
-                //replacer.switchAndSetScene(ae, "/UserPage1.fxml", userBean, null);
 
                 LoginAppController.loginUser(loginBean);
                 replacer.switchAndSetSceneCulo(ae, "/UserPage1.fxml", null);

@@ -2,14 +2,13 @@ package nightsout.control.guicontroller.interface1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.Email;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -57,8 +56,8 @@ public class CreateEventGUIController1 {
             eventBean = new EventBean();
             eventBean.setEventDate(dateEvent.getValue());
             eventBean.setDuration((int) sliderTime.getValue());
-            eventBean.setHours(Integer.parseInt(textFieldHours.getText()));
-            eventBean.setMinutes(Integer.parseInt(textFieldMinutes.getText()));
+            eventBean.setHours(textFieldHours.getText());
+            eventBean.setMinutes(textFieldMinutes.getText());
             eventBean.setName(textFieldName.getText());
             eventBean.setIdClubOwner(this.clubOwnerBean.getId());
             eventBean.setDescription(textFieldDescription.getText());
@@ -66,14 +65,13 @@ public class CreateEventGUIController1 {
 
             CreateEventAppController.createEvent(eventBean);
 
-
+            Email.sendEmail(clubOwnerBean.getEmail(), "Evento creato con successo!", "L'evento " + eventBean.getName() + "è stato creato con successo.");
 
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
-        } catch (WrongInputTypeException e) {
+        } catch (WrongInputTypeException | EmptyInputException e) {
             System.err.println(e.getCause());
             MyNotification.createNotification(e);
         }
-
     }
 }
