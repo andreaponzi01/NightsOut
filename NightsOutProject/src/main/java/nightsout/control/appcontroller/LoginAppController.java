@@ -35,20 +35,17 @@ public class LoginAppController {
     }
     */
 
-    public static LoggedUserBean loginUser(LoginBean loginBean) throws WrongCredentialsException {
+    public static void loginUser(LoginBean loginBean) throws WrongCredentialsException {
 
         UserModel userModel = null;
         LoggedUserBean loggedUserBean = null;
 
         if (Authentication.checkIsRegistered(loginBean.getUsername(), loginBean.getPassword(), loginBean.getType())) {
             userModel = UserDAO.getUserByUsername(loginBean.getUsername());
-            loggedUserBean = new LoggedUserBean(userModel);
-            loggedUserBean.setType("Free");
+            loggedUserBean = LoggedUserBean.getInstance(userModel);
         } else {
             Trigger.throwWrongCredentials();
         }
-
-        return loggedUserBean;
     }
 
     public static ClubOwnerBean loginClubOwner(LoginBean loginBean) throws WrongCredentialsException {

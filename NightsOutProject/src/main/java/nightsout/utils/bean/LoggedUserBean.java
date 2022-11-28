@@ -4,17 +4,26 @@ import nightsout.model.UserModel;
 
 public class LoggedUserBean extends UserBean {
 
-    public LoggedUserBean() {
+    private LoggedUserBean() {
         super();
     }
 
-    public LoggedUserBean(UserModel um) {
+    private LoggedUserBean(UserModel um) {
         super(um);
     }
 
     private static LoggedUserBean loggedUserBeanInstance;
 
     public static LoggedUserBean getInstance() {
+        if (loggedUserBeanInstance == null)
+            loggedUserBeanInstance = new LoggedUserBean();
+        return loggedUserBeanInstance;
+    }
+
+    public static LoggedUserBean getInstance(UserModel um) {
+        if (loggedUserBeanInstance == null)
+            loggedUserBeanInstance = new LoggedUserBean(um);
+
         return loggedUserBeanInstance;
     }
 

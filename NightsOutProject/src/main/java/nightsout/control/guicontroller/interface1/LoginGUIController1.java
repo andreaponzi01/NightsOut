@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.LoginAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.interface1.LoginBean1;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
 import nightsout.utils.scene.ReplaceScene;
@@ -47,9 +46,10 @@ public class LoginGUIController1 {
                 replacer.switchAndSetScene(ae, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
             } else {
                 //UserBean userBean = LoginAppController.loginUser(loginBean);
-                LoggedUserBean loggedUserBean = LoginAppController.loginUser(loginBean);
                 //replacer.switchAndSetScene(ae, "/UserPage1.fxml", userBean, null);
-                replacer.switchAndSetScene(ae, "/UserPage1.fxml", loggedUserBean, null);
+
+                LoginAppController.loginUser(loginBean);
+                replacer.switchAndSetSceneCulo(ae, "/UserPage1.fxml", null);
             }
 
         } catch (WrongCredentialsException e) { MyNotification.createNotification(e); }
