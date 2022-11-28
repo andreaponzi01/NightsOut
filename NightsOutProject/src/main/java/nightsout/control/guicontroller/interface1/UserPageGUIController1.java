@@ -8,6 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.observer.engineering.NextEventsEngineering;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.EventBean;
@@ -32,8 +33,15 @@ public class UserPageGUIController1 implements Observer {
 
     public void setLabelUserName(String username) { this.usernameLabel.setText(username); }
 
+
     public void setAll(UserBean userBean) throws SQLException {
         this.userBean = userBean;
+        setLabelUserName(userBean.getUsername());
+        NextEventsEngineering.nextEvents(this, userBean.getId());
+    }
+
+    public void setAllCulo() throws SQLException {
+        this.userBean = LoggedUserBean.getInstance();
         setLabelUserName(userBean.getUsername());
         NextEventsEngineering.nextEvents(this, userBean.getId());
     }

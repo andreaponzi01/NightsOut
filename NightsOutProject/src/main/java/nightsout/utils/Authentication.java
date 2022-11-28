@@ -26,6 +26,8 @@ public class Authentication {
             }
         } catch (DBConnectionFailedException e) {
             MyNotification.createNotification(e);
+            System.out.println("Causa: ");
+            e.getCause().printStackTrace();
         } catch (SQLException e) {
             //
         }

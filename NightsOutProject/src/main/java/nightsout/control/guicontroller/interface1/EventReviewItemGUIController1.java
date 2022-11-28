@@ -20,7 +20,7 @@ public class EventReviewItemGUIController1 {
     @FXML
     private void goToEventPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecorator1.fxml", userBean, eventBean, "/UserPage1.fxml");
+        replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecorator1.fxml", userBean, eventBean, "/EndedBookedEventsPage1.fxml");
     }
 
     @FXML

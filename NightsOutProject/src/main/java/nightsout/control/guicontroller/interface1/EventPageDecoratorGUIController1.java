@@ -87,9 +87,7 @@ public class EventPageDecoratorGUIController1 implements Observer {
         this.bean = bean;
         this.type = bean.getType();
 
-        /*if (this.type.equals("Free") && ) {
-
-        } else*/ if (this.type.equals("Free")) {
+        if (this.type.equals("Free")) {
             this.userBean = EventPageDecoratorAppController.searchUsersByUsername(bean.getUsername());
         } else {
             this.clubOwnerBean = EventPageDecoratorAppController.searchClubOwnerByUsername(bean.getUsername());
@@ -99,14 +97,12 @@ public class EventPageDecoratorGUIController1 implements Observer {
     }
 
     /*
-        PROBLEMA: per come avevo implementato la ViewClubOwnerPage e il Decorator,
-        se si visualizzava la pagina dell'evento dalla ricerca (quindi lato Free User)
-        veniva visualizzata la decorazione del Club Owner e non quella dell'User.
-
         IMPORTANTE: Da sistemare questo utilizzo di setAll2 e setterDecorator2! Capire se va bene utilizzare prevOldFxml
      */
     public void setAll2(UserBean userBean, ClubOwnerBean clubOwnerBean, EventBean eventBean, String oldFxml, String prevOldFxml) throws SQLException {
         this.bean = userBean;
+
+        this.userBean = userBean;
         this.clubOwnerBean = clubOwnerBean;
         this.oldFxml = oldFxml;
         this.prevOldFxml = prevOldFxml;
@@ -148,13 +144,13 @@ public class EventPageDecoratorGUIController1 implements Observer {
     }
 
     private void actionDecorateSendRequest() {
-        ConcreteDecoratorSendRequest concreteDecoratorSendRequest = new ConcreteDecoratorSendRequest(this.myConcreteComponent, this.userBean, this.eventBean, this.oldFxml);
+        ConcreteDecoratorSendRequest concreteDecoratorSendRequest = new ConcreteDecoratorSendRequest(this.myConcreteComponent, this.userBean, this.eventBean, this.clubOwnerBean, this.oldFxml, this.prevOldFxml);
         this.contents = concreteDecoratorSendRequest;
         this.display();
     }
 
     private void actionDecoratePending() {
-        ConcreteDecoratorPending concreteDecoratorPending = new ConcreteDecoratorPending(this.myConcreteComponent, this.userBean);
+        ConcreteDecoratorPending concreteDecoratorPending = new ConcreteDecoratorPending(this.myConcreteComponent, this.userBean, this.clubOwnerBean);
         this.contents = concreteDecoratorPending;
         this.display();
     }
@@ -200,6 +196,4 @@ public class EventPageDecoratorGUIController1 implements Observer {
         }
 
     }
-
-
 }

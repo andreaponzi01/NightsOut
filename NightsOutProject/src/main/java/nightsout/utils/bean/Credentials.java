@@ -19,8 +19,6 @@ public class Credentials {
 
     public Credentials(String username){
         this.username = username;
-
-        // Aggiunti 3-nov
         this.password = null;
         this.type = null;
     }

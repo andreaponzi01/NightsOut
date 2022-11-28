@@ -5,21 +5,26 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 
-public class CreatedEventItemGUIController1 {
+public class ViewCreatedEventItemGUIController1 {
 
+    private UserBean userBean;
     private ClubOwnerBean clubOwnerBean;
     private EventBean eventBean;
     private String oldFxml;
+    private String prevOldFxml;
     @FXML
     Label labelEventName;
 
-    public void setAll(ClubOwnerBean clubOwnerBean, EventBean eventBean, String oldFxml) {
-        this.clubOwnerBean=clubOwnerBean;
-        this.eventBean=eventBean;
+    public void setAll(UserBean userBean, ClubOwnerBean clubOwnerBean, EventBean eventBean, String oldFxml, String prevOldFxml) {
+        this.userBean = userBean;
+        this.clubOwnerBean = clubOwnerBean;
+        this.eventBean = eventBean;
+        this.prevOldFxml = prevOldFxml;
         this.oldFxml = oldFxml;
         labelEventName.setText(this.eventBean.getName());
     }
@@ -27,6 +32,6 @@ public class CreatedEventItemGUIController1 {
 
     public void goToEventPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecorator1.fxml",  clubOwnerBean, eventBean, oldFxml);
+        replacer.switchAndSetSceneEvent2(actionEvent, "/EventPageDecorator1.fxml",  userBean, clubOwnerBean, eventBean, oldFxml, prevOldFxml);
     }
 }

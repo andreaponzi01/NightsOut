@@ -21,6 +21,10 @@ public class EventModel {
     protected int duration;
     protected LocalDate eventDate;
 
+
+
+    protected String description;
+
     public EventModel(EventBean eventBean) {
         this.idEvent = eventBean.getIdEvent();
         this.idClubOwner = eventBean.getIdClubOwner();
@@ -29,6 +33,15 @@ public class EventModel {
         this.name = eventBean.getName();
         this.duration = eventBean.getDuration();
         this.time = eventBean.getTime();
+        this.description = eventBean.getDescription();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     //Attributi User

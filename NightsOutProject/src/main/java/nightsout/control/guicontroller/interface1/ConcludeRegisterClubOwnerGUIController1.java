@@ -40,6 +40,8 @@ public class ConcludeRegisterClubOwnerGUIController1 {
         } catch (EmptyInputException | EmailNotValidException e) {
             MyNotification.createNotification(e);
         }
+
+
     }
 
     public void setAll(String[] personalInfo) {

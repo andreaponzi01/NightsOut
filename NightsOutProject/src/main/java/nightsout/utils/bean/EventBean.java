@@ -1,6 +1,8 @@
 package nightsout.utils.bean;
 
 import nightsout.model.EventModel;
+import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.WrongInputTypeException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,14 +21,24 @@ public class EventBean implements GenericBean {
         this.duration = eventModel.getDuration();
         this.hours = eventModel.getTime().getHour();
         this.minutes = eventModel.getTime().getMinute();
+        this.description = eventModel.getDescription();
     }
 
-    //Attributi User
     protected int idEvent;
     protected int idClubOwner;
     protected String name;
     protected Double price;
     protected Double vipPrice;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    protected String description;
 
 
     protected int hours;
@@ -54,7 +66,13 @@ public class EventBean implements GenericBean {
         return price;
     }
 
-    public void setPrice(Double price) { this.price = price; }
+    public void setPrice(String price) throws WrongInputTypeException {
+        try {
+            this.price = Double.valueOf(price);
+        } catch(NumberFormatException e) {
+            Trigger.throwWrongInputTypeException(e, "Price");
+        }
+    }
 
     public int getHours() {
         return hours;

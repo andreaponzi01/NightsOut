@@ -61,13 +61,13 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
 
         if(ob instanceof EventBean eBean) {
             try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CreatedEventItem1.fxml")).openStream());
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ViewCreatedEventItem1.fxml")).openStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            CreatedEventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAllView(userBean, clubOwnerBean, eBean, "/ViewClubOwnerPage1.fxml", oldFxml);
+            ViewCreatedEventItemGUIController1 controller = fxmlLoader.getController();
+            controller.setAll(userBean, clubOwnerBean, eBean, "/ViewClubOwnerPage1.fxml", oldFxml);
             this.listViewCreatedEvents.getItems().add(pane);
         }
     }

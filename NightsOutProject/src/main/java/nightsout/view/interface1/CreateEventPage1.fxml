@@ -53,6 +53,11 @@
                   <Font size="42.0" />
                </font>
             </Label>
+            <TextField fx:id="textFieldDescription" alignment="CENTER" layoutX="363.0" layoutY="255.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="371.0" promptText="insert description" style="-fx-background-radius: 28;">
+               <font>
+                  <Font name="Arial" size="25.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <Button fx:id="buttonBack" layoutX="42.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">

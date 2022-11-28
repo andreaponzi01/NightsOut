@@ -20,4 +20,10 @@ public class UserPageSetter1 {
     public static void setterSimple(UserBean userBean, EventBean eventBean, String oldFxml, String previousOldFxml, ViewUserPageGUIController1 userGUIController1) throws SQLException {
         userGUIController1.setAll(userBean, eventBean, oldFxml, previousOldFxml);
     }
+
+    public static void setterCulo(UserPageGUIController1 userPageGUIController1) throws SQLException {
+        userPageGUIController1.setAllCulo();
+    }
+
+
 }

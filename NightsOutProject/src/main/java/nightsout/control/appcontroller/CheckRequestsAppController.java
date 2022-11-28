@@ -4,6 +4,7 @@ import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.RequestBean;
+import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class CheckRequestsAppController {
     public static EventBean searchEventById(int idEvent) {
        EventModel eventModel = null;
         try {
-            eventModel = RequestDAO.getEventByIdEvent(idEvent);
+            eventModel = EventDAO.getEventByIdEvent(idEvent);
         } catch (Exception e) {
             e.printStackTrace();
         }

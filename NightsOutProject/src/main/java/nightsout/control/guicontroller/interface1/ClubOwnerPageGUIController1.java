@@ -48,7 +48,6 @@ public class ClubOwnerPageGUIController1 implements Observer {
         loggedClubOwner = clubOwnerBean;
         setLabelUserName(clubOwnerBean.getUsername());
         CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
-
     }
 
 
@@ -96,14 +95,6 @@ public class ClubOwnerPageGUIController1 implements Observer {
         //replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml", loggedClubOwner,userBean); dovrò passargli anche l' utente per poi tornare indietro
     }
 
-    /*
-    // PROVA DECORATOR
-    @FXML
-    private void goToDecoratedPage(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
-        replaceSceneDynamic1.switchAndSetSceneDecorator(actionEvent, "/DecoratedPage1.fxml", loggedClubOwner);
-    }
-     */
 }
 
 

@@ -44,6 +44,7 @@ public class RequestDAO {
             System.out.println(userModel.getId() + " " + eventModel.getIdEvent());
             preparedStatement = Query.searchRequest(userModel.getId(), eventModel.getIdEvent());
             ResultSet rs = preparedStatement.executeQuery();
+            // Test???????
             assert rs != null;
             if (!rs.next()) {
                 return null;
@@ -157,33 +158,5 @@ public class RequestDAO {
         } catch (DBConnectionFailedException e) {
             MyNotification.createNotification(e);
         }
-    }
-
-    public static EventModel getEventByIdEvent(int idEvent) {
-        EventModel eventModel = null;
-        PreparedStatement preparedStatement = null;
-
-        try {
-
-            preparedStatement = Query.searchEventByIdEvent(idEvent);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-
-            eventModel = new EventModel();
-            eventModel.setName(rs.getString(5));
-            eventModel.setIdEvent(rs.getInt(1));
-            eventModel.setIdClubOwner(rs.getInt(2));
-            eventModel.setTime(rs.getTime(10).toLocalTime());
-            eventModel.setPrice(rs.getDouble(4));
-            eventModel.setDuration(rs.getInt(7));
-            eventModel.setEventDate(rs.getDate(6).toLocalDate());
-
-            preparedStatement.close();
-
-        } catch (/*MysqlConnectionFailed |*/ SQLException e) {
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
-        }
-        return eventModel;
     }
 }

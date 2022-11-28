@@ -6,17 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.db.CRUD;
-import nightsout.utils.db.MySqlConnection;
-import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.db.Query;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class ConcreteDecoratorDelete extends Decorator {
 
@@ -48,17 +45,14 @@ public class ConcreteDecoratorDelete extends Decorator {
         alert.setContentText("Are you sure you want to delete the event?: ");
 
         if(alert.showAndWait().get() == ButtonType.OK) {
-            Statement stm = null;
+            PreparedStatement preparedStatement = null;
             try {
+                preparedStatement = Query.deleteEventById(eventBean.getIdEvent());
+                preparedStatement.executeUpdate();
                 ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
                 replaceSceneDynamic1.switchAndSetScene(ae, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
-                stm = MySqlConnection.tryConnect();
-                CRUD.deleteEventById(eventBean.getIdEvent(), stm);
-
             } catch (IOException | SQLException e) {
                 e.printStackTrace();
-            } catch (DBConnectionFailedException e) {
-                MyNotification.createNotification(e);
             }
         }
     }

@@ -25,7 +25,7 @@ public class EventDAO {
         try{
 
             stm= MySqlConnection.tryConnect();
-            CRUD.insertEvent(eventModel.getIdClubOwner(), eventModel.getName(), eventModel.getEventDate().toString(), eventModel.getTime().toString(), eventModel.getDuration(), eventModel.getPrice(), stm);
+            CRUD.insertEvent(eventModel.getIdClubOwner(), eventModel.getName(), eventModel.getEventDate().toString(), eventModel.getTime().toString(), eventModel.getDuration(), eventModel.getPrice(), eventModel.getDescription(), stm);
 
         }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
             // ErrorHandler.getInstance().handleException(m);
@@ -59,6 +59,7 @@ public class EventDAO {
                 eventModel.setPrice(rs.getDouble(4));
                 eventModel.setDuration(rs.getInt(7));
                 eventModel.setEventDate(rs.getDate(6).toLocalDate());
+                eventModel.setDescription(rs.getString(11));
 
                 list.add(eventModel);
 
@@ -98,6 +99,7 @@ public class EventDAO {
                 eventModel.setPrice(rs.getDouble(4));
                 eventModel.setDuration(rs.getInt(7));
                 eventModel.setEventDate(rs.getDate(6).toLocalDate());
+                eventModel.setDescription(rs.getString(11));
 
                 list.add(eventModel);
 
@@ -137,6 +139,7 @@ public class EventDAO {
                 eventModel.setPrice(rs.getDouble(4));
                 eventModel.setDuration(rs.getInt(7));
                 eventModel.setEventDate(rs.getDate(6).toLocalDate());
+                eventModel.setDescription(rs.getString(11));
 
                 list.add(eventModel);
 
@@ -176,6 +179,7 @@ public class EventDAO {
                 eventModel.setPrice(rs.getDouble(4));
                 eventModel.setDuration(rs.getInt(7));
                 eventModel.setEventDate(rs.getDate(6).toLocalDate());
+                eventModel.setDescription(rs.getString(11));
 
                 list.add(eventModel);
 
@@ -209,6 +213,7 @@ public class EventDAO {
             eventModel.setPrice(rs.getDouble(4));
             eventModel.setDuration(rs.getInt(7));
             eventModel.setEventDate(rs.getDate(6).toLocalDate());
+            eventModel.setDescription(rs.getString(11));
             preparedStatement.close();
 
             return eventModel;

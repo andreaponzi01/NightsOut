@@ -329,4 +329,16 @@ public class Query {
         }
         return preparedStatement;
     }
+
+    public static PreparedStatement deleteEventById(int idEvent) {
+        String query = "DELETE FROM `Events` WHERE `idEvent` = ?";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
+            preparedStatement.setInt(1, idEvent);
+        } catch (Exception e) {
+            //
+        }
+        return preparedStatement;
+    }
 }

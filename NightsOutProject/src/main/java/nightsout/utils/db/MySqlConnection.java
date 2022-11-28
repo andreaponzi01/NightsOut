@@ -24,7 +24,7 @@ public class MySqlConnection {
             */
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         } catch (SQLException e) {
-            Trigger.throwDBConnectionFailedException();
+            Trigger.throwDBConnectionFailedException(e);
         }
         return statement;
     }

@@ -14,8 +14,8 @@ public class CRUD {
         stm.executeUpdate(saveStm);
     }
 
-    public static void insertEvent(int idClubOwner, String name, String date, String time, int duration, double price, Statement stm) throws SQLException {
-        String saveStm = String.format("INSERT INTO `Events` (`clubOwner`, `price`, `name`, `date`, `duration`, `time`) VALUES ('%d', '%s', '%s', '%s', '%d', '%s');", idClubOwner, String.valueOf(price), name, date, duration, time);
+    public static void insertEvent(int idClubOwner, String name, String date, String time, int duration, double price, String description, Statement stm) throws SQLException {
+        String saveStm = String.format("INSERT INTO `Events` (`clubOwner`, `price`, `name`, `date`, `duration`, `time`, `description`) VALUES ('%d', '%s', '%s', '%s', '%d', '%s', '%s');", idClubOwner, String.valueOf(price), name, date, duration, time, description);
         stm.executeUpdate(saveStm);
     }
 
@@ -34,11 +34,4 @@ public class CRUD {
         String saveStm = String.format("UPDATE `Requests` SET `status` = '%s' WHERE `idRequest` = '%d'", status, id);
         stm.executeUpdate(saveStm);
     }
-
-    public static void deleteEventById(int idEvent, Statement stm) throws SQLException {
-        String saveStm = String.format("DELETE FROM `Events` WHERE `idEvent` = '%d'", idEvent);
-        stm.execute(saveStm);
-    }
-
-
 }
