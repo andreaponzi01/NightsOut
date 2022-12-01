@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.EventPageDecoratorCOGUIController1">
+   <children>
+      <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
+      <AnchorPane layoutX="250.0" layoutY="130.0" prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="103.0">
+         <children>
+            <Label fx:id="labelEventName" alignment="CENTER" layoutX="492.0" layoutY="16.0" prefHeight="33.0" prefWidth="242.0" text="Nome Evento" textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="490.0" layoutY="145.0" text="Duration: " textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelEventDuration" layoutX="584.0" layoutY="147.0" text="durata evento">
+               <font>
+                  <Font name="Arial Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelEventPrice" layoutX="573.0" layoutY="116.0" text="prezzo evento">
+               <font>
+                  <Font name="Arial Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="512.0" layoutY="115.0" text="Price: " textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelEventTime" layoutX="585.0" layoutY="88.0" text="orario evento">
+               <font>
+                  <Font name="Arial Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="510.0" layoutY="89.0" text="Time: " textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelEventDate" layoutX="584.0" layoutY="61.0" text="data evento">
+               <font>
+                  <Font name="Arial Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="514.0" layoutY="61.0" text="Date: " textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonBack" layoutX="34.0" layoutY="11.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="122.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" text="Back" textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox layoutX="67.0" layoutY="64.0" prefHeight="125.0" prefWidth="346.0" style="-fx-background-color:  #200f54; -fx-background-radius: 50;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="198.0" prefWidth="217.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;">
+                     <children>
+                        <ImageView fx:id="eventImg" fitHeight="133.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="35.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="217.0" prefWidth="200.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="133.0" prefWidth="191.0">
+                           <children>
+                              <Label fx:id="labelUsername" mnemonicParsing="false" prefHeight="39.0" prefWidth="193.0" text="username" textFill="#f5eeee">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane fx:id="root" prefHeight="94.0" prefWidth="191.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <Label layoutX="278.0" layoutY="20.0" prefHeight="27.0" prefWidth="142.0" text="Club owner:" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="475.0" layoutY="173.0" text="Description:" textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listViewUsers" layoutX="205.0" layoutY="254.0" prefHeight="159.0" prefWidth="542.0" />
+            <Label layoutX="283.0" layoutY="193.0" text="Participants" textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="47.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -11,11 +11,7 @@ public class SearchPageSetter1 {
         //ignored
     }
 
-    public static void setter(UserBean userBean, SearchPageGUIController1 searchPageGUIController1) {
-        searchPageGUIController1.setAll(userBean);
-    }
-
-    public static void setter2(UserBean userBean, String oldInput, SearchPageGUIController1 searchPageGUIController1) throws SQLException {
-        searchPageGUIController1.setAllOldInput(userBean, oldInput);
+    public static void setter( SearchPageGUIController1 searchPageGUIController1) throws SQLException {
+        searchPageGUIController1.setAll();
     }
 }

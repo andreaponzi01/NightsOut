@@ -16,21 +16,20 @@ import java.util.Objects;
 
 public class ReviewAndResponseGUIController1 implements Observer {
     private ClubOwnerBean clubOwnerBean;
-
     @FXML
     ListView listView;
+    @FXML
+    private MenuClubOwnerGUIController1 menuController;
 
-
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SQLException {
-        //da fare
-        this.clubOwnerBean = clubOwnerBean;
+    public void setAll() throws SQLException {
+        this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
+        this.menuController.setAll();
         ReviewAndResponseEngineering.eventReviews(this, clubOwnerBean.getId());
     }
 
     public void backToUserPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
-        //replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean, null); deve ritornare all'utente
+        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
     }
 
     @Override
@@ -45,7 +44,7 @@ public class ReviewAndResponseGUIController1 implements Observer {
                 e.printStackTrace();
             }
             ReviewItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(clubOwnerBean, reviewBean);
+            controller.setAll(reviewBean);
             this.listView.getItems().add(pane);
             ReviewAndResponseEngineering.ResponseOfOneReview(this,reviewBean.getIdReview());
         }
@@ -57,7 +56,7 @@ public class ReviewAndResponseGUIController1 implements Observer {
                 e.printStackTrace();
             }
             ResponseItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(clubOwnerBean, responseBean);
+            controller.setAll(responseBean);
             this.listView.getItems().add(pane);
         }
     }

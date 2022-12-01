@@ -9,6 +9,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.ClubOwnerDAO;
+import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
 import nightsout.utils.dao.UserDAO;
 
@@ -31,32 +32,15 @@ public class EventPageDecoratorAppController {
         return (new RequestBean(requestModel));
     }
 
-    public static UserBean searchUsersByUsername(String username) throws SQLException {
-        UserModel userModel = UserDAO.getUserByUsername(username);
-        return new UserBean(userModel);
-    }
-
-    public static ClubOwnerBean searchClubOwnerByUsername(String username) throws SQLException {
-        ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubOwnerByUsername(username);
-        return new ClubOwnerBean(clubOwnerModel);
-    }
-
-
-    public static ClubOwnerBean getClubOwner(int idClubOwner) {
-        ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubOwnerById(idClubOwner);
-        ClubOwnerBean clubOwnerBean= new ClubOwnerBean(clubOwnerModel);
-        return clubOwnerBean;
-    }
-
-    public static List<UserBean> searchUsersByIdEvent(int idEvent) {
-        List<UserModel> list = null;
-        List<UserBean> listBean = null;
+    public static List<EventBean> searchEventsByIdClubOwner(int idClubOwner) {
+        List<EventModel> list = null;
+        List<EventBean> listBean = null;
         try {
-            list = UserDAO.getUsersByIdEvent(idEvent);
+            list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
             listBean = new ArrayList<>();
 
-            for(UserModel um : list){
-                UserBean bean = new UserBean(um);
+            for(EventModel um : list){
+                EventBean bean = new EventBean(um);
                 listBean.add(bean);
             }
 

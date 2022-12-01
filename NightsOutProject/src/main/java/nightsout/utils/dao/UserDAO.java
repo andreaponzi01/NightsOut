@@ -40,6 +40,7 @@ public class UserDAO {
             userModel.setId(rs.getInt(1));
             userModel.setVip(rs.getBoolean(9));
             userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
+            userModel.setBirthday(rs.getDate(5).toLocalDate());
             userModel.setType("Free");
 
             /* Capire come funziona la gestione delle immagini tramite file
@@ -84,7 +85,7 @@ public class UserDAO {
     }
 
 
-    public static void subscriptionVip(UserModel userModel) throws SQLException {
+    public static UserModel subscriptionVip(UserModel userModel) throws SQLException {
         Statement stm= null;
         PreparedStatement preparedStatement = null;
         try{
@@ -106,6 +107,7 @@ public class UserDAO {
         } catch (DBConnectionFailedException e) {
             MyNotification.createNotification(e);
          }
+        return userModel;
     }
 
     public static List<UserModel> getUsersByUsername(String username) throws SQLException {
@@ -133,7 +135,7 @@ public class UserDAO {
                 userModel.setId(rs.getInt(1));
                 userModel.setVip(rs.getBoolean(9));
                 userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
-
+                userModel.setBirthday(rs.getDate(5).toLocalDate());
                 list.add(userModel);
 
             } while(rs.next());
@@ -172,6 +174,7 @@ public class UserDAO {
                 userModel.setEmail(rs.getString(4));
                 userModel.setId(rs.getInt(1));
                 userModel.setVip(rs.getBoolean(9));
+                userModel.setBirthday(rs.getDate(5).toLocalDate());
                 userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
 
                 list.add(userModel);
@@ -208,7 +211,7 @@ public class UserDAO {
             userModel.setId(rs.getInt(1));
             userModel.setVip(rs.getBoolean(9));
             userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
-
+            userModel.setBirthday(rs.getDate(5).toLocalDate());
             /* Capire come funziona la gestione delle immagini tramite file
 
 

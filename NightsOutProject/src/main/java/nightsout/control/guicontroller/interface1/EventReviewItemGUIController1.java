@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -20,17 +21,17 @@ public class EventReviewItemGUIController1 {
     @FXML
     private void goToEventPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecorator1.fxml", userBean, eventBean, "/EndedBookedEventsPage1.fxml");
+        replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
     }
 
     @FXML
     private void goToReviewPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneCreateEventReview(actionEvent, "/CreateEventReviewPage1.fxml", eventBean, userBean);
+        replacer.switchAndSetSceneCreateEventReview(actionEvent, "/CreateEventReviewPage1.fxml", eventBean);
     }
 
-    public void setAll(UserBean userBean, EventBean eventBean) {
-        this.userBean = userBean;
+    public void setAll( EventBean eventBean) {
+        this.userBean = LoggedUserBean.getInstance();
         this.eventBean = eventBean;
         labelEventName.setText(this.eventBean.getName());
     }

@@ -26,23 +26,15 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
     @FXML
     private ListView listViewCreatedEvents;
     private ClubOwnerBean clubOwnerBean;
-    private UserBean userBean;
-    private String oldFxml;
+    @FXML
+    private MenuUserGUIController1 menuController;
 
 
     public void setLabelUserName(String name) { this.labelName.setText(name); }
 
-    @FXML
-    public void goToBack(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneSearch(actionEvent, oldFxml, userBean);
-
-    }
-
-    public void setAll(UserBean userBean, ClubOwnerBean clubOwnerBean, String oldFxml) throws SQLException {
+    public void setAll(ClubOwnerBean clubOwnerBean) throws SQLException {
         this.clubOwnerBean = clubOwnerBean;
-        this.userBean = userBean;
-        this.oldFxml = oldFxml;
+        this.menuController.setAll();
         setLabelUserName(clubOwnerBean.getName());
         CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
     }
@@ -67,7 +59,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
             }
 
             ViewCreatedEventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(userBean, clubOwnerBean, eBean, "/ViewClubOwnerPage1.fxml", oldFxml);
+            controller.setAll(eBean);
             this.listViewCreatedEvents.getItems().add(pane);
         }
     }

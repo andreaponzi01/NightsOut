@@ -16,11 +16,11 @@ public class ResponsePageSetter1 {
         //ignored
     }
 
-    public static void setter(ClubOwnerBean clubOwnerBean, EventReviewsClubOwnerGUIController1 eventReviewsClubOwnerGUIController1) throws SQLException {
-        eventReviewsClubOwnerGUIController1.setAll(clubOwnerBean);
+    public static void setter(EventReviewsClubOwnerGUIController1 eventReviewsClubOwnerGUIController1) throws SQLException {
+        eventReviewsClubOwnerGUIController1.setAll();
     }
 
-    public static void setter2(ClubOwnerBean clubOwnerBean, UserBean userBean, ReviewBean reviewBean, MakeResponseGUIController1 makeResponseGUIController1) throws SQLException {
-        makeResponseGUIController1.setAll(clubOwnerBean,userBean,reviewBean);
+    public static void setter2(UserBean userBean, ReviewBean reviewBean, MakeResponseGUIController1 makeResponseGUIController1) throws SQLException {
+        makeResponseGUIController1.setAll(userBean,reviewBean);
     }
 }

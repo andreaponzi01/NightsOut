@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ResponseEngineering;
 import nightsout.utils.bean.ClubOwnerBean;
@@ -15,23 +16,25 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class EventReviewsClubOwnerGUIController1 implements Observer {
-    public EventReviewsClubOwnerGUIController1() {
-
-    }
-
+    @FXML
+    private MenuClubOwnerGUIController1 menuController;
     private ClubOwnerBean clubOwnerBean;
     @FXML
     ListView listViewReviews;
 
+    public EventReviewsClubOwnerGUIController1() {
 
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SQLException {
-        this.clubOwnerBean = clubOwnerBean;
+    }
+
+    public void setAll() throws SQLException {
+        this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
+        this.menuController.setAll();
         ResponseEngineering.eventReviews(this, clubOwnerBean.getId());
     }
 
     public void backToClubOwnerPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
+        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
     }
 
     @Override
@@ -46,7 +49,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer {
                 e.printStackTrace();
             }
             ReviewItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(clubOwnerBean, reviewBean);
+            controller.setAll(reviewBean);
             this.listViewReviews.getItems().add(pane);
         }
     }

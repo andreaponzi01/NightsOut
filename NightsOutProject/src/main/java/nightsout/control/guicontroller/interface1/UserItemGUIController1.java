@@ -3,9 +3,7 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.*;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
@@ -15,8 +13,9 @@ public class UserItemGUIController1 {
 
     private UserBean userBean;
     private ClubOwnerBean clubOwnerBean;
+
+    private ProfileBean profileBean;
     private EventBean eventBean;
-    private String oldFxml;
 
     @FXML
     Label labelType;
@@ -29,29 +28,30 @@ public class UserItemGUIController1 {
         labelType.setText("USER");
     }
 
-    public void setAll(UserBean userBean, ClubOwnerBean clubOwnerBean) {
-        this.userBean = userBean;
+    public void setAll( ClubOwnerBean clubOwnerBean) {
         this.clubOwnerBean = clubOwnerBean;
         labelUsername.setText(this.clubOwnerBean.getUsername());
         labelType.setText("CLUB OWNER");
     }
 
-
-    public void setAll(UserBean userBean, EventBean eventBean, String oldFxml) {
-        this.userBean = userBean;
-        this.eventBean = eventBean;
-        this.oldFxml = oldFxml;
-    }
-
+//sbagliapaola
     @FXML
     private void goToProfile(ActionEvent actionEvent) throws IOException, SQLException {
-        if(clubOwnerBean == null) {
+        String type=LoggedClubOwnerBean.checkInstanceType();
+        if(clubOwnerBean != null){
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewUserPage(actionEvent,  userBean, eventBean, "/EventPageDecorator1.fxml", oldFxml);
-        } else {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewClubOwnerPage(actionEvent, "/ViewClubOwnerPage1.fxml", userBean, clubOwnerBean, "/SearchPage1.fxml");
+            replacer.switchAndSetSceneViewClubOwnerPage(actionEvent, "/ViewClubOwnerPage1.fxml", clubOwnerBean);
+        }else{
+            if(type.equals("FREE")){
+                ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+                replacer.switchAndSetSceneViewUserPageFromUser(actionEvent,"/ViewUserPageFromUser1.fxml",userBean);
+            }else{
+                ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+                replacer.switchAndSetSceneViewUserPageFromCO(actionEvent,"/ViewUserPageFromCO1.fxml",userBean);
+            }
         }
+
+
 
     }
 

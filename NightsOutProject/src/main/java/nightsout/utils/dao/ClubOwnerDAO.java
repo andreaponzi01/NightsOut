@@ -37,6 +37,7 @@ public class ClubOwnerDAO {
             clubOwnerModel.setCity(rs.getString(5));
             clubOwnerModel.setAddress(rs.getString(6));
             clubOwnerModel.setId(rs.getInt(1));
+            clubOwnerModel.setDiscountVIP(rs.getInt(8));
             clubOwnerModel.setType("Club Owner");
 
             /* Capire come funziona la gestione delle immagini tramite file
@@ -101,6 +102,7 @@ public class ClubOwnerDAO {
                 clubOwnerModel.setCity(rs.getString(5));
                 clubOwnerModel.setAddress(rs.getString(6));
                 clubOwnerModel.setId(rs.getInt(1));
+                clubOwnerModel.setDiscountVIP(rs.getInt(8));
                 list.add(clubOwnerModel);
             } while(rs.next());
 

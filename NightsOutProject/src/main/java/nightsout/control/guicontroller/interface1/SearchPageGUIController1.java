@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.SearchEngineering;
 import nightsout.utils.bean.ClubOwnerBean;
@@ -26,21 +27,12 @@ public class SearchPageGUIController1 implements Observer {
     private TextField textFieldSearch;
     @FXML
     private ListView listView;
-
-    public void setAll(UserBean userBean) {
-        this.userBean = userBean;
-    }
-
-    public void setAllOldInput(UserBean userBean, String oldInput) throws SQLException {
-        this.userBean = userBean;
-        textFieldSearch.setText(oldInput);
-        this.search();
-    }
-
     @FXML
-    private void backToUserPage(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean, null);
+    private MenuUserGUIController1 menuController;
+
+    public void setAll() throws SQLException {
+        this.userBean = LoggedUserBean.getInstance();
+        this.menuController.setAll();
     }
 
     @FXML
@@ -65,7 +57,6 @@ public class SearchPageGUIController1 implements Observer {
 
             UserItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(uBean);
-
             this.listView.getItems().add(pane);
         }
 
@@ -77,8 +68,7 @@ public class SearchPageGUIController1 implements Observer {
             }
 
             EventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(userBean, eBean, "/SearchPage1.fxml");
-
+            controller.setAll(eBean);
             this.listView.getItems().add(pane);
         }
 
@@ -90,9 +80,13 @@ public class SearchPageGUIController1 implements Observer {
             }
 
             UserItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(this.userBean, cBean);
-
+            controller.setAll(cBean);
             this.listView.getItems().add(pane);
         }
+    }
+    @FXML
+    public void backToUserPage(ActionEvent actionEvent) throws IOException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
     }
 }

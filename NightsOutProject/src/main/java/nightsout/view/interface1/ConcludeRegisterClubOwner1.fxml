@@ -26,7 +26,7 @@
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <Button fx:id="buttonSubmit" layoutX="390.0" layoutY="516.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToWelcomePage" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Submit" textFill="WHITE">
+      <Button layoutX="390.0" layoutY="516.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToWelcomePage" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Submit" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>

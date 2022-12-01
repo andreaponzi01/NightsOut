@@ -9,11 +9,8 @@ public class UserBean extends ProfileBean {
     //Attributi User
     protected String surname;
     protected String gender;
-
     protected LocalDate birthday;
-
     protected LocalDate creationDateVIP;
-
     protected boolean vip;
 
     public UserBean(){
@@ -29,7 +26,6 @@ public class UserBean extends ProfileBean {
         this.setPassword(userModel.getPassword());
         this.setEmail(userModel.getEmail());
         this.setId(userModel.getId());
-        //this.setType(userModel.getType());
         this.setImg((userModel.getProfileImg()));
         this.setBirthday(userModel.getBirthday());
         this.setVip(userModel.getVip());
@@ -42,7 +38,7 @@ public class UserBean extends ProfileBean {
     public String getSurname() {return surname;}
     public String getGender() {return gender;}
 
-    public LocalDate getBirthday() { return birthday; }
+    public LocalDate getBirthday() { return birthday;}
 
     // Setter
     public void setSurname(String surname) { this.surname = surname; }

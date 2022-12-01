@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nightsout.control.appcontroller.ManageRequestsAppController;
 import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.UserDAO;
@@ -29,27 +30,26 @@ public class ManageRequestsItemGUIController1 {
 
     @FXML
     public void acceptRequest(ActionEvent actionEvent) throws IOException, SQLException {
-
         ManageRequestsAppController.acceptRequest(manageRequestBean.getIdRequest());
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml", clubOwnerBean);
+        replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
     }
 
     public void rejectRequest(ActionEvent actionEvent) throws IOException, SQLException {
         //appcontroller
         ManageRequestsAppController.declineRequest(manageRequestBean.getIdRequest());
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml", clubOwnerBean);
+        replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
     }
 
     public void goToUserPage(ActionEvent actionEvent) throws IOException, SQLException {
         UserBean userBean =ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUserName());
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/ViewUserPage1.fxml", userBean ,null);
+        replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/ViewUserPageFromCO1.fxml",userBean);
     }
 
-    public void setAll(ManageRequestBean manageRequestBean,ClubOwnerBean clubOwnerBean) {
-        this.clubOwnerBean=clubOwnerBean;
+    public void setAll(ManageRequestBean manageRequestBean) {
+        this.clubOwnerBean= LoggedClubOwnerBean.getInstance();
         this.manageRequestBean=manageRequestBean;
         this.buttonUsername.setText(manageRequestBean.getUserName() + " " + manageRequestBean.getUserSurname() );
         this.labelEventName.setText(String.valueOf(manageRequestBean.getEventName()));

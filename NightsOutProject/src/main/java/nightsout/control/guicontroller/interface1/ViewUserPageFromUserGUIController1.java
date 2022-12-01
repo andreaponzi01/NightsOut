@@ -6,19 +6,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.observer.engineering.NextEventsEngineering;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.db.MySqlConnection;
-import nightsout.utils.scene.ReplaceScene;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class ViewUserPageGUIController1 implements Observer {
+public class ViewUserPageFromUserGUIController1 implements Observer {
 
     @FXML
     protected Label labelUsername;
@@ -30,40 +29,27 @@ public class ViewUserPageGUIController1 implements Observer {
     protected Label labelVip;
 
     private UserBean userBean;
-    private EventBean eventBean;
-    private String oldFxml;
-    private String previousOldFxml;
 
     @FXML
     private ListView listViewNextEvents;
-
-
     @FXML
-    public void goToBack(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        if(oldFxml.equals("/EventPageDecorator1.fxml")) {
-            replacer.switchAndSetSceneEvent(actionEvent, oldFxml, userBean, eventBean, previousOldFxml);
-        }
-        //Da completare
-    }
+    private MenuUserGUIController1 menuController;
+    @FXML
+    private Label labelSurname;
 
 
-    public void setAll(UserBean userBean, EventBean eventBean, String oldFxml, String previousOldFxml) throws SQLException {
+    public void setAll(UserBean userBean) throws SQLException {
+        this.menuController.setAll();
         this.userBean = userBean;
-        this.eventBean = eventBean;
-        this.previousOldFxml = previousOldFxml;
-        this.oldFxml = oldFxml;
-        //this.labelUsername.setText(userBean.getUsername());
+        this.labelUsername.setText(userBean.getUsername());
         this.labelName.setText(userBean.getName());
-        this.labelVip.setText(String.valueOf(userBean.getVip()));
-       // this.labelBirthday.setText(userBean.getBirthday());
+        this.labelSurname.setText(userBean.getSurname());
+        if(userBean.getVip())
+            this.labelVip.setText("utente vip");
+        else
+            this.labelVip.setText("utente NON vip");
+        this.labelBirthday.setText(userBean.getBirthday().toString());
         NextEventsEngineering.nextEvents(this, userBean.getId());
-    }
-
-    @FXML
-    private void logout(ActionEvent actionEvent) throws IOException, SQLException {
-        ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
-        MySqlConnection.closeConnection();
     }
 
     @Override
@@ -80,7 +66,7 @@ public class ViewUserPageGUIController1 implements Observer {
             }
 
             NextEventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(userBean, eBean);
+            controller.setAll(eBean);
             this.listViewNextEvents.getItems().add(pane);
         }
     }

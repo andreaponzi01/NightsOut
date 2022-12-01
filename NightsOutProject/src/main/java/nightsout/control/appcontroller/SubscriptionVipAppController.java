@@ -1,6 +1,7 @@
 package nightsout.control.appcontroller;
 
 import nightsout.model.UserModel;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.UserDAO;
 
@@ -12,10 +13,9 @@ public class SubscriptionVipAppController {
         //ignored
     }
 
-    public static UserBean subscription(UserBean userBean) throws SQLException {
+    public static void subscription(UserBean userBean) throws SQLException {
         UserModel userModel = new UserModel(userBean);
-
-        UserDAO.subscriptionVip(userModel);
-        return (new UserBean(userModel));
+        userModel= UserDAO.subscriptionVip(userModel);
+        LoggedUserBean.UpdateInstance(userModel);
     }
 }

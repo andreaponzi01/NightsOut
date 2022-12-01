@@ -4,6 +4,7 @@ import nightsout.model.ClubOwnerModel;
 import nightsout.model.UserModel;
 import nightsout.utils.Authentication;
 import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.LoginBean;
 import nightsout.utils.dao.ClubOwnerDAO;
@@ -48,19 +49,16 @@ public class LoginAppController {
         }
     }
 
-    public static ClubOwnerBean loginClubOwner(LoginBean loginBean) throws WrongCredentialsException {
+    public static void loginClubOwner(LoginBean loginBean) throws WrongCredentialsException {
 
-            ClubOwnerModel clubOwnerModel = null;
-            ClubOwnerBean clubOwnerBean = null;
+        ClubOwnerModel clubOwnerModel = null;
+        LoggedClubOwnerBean loggedClubOwnerBean=null;
 
-            if (Authentication.checkIsRegistered(loginBean.getUsername(), loginBean.getPassword(), loginBean.getType())) {
-                clubOwnerModel = ClubOwnerDAO.getClubOwnerByUsername(loginBean.getUsername());
-                clubOwnerBean = new ClubOwnerBean(clubOwnerModel);
-                clubOwnerBean.setType("Club Owner");
-            } else {
-                Trigger.throwWrongCredentials();
-            }
-
-            return clubOwnerBean;
+        if (Authentication.checkIsRegistered(loginBean.getUsername(), loginBean.getPassword(), loginBean.getType())) {
+            clubOwnerModel = ClubOwnerDAO.getClubOwnerByUsername(loginBean.getUsername());
+            loggedClubOwnerBean = LoggedClubOwnerBean.getInstance(clubOwnerModel);
+        } else {
+            Trigger.throwWrongCredentials();
+        }
     }
 }

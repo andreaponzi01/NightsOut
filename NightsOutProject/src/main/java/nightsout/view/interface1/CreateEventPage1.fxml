@@ -12,14 +12,15 @@
 
 <AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.CreateEventGUIController1">
    <children>
-      <AnchorPane layoutX="168.0" layoutY="145.0" prefHeight="421.0" prefWidth="749.0" style="-fx-background-color: white;">
+      <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
+      <AnchorPane layoutX="168.0" layoutY="145.0" prefHeight="421.0" prefWidth="749.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <TextField fx:id="textFieldName" alignment="CENTER" layoutX="97.0" layoutY="44.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert name " style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldName" alignment="CENTER" layoutX="233.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert name " style="-fx-background-radius: 28;">
                <font>
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonCreateEvent" layoutX="213.0" layoutY="336.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Next Step" textFill="WHITE">
+            <Button fx:id="buttonCreateEvent" layoutX="356.0" layoutY="438.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Next Step" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="25.0" />
                </font>
@@ -30,51 +31,51 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="textFieldPrice" alignment="CENTER" layoutX="96.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert Price " style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldPrice" alignment="CENTER" layoutX="222.0" layoutY="193.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert Price " style="-fx-background-radius: 28;">
                <font>
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
-            <DatePicker fx:id="dateEvent" layoutX="108.0" layoutY="194.0" promptText="insert Date Event" />
-            <Slider fx:id="sliderTime" blockIncrement="1.0" layoutX="101.0" layoutY="288.0" majorTickUnit="1.0" max="6.0" min="1.0" minorTickCount="0" prefHeight="26.0" prefWidth="220.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-            <Label layoutX="117.0" layoutY="255.0" prefHeight="17.0" prefWidth="52.0" text="Hour" />
-            <TextField fx:id="textFieldHours" alignment="CENTER" layoutX="319.0" layoutY="182.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="179.0" promptText="Hours" style="-fx-background-radius: 28;">
+            <DatePicker fx:id="dateEvent" layoutX="234.0" layoutY="272.0" promptText="insert Date Event" />
+            <Slider fx:id="sliderTime" blockIncrement="1.0" layoutX="227.0" layoutY="366.0" majorTickUnit="1.0" max="6.0" min="1.0" minorTickCount="0" prefHeight="26.0" prefWidth="220.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Label layoutX="243.0" layoutY="333.0" prefHeight="17.0" prefWidth="52.0" text="Hour" />
+            <TextField fx:id="textFieldHours" alignment="CENTER" layoutX="445.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="179.0" promptText="Hours" style="-fx-background-radius: 28;">
                <font>
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
-            <TextField fx:id="textFieldMinutes" alignment="CENTER" layoutX="510.0" layoutY="182.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="179.0" promptText="Minutes" style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldMinutes" alignment="CENTER" layoutX="636.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="179.0" promptText="Minutes" style="-fx-background-radius: 28;">
                <font>
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
-            <Label layoutX="500.0" layoutY="175.0" prefHeight="52.0" prefWidth="15.0" text=":">
+            <Label layoutX="626.0" layoutY="253.0" prefHeight="52.0" prefWidth="15.0" text=":">
                <font>
                   <Font size="42.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldDescription" alignment="CENTER" layoutX="363.0" layoutY="255.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="371.0" promptText="insert description" style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldDescription" alignment="CENTER" layoutX="489.0" layoutY="333.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="371.0" promptText="insert description" style="-fx-background-radius: 28;">
                <font>
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
+            <Label alignment="CENTER" layoutX="104.0" layoutY="1.0" prefHeight="84.0" prefWidth="838.0" text="Insert Event Info" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="50.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonBack" layoutX="38.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
+               <font>
+                  <Font name="Arial Bold" size="25.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="buttonBack" layoutX="42.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
-         <font>
-            <Font name="Arial Bold" size="25.0" />
-         </font>
-         <effect>
-            <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label alignment="CENTER" layoutX="102.0" layoutY="71.0" prefHeight="84.0" prefWidth="838.0" text="Insert Event Info" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="50.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

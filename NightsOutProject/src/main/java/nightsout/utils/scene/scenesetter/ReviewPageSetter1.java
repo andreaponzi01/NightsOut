@@ -6,13 +6,15 @@ import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 
+import java.sql.SQLException;
+
 public class ReviewPageSetter1 {
 
     private ReviewPageSetter1() {
         //ignored
     }
 
-    public static void setter(UserBean userBean, EventBean eventBean, CreateEventReviewGUIController1 createEventReviewGUIController1) {
-        createEventReviewGUIController1.setAll(eventBean,userBean);
+    public static void setter( EventBean eventBean, CreateEventReviewGUIController1 createEventReviewGUIController1) throws SQLException {
+        createEventReviewGUIController1.setAll(eventBean);
     }
 }

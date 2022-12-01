@@ -8,6 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.db.Query;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -22,9 +23,9 @@ public class ConcreteDecoratorDelete extends Decorator {
 
     String toWrite;
 
-    public ConcreteDecoratorDelete(VisualComponent component, ClubOwnerBean clubOwnerBean, EventBean eventBean) {
+    public ConcreteDecoratorDelete(VisualComponent component, EventBean eventBean) {
         super(component);
-        this.clubOwnerBean = clubOwnerBean;
+        this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
         this.eventBean = eventBean;
     }
 
@@ -50,7 +51,7 @@ public class ConcreteDecoratorDelete extends Decorator {
                 preparedStatement = Query.deleteEventById(eventBean.getIdEvent());
                 preparedStatement.executeUpdate();
                 ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
-                replaceSceneDynamic1.switchAndSetScene(ae, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
+                replaceSceneDynamic1.switchAndSetScene(ae, "/ClubOwnerPage1.fxml");
             } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }

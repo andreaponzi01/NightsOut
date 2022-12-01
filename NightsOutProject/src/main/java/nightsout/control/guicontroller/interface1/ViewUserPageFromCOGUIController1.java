@@ -3,44 +3,45 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.bean.LoggedUserBean;
-import nightsout.utils.observer.engineering.NextEventsEngineering;
-import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.db.MySqlConnection;
-import nightsout.utils.scene.ReplaceScene;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.engineering.NextEventsEngineering;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class UserPageGUIController1 implements Observer {
+public class ViewUserPageFromCOGUIController1 implements Observer {
 
     @FXML
-    protected Label labelName;
+    protected Label labelUsername;
     @FXML
-    protected Label labelSurname;
+    protected Label labelName;
     @FXML
     protected Label labelBirthday;
     @FXML
     protected Label labelVip;
 
-    protected UserBean userBean;
+    private UserBean userBean;
 
-    @FXML
-    protected MenuUserGUIController1 menuController;
     @FXML
     private ListView listViewNextEvents;
+    @FXML
+    private MenuClubOwnerGUIController1 menuController;
+    @FXML
+    private Label labelSurname;
 
-    public void setAllCulo() throws SQLException {
-        this.userBean = LoggedUserBean.getInstance();
+
+    public void setAll(UserBean userBean) throws SQLException {
+        this.menuController.setAll();
+        this.userBean = userBean;
+        this.labelUsername.setText(userBean.getUsername());
         this.labelName.setText(userBean.getName());
         this.labelSurname.setText(userBean.getSurname());
         if(userBean.getVip())
@@ -48,10 +49,8 @@ public class UserPageGUIController1 implements Observer {
         else
             this.labelVip.setText("utente NON vip");
         this.labelBirthday.setText(userBean.getBirthday().toString());
-        this.menuController.setAll();
         NextEventsEngineering.nextEvents(this, userBean.getId());
     }
-
 
     @Override
     public void update(Object ob) {
@@ -65,7 +64,6 @@ public class UserPageGUIController1 implements Observer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             NextEventItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(eBean);
             this.listViewNextEvents.getItems().add(pane);

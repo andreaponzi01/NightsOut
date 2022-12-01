@@ -6,11 +6,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.CreateEventReviewAppController;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class CreateEventReviewGUIController1 {
 
@@ -19,14 +21,22 @@ public class CreateEventReviewGUIController1 {
     private UserBean userBean;
     @FXML
     private Label labelEventName;
-
     @FXML
     private TextField textFieldReview;
+    @FXML
+    private MenuUserGUIController1 menuController;
+
 
     public CreateEventReviewGUIController1() {
         //ignore
     }
 
+    public void setAll(EventBean eventBean) throws SQLException {
+        this.userBean= LoggedUserBean.getInstance();
+        this.eventBean=eventBean;
+        this.menuController.setAll();
+        this.labelEventName.setText(eventBean.getName());
+    }
 
     public void createReview(ActionEvent actionEvent) throws IOException {
 
@@ -37,10 +47,9 @@ public class CreateEventReviewGUIController1 {
             reviewBean.setIdUser(userBean.getId());
             reviewBean.setIdEvent(eventBean.getIdEvent());
 
-
             CreateEventReviewAppController.createEventReview(reviewBean);
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean, null);
+            replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         }
         else
         {
@@ -50,12 +59,7 @@ public class CreateEventReviewGUIController1 {
 
     public void backToEndedBookedEventsPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneEndedBookedEvents(actionEvent, "/EndedBookedEventsPage1.fxml", userBean);
+        replacer.switchAndSetSceneEndedBookedEvents(actionEvent, "/EndedBookedEventsPage1.fxml");
     }
 
-    public void setAll(EventBean eventBean, UserBean userBean){
-        this.userBean=userBean;
-        this.eventBean=eventBean;
-        this.labelEventName.setText(eventBean.getName());
-    }
 }

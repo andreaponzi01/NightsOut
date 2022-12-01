@@ -14,8 +14,8 @@ public class ReviewAndResponsePageSetter1 {
         //ignored
     }
 
-    public static void setter(ClubOwnerBean clubOwnerBean, ReviewAndResponseGUIController1 reviewAndResponseGUIController1) throws SQLException {
-        reviewAndResponseGUIController1.setAll(clubOwnerBean);
+    public static void setter(ReviewAndResponseGUIController1 reviewAndResponseGUIController1) throws SQLException {
+        reviewAndResponseGUIController1.setAll();
     }
 
 

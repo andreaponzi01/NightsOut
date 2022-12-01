@@ -30,6 +30,13 @@ public class EventBean implements GenericBean {
     protected String name;
     protected Double price;
     protected Double vipPrice;
+    protected String description;
+
+
+    protected int hours;
+    protected int minutes;
+    protected int duration;
+    protected LocalDate eventDate;
 
     public String getDescription() {
         return description;
@@ -38,13 +45,6 @@ public class EventBean implements GenericBean {
     public void setDescription(String description) { this.description = description;
     }
 
-    protected String description;
-
-
-    protected int hours;
-    protected int minutes;
-    protected int duration;
-    protected LocalDate eventDate;
 
     public int getIdClubOwner() {
         return idClubOwner;

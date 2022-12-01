@@ -12,8 +12,8 @@ public class EndedBookedEventsPageSetter1 {
         //ignored
     }
 
-    public static void setter(UserBean userBean, EndedBookedEventsGUIController1 endedBookedEventsGUIController1) throws SQLException {
-        endedBookedEventsGUIController1.setAll(userBean);
+    public static void setter(EndedBookedEventsGUIController1 endedBookedEventsGUIController1) throws SQLException {
+        endedBookedEventsGUIController1.setAll();
     }
 
 

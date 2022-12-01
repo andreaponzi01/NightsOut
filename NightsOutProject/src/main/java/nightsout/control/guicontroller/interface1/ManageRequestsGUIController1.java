@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.observer.engineering.ManageRequestsEngineering;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.ClubOwnerBean;
@@ -21,23 +22,19 @@ public class ManageRequestsGUIController1 implements Observer {
 
     @FXML
     ListView listViewPendingRequests;
-
     @FXML
-    public void backToWelcomePage(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
+    private MenuClubOwnerGUIController1 menuController;
+
+    public void setAll() throws SQLException {
+        this.menuController.setAll();
+        this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
+        this.manageRequests();
     }
 
     @FXML
     private void manageRequests() throws SQLException {
         this.listViewPendingRequests.getItems().clear();
         ManageRequestsEngineering.manageRequests(this, clubOwnerBean.getId());
-    }
-
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SQLException {
-
-        this.clubOwnerBean = clubOwnerBean;
-        this.manageRequests();
     }
 
     @Override
@@ -53,7 +50,7 @@ public class ManageRequestsGUIController1 implements Observer {
             }
 
             ManageRequestsItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(mRBean,clubOwnerBean);
+            controller.setAll(mRBean);
             this.listViewPendingRequests.getItems().add(pane);
         }
     }

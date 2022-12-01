@@ -42,12 +42,12 @@ public class LoginGUIController1 {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
 
             if (Objects.equals(type,"ClubOwner")) {
-                ClubOwnerBean clubOwnerBean = LoginAppController.loginClubOwner(loginBean);
-                replacer.switchAndSetScene(ae, "/ClubOwnerPage1.fxml", null, clubOwnerBean);
+                LoginAppController.loginClubOwner(loginBean);
+                replacer.switchAndSetScene(ae, "/ClubOwnerPage1.fxml");
             } else {
 
                 LoginAppController.loginUser(loginBean);
-                replacer.switchAndSetSceneCulo(ae, "/UserPage1.fxml", null);
+                replacer.switchAndSetScene(ae, "/UserPage1.fxml");
             }
 
         } catch (WrongCredentialsException e) { MyNotification.createNotification(e); }

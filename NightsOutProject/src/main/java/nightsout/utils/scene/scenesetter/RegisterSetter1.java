@@ -5,6 +5,8 @@ import nightsout.control.guicontroller.interface1.ConcludeRegisterUserGUIControl
 import nightsout.control.guicontroller.interface1.CreateEventGUIController1;
 import nightsout.utils.bean.ClubOwnerBean;
 
+import java.sql.SQLException;
+
 public class RegisterSetter1 {
 
     private RegisterSetter1() {
@@ -19,7 +21,7 @@ public class RegisterSetter1 {
         concludeRegisterUserGUIController1.setAll(personalInfo);
     }
 
-    public static void setterCreateEvent(ClubOwnerBean clubOwnerBean, CreateEventGUIController1 createEventGUIController1) {
-        createEventGUIController1.setAll(clubOwnerBean);
+    public static void setterCreateEvent(CreateEventGUIController1 createEventGUIController1) throws SQLException {
+        createEventGUIController1.setAll();
     }
 }

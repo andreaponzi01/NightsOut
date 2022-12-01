@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.CheckRequestsAppController;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.observer.engineering.CheckRequestsEngineering;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.EventBean;
@@ -24,21 +25,27 @@ public class CheckRequestsGUIController1 implements Observer {
     ListView listViewPendingRequests;
 
     @FXML
+    private MenuUserGUIController1 menuController;
+
+    public void setAll() throws SQLException {
+        this.userBean = LoggedUserBean.getInstance();
+        this.menuController.setAll();
+        this.checkRequests();
+    }
+
+    @FXML
     public void backToWelcomePage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean, null);
+        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
     }
 
     @FXML
     private void checkRequests() throws SQLException {
         this.listViewPendingRequests.getItems().clear();
-        CheckRequestsEngineering.checkRequests(this, userBean.getId());
+        CheckRequestsEngineering.checkRequests(this, this.userBean.getId());
     }
 
-    public void setAll(UserBean userBean) throws SQLException {
-        this.userBean = userBean;
-        this.checkRequests();
-    }
+
 
     @Override
     public void update(Object ob) {
@@ -52,7 +59,7 @@ public class CheckRequestsGUIController1 implements Observer {
             }
             CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
             EventBean eventBean = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
-            controller.setAll(rBean, userBean, eventBean);
+            controller.setAll(rBean, eventBean);
 
             this.listViewPendingRequests.getItems().add(pane);
         }

@@ -5,8 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.control.appcontroller.RequestAppController;
-import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -15,20 +15,14 @@ import java.io.IOException;
 public class ConcreteDecoratorSendRequest extends Decorator {
 
     private UserBean userBean;
-    private ClubOwnerBean clubOwnerBean;
     private EventBean eventBean;
-    private String oldFxml;
-    private String prevOldFxml;
 
     String toWrite;
 
-    public ConcreteDecoratorSendRequest(VisualComponent component, UserBean userBean, EventBean eventBean, ClubOwnerBean clubOwnerBean, String oldFxml, String prevOldFxml) {
+    public ConcreteDecoratorSendRequest(VisualComponent component, EventBean eventBean) {
         super(component);
-        this.userBean = userBean;
+        this.userBean = LoggedUserBean.getInstance();
         this.eventBean = eventBean;
-        this.clubOwnerBean = clubOwnerBean;
-        this.oldFxml = oldFxml;
-        this.prevOldFxml = prevOldFxml;
     }
 
     protected void applyDecorationSendRequest(Button myButton) {
@@ -41,21 +35,12 @@ public class ConcreteDecoratorSendRequest extends Decorator {
         myButton.setOnAction((ActionEvent ae) -> sendRequest(ae));
     }
 
-    private void backToWelcomePage(ActionEvent ae, String fxml, UserBean userBean) {
-        try {
-            ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
-            replaceSceneDynamic1.switchAndSetScene(ae, fxml, userBean, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void sendRequest(ActionEvent actionEvent) {
+    private void sendRequest(ActionEvent actionEvent){
         try {
             RequestAppController.sendRequest(this.userBean, eventBean);
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEvent2(actionEvent, "/EventPageDecorator1.fxml", userBean, clubOwnerBean, eventBean, oldFxml, prevOldFxml);
-        } catch (IOException e) {
+            replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+        } catch (IOException e){
             e.printStackTrace();
         }
     }

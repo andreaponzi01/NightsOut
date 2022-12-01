@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -15,9 +16,9 @@ public class ConcreteDecoratorAccepted extends Decorator {
 
     String toWrite;
 
-    public ConcreteDecoratorAccepted(VisualComponent component, UserBean userBean) {
+    public ConcreteDecoratorAccepted(VisualComponent component) {
         super(component);
-        this.userBean = userBean;
+        this.userBean = LoggedUserBean.getInstance();
     }
 
     protected void applyDecorationAccepted(Button myButton) {
@@ -27,16 +28,6 @@ public class ConcreteDecoratorAccepted extends Decorator {
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
         myButton.setStyle("-fx-background-color: #32a844;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
-        //myButton.setOnAction((ActionEvent ae) -> backToWelcomePage(ae, "/UserPage1.fxml", this.userBean));
-    }
-
-    private void backToWelcomePage(ActionEvent ae, String fxml, UserBean userBean) {
-        try {
-            ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
-            replaceSceneDynamic1.switchAndSetScene(ae, fxml, userBean, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

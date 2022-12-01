@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EndedBookedEventsAppController;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ReviewEngineering;
 import nightsout.utils.bean.EventBean;
@@ -22,16 +23,19 @@ public class EndedBookedEventsGUIController1 implements Observer {
 
     @FXML
     ListView listViewEvents;
+    @FXML
+    private MenuUserGUIController1 menuController;
 
 
-    public void setAll(UserBean userBean) throws SQLException {
-        this.userBean = userBean;
+    public void setAll() throws SQLException {
+        this.userBean = LoggedUserBean.getInstance();
+        this.menuController.setAll();
         ReviewEngineering.endedBookedEvents(this, userBean.getId());
     }
 
     public void backToUserPage(ActionEvent actionEvent) throws IOException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml", userBean, null);
+        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
     }
 
     @Override
@@ -46,12 +50,12 @@ public class EndedBookedEventsGUIController1 implements Observer {
                 if(reviewBean!=null){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                     EventItemGUIController1 controller = fxmlLoader.getController();
-                    controller.setAll(userBean, eBean,"/EndedBookedEventsPage1.fxml");
+                    controller.setAll( eBean);
                     this.listViewEvents.getItems().add(pane);
                 } else {
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem1.fxml")).openStream());
                     EventReviewItemGUIController1 controller = fxmlLoader.getController();
-                    controller.setAll(userBean, eBean);
+                    controller.setAll(eBean);
                     this.listViewEvents.getItems().add(pane);
                 }
 

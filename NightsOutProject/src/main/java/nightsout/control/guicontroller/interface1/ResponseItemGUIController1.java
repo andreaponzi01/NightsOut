@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.ResponseBean;
-import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.*;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
@@ -25,9 +22,9 @@ public class ResponseItemGUIController1 {
     @FXML
     private Label labelUsername; //renderlo bottone
 
-    public void setAll(ClubOwnerBean clubOwnerBean, ResponseBean responseBean) throws SQLException {
+    public void setAll(ResponseBean responseBean) throws SQLException {
         this.textAreaResponse.setText(responseBean.getResponse());
-        this.labelUsername.setText(String.valueOf(clubOwnerBean.getId()));
+        this.labelUsername.setText(String.valueOf(LoggedClubOwnerBean.getInstance().getId()));
         //implementare di vedere il nome e non l' id del clubOwner
     }
 }
