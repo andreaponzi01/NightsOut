@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nightsout.Main;
+import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.io.IOException;
 
@@ -24,7 +27,11 @@ public class ReplaceScene{
         try {
             scene = new Scene(fxmlLoader.load());
         } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                ExceptionHandler.handleException(e);
+            } catch (SystemException ex) {
+                MyNotification.createNotification(ex);
+            }
         }
         stage.setScene(scene);
         stage.show();

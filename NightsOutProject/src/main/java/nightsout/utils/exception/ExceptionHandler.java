@@ -1,38 +1,30 @@
 package nightsout.utils.exception;
 
+import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.myexception.SystemException;
+
+import java.sql.SQLException;
+
 public class ExceptionHandler {
-    private static ExceptionHandler instance= null;
 
-    public ExceptionHandler getInstance() {
-        if(instance == null){
-            instance = new ExceptionHandler();
-        }
-        return instance;
-    }
+    public static void handleException(Exception e) throws SystemException {
 
-    /*
-    public void handleException(Exception e) throws SystemException {
-
-        if (e instanceof SQLException sql){
-
-            int errorCode = sql.getErrorCode();
-            sql.printStackTrace();
-            if(errorCode ==0){
-                throw new MysqlConnectionFailed();
+        if (e instanceof SQLException) {
+            if (((SQLException) e).getErrorCode() == 0) {
+                Trigger.throwDBConnectionFailedException((SQLException) e);
+            } else {
+                SystemException exception = new SystemException();
+                exception.initCause(e);
+                throw exception;
             }
-            else{
-                e.printStackTrace();
-                throw new SystemException();
-            }
-        }
-        if(e instanceof IOException ||  e instanceof DataFormatException){
-            throw new SystemException();
-        }
-        if(e instanceof CoseException || e instanceof CborParseException ){
-            throw new SystemException();
+        } else if (e instanceof DBConnectionFailedException) {
+            MyNotification.createNotification(e);
+        } else {
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
-     */
-
 }
 

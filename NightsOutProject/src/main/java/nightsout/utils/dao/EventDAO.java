@@ -5,7 +5,9 @@ import nightsout.model.EventModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,22 +22,21 @@ public class EventDAO {
         //ignored
     }
 
-    public static void createEvent(EventModel eventModel) {
+    public static void createEvent(EventModel eventModel) throws SystemException {
         Statement stm= null;
         try{
 
             stm= MySqlConnection.tryConnect();
             CRUD.insertEvent(eventModel.getIdClubOwner(), eventModel.getName(), eventModel.getEventDate().toString(), eventModel.getTime().toString(), eventModel.getDuration(), eventModel.getPrice(), eventModel.getDescription(), stm);
 
-        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-            // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+        }catch (SQLException /*| FileNotFoundException*/ e) {
+            ExceptionHandler.handleException(e);
         } catch (DBConnectionFailedException e) {
             MyNotification.createNotification(e);
         }
     }
 
-    public static List<EventModel> getEventsByName(String name) {
+    public static List<EventModel> getEventsByName(String name) throws SystemException {
 
         List<EventModel> list = null;
         PreparedStatement preparedStatement = null;
@@ -68,14 +69,13 @@ public class EventDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static List<EventModel> getNextEventsByIdUser(int idUser) {
+    public static List<EventModel> getNextEventsByIdUser(int idUser) throws SystemException {
 
         List<EventModel> list = null;
         PreparedStatement preparedStatement = null;
@@ -108,14 +108,13 @@ public class EventDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static List<EventModel> getCreatedEventsByIdClubOwner(int idClubOwner) {
+    public static List<EventModel> getCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
 
         List<EventModel> list = null;
         PreparedStatement preparedStatement = null;
@@ -148,14 +147,13 @@ public class EventDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static List<EventModel> getEndedEventsByIdUser(int idUser) {
+    public static List<EventModel> getEndedEventsByIdUser(int idUser) throws SystemException {
 
         List<EventModel> list = null;
         PreparedStatement preparedStatement = null;
@@ -188,15 +186,14 @@ public class EventDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return list;
     }
 
 
-    public static EventModel getEventByIdEvent(int idEvent) {
+    public static EventModel getEventByIdEvent(int idEvent) throws SystemException {
         PreparedStatement preparedStatement = null;
         EventModel eventModel = null ;
 
@@ -218,9 +215,8 @@ public class EventDAO {
 
             return eventModel;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return eventModel;
     }

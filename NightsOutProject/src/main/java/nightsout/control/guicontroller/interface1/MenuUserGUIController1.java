@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.db.MySqlConnection;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -33,7 +34,7 @@ public class MenuUserGUIController1 {
     }
 
     @FXML
-    private void goToSubscriptionPage(ActionEvent actionEvent) throws IOException {
+    private void goToSubscriptionPage(ActionEvent actionEvent) throws SystemException {
         if (userBean.getVip()) {
             System.out.println("Already subscriptioned ");
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
@@ -47,13 +48,13 @@ public class MenuUserGUIController1 {
     }
 
     @FXML
-    private void goToSearchPage(ActionEvent actionEvent) throws IOException {
+    private void goToSearchPage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneSearch(actionEvent, "/SearchPage1.fxml");
     }
 
     @FXML
-    private void goToCheckRequestsPage(ActionEvent actionEvent) throws IOException {
+    private void goToCheckRequestsPage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneCheckRequests(actionEvent, "/CheckRequestsPage1.fxml");
     }
@@ -73,13 +74,13 @@ public class MenuUserGUIController1 {
     }
 
     @FXML
-    public void goToReviewPage(ActionEvent actionEvent) throws IOException {
+    public void goToReviewPage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneEndedBookedEvents(actionEvent, "/EndedBookedEventsPage1.fxml");
     }
 
     @FXML
-    public void goToHome(ActionEvent actionEvent) throws IOException {
+    public void goToHome(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
     }

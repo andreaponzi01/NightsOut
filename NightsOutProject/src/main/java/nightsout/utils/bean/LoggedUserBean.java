@@ -2,6 +2,7 @@ package nightsout.utils.bean;
 
 import nightsout.model.UserModel;
 
+// Singleton
 import static java.lang.Boolean.TRUE;
 
 public class LoggedUserBean extends UserBean {

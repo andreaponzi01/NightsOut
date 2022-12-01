@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.RegisterAppController;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.myexception.EmailNotValidException;
+import nightsout.utils.exception.myexception.EmptyInputException;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
 
 import java.time.LocalDate;
@@ -23,11 +26,10 @@ public class ConcludeRegisterUserGUIController1 {
     Button buttonBack;
     @FXML
     Button buttonSubmit;
-
     @FXML
     protected void backToRegister(ActionEvent actionEvent) {ReplaceScene.replaceScene(actionEvent, "/RegisterUser1.fxml");}
     @FXML
-    protected void goToWelcomePage(ActionEvent actionEvent) {
+    protected void goToWelcomePage(ActionEvent actionEvent) throws EmptyInputException, EmailNotValidException, SystemException {
 
         userBean.setUsername(textFieldUsername.getText());
         userBean.setPassword(textFieldPassword.getText());
@@ -35,7 +37,7 @@ public class ConcludeRegisterUserGUIController1 {
         RegisterAppController.registerUser(userBean);
         ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml"); }
 
-    public void setAll(String[] personalInfo) {
+    public void setAll(String[] personalInfo) throws EmptyInputException {
 
         userBean = new UserBean();
         userBean.setName(personalInfo[0]);

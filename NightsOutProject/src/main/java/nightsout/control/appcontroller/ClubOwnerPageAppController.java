@@ -1,8 +1,10 @@
 package nightsout.control.appcontroller;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.EventModel;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.dao.EventDAO;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class ClubOwnerPageAppController {
         //ignore
     }
 
-    public static List<EventBean> searchCreatedEventsByIdClubOwner(int idClubOwner){
+    public static List<EventBean> searchCreatedEventsByIdClubOwner(int idClubOwner) {
         List<EventModel> list = null;
         List<EventBean> listBean = null;
 
@@ -25,8 +27,8 @@ public class ClubOwnerPageAppController {
                 listBean.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return listBean;
 

@@ -1,18 +1,13 @@
 package nightsout.utils.dao;
 
-import nightsout.model.EventModel;
 import nightsout.model.ReviewModel;
-import nightsout.model.UserModel;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.db.CRUD;
-import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,21 +17,20 @@ public class ReviewDAO {
         //ignore
     }
 
-    public static void createEventReview(ReviewModel reviewModel) {
+    public static void createEventReview(ReviewModel reviewModel) throws SystemException {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = Query.insertEventReview(reviewModel);
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-            // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+        } catch (SQLException /*| FileNotFoundException*/ m) {
+            ExceptionHandler.handleException(m);
         }
     }
 
 
-    public static List<ReviewModel> getReviewByIdClubOwner(int idClubOwner) {
+    public static List<ReviewModel> getReviewByIdClubOwner(int idClubOwner) throws SystemException {
 
         List<ReviewModel> list = null;
         PreparedStatement preparedStatement = null;
@@ -65,14 +59,13 @@ public class ReviewDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+           ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static List<ReviewModel> getAllReviewByIdClubOwner(int idClubOwner) {
+    public static List<ReviewModel> getAllReviewByIdClubOwner(int idClubOwner) throws SystemException {
 
         List<ReviewModel> list = null;
         PreparedStatement preparedStatement = null;
@@ -101,14 +94,13 @@ public class ReviewDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static ReviewModel getReviewByIdEventAndIdUser(int idEvent,int idUser) {
+    public static ReviewModel getReviewByIdEventAndIdUser(int idEvent,int idUser) throws SystemException {
 
         PreparedStatement preparedStatement = null;
         ReviewModel reviewModel = null;
@@ -132,9 +124,8 @@ public class ReviewDAO {
             preparedStatement.close();
             return reviewModel;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return reviewModel;
     }

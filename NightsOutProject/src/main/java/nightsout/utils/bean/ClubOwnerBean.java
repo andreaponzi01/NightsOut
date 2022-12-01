@@ -1,6 +1,9 @@
 package nightsout.utils.bean;
 
 import nightsout.model.ClubOwnerModel;
+import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.EmptyInputException;
+import nightsout.utils.exception.myexception.WrongInputTypeException;
 
 import java.net.URL;
 
@@ -19,8 +22,14 @@ public class ClubOwnerBean extends ProfileBean {
         return discountVIP;
     }
 
-    public void setDiscountVIP(int discountVIP) {
-        this.discountVIP = discountVIP;
+    public void setDiscountVIP(String discountVIP) throws WrongInputTypeException, EmptyInputException {
+        try {
+            if(discountVIP.equals(""))
+                Trigger.emptyField("Discount");
+            this.discountVIP = Integer.parseInt(discountVIP);
+        } catch (NumberFormatException e) {
+            Trigger.throwWrongInputTypeException(e, "Discount");
+        }
     }
 
     protected int discountVIP;
@@ -44,13 +53,17 @@ public class ClubOwnerBean extends ProfileBean {
     public String getCity() {return city;}
 
     // Setter
-    public void setAddress(String address) {
+    public void setAddress(String address) throws EmptyInputException {
+        if (address.equals(""))
+            Trigger.emptyField("Address");
         this.address = address;
     }
     public void setWebsite(URL website) {
         this.website = website;
     }
-    public void setCity(String city) {
+    public void setCity(String city) throws EmptyInputException {
+        if (city.equals(""))
+            Trigger.emptyField("City");
         this.city = city;
     }
 

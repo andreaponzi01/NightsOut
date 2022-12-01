@@ -8,9 +8,8 @@ import nightsout.control.appcontroller.RequestAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
-
-import java.io.IOException;
 
 public class ConcreteDecoratorSendRequest extends Decorator {
 
@@ -40,8 +39,8 @@ public class ConcreteDecoratorSendRequest extends Decorator {
             RequestAppController.sendRequest(this.userBean, eventBean);
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
-        } catch (IOException e){
-            e.printStackTrace();
+        } catch (SystemException e){
+            // Da gestire
         }
     }
 

@@ -5,7 +5,9 @@ import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +22,7 @@ public class UserDAO {
         //ignored
     }
 
-    public static UserModel getUserByUsername(String username) {
+    public static UserModel getUserByUsername(String username) throws SystemException {
 
         PreparedStatement preparedStatement = null;
         UserModel userModel = null ;
@@ -56,14 +58,15 @@ public class UserDAO {
             preparedStatement.close();
             return userModel;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
+        } catch (DBConnectionFailedException e) {
+            MyNotification.createNotification(e);
         }
         return userModel;
     }
 
-    public static void insertUser(UserModel userModel) {
+    public static void insertUser(UserModel userModel) throws SystemException {
         Statement stm = null;
         PreparedStatement preparedStatement = null;
 
@@ -77,15 +80,14 @@ public class UserDAO {
             preparedStatement.close();
 
         } catch (DBConnectionFailedException e) {
-            // ErrorHandler.getInstance().handleException(m);
             MyNotification.createNotification(e);
-        } catch (SQLException /*| FileNotFoundException*/ m) {
-            //
+        } catch (SQLException /*| FileNotFoundException*/ e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
 
-    public static UserModel subscriptionVip(UserModel userModel) throws SQLException {
+    public static UserModel subscriptionVip(UserModel userModel) throws SystemException {
         Statement stm= null;
         PreparedStatement preparedStatement = null;
         try{
@@ -101,16 +103,15 @@ public class UserDAO {
             userModel.setCreationDateVip(rs.getDate(10).toLocalDate());
             preparedStatement.close();
 
-        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-            // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+        }catch (SQLException /*| FileNotFoundException*/ m) {
+            ExceptionHandler.handleException(m);
         } catch (DBConnectionFailedException e) {
             MyNotification.createNotification(e);
          }
         return userModel;
     }
 
-    public static List<UserModel> getUsersByUsername(String username) throws SQLException {
+    public static List<UserModel> getUsersByUsername(String username) throws SystemException {
 
         List<UserModel> list = null;
         PreparedStatement preparedStatement = null;
@@ -143,14 +144,15 @@ public class UserDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-        e.printStackTrace();
+        } catch (SQLException e){
+           ExceptionHandler.handleException(e);
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return list;
     }
 
-    public static List<UserModel> getUsersByIdEvent(int idEvent) throws SQLException {
+    public static List<UserModel> getUsersByIdEvent(int idEvent) throws SystemException {
 
         List<UserModel> list = null;
         PreparedStatement preparedStatement = null;
@@ -184,14 +186,13 @@ public class UserDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static UserModel getUserByidUser(int idUser) throws SQLException {
+    public static UserModel getUserByidUser(int idUser) throws SystemException {
 
         PreparedStatement preparedStatement = null;
         UserModel userModel = null ;
@@ -225,9 +226,8 @@ public class UserDAO {
             preparedStatement.close();
             return userModel;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return userModel;
     }

@@ -1,11 +1,13 @@
 package nightsout.control.appcontroller;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +29,8 @@ public class CheckRequestsAppController {
                 listBean.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return listBean;
     }
@@ -37,8 +39,8 @@ public class CheckRequestsAppController {
        EventModel eventModel = null;
         try {
             eventModel = EventDAO.getEventByIdEvent(idEvent);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+           MyNotification.createNotification(e);
         }
         return new EventBean(eventModel);
     }

@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EndedBookedEventsAppController;
+import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ReviewEngineering;
@@ -34,8 +37,12 @@ public class EndedBookedEventsGUIController1 implements Observer {
     }
 
     public void backToUserPage(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     @Override
@@ -60,11 +67,14 @@ public class EndedBookedEventsGUIController1 implements Observer {
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    ExceptionHandler.handleException(e);
+                } catch (SystemException ex) {
+                    MyNotification.createNotification(ex);
+                }
+            } catch (SystemException e) {
+                MyNotification.createNotification(e);
             }
-            //EventReviewItemGUIController1 controller = fxmlLoader.getController();
-            //controller.setAll(userBean, eBean);
-            //this.listViewEvents.getItems().add(pane);
         }
     }
 }

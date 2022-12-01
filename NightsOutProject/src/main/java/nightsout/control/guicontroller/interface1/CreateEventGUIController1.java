@@ -13,6 +13,7 @@ import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.exception.myexception.EmptyInputException;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -51,7 +52,7 @@ public class CreateEventGUIController1 {
     }
 
     @FXML
-    private void backToWelcomePage(ActionEvent actionEvent) throws IOException {
+    private void backToWelcomePage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
     }
@@ -75,8 +76,7 @@ public class CreateEventGUIController1 {
             Email.sendEmail(clubOwnerBean.getEmail(), "Evento creato con successo!", "L'evento " + eventBean.getName() + "è stato creato con successo.");
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
-        } catch (WrongInputTypeException | EmptyInputException e) {
-            System.err.println(e.getCause());
+        } catch (WrongInputTypeException | EmptyInputException | SystemException e) {
             MyNotification.createNotification(e);
         }
     }

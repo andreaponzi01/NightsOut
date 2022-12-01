@@ -32,24 +32,25 @@ public abstract class ProfileBean implements GenericBean {
     }
 
     // Setter
-    public void setName(String name) {
+    public void setName(String name) throws EmptyInputException {
+        if (name.equals(""))
+            Trigger.emptyField("Name");
         this.name = name;
     }
-    public void setPassword(String password) {this.password = password;}
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) throws EmptyInputException {
+        if (password.equals(""))
+            Trigger.emptyField("Password");
+        this.password = password;
     }
 
-    public void setEmailException(String email) throws EmptyInputException, EmailNotValidException {
-        if(email.isEmpty()) {
+    public void setEmail(String email) throws EmptyInputException, EmailNotValidException {
+        if(email.isEmpty())
             Trigger.emptyField("email");
-        }
         boolean correctFormat = CheckEmail.validate(email);
-        if(correctFormat){this.email = email;}
-        else{
+        if(correctFormat)
+            this.email = email;
+        else
             throw new EmailNotValidException(email);
-        }
     }
     public void setType(String type) {
         this.type = type;
@@ -57,7 +58,9 @@ public abstract class ProfileBean implements GenericBean {
     public void setImg(File img) {
         this.img = img;
     }
-    public void setUsername(String username) {
+    public void setUsername(String username) throws EmptyInputException {
+        if (username.equals(""))
+            Trigger.emptyField("Username");
         this.username = username;
     }
     public void setId(int id) {

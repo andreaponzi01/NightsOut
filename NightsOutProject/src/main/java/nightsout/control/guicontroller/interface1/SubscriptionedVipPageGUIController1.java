@@ -3,8 +3,10 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
@@ -28,7 +30,12 @@ public class SubscriptionedVipPageGUIController1 {
     }
 
     public void goToUserPage(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
+        try {
+              ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+              replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
+
+          } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 }

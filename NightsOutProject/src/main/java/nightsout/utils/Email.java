@@ -13,9 +13,9 @@ public class Email {
 
     public static void sendEmail(String recipient, String subject, String text) {
 
-        String from = "ispwproject@virgilio.it"; //mail dalla quale inviamo
-        String host = "smtp.virgilio.it";
+        String from = "ispwproject@virgilio.it";
 
+        String host = "smtp.virgilio.it";
         // Proprietà di sistema
         Properties properties = System.getProperties();
         // Proprietà relative alla configurazione del protocollo smtp
@@ -23,7 +23,6 @@ public class Email {
         properties.put("mail.smtp.port", "465");
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.auth", "true");
-
 
         /*
             Occorre utilizzare una SESSIONE AUTENTICATA, dove le proprietà sono quelle che abbiamo creato, cioè:
@@ -36,6 +35,7 @@ public class Email {
 
             Perciò la nostra "nuova" getPasswordAuthentication() costruisce e ritorna un oggetto PasswordAuthentication con le NOSTRE credenziali.
          */
+
 
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             @Override
@@ -54,7 +54,7 @@ public class Email {
             message.setSubject(subject);
             message.setText(text);
 
-            //Invio effettivo del messaggio
+            //Invio effettivo dell'email
             Transport.send(message);
 
         } catch (MessagingException e) {

@@ -10,6 +10,8 @@ import nightsout.utils.bean.LoginBean;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.UserDAO;
 import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
 
 public class LoginAppController {
@@ -36,7 +38,7 @@ public class LoginAppController {
     }
     */
 
-    public static void loginUser(LoginBean loginBean) throws WrongCredentialsException {
+    public static void loginUser(LoginBean loginBean) throws WrongCredentialsException, SystemException, DBConnectionFailedException  {
 
         UserModel userModel = null;
         LoggedUserBean loggedUserBean = null;
@@ -49,7 +51,7 @@ public class LoginAppController {
         }
     }
 
-    public static void loginClubOwner(LoginBean loginBean) throws WrongCredentialsException {
+    public static void loginClubOwner(LoginBean loginBean) throws WrongCredentialsException, SystemException, DBConnectionFailedException  {
 
         ClubOwnerModel clubOwnerModel = null;
         LoggedClubOwnerBean loggedClubOwnerBean=null;

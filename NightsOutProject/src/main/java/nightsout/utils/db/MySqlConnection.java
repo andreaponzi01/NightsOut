@@ -1,7 +1,10 @@
 package nightsout.utils.db;
 
+import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,19 +28,21 @@ public class MySqlConnection {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         } catch (SQLException e) {
             Trigger.throwDBConnectionFailedException(e);
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return statement;
     }
 
-    public static Connection connect() throws SQLException{
+    public static Connection connect() throws SystemException, DBConnectionFailedException {
 
         String user;
         String pass;
         String dbUrl;
         String driverClassName;
 
-        if(connection == null || connection.isClosed()){
-            try {
+        try {
+            if (connection == null || connection.isClosed()) {
                 String resourceName = "config.properties";
                 InputStream inputStream = MySqlConnection.class.getClassLoader().getResourceAsStream(resourceName);
                 Properties props = new Properties();
@@ -49,10 +54,14 @@ public class MySqlConnection {
                 Class.forName(driverClassName);
                 DriverManager.setLoginTimeout(5);
                 connection = DriverManager.getConnection(dbUrl, user, pass);
-            } catch ( IOException | ClassNotFoundException e) {
-                // Non gestite
-                e.printStackTrace();
             }
+            /*
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+            ExceptionHandler.handleException(e);
+        }
+             */
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+            ExceptionHandler.handleException(e);
         }
         return connection;
     }

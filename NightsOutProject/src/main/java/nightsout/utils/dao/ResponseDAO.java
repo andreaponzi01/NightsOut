@@ -1,15 +1,13 @@
 package nightsout.utils.dao;
 
 import nightsout.model.ResponseModel;
-import nightsout.model.ReviewModel;
 import nightsout.utils.db.Query;
-import org.xml.sax.ErrorHandler;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ResponseDAO {
 
@@ -17,20 +15,19 @@ public class ResponseDAO {
         //ignore
     }
 
-    public static void createResponse(ResponseModel responseModel) {
+    public static void createResponse(ResponseModel responseModel) throws SystemException {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = Query.insertResponse(responseModel);
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-            // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+        } catch (SQLException /*| FileNotFoundException*/ e) {
+           ExceptionHandler.handleException(e);
         }
     }
 
-    public static ResponseModel getResponseByIdReview(int idReview) {
+    public static ResponseModel getResponseByIdReview(int idReview) throws SystemException {
         PreparedStatement preparedStatement=null;
         ResponseModel responseModel=null;
         try{
@@ -48,52 +45,10 @@ public class ResponseDAO {
             responseModel.setResponse(rs.getString(4));
             preparedStatement.close();
             return responseModel;
-        }catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+           ExceptionHandler.handleException(e);
         }
         return responseModel;
     }
-
-
-
-    /*
-    public static List<ReviewModel> getResponseByIdClubOwner(int idClubOwner) {
-
-        List<ReviewModel> list = null;
-        PreparedStatement preparedStatement = null;
-        ReviewModel reviewModel = null;
-        try {
-            list = new ArrayList<>();
-            preparedStatement = Query.searchReviewsByIdClubOwner(idClubOwner);
-            ResultSet rs = preparedStatement.executeQuery();
-            assert rs != null;
-            if (!rs.next()) {
-                return list;
-            }
-            //rs.next();
-
-            do {
-                reviewModel = new ReviewModel();
-                reviewModel.setIdReview(rs.getInt(1));
-                reviewModel.setIdEvent(rs.getInt(4));
-                reviewModel.setIdUser(rs.getInt(2));
-                reviewModel.setComment(rs.getString(3));
-
-                list.add(reviewModel);
-
-            } while(rs.next());
-
-            preparedStatement.close();
-            return list;
-
-        } catch ( SQLException e){
-             ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-     */
 
 }

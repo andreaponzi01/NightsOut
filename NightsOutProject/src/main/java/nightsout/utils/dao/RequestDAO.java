@@ -8,7 +8,9 @@ import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,21 +24,20 @@ public class RequestDAO {
     private RequestDAO() {
         //ignored
     }
-    public static void createRequest(UserModel userModel, EventModel eventModel) {
+    public static void createRequest(UserModel userModel, EventModel eventModel) throws SystemException {
         Statement stm= null;
         try{
             stm= MySqlConnection.tryConnect();
             CRUD.insertRequest(userModel.getId(), eventModel.getIdEvent(), stm);
 
-        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-            // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+        }catch (SQLException /*| FileNotFoundException*/ e) {
+            ExceptionHandler.handleException(e);
         } catch (DBConnectionFailedException e) {
             MyNotification.createNotification(e);
         }
     }
 
-    public static RequestModel checkRequestStatus(UserModel userModel, EventModel eventModel) {
+    public static RequestModel checkRequestStatus(UserModel userModel, EventModel eventModel) throws SystemException {
         RequestModel requestModel = null;
         PreparedStatement preparedStatement = null;
 
@@ -61,15 +62,14 @@ public class RequestDAO {
             return requestModel;
 
 
-        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-            // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+        }catch (SQLException /*| FileNotFoundException*/ e) {
+            ExceptionHandler.handleException(e);
         }
 
         return requestModel;
     }
 
-    public static List<ManageRequestModel> getRequestsByIdClubOwner(int idClubOwner) {
+    public static List<ManageRequestModel> getRequestsByIdClubOwner(int idClubOwner) throws SystemException {
         List<ManageRequestModel> list = null;
         PreparedStatement preparedStatement = null;
         ManageRequestModel manageRequestModel = null ;
@@ -101,14 +101,13 @@ public class RequestDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static List<RequestModel> getRequestsByIdUser(int idUser) {
+    public static List<RequestModel> getRequestsByIdUser(int idUser) throws SystemException {
         List<RequestModel> list = null;
         PreparedStatement preparedStatement = null;
         RequestModel requestModel = null ;
@@ -139,22 +138,20 @@ public class RequestDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static void UpdateRequestStatus(int idRequest,String status) throws SQLException {
+    public static void UpdateRequestStatus(int idRequest,String status) throws SystemException {
         Statement stm= null;
         try{
             stm = MySqlConnection.tryConnect();
             CRUD.updateRequest(idRequest,status, stm);
 
-        }catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-            // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+        }catch (SQLException /*| FileNotFoundException*/ e) {
+            ExceptionHandler.handleException(e);
         } catch (DBConnectionFailedException e) {
             MyNotification.createNotification(e);
         }

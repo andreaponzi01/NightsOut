@@ -5,11 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nightsout.control.appcontroller.ManageRequestsAppController;
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.dao.UserDAO;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
@@ -30,22 +31,34 @@ public class ManageRequestsItemGUIController1 {
 
     @FXML
     public void acceptRequest(ActionEvent actionEvent) throws IOException, SQLException {
-        ManageRequestsAppController.acceptRequest(manageRequestBean.getIdRequest());
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
+        try {
+            ManageRequestsAppController.acceptRequest(manageRequestBean.getIdRequest());
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     public void rejectRequest(ActionEvent actionEvent) throws IOException, SQLException {
-        //appcontroller
-        ManageRequestsAppController.declineRequest(manageRequestBean.getIdRequest());
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
+        try {
+            //appcontroller
+            ManageRequestsAppController.declineRequest(manageRequestBean.getIdRequest());
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     public void goToUserPage(ActionEvent actionEvent) throws IOException, SQLException {
-        UserBean userBean =ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUserName());
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/ViewUserPageFromCO1.fxml",userBean);
+        try {
+            UserBean userBean = ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUserName());
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/ViewUserPageFromCO1.fxml", userBean);
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     public void setAll(ManageRequestBean manageRequestBean) {

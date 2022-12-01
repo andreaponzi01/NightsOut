@@ -7,12 +7,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.LoggedClubOwnerBean;
-import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.db.MySqlConnection;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class MenuClubOwnerGUIController1 {
@@ -34,24 +33,24 @@ public class MenuClubOwnerGUIController1 {
     }
 
     @FXML
-    public void goToCreateEventPage(ActionEvent actionEvent) throws IOException {
+    public void goToCreateEventPage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneCreateEvent(actionEvent, "/CreateEventPage1.fxml");
     }
 
     @FXML
-    public void goToManageRequestsPage(ActionEvent actionEvent) throws IOException {
+    public void goToManageRequestsPage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
     }
 
-    public void goToResponsePage(ActionEvent actionEvent) throws IOException {
+    public void goToResponsePage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
     }
 
     @FXML
-    public void goToReviewsPage(ActionEvent actionEvent) throws IOException {
+    public void goToReviewsPage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml");
     }
@@ -70,7 +69,7 @@ public class MenuClubOwnerGUIController1 {
         }
     }
     @FXML
-    public void goToHome(ActionEvent actionEvent) throws IOException {
+    public void goToHome(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
     }

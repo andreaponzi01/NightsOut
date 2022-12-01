@@ -1,16 +1,17 @@
 package nightsout.control.guicontroller.interface1;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.bean.LoggedClubOwnerBean;
-import nightsout.utils.observer.engineering.ManageRequestsEngineering;
-import nightsout.utils.observer.Observer;
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.engineering.ManageRequestsEngineering;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -46,7 +47,11 @@ public class ManageRequestsGUIController1 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ManageRequestsItem1.fxml")).openStream());
             } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    ExceptionHandler.handleException(e);
+                } catch (SystemException ex) {
+                    MyNotification.createNotification(e);
+                }
             }
 
             ManageRequestsItemGUIController1 controller = fxmlLoader.getController();

@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.engineering.EventParticipantsEngineering;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.*;
@@ -47,7 +48,7 @@ public class EventPageDecoratorUserGUIController1 implements Observer {
     @FXML
     private MenuUserGUIController1 menuController;
 
-    public void setAll( EventBean eventBean) throws SQLException {
+    public void setAll( EventBean eventBean) throws SQLException, SystemException {
         this.menuController.setAll();
         this.eventBean = eventBean;
         this.userBean=LoggedUserBean.getInstance();
@@ -61,7 +62,7 @@ public class EventPageDecoratorUserGUIController1 implements Observer {
         myStart();
     }
 
-    private void myStart() throws SQLException {
+    private void myStart() throws SystemException {
 
         this.myConcreteComponent = new ConcreteComponent();
         RequestBean requestBean = EventPageDecoratorAppController.checkRequestStatus(this.userBean, this.eventBean);

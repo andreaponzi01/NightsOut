@@ -3,7 +3,8 @@ package nightsout.utils;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
-import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ public class Authentication {
         //ignored
     }
 
-    public static boolean checkIsRegistered(String username, String password, String type) {
+    public static boolean checkIsRegistered(String username, String password, String type) throws SystemException {
         PreparedStatement preparedStatement = null;
         try {
             MySqlConnection.tryConnect();
@@ -24,12 +25,10 @@ public class Authentication {
             if (rs.next()) {
                 return true;
             }
-        } catch (DBConnectionFailedException e) {
+        } catch (SystemException e) {
             MyNotification.createNotification(e);
-            System.out.println("Causa: ");
-            e.getCause().printStackTrace();
         } catch (SQLException e) {
-            //
+            ExceptionHandler.handleException(e);
         }
         return false;
     }

@@ -4,8 +4,7 @@ import nightsout.model.UserModel;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.UserDAO;
-
-import java.sql.SQLException;
+import nightsout.utils.exception.myexception.SystemException;
 
 public class SubscriptionVipAppController {
 
@@ -13,7 +12,7 @@ public class SubscriptionVipAppController {
         //ignored
     }
 
-    public static void subscription(UserBean userBean) throws SQLException {
+    public static void subscription(UserBean userBean) throws SystemException {
         UserModel userModel = new UserModel(userBean);
         userModel= UserDAO.subscriptionVip(userModel);
         LoggedUserBean.UpdateInstance(userModel);

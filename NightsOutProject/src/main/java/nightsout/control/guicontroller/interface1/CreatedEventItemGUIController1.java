@@ -4,10 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class CreatedEventItemGUIController1 {
@@ -21,7 +20,7 @@ public class CreatedEventItemGUIController1 {
         labelEventName.setText(this.eventBean.getName());
     }
 
-    public void goToEventPage(ActionEvent actionEvent) throws IOException {
+    public void goToEventPage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneEventCO(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean);
     }

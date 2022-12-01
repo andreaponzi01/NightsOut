@@ -4,15 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
-
-import java.io.IOException;
 
 public class RegisterClubOwnerGUIController1 {
 
     private String[] personalInfo;
-
     @FXML
     Button buttonNextStep;
     @FXML
@@ -25,13 +23,11 @@ public class RegisterClubOwnerGUIController1 {
     TextField textFieldAddress;
     @FXML
     TextField textFieldDiscount;
-
     private void setPersonalInfo(){
         String name = textFieldName.getText();
         String address = textFieldAddress.getText();
         String city = textFieldCity.getText();
         String discount = textFieldDiscount.getText();
-
         personalInfo = new String[]{name, address, city, discount};
     }
 
@@ -39,11 +35,10 @@ public class RegisterClubOwnerGUIController1 {
     protected void backToChoice(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
 
     @FXML
-    protected void goToConcludeRegister(ActionEvent actionEvent) throws IOException {
+    protected void goToConcludeRegister(ActionEvent actionEvent) throws SystemException {
         setPersonalInfo();
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneRegister(actionEvent,"/ConcludeRegisterClubOwner1.fxml", personalInfo, "ClubOwner");
     }
-
 
 }

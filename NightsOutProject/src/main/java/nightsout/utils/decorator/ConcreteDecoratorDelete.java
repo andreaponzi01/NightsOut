@@ -6,13 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -36,10 +38,16 @@ public class ConcreteDecoratorDelete extends Decorator {
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
         myButton.setStyle("-fx-background-color: #d00000;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
-        myButton.setOnAction((ActionEvent ae) -> deleteEvent(ae));
+        myButton.setOnAction((ActionEvent ae) -> {
+            try {
+                deleteEvent(ae);
+            } catch (SystemException e) {
+                MyNotification.createNotification(e);
+            }
+        });
     }
 
-    private void deleteEvent(ActionEvent ae) {
+    private void deleteEvent(ActionEvent ae) throws SystemException {
         var alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Event");
         alert.setHeaderText("You're about to delete the event!");
@@ -52,8 +60,10 @@ public class ConcreteDecoratorDelete extends Decorator {
                 preparedStatement.executeUpdate();
                 ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
                 replaceSceneDynamic1.switchAndSetScene(ae, "/ClubOwnerPage1.fxml");
-            } catch (IOException | SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException e) {
+                ExceptionHandler.handleException(e);
+            } catch (SystemException e) {
+                MyNotification.createNotification(e);
             }
         }
     }

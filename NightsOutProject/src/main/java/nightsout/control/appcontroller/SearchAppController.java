@@ -1,5 +1,6 @@
 package nightsout.control.appcontroller;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ClubOwnerModel;
 import nightsout.model.EventModel;
 import nightsout.model.UserModel;
@@ -9,6 +10,7 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.UserDAO;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +31,8 @@ public class SearchAppController {
                 listBean.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return listBean;
     }
@@ -48,8 +50,8 @@ public class SearchAppController {
                 listBean.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return listBean;
     }
@@ -67,8 +69,8 @@ public class SearchAppController {
                 listBean.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return listBean;
     }

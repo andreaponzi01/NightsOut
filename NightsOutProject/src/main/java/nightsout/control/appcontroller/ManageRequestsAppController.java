@@ -1,15 +1,15 @@
 package nightsout.control.appcontroller;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ManageRequestModel;
-import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.RequestDAO;
 import nightsout.utils.dao.UserDAO;
+import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.myexception.SystemException;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,23 +30,28 @@ public class ManageRequestsAppController {
                 listBean.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return listBean;
     }
 
-    public static void acceptRequest(int idRequest) throws SQLException {
+    public static void acceptRequest(int idRequest) throws SystemException {
         RequestDAO.UpdateRequestStatus(idRequest,"accepted");
     }
 
-    public static void declineRequest(int idRequest) throws SQLException {
+    public static void declineRequest(int idRequest) throws SystemException {
         RequestDAO.UpdateRequestStatus(idRequest,"declined");
     }
 
-    public static UserBean searchUserByUsername(String username) throws SQLException {
-        UserModel userModel= UserDAO.getUserByUsername(username);
-        UserBean userBean = new UserBean(userModel);
+    public static UserBean searchUserByUsername(String username) throws SystemException {
+        UserBean userBean = null;
+        try {
+            UserModel userModel = UserDAO.getUserByUsername(username);
+            userBean = new UserBean(userModel);
+        } catch (DBConnectionFailedException e) {
+            MyNotification.createNotification(e);
+        }
         return  userBean;
     }
 

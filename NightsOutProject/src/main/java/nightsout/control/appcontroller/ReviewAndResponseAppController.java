@@ -1,15 +1,14 @@
 package nightsout.control.appcontroller;
 
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ResponseModel;
 import nightsout.model.ReviewModel;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.ResponseDAO;
 import nightsout.utils.dao.ReviewDAO;
-import nightsout.utils.dao.UserDAO;
+import nightsout.utils.exception.myexception.SystemException;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,31 +30,11 @@ public class ReviewAndResponseAppController {
                 listBean.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return listBean;
     }
-    /*
-    public static List<ReviewBean> searchResponseByIdReviewProva(int idReview) {
-        List<ReviewModel> list = null;
-        List<ReviewBean> listBean = null;
-
-        try {
-           // list = ReviewDAO.getAllReviewByIdClubOwner(idReview);
-            listBean = new ArrayList<>();
-
-            for(ReviewModel reviewModel : list){
-                ReviewBean bean = new ReviewBean(reviewModel);
-                listBean.add(bean);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listBean;
-    }
-     */
 
     public static ResponseBean searchResponseByIdReview(int idReview) {
         ResponseModel responseModel = null;
@@ -70,8 +49,8 @@ public class ReviewAndResponseAppController {
             }
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+           MyNotification.createNotification(e);
         }
         return responseBean;
     }

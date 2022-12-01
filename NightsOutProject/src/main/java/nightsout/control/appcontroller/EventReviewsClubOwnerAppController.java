@@ -1,16 +1,13 @@
 package nightsout.control.appcontroller;
 
-import nightsout.model.EventModel;
+import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ReviewModel;
-import nightsout.model.UserModel;
-import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.ReviewDAO;
 import nightsout.utils.dao.UserDAO;
+import nightsout.utils.exception.myexception.SystemException;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +29,13 @@ public class EventReviewsClubOwnerAppController {
                 listBean.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
         return listBean;
     }
 
-    public static UserBean searchUserbyIdUser(int idUser) throws SQLException {
+    public static UserBean searchUserbyIdUser(int idUser) throws SystemException {
         UserBean userBean= new UserBean(UserDAO.getUserByidUser(idUser));
         return userBean;
     }

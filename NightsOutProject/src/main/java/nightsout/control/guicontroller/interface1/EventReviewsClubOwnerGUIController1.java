@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ResponseEngineering;
@@ -33,8 +36,13 @@ public class EventReviewsClubOwnerGUIController1 implements Observer {
     }
 
     public void backToClubOwnerPage(ActionEvent actionEvent) throws IOException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
+
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     @Override
@@ -46,7 +54,11 @@ public class EventReviewsClubOwnerGUIController1 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem1.fxml")).openStream());
             } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    ExceptionHandler.handleException(e);
+                } catch (SystemException ex) {
+                    MyNotification.createNotification(e);
+                }
             }
             ReviewItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(reviewBean);

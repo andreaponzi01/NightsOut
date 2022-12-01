@@ -5,7 +5,9 @@ import nightsout.model.ClubOwnerModel;
 import nightsout.utils.db.CRUD;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.DBConnectionFailedException;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +22,7 @@ public class ClubOwnerDAO {
         //ignored
     }
 
-    public static ClubOwnerModel getClubOwnerByUsername(String username) {
+    public static ClubOwnerModel getClubOwnerByUsername(String username) throws SystemException {
 
         PreparedStatement preparedStatement = null;
         ClubOwnerModel clubOwnerModel = null ;
@@ -53,14 +55,13 @@ public class ClubOwnerDAO {
             preparedStatement.close();
             return clubOwnerModel;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (DBConnectionFailedException | SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return clubOwnerModel;
     }
 
-    public static void insertClubOwner(ClubOwnerModel clubOwnerModel) {
+    public static void insertClubOwner(ClubOwnerModel clubOwnerModel) throws SystemException {
         Statement stm = null;
         PreparedStatement preparedStatement = null;
 
@@ -73,15 +74,14 @@ public class ClubOwnerDAO {
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException /*| FileNotFoundException*/ m) {
-            // ErrorHandler.getInstance().handleException(m);
-            m.printStackTrace();
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
         } catch (DBConnectionFailedException e) {
             MyNotification.createNotification(e);
         }
     }
 
-    public static List<ClubOwnerModel> getClubOwnersByUsername(String input) {
+    public static List<ClubOwnerModel> getClubOwnersByUsername(String input) throws SystemException {
         List<ClubOwnerModel> list = null;
         PreparedStatement preparedStatement = null;
         ClubOwnerModel clubOwnerModel = null ;
@@ -109,15 +109,13 @@ public class ClubOwnerDAO {
             preparedStatement.close();
             return list;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
-
+        } catch (SQLException e){
+           ExceptionHandler.handleException(e);
         }
         return list;
     }
 
-    public static ClubOwnerModel getClubOwnerById(int idClubOwner) {
+    public static ClubOwnerModel getClubOwnerById(int idClubOwner) throws SystemException {
 
         PreparedStatement preparedStatement = null;
         ClubOwnerModel clubOwnerModel = null ;
@@ -136,22 +134,46 @@ public class ClubOwnerDAO {
             clubOwnerModel.setId(rs.getInt(1));
             clubOwnerModel.setDiscountVIP(rs.getInt(8));
 
-            /* Capire come funziona la gestione delle immagini tramite file
-
-
-                InputStream in = (rs.getBinaryStream(3));
-                String filePath = username + "pic" + ".png";
-                File file = new File(filePath);
-                ImageConverter.copyInputStreamToFile(in, file);
-                clubOwnerModel.setProfileImg(file);
+            /*
+            InputStream in = (rs.getBinaryStream(3));
+            String filePath = username + "pic" + ".png";
+            File file = new File(filePath);
+            ImageConverter.copyInputStreamToFile(in, file);
+            clubOwnerModel.setProfileImg(file);
             */
 
             preparedStatement.close();
             return clubOwnerModel;
 
-        } catch (/*MysqlConnectionFailed |*/ SQLException e){
-            // ErrorHandler.getInstance().handleException(e);
-            e.printStackTrace();
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
+
+        }
+        return clubOwnerModel;
+    }
+
+
+    public static ClubOwnerModel getClubAddressByIdEvent(int idEvent) throws SystemException {
+        PreparedStatement preparedStatement = null;
+        ClubOwnerModel clubOwnerModel = null;
+        try {
+
+            preparedStatement = Query.searchClubAddressByEventId(idEvent);
+            ResultSet rs = preparedStatement.executeQuery();
+            assert rs != null;
+            if (!rs.next()) {
+                return null;
+            }
+            //rs.next();
+            clubOwnerModel = new ClubOwnerModel(rs.getString(1));
+            clubOwnerModel.setAddress(rs.getString(2));
+            clubOwnerModel.setCity(rs.getString(3));
+
+            preparedStatement.close();
+            return clubOwnerModel;
+
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
         }
         return clubOwnerModel;
     }

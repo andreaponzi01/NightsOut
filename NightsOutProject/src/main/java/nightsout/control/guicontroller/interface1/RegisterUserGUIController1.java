@@ -6,10 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
-
-import java.io.IOException;
 
 public class RegisterUserGUIController1 {
 
@@ -27,10 +26,8 @@ public class RegisterUserGUIController1 {
     RadioButton radioFemale;
     @FXML
     DatePicker dateBirthday;
-
     private String[] personalInfo;
     //private LocalDate birthday;
-
     private void setPersonalInfo(){
 
         String name = textFieldName.getText();
@@ -53,7 +50,7 @@ public class RegisterUserGUIController1 {
     protected void backToChoice(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml"); }
 
     @FXML
-    protected void goToConcludeRegister(ActionEvent actionEvent) throws IOException {
+    protected void goToConcludeRegister(ActionEvent actionEvent) throws SystemException {
         setPersonalInfo();
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
         replacer.switchAndSetSceneRegister(actionEvent,"/ConcludeRegisterUser1.fxml", personalInfo, "Free");

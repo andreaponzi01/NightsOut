@@ -3,11 +3,11 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
 import nightsout.utils.observer.Observer;
@@ -61,7 +61,11 @@ public class ClubOwnerPageGUIController1 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CreatedEventItem1.fxml")).openStream());
             } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    ExceptionHandler.handleException(e);
+                } catch (SystemException ex) {
+                    MyNotification.createNotification(e);
+                }
             }
 
             CreatedEventItemGUIController1 controller = fxmlLoader.getController();

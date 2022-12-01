@@ -18,19 +18,17 @@ public class UserBean extends ProfileBean {
     }
 
     public UserBean(UserModel userModel) {
-
-        this.setSurname(userModel.getSurname());
-        this.setName(userModel.getName());
-        this.setUsername(userModel.getUsername());
-        this.setGender(userModel.getGender());
-        this.setPassword(userModel.getPassword());
-        this.setEmail(userModel.getEmail());
-        this.setId(userModel.getId());
-        this.setImg((userModel.getProfileImg()));
-        this.setBirthday(userModel.getBirthday());
-        this.setVip(userModel.getVip());
-        this.setCreationDateVIP(userModel.getCreationDateVip());
-
+        this.surname = userModel.getSurname();
+        this.name = userModel.getName();
+        this.username = userModel.getUsername();
+        this.gender = userModel.getGender();
+        this.password = userModel.getPassword();
+        this.email = userModel.getEmail();
+        this.id = userModel.getId();
+        this.img = userModel.getProfileImg();
+        this.birthday = userModel.getBirthday();
+        this.vip = userModel.getVip();
+        this.creationDateVIP = userModel.getCreationDateVip();
         this.setType("Free");
     }
 
