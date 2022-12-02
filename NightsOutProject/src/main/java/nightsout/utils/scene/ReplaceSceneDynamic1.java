@@ -248,4 +248,16 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
+    public void switchAndSetSceneMap(ActionEvent ae, String fxml, EventBean eventBean) throws SystemException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+
+            MapPageSetter1.setter(eventBean,loader.getController());
+            ReplaceScene.showStage(ae, root);
+        } catch (IOException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
 }

@@ -9,8 +9,10 @@ import javafx.fxml.Initializable;
 import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,12 +33,6 @@ public class MapController implements Initializable, MapComponentInitializedList
 
     public void setAll(EventBean eventBean) {
         this.eventBean = eventBean;
-    }
-
-
-    @FXML
-    public void back(ActionEvent actionEvent) {
-        System.out.println("Da implementare");
     }
 
     @Override
@@ -83,7 +79,6 @@ public class MapController implements Initializable, MapComponentInitializedList
 
             lat = Double.parseDouble(object.getJSONArray("results").getJSONObject(0).getJSONArray("locations").getJSONObject(0).getJSONObject("latLng").getString("lat"));
             lng = Double.parseDouble(object.getJSONArray("results").getJSONObject(0).getJSONArray("locations").getJSONObject(0).getJSONObject("latLng").getString("lng"));
-
             http.disconnect();
 
         } catch (JSONException | IOException e) {
@@ -135,6 +130,28 @@ public class MapController implements Initializable, MapComponentInitializedList
         profilePic.setImage(image);
         */
     }
+
+
+
+    @FXML
+    public void back(ActionEvent actionEvent) throws SystemException {
+        /*
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            String type= LoggedClubOwnerBean.checkInstanceType();
+            if(type.equals("FREE")){
+                replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+            }
+            else{
+                replacer.switchAndSetSceneEventCO(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean);
+            }
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
+
+         */
+    }
+
 
 
 }

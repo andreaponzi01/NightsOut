@@ -41,7 +41,7 @@
       <Circle fill="#1f93ff00" layoutX="685.0" layoutY="41.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.topAnchor="16.0" />
       <ImageView fitHeight="60.0" fitWidth="64.0" layoutX="25.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="12.0">
          <image>
-            <Image url="file:/Users/ales siomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/logo.png" />
+            <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/logo.png" />
          </image>
       </ImageView>
       <Button layoutX="69.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="40.0" prefWidth="76.0" styleClass="navBarButton" stylesheets="@style.css" text="Home" textFill="WHITE" AnchorPane.topAnchor="24.0" />

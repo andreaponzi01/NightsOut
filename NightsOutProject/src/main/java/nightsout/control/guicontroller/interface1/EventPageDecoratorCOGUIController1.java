@@ -1,5 +1,6 @@
 package nightsout.control.guicontroller.interface1;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -9,8 +10,10 @@ import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
 import nightsout.utils.bean.*;
 import nightsout.utils.decorator.*;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.EventParticipantsEngineering;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -100,5 +103,10 @@ public class EventPageDecoratorCOGUIController1 implements Observer {
             this.listViewUsers.getItems().add(pane);
 
         }
+    }
+    @FXML
+    public void goToMap(ActionEvent ae) throws SystemException {
+        ReplaceSceneDynamic1 replacer= new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneMap(ae,"/MapPage1.fxml",eventBean);
     }
 }

@@ -1,5 +1,6 @@
 package nightsout.control.guicontroller.interface1;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -12,6 +13,8 @@ import nightsout.utils.observer.engineering.EventParticipantsEngineering;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.*;
 import nightsout.utils.decorator.*;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.scenesetter.MapPageSetter1;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -52,7 +55,8 @@ public class EventPageDecoratorUserGUIController1 implements Observer {
         this.menuController.setAll();
         this.eventBean = eventBean;
         this.userBean=LoggedUserBean.getInstance();
-        this.labelUsername.setText(eventBean.getName());
+       // EventPageDecoratorAppController.searchEventsByIdClubOwner();
+       // this.labelUsername.setText(eventBean.getName());
         this.labelEventName.setText(eventBean.getName());
         this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
         this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
@@ -124,5 +128,10 @@ public class EventPageDecoratorUserGUIController1 implements Observer {
             this.listViewUsers.getItems().add(pane);
 
         }
+    }
+    @FXML
+    public void goToMap(ActionEvent ae) throws SystemException {
+        ReplaceSceneDynamic1 replacer= new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneMap(ae,"/MapPage1.fxml",eventBean);
     }
 }

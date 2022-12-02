@@ -24,7 +24,6 @@ public class NextEventItemGUIController1 {
     }
 
     public void goToEventPage(ActionEvent actionEvent) throws IOException {
-
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             String type=LoggedClubOwnerBean.checkInstanceType();
