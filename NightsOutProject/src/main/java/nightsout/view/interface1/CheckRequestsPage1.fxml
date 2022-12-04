@@ -11,7 +11,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.CheckRequestsGUIController1">
    <children>
       <fx:include fx:id="menu" source="MenuUser1.fxml" />
-      <AnchorPane prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="103.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="103.0">
+      <AnchorPane prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <Label layoutX="245.0" layoutY="12.0" text="Pending Request" textFill="#200f54">
                <font>
@@ -29,8 +29,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ListView fx:id="listViewPendingRequests" layoutX="109.0" layoutY="83.0" prefHeight="256.0" prefWidth="700.0" />
-            <Button fx:id="buttonCheckRequests" layoutX="367.0" layoutY="370.0" mnemonicParsing="false" onAction="#checkRequests" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" text="update" textFill="#200f54">
+            <ListView fx:id="listViewPendingRequests" layoutX="109.0" layoutY="83.0" prefHeight="357.0" prefWidth="700.0" />
+            <Button fx:id="buttonCheckRequests" layoutX="369.0" layoutY="467.0" mnemonicParsing="false" onAction="#checkRequests" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" text="update" textFill="#200f54">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>

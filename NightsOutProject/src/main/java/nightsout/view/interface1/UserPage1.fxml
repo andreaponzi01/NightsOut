@@ -8,10 +8,10 @@
 <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.UserPageGUIController1">
    <children>
       <fx:include fx:id="menu" source="MenuUser1.fxml" />
-      <AnchorPane maxHeight="531.0" maxWidth="864.0" minHeight="531.0" minWidth="864.0" prefHeight="531.0" prefWidth="864.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="103.0">
+      <AnchorPane maxHeight="531.0" maxWidth="864.0" minHeight="531.0" minWidth="864.0" prefHeight="531.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <ListView fx:id="listViewNextEvents" layoutX="255.0" layoutY="116.0" prefHeight="323.0" prefWidth="566.0" style="-fx-border-color: red;" />
-            <Label layoutX="493.0" layoutY="23.0" prefHeight="69.0" prefWidth="156.0" text="Next Events" textFill="WHITE">
+            <ListView fx:id="listViewNextEvents" layoutX="282.0" layoutY="100.0" prefHeight="323.0" prefWidth="700.0" style="-fx-border-color: red;" />
+            <Label layoutX="574.0" layoutY="18.0" prefHeight="69.0" prefWidth="156.0" text="Next Events" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>

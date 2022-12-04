@@ -6,7 +6,7 @@ import com.dlsc.gmapsfx.javascript.object.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import nightsout.control.appcontroller.EventPageAppController;
+import nightsout.control.appcontroller.EventPageDecoratorAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedClubOwnerBean;
@@ -49,7 +49,7 @@ public class MapController implements Initializable, MapComponentInitializedList
         double lat = 0.0, lng = 0.0;
 
         try {
-            address = EventPageAppController.getClubAddress(eventBean.getIdEvent());
+            address = EventPageDecoratorAppController.getClubAddress(eventBean.getIdEvent());
             // Recuperiamo latitudine e longitudine dell'indirizzo del Club nel quale si svolgerà l'evento
             URL url = new URL("https://www.mapquestapi.com/geocoding/v1/address?key=QmskMXX88teOI9qXndnvrgGj4DGETyiF");
 
@@ -60,7 +60,7 @@ public class MapController implements Initializable, MapComponentInitializedList
             http.setDoOutput(true);
             http.setRequestProperty("Content-Type", "application/json");
 
-                    String data = "{\n  \"location\": \"" + address  + "\",\n  \"options\": {\n    \"thumbMaps\": true\n  }\n}";
+            String data = "{\n  \"location\": \"" + address  + "\",\n  \"options\": {\n    \"thumbMaps\": true\n  }\n}";
             byte[] out = data.getBytes(StandardCharsets.UTF_8);
 
             OutputStream stream = http.getOutputStream();
@@ -93,7 +93,7 @@ public class MapController implements Initializable, MapComponentInitializedList
 
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
         mapOptions.center(new LatLong(lat, lng))
-                .mapType(MapTypeIdEnum.ROADMAP)
+                .mapType(MapTypeIdEnum.SATELLITE)
                 .overviewMapControl(false)
                 .panControl(false)
                 .rotateControl(false)
@@ -114,28 +114,25 @@ public class MapController implements Initializable, MapComponentInitializedList
         Marker marker = new Marker(markerOptions);
         map.addMarker(marker);
 
-        /*
-        URL url2 = null;
+    /*
+    URL url2 = null;
+    try {
+        url2 = new URL("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/marracash-carriera-vita-foto-gossip-album-1641325823.png");    } catch (MalformedURLException e) {
+        e.printStackTrace();
         try {
-            url2 = new URL("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/marracash-carriera-vita-foto-gossip-album-1641325823.png");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            try {
-                url2 = new URL("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png");
-            } catch (MalformedURLException e1) {
-                e1.printStackTrace();
-            }
+            url2 = new URL("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png");        } catch (MalformedURLException e1) {
+            e1.printStackTrace();
         }
-        Image image = new Image(String.valueOf(url2));
-        profilePic.setImage(image);
-        */
+    }
+    Image image = new Image(String.valueOf(url2));
+    profilePic.setImage(image);
+    */
     }
 
 
 
     @FXML
     public void back(ActionEvent actionEvent) throws SystemException {
-        /*
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             String type= LoggedClubOwnerBean.checkInstanceType();
@@ -148,10 +145,5 @@ public class MapController implements Initializable, MapComponentInitializedList
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
-
-         */
     }
-
-
-
 }

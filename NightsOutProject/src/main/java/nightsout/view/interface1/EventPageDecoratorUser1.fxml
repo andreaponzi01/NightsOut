@@ -5,10 +5,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import com.dlsc.gmapsfx.GoogleMapView?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.EventPageDecoratorUserGUIController1">
    <children>
       <fx:include fx:id="menu" source="MenuUser1.fxml" />
@@ -19,47 +21,47 @@
                   <Font name="Arial Bold" size="29.0" />
                </font>
             </Label>
-            <Label layoutX="77.0" layoutY="344.0" text="Duration: " textFill="#d9d3ee">
+            <Label layoutX="28.0" layoutY="344.0" text="Duration: " textFill="#d9d3ee">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelEventDuration" layoutX="171.0" layoutY="346.0" text="durata evento" textFill="#d9d3ee">
+            <Label fx:id="labelEventDuration" layoutX="122.0" layoutY="346.0" text="durata evento" textFill="#d9d3ee">
                <font>
                   <Font name="Arial Italic" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelEventPrice" layoutX="160.0" layoutY="315.0" text="prezzo evento" textFill="#d9d3ee">
+            <Label fx:id="labelEventPrice" layoutX="111.0" layoutY="315.0" text="prezzo evento" textFill="#d9d3ee">
                <font>
                   <Font name="Arial Italic" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="99.0" layoutY="314.0" text="Price: " textFill="#d9d3ee">
+            <Label layoutX="30.0" layoutY="314.0" text="Price: " textFill="#d9d3ee">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelEventTime" layoutX="172.0" layoutY="287.0" text="orario evento" textFill="#d9d3ee">
+            <Label fx:id="labelEventTime" layoutX="123.0" layoutY="287.0" text="orario evento" textFill="#d9d3ee">
                <font>
                   <Font name="Arial Italic" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="97.0" layoutY="288.0" text="Time: " textFill="#d9d3ee">
+            <Label layoutX="26.0" layoutY="288.0" text="Time: " textFill="#d9d3ee">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelEventDate" layoutX="171.0" layoutY="260.0" text="data evento" textFill="#d9d3ee">
+            <Label fx:id="labelEventDate" layoutX="122.0" layoutY="260.0" text="data evento" textFill="#d9d3ee">
                <font>
                   <Font name="Arial Italic" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="101.0" layoutY="260.0" text="Date: " textFill="#d9d3ee">
+            <Label layoutX="28.0" layoutY="260.0" text="Date: " textFill="#d9d3ee">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="253.0" layoutY="432.0" mnemonicParsing="false" onAction="#goToMap" prefHeight="69.0" prefWidth="162.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" text="Map" textFill="#200f54">
+            <Button layoutX="360.0" layoutY="485.0" mnemonicParsing="false" onAction="#goToMap" prefHeight="51.0" prefWidth="29.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" textFill="#200f54">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
@@ -69,6 +71,13 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/lente.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Label layoutX="37.0" layoutY="222.0" prefHeight="27.0" prefWidth="142.0" text="Club owner:" textFill="#d9d3ee">
                <font>
@@ -80,14 +89,14 @@
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewUsers" layoutX="445.0" layoutY="249.0" prefHeight="276.0" prefWidth="542.0" />
-            <Label layoutX="588.0" layoutY="179.0" text="Participants" textFill="#d9d3ee">
+            <ListView fx:id="listViewUsers" layoutX="458.0" layoutY="258.0" prefHeight="276.0" prefWidth="542.0" />
+            <Label layoutX="595.0" layoutY="188.0" text="Participants" textFill="#d9d3ee">
                <font>
                   <Font name="Arial Bold" size="47.0" />
                </font>
             </Label>
             <ImageView fx:id="eventImg" fitHeight="164.0" fitWidth="188.0" layoutX="60.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="labelDescription" alignment="TOP_LEFT" layoutX="615.0" layoutY="52.0" prefHeight="117.0" prefWidth="339.0" text="Description" textFill="#d9d3ee">
+            <Label fx:id="labelDescription" alignment="TOP_LEFT" layoutX="615.0" layoutY="52.0" prefHeight="117.0" prefWidth="232.0" text="Description" textFill="#d9d3ee">
                <font>
                   <Font name="Arial Italic" size="20.0" />
                </font>
@@ -97,7 +106,8 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="root" layoutX="22.0" layoutY="433.0" prefHeight="94.0" prefWidth="191.0" />
+            <AnchorPane fx:id="root" layoutX="272.0" layoutY="15.0" prefHeight="94.0" prefWidth="191.0" />
+            <GoogleMapView fx:id="location" layoutX="14.0" layoutY="377.0" prefHeight="167.0" prefWidth="338.0" />
          </children>
       </AnchorPane>
    </children>
