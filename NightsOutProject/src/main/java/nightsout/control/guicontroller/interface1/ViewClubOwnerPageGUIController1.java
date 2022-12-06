@@ -27,25 +27,32 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
     @FXML
     private Label labelName;
     @FXML
+    private Label labelUsername;
+    @FXML
+    private Label labelCity;
+    @FXML
+    private Label labelAddress;
+    @FXML
+    private Label labelEmail;
+    @FXML
+    private Label labelDiscountVip;
+    @FXML
     private ListView listViewCreatedEvents;
     private ClubOwnerBean clubOwnerBean;
     @FXML
     private MenuUserGUIController1 menuController;
 
-
-    public void setLabelUserName(String name) { this.labelName.setText(name); }
-
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SQLException {
+    public void setAll(ClubOwnerBean clubOwnerBean) throws SQLException, SystemException {
         this.clubOwnerBean = clubOwnerBean;
         this.menuController.setAll();
-        setLabelUserName(clubOwnerBean.getName());
-        CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
-    }
+        this.labelName.setText(clubOwnerBean.getName());
+        this.labelUsername.setText(clubOwnerBean.getUsername());
+        this.labelCity.setText(clubOwnerBean.getCity());
+        this.labelAddress.setText(clubOwnerBean.getAddress());
+        this.labelEmail.setText(clubOwnerBean.getEmail());
+        this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP()));
 
-    @FXML
-    private void logout(ActionEvent actionEvent) throws IOException, SQLException {
-        ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
-        MySqlConnection.closeConnection();
+        CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
     }
 
     @Override
@@ -56,7 +63,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
 
         if(ob instanceof EventBean eBean) {
             try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ViewCreatedEventItem1.fxml")).openStream());
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/NextEventItem1.fxml")).openStream());
             } catch (IOException e) {
                 try {
                     ExceptionHandler.handleException(e);
@@ -65,7 +72,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
                 }
             }
 
-            ViewCreatedEventItemGUIController1 controller = fxmlLoader.getController();
+            NextEventItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(eBean);
             this.listViewCreatedEvents.getItems().add(pane);
         }

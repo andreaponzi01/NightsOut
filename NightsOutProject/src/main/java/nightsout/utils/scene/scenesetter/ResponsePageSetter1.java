@@ -14,7 +14,7 @@ public class ResponsePageSetter1 {
         //ignored
     }
 
-    public static void setter(EventReviewsClubOwnerGUIController1 eventReviewsClubOwnerGUIController1) throws SQLException {
+    public static void setter(EventReviewsClubOwnerGUIController1 eventReviewsClubOwnerGUIController1) throws SQLException, SystemException {
         eventReviewsClubOwnerGUIController1.setAll();
     }
 

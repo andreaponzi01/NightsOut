@@ -8,10 +8,6 @@ public class RequestModel {
 
     }
 
-    public RequestModel(int idRequest) {
-        this.idRequest = idRequest;
-    }
-
     private int idRequest;
     private int idUser;
     private int idEvent;

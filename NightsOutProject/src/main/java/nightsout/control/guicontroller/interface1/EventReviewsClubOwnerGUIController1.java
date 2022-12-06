@@ -29,7 +29,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer {
 
     }
 
-    public void setAll() throws SQLException {
+    public void setAll() throws SQLException, SystemException {
         this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
         this.menuController.setAll();
         ResponseEngineering.eventReviews(this, clubOwnerBean.getId());
@@ -46,7 +46,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer {
     }
 
     @Override
-    public void update(Object ob) throws SQLException {
+    public void update(Object ob) throws SQLException, SystemException {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;

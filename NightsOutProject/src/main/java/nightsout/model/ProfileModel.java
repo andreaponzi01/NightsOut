@@ -1,7 +1,5 @@
 package nightsout.model;
 
-import nightsout.utils.bean.Credentials;
-
 import java.io.File;
 
 public abstract class ProfileModel implements GenericModel {

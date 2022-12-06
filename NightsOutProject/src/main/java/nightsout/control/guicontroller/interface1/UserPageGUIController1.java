@@ -22,12 +22,15 @@ import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class UserPageGUIController1 implements Observer {
 
     @FXML
     protected Label labelName;
+    @FXML
+    protected Label labelEmail;
     @FXML
     protected Label labelSurname;
     @FXML
@@ -41,17 +44,24 @@ public class UserPageGUIController1 implements Observer {
     protected MenuUserGUIController1 menuController;
     @FXML
     private ListView listViewNextEvents;
+    @FXML
+    private Label labelUsername;
+    @FXML
+    private Label labelGender;
 
-    public void setAllCulo() throws SQLException {
+    public void setAllCulo() throws SQLException, SystemException {
         this.userBean = LoggedUserBean.getInstance();
+        this.menuController.setAll();
+        this.labelEmail.setText(userBean.getEmail());
+        this.labelUsername.setText(userBean.getUsername());
         this.labelName.setText(userBean.getName());
         this.labelSurname.setText(userBean.getSurname());
         if(userBean.getVip())
-            this.labelVip.setText("utente vip");
+            this.labelVip.setText("VIP");
         else
-            this.labelVip.setText("utente NON vip");
-        this.labelBirthday.setText(userBean.getBirthday().toString());
-        this.menuController.setAll();
+            this.labelVip.setText("NO VIP");
+        this.labelGender.setText(userBean.getGender());
+        this.labelBirthday.setText(userBean.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
         NextEventsEngineering.nextEvents(this, userBean.getId());
     }
 

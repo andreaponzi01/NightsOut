@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.CreateEventGUIController1">
@@ -15,12 +16,12 @@
       <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
       <AnchorPane layoutX="168.0" layoutY="145.0" prefHeight="421.0" prefWidth="749.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <TextField fx:id="textFieldName" alignment="CENTER" layoutX="233.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert name " style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldName" alignment="CENTER" layoutX="235.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="283.0" promptText="insert Name " style="-fx-background-radius: 28;" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="502.0">
                <font>
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonCreateEvent" layoutX="356.0" layoutY="438.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Next Step" textFill="WHITE">
+            <Button fx:id="buttonCreateEvent" layoutX="360.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Create Event" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
                <font>
                   <Font name="Arial Bold" size="25.0" />
                </font>
@@ -31,40 +32,43 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="textFieldPrice" alignment="CENTER" layoutX="222.0" layoutY="193.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert Price " style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldPrice" alignment="CENTER" layoutX="583.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="202.0" promptText="insert Price " style="-fx-background-radius: 28;" AnchorPane.leftAnchor="583.0" AnchorPane.rightAnchor="235.0">
                <font>
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
-            <DatePicker fx:id="dateEvent" layoutX="234.0" layoutY="272.0" promptText="insert Date Event" />
-            <Slider fx:id="sliderTime" blockIncrement="1.0" layoutX="227.0" layoutY="366.0" majorTickUnit="1.0" max="6.0" min="1.0" minorTickCount="0" prefHeight="26.0" prefWidth="220.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-            <Label layoutX="243.0" layoutY="333.0" prefHeight="17.0" prefWidth="52.0" text="Hour" />
-            <TextField fx:id="textFieldHours" alignment="CENTER" layoutX="445.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="179.0" promptText="Hours" style="-fx-background-radius: 28;">
+            <DatePicker fx:id="dateEvent" layoutX="235.0" layoutY="222.0" prefHeight="26.0" prefWidth="143.0" promptText="insert Event's date" AnchorPane.leftAnchor="235.0" />
+            <Slider fx:id="sliderTime" blockIncrement="1.0" layoutX="396.0" layoutY="222.0" majorTickUnit="1.0" max="6.0" min="1.0" minorTickCount="0" prefHeight="38.0" prefWidth="130.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+            <Label layoutX="398.0" layoutY="201.0" prefHeight="17.0" prefWidth="60.0" text="Duration:" textFill="#200f54">
                <font>
-                  <Font name="Arial" size="25.0" />
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Label>
+            <TextField fx:id="textFieldHours" alignment="CENTER" layoutX="536.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="112.0" promptText="Hours" style="-fx-background-radius: 28;">
+               <font>
+                  <Font name="Arial" size="22.0" />
                </font>
             </TextField>
-            <TextField fx:id="textFieldMinutes" alignment="CENTER" layoutX="636.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="179.0" promptText="Minutes" style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldMinutes" alignment="CENTER" layoutX="673.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="112.0" promptText="Minutes" style="-fx-background-radius: 28;" AnchorPane.rightAnchor="235.0">
                <font>
-                  <Font name="Arial" size="25.0" />
+                  <Font name="Arial" size="22.0" />
                </font>
             </TextField>
-            <Label layoutX="626.0" layoutY="253.0" prefHeight="52.0" prefWidth="15.0" text=":">
+            <Label layoutX="656.0" layoutY="204.0" prefHeight="52.0" prefWidth="15.0" text=":" textFill="#200f54">
                <font>
                   <Font size="42.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldDescription" alignment="CENTER" layoutX="489.0" layoutY="333.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="371.0" promptText="insert description" style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldDescription" alignment="TOP_LEFT" layoutX="235.0" layoutY="290.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="550.0" promptText="insert Description" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0">
                <font>
-                  <Font name="Arial" size="25.0" />
+                  <Font name="Arial" size="22.0" />
                </font>
             </TextField>
-            <Label alignment="CENTER" layoutX="104.0" layoutY="1.0" prefHeight="84.0" prefWidth="838.0" text="Insert Event Info" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="298.0" layoutY="23.0" prefHeight="84.0" prefWidth="425.0" text="Insert Event Info" textFill="#ffeecc" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="297.0">
                <font>
                   <Font name="Arial Bold" size="50.0" />
                </font>
             </Label>
-            <Button fx:id="buttonBack" layoutX="38.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
+            <Button fx:id="buttonBack" layoutX="38.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font name="Arial Bold" size="25.0" />
                </font>
@@ -77,5 +81,6 @@
             </Button>
          </children>
       </AnchorPane>
+      <Line endX="-1.7311248779296875" endY="-7.62939453125E-6" layoutX="248.0" layoutY="54.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
    </children>
 </AnchorPane>

@@ -2,7 +2,6 @@ package nightsout.utils.dao;
 
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.EventModel;
-import nightsout.model.ManageRequestModel;
 import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
 import nightsout.utils.db.CRUD;
@@ -42,7 +41,6 @@ public class RequestDAO {
         PreparedStatement preparedStatement = null;
 
         try{
-            System.out.println(userModel.getId() + " " + eventModel.getIdEvent());
             preparedStatement = Query.searchRequest(userModel.getId(), eventModel.getIdEvent());
             ResultSet rs = preparedStatement.executeQuery();
             // Test???????
@@ -69,10 +67,10 @@ public class RequestDAO {
         return requestModel;
     }
 
-    public static List<ManageRequestModel> getRequestsByIdClubOwner(int idClubOwner) throws SystemException {
-        List<ManageRequestModel> list = null;
+    public static List<RequestModel> getRequestsByIdClubOwner(int idClubOwner) throws SystemException {
+        List<RequestModel> list = null;
         PreparedStatement preparedStatement = null;
-        ManageRequestModel manageRequestModel = null ;
+        RequestModel requestModel = null;
 
         try {
             list = new ArrayList<>();
@@ -86,15 +84,14 @@ public class RequestDAO {
             //rs.next();
 
             do {
-                //R.idRequest, R.status, U.name, U.surname, E.name
-                manageRequestModel = new ManageRequestModel();
-                manageRequestModel.setIdRequest(rs.getInt(1));
-                manageRequestModel.setRequestDate(rs.getDate(2));
-                manageRequestModel.setUserName(rs.getString(3));
-                manageRequestModel.setUserSurname(rs.getString(4));
-                manageRequestModel.setEventName(rs.getString(5));
+                requestModel = new RequestModel();
+                requestModel.setIdRequest(rs.getInt(1));
+                requestModel.setRequestDate(rs.getDate(5).toLocalDate());
+                requestModel.setStatus(rs.getString(3));
+                requestModel.setIdEvent(rs.getInt(4));
+                requestModel.setIdUser(rs.getInt(2));
 
-                list.add(manageRequestModel);
+                list.add(requestModel);
 
             } while(rs.next());
 
@@ -116,6 +113,43 @@ public class RequestDAO {
             list = new ArrayList<>();
 
             preparedStatement = Query.searchRequestsByIdUser(idUser);
+            ResultSet rs = preparedStatement.executeQuery();
+            assert rs != null;
+            if (!rs.next()) {
+                return list;
+            }
+            //rs.next();
+            do {
+                //R.idRequest, R.status, U.name, U.surname, E.name
+                requestModel = new RequestModel();
+                requestModel.setIdRequest(rs.getInt(1));
+                requestModel.setIdEvent(rs.getInt(4));
+                requestModel.setIdUser(rs.getInt(2));
+                requestModel.setStatus(rs.getString(3));
+                requestModel.setRequestDate(rs.getDate(5).toLocalDate());
+
+                list.add(requestModel);
+
+            } while(rs.next());
+
+            preparedStatement.close();
+            return list;
+
+        } catch (SQLException e){
+            ExceptionHandler.handleException(e);
+        }
+        return list;
+    }
+
+    public static List<RequestModel> getPendingRequestsByIdUser(int idUser) throws SystemException {
+        List<RequestModel> list = null;
+        PreparedStatement preparedStatement = null;
+        RequestModel requestModel = null ;
+
+        try {
+            list = new ArrayList<>();
+
+            preparedStatement = Query.searchPendingRequestsByIdUser(idUser);
             ResultSet rs = preparedStatement.executeQuery();
             assert rs != null;
             if (!rs.next()) {

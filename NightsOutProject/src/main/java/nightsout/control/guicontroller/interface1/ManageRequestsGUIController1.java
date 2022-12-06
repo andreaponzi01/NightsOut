@@ -1,5 +1,6 @@
 package nightsout.control.guicontroller.interface1;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
@@ -12,6 +13,7 @@ import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ManageRequestsEngineering;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -26,14 +28,14 @@ public class ManageRequestsGUIController1 implements Observer {
     @FXML
     private MenuClubOwnerGUIController1 menuController;
 
-    public void setAll() throws SQLException {
+    public void setAll() throws SQLException, SystemException {
         this.menuController.setAll();
         this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
         this.manageRequests();
     }
 
     @FXML
-    private void manageRequests() throws SQLException {
+    private void manageRequests() throws SQLException, SystemException {
         this.listViewPendingRequests.getItems().clear();
         ManageRequestsEngineering.manageRequests(this, clubOwnerBean.getId());
     }
@@ -57,6 +59,15 @@ public class ManageRequestsGUIController1 implements Observer {
             ManageRequestsItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(mRBean);
             this.listViewPendingRequests.getItems().add(pane);
+        }
+    }
+
+    public void backToClubOwnerPage(ActionEvent actionEvent) throws IOException {
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
         }
     }
 }

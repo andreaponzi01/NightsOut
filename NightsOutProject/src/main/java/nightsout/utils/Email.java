@@ -45,7 +45,6 @@ public class Email {
         // Per il Debug (su terminale)
         session.setDebug(true);
 
-
         try {
             MimeMessage message = new MimeMessage(session);
 

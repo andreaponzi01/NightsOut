@@ -2,7 +2,10 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ViewUserPageFromCOGUIController1">
@@ -10,35 +13,81 @@
       <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
       <AnchorPane maxHeight="531.0" maxWidth="864.0" minHeight="531.0" minWidth="864.0" prefHeight="531.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <ListView fx:id="listViewNextEvents" layoutX="255.0" layoutY="116.0" prefHeight="323.0" prefWidth="566.0" style="-fx-border-color: red;" />
-            <Label layoutX="493.0" layoutY="23.0" prefHeight="69.0" prefWidth="156.0" text="Next Events" textFill="WHITE">
+            <ListView fx:id="listViewNextEvents" layoutX="255.0" layoutY="116.0" prefHeight="374.0" prefWidth="600.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+               <effect>
+                  <DropShadow />
+               </effect></ListView>
+            <Label alignment="CENTER" layoutX="572.0" layoutY="82.0" prefHeight="69.0" prefWidth="601.0" text="Next Events" textFill="#ffeecc" AnchorPane.rightAnchor="30.0">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Arial Bold" size="29.0" />
                </font>
             </Label>
-            <Label fx:id="labelName" layoutX="77.0" layoutY="70.0" prefHeight="69.0" prefWidth="156.0" text="Name" textFill="WHITE">
+            <ImageView fx:id="profileImg" fitHeight="190.0" fitWidth="191.0" layoutX="81.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
+            <Label fx:id="labelUsername" layoutX="311.0" layoutY="30.0" prefHeight="69.0" prefWidth="258.0" text="Username" textFill="WHITE" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="20.0">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Arial Bold" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="labelSurname" layoutX="82.0" layoutY="150.0" prefHeight="69.0" prefWidth="156.0" text="Surname" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="46.0" prefWidth="163.0" text="Information" textFill="#ffeecc" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="221.0">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Arial Bold" size="29.0" />
                </font>
             </Label>
-            <Label fx:id="labelBirthday" layoutX="74.0" layoutY="230.0" prefHeight="69.0" prefWidth="156.0" text="Birthday" textFill="WHITE">
+            <Line endX="582.8807373046875" endY="-3.0517578125E-5" layoutX="-395.0" layoutY="248.0" startX="714.6856689453125" startY="-3.0517578125E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="247.0" />
+            <Line endX="158.4810791015625" endY="-3.0517578125E-5" startX="-100.0" startY="-6.103515625E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="520.0" />
+            <Label fx:id="labelVip" layoutX="127.0" layoutY="453.0" prefHeight="69.0" prefWidth="156.0" text="vip" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="127.0">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Arial Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="labelVip" layoutX="78.0" layoutY="297.0" prefHeight="69.0" prefWidth="156.0" text="Vip" textFill="WHITE">
+            <Label fx:id="labelSurname" layoutX="127.0" layoutY="303.0" prefHeight="69.0" prefWidth="258.0" text="Surname" textFill="WHITE" AnchorPane.bottomAnchor="183.0" AnchorPane.leftAnchor="127.0">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Arial Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="labelUsername" layoutX="55.0" layoutY="360.0" prefHeight="69.0" prefWidth="156.0" text="Username" textFill="WHITE">
+            <Label fx:id="labelBirthday" layoutX="127.0" layoutY="353.0" prefHeight="69.0" prefWidth="259.0" text="birthday" textFill="WHITE" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="127.0">
                <font>
-                  <Font size="29.0" />
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelGender" layoutX="127.0" layoutY="403.0" prefHeight="69.0" prefWidth="260.0" text="gender" textFill="WHITE" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="127.0">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="284.0" prefHeight="69.0" prefWidth="108.0" text="Surname:" textFill="WHITE" AnchorPane.bottomAnchor="183.0" AnchorPane.leftAnchor="18.0">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="321.0" prefHeight="69.0" prefWidth="130.0" text="Birthday:" textFill="WHITE" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="18.0">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="108.0" layoutY="367.0" prefHeight="69.0" prefWidth="130.0" text="Gender:" textFill="WHITE" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="18.0">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="8.0" layoutY="460.0" prefHeight="69.0" prefWidth="177.0" text="VIP:" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="18.0">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelName" layoutX="127.0" layoutY="264.0" prefHeight="58.0" prefWidth="258.0" text="Name" textFill="WHITE" AnchorPane.bottomAnchor="233.0" AnchorPane.leftAnchor="127.0">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="252.0" prefHeight="58.0" prefWidth="100.0" text="Name:" textFill="WHITE" AnchorPane.bottomAnchor="233.0" AnchorPane.leftAnchor="18.0">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelEmail" prefHeight="47.0" prefWidth="299.0" text="Email" textFill="WHITE" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="83.0">
+               <font>
+                  <Font name="Arial" size="32.0" />
                </font>
             </Label>
          </children>

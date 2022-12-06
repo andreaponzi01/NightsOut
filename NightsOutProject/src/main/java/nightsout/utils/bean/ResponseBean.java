@@ -1,6 +1,7 @@
 package nightsout.utils.bean;
 
 import nightsout.model.ResponseModel;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.Subject;
 
@@ -62,7 +63,7 @@ public class ResponseBean extends Subject {
         this.response = response;
     }
 
-    public void addResponse(ResponseBean responseBean) throws SQLException {
+    public void addResponse(ResponseBean responseBean) throws SQLException, SystemException {
         notify(responseBean);
     }
 

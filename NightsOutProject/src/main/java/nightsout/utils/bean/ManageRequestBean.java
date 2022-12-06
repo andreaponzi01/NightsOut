@@ -1,19 +1,16 @@
 package nightsout.utils.bean;
 
-import nightsout.model.ManageRequestModel;
+import nightsout.model.RequestModel;
 
 import java.time.LocalDate;
 
 public class ManageRequestBean {
 
-    //R.idRequest, R.status, U.name, U.surname, E.name
-
-    public ManageRequestBean(ManageRequestModel manageRequestModel) {
-        this.idRequest = manageRequestModel.getIdRequest();
-        this.eventName = manageRequestModel.getEventName();
-        this.requestDate = manageRequestModel.getRequestDate().toLocalDate();
-        this.userName = manageRequestModel.getUserName();
-        this.userSurname = manageRequestModel.getUserSurname();
+    public ManageRequestBean(RequestModel requestModel,UserBean userBean,EventBean eventBean) {
+        this.idRequest = requestModel.getIdRequest();
+        this.eventName = eventBean.getName();
+        this.requestDate = requestModel.getRequestDate();
+        this.userName = userBean.getName();
     }
 
     private int idRequest;

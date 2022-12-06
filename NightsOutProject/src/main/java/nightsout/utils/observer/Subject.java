@@ -1,5 +1,7 @@
 package nightsout.utils.observer;
 
+import nightsout.utils.exception.myexception.SystemException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public abstract class Subject {
         this.observers.remove(obs);
     }
 
-    public void notify(Object object) throws SQLException {
+    public void notify(Object object) throws SQLException, SystemException {
         for (Observer observer : observers) {
             observer.update(object);
         }

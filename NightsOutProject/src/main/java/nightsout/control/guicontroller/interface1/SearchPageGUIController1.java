@@ -39,7 +39,7 @@ public class SearchPageGUIController1 implements Observer {
     }
 
     @FXML
-    private void search() throws SQLException {
+    private void search() throws SQLException, SystemException {
         input = textFieldSearch.getText();
         this.listView.getItems().clear();
         if(!input.isBlank())
@@ -69,7 +69,7 @@ public class SearchPageGUIController1 implements Observer {
 
         if(ob instanceof EventBean eBean) {
             try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/NextEventItem1.fxml")).openStream());
             } catch (IOException e) {
                 try {
                     ExceptionHandler.handleException(e);
@@ -77,8 +77,7 @@ public class SearchPageGUIController1 implements Observer {
                     MyNotification.createNotification(e);
                 }
             }
-
-            EventItemGUIController1 controller = fxmlLoader.getController();
+            NextEventItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(eBean);
             this.listView.getItems().add(pane);
         }

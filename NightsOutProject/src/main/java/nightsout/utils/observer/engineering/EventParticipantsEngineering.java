@@ -1,6 +1,7 @@
 package nightsout.utils.observer.engineering;
 
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.GenericBeanList;
 import nightsout.utils.observer.Observer;
 
@@ -12,7 +13,7 @@ public class EventParticipantsEngineering {
         //ignore
     }
 
-    public static void eventParticipants(Observer observer, int idEvent) throws SQLException {
+    public static void eventParticipants(Observer observer, int idEvent) throws SQLException, SystemException {
         GenericBeanList list= new GenericBeanList(observer);
         list.addUsersToList(EventPageDecoratorAppController.searchUsersByIdEvent(idEvent));
     }

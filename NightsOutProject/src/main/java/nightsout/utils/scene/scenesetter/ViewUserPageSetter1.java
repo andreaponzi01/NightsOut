@@ -3,6 +3,7 @@ package nightsout.utils.scene.scenesetter;
 import nightsout.control.guicontroller.interface1.ViewUserPageFromCOGUIController1;
 import nightsout.control.guicontroller.interface1.ViewUserPageFromUserGUIController1;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.SQLException;
 
@@ -29,11 +30,11 @@ public class ViewUserPageSetter1 {
      */
 
 
-    public static void setterCO(UserBean userBean, ViewUserPageFromCOGUIController1 viewuserGUIController1) throws SQLException {
+    public static void setterCO(UserBean userBean, ViewUserPageFromCOGUIController1 viewuserGUIController1) throws SQLException, SystemException {
         viewuserGUIController1.setAll(userBean);
     }
 
-    public static void setterUser(UserBean userBean, ViewUserPageFromUserGUIController1 viewuserGUIController1) throws SQLException {
+    public static void setterUser(UserBean userBean, ViewUserPageFromUserGUIController1 viewuserGUIController1) throws SQLException, SystemException {
         viewuserGUIController1.setAll(userBean);
     }
 

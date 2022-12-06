@@ -6,61 +6,63 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.MakeResponseGUIController1">
    <children>
       <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
-      <AnchorPane layoutX="168.0" layoutY="145.0" prefHeight="421.0" prefWidth="749.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
+      <AnchorPane layoutX="178.0" layoutY="95.0" prefHeight="555.0" prefWidth="1020.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <Label alignment="CENTER" layoutX="737.0" layoutY="-13.0" prefHeight="84.0" prefWidth="57.0" text="by" textFill="WHITE">
+            <TextField fx:id="textFieldResponse" alignment="TOP_LEFT" layoutX="79.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="862.0" promptText="insert yout response..." style="-fx-background-radius: 28;" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="79.0">
                <font>
-                  <Font name="Arial Bold" size="28.0" />
-               </font>
-            </Label>
-            <Button layoutX="363.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createResponse" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Send Response" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="25.0" />
-               </font>
-               <effect>
-                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label alignment="CENTER" layoutX="111.0" layoutY="-14.0" prefHeight="84.0" prefWidth="529.0" text="Insert Response To Review of : " textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="28.0" />
-               </font>
-            </Label>
-            <Button layoutX="26.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToReviewsPage" prefHeight="49.0" prefWidth="103.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
-               <font>
-                  <Font name="Arial Bold" size="25.0" />
-               </font>
-               <effect>
-                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label fx:id="labelEventName" alignment="CENTER" layoutX="565.0" layoutY="-14.0" prefHeight="84.0" prefWidth="197.0" text="EventName" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="28.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelUsername" alignment="CENTER" layoutX="766.0" layoutY="-3.0" prefHeight="67.0" prefWidth="197.0" text="Username" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="28.0" />
-               </font>
-            </Label>
-            <TextField fx:id="textFieldResponse" alignment="TOP_LEFT" layoutX="192.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.48" prefHeight="286.0" prefWidth="653.0" promptText="insert yout review..." style="-fx-background-radius: 28;">
-               <font>
-                  <Font name="Arial" size="30.0" />
+                  <Font name="Arial" size="35.0" />
                </font>
             </TextField>
+            <Button layoutX="360.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createResponse" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Send response" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
+               <font>
+                  <Font name="Arial Bold" size="25.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="buttonBack" layoutX="31.0" layoutY="18.0" mnemonicParsing="false" onAction="#backToReviewsPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="415.0" layoutY="65.0" prefHeight="70.0" prefWidth="259.0" text="about event:" textFill="#ffeecc">
+               <font>
+                  <Font name="Arial Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelUsername" layoutX="603.0" layoutY="17.0" prefHeight="57.0" prefWidth="209.0" text="Username" textFill="#ffeecc" underline="true" AnchorPane.topAnchor="17.0">
+               <font>
+                  <Font name="Arial Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelEventName" layoutX="670.0" layoutY="65.0" prefHeight="70.0" prefWidth="306.0" text="EventName" textFill="#ffeecc" underline="true">
+               <font>
+                  <Font name="Arial Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="228.0" layoutY="17.0" prefHeight="60.0" prefWidth="379.0" text="Insert response to: " textFill="#ffeecc" AnchorPane.topAnchor="17.0">
+               <font>
+                  <Font name="Arial Bold" size="40.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
+      <Line endX="100.0" layoutX="298.0" layoutY="66.0" startX="-20.664703369140625" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="267.0" AnchorPane.topAnchor="55.0" />
    </children>
 </AnchorPane>

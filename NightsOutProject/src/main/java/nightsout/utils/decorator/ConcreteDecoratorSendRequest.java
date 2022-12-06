@@ -30,7 +30,7 @@ public class ConcreteDecoratorSendRequest extends Decorator {
         myButton.setMinWidth(125);
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
-        myButton.setStyle("-fx-background-color: #1d0eeb;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
+        myButton.setStyle("-fx-background-color: #b3b3ff;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
         myButton.setOnAction((ActionEvent ae) -> sendRequest(ae));
     }
 

@@ -1,6 +1,7 @@
 package nightsout.utils.observer;
 
 import nightsout.utils.bean.RequestBean;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.Subject;
 
@@ -17,7 +18,7 @@ public class RequestBeanList extends Subject {
         beans = new ArrayList<>();
     }
 
-    public void addRequestsToList(List<RequestBean> listBean) throws SQLException {
+    public void addRequestsToList(List<RequestBean> listBean) throws SQLException, SystemException {
         if (listBean != null && !listBean.isEmpty()) {
             for (RequestBean requestBean : listBean) {
                 beans.add(requestBean);

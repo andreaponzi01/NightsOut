@@ -5,6 +5,7 @@ import nightsout.control.guicontroller.interface1.UserPageGUIController1;
 import nightsout.control.guicontroller.interface1.ViewClubOwnerPageGUIController1;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.myexception.SystemException;
 
 import java.sql.SQLException;
 
@@ -13,11 +14,11 @@ public class ClubOwnerPageSetter1 {
     private ClubOwnerPageSetter1() {
         //ignored
     }
-    public static void setterItem(ClubOwnerBean clubOwnerBean, ViewClubOwnerPageGUIController1 viewClubOwnerPageGUIController1) throws SQLException {
+    public static void setterItem(ClubOwnerBean clubOwnerBean, ViewClubOwnerPageGUIController1 viewClubOwnerPageGUIController1) throws SQLException, SystemException {
         viewClubOwnerPageGUIController1.setAll(clubOwnerBean);
     }
 
-    public static void setterCulo(ClubOwnerPageGUIController1 clubOwnerPageGUIController1) throws SQLException {
+    public static void setterCulo(ClubOwnerPageGUIController1 clubOwnerPageGUIController1) throws SQLException, SystemException {
         clubOwnerPageGUIController1.setAllCulo();
     }
 }

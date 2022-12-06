@@ -4,6 +4,7 @@ import nightsout.control.appcontroller.SearchAppController;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.GenericBeanList;
 import nightsout.utils.observer.Observer;
 
@@ -16,7 +17,7 @@ public class SearchEngineering {
         //ignored
     }
 
-    public static void search(Observer observer, String input) throws SQLException {
+    public static void search(Observer observer, String input) throws SQLException, SystemException {
         /*
         Subject: è colui che viene osservato. Nel caso specifico si tratta della nostra lista GenericBeanList
         L'osservato deve mantenere il riferimento ai propri osservatori, così da poterli notificare ogni

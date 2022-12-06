@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
@@ -25,19 +26,24 @@ public class ReviewItemGUIController1 {
     }
 
     @FXML
-    private TextArea textAreaComment;
+    private Label labelComment;
+    @FXML
+    private Label labelEventName;
     @FXML
     private Label labelUsername; //renderlo bottone
 
-    public void setAll(ReviewBean reviewBean) throws SQLException {
+    public void setAll(ReviewBean reviewBean) throws SQLException, SystemException {
         this.reviewBean=reviewBean;
-        this.textAreaComment.setText(reviewBean.getComment());
+        this.labelComment.setText(reviewBean.getComment());
         try {
             this.userBean = EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser());
+
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
-        this.labelUsername.setText(userBean.getUsername()); //renderlo bottone
+        EventBean eventBean=EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
+        this.labelUsername.setText(userBean.getUsername());
+        this.labelEventName.setText(eventBean.getName());
     }
 
     public void goToResponsePage(ActionEvent actionEvent) throws IOException {

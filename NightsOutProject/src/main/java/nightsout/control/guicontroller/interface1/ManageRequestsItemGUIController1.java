@@ -29,6 +29,14 @@ public class ManageRequestsItemGUIController1 {
     @FXML
     Button buttonUsername;
 
+
+    public void setAll(ManageRequestBean manageRequestBean) {
+        this.clubOwnerBean= LoggedClubOwnerBean.getInstance();
+        this.manageRequestBean=manageRequestBean;
+        this.buttonUsername.setText(manageRequestBean.getUserName());
+        this.labelEventName.setText(String.valueOf(manageRequestBean.getEventName()));
+        this.labelEventDate.setText(manageRequestBean.getRequestDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+    }
     @FXML
     public void acceptRequest(ActionEvent actionEvent) throws IOException, SQLException {
         try {
@@ -61,12 +69,5 @@ public class ManageRequestsItemGUIController1 {
         }
     }
 
-    public void setAll(ManageRequestBean manageRequestBean) {
-        this.clubOwnerBean= LoggedClubOwnerBean.getInstance();
-        this.manageRequestBean=manageRequestBean;
-        this.buttonUsername.setText(manageRequestBean.getUserName() + " " + manageRequestBean.getUserSurname() );
-        this.labelEventName.setText(String.valueOf(manageRequestBean.getEventName()));
-        this.labelEventDate.setText(manageRequestBean.getRequestDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
-    }
 
 }

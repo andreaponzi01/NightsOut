@@ -11,6 +11,7 @@ import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 
 public class SubscriptionedVipPageGUIController1 {
 
@@ -26,14 +27,14 @@ public class SubscriptionedVipPageGUIController1 {
     public void setAll() throws SQLException {
         this.menuController.setAll();
         this.userBean = LoggedUserBean.getInstance();
-        setLabelDate(userBean.getCreationDateVIP().toString());
+        setLabelDate(userBean.getCreationDateVIP().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
     }
 
-    public void goToUserPage(ActionEvent actionEvent) throws IOException {
+    @FXML
+    public void backToUserPage(ActionEvent actionEvent) throws IOException {
         try {
               ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
               replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
-
           } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

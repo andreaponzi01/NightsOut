@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.scene.ReplaceSceneDynamic1;

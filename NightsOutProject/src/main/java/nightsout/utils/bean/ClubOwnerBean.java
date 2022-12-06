@@ -15,7 +15,6 @@ public class ClubOwnerBean extends ProfileBean {
 
     // Attributi ClubManager
     protected String address;
-    protected URL website;
     protected String city;
 
     public int getDiscountVIP() {
@@ -49,7 +48,7 @@ public class ClubOwnerBean extends ProfileBean {
 
     // Getter
     public String getAddress() {return address;}
-    public URL getWebsite() {return website;}
+
     public String getCity() {return city;}
 
     // Setter
@@ -57,9 +56,6 @@ public class ClubOwnerBean extends ProfileBean {
         if (address.equals(""))
             Trigger.emptyField("Address");
         this.address = address;
-    }
-    public void setWebsite(URL website) {
-        this.website = website;
     }
     public void setCity(String city) throws EmptyInputException {
         if (city.equals(""))

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.db.MySqlConnection;
@@ -69,7 +70,8 @@ public class MenuUserGUIController1 {
         if(alert.showAndWait().get() == ButtonType.OK) {
             ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
             MySqlConnection.closeConnection();
-            LoggedUserBean.DeleteInstance();//da cambiare
+            LoggedClubOwnerBean.DeleteInstance();
+            LoggedUserBean.DeleteInstance();
         }
     }
 

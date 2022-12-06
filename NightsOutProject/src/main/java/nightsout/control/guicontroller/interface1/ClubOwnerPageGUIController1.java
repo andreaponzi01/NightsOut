@@ -36,18 +36,23 @@ public class ClubOwnerPageGUIController1 implements Observer {
     @FXML
     private Label labelEmail;
     @FXML
+    private Label labelCity;
+    @FXML
+    private Label labelUsername;
+    @FXML
     private ListView listViewCreatedEvents;
     @FXML
     private MenuClubOwnerGUIController1 menuController;
 
-    public void setAllCulo() throws SQLException {
+    public void setAllCulo() throws SQLException, SystemException {
         loggedClubOwner = LoggedClubOwnerBean.getInstance();
         this.menuController.setAll();
         labelEmail.setText(loggedClubOwner.getEmail());
+        labelUsername.setText(loggedClubOwner.getUsername());
         labelName.setText(loggedClubOwner.getName());
         labelAddress.setText(loggedClubOwner.getAddress());
+        labelCity.setText(loggedClubOwner.getCity());
         labelDiscountVip.setText(String.valueOf(loggedClubOwner.getDiscountVIP()));
-        labelWebsite.setText(String.valueOf(loggedClubOwner.getWebsite()));
         CreatedEventsEngineering.createdEvents(this, loggedClubOwner.getId());
     }
 
@@ -59,7 +64,7 @@ public class ClubOwnerPageGUIController1 implements Observer {
 
         if(ob instanceof EventBean eBean) {
             try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CreatedEventItem1.fxml")).openStream());
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/NextEventItem1.fxml")).openStream());
             } catch (IOException e) {
                 try {
                     ExceptionHandler.handleException(e);
@@ -68,7 +73,7 @@ public class ClubOwnerPageGUIController1 implements Observer {
                 }
             }
 
-            CreatedEventItemGUIController1 controller = fxmlLoader.getController();
+            NextEventItemGUIController1 controller = fxmlLoader.getController();
             controller.setAll(eBean);
             this.listViewCreatedEvents.getItems().add(pane);
         }

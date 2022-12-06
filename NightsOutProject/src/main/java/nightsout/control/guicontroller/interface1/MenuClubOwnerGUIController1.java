@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
@@ -66,6 +67,7 @@ public class MenuClubOwnerGUIController1 {
             ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
             MySqlConnection.closeConnection();
             LoggedClubOwnerBean.DeleteInstance();
+            LoggedUserBean.DeleteInstance();
         }
     }
     @FXML

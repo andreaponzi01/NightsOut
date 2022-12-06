@@ -69,7 +69,6 @@ public class MakeResponseGUIController1 {
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
-
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

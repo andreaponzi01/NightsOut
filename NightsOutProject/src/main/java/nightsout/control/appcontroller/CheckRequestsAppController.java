@@ -35,6 +35,24 @@ public class CheckRequestsAppController {
         return listBean;
     }
 
+    public static List<RequestBean> searchPendingRequestsByIdUser(int idUser) {
+        List<RequestModel> list = null;
+        List<RequestBean> listBean = null;
+        try {
+            list = RequestDAO.getPendingRequestsByIdUser(idUser);
+            listBean = new ArrayList<>();
+
+            for(RequestModel rm : list){
+                RequestBean bean = new RequestBean(rm);
+                listBean.add(bean);
+            }
+
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
+        return listBean;
+    }
+
     public static EventBean searchEventById(int idEvent) {
        EventModel eventModel = null;
         try {

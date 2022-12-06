@@ -2,6 +2,8 @@ package nightsout.control;
 
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.MapComponentInitializedListener;
+import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
+import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,9 +48,11 @@ public class MapController implements Initializable, MapComponentInitializedList
         String address = "";
 
         MapOptions mapOptions = new MapOptions();
+
         double lat = 0.0, lng = 0.0;
 
         try {
+
             address = EventPageDecoratorAppController.getClubAddress(eventBean.getIdEvent());
             // Recuperiamo latitudine e longitudine dell'indirizzo del Club nel quale si svolgerà l'evento
             URL url = new URL("https://www.mapquestapi.com/geocoding/v1/address?key=QmskMXX88teOI9qXndnvrgGj4DGETyiF");
@@ -91,9 +95,11 @@ public class MapController implements Initializable, MapComponentInitializedList
             MyNotification.createNotification(e);
         }
 
+
+
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
-        mapOptions.center(new LatLong(lat, lng))
-                .mapType(MapTypeIdEnum.SATELLITE)
+        mapOptions.center(new LatLong(lat,lng))
+                .mapType(MapTypeIdEnum.HYBRID)
                 .overviewMapControl(false)
                 .panControl(false)
                 .rotateControl(false)
@@ -103,30 +109,16 @@ public class MapController implements Initializable, MapComponentInitializedList
                 .zoom(18);
 
         GoogleMap map = location.createMap(mapOptions);
-
         // Aggiungiamo il marcatore sulla Mappa
         MarkerOptions markerOptions = new MarkerOptions();
 
-        markerOptions.position( new LatLong(lat, lng))
+        markerOptions.position( new LatLong(46.935749, -121.483499))
                 .visible(Boolean.TRUE)
                 .title("Prova1" + "'s Location");
 
         Marker marker = new Marker(markerOptions);
         map.addMarker(marker);
 
-    /*
-    URL url2 = null;
-    try {
-        url2 = new URL("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/marracash-carriera-vita-foto-gossip-album-1641325823.png");    } catch (MalformedURLException e) {
-        e.printStackTrace();
-        try {
-            url2 = new URL("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png");        } catch (MalformedURLException e1) {
-            e1.printStackTrace();
-        }
-    }
-    Image image = new Image(String.valueOf(url2));
-    profilePic.setImage(image);
-    */
     }
 
 

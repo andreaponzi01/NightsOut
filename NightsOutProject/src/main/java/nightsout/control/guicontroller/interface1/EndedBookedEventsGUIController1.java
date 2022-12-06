@@ -30,7 +30,7 @@ public class EndedBookedEventsGUIController1 implements Observer {
     private MenuUserGUIController1 menuController;
 
 
-    public void setAll() throws SQLException {
+    public void setAll() throws SQLException, SystemException {
         this.userBean = LoggedUserBean.getInstance();
         this.menuController.setAll();
         ReviewEngineering.endedBookedEvents(this, userBean.getId());
@@ -55,8 +55,8 @@ public class EndedBookedEventsGUIController1 implements Observer {
             try {
                 reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
                 if(reviewBean!=null){
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
-                    EventItemGUIController1 controller = fxmlLoader.getController();
+                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/NextEventItem1.fxml")).openStream());
+                    NextEventItemGUIController1 controller = fxmlLoader.getController();
                     controller.setAll( eBean);
                     this.listViewEvents.getItems().add(pane);
                 } else {

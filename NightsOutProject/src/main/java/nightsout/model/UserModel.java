@@ -1,6 +1,5 @@
 package nightsout.model;
 
-import nightsout.utils.bean.Credentials;
 import nightsout.utils.bean.UserBean;
 
 import java.time.LocalDate;

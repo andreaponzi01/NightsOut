@@ -16,7 +16,7 @@ public class EventPageSetter1 {
     public static void setterDecoratorUser( EventBean eventBean, EventPageDecoratorUserGUIController1 eventPageDecoratorGUIController1) throws SQLException, SystemException {
         eventPageDecoratorGUIController1.setAll(eventBean);
     }
-    public static void setterDecoratorCO( EventBean eventBean, EventPageDecoratorCOGUIController1 eventPageDecoratorGUIController1) throws SQLException {
+    public static void setterDecoratorCO( EventBean eventBean, EventPageDecoratorCOGUIController1 eventPageDecoratorGUIController1) throws SQLException, SystemException {
         eventPageDecoratorGUIController1.setAll(eventBean);
     }
 }

@@ -19,9 +19,6 @@ public class UserItemGUIController1 {
     private UserBean userBean;
     private ClubOwnerBean clubOwnerBean;
 
-    private ProfileBean profileBean;
-    private EventBean eventBean;
-
     @FXML
     Label labelType;
     @FXML

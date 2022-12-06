@@ -13,12 +13,12 @@
       <fx:include fx:id="menu" source="MenuUser1.fxml" />
       <AnchorPane layoutX="168.0" layoutY="85.0" prefHeight="555.0" prefWidth="1020.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <TextField fx:id="textFieldReview" alignment="TOP_LEFT" layoutX="97.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.48" prefHeight="284.0" prefWidth="862.0" promptText="insert yout review..." style="-fx-background-radius: 28;">
+            <TextField fx:id="textFieldReview" alignment="TOP_LEFT" layoutX="79.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="862.0" promptText="insert yout review..." style="-fx-background-radius: 28;" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="79.0">
                <font>
-                  <Font name="Arial" size="26.0" />
+                  <Font name="Arial" size="35.0" />
                </font>
             </TextField>
-            <Button layoutX="374.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createReview" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Send Review" textFill="WHITE">
+            <Button layoutX="360.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createReview" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Send Review" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
                <font>
                   <Font name="Arial Bold" size="25.0" />
                </font>
@@ -29,27 +29,27 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="35.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToEndedBookedEventsPage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
-               <font>
-                  <Font name="Arial Bold" size="25.0" />
-               </font>
-               <effect>
-                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label fx:id="labelEventName" layoutX="767.0" layoutY="28.0" prefHeight="50.0" prefWidth="153.0" text="EventName">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="267.0" layoutY="7.0" prefHeight="84.0" prefWidth="535.0" text="Insert Review To: " textFill="WHITE">
+            <Label fx:id="labelEventName" layoutX="579.0" layoutY="72.0" prefHeight="84.0" prefWidth="301.0" text="EventName" textFill="#ffeecc" AnchorPane.topAnchor="72.0">
                <font>
                   <Font name="Arial Bold" size="50.0" />
                </font>
             </Label>
+            <Label alignment="CENTER" layoutX="144.0" layoutY="72.0" prefHeight="84.0" prefWidth="441.0" text="Insert Review To: " textFill="#ffeecc" AnchorPane.topAnchor="72.0">
+               <font>
+                  <Font name="Arial Bold" size="50.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonBack" layoutX="31.0" layoutY="18.0" mnemonicParsing="false" onAction="#backToEndedBookedEventsPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
    </children>

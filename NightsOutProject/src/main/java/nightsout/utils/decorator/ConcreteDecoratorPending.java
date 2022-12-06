@@ -31,7 +31,7 @@ public class ConcreteDecoratorPending extends Decorator {
         myButton.setMinWidth(125);
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
-        myButton.setStyle("-fx-background-color: #eb800e;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
+        myButton.setStyle("-fx-background-color: #ffeecc;" + "-fx-background-radius: 28;" + "-fx-text-fill: #200f54;");
     }
 
 

@@ -2,8 +2,10 @@ package nightsout.control.appcontroller;
 
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ReviewModel;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.ReviewDAO;
 import nightsout.utils.dao.UserDAO;
 import nightsout.utils.exception.myexception.SystemException;
@@ -41,4 +43,8 @@ public class EventReviewsClubOwnerAppController {
     }
 
 
+    public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException{
+        EventBean eventBean= new EventBean(EventDAO.getEventByIdEvent(idEvent));
+        return eventBean;
+    }
 }

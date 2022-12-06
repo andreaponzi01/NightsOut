@@ -18,12 +18,11 @@ public class SubscriptionVipPageGUIController1 {
     @FXML
     private MenuUserGUIController1 menuController;
 
-    @FXML
-    private void backToUserPage(ActionEvent actionEvent) throws IOException {
-       try {
-           ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-           replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
-       } catch (SystemException e) {
+    public void backToUserPage(ActionEvent actionEvent) throws IOException {
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
+        } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
     }

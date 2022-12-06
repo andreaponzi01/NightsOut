@@ -1,4 +1,4 @@
-package nightsout.utils.bean;
+package nightsout.model;
 
 public class Credentials {
     private String username;
@@ -22,6 +22,8 @@ public class Credentials {
         this.password = null;
         this.type = null;
     }
+
+
     public  void setPassword(String password){this.password =password; }
     public void setUsername(String username) {
         this.username = username;

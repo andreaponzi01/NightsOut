@@ -30,22 +30,23 @@ public class CheckRequestsGUIController1 implements Observer {
     @FXML
     private MenuUserGUIController1 menuController;
 
-    public void setAll() throws SQLException {
+    public void setAll() throws SQLException, SystemException {
         this.userBean = LoggedUserBean.getInstance();
         this.menuController.setAll();
         this.checkRequests();
     }
 
+
     @FXML
-    public void backToWelcomePage(ActionEvent actionEvent) throws SystemException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
+    private void checkRequests() throws SQLException, SystemException {
+        this.listViewPendingRequests.getItems().clear();
+        CheckRequestsEngineering.checkPendingRequests(this, this.userBean.getId());
     }
 
     @FXML
-    private void checkRequests() throws SQLException {
+    private void goToRifiutedRequests() throws SQLException, SystemException {
         this.listViewPendingRequests.getItems().clear();
-        CheckRequestsEngineering.checkRequests(this, this.userBean.getId());
+        CheckRequestsEngineering.checkAllRequests(this, this.userBean.getId());
     }
 
 
@@ -70,5 +71,11 @@ public class CheckRequestsGUIController1 implements Observer {
 
             this.listViewPendingRequests.getItems().add(pane);
         }
+    }
+
+    @FXML
+    public void backToUserPage(ActionEvent actionEvent) throws SystemException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
     }
 }

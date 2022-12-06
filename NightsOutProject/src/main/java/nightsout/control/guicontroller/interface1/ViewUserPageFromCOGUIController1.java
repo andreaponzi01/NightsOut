@@ -9,12 +9,14 @@ import javafx.scene.layout.Pane;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.NextEventsEngineering;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class ViewUserPageFromCOGUIController1 implements Observer {
@@ -27,6 +29,11 @@ public class ViewUserPageFromCOGUIController1 implements Observer {
     protected Label labelBirthday;
     @FXML
     protected Label labelVip;
+    @FXML
+    protected Label labelGender;
+    @FXML
+    private Label labelEmail;
+
 
     private UserBean userBean;
 
@@ -38,17 +45,19 @@ public class ViewUserPageFromCOGUIController1 implements Observer {
     private Label labelSurname;
 
 
-    public void setAll(UserBean userBean) throws SQLException {
+    public void setAll(UserBean userBean) throws SQLException, SystemException {
         this.menuController.setAll();
         this.userBean = userBean;
         this.labelUsername.setText(userBean.getUsername());
+        this.labelEmail.setText(userBean.getEmail());
         this.labelName.setText(userBean.getName());
         this.labelSurname.setText(userBean.getSurname());
         if(userBean.getVip())
-            this.labelVip.setText("utente vip");
+            this.labelVip.setText("VIP");
         else
-            this.labelVip.setText("utente NON vip");
-        this.labelBirthday.setText(userBean.getBirthday().toString());
+            this.labelVip.setText("NO VIP");
+        this.labelGender.setText(userBean.getGender());
+        this.labelBirthday.setText(userBean.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
         NextEventsEngineering.nextEvents(this, userBean.getId());
     }
 

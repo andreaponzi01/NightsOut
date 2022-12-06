@@ -14,28 +14,34 @@
 
 <AnchorPane id="bg" fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.LoginGUIController1">
    <children>
-      <VBox alignment="CENTER" layoutX="314.0" layoutY="71.0" prefHeight="448.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 28;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="314.0" AnchorPane.rightAnchor="286.0" AnchorPane.topAnchor="71.0">
+      <VBox alignment="CENTER" layoutX="300.0" layoutY="71.0" prefHeight="448.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 28;" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="71.0">
          <children>
-            <Label prefHeight="56.0" prefWidth="132.0" text="Sign In">
+            <Label prefHeight="56.0" prefWidth="132.0" text="Sign In" textFill="#2e0095">
                <font>
                   <Font name="Futura Medium" size="42.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldUsername" prefHeight="50.0" prefWidth="320.0" promptText="username" style="-fx-background-color: #e8e7fc; -fx-background-radius: 28;">
+            <TextField fx:id="textFieldUsername" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="320.0" promptText="username" style="-fx-background-color: #e6e6ff; -fx-background-radius: 28;">
                <VBox.margin>
                   <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                </VBox.margin>
                <font>
                   <Font size="25.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </TextField>
-            <PasswordField fx:id="passwordField" prefHeight="50.0" prefWidth="320.0" promptText="password" style="-fx-background-color: #e8e7fc; -fx-background-radius: 28;">
+            <PasswordField fx:id="passwordField" alignment="CENTER" prefHeight="50.0" prefWidth="320.0" promptText="password" style="-fx-background-color: #e6e6ff; -fx-background-radius: 28;">
                <VBox.margin>
                   <Insets bottom="10.0" left="50.0" right="50.0" />
                </VBox.margin>
                <font>
                   <Font size="25.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </PasswordField>
             <Button fx:id="buttonLogin" mnemonicParsing="false" onAction="#loginAction" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Login" textFill="WHITE">
                <effect>
@@ -51,10 +57,10 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <CheckBox fx:id="checkBoxClubOwner" mnemonicParsing="false" text="Club Owner" />
+            <CheckBox fx:id="checkBoxClubOwner" mnemonicParsing="false" text="Club Owner" textFill="#2e0095" />
          </children>
       </VBox>
-      <Button fx:id="buttonBack" layoutX="24.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
+      <Button fx:id="buttonBack" layoutX="24.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" textFill="#2e0095">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>

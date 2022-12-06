@@ -115,15 +115,15 @@ public class Query {
     }
 
     public static PreparedStatement searchRequestsByIdClubOwner(int idClubOwner) throws SystemException {
-            String query = "SELECT R.idRequest, R.creationDateTime, U.name, U.surname, E.name FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE E.clubOwner = ? and R.status='pending';";
-            PreparedStatement preparedStatement = null;
-            try {
+        String query = "SELECT R.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent WHERE E.clubOwner = ? and R.status='pending';";
+        PreparedStatement preparedStatement = null;
+        try {
             preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
             preparedStatement.setInt(1, idClubOwner);
         } catch (SQLException e) {
-                ExceptionHandler.handleException(e);
+            ExceptionHandler.handleException(e);
         }
-            return preparedStatement;
+        return preparedStatement;
     }
 
     public static PreparedStatement searchRequestsByIdUser(int idUser) throws SystemException {
@@ -133,6 +133,19 @@ public class Query {
             preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
             preparedStatement.setInt(1, idUser);
             preparedStatement.setString(2, "accepted");
+        } catch (SQLException e) {
+            ExceptionHandler.handleException(e);
+        }
+        return preparedStatement;
+    }
+
+    public static PreparedStatement searchPendingRequestsByIdUser(int idUser) throws SystemException {
+        String query = "SELECT * FROM Requests WHERE user = ? and Requests.status = ?;";
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
+            preparedStatement.setInt(1, idUser);
+            preparedStatement.setString(2, "pending");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }

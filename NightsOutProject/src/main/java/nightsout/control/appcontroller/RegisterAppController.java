@@ -3,7 +3,7 @@ package nightsout.control.appcontroller;
 import nightsout.model.ClubOwnerModel;
 import nightsout.model.UserModel;
 import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.Credentials;
+import nightsout.model.Credentials;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.UserDAO;

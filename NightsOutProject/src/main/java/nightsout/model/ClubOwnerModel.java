@@ -1,7 +1,6 @@
 package nightsout.model;
 
 import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.Credentials;
 
 public class ClubOwnerModel extends ProfileModel {
 

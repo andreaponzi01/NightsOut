@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
@@ -55,9 +56,15 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
     @FXML
     private Label labelEventDuration;
     @FXML
+    private Label labelDescription;
+    @FXML
     private ListView listViewUsers;
     @FXML
-    GoogleMapView location;
+    private GoogleMapView location;
+
+    @FXML
+    private ImageView eventImg;
+
 
     // Decorator
     @FXML
@@ -74,9 +81,10 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
         clubOwnerBean=EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());
         this.labelUsername.setText(clubOwnerBean.getName());
         this.labelEventName.setText(eventBean.getName());
-        this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()));
+        this.labelDescription.setText(eventBean.getDescription());
+        this.labelEventPrice.setText(String.valueOf(eventBean.getPrice())+" $");
         this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
-        this.labelEventDuration.setText(String.valueOf(eventBean.getDuration()));
+        this.labelEventDuration.setText(String.valueOf(eventBean.getDuration())+" h");
         this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));
         EventParticipantsEngineering.eventParticipants(this, eventBean.getIdEvent());
         myStart();
@@ -151,7 +159,6 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
         replacer.switchAndSetSceneMap(ae,"/MapPage1.fxml",eventBean);
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         location.addMapInitializedListener(this);
@@ -163,9 +170,11 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
         String address = "";
 
         MapOptions mapOptions = new MapOptions();
+
         double lat = 0.0, lng = 0.0;
 
         try {
+
             address = EventPageDecoratorAppController.getClubAddress(eventBean.getIdEvent());
             // Recuperiamo latitudine e longitudine dell'indirizzo del Club nel quale si svolgerà l'evento
             URL url = new URL("https://www.mapquestapi.com/geocoding/v1/address?key=QmskMXX88teOI9qXndnvrgGj4DGETyiF");
@@ -208,9 +217,11 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
             MyNotification.createNotification(e);
         }
 
+
+
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
-        mapOptions.center(new LatLong(lat, lng))
-                .mapType(MapTypeIdEnum.SATELLITE)
+        mapOptions.center(new LatLong(lat,lng))
+                .mapType(MapTypeIdEnum.HYBRID)
                 .overviewMapControl(false)
                 .panControl(false)
                 .rotateControl(false)
@@ -220,29 +231,16 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
                 .zoom(18);
 
         GoogleMap map = location.createMap(mapOptions);
-
         // Aggiungiamo il marcatore sulla Mappa
         MarkerOptions markerOptions = new MarkerOptions();
 
-        markerOptions.position( new LatLong(lat, lng))
+        markerOptions.position( new LatLong(46.935749, -121.483499))
                 .visible(Boolean.TRUE)
                 .title("Prova1" + "'s Location");
 
         Marker marker = new Marker(markerOptions);
         map.addMarker(marker);
 
-    /*
-    URL url2 = null;
-    try {
-        url2 = new URL("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/marracash-carriera-vita-foto-gossip-album-1641325823.png");    } catch (MalformedURLException e) {
-        e.printStackTrace();
-        try {
-            url2 = new URL("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png");        } catch (MalformedURLException e1) {
-            e1.printStackTrace();
-        }
     }
-    Image image = new Image(String.valueOf(url2));
-    profilePic.setImage(image);
-    */
-    }
+
 }

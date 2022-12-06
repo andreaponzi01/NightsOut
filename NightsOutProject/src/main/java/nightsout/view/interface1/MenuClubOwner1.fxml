@@ -36,10 +36,10 @@
             </DropShadow>
          </effect>
       </AnchorPane>
-      <Button layoutX="397.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToReviewsPage" prefHeight="40.0" prefWidth="91.0" styleClass="navBarButton" stylesheets="@style.css" text="Reviews" textFill="WHITE" AnchorPane.topAnchor="24.0" />
+      <Button layoutX="397.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToReviewsPage" prefHeight="40.0" prefWidth="112.0" styleClass="navBarButton" stylesheets="@style.css" text="Community" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <Button layoutX="133.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToCreateEventPage" prefHeight="40.0" prefWidth="127.0" styleClass="navBarButton" stylesheets="@style.css" text="Create Event" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <Button layoutX="249.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToResponsePage" prefHeight="40.0" prefWidth="156.0" styleClass="navBarButton" stylesheets="@style.css" text="Respond review" textFill="WHITE" AnchorPane.topAnchor="24.0" />
-      <Button layoutX="488.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToManageRequestsPage" prefHeight="40.0" prefWidth="157.0" styleClass="navBarButton" stylesheets="@style.css" text="Manage Request" textFill="WHITE" AnchorPane.topAnchor="24.0" />
+      <Button layoutX="502.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToManageRequestsPage" prefHeight="40.0" prefWidth="157.0" styleClass="navBarButton" stylesheets="@style.css" text="Manage Request" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <ImageView fitHeight="60.0" fitWidth="64.0" layoutX="15.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="12.0">
          <image>
             <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/logo.png" />

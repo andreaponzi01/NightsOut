@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.engineering.NextEventsEngineering;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.EventBean;
@@ -15,6 +16,7 @@ import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class ViewUserPageFromUserGUIController1 implements Observer {
@@ -27,28 +29,36 @@ public class ViewUserPageFromUserGUIController1 implements Observer {
     protected Label labelBirthday;
     @FXML
     protected Label labelVip;
-
-    private UserBean userBean;
+    @FXML
+    protected Label labelGender;
+    @FXML
+    private Label labelSurname;
+    @FXML
+    private Label labelEmail;
 
     @FXML
     private ListView listViewNextEvents;
     @FXML
     private MenuUserGUIController1 menuController;
-    @FXML
-    private Label labelSurname;
+
+    private UserBean userBean;
 
 
-    public void setAll(UserBean userBean) throws SQLException {
+
+
+    public void setAll(UserBean userBean) throws SQLException, SystemException {
         this.menuController.setAll();
         this.userBean = userBean;
         this.labelUsername.setText(userBean.getUsername());
+        this.labelEmail.setText(userBean.getEmail());
         this.labelName.setText(userBean.getName());
         this.labelSurname.setText(userBean.getSurname());
         if(userBean.getVip())
-            this.labelVip.setText("utente vip");
+            this.labelVip.setText("VIP");
         else
-            this.labelVip.setText("utente NON vip");
-        this.labelBirthday.setText(userBean.getBirthday().toString());
+            this.labelVip.setText("NO VIP");
+        this.labelGender.setText(userBean.getGender());
+        this.labelBirthday.setText(userBean.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
         NextEventsEngineering.nextEvents(this, userBean.getId());
     }
 
