@@ -126,13 +126,13 @@ public class Query {
         return preparedStatement;
     }
 
-    public static PreparedStatement searchRequestsByIdUser(int idUser) throws SystemException {
-        String query = "SELECT * FROM Requests WHERE user = ? and Requests.status <> ?;";
+    public static PreparedStatement searchRifiutedRequestsByIdUser(int idUser) throws SystemException {
+        String query = "SELECT * FROM Requests WHERE user = ? and Requests.status = ?;";
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = MySqlConnection.connect().prepareStatement(query) ;
             preparedStatement.setInt(1, idUser);
-            preparedStatement.setString(2, "accepted");
+            preparedStatement.setString(2, "declined");
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }

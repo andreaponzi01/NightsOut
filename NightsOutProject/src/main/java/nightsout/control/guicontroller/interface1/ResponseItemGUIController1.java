@@ -18,13 +18,10 @@ public class ResponseItemGUIController1 {
     }
 
     @FXML
-    private TextArea textAreaResponse;
-    @FXML
-    private Label labelUsername; //renderlo bottone
+    private Label labelResponse;
+
 
     public void setAll(ResponseBean responseBean) throws SQLException {
-        this.textAreaResponse.setText(responseBean.getResponse());
-        this.labelUsername.setText(String.valueOf(LoggedClubOwnerBean.getInstance().getId()));
-        //implementare di vedere il nome e non l' id del clubOwner
+        this.labelResponse.setText(responseBean.getResponse());
     }
 }

@@ -20,13 +20,13 @@ public class CheckRequestsEngineering {
         list.addRequestsToList(searchPendingRequests(idUser));
     }
 
-    public static void checkAllRequests(Observer observer, int idUser) throws SQLException, SystemException {
+    public static void checkRifiutedRequests(Observer observer, int idUser) throws SQLException, SystemException {
         RequestBeanList list = new RequestBeanList(observer);
-        list.addRequestsToList(searchRequests(idUser));
+        list.addRequestsToList(searchRifiutedRequests(idUser));
     }
 
-    private static List<RequestBean> searchRequests(int idUser) {
-        return (CheckRequestsAppController.searchRequestsByIdUser(idUser));
+    private static List<RequestBean> searchRifiutedRequests(int idUser) {
+        return (CheckRequestsAppController.searchRifiutedRequestsByIdUser(idUser));
     }
 
     private static List<RequestBean> searchPendingRequests(int idUser) {

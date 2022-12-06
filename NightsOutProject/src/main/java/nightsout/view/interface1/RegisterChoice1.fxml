@@ -1,56 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.RegisterChoiceGUIController1">
    <children>
-      <VBox alignment="CENTER" layoutX="32.0" layoutY="21.0" prefHeight="359.0" prefWidth="537.0" style="-fx-background-color: white; -fx-background-radius: 28;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="84.0" prefWidth="681.0" text="1° step: Who Are You?" textFill="#200f54">
-               <font>
-                  <Font name="Arial Bold" size="60.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="20.0" prefWidth="537.0">
-               <VBox.margin>
-                  <Insets left="20.0" />
-               </VBox.margin>
-            </HBox>
-            <VBox alignment="CENTER" prefHeight="238.0" prefWidth="940.0" spacing="30.0">
-               <children>
-                  <Button fx:id="buttonClubOwner" mnemonicParsing="false" onAction="#goToClubOwnerRegister" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Club Owner" textFill="WHITE">
-                     <font>
-                        <Font name="Arial Bold" size="25.0" />
-                     </font>
-                     <effect>
-                        <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button fx:id="buttonUser" mnemonicParsing="false" onAction="#goToUserRegister" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: e5e5e5; -fx-background-radius: 28;" text=" Normal User">
-                     <font>
-                        <Font name="Arial Bold" size="25.0" />
-                     </font>
-                     <effect>
-                        <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
-                     </effect>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-      <Button fx:id="btnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePane" prefHeight="50.0" prefWidth="100.0" style="-fx-background-radius: 28; -fx-background-color: e8e7fc;" text="Back" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="75.0">
+      <AnchorPane layoutX="118.0" layoutY="133.0" opacity="0.23" prefHeight="444.0" prefWidth="864.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="97.65" radius="48.322500000000005" spread="0.21" width="97.64">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="180.0" layoutY="116.0" prefHeight="84.0" prefWidth="681.0" text="1° step: Who Are You?" textFill="#ffeecc" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="179.0" AnchorPane.topAnchor="116.0">
+         <font>
+            <Font name="Arial Bold" size="50.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePane" prefHeight="50.0" prefWidth="100.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -61,5 +35,27 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <AnchorPane layoutX="333.0" layoutY="220.0" prefHeight="316.0" prefWidth="375.0" style="-fx-background-color: white; -fx-background-radius: 28;" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="332.0">
+         <children>
+            <Button fx:id="buttonClubOwner" layoutX="54.0" layoutY="73.0" onAction="#goToClubOwnerRegister" prefHeight="67.0" prefWidth="236.0" style="-fx-background-color: #2a009b; -fx-background-radius: 100;" text="ClubOwner" textFill="WHITE" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="146.0" prefHeight="40.0" prefWidth="377.0" text="Or" textAlignment="CENTER" textFill="#cdc6c6" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="Futura Medium" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonUser" layoutX="85.0" layoutY="190.0" onAction="#goToUserRegister" prefHeight="67.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #2a009b; -fx-border-width: 1;" text="Normal User" textFill="#2a009b" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
    </children>
 </AnchorPane>

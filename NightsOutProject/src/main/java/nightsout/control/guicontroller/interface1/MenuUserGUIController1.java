@@ -57,7 +57,7 @@ public class MenuUserGUIController1 {
     @FXML
     private void goToCheckRequestsPage(ActionEvent actionEvent) throws SystemException {
         ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneCheckRequests(actionEvent, "/CheckRequestsPage1.fxml");
+        replacer.switchAndSetSceneCheckPendingRequests(actionEvent, "/CheckPendingRequestsPage1.fxml");
     }
 
     @FXML

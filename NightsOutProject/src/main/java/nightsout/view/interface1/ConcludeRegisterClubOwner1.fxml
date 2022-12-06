@@ -6,27 +6,26 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ConcludeRegisterClubOwnerGUIController1">
    <children>
-      <Button fx:id="buttonBack" layoutX="43.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToRegister" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: e8e7fc; -fx-background-radius: 28;" text="Back">
-         <font>
-            <Font name="Arial Bold" size="25.0" />
-         </font>
+      <AnchorPane layoutX="108.0" layoutY="123.0" opacity="0.23" prefHeight="444.0" prefWidth="864.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <effect>
-            <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+            <DropShadow blurType="GAUSSIAN" height="97.65" radius="48.322500000000005" spread="0.21" width="97.64">
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" />
+               </color>
+            </DropShadow>
          </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <TextField fx:id="textFieldEmail" alignment="CENTER" layoutX="262.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert email" style="-fx-background-radius: 28;">
+      </AnchorPane>
+      <TextField fx:id="textFieldEmail" alignment="CENTER" layoutX="262.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert email" style="-fx-background-radius: 28;" AnchorPane.topAnchor="198.0">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <Button layoutX="390.0" layoutY="516.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToWelcomePage" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Submit" textFill="WHITE">
+      <Button layoutX="370.0" layoutY="457.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToWelcomePage" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Submit" textFill="WHITE" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="370.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -37,20 +36,31 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" layoutX="94.0" layoutY="83.0" prefHeight="84.0" prefWidth="862.0" text="Credentials:" textFill="#200f54">
+      <Label alignment="CENTER" layoutX="89.0" layoutY="99.0" prefHeight="84.0" prefWidth="862.0" text="Credentials" textFill="#ffeecc" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="89.0" AnchorPane.topAnchor="99.0">
          <font>
-            <Font name="Arial Bold" size="55.0" />
+            <Font name="Arial Bold" size="50.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldPassword" alignment="CENTER" layoutX="260.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert password" style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldPassword" alignment="CENTER" layoutX="260.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert password" style="-fx-background-radius: 28;" AnchorPane.bottomAnchor="242.0">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldUsername" alignment="CENTER" layoutX="265.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert username" style="-fx-background-radius: 28;">
+      <TextField fx:id="textFieldUsername" alignment="CENTER" layoutX="265.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert username" style="-fx-background-radius: 28;" AnchorPane.bottomAnchor="322.0" AnchorPane.topAnchor="278.0">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
+      <Button fx:id="buttonBack" layoutX="56.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToRegister" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+         <font>
+            <Font name="Arial Bold" size="25.0" />
+         </font>
+         <effect>
+            <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

@@ -17,11 +17,11 @@ public class CheckRequestsAppController {
     private CheckRequestsAppController() {
         //ignored
     }
-    public static List<RequestBean> searchRequestsByIdUser(int idUser) {
+    public static List<RequestBean> searchRifiutedRequestsByIdUser(int idUser) {
         List<RequestModel> list = null;
         List<RequestBean> listBean = null;
         try {
-            list = RequestDAO.getRequestsByIdUser(idUser);
+            list = RequestDAO.getRifiutedRequestsByIdUser(idUser);
             listBean = new ArrayList<>();
 
             for(RequestModel rm : list){

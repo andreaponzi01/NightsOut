@@ -2,6 +2,7 @@ package nightsout.control.guicontroller.interface1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
@@ -18,6 +19,8 @@ import java.sql.SQLException;
 
 public class ReviewItemGUIController1 {
 
+    @FXML
+    public Button buttonUsername;
     private UserBean userBean;
     private ReviewBean reviewBean;
 
@@ -29,8 +32,6 @@ public class ReviewItemGUIController1 {
     private Label labelComment;
     @FXML
     private Label labelEventName;
-    @FXML
-    private Label labelUsername; //renderlo bottone
 
     public void setAll(ReviewBean reviewBean) throws SQLException, SystemException {
         this.reviewBean=reviewBean;
@@ -42,7 +43,7 @@ public class ReviewItemGUIController1 {
             MyNotification.createNotification(e);
         }
         EventBean eventBean=EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
-        this.labelUsername.setText(userBean.getUsername());
+        this.buttonUsername.setText(userBean.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
 

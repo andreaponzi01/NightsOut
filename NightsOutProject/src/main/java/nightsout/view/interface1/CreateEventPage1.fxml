@@ -21,7 +21,7 @@
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonCreateEvent" layoutX="360.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Create Event" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
+            <Button fx:id="buttonCreateEvent" layoutX="360.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Create Event" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
                <font>
                   <Font name="Arial Bold" size="25.0" />
                </font>
@@ -58,12 +58,12 @@
                   <Font size="42.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldDescription" alignment="TOP_LEFT" layoutX="235.0" layoutY="290.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="550.0" promptText="insert Description" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0">
+            <TextField fx:id="textFieldDescription" alignment="TOP_LEFT" layoutX="235.0" layoutY="290.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="119.0" prefWidth="550.0" promptText="insert Description" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0">
                <font>
                   <Font name="Arial" size="22.0" />
                </font>
             </TextField>
-            <Label alignment="CENTER" layoutX="298.0" layoutY="23.0" prefHeight="84.0" prefWidth="425.0" text="Insert Event Info" textFill="#ffeecc" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="297.0">
+            <Label alignment="CENTER" layoutX="298.0" layoutY="23.0" prefHeight="84.0" prefWidth="425.0" text="Insert Event Info" textFill="#ffeecc" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="297.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font name="Arial Bold" size="50.0" />
                </font>

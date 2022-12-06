@@ -104,7 +104,7 @@ public class RequestDAO {
         return list;
     }
 
-    public static List<RequestModel> getRequestsByIdUser(int idUser) throws SystemException {
+    public static List<RequestModel> getRifiutedRequestsByIdUser(int idUser) throws SystemException {
         List<RequestModel> list = null;
         PreparedStatement preparedStatement = null;
         RequestModel requestModel = null ;
@@ -112,7 +112,7 @@ public class RequestDAO {
         try {
             list = new ArrayList<>();
 
-            preparedStatement = Query.searchRequestsByIdUser(idUser);
+            preparedStatement = Query.searchRifiutedRequestsByIdUser(idUser);
             ResultSet rs = preparedStatement.executeQuery();
             assert rs != null;
             if (!rs.next()) {

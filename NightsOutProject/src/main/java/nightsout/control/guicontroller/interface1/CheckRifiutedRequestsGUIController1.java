@@ -7,25 +7,25 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.CheckRequestsAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.exception.ExceptionHandler;
-import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.bean.LoggedUserBean;
-import nightsout.utils.observer.engineering.CheckRequestsEngineering;
-import nightsout.utils.observer.Observer;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.engineering.CheckRequestsEngineering;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class CheckRequestsGUIController1 implements Observer {
+public class CheckRifiutedRequestsGUIController1 implements Observer {
     private UserBean userBean;
 
     @FXML
-    ListView listViewPendingRequests;
+    ListView listViewRifiutedRequests;
 
     @FXML
     private MenuUserGUIController1 menuController;
@@ -33,20 +33,20 @@ public class CheckRequestsGUIController1 implements Observer {
     public void setAll() throws SQLException, SystemException {
         this.userBean = LoggedUserBean.getInstance();
         this.menuController.setAll();
-        this.checkRequests();
+        this.checkRifiutedRequests();
     }
 
 
     @FXML
-    private void checkRequests() throws SQLException, SystemException {
-        this.listViewPendingRequests.getItems().clear();
-        CheckRequestsEngineering.checkPendingRequests(this, this.userBean.getId());
+    private void checkRifiutedRequests() throws SQLException, SystemException {
+        this.listViewRifiutedRequests.getItems().clear();
+        CheckRequestsEngineering.checkRifiutedRequests(this, this.userBean.getId());
     }
 
     @FXML
-    private void goToRifiutedRequests() throws SQLException, SystemException {
-        this.listViewPendingRequests.getItems().clear();
-        CheckRequestsEngineering.checkAllRequests(this, this.userBean.getId());
+    private void backToPendingRequests(ActionEvent actionEvent) throws SystemException {
+        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        replacer.switchAndSetSceneCheckPendingRequests(actionEvent, "/CheckPendingRequestsPage1.fxml");
     }
 
 
@@ -69,13 +69,7 @@ public class CheckRequestsGUIController1 implements Observer {
             EventBean eventBean = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
             controller.setAll(rBean, eventBean);
 
-            this.listViewPendingRequests.getItems().add(pane);
+            this.listViewRifiutedRequests.getItems().add(pane);
         }
-    }
-
-    @FXML
-    public void backToUserPage(ActionEvent actionEvent) throws SystemException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
     }
 }

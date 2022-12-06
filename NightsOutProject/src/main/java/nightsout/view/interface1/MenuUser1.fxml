@@ -7,7 +7,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.MenuUserGUIController1">
@@ -38,12 +37,12 @@
       <Button layoutX="430.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToCheckRequestsPage" prefHeight="40.0" prefWidth="142.0" styleClass="navBarButton" stylesheets="@style.css" text=" Request Status" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <Button layoutX="563.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToSubscriptionPage" prefHeight="40.0" prefWidth="76.0" styleClass="navBarButton" stylesheets="@style.css" text="VIP" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <Button layoutX="164.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToReviewPage" prefHeight="40.0" prefWidth="179.0" styleClass="navBarButton" stylesheets="@style.css" text="Review Ended Event" textFill="WHITE" AnchorPane.topAnchor="24.0" />
-      <Circle fill="#1f93ff00" layoutX="670.0" layoutY="41.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.topAnchor="16.0" />
       <ImageView fitHeight="60.0" fitWidth="64.0" layoutX="25.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="12.0">
          <image>
             <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/logo.png" />
          </image>
       </ImageView>
       <Button layoutX="83.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="40.0" prefWidth="76.0" styleClass="navBarButton" stylesheets="@style.css" text="Home" textFill="WHITE" AnchorPane.topAnchor="24.0" />
+      <ImageView fx:id="imageViewProfile" fitHeight="50.0" fitWidth="50.0" layoutX="645.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

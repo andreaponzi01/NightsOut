@@ -151,12 +151,25 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneCheckRequests(ActionEvent actionEvent, String fxml) throws SystemException {
+
+    public void switchAndSetSceneCheckPendingRequests(ActionEvent actionEvent, String fxml) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
 
-            CheckRequestSetter1.setter(loader.getController());
+            CheckRequestSetter1.setterPending(loader.getController());
+            ReplaceScene.showStage(actionEvent, root);
+        }catch (SQLException | IOException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    public void switchAndSetSceneCheckRifiutedRequests(ActionEvent actionEvent, String fxml) throws SystemException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+
+            CheckRequestSetter1.setterRifiuted(loader.getController());
             ReplaceScene.showStage(actionEvent, root);
         }catch (SQLException | IOException e) {
             ExceptionHandler.handleException(e);
@@ -259,5 +272,7 @@ public class ReplaceSceneDynamic1 {
             ExceptionHandler.handleException(e);
         }
     }
+
+
 
 }

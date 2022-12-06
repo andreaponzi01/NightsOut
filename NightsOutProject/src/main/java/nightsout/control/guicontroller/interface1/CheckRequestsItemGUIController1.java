@@ -22,8 +22,6 @@ public class CheckRequestsItemGUIController1 {
     @FXML
     Label labelEventDate;
     @FXML
-    Label labelUsername;
-    @FXML
     Button buttonStatus;
 
 
