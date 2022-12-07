@@ -16,6 +16,9 @@ import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CheckRequestsEngineering;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
+import java.io.IOException;
+import java.util.Objects;
+
 public class CheckPendingRequestsGUIController1 implements Observer {
     private UserBean userBean;
 
@@ -27,9 +30,9 @@ public class CheckPendingRequestsGUIController1 implements Observer {
 
     public void setAll() {
 
-            this.userBean = LoggedUserBean.getInstance();
-            this.menuController.setAll();
-            this.checkRequests();
+        this.userBean = LoggedUserBean.getInstance();
+        this.menuController.setAll();
+        this.checkRequests();
     }
 
 
@@ -60,17 +63,18 @@ public class CheckPendingRequestsGUIController1 implements Observer {
     @Override
     public void update(Object ob) {
 
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Pane pane = null;
-            if (ob instanceof RequestBean rBean) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Pane pane = null;
+        if (ob instanceof RequestBean rBean) {
+            try {
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
                 CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
                 EventBean eventBean = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
                 controller.setAll(rBean, eventBean);
                 this.listViewPendingRequests.getItems().add(pane);
+            } catch (SystemException | IOException e) {
+                MyNotification.createNotification(e);
             }
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
         }
     }
 

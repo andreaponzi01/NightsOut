@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="100.0" prefWidth="550.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.EventReviewItemGUIController1">
+<AnchorPane prefHeight="100.0" prefWidth="550.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.EventReviewItemGUIController1">
    <children>
-      <ImageView fx:id="imageViewProfilePic1" fitHeight="87.0" fitWidth="87.0" layoutX="42.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewEvent" fitHeight="87.0" fitWidth="87.0" layoutX="42.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
       <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="198.0" layoutY="12.0" nodeOrientation="LEFT_TO_RIGHT" text="EVENT" textFill="#2e0095" underline="true">
          <font>
             <Font name="System Bold" size="24.0" />

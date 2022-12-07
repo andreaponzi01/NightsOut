@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
@@ -36,6 +38,8 @@ public class ViewUserPageFromCOGUIController1 implements Observer {
     private MenuClubOwnerGUIController1 menuController;
     @FXML
     private Label labelSurname;
+    @FXML
+    ImageView profileImg;
 
 
     public void setAll(UserBean userBean) {
@@ -51,9 +55,9 @@ public class ViewUserPageFromCOGUIController1 implements Observer {
             else
                 this.labelVip.setText("NON VIP");
             this.labelBirthday.setText(userBean.getBirthday().toString());
-            this.labelVip.setText("NO VIP");
             this.labelGender.setText(userBean.getGender());
             this.labelBirthday.setText(userBean.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+            this.profileImg.setImage(new Image(userBean.getImg().toURI().toString()));
             NextEventsEngineering.nextEvents(this, userBean.getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);

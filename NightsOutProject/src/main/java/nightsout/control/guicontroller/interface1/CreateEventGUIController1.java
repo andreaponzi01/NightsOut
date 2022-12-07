@@ -86,6 +86,7 @@ public class CreateEventGUIController1 {
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
 
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException | WrongInputRangeException e) {
+            e.printStackTrace();
             MyNotification.createNotification(e);
         }
 

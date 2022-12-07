@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
@@ -32,6 +34,8 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
     @FXML
     private ListView listViewCreatedEvents;
     @FXML
+    private ImageView imageViewProfile;
+    @FXML
     private MenuUserGUIController1 menuController;
 
     public void setAll(ClubOwnerBean clubOwnerBean) {
@@ -42,8 +46,8 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
             this.labelCity.setText(clubOwnerBean.getCity());
             this.labelAddress.setText(clubOwnerBean.getAddress());
             this.labelEmail.setText(clubOwnerBean.getEmail());
-            this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP()));
-
+            this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
+            this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
             CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);

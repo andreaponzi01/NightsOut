@@ -47,8 +47,8 @@ public class Query {
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
-
             userModel = new UserModel();
+
             userModel.setUsername(rs.getString(2));
             userModel.setName(rs.getString(6));
             userModel.setSurname(rs.getString(8));
@@ -377,7 +377,7 @@ public class Query {
                 return list;
             }
 
-            do {
+            do{
                 requestModel = new RequestModel();
                 requestModel.setIdRequest(rs.getInt(1));
                 requestModel.setIdEvent(rs.getInt(4));
@@ -790,6 +790,12 @@ public class Query {
             eventModel.setDuration(rs.getInt(7));
             eventModel.setEventDate(rs.getDate(6).toLocalDate());
             eventModel.setDescription(rs.getString(11));
+
+            InputStream inputStream = (rs.getBinaryStream(9));
+            String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
+            File file = new File(filePath);
+            Converter.fromInputStreamToFile(inputStream, file);
+            eventModel.setImg(file);
 
 
             return eventModel;

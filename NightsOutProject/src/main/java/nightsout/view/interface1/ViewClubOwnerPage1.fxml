@@ -72,7 +72,7 @@
                   <Font name="Arial Bold" size="22.0" />
                </font>
             </Label>
-            <ImageView fitHeight="190.0" fitWidth="191.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
+            <ImageView fx:id="imageViewProfile" fitHeight="190.0" fitWidth="191.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
             <Label fx:id="labelUsername" layoutX="255.0" layoutY="19.0" prefHeight="69.0" prefWidth="258.0" text="Username" textFill="WHITE" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="Arial Bold" size="40.0" />

@@ -60,5 +60,4 @@ public abstract class ProfileModel implements GenericModel {
         this.username = username;
     }
 
-
 }

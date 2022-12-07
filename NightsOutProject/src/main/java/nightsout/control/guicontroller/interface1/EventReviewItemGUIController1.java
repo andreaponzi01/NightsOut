@@ -3,6 +3,8 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.exception.myexception.SystemException;
@@ -12,7 +14,10 @@ public class EventReviewItemGUIController1 {
 
     private EventBean eventBean;
     @FXML
-    Label labelEventName;
+    private Label labelEventName;
+
+    @FXML
+    private ImageView imageViewEvent;
 
     @FXML
     private void goToEventPage(ActionEvent actionEvent) {
@@ -39,7 +44,8 @@ public class EventReviewItemGUIController1 {
     public void setAll(EventBean eventBean) {
 
         this.eventBean = eventBean;
-        labelEventName.setText(this.eventBean.getName());
+        this.labelEventName.setText(this.eventBean.getName());
+        this.imageViewEvent.setImage(new Image(eventBean.getImg().toURI().toString()));
     }
 
 }

@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
@@ -36,6 +38,8 @@ public class ViewUserPageFromUserGUIController1 implements Observer {
     @FXML
     private ListView listViewNextEvents;
     @FXML
+    private ImageView imageViewProfile;
+    @FXML
     private MenuUserGUIController1 menuController;
 
     public void setAll(UserBean userBean) {
@@ -52,6 +56,7 @@ public class ViewUserPageFromUserGUIController1 implements Observer {
                 this.labelVip.setText("NO VIP");
             this.labelGender.setText(userBean.getGender());
             this.labelBirthday.setText(userBean.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+            this.imageViewProfile.setImage(new Image(userBean.getImg().toURI().toString()));
             NextEventsEngineering.nextEvents(this, userBean.getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);

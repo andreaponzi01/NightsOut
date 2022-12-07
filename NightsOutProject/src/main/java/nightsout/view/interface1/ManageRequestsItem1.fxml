@@ -27,7 +27,7 @@
             <Font name="Arial Bold" size="19.0" />
          </font>
       </Label>
-      <ImageView fx:id="userImageView" fitHeight="73.0" fitWidth="82.0" layoutX="41.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewProfile" fitHeight="73.0" fitWidth="82.0" layoutX="41.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="labelEventName" layoutX="153.0" layoutY="96.0" prefHeight="22.0" prefWidth="206.0" text="EventName" textFill="#e8e7fc">
          <font>
             <Font name="Arial Bold" size="19.0" />
@@ -38,7 +38,7 @@
             <Font name="Arial Bold" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="btnAccept" layoutX="391.0" layoutY="39.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #54e589; -fx-background-radius: 14;" text="OK" textFill="WHITE">
+      <Button  layoutX="391.0" layoutY="39.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #54e589; -fx-background-radius: 14;" text="OK" textFill="WHITE">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>
@@ -49,7 +49,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnReject" layoutX="468.0" layoutY="39.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #d00000; -fx-background-radius: 14;" text="X" textFill="WHITE">
+      <Button  layoutX="468.0" layoutY="39.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #d00000; -fx-background-radius: 14;" text="X" textFill="WHITE">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>

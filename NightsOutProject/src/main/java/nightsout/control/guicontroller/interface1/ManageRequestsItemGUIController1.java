@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.ManageRequestsAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
@@ -26,15 +28,18 @@ public class ManageRequestsItemGUIController1 {
     Label labelEventDate;
     @FXML
     Button buttonUsername;
+    @FXML
+    ImageView imageViewProfile;
 
 
     public void setAll(ManageRequestBean manageRequestBean) {
 
         this.clubOwnerBean= LoggedClubOwnerBean.getInstance();
         this.manageRequestBean=manageRequestBean;
-        this.buttonUsername.setText(manageRequestBean.getUserName());
+        this.buttonUsername.setText(manageRequestBean.getUsername());
         this.labelEventName.setText(String.valueOf(manageRequestBean.getEventName()));
         this.labelEventDate.setText(manageRequestBean.getRequestDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+        this.imageViewProfile.setImage(new Image(manageRequestBean.getImg().toURI().toString()));
     }
     @FXML
     public void acceptRequest(ActionEvent actionEvent) {
@@ -63,7 +68,7 @@ public class ManageRequestsItemGUIController1 {
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            UserBean userBean = ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUserName());
+            UserBean userBean = ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername());
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/ViewUserPageFromCO1.fxml", userBean);
         } catch (SystemException e) {
