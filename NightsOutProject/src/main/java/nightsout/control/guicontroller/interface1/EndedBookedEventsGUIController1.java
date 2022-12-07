@@ -56,8 +56,8 @@ public class EndedBookedEventsGUIController1 implements Observer {
             try {
                 reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
                 if(reviewBean != null){
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/NextEventItem1.fxml")).openStream());
-                    NextEventItemGUIController1 controller = fxmlLoader.getController();
+                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
+                    EventItemGUIController1 controller = fxmlLoader.getController();
                     controller.setAll(eBean);
                     this.listViewEvents.getItems().add(pane);
                 } else {

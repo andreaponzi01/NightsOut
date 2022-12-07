@@ -11,7 +11,7 @@ import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
-public class NextEventItemGUIController1 {
+public class EventItemGUIController1 {
 
     private EventBean eventBean;
     @FXML
