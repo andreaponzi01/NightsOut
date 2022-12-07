@@ -12,6 +12,7 @@ public class CreateEventReviewAppController {
     }
 
     public static void createEventReview(ReviewBean reviewBean) throws SystemException {
+
         ReviewModel reviewModel = new ReviewModel(reviewBean);
         ReviewDAO.createEventReview(reviewModel);
     }

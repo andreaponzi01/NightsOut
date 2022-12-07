@@ -1,6 +1,5 @@
 package nightsout.control.appcontroller;
 
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
 import nightsout.utils.bean.EventBean;
@@ -9,7 +8,6 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
 import nightsout.utils.dao.UserDAO;
-import nightsout.utils.exception.myexception.DBConnectionFailedException;
 import nightsout.utils.exception.myexception.SystemException;
 
 import java.util.ArrayList;
@@ -21,23 +19,18 @@ public class ManageRequestsAppController {
         //ignored
     }
 
-    public static List<ManageRequestBean> searchRequestsByIdClubOwner(int idClubOwner) {
-        List<RequestModel> list = null;
-        List<ManageRequestBean> listBean = null;
-        try {
-            list = RequestDAO.getRequestsByIdClubOwner(idClubOwner);
-            listBean = new ArrayList<>();
+    public static List<ManageRequestBean> searchRequestsByIdClubOwner(int idClubOwner) throws SystemException {
 
-            for(RequestModel rm : list){
-                EventBean eb= new EventBean(EventDAO.getEventByIdEvent(rm.getIdEvent()));
-                UserBean ub= new UserBean(UserDAO.getUserByidUser(rm.getIdUser()));
-                ManageRequestBean bean = new ManageRequestBean(rm,ub,eb);
-                listBean.add(bean);
-            }
+        List<RequestModel> list = RequestDAO.getRequestsByIdClubOwner(idClubOwner);
+        List<ManageRequestBean> listBean = new ArrayList<>();
 
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
+        for(RequestModel rm : list){
+            EventBean eb= new EventBean(EventDAO.getEventByIdEvent(rm.getIdEvent()));
+            UserBean ub= new UserBean(UserDAO.getUserByidUser(rm.getIdUser()));
+            ManageRequestBean bean = new ManageRequestBean(rm,ub,eb);
+            listBean.add(bean);
         }
+
         return listBean;
     }
 
@@ -50,14 +43,9 @@ public class ManageRequestsAppController {
     }
 
     public static UserBean searchUserByUsername(String username) throws SystemException {
-        UserBean userBean = null;
-        try {
-            UserModel userModel = UserDAO.getUserByUsername(username);
-            userBean = new UserBean(userModel);
-        } catch (DBConnectionFailedException e) {
-            MyNotification.createNotification(e);
-        }
-        return  userBean;
+
+        UserModel userModel = UserDAO.getUserByUsername(username);
+        return new UserBean(userModel);
     }
 
 }

@@ -17,6 +17,7 @@ public class ReviewAndResponseAppController {
     }
 
     public static List<ReviewBean> searchReviewsByIdClubOwner(int idClubOwner) throws SystemException {
+
         List<ReviewModel> list = null;
         List<ReviewBean> listBean = null;
         list = ReviewDAO.getAllReviewByIdClubOwner(idClubOwner);
@@ -30,6 +31,7 @@ public class ReviewAndResponseAppController {
     }
 
     public static ResponseBean searchResponseByIdReview(int idReview) throws SystemException {
+
         ResponseModel responseModel = null;
         ResponseBean responseBean = null;
         responseModel = ResponseDAO.getResponseByIdReview(idReview);

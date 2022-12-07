@@ -14,6 +14,7 @@ public class RequestAppController {
     }
 
     public static void sendRequest(UserBean userBean, EventBean eventBean) throws SystemException {
+
         UserModel userModel = new UserModel(userBean);
         EventModel eventModel = new EventModel(eventBean);
         RequestDAO.createRequest(userModel, eventModel);

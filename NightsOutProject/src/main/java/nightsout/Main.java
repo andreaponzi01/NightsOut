@@ -13,6 +13,7 @@ public class Main extends Application {
 
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/Welcome1.fxml"));
             Scene scene = new Scene(loader.load());
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("NightsOut");
             stage.show();

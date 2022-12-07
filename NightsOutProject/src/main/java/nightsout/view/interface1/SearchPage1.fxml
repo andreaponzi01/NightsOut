@@ -20,7 +20,7 @@
                </effect></ListView>
             <TextField fx:id="textFieldSearch" layoutX="206.0" layoutY="42.0" prefHeight="55.0" prefWidth="480.0" promptText="Search event, clubowner, user..." style="-fx-border-color: lightGrey; -fx-border-width: 4; -fx-background-radius: 28; -fx-border-radius: 28;">
                <font>
-                  <Font size="25.0" />
+                  <Font name="Arial" size="25.0" />
                </font>
             </TextField>
             <Button layoutX="702.0" layoutY="45.0" mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="135.0" style="-fx-background-radius: 28; -fx-background-color: #80bfff;" text="Search" textFill="WHITE">

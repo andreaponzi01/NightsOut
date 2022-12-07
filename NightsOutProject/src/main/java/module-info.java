@@ -12,6 +12,7 @@ module NightsOutProject {
     requires mysql.connector.java;
     requires org.controlsfx.controls;
     requires java.desktop;
+    requires org.apache.commons.io;
 
     opens nightsout;
     opens nightsout.control.guicontroller.interface1 to javafx.fxml ;

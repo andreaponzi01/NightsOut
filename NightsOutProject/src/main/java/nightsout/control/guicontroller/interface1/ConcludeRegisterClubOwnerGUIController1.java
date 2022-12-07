@@ -3,6 +3,7 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -24,7 +25,7 @@ public class ConcludeRegisterClubOwnerGUIController1 {
     @FXML
     TextField textFieldUsername;
     @FXML
-    TextField textFieldPassword;
+    PasswordField passwordField;
     @FXML
     TextField textFieldEmail;
     private File img;
@@ -38,7 +39,7 @@ public class ConcludeRegisterClubOwnerGUIController1 {
             credentialsBean = new CredentialsBean();
             clubOwnerBean.setUsername(textFieldUsername.getText());
             credentialsBean.setUsername(textFieldUsername.getText());
-            credentialsBean.setPassword(textFieldPassword.getText());
+            credentialsBean.setPassword(passwordField.getText());
             credentialsBean.setType("ClubOwner");
             clubOwnerBean.setEmail(textFieldEmail.getText());
             clubOwnerBean.setImg(img);

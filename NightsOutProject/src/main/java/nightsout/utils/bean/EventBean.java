@@ -14,7 +14,7 @@ import java.time.LocalTime;
 public class EventBean implements GenericBean {
 
     private static final String FIELD_PRICE = "Price";
-    private static final String FIELD_HOURS = "Hourse";
+    private static final String FIELD_HOURS = "Hours";
     private static final String FIELD_MINUTES = "Minutes";
     private static final String FIELD_DATE = "Date";
     private static final String FIELD_IMAGE = "Image";
@@ -101,7 +101,7 @@ public class EventBean implements GenericBean {
         try {
             if (hours.equals(""))
                 Trigger.throwEmptyInputException(FIELD_HOURS);
-            if(Integer.parseInt(hours) < 0 || Integer.parseInt(hours) > 12)
+            if(Integer.parseInt(hours) < 0 || Integer.parseInt(hours) > 24)
                 Trigger.throwExceededRangeException(FIELD_HOURS);
             this.hours = Integer.parseInt(hours);
         } catch (NumberFormatException e) {

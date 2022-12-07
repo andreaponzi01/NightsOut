@@ -1,6 +1,5 @@
 package nightsout.control.appcontroller;
 
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ClubOwnerModel;
 import nightsout.model.EventModel;
 import nightsout.model.UserModel;
@@ -20,6 +19,7 @@ public class SearchAppController {
     private SearchAppController() {}
 
     public static List<UserBean> searchUsersByUsername(String input) throws SystemException {
+
         List<UserModel> list = null;
         List<UserBean> listBean = null;
         list = UserDAO.getUsersByUsername(input);
@@ -34,6 +34,7 @@ public class SearchAppController {
     }
 
     public static List<EventBean> searchEventsByName(String input) throws SystemException {
+
         List<EventModel> list = null;
         List<EventBean> listBean = null;
         list = EventDAO.getEventsByName(input);
@@ -48,23 +49,16 @@ public class SearchAppController {
         return listBean;
     }
 
-    public static List<ClubOwnerBean> searchClubOwnersByUsername(String input) {
-        List<ClubOwnerModel> list = null;
-        List<ClubOwnerBean> listBean = null;
+    public static List<ClubOwnerBean> searchClubOwnersByUsername(String input) throws SystemException {
 
-        try {
-            list = ClubOwnerDAO.getClubOwnersByUsername(input);
-            listBean = new ArrayList<>();
+        List<ClubOwnerModel> list = ClubOwnerDAO.getClubOwnersByUsername(input);
+        List<ClubOwnerBean> listBean = new ArrayList<>();
 
-            if (list != null) {
-                for (ClubOwnerModel clubOwnerModel : list) {
-                    ClubOwnerBean bean = new ClubOwnerBean(clubOwnerModel);
-                    listBean.add(bean);
-                }
+        if (list != null) {
+            for (ClubOwnerModel clubOwnerModel : list) {
+                ClubOwnerBean bean = new ClubOwnerBean(clubOwnerModel);
+                listBean.add(bean);
             }
-
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
         }
         return listBean;
     }

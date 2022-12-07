@@ -86,12 +86,12 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
             this.labelDescription.setText(eventBean.getDescription());
             Double price= (eventBean.getPrice()-((eventBean.getPrice()*clubOwnerBean.getDiscountVIP())/100));
             if(LoggedUserBean.getInstance().getVip())
-                this.labelEventPrice.setText("€"+String.valueOf(price));
+                this.labelEventPrice.setText("€" + price);
             else
-                this.labelEventPrice.setText("€"+String.valueOf(eventBean.getPrice()));
-            this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
-            this.labelEventDuration.setText(String.valueOf(eventBean.getDuration())+"h");
-            this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));
+                this.labelEventPrice.setText("€" + eventBean.getPrice());
+            this.labelEventDate.setText(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+            this.labelEventDuration.setText(eventBean.getDuration() +"h");
+            this.labelEventTime.setText(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString());
             this.eventImg.setImage(new Image(this.eventBean.getImg().toURI().toString()));
 
             EventParticipantsEngineering.eventParticipants(this, eventBean.getIdEvent());

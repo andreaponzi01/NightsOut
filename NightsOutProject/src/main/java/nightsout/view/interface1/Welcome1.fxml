@@ -50,5 +50,10 @@
             <DropShadow />
          </effect>
       </AnchorPane>
+      <Button fx:id="buttonExit" layoutX="927.0" layoutY="34.0" mnemonicParsing="false" onAction="#exit" prefHeight="36.0" prefWidth="86.0" styleClass="red-button-rounded" stylesheets="@style.css" text="Exit" textFill="WHITE">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -1,6 +1,5 @@
 package nightsout.control.appcontroller;
 
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ClubOwnerModel;
 import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
@@ -25,6 +24,7 @@ public class EventPageDecoratorAppController {
     }
 
     public static RequestBean checkRequestStatus(UserBean userBean, EventBean eventBean) throws SystemException {
+
         UserModel userModel = new UserModel(userBean);
         EventModel eventModel = new EventModel(eventBean);
         RequestModel requestModel = RequestDAO.checkRequestStatus(userModel, eventModel);
@@ -34,10 +34,9 @@ public class EventPageDecoratorAppController {
     }
 
     public static List<EventBean> searchEventsByIdClubOwner(int idClubOwner) throws SystemException {
-        List<EventModel> list = null;
-        List<EventBean> listBean = null;
-        list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
-        listBean = new ArrayList<>();
+
+        List<EventModel> list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
+        List<EventBean>  listBean = new ArrayList<>();
 
         for(EventModel um : list){
             EventBean bean = new EventBean(um);
@@ -47,30 +46,26 @@ public class EventPageDecoratorAppController {
     }
 
     public static String getClubAddress(int idEvent) throws SystemException {
+
         ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubAddressByIdEvent(idEvent);
         return (clubOwnerModel.getAddress() + ", " + clubOwnerModel.getCity());
     }
 
 
     public static ClubOwnerBean getClubOwner(int idClubOwner) throws SystemException {
+
         ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubOwnerById(idClubOwner);
         return new ClubOwnerBean(clubOwnerModel);
     }
 
-    public static List<UserBean> searchUsersByIdEvent(int idEvent) {
-        List<UserModel> list = null;
-        List<UserBean> listBean = null;
-        try {
-            list = UserDAO.getUsersByIdEvent(idEvent);
-            listBean = new ArrayList<>();
+    public static List<UserBean> searchUsersByIdEvent(int idEvent) throws SystemException {
 
-            for(UserModel um : list){
-                UserBean bean = new UserBean(um);
-                listBean.add(bean);
-            }
+        List<UserModel> list = UserDAO.getUsersByIdEvent(idEvent);
+        List<UserBean> listBean = new ArrayList<>();
 
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
+        for(UserModel um : list){
+            UserBean bean = new UserBean(um);
+            listBean.add(bean);
         }
         return listBean;
     }

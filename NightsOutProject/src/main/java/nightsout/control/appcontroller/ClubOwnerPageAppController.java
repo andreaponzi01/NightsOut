@@ -14,10 +14,9 @@ public class ClubOwnerPageAppController {
     }
 
     public static List<EventBean> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
-        List<EventModel> list = null;
-        List<EventBean> listBean = null;
-        list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
-        listBean = new ArrayList<>();
+
+        List<EventModel> list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
+        List<EventBean>  listBean = new ArrayList<>();
 
         for(EventModel eventModel : list){
             EventBean bean = new EventBean(eventModel);

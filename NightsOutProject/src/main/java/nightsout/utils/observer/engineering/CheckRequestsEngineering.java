@@ -28,7 +28,7 @@ public class CheckRequestsEngineering {
         return (CheckRequestsAppController.searchRifiutedRequestsByIdUser(idUser));
     }
 
-    private static List<RequestBean> searchPendingRequests(int idUser) {
+    private static List<RequestBean> searchPendingRequests(int idUser) throws SystemException {
         return (CheckRequestsAppController.searchPendingRequestsByIdUser(idUser));
     }
 }

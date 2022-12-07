@@ -3,6 +3,7 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -23,7 +24,7 @@ public class ConcludeRegisterUserGUIController1 {
     @FXML
     TextField textFieldUsername;
     @FXML
-    TextField textFieldPassword;
+    PasswordField passwordField;
     @FXML
     Button buttonBack;
     @FXML
@@ -38,7 +39,7 @@ public class ConcludeRegisterUserGUIController1 {
             credentialsBean = new CredentialsBean();
             userBean.setUsername(textFieldUsername.getText());
             credentialsBean.setUsername(textFieldUsername.getText());
-            credentialsBean.setPassword(textFieldPassword.getText());
+            credentialsBean.setPassword(passwordField.getText());
             credentialsBean.setType("Free");
             userBean.setEmail(textFieldEmail.getText());
             userBean.setImg(img);

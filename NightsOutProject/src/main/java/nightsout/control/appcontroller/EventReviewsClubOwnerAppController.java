@@ -37,7 +37,7 @@ public class EventReviewsClubOwnerAppController {
     }
 
 
-    public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException{
+    public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException {
         return new EventBean(EventDAO.getEventByIdEvent(idEvent));
     }
 }

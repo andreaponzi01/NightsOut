@@ -43,6 +43,6 @@ public class SearchEngineering {
 
     private static List<EventBean> searchEvents(String input) throws SystemException { return SearchAppController.searchEventsByName(input); }
 
-    private static List<ClubOwnerBean> searchClubOwners(String input) { return SearchAppController.searchClubOwnersByUsername(input); }
+    private static List<ClubOwnerBean> searchClubOwners(String input) throws SystemException { return SearchAppController.searchClubOwnersByUsername(input); }
 
 }

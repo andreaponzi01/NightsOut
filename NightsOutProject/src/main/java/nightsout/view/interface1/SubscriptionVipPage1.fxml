@@ -16,22 +16,22 @@
                <children>
                   <Button layoutX="85.0" layoutY="102.0" onAction="#confirmSubscription" prefHeight="67.0" prefWidth="270.0" style="-fx-background-color: #2a009b; -fx-background-radius: 100;" text="Confirm" textFill="WHITE" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
                      <font>
-                        <Font name="System Bold" size="30.0" />
+                        <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Button>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="174.0" prefHeight="40.0" prefWidth="31.0" text="Or" textAlignment="CENTER" textFill="#cdc6c6" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0">
                      <font>
-                        <Font name="Futura Medium" size="15.0" />
+                        <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Label>
                   <Button layoutX="85.0" layoutY="219.0" onAction="#backToUserPage" prefHeight="67.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #2a009b; -fx-border-width: 1;" text="Cancel" textFill="#2a009b" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
                      <font>
-                        <Font size="30.0" />
+                        <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Button>
-                  <Label layoutX="81.0" layoutY="19.0" prefHeight="56.0" prefWidth="284.0" text="Are You Sure?" textFill="#200f54" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="71.0">
+                  <Label layoutX="67.0" layoutY="19.0" prefHeight="56.0" prefWidth="298.0" text="Are You Sure?" textFill="#200f54" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="71.0">
                      <font>
-                        <Font name="Futura Medium" size="42.0" />
+                        <Font name="Arial Bold" size="42.0" />
                      </font>
                   </Label>
                </children>

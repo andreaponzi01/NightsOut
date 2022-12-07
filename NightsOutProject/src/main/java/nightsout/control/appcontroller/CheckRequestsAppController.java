@@ -1,6 +1,5 @@
 package nightsout.control.appcontroller;
 
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
 import nightsout.utils.bean.EventBean;
@@ -29,23 +28,17 @@ public class CheckRequestsAppController {
         return listBean;
     }
 
-    public static List<RequestBean> searchPendingRequestsByIdUser(int idUser) {
-        List<RequestModel> list = null;
-        List<RequestBean> listBean = null;
+    public static List<RequestBean> searchPendingRequestsByIdUser(int idUser) throws SystemException {
 
-        try {
-            list = RequestDAO.getPendingRequestsByIdUser(idUser);
-            listBean = new ArrayList<>();
+        List<RequestModel> list = RequestDAO.getPendingRequestsByIdUser(idUser);
+        List<RequestBean> listBean = new ArrayList<>();
 
-            for(RequestModel rm : list){
-                RequestBean bean = new RequestBean(rm);
-                listBean.add(bean);
-            }
-
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
+        for(RequestModel rm : list){
+            RequestBean bean = new RequestBean(rm);
+            listBean.add(bean);
         }
-        return listBean;
+
+    return listBean;
     }
 
     public static EventBean searchEventById(int idEvent) throws SystemException {

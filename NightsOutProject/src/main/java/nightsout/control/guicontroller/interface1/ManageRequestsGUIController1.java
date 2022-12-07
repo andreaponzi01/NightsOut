@@ -35,8 +35,12 @@ public class ManageRequestsGUIController1 implements Observer {
     @FXML
     private void manageRequests() {
 
-        this.listViewPendingRequests.getItems().clear();
-        ManageRequestsEngineering.manageRequests(this, clubOwnerBean.getId());
+        try {
+            this.listViewPendingRequests.getItems().clear();
+            ManageRequestsEngineering.manageRequests(this, clubOwnerBean.getId());
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     @Override

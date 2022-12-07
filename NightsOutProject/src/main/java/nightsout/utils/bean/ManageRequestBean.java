@@ -50,17 +50,8 @@ public class ManageRequestBean {
     public String getEventName() {
         return eventName;
     }
-
-    public void setRequestName(String eventName) {
-        this.eventName = eventName;
-    }
-
     public LocalDate getRequestDate() {
         return requestDate;
-    }
-
-    public void setEventDate(LocalDate requestDate) {
-        this.requestDate = requestDate;
     }
 
     public String getUsername() {

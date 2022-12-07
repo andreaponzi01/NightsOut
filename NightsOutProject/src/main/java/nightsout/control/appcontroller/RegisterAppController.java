@@ -24,12 +24,14 @@ public class RegisterAppController {
     }
 
     public static void registerUser(UserBean userBean, CredentialsBean credentialsBean) throws SystemException {
+
         CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
         UserModel userModel = new UserModel(userBean);
         UserDAO.insertUser(credentialsModel, userModel);
     }
 
     public static boolean usernameAlreadyTaken(String username) throws SystemException {
+
         return UserDAO.checkUsername(username);
     }
 }
