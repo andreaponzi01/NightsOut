@@ -3,7 +3,8 @@ package nightsout.control.appcontroller;
 import nightsout.model.ClubOwnerModel;
 import nightsout.model.UserModel;
 import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.model.Credentials;
+import nightsout.model.CredentialsModel;
+import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.UserDAO;
@@ -15,16 +16,20 @@ public class RegisterAppController {
         //ignored
     }
 
-    public static void registerClubOwner(ClubOwnerBean clubOwnerBean) throws SystemException {
-        Credentials myCred = new Credentials(clubOwnerBean.getUsername(), clubOwnerBean.getPassword(), "ClubOwner");
-        ClubOwnerModel clubOwnerModel = new ClubOwnerModel(clubOwnerBean, myCred);
-        ClubOwnerDAO.insertClubOwner(clubOwnerModel);
+    public static void registerClubOwner(ClubOwnerBean clubOwnerBean, CredentialsBean credentialsBean) throws SystemException {
+
+        CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
+        ClubOwnerModel clubOwnerModel = new ClubOwnerModel(clubOwnerBean);
+        ClubOwnerDAO.insertClubOwner(credentialsModel, clubOwnerModel);
     }
 
-    public static void registerUser(UserBean userBean) throws SystemException {
-        Credentials myCred = new Credentials(userBean.getUsername(), userBean.getPassword(), "Free");
-        UserModel userModel = new UserModel(userBean, myCred);
-        UserDAO.insertUser(userModel);
+    public static void registerUser(UserBean userBean, CredentialsBean credentialsBean) throws SystemException {
+        CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
+        UserModel userModel = new UserModel(userBean);
+        UserDAO.insertUser(credentialsModel, userModel);
     }
 
+    public static boolean usernameAlreadyTaken(String username) throws SystemException {
+        return UserDAO.checkUsername(username);
+    }
 }

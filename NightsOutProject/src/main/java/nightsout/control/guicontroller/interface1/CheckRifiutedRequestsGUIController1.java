@@ -11,14 +11,12 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
-import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CheckRequestsEngineering;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class CheckRifiutedRequestsGUIController1 implements Observer {
@@ -30,7 +28,8 @@ public class CheckRifiutedRequestsGUIController1 implements Observer {
     @FXML
     private MenuUserGUIController1 menuController;
 
-    public void setAll() throws SQLException, SystemException {
+    public void setAll() {
+
         this.userBean = LoggedUserBean.getInstance();
         this.menuController.setAll();
         this.checkRifiutedRequests();
@@ -38,38 +37,46 @@ public class CheckRifiutedRequestsGUIController1 implements Observer {
 
 
     @FXML
-    private void checkRifiutedRequests() throws SQLException, SystemException {
-        this.listViewRifiutedRequests.getItems().clear();
-        CheckRequestsEngineering.checkRifiutedRequests(this, this.userBean.getId());
+    private void checkRifiutedRequests() {
+
+        try {
+            this.listViewRifiutedRequests.getItems().clear();
+            CheckRequestsEngineering.checkRifiutedRequests(this, this.userBean.getId());
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     @FXML
-    private void backToPendingRequests(ActionEvent actionEvent) throws SystemException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneCheckPendingRequests(actionEvent, "/CheckPendingRequestsPage1.fxml");
+    private void backToPendingRequests(ActionEvent actionEvent) {
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneCheckPendingRequests(actionEvent, "/CheckPendingRequestsPage1.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
 
 
     @Override
     public void update(Object ob) {
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
+
         if(ob instanceof RequestBean rBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
-            } catch (IOException e) {
-                try {
-                    ExceptionHandler.handleException(e);
-                } catch (SystemException ex) {
-                    MyNotification.createNotification(e);
-                }
+                CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
+                EventBean eventBean = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
+                controller.setAll(rBean, eventBean);
+                this.listViewRifiutedRequests.getItems().add(pane);
+            } catch (SystemException | IOException e) {
+                MyNotification.createNotification(e);
             }
-            CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
-            EventBean eventBean = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
-            controller.setAll(rBean, eventBean);
-
-            this.listViewRifiutedRequests.getItems().add(pane);
         }
-    }
+
+
+        }
 }

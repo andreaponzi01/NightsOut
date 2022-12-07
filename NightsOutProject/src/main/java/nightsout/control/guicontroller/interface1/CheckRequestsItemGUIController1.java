@@ -7,15 +7,12 @@ import javafx.scene.control.Label;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.RequestBean;
-import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
-import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 public class CheckRequestsItemGUIController1 {
-
 
     @FXML
     Label labelEventName;
@@ -24,10 +21,10 @@ public class CheckRequestsItemGUIController1 {
     @FXML
     Button buttonStatus;
 
-
     private EventBean eventBean;
 
-    public void setAll(RequestBean requestBean, EventBean eventBean){
+    public void setAll(RequestBean requestBean, EventBean eventBean) {
+
         this.eventBean = eventBean;
         this.labelEventName.setText(String.valueOf(eventBean.getName()));
         this.buttonStatus.setText(requestBean.getStatus());
@@ -35,7 +32,8 @@ public class CheckRequestsItemGUIController1 {
     }
 
     @FXML
-    private void goToEventPage(ActionEvent actionEvent) throws IOException {
+    private void goToEventPage(ActionEvent actionEvent) {
+
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", this.eventBean);

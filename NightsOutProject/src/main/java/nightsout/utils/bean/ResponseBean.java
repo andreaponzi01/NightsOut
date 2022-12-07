@@ -1,11 +1,10 @@
 package nightsout.utils.bean;
 
 import nightsout.model.ResponseModel;
-import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.Subject;
-
-import java.sql.SQLException;
 
 public class ResponseBean extends Subject {
 
@@ -59,12 +58,15 @@ public class ResponseBean extends Subject {
         return response;
     }
 
-    public void setResponse(String response) {
+    public void setResponse(String response) throws EmptyInputException {
+        if (response.isBlank())
+            Trigger.throwEmptyInputException("Response");
         this.response = response;
     }
 
-    public void addResponse(ResponseBean responseBean) throws SQLException, SystemException {
+    public void addResponse(ResponseBean responseBean) {
         notify(responseBean);
+
     }
 
 }

@@ -19,39 +19,31 @@ public class SearchAppController {
 
     private SearchAppController() {}
 
-    public static List<UserBean> searchUsersByUsername(String input) {
+    public static List<UserBean> searchUsersByUsername(String input) throws SystemException {
         List<UserModel> list = null;
         List<UserBean> listBean = null;
-        try {
-            list = UserDAO.getUsersByUsername(input);
-            listBean = new ArrayList<>();
-
-            for(UserModel um : list){
+        list = UserDAO.getUsersByUsername(input);
+        listBean = new ArrayList<>();
+        if (list != null) {
+            for (UserModel um : list) {
                 UserBean bean = new UserBean(um);
                 listBean.add(bean);
             }
-
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
         }
         return listBean;
     }
 
-    public static List<EventBean> searchEventsByName(String input) {
+    public static List<EventBean> searchEventsByName(String input) throws SystemException {
         List<EventModel> list = null;
         List<EventBean> listBean = null;
+        list = EventDAO.getEventsByName(input);
+        listBean = new ArrayList<>();
 
-        try {
-            list = EventDAO.getEventsByName(input);
-            listBean = new ArrayList<>();
-
-            for(EventModel eventModel : list){
+        if (list != null) {
+            for (EventModel eventModel : list) {
                 EventBean bean = new EventBean(eventModel);
                 listBean.add(bean);
             }
-
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
         }
         return listBean;
     }
@@ -64,9 +56,11 @@ public class SearchAppController {
             list = ClubOwnerDAO.getClubOwnersByUsername(input);
             listBean = new ArrayList<>();
 
-            for(ClubOwnerModel clubOwnerModel : list){
-                ClubOwnerBean bean = new ClubOwnerBean(clubOwnerModel);
-                listBean.add(bean);
+            if (list != null) {
+                for (ClubOwnerModel clubOwnerModel : list) {
+                    ClubOwnerBean bean = new ClubOwnerBean(clubOwnerModel);
+                    listBean.add(bean);
+                }
             }
 
         } catch (SystemException e) {

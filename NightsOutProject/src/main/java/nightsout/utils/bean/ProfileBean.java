@@ -1,9 +1,12 @@
 package nightsout.utils.bean;
 
+import nightsout.control.appcontroller.RegisterAppController;
 import nightsout.utils.CheckEmail;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmailNotValidException;
 import nightsout.utils.exception.myexception.EmptyInputException;
+import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.exception.myexception.UsernameAlreadyTakenException;
 
 import java.io.File;
 
@@ -14,54 +17,58 @@ public abstract class ProfileBean implements GenericBean {
 
     // Per gli Users rappresenta il nome (name), mentre per i ClubOwners rappresenta il nome del club (clubName)
     protected String name;
-    protected String password;
-    protected String email;
-    protected String type;
     protected File img;
     protected int id;
+    protected String email;
+
+
 
     // Getter
     public String getUsername() {return username;}
     public String getName() {return name;}
-    public String getPassword() {return password;}
-    public String getEmail() {return email;}
-    public String getType() {return type;}
     public File getImg() {return img;}
     public int getId() {
         return id;
+    }
+    public String getEmail() {
+        return email;
     }
 
     // Setter
     public void setName(String name) throws EmptyInputException {
         if (name.equals(""))
-            Trigger.emptyField("Name");
+            Trigger.throwEmptyInputException("Name");
         this.name = name;
     }
-    public void setPassword(String password) throws EmptyInputException {
-        if (password.equals(""))
-            Trigger.emptyField("Password");
-        this.password = password;
-    }
+
 
     public void setEmail(String email) throws EmptyInputException, EmailNotValidException {
         if(email.isEmpty())
-            Trigger.emptyField("email");
+            Trigger.throwEmptyInputException("email");
         boolean correctFormat = CheckEmail.validate(email);
         if(correctFormat)
             this.email = email;
         else
             throw new EmailNotValidException(email);
     }
-    public void setType(String type) {
-        this.type = type;
+
+    public void setImg(File img) throws EmptyInputException {
+        if (img == null) {
+            Trigger.throwEmptyInputException("Image");
+        } else {
+            this.img = img;
+        }
     }
-    public void setImg(File img) {
-        this.img = img;
-    }
-    public void setUsername(String username) throws EmptyInputException {
-        if (username.equals(""))
-            Trigger.emptyField("Username");
-        this.username = username;
+
+    public void setUsername(String username) throws EmptyInputException, UsernameAlreadyTakenException, SystemException {
+        if (username.equals("")) {
+            Trigger.throwEmptyInputException("Username");
+        } else if (RegisterAppController.usernameAlreadyTaken(username)) {
+            Trigger.throwUsernameAlreadyTakenException(username);
+        } else {
+            this.username = username;
+        }
+
     }
     public void setId(int id) {
         this.id = id;

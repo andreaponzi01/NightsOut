@@ -4,10 +4,6 @@ import java.time.LocalDate;
 
 public class RequestModel {
 
-    public RequestModel() {
-
-    }
-
     private int idRequest;
     private int idUser;
     private int idEvent;

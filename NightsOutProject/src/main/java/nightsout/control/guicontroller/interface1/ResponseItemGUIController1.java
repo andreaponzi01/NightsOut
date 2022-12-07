@@ -1,15 +1,8 @@
 package nightsout.control.guicontroller.interface1;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
-import nightsout.utils.bean.*;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
-
-import java.io.IOException;
-import java.sql.SQLException;
+import nightsout.utils.bean.ResponseBean;
 
 public class ResponseItemGUIController1 {
 
@@ -21,7 +14,7 @@ public class ResponseItemGUIController1 {
     private Label labelResponse;
 
 
-    public void setAll(ResponseBean responseBean) throws SQLException {
+    public void setAll(ResponseBean responseBean) {
         this.labelResponse.setText(responseBean.getResponse());
     }
 }

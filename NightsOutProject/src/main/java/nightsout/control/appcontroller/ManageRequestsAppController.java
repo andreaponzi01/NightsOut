@@ -20,26 +20,6 @@ public class ManageRequestsAppController {
     private ManageRequestsAppController() {
         //ignored
     }
-    /*
-    public static List<ManageRequestBean> searchRequestsByIdClubOwner(int idClubOwner) {
-        List<ManageRequestModel> list = null;
-        List<ManageRequestBean> listBean = null;
-        try {
-            list = RequestDAO.getRequestsByIdClubOwner(idClubOwner);
-            listBean = new ArrayList<>();
-
-            for(ManageRequestModel mrm : list){
-                ManageRequestBean bean = new ManageRequestBean(mrm);
-                listBean.add(bean);
-            }
-
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
-        }
-        return listBean;
-    }
-
-     */
 
     public static List<ManageRequestBean> searchRequestsByIdClubOwner(int idClubOwner) {
         List<RequestModel> list = null;
@@ -62,11 +42,11 @@ public class ManageRequestsAppController {
     }
 
     public static void acceptRequest(int idRequest) throws SystemException {
-        RequestDAO.UpdateRequestStatus(idRequest,"accepted");
+        RequestDAO.updateRequestStatus(idRequest,"accepted");
     }
 
     public static void declineRequest(int idRequest) throws SystemException {
-        RequestDAO.UpdateRequestStatus(idRequest,"declined");
+        RequestDAO.updateRequestStatus(idRequest,"declined");
     }
 
     public static UserBean searchUserByUsername(String username) throws SystemException {

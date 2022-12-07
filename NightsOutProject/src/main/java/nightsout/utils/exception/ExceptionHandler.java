@@ -1,12 +1,16 @@
 package nightsout.utils.exception;
 
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.exception.myexception.DBConnectionFailedException;
 import nightsout.utils.exception.myexception.SystemException;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class ExceptionHandler {
+
+    private ExceptionHandler() {
+        // ignored
+    }
 
     public static void handleException(Exception e) throws SystemException {
 
@@ -18,8 +22,10 @@ public class ExceptionHandler {
                 exception.initCause(e);
                 throw exception;
             }
-        } else if (e instanceof DBConnectionFailedException) {
-            MyNotification.createNotification(e);
+        } else if (e instanceof IOException) {
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            MyNotification.createNotification(exception);
         } else {
             SystemException exception = new SystemException();
             exception.initCause(e);

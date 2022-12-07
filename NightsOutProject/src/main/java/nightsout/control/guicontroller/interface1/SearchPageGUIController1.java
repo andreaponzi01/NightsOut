@@ -7,24 +7,19 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.exception.ExceptionHandler;
-import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.bean.LoggedUserBean;
-import nightsout.utils.observer.Observer;
-import nightsout.utils.observer.engineering.SearchEngineering;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.observer.Observer;
+import nightsout.utils.observer.engineering.SearchEngineering;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class SearchPageGUIController1 implements Observer {
-
-    private UserBean userBean;
-    private String input;
 
     @FXML
     private TextField textFieldSearch;
@@ -33,17 +28,22 @@ public class SearchPageGUIController1 implements Observer {
     @FXML
     private MenuUserGUIController1 menuController;
 
-    public void setAll() throws SQLException {
-        this.userBean = LoggedUserBean.getInstance();
+    public void setAll() {
+
+        LoggedUserBean.getInstance();
         this.menuController.setAll();
     }
 
     @FXML
-    private void search() throws SQLException, SystemException {
-        input = textFieldSearch.getText();
-        this.listView.getItems().clear();
-        if(!input.isBlank())
-            SearchEngineering.search(this, input);
+    private void search() {
+        try {
+            String input = textFieldSearch.getText();
+            this.listView.getItems().clear();
+            if (!input.isBlank())
+                SearchEngineering.search(this, input);
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     @Override
@@ -54,53 +54,46 @@ public class SearchPageGUIController1 implements Observer {
         if(ob instanceof UserBean uBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
+                UserItemGUIController1 controller = fxmlLoader.getController();
+                controller.setAll(uBean);
+                this.listView.getItems().add(pane);
             } catch (IOException e) {
-                try {
-                    ExceptionHandler.handleException(e);
-                } catch (SystemException ex) {
-                    MyNotification.createNotification(e);
-                }
+                MyNotification.createNotification(e);
             }
-
-            UserItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(uBean);
-            this.listView.getItems().add(pane);
         }
 
         if(ob instanceof EventBean eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/NextEventItem1.fxml")).openStream());
+                NextEventItemGUIController1 controller = fxmlLoader.getController();
+                controller.setAll(eBean);
+                this.listView.getItems().add(pane);
             } catch (IOException e) {
-                try {
-                    ExceptionHandler.handleException(e);
-                } catch (SystemException ex) {
                     MyNotification.createNotification(e);
                 }
-            }
-            NextEventItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(eBean);
-            this.listView.getItems().add(pane);
+
         }
 
         if(ob instanceof ClubOwnerBean cBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
+                UserItemGUIController1 controller = fxmlLoader.getController();
+                controller.setAll(cBean);
+                this.listView.getItems().add(pane);
             } catch (IOException e) {
-                try {
-                    ExceptionHandler.handleException(e);
-                } catch (SystemException ex) {
-                    MyNotification.createNotification(e);
-                }
+                MyNotification.createNotification(e);
             }
-
-            UserItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(cBean);
-            this.listView.getItems().add(pane);
         }
     }
+
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) throws SystemException {
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
+    public void backToUserPage(ActionEvent actionEvent) {
+
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 }

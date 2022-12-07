@@ -1,5 +1,8 @@
 package nightsout.utils;
 
+import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.EmailException;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -11,10 +14,9 @@ public class Email {
         //ignored
     }
 
-    public static void sendEmail(String recipient, String subject, String text) {
+    public static void sendEmail(String recipient, String subject, String text) throws EmailException {
 
         String from = "ispwproject@virgilio.it";
-
         String host = "smtp.virgilio.it";
         // Proprietà di sistema
         Properties properties = System.getProperties();
@@ -57,7 +59,7 @@ public class Email {
             Transport.send(message);
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+            Trigger.throwEmailException(e);
         }
 
     }

@@ -2,7 +2,7 @@ package nightsout.control.guicontroller;
 
 import org.controlsfx.control.Notifications;
 
-    public class MyNotification {
+public class MyNotification {
 
         private MyNotification(){
             //ignored

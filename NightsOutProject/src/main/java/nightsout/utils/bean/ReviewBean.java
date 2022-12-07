@@ -1,6 +1,8 @@
 package nightsout.utils.bean;
 
 import nightsout.model.ReviewModel;
+import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.EmptyInputException;
 
 public class ReviewBean {
 
@@ -50,7 +52,10 @@ public class ReviewBean {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public void setComment(String comment) throws EmptyInputException {
+        if (comment.isEmpty()) {
+            Trigger.throwEmptyInputException("Comment");
+        }
         this.comment = comment;
     }
 

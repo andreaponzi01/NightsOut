@@ -33,20 +33,15 @@ public class EventPageDecoratorAppController {
         return (new RequestBean(requestModel));
     }
 
-    public static List<EventBean> searchEventsByIdClubOwner(int idClubOwner) {
+    public static List<EventBean> searchEventsByIdClubOwner(int idClubOwner) throws SystemException {
         List<EventModel> list = null;
         List<EventBean> listBean = null;
-        try {
-            list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
-            listBean = new ArrayList<>();
+        list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
+        listBean = new ArrayList<>();
 
-            for(EventModel um : list){
-                EventBean bean = new EventBean(um);
-                listBean.add(bean);
-            }
-
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
+        for(EventModel um : list){
+            EventBean bean = new EventBean(um);
+            listBean.add(bean);
         }
         return listBean;
     }
@@ -59,8 +54,7 @@ public class EventPageDecoratorAppController {
 
     public static ClubOwnerBean getClubOwner(int idClubOwner) throws SystemException {
         ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubOwnerById(idClubOwner);
-        ClubOwnerBean clubOwnerBean= new ClubOwnerBean(clubOwnerModel);
-        return clubOwnerBean;
+        return new ClubOwnerBean(clubOwnerModel);
     }
 
     public static List<UserBean> searchUsersByIdEvent(int idEvent) {

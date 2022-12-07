@@ -9,14 +9,20 @@ public class ClubOwnerModel extends ProfileModel {
     private String address;
     private int discountVIP;
 
-    public ClubOwnerModel(String username){ super(username); }
 
-    public ClubOwnerModel(ClubOwnerBean clubOwnerBean, Credentials myCred) {
-        super(myCred, clubOwnerBean.getEmail());
+
+    public ClubOwnerModel(){
+        super();
+    }
+
+    public ClubOwnerModel(ClubOwnerBean clubOwnerBean) {
+
+        super(clubOwnerBean.getUsername(), clubOwnerBean.getEmail(), clubOwnerBean.getId(), clubOwnerBean.getImg());
         this.clubName = clubOwnerBean.getName();
         this.address = clubOwnerBean.getAddress();
         this.city = clubOwnerBean.getCity();
         this.discountVIP = clubOwnerBean.getDiscountVIP();
+        this.profileImg = clubOwnerBean.getImg();
     }
 
     public String getClubName() {
@@ -51,6 +57,8 @@ public class ClubOwnerModel extends ProfileModel {
         this.discountVIP = discountVIP;
     }
 
-
+    public String getType() {
+        return "Club Owner";
+    }
 }
 

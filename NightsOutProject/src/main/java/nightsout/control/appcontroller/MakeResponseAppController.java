@@ -19,8 +19,7 @@ public class MakeResponseAppController {
     }
 
     public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException {
-        EventBean eventBean= new EventBean(EventDAO.getEventByIdEvent(idEvent));
-        return eventBean;
+        return new EventBean(EventDAO.getEventByIdEvent(idEvent));
 
     }
 }

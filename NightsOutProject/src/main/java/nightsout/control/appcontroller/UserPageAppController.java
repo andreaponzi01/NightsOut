@@ -1,6 +1,5 @@
 package nightsout.control.appcontroller;
 
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.EventModel;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.dao.EventDAO;
@@ -14,41 +13,31 @@ public class UserPageAppController {
         //ignore
     }
 
-    public static List<EventBean> searchNextEventsByIdUser(int idUser){
+    public static List<EventBean> searchNextEventsByIdUser(int idUser) throws SystemException {
+
         List<EventModel> list = null;
         List<EventBean> listBean = null;
+        list = EventDAO.getNextEventsByIdUser(idUser);
+        listBean = new ArrayList<>();
 
-        try {
-            list = EventDAO.getNextEventsByIdUser(idUser);
-            listBean = new ArrayList<>();
-
-            for(EventModel eventModel : list){
-                EventBean bean = new EventBean(eventModel);
-                listBean.add(bean);
-            }
-
-        } catch (SystemException e) {
-           MyNotification.createNotification(e);
+        for(EventModel eventModel : list){
+            EventBean bean = new EventBean(eventModel);
+            listBean.add(bean);
         }
         return listBean;
 
     }
 
-    public static List<EventBean> searchEndedEventsByIdUser(int idUser) {
+    public static List<EventBean> searchEndedEventsByIdUser(int idUser) throws SystemException {
+
         List<EventModel> list = null;
         List<EventBean> listBean = null;
+        list = EventDAO.getEndedEventsByIdUser(idUser);
+        listBean = new ArrayList<>();
 
-        try {
-            list = EventDAO.getEndedEventsByIdUser(idUser);
-            listBean = new ArrayList<>();
-
-            for(EventModel eventModel : list){
-                EventBean bean = new EventBean(eventModel);
-                listBean.add(bean);
-            }
-
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
+        for(EventModel eventModel : list){
+            EventBean bean = new EventBean(eventModel);
+            listBean.add(bean);
         }
         return listBean;
 

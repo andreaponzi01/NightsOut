@@ -1,18 +1,16 @@
 package nightsout.utils.observer;
 
-import nightsout.utils.exception.myexception.SystemException;
-
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Subject {
     private List<Observer> observers;
 
-    public Subject() {
-
+    protected Subject() {
     }
+
     protected Subject(Observer observer) {
+
         this(new ArrayList<>()); //inizializzo la lista di observer con un ArrayList vuoto
         this.attach(observer);
     }
@@ -32,19 +30,9 @@ public abstract class Subject {
         this.observers.remove(obs);
     }
 
-    public void notify(Object object) throws SQLException, SystemException {
+    public void notify(Object object) {
         for (Observer observer : observers) {
             observer.update(object);
         }
     }
-
-/*
-    public void notifyObservers(Object ob, Object from) {
-        for (Observer o : observers) {
-            o.update(ob);
-            o.updateFrom(ob, from);
-        }
-    }
- */
-
 }

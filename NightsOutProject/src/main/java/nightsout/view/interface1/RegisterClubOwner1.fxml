@@ -52,12 +52,12 @@
             <Font name="Arial Bold" size="50.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldDiscount" alignment="CENTER" layoutX="245.0" layoutY="349.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert city" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0">
+      <TextField fx:id="textFieldCity" alignment="CENTER" layoutX="245.0" layoutY="349.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert city" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <TextField fx:id="textFieldCity" alignment="CENTER" layoutX="245.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert VIP discount " style="-fx-background-radius: 28;" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0">
+      <TextField fx:id="textFieldDiscount" alignment="CENTER" layoutX="245.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert VIP discount " style="-fx-background-radius: 28;" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0">
          <font>
             <Font name="Arial" size="25.0" />
          </font>

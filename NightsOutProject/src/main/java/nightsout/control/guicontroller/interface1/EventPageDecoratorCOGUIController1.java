@@ -9,12 +9,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.*;
-import nightsout.utils.decorator.*;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.bean.UserBean;
+import nightsout.utils.decorator.ConcreteComponent;
+import nightsout.utils.decorator.ConcreteDecoratorDelete;
+import nightsout.utils.decorator.VisualComponent;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -30,7 +37,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.sql.SQLException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -58,6 +64,8 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
     private Label labelDescription;
     @FXML
     private ListView listViewUsers;
+    @FXML
+    private ImageView eventImg;
 
     @FXML
     private GoogleMapView location;
@@ -70,65 +78,74 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
     @FXML
     private MenuClubOwnerGUIController1 menuController;
 
-    public void setAll( EventBean eventBean) throws SQLException, SystemException {
-        this.menuController.setAll();
-        this.clubOwnerBean=LoggedClubOwnerBean.getInstance();
-        this.eventBean = eventBean;
-        ClubOwnerBean clubOwnerBeanEvent= EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());
-        this.labelUsername.setText(clubOwnerBeanEvent.getName());
-        this.labelDescription.setText(eventBean.getDescription());
-        this.labelEventName.setText(eventBean.getName());
-        this.labelEventPrice.setText(String.valueOf(eventBean.getPrice())+" $");
-        this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
-        this.labelEventDuration.setText(String.valueOf(eventBean.getDuration())+" h");
-        this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));
-        EventParticipantsEngineering.eventParticipants(this, eventBean.getIdEvent());
-        myStart();
+    public void setAll(EventBean eventBean) throws SystemException {
+
+            this.menuController.setAll();
+            this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
+            this.eventBean = eventBean;
+            ClubOwnerBean clubOwnerBeanEvent = EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());
+            this.labelUsername.setText(clubOwnerBeanEvent.getName());
+            this.labelDescription.setText(eventBean.getDescription());
+            this.labelEventName.setText(eventBean.getName());
+            this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()) + " $");
+            this.labelEventDate.setText(String.valueOf(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy"))));
+            this.labelEventDuration.setText(String.valueOf(eventBean.getDuration()) + " h");
+            this.labelEventTime.setText(String.valueOf(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString()));
+            this.eventImg.setImage(new Image(this.eventBean.getImg().toURI().toString()));
+            EventParticipantsEngineering.eventParticipants(this, eventBean.getIdEvent());
+            myStart();
     }
 
-    private void myStart() throws SQLException {
+    private void myStart() throws SystemException {
+
         this.myConcreteComponent = new ConcreteComponent();
-        //prendere lista di eventi se eventBean appartiene alla mia lista di eventi fare delete
-        List<EventBean> list= EventPageDecoratorAppController.searchEventsByIdClubOwner(clubOwnerBean.getId());
+        // Prendere lista di eventi se eventBean appartiene alla mia lista di eventi fare delete
+        List<EventBean> list = EventPageDecoratorAppController.searchEventsByIdClubOwner(clubOwnerBean.getId());
         boolean isExists = list.contains(this.eventBean);
         if(!isExists){
             actionDecorateDelete();
         }
     }
 
-    private void actionDecorateDelete(){
+    private void actionDecorateDelete() {
+
         ConcreteDecoratorDelete concreteDecoratorDelete = new ConcreteDecoratorDelete(this.myConcreteComponent, this.eventBean);
         this.contents = concreteDecoratorDelete;
         this.display();
     }
 
-    public void display(){
+    public void display() {
         this.root.getChildren().add(this.contents.getButton());
     }
 
     @Override
-    public void update(Object ob){
+    public void update(Object ob) {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
         if(ob instanceof UserBean userBean){
-            try{
+            try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
-            }catch (IOException e){
-                e.printStackTrace();
+                UserItemGUIController1 controller = fxmlLoader.getController();
+                controller.setAll(userBean);
+                this.listViewUsers.getItems().add(pane);
+            } catch (IOException e) {
+                MyNotification.createNotification(e);
             }
-
-            UserItemGUIController1 controller = fxmlLoader.getController();
-            controller.setAll(userBean);
-            this.listViewUsers.getItems().add(pane);
 
         }
     }
+
     @FXML
-    public void goToMap(ActionEvent ae) throws SystemException {
-        ReplaceSceneDynamic1 replacer= new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneMap(ae,"/MapPage1.fxml",eventBean);
+    public void goToMap(ActionEvent ae) {
+
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneMap(ae, "/MapPage1.fxml", eventBean);
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     @Override
@@ -143,7 +160,8 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
 
         MapOptions mapOptions = new MapOptions();
 
-        double lat = 0.0, lng = 0.0;
+        double lat = 0.0;
+        double lng = 0.0;
 
         try {
 
@@ -164,14 +182,11 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
             OutputStream stream = http.getOutputStream();
             stream.write(out);
 
-            System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
-
             InputStream in = con.getInputStream();
             String encoding = con.getContentEncoding();
             encoding = encoding == null ? "UTF-8" : encoding;
             // Richiede Java 9 o versioni successive
             String body = new String(in.readAllBytes(), encoding);
-            System.out.println(body);
 
             JSONObject object = new JSONObject(body);
 

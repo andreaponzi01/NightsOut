@@ -1,19 +1,10 @@
 package nightsout.utils.dao;
 
-import nightsout.control.guicontroller.MyNotification;
+import nightsout.model.CredentialsModel;
 import nightsout.model.UserModel;
-import nightsout.utils.db.CRUD;
-import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.db.Query;
-import nightsout.utils.exception.ExceptionHandler;
-import nightsout.utils.exception.myexception.DBConnectionFailedException;
 import nightsout.utils.exception.myexception.SystemException;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
@@ -23,212 +14,33 @@ public class UserDAO {
     }
 
     public static UserModel getUserByUsername(String username) throws SystemException {
-
-        PreparedStatement preparedStatement = null;
-        UserModel userModel = null ;
-
-        try {
-            preparedStatement = Query.searchUserByUsername(preparedStatement, username);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-
-
-            userModel = new UserModel(rs.getString(2));
-
-            userModel.setName(rs.getString(6));
-            userModel.setSurname(rs.getString(8));
-            userModel.setGender(rs.getString(7));
-            userModel.setEmail(rs.getString(4));
-            userModel.setId(rs.getInt(1));
-            userModel.setVip(rs.getBoolean(9));
-            userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
-            userModel.setBirthday(rs.getDate(5).toLocalDate());
-            userModel.setType("Free");
-
-            /* Capire come funziona la gestione delle immagini tramite file
-
-
-                InputStream in = (rs.getBinaryStream(3));
-                String filePath = username + "pic" + ".png";
-                File file = new File(filePath);
-                ImageConverter.copyInputStreamToFile(in, file);
-                userModel.setProfileImg(file);
-            */
-
-            preparedStatement.close();
-            return userModel;
-
-        } catch (SQLException e){
-            ExceptionHandler.handleException(e);
-        } catch (DBConnectionFailedException e) {
-            MyNotification.createNotification(e);
-        }
-        return userModel;
+        return Query.searchUserByUsername(username);
     }
 
-    public static void insertUser(UserModel userModel) throws SystemException {
-        Statement stm = null;
-        PreparedStatement preparedStatement = null;
-
-        try {
-            stm= MySqlConnection.tryConnect();
-            // Inserimento credenziali (tabella Credentials)
-            CRUD.insertCredentials(userModel.getUsername(), userModel.getPassword(), "Free", stm);
-
-            preparedStatement = Query.insertUser(userModel);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-
-        } catch (DBConnectionFailedException e) {
-            MyNotification.createNotification(e);
-        } catch (SQLException /*| FileNotFoundException*/ e) {
-            ExceptionHandler.handleException(e);
-        }
+    public static void insertUser(CredentialsModel credentialsModel, UserModel userModel) throws SystemException {
+        Query.insertCredentials(credentialsModel);
+        Query.insertUser(userModel);
     }
 
 
     public static UserModel subscriptionVip(UserModel userModel) throws SystemException {
-        Statement stm= null;
-        PreparedStatement preparedStatement = null;
-        try{
-
-            // Inserimento credenziali (tabella Credentials)
-            stm = MySqlConnection.tryConnect();
-            CRUD.subscriptionVipUser(userModel.getUsername(), stm);
-            preparedStatement = Query.searchUserByUsername(preparedStatement, userModel.getUsername());
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-
-            userModel.setVip(rs.getBoolean(9));
-            userModel.setCreationDateVip(rs.getDate(10).toLocalDate());
-            preparedStatement.close();
-
-        }catch (SQLException /*| FileNotFoundException*/ m) {
-            ExceptionHandler.handleException(m);
-        } catch (DBConnectionFailedException e) {
-            MyNotification.createNotification(e);
-         }
-        return userModel;
+        Query.subscriptionVipUser(userModel.getUsername());
+        return Query.searchUserByUsername(userModel.getUsername());
     }
 
     public static List<UserModel> getUsersByUsername(String username) throws SystemException {
-
-        List<UserModel> list = null;
-        PreparedStatement preparedStatement = null;
-        UserModel userModel = null ;
-
-        try {
-            list = new ArrayList<>();
-            preparedStatement = Query.searchUsersByUsername(username);
-            ResultSet rs = preparedStatement.executeQuery();
-            assert rs != null;
-            if (!rs.next()) {
-                return list;
-            }
-
-            do {
-
-                userModel = new UserModel(rs.getString(2));
-                userModel.setName(rs.getString(6));
-                userModel.setSurname(rs.getString(8));
-                userModel.setGender(rs.getString(7));
-                userModel.setEmail(rs.getString(4));
-                userModel.setId(rs.getInt(1));
-                userModel.setVip(rs.getBoolean(9));
-                userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
-                userModel.setBirthday(rs.getDate(5).toLocalDate());
-                list.add(userModel);
-
-            } while(rs.next());
-
-            preparedStatement.close();
-            return list;
-
-        } catch (SQLException e){
-           ExceptionHandler.handleException(e);
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
-        }
-        return list;
+        return Query.searchUsersByUsername(username);
     }
 
     public static List<UserModel> getUsersByIdEvent(int idEvent) throws SystemException {
-
-        List<UserModel> list = null;
-        PreparedStatement preparedStatement = null;
-        UserModel userModel = null ;
-
-        try {
-            list = new ArrayList<>();
-            preparedStatement = Query.searchUsersByIdEvent(idEvent);
-            ResultSet rs = preparedStatement.executeQuery();
-            assert rs != null;
-            if (!rs.next()) {
-                return list;
-            }
-
-            do {
-
-                userModel = new UserModel(rs.getString(2));
-                userModel.setName(rs.getString(6));
-                userModel.setSurname(rs.getString(8));
-                userModel.setGender(rs.getString(7));
-                userModel.setEmail(rs.getString(4));
-                userModel.setId(rs.getInt(1));
-                userModel.setVip(rs.getBoolean(9));
-                userModel.setBirthday(rs.getDate(5).toLocalDate());
-                userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
-
-                list.add(userModel);
-
-            } while(rs.next());
-
-            preparedStatement.close();
-            return list;
-
-        } catch (SQLException e){
-            ExceptionHandler.handleException(e);
-        }
-        return list;
+        return Query.searchUsersByIdEvent(idEvent);
     }
 
     public static UserModel getUserByidUser(int idUser) throws SystemException {
+        return Query.searchUsersByIdUser(idUser);
+    }
 
-        PreparedStatement preparedStatement = null;
-        UserModel userModel = null ;
-
-        try {
-            preparedStatement = Query.searchUsersByIdUser(idUser);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-
-
-            userModel = new UserModel(rs.getString(2));
-
-            userModel.setName(rs.getString(6));
-            userModel.setSurname(rs.getString(8));
-            userModel.setGender(rs.getString(7));
-            userModel.setEmail(rs.getString(4));
-            userModel.setId(rs.getInt(1));
-            userModel.setVip(rs.getBoolean(9));
-            userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
-            userModel.setBirthday(rs.getDate(5).toLocalDate());
-            /* Capire come funziona la gestione delle immagini tramite file
-
-
-                InputStream in = (rs.getBinaryStream(3));
-                String filePath = username + "pic" + ".png";
-                File file = new File(filePath);
-                ImageConverter.copyInputStreamToFile(in, file);
-                userModel.setProfileImg(file);
-            */
-
-            preparedStatement.close();
-            return userModel;
-
-        } catch (SQLException e){
-            ExceptionHandler.handleException(e);
-        }
-        return userModel;
+    public static boolean checkUsername(String username) throws SystemException {
+        return Query.checkUsernameAlreadyTaken(username);
     }
 }

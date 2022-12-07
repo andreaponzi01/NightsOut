@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class ManageRequestBean {
 
-    public ManageRequestBean(RequestModel requestModel,UserBean userBean,EventBean eventBean) {
+    public ManageRequestBean(RequestModel requestModel, UserBean userBean, EventBean eventBean) {
         this.idRequest = requestModel.getIdRequest();
         this.eventName = eventBean.getName();
         this.requestDate = requestModel.getRequestDate();

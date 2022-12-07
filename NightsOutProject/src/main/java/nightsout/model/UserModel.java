@@ -2,6 +2,7 @@ package nightsout.model;
 
 import nightsout.utils.bean.UserBean;
 
+import java.io.File;
 import java.time.LocalDate;
 
 public class UserModel extends ProfileModel {
@@ -12,45 +13,25 @@ public class UserModel extends ProfileModel {
     private LocalDate creationDateVip;
     private boolean vip;
 
-    public UserModel(String username){
-        super(username);
+
+
+    private File img;
+
+    public UserModel(){
+        super();
     }
 
     public UserModel(UserBean userBean){
 
-        this.cred = new Credentials();
-        this.cred.setUsername(userBean.getUsername());
-        this.cred.setPassword(userBean.getPassword());
-        this.cred.setType(userBean.getType());
-        this.id = userBean.getId();
+        super(userBean.getUsername(), userBean.getEmail(), userBean.getId(), userBean.getImg());
         this.name = userBean.getName();
         this.surname = userBean.getSurname();
         this.gender = userBean.getGender();
         this.birthday = userBean.getBirthday();
-        this.creationDateVip=userBean.getCreationDateVIP();
+        this.img = userBean.getImg();
 
     }
 
-    public UserModel(UserBean userBean, Credentials myCred){
-
-        super(myCred, userBean.getEmail());
-        this.name = userBean.getName();
-        this.surname = userBean.getSurname();
-        this.gender = userBean.getGender();
-        this.birthday = userBean.getBirthday();
-
-    }
-
-    public UserModel() {
-
-    }
-
-    /*
-    public UserModel(Credentials cred, String name, File profileImg ) {
-        super(cred, profileImg) ;
-        setName(name);
-    }
-     */
 
     public void setName(String name) {
         this.name = name;
@@ -61,6 +42,14 @@ public class UserModel extends ProfileModel {
     }
 
     public void setBirthday(LocalDate birthday) { this.birthday = birthday; }
+
+   public File getImg() {
+        return img;
+    }
+
+    public void setImg(File img) {
+        this.img = img;
+    }
 
 
     public String getName() {return name;}
@@ -82,5 +71,9 @@ public class UserModel extends ProfileModel {
 
     public void setCreationDateVip(LocalDate creationDateVip) {
         this.creationDateVip = creationDateVip;
+    }
+
+    public String getType() {
+        return "Free";
     }
 }

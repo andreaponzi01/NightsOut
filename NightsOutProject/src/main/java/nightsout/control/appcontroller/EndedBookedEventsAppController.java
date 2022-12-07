@@ -14,11 +14,10 @@ public class EndedBookedEventsAppController {
 
     public static ReviewBean getReviewByIdEventAndIdUser(int idUser,int idEvent) throws SystemException {
         ReviewModel reviewModel = ReviewDAO.getReviewByIdEventAndIdUser(idEvent,idUser);
-        if(reviewModel==null){
+        if(reviewModel == null){
             return null;
-        }else{
-            ReviewBean reviewBean= new ReviewBean(reviewModel);
-            return reviewBean;
+        } else {
+            return new ReviewBean(reviewModel);
         }
 
     }

@@ -62,5 +62,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="811.0" layoutY="493.0" mnemonicParsing="false" onAction="#loadImage" text="Load image" />
    </children>
 </AnchorPane>

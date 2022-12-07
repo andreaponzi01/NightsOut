@@ -10,8 +10,6 @@ public class ConcreteComponent implements VisualComponent {
         this.button = new Button();
         this.button.setMinWidth(50);
         this.button.setMinHeight(50);
-       // this.button.setStyle("-fx-background-color: white");
-        //VBox.setMargin(this.button, new Insets(10, 0, 0, 0));
         this.button.setAlignment(Pos.CENTER);
     }
 

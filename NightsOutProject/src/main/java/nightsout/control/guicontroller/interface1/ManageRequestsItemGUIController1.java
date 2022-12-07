@@ -13,8 +13,6 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 
 public class ManageRequestsItemGUIController1 {
@@ -31,6 +29,7 @@ public class ManageRequestsItemGUIController1 {
 
 
     public void setAll(ManageRequestBean manageRequestBean) {
+
         this.clubOwnerBean= LoggedClubOwnerBean.getInstance();
         this.manageRequestBean=manageRequestBean;
         this.buttonUsername.setText(manageRequestBean.getUserName());
@@ -38,7 +37,8 @@ public class ManageRequestsItemGUIController1 {
         this.labelEventDate.setText(manageRequestBean.getRequestDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
     }
     @FXML
-    public void acceptRequest(ActionEvent actionEvent) throws IOException, SQLException {
+    public void acceptRequest(ActionEvent actionEvent) {
+
         try {
             ManageRequestsAppController.acceptRequest(manageRequestBean.getIdRequest());
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
@@ -48,7 +48,8 @@ public class ManageRequestsItemGUIController1 {
         }
     }
 
-    public void rejectRequest(ActionEvent actionEvent) throws IOException, SQLException {
+    public void rejectRequest(ActionEvent actionEvent) {
+
         try {
             //appcontroller
             ManageRequestsAppController.declineRequest(manageRequestBean.getIdRequest());
@@ -59,7 +60,8 @@ public class ManageRequestsItemGUIController1 {
         }
     }
 
-    public void goToUserPage(ActionEvent actionEvent) throws IOException, SQLException {
+    public void goToUserPage(ActionEvent actionEvent) {
+
         try {
             UserBean userBean = ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUserName());
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();

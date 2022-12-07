@@ -6,26 +6,24 @@ import javafx.scene.control.Label;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedClubOwnerBean;
-import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
-import java.io.IOException;
-
 public class ViewCreatedEventItemGUIController1 {
 
-    private UserBean userBean;
     private EventBean eventBean;
     @FXML
     Label labelEventName;
 
     public void setAll(EventBean eventBean) {
+
         this.eventBean = eventBean;
         labelEventName.setText(this.eventBean.getName());
     }
 
 
-    public void goToEventPage(ActionEvent actionEvent) throws IOException {
+    public void goToEventPage(ActionEvent actionEvent) {
+
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             String type = LoggedClubOwnerBean.checkInstanceType();

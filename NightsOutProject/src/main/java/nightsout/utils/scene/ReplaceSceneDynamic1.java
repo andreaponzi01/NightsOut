@@ -3,7 +3,6 @@ package nightsout.utils.scene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.*;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.EmptyInputException;
@@ -12,8 +11,6 @@ import nightsout.utils.exception.myexception.WrongInputTypeException;
 import nightsout.utils.scene.scenesetter.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Objects;
 
 public class ReplaceSceneDynamic1 {
 
@@ -25,14 +22,14 @@ public class ReplaceSceneDynamic1 {
 
 
             if (fxml.equals("/UserPage1.fxml")) {
-                UserPageSetter1.setterCulo(loader.getController());
+                UserPageSetter1.setter(loader.getController());
             }
             if (fxml.equals("/ClubOwnerPage1.fxml")) {
-                ClubOwnerPageSetter1.setterCulo(loader.getController());
+                ClubOwnerPageSetter1.setter(loader.getController());
             }
             ReplaceScene.showStage(ae, root);
 
-        } catch (IOException | SQLException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -44,7 +41,7 @@ public class ReplaceSceneDynamic1 {
 
             ViewUserPageSetter1.setterCO(userBean,loader.getController());
             ReplaceScene.showStage(ae, root);
-        } catch (IOException | SQLException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -56,8 +53,8 @@ public class ReplaceSceneDynamic1 {
 
             ViewUserPageSetter1.setterUser(userBean,loader.getController());
             ReplaceScene.showStage(ae, root);
-        } catch (Exception /*| IOException*/ e) {
-            e.printStackTrace();
+        } catch  (IOException e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -71,27 +68,33 @@ public class ReplaceSceneDynamic1 {
                 ClubOwnerPageSetter1.setterItem(clubOwnerBean, loader.getController());
             }
             ReplaceScene.showStage(ae, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
 
-    public void switchAndSetSceneRegister(ActionEvent ae, String fxml, String[] personalInfo, String type) throws SystemException {
+    public void switchAndSetSceneRegisterUser(ActionEvent ae, String fxml, UserBean userBean) throws SystemException {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
 
-            if (Objects.equals(type, "ClubOwner")) {
-                RegisterSetter1.setterClubOwner(personalInfo, loader.getController());
-            } else if (Objects.equals(type, "Free")){
-                RegisterSetter1.setterUser(personalInfo, loader.getController());
-            }
+            RegisterSetter1.setterUser(userBean, loader.getController());
             ReplaceScene.showStage(ae, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
-        } catch (WrongInputTypeException | EmptyInputException e) {
-            MyNotification.createNotification(e);
+        }
+    }
+
+    public void switchAndSetSceneRegisterClubOwner(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException, WrongInputTypeException, EmptyInputException {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+            RegisterSetter1.setterClubOwner(clubOwnerBean, loader.getController());
+            ReplaceScene.showStage(ae, root);
+        } catch (IOException e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -102,7 +105,7 @@ public class ReplaceSceneDynamic1 {
 
             RegisterSetter1.setterCreateEvent(loader.getController());
             ReplaceScene.showStage(ae, root);
-        } catch (IOException | SQLException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -112,7 +115,7 @@ public class ReplaceSceneDynamic1 {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-            UserBean userBean=LoggedUserBean.getInstance();
+            UserBean userBean = LoggedUserBean.getInstance();
 
             if(userBean.getVip()){
                 SubscriptionPageSetter1.setter2(loader.getController());
@@ -121,7 +124,7 @@ public class ReplaceSceneDynamic1 {
                 SubscriptionPageSetter1.setter1(loader.getController());
                 ReplaceScene.showStage(ae, root);
             }
-        } catch (IOException | SQLException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -134,8 +137,8 @@ public class ReplaceSceneDynamic1 {
 
             SearchPageSetter1.setter( loader.getController());
             ReplaceScene.showStage(ae, root);
-        } catch (Exception /*| IOException*/ e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -146,7 +149,7 @@ public class ReplaceSceneDynamic1 {
 
             ManageRequestSetter1.setter( loader.getController());
             ReplaceScene.showStage(ae, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -159,7 +162,7 @@ public class ReplaceSceneDynamic1 {
 
             CheckRequestSetter1.setterPending(loader.getController());
             ReplaceScene.showStage(actionEvent, root);
-        }catch (SQLException | IOException e) {
+        }catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -171,7 +174,7 @@ public class ReplaceSceneDynamic1 {
 
             CheckRequestSetter1.setterRifiuted(loader.getController());
             ReplaceScene.showStage(actionEvent, root);
-        }catch (SQLException | IOException e) {
+        }catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -185,7 +188,7 @@ public class ReplaceSceneDynamic1 {
 
             EndedBookedEventsPageSetter1.setter(loader.getController());
             ReplaceScene.showStage(actionEvent, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -197,7 +200,7 @@ public class ReplaceSceneDynamic1 {
 
             ReviewPageSetter1.setter(eventBean, loader.getController());
             ReplaceScene.showStage(actionEvent, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -209,7 +212,7 @@ public class ReplaceSceneDynamic1 {
 
             ResponsePageSetter1.setter(loader.getController());
             ReplaceScene.showStage(actionEvent, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -221,7 +224,7 @@ public class ReplaceSceneDynamic1 {
 
             ResponsePageSetter1.setter2(userBean,reviewBean, loader.getController());
             ReplaceScene.showStage(actionEvent, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -233,7 +236,7 @@ public class ReplaceSceneDynamic1 {
 
             ReviewAndResponsePageSetter1.setter(loader.getController());
             ReplaceScene.showStage(actionEvent, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -245,7 +248,7 @@ public class ReplaceSceneDynamic1 {
 
             EventPageSetter1.setterDecoratorUser( eventBean, loader.getController());
             ReplaceScene.showStage(ae, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -256,7 +259,7 @@ public class ReplaceSceneDynamic1 {
 
             EventPageSetter1.setterDecoratorCO( eventBean, loader.getController());
             ReplaceScene.showStage(ae, root);
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
@@ -266,7 +269,7 @@ public class ReplaceSceneDynamic1 {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
 
-            MapPageSetter1.setter(eventBean,loader.getController());
+            MapPageSetter1.setter(eventBean, loader.getController());
             ReplaceScene.showStage(ae, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);

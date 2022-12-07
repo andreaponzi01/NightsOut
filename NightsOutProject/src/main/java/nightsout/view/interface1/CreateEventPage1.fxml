@@ -79,6 +79,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button layoutX="833.0" layoutY="432.0" mnemonicParsing="false" onAction="#loadImage" text="Load image" />
          </children>
       </AnchorPane>
       <Line endX="-1.7311248779296875" endY="-7.62939453125E-6" layoutX="248.0" layoutY="54.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />

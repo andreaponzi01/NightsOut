@@ -2,8 +2,6 @@ package nightsout.control;
 
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.MapComponentInitializedListener;
-import com.dlsc.gmapsfx.javascript.event.GMapMouseEvent;
-import com.dlsc.gmapsfx.javascript.event.UIEventType;
 import com.dlsc.gmapsfx.javascript.object.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,11 +46,10 @@ public class MapController implements Initializable, MapComponentInitializedList
         String address = "";
 
         MapOptions mapOptions = new MapOptions();
-
-        double lat = 0.0, lng = 0.0;
+        Double lat = 0.0;
+        Double lng = 0.0;
 
         try {
-
             address = EventPageDecoratorAppController.getClubAddress(eventBean.getIdEvent());
             // Recuperiamo latitudine e longitudine dell'indirizzo del Club nel quale si svolgerà l'evento
             URL url = new URL("https://www.mapquestapi.com/geocoding/v1/address?key=QmskMXX88teOI9qXndnvrgGj4DGETyiF");
@@ -70,14 +67,11 @@ public class MapController implements Initializable, MapComponentInitializedList
             OutputStream stream = http.getOutputStream();
             stream.write(out);
 
-            System.out.println(http.getResponseCode() + " " + http.getResponseMessage());
-
             InputStream in = con.getInputStream();
             String encoding = con.getContentEncoding();
             encoding = encoding == null ? "UTF-8" : encoding;
             // Richiede Java 9 o versioni successive
             String body = new String(in.readAllBytes(), encoding);
-            System.out.println(body);
 
             JSONObject object = new JSONObject(body);
 
@@ -95,11 +89,9 @@ public class MapController implements Initializable, MapComponentInitializedList
             MyNotification.createNotification(e);
         }
 
-
-
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
-        mapOptions.center(new LatLong(lat,lng))
-                .mapType(MapTypeIdEnum.HYBRID)
+        mapOptions.center(new LatLong(lat, lng))
+                .mapType(MapTypeIdEnum.SATELLITE)
                 .overviewMapControl(false)
                 .panControl(false)
                 .rotateControl(false)
@@ -109,16 +101,16 @@ public class MapController implements Initializable, MapComponentInitializedList
                 .zoom(18);
 
         GoogleMap map = location.createMap(mapOptions);
+
         // Aggiungiamo il marcatore sulla Mappa
         MarkerOptions markerOptions = new MarkerOptions();
 
-        markerOptions.position( new LatLong(46.935749, -121.483499))
+        markerOptions.position(new LatLong(lat, lng))
                 .visible(Boolean.TRUE)
                 .title("Prova1" + "'s Location");
 
         Marker marker = new Marker(markerOptions);
         map.addMarker(marker);
-
     }
 
 

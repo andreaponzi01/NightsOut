@@ -17,20 +17,14 @@ public class CheckRequestsAppController {
     private CheckRequestsAppController() {
         //ignored
     }
-    public static List<RequestBean> searchRifiutedRequestsByIdUser(int idUser) {
-        List<RequestModel> list = null;
-        List<RequestBean> listBean = null;
-        try {
-            list = RequestDAO.getRifiutedRequestsByIdUser(idUser);
-            listBean = new ArrayList<>();
+    public static List<RequestBean> searchRifiutedRequestsByIdUser(int idUser) throws SystemException {
 
-            for(RequestModel rm : list){
-                RequestBean bean = new RequestBean(rm);
-                listBean.add(bean);
-            }
+        List<RequestModel> list = RequestDAO.getRifiutedRequestsByIdUser(idUser);
+        List<RequestBean> listBean = new ArrayList<>();
 
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
+        for(RequestModel rm : list){
+            RequestBean bean = new RequestBean(rm);
+            listBean.add(bean);
         }
         return listBean;
     }
@@ -38,6 +32,7 @@ public class CheckRequestsAppController {
     public static List<RequestBean> searchPendingRequestsByIdUser(int idUser) {
         List<RequestModel> list = null;
         List<RequestBean> listBean = null;
+
         try {
             list = RequestDAO.getPendingRequestsByIdUser(idUser);
             listBean = new ArrayList<>();
@@ -53,13 +48,8 @@ public class CheckRequestsAppController {
         return listBean;
     }
 
-    public static EventBean searchEventById(int idEvent) {
-       EventModel eventModel = null;
-        try {
-            eventModel = EventDAO.getEventByIdEvent(idEvent);
-        } catch (SystemException e) {
-           MyNotification.createNotification(e);
-        }
+    public static EventBean searchEventById(int idEvent) throws SystemException {
+       EventModel eventModel = EventDAO.getEventByIdEvent(idEvent);
         return new EventBean(eventModel);
     }
 }

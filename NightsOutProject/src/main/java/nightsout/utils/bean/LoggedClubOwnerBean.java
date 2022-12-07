@@ -1,12 +1,11 @@
 package nightsout.utils.bean;
 
 import nightsout.model.ClubOwnerModel;
-import nightsout.model.UserModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoggedClubOwnerBean extends ClubOwnerBean {
+
+    private static final String TYPE_FREE = "FREE";
+    private static final String TYPE_CLUB_OWNER = "CLUB OWNER";
 
     private LoggedClubOwnerBean() {
         super();
@@ -25,22 +24,26 @@ public class LoggedClubOwnerBean extends ClubOwnerBean {
         return loggedCOBeanInstance;
     }
 
-    public static LoggedClubOwnerBean getInstance(ClubOwnerModel um) {
+    public static LoggedClubOwnerBean getInstance(ClubOwnerModel com) {
         if (loggedCOBeanInstance == null)
-            loggedCOBeanInstance = new LoggedClubOwnerBean(um);
+            loggedCOBeanInstance = new LoggedClubOwnerBean(com);
         return loggedCOBeanInstance;
     }
 
-    public static void DeleteInstance() {
+    public static void deleteInstance() {
         loggedCOBeanInstance=null;
     }
 
     public static String checkInstanceType() {
         if (loggedCOBeanInstance == null) {
-            return "FREE";
+            return TYPE_FREE;
         }
         else{
-            return "CLUB OWNER";
+            return TYPE_CLUB_OWNER;
         }
+    }
+
+    public static void createInstance(ClubOwnerModel clubOwnerModel) {
+        loggedCOBeanInstance = new LoggedClubOwnerBean(clubOwnerModel);
     }
 }

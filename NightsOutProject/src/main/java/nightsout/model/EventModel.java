@@ -2,6 +2,7 @@ package nightsout.model;
 
 import nightsout.utils.bean.EventBean;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -20,6 +21,7 @@ public class EventModel {
     protected LocalTime time;
     protected int duration;
     protected LocalDate eventDate;
+    protected File img;
 
 
 
@@ -34,6 +36,7 @@ public class EventModel {
         this.duration = eventBean.getDuration();
         this.time = eventBean.getTime();
         this.description = eventBean.getDescription();
+        this.img = eventBean.getImg();
     }
 
     public String getDescription() {
@@ -42,6 +45,14 @@ public class EventModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public File getImg() {
+        return img;
+    }
+
+    public void setImg(File img) {
+        this.img = img;
     }
 
     //Attributi User

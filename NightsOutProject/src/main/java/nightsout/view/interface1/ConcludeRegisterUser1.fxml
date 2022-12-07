@@ -9,8 +9,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ConcludeRegisterClubOwnerGUIController1">
+<AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ConcludeRegisterUserGUIController1">
    <children>
+      <Button layoutX="811.0" layoutY="453.0" mnemonicParsing="false" onAction="#loadImage" text="Load image" />
       <AnchorPane layoutX="108.0" layoutY="123.0" opacity="0.23" prefHeight="444.0" prefWidth="864.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <effect>
             <DropShadow blurType="GAUSSIAN" height="97.65" radius="48.322500000000005" spread="0.21" width="97.64">

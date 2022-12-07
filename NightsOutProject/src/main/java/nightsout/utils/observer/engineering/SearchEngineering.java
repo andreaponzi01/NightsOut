@@ -8,7 +8,6 @@ import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.GenericBeanList;
 import nightsout.utils.observer.Observer;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class SearchEngineering {
@@ -17,7 +16,7 @@ public class SearchEngineering {
         //ignored
     }
 
-    public static void search(Observer observer, String input) throws SQLException, SystemException {
+    public static void search(Observer observer, String input) throws SystemException {
         /*
         Subject: è colui che viene osservato. Nel caso specifico si tratta della nostra lista GenericBeanList
         L'osservato deve mantenere il riferimento ai propri osservatori, così da poterli notificare ogni
@@ -40,19 +39,10 @@ public class SearchEngineering {
 
     }
 
-    private static List<UserBean> searchUsers(String input) {
-        List<UserBean> listBean = SearchAppController.searchUsersByUsername(input);
-        return listBean;
-    }
+    private static List<UserBean> searchUsers(String input) throws SystemException { return SearchAppController.searchUsersByUsername(input); }
 
-    private static List<EventBean> searchEvents(String input) {
-        List<EventBean> listBean = SearchAppController.searchEventsByName(input);
-        return listBean;
-    }
+    private static List<EventBean> searchEvents(String input) throws SystemException { return SearchAppController.searchEventsByName(input); }
 
-    private static List<ClubOwnerBean> searchClubOwners(String input) {
-        List<ClubOwnerBean> listBean = SearchAppController.searchClubOwnersByUsername(input);
-        return listBean;
-    }
+    private static List<ClubOwnerBean> searchClubOwners(String input) { return SearchAppController.searchClubOwnersByUsername(input); }
 
 }

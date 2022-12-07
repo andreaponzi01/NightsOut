@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class ReplaceScene{
 
-    public ReplaceScene(){
+    private ReplaceScene(){
         //ignored
     }
 

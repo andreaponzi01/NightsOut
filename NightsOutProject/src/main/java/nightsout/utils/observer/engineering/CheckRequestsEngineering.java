@@ -6,7 +6,6 @@ import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.RequestBeanList;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class CheckRequestsEngineering {
@@ -15,17 +14,17 @@ public class CheckRequestsEngineering {
         //ignored
     }
 
-    public static void checkPendingRequests(Observer observer, int idUser) throws SQLException, SystemException {
+    public static void checkPendingRequests(Observer observer, int idUser) throws SystemException {
         RequestBeanList list = new RequestBeanList(observer);
         list.addRequestsToList(searchPendingRequests(idUser));
     }
 
-    public static void checkRifiutedRequests(Observer observer, int idUser) throws SQLException, SystemException {
+    public static void checkRifiutedRequests(Observer observer, int idUser) throws SystemException {
         RequestBeanList list = new RequestBeanList(observer);
         list.addRequestsToList(searchRifiutedRequests(idUser));
     }
 
-    private static List<RequestBean> searchRifiutedRequests(int idUser) {
+    private static List<RequestBean> searchRifiutedRequests(int idUser) throws SystemException {
         return (CheckRequestsAppController.searchRifiutedRequestsByIdUser(idUser));
     }
 

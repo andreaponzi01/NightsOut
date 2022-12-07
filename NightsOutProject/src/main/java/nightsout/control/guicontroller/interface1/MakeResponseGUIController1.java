@@ -7,15 +7,12 @@ import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.MakeResponseAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.*;
+import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
 public class MakeResponseGUIController1 {
     private ClubOwnerBean clubOwnerBean;
-    private ResponseBean responseBean;
     @FXML
     private Label labelEventName;
     @FXML
@@ -23,7 +20,6 @@ public class MakeResponseGUIController1 {
     @FXML
     private TextField textFieldResponse;
     private ReviewBean reviewBean;
-    private EventBean eventBean;
     @FXML
     private MenuClubOwnerGUIController1 menuController;
 
@@ -31,41 +27,33 @@ public class MakeResponseGUIController1 {
         //ignore
     }
 
-    public void setAll(UserBean userBean, ReviewBean reviewBean) throws SQLException, SystemException {
+    public void setAll(UserBean userBean, ReviewBean reviewBean) throws SystemException {
+
         this.clubOwnerBean=LoggedClubOwnerBean.getInstance();
         this.menuController.setAll();
         this.reviewBean=reviewBean;
         this.labelUsername.setText(userBean.getUsername());
-        this.eventBean= MakeResponseAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
-        this.labelEventName.setText(eventBean.getName());
+        this.labelEventName.setText(MakeResponseAppController.searchEventbyIdEvent(reviewBean.getIdEvent()).getName());
     }
-    public void createResponse(ActionEvent actionEvent) throws IOException {
-        //da fare
+    public void createResponse(ActionEvent actionEvent) {
 
-        if(!textFieldResponse.getText().isBlank())
-        {
-            try {
-                responseBean = new ResponseBean();
-                responseBean.setResponse(textFieldResponse.getText());
-                responseBean.setIdClubOwner(clubOwnerBean.getId());
-                responseBean.setReview(reviewBean.getIdReview());
+        try {
+            ResponseBean responseBean = new ResponseBean();
+            responseBean.setResponse(textFieldResponse.getText());
+            responseBean.setIdClubOwner(clubOwnerBean.getId());
+            responseBean.setReview(reviewBean.getIdReview());
 
-                MakeResponseAppController.makeResponse(responseBean);
-                ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-                replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
+            MakeResponseAppController.makeResponse(responseBean);
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
 
-            } catch (SystemException e) {
-                MyNotification.createNotification(e);
-            }
+        } catch (SystemException | EmptyInputException e) {
+            MyNotification.createNotification(e);
         }
-        else
-        {
-            System.out.println("\n\nINSERISCI UN RESPONSO IPOCRITA!!!!!\n\n");
-        }
-
     }
 
-    public void backToReviewsPage(ActionEvent actionEvent) throws IOException {
+    public void backToReviewsPage(ActionEvent actionEvent) {
+
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");

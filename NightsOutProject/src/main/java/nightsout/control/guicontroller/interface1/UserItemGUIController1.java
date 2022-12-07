@@ -3,42 +3,45 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.bean.*;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
-
-import java.io.IOException;
-import java.sql.SQLException;
 
 public class UserItemGUIController1 {
 
     private UserBean userBean;
     private ClubOwnerBean clubOwnerBean;
-
     @FXML
     Label labelType;
     @FXML
     Label labelUsername;
+    @FXML
+    ImageView imageViewProfilePic;
 
     public void setAll(UserBean userBean) {
+
         this.userBean = userBean;
         labelUsername.setText(this.userBean.getUsername());
         labelType.setText("USER");
+        imageViewProfilePic.setImage(new Image(this.userBean.getImg().toURI().toString()));
     }
 
-    public void setAll( ClubOwnerBean clubOwnerBean) {
+    public void setAll(ClubOwnerBean clubOwnerBean) {
+
         this.clubOwnerBean = clubOwnerBean;
         labelUsername.setText(this.clubOwnerBean.getUsername());
         labelType.setText("CLUB OWNER");
+        imageViewProfilePic.setImage(new Image(this.clubOwnerBean.getImg().toURI().toString()));
     }
 
-//sbagliapaola
     @FXML
-    private void goToProfile(ActionEvent actionEvent) throws IOException, SQLException {
+    private void goToProfile(ActionEvent actionEvent) {
+
         try {
             String type = LoggedClubOwnerBean.checkInstanceType();
             if (clubOwnerBean != null) {

@@ -1,6 +1,5 @@
 package nightsout.control.appcontroller;
 
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.model.ReviewModel;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
@@ -18,33 +17,27 @@ public class EventReviewsClubOwnerAppController {
         //ignore
     }
 
-    public static List<ReviewBean> searchReviewsByIdClubOwner(int idClubOwner) {
+    public static List<ReviewBean> searchReviewsByIdClubOwner(int idClubOwner) throws SystemException {
         List<ReviewModel> list = null;
         List<ReviewBean> listBean = null;
 
-        try {
-            list = ReviewDAO.getReviewByIdClubOwner(idClubOwner);
-            listBean = new ArrayList<>();
+        list = ReviewDAO.getReviewByIdClubOwner(idClubOwner);
+        listBean = new ArrayList<>();
 
-            for(ReviewModel reviewModel : list){
-                ReviewBean bean = new ReviewBean(reviewModel);
-                listBean.add(bean);
-            }
-
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
+        for(ReviewModel reviewModel : list){
+            ReviewBean bean = new ReviewBean(reviewModel);
+            listBean.add(bean);
         }
+
         return listBean;
     }
 
     public static UserBean searchUserbyIdUser(int idUser) throws SystemException {
-        UserBean userBean= new UserBean(UserDAO.getUserByidUser(idUser));
-        return userBean;
+        return new UserBean(UserDAO.getUserByidUser(idUser));
     }
 
 
     public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException{
-        EventBean eventBean= new EventBean(EventDAO.getEventByIdEvent(idEvent));
-        return eventBean;
+        return new EventBean(EventDAO.getEventByIdEvent(idEvent));
     }
 }

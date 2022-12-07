@@ -3,10 +3,8 @@ package nightsout.utils.scene.scenesetter;
 import nightsout.control.guicontroller.interface1.ConcludeRegisterClubOwnerGUIController1;
 import nightsout.control.guicontroller.interface1.ConcludeRegisterUserGUIController1;
 import nightsout.control.guicontroller.interface1.CreateEventGUIController1;
-import nightsout.utils.exception.myexception.EmptyInputException;
-import nightsout.utils.exception.myexception.WrongInputTypeException;
-
-import java.sql.SQLException;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.UserBean;
 
 public class RegisterSetter1 {
 
@@ -14,15 +12,11 @@ public class RegisterSetter1 {
         //ignored
     }
 
-    public static void setterClubOwner(String[] personalInfo, ConcludeRegisterClubOwnerGUIController1 concludeRegisterClubOwnerGUIController1) throws WrongInputTypeException, EmptyInputException {
-        concludeRegisterClubOwnerGUIController1.setAll(personalInfo);
+    public static void setterClubOwner(ClubOwnerBean clubOwnerBean, ConcludeRegisterClubOwnerGUIController1 concludeRegisterClubOwnerGUIController1) {
+        concludeRegisterClubOwnerGUIController1.setAll(clubOwnerBean);
     }
 
-    public static void setterUser(String[] personalInfo, ConcludeRegisterUserGUIController1 concludeRegisterUserGUIController1) throws EmptyInputException {
-        concludeRegisterUserGUIController1.setAll(personalInfo);
-    }
+    public static void setterUser(UserBean userBean, ConcludeRegisterUserGUIController1 concludeRegisterUserGUIController1) { concludeRegisterUserGUIController1.setAll(userBean); }
 
-    public static void setterCreateEvent(CreateEventGUIController1 createEventGUIController1) throws SQLException {
-        createEventGUIController1.setAll();
-    }
+    public static void setterCreateEvent(CreateEventGUIController1 createEventGUIController1) { createEventGUIController1.setAll(); }
 }

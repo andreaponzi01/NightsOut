@@ -1,26 +1,19 @@
 package nightsout.model;
 
-public class Credentials {
+import nightsout.utils.bean.CredentialsBean;
+
+public class CredentialsModel {
     private String username;
     private String password;
     private String type;
 
-    public Credentials() {
-        this.username = null;
-        this.password = null;
-        this.type = null;
+    public CredentialsModel() {
     }
 
-    public Credentials(String username, String password, String type){
-        setUsername(username);
-        setPassword(password);
-        setType(type);
-    }
-
-    public Credentials(String username){
-        this.username = username;
-        this.password = null;
-        this.type = null;
+    public CredentialsModel(CredentialsBean credentialsBean){
+        setUsername(credentialsBean.getUsername());
+        setPassword(credentialsBean.getPassword());
+        setType(credentialsBean.getType());
     }
 
 

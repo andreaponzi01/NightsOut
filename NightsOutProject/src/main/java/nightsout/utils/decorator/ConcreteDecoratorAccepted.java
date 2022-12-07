@@ -1,27 +1,14 @@
 package nightsout.utils.decorator;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.LoggedUserBean;
-import nightsout.utils.bean.UserBean;
-import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
-
-import java.io.IOException;
 
 public class ConcreteDecoratorAccepted extends Decorator {
 
-    private UserBean userBean;
-
     String toWrite;
 
-    public ConcreteDecoratorAccepted(VisualComponent component) {
-        super(component);
-        this.userBean = LoggedUserBean.getInstance();
-    }
+    public ConcreteDecoratorAccepted(VisualComponent component) { super(component); }
 
     protected void applyDecorationAccepted(Button myButton) {
         myButton.setText(toWrite);

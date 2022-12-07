@@ -2,6 +2,7 @@ package nightsout.utils.exception;
 
 import nightsout.utils.exception.myexception.*;
 
+import javax.mail.MessagingException;
 import java.sql.SQLException;
 
 /*
@@ -13,7 +14,7 @@ public class Trigger {
         //ignored
     }
 
-    public static void emptyField(String field) throws EmptyInputException {
+    public static void throwEmptyInputException(String field) throws EmptyInputException {
         throw new EmptyInputException(field);
     }
     public static void throwWrongCredentials() throws WrongCredentialsException {
@@ -30,5 +31,31 @@ public class Trigger {
         WrongInputTypeException exception = new WrongInputTypeException(field);
         exception.initCause(e);
         throw exception;
+    }
+
+    public static void throwBeforeDateException() throws BeforeDateException {
+        throw new BeforeDateException();
+    }
+
+    public static void throwEmailException(MessagingException e) throws EmailException {
+        EmailException exception = new EmailException();
+        exception.initCause(e);
+        throw exception;
+    }
+
+    public static void throwExceededRangeException(String field) throws WrongInputRangeException {
+        throw new WrongInputRangeException(field);
+    }
+
+    public static void throwAdultException() throws AdultException {
+        throw new AdultException();
+    }
+
+    public static void throwUsernameAlreadyTakenException(String username) throws UsernameAlreadyTakenException {
+        throw new UsernameAlreadyTakenException(username);
+    }
+
+    public static void throwPasswordNotCompliantException() throws PasswordNotCompliantException {
+        throw new PasswordNotCompliantException();
     }
 }

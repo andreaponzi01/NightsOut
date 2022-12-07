@@ -6,19 +6,17 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
 
-import java.sql.SQLException;
-
 public class ResponsePageSetter1 {
 
     private ResponsePageSetter1() {
         //ignored
     }
 
-    public static void setter(EventReviewsClubOwnerGUIController1 eventReviewsClubOwnerGUIController1) throws SQLException, SystemException {
+    public static void setter(EventReviewsClubOwnerGUIController1 eventReviewsClubOwnerGUIController1) throws SystemException {
         eventReviewsClubOwnerGUIController1.setAll();
     }
 
-    public static void setter2(UserBean userBean, ReviewBean reviewBean, MakeResponseGUIController1 makeResponseGUIController1) throws SQLException, SystemException {
+    public static void setter2(UserBean userBean, ReviewBean reviewBean, MakeResponseGUIController1 makeResponseGUIController1) throws SystemException {
         makeResponseGUIController1.setAll(userBean,reviewBean);
     }
 }

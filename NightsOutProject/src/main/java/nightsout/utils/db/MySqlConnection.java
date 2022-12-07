@@ -34,7 +34,7 @@ public class MySqlConnection {
         return statement;
     }
 
-    public static Connection connect() throws SystemException, DBConnectionFailedException {
+    public static Connection connect() throws SystemException {
 
         String user;
         String pass;
@@ -55,11 +55,6 @@ public class MySqlConnection {
                 DriverManager.setLoginTimeout(5);
                 connection = DriverManager.getConnection(dbUrl, user, pass);
             }
-            /*
-        } catch (SQLException | ClassNotFoundException | IOException e) {
-            ExceptionHandler.handleException(e);
-        }
-             */
         } catch (SQLException | ClassNotFoundException | IOException e) {
             ExceptionHandler.handleException(e);
         }

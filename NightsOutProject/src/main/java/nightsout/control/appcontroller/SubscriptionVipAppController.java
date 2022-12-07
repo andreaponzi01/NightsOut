@@ -15,6 +15,6 @@ public class SubscriptionVipAppController {
     public static void subscription(UserBean userBean) throws SystemException {
         UserModel userModel = new UserModel(userBean);
         userModel= UserDAO.subscriptionVip(userModel);
-        LoggedUserBean.UpdateInstance(userModel);
+        LoggedUserBean.updateInstance(userModel);
     }
 }

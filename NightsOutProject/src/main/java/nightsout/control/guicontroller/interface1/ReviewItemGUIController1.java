@@ -4,18 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
-
-import java.io.IOException;
-import java.sql.SQLException;
 
 public class ReviewItemGUIController1 {
 
@@ -33,8 +28,8 @@ public class ReviewItemGUIController1 {
     @FXML
     private Label labelEventName;
 
-    public void setAll(ReviewBean reviewBean) throws SQLException, SystemException {
-        this.reviewBean=reviewBean;
+    public void setAll(ReviewBean reviewBean) throws SystemException {
+        this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         try {
             this.userBean = EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser());
@@ -42,12 +37,13 @@ public class ReviewItemGUIController1 {
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
-        EventBean eventBean=EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
+        EventBean eventBean = EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
         this.buttonUsername.setText(userBean.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
 
-    public void goToResponsePage(ActionEvent actionEvent) throws IOException {
+    public void goToResponsePage(ActionEvent actionEvent) {
+
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean, reviewBean);
@@ -56,7 +52,8 @@ public class ReviewItemGUIController1 {
         }
     }
 
-    public void goToUserPage(ActionEvent actionEvent) throws IOException, SQLException {
+    public void goToUserPage(ActionEvent actionEvent) {
+
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneViewUserPageFromCO(actionEvent,"/ViewUserPageFromCO1.fxml",userBean);

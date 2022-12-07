@@ -4,13 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.exception.myexception.WrongInputRangeException;
+import nightsout.utils.exception.myexception.WrongInputTypeException;
 import nightsout.utils.scene.ReplaceScene;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 public class RegisterClubOwnerGUIController1 {
 
-    private String[] personalInfo;
     @FXML
     Button buttonNextStep;
     @FXML
@@ -23,22 +27,24 @@ public class RegisterClubOwnerGUIController1 {
     TextField textFieldAddress;
     @FXML
     TextField textFieldDiscount;
-    private void setPersonalInfo(){
-        String name = textFieldName.getText();
-        String address = textFieldAddress.getText();
-        String city = textFieldCity.getText();
-        String discount = textFieldDiscount.getText();
-        personalInfo = new String[]{name, address, city, discount};
-    }
 
     @FXML
     protected void backToChoice(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
 
     @FXML
-    protected void goToConcludeRegister(ActionEvent actionEvent) throws SystemException {
-        setPersonalInfo();
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneRegister(actionEvent,"/ConcludeRegisterClubOwner1.fxml", personalInfo, "ClubOwner");
+    protected void goToConcludeRegister(ActionEvent actionEvent) {
+
+        try {
+            ClubOwnerBean clubOwnerBean = new ClubOwnerBean();
+            clubOwnerBean.setName(textFieldName.getText());
+            clubOwnerBean.setAddress(textFieldAddress.getText());
+            clubOwnerBean.setCity(textFieldCity.getText());
+            clubOwnerBean.setDiscountVIP(textFieldDiscount.getText());
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneRegisterClubOwner(actionEvent, "/ConcludeRegisterClubOwner1.fxml", clubOwnerBean);
+        } catch (WrongInputTypeException | EmptyInputException | SystemException | WrongInputRangeException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
 }
