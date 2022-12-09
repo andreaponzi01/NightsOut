@@ -98,7 +98,7 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
             myStart();
     }
 
-    private void myStart() throws SystemException {
+    private void myStart(){
 
         this.myConcreteComponent = new ConcreteComponent();
         if(clubOwnerBean.getId()==clubOwnerBeanEvent.getId())
