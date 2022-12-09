@@ -11,7 +11,10 @@
 
 <AnchorPane prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ManageRequestsItemGUIController1">
    <children>
-      <Line endX="227.71786499023438" layoutX="134.0" layoutY="91.0" startX="-112.66917419433594" startY="-1.1444091796875E-5" stroke="#e8e7fc" />
+      <Line endX="227.71786499023438" layoutX="134.0" layoutY="91.0" startX="-112.66917419433594" startY="-1.1444091796875E-5" stroke="#e8e7fc">
+         <effect>
+            <DropShadow />
+         </effect></Line>
       <Label layoutX="29.0" layoutY="95.0" prefHeight="22.0" prefWidth="121.0" text="Event name:" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="19.0" />
@@ -38,7 +41,7 @@
             <Font name="Arial Bold" size="19.0" />
          </font>
       </Label>
-      <Button  layoutX="391.0" layoutY="39.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #54e589; -fx-background-radius: 14;" text="OK" textFill="WHITE">
+      <Button layoutX="391.0" layoutY="39.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #54e589; -fx-background-radius: 14;" text="OK" textFill="WHITE">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>
@@ -49,7 +52,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button  layoutX="468.0" layoutY="39.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #d00000; -fx-background-radius: 14;" text="X" textFill="WHITE">
+      <Button layoutX="468.0" layoutY="39.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #d00000; -fx-background-radius: 14;" text="X" textFill="WHITE">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>
@@ -60,7 +63,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="buttonUsername" layoutX="183.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="47.0" prefWidth="153.0" styleClass="itemButton" stylesheets="@style.css" text="username" textFill="WHITE" underline="true">
+      <Button fx:id="buttonUsername" layoutX="145.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="47.0" prefWidth="224.0" styleClass="itemButton" stylesheets="@style.css" text="username" textFill="WHITE" underline="true">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>

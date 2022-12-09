@@ -2,10 +2,9 @@ package nightsout.control.guicontroller.interface1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
@@ -40,7 +39,9 @@ public class CreateEventGUIController1 {
     @FXML
     TextField textFieldMinutes;
     @FXML
-    TextField textFieldDescription;
+    TextArea textFieldDescription;
+    @FXML
+    ImageView imageViewProfile;
 
     private File img;
 
@@ -102,5 +103,6 @@ public class CreateEventGUIController1 {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagine Files", "*.png", "*.jpg", "*.jpeg"));
         img = fileChooser.showOpenDialog(stage).getAbsoluteFile();
+        this.imageViewProfile.setImage(new Image(img.toURI().toString()));
     }
 }

@@ -17,7 +17,7 @@ import nightsout.utils.observer.engineering.CreatedEventsEngineering;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ViewClubOwnerPageGUIController1 implements Observer {
+public class ViewClubOwnerPageFromUserGUIController1 implements Observer {
 
     @FXML
     private Label labelName;

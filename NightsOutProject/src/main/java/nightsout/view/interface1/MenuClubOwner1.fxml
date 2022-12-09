@@ -11,11 +11,11 @@
 
 <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.MenuClubOwnerGUIController1">
    <children>
-      <Label fx:id="usernameLabel" layoutX="797.0" layoutY="24.0" prefHeight="40.0" prefWidth="123.0" text="Label" textFill="WHITE" AnchorPane.leftAnchor="797.0" AnchorPane.topAnchor="24.0">
+      <Label fx:id="usernameLabel" layoutX="775.0" layoutY="24.0" prefHeight="40.0" prefWidth="145.0" text="Label" textFill="WHITE" AnchorPane.leftAnchor="775.0" AnchorPane.topAnchor="24.0">
          <font>
             <Font size="23.0" />
          </font></Label>
-      <Label layoutX="732.0" layoutY="24.0" prefHeight="40.0" text="Hello" textFill="WHITE" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="24.0">
+      <Label layoutX="714.0" layoutY="24.0" prefHeight="40.0" text="Hello" textFill="WHITE" AnchorPane.leftAnchor="714.0" AnchorPane.topAnchor="24.0">
          <font>
             <Font size="23.0" />
          </font>
@@ -39,7 +39,7 @@
       <Button layoutX="249.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToResponsePage" prefHeight="40.0" prefWidth="156.0" styleClass="navBarButton" stylesheets="@style.css" text="Respond review" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <Button layoutX="502.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToManageRequestsPage" prefHeight="40.0" prefWidth="157.0" styleClass="navBarButton" stylesheets="@style.css" text="Manage Request" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <Button layoutX="66.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="40.0" prefWidth="76.0" styleClass="navBarButton" stylesheets="@style.css" text="Home" textFill="WHITE" AnchorPane.topAnchor="24.0" />
-      <ImageView fx:id="imageViewProfile" fitHeight="50.0" fitWidth="50.0" layoutX="675.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewProfile" fitHeight="50.0" fitWidth="50.0" layoutX="657.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
       <Circle fx:id="circleProfile" fill="#ffffff00" layoutX="689.0" layoutY="42.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>

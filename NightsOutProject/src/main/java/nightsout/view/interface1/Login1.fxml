@@ -57,8 +57,17 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <CheckBox fx:id="checkBoxClubOwner" mnemonicParsing="false" text="Club Owner" textFill="#2e0095" />
+            <CheckBox fx:id="checkBoxClubOwner" mnemonicParsing="false" text="Club Owner" textFill="#2e0095">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font></CheckBox>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </VBox>
       <Button fx:id="buttonBack" layoutX="24.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" textFill="#2e0095">
          <font>

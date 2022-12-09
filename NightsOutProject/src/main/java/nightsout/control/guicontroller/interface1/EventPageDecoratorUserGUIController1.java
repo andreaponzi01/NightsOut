@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -40,12 +41,13 @@ import java.util.ResourceBundle;
 public class EventPageDecoratorUserGUIController1 implements Observer, Initializable, MapComponentInitializedListener {
 
     private UserBean userBean;
+    private ClubOwnerBean clubOwnerBeanEvent;
     private EventBean eventBean;
 
     @FXML
     private Label labelEventName;
     @FXML
-    private Label labelUsername;
+    private Button buttonUsername;
     @FXML
     private Label labelEventPrice;
     @FXML
@@ -79,12 +81,12 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
 
             this.userBean = LoggedUserBean.getInstance();
 
-            ClubOwnerBean clubOwnerBean = EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());
+            clubOwnerBeanEvent = EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());
 
-            this.labelUsername.setText(clubOwnerBean.getName());
+            this.buttonUsername.setText(clubOwnerBeanEvent.getName());
             this.labelEventName.setText(eventBean.getName());
             this.labelDescription.setText(eventBean.getDescription());
-            Double price= (eventBean.getPrice()-((eventBean.getPrice()*clubOwnerBean.getDiscountVIP())/100));
+            Double price= (eventBean.getPrice()-((eventBean.getPrice()*clubOwnerBeanEvent.getDiscountVIP())/100));
             if(LoggedUserBean.getInstance().getVip())
                 this.labelEventPrice.setText("€" + price);
             else
@@ -173,6 +175,18 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
             MyNotification.createNotification(e);
         }
     }
+
+    @FXML
+    public void goToClubOwner(ActionEvent ae) {
+
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneViewClubOwnerPageFromUser(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBeanEvent);
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
+    }
+
 
 
     @Override

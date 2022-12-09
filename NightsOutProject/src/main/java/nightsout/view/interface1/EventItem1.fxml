@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="100.0" prefWidth="550.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.EventItemGUIController1">
    <children>
       <ImageView fx:id="imageViewProfilePic" fitHeight="87.0" fitWidth="87.0" layoutX="42.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-      <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="239.0" layoutY="15.0" nodeOrientation="LEFT_TO_RIGHT" text="EVENT" textFill="#2e0095" underline="true">
+      <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="239.0" layoutY="15.0" nodeOrientation="LEFT_TO_RIGHT" text="EVENT" textFill="#2e0095" underline="true" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="274.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -20,9 +20,9 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <Label fx:id="labelEventName" alignment="CENTER" layoutX="145.0" layoutY="35.0" prefHeight="58.0" prefWidth="256.0" text="\@Username" textFill="#2e0095">
+      <Label fx:id="labelEventName" alignment="CENTER" layoutX="117.0" layoutY="35.0" prefHeight="58.0" prefWidth="253.0" text="Eventname" textFill="#2e0095" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="200.0">
          <font>
-            <Font name="Arial Bold" size="24.0" />
+            <Font name="Arial Bold" size="22.0" />
          </font>
       </Label>
       <Button fx:id="buttonEventPage" alignment="CENTER" layoutX="405.0" layoutY="12.0" mnemonicParsing="false" onAction="#goToEventPage" prefHeight="75.0" prefWidth="100.0" style="-fx-background-radius: 28; -fx-background-color: #2e0095;" text="Info" textFill="#e8e7fc">

@@ -20,7 +20,7 @@
                   <Font name="Arial Bold" size="50.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewPendingRequests" layoutX="210.0" layoutY="125.0" prefHeight="365.0" prefWidth="600.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0">
+            <ListView fx:id="listViewPendingRequests" layoutX="210.0" layoutY="125.0" prefHeight="365.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0">
                <effect>
                   <DropShadow />
                </effect>

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -21,12 +23,12 @@
             </DropShadow>
          </effect>
       </AnchorPane>
-      <TextField fx:id="textFieldEmail" alignment="CENTER" layoutX="262.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert email" style="-fx-background-radius: 28;" AnchorPane.topAnchor="198.0">
+      <TextField fx:id="textFieldEmail" alignment="CENTER" layoutX="245.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert email" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="198.0">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <Button layoutX="370.0" layoutY="457.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToWelcomePage" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Submit" textFill="WHITE" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="370.0">
+      <Button layoutX="370.0" layoutY="457.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToWelcomePage" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Submit" textFill="WHITE" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="457.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -64,5 +66,15 @@
             <Font name="Arial" size="25.0" />
          </font>
       </PasswordField>
+      <Button layoutX="811.0" layoutY="475.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="77.0" prefWidth="73.0" style="-fx-background-color: white; -fx-background-radius: 30;" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="457.0">
+         <graphic>
+            <ImageView fitHeight="71.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/add-photo.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="imageViewProfile" fitHeight="131.0" fitWidth="131.0" layoutX="843.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="843.0" AnchorPane.topAnchor="431.0" />
    </children>
 </AnchorPane>

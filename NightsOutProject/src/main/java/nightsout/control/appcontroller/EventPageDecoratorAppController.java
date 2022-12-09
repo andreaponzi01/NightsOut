@@ -33,18 +33,6 @@ public class EventPageDecoratorAppController {
         return (new RequestBean(requestModel));
     }
 
-    public static List<EventBean> searchEventsByIdClubOwner(int idClubOwner) throws SystemException {
-
-        List<EventModel> list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
-        List<EventBean>  listBean = new ArrayList<>();
-
-        for(EventModel um : list){
-            EventBean bean = new EventBean(um);
-            listBean.add(bean);
-        }
-        return listBean;
-    }
-
     public static String getClubAddress(int idEvent) throws SystemException {
 
         ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubAddressByIdEvent(idEvent);

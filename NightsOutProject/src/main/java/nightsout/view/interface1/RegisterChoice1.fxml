@@ -37,17 +37,17 @@
       </Button>
       <AnchorPane layoutX="333.0" layoutY="220.0" prefHeight="316.0" prefWidth="375.0" style="-fx-background-color: white; -fx-background-radius: 28;" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="332.0">
          <children>
-            <Button fx:id="buttonClubOwner" layoutX="54.0" layoutY="73.0" onAction="#goToClubOwnerRegister" prefHeight="67.0" prefWidth="236.0" style="-fx-background-color: #2a009b; -fx-background-radius: 100;" text="ClubOwner" textFill="WHITE" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+            <Button fx:id="buttonClubOwner" layoutX="85.0" layoutY="72.0" onAction="#goToClubOwnerRegister" prefHeight="67.0" prefWidth="236.0" style="-fx-background-color: #2a009b; -fx-background-radius: 100;" text="ClubOwner" textFill="WHITE" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="72.0">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="146.0" prefHeight="40.0" prefWidth="377.0" text="Or" textAlignment="CENTER" textFill="#cdc6c6" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="139.0" prefHeight="40.0" prefWidth="377.0" text="Or" textAlignment="CENTER" textFill="#cdc6c6" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0">
                <font>
                   <Font name="Futura Medium" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="buttonUser" layoutX="85.0" layoutY="190.0" onAction="#goToUserRegister" prefHeight="67.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #2a009b; -fx-border-width: 1;" text="Normal User" textFill="#2a009b" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+            <Button fx:id="buttonUser" layoutX="85.0" layoutY="177.0" onAction="#goToUserRegister" prefHeight="67.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #2a009b; -fx-border-width: 1;" text="Normal User" textFill="#2a009b" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
                <font>
                   <Font size="30.0" />
                </font>

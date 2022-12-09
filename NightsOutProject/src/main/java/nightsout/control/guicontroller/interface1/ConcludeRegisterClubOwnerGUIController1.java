@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.RegisterAppController;
@@ -19,13 +21,13 @@ import java.io.File;
 public class ConcludeRegisterClubOwnerGUIController1 {
 
     private ClubOwnerBean clubOwnerBean;
-    @FXML
-    Button buttonBack;
-    Button buttonSubmit;
+
     @FXML
     TextField textFieldUsername;
     @FXML
     PasswordField passwordField;
+    @FXML
+    ImageView imageViewProfile;
     @FXML
     TextField textFieldEmail;
     private File img;
@@ -62,5 +64,6 @@ public class ConcludeRegisterClubOwnerGUIController1 {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagine Files", "*.png", "*.jpg", "*.jpeg"));
         img = fileChooser.showOpenDialog(stage).getAbsoluteFile();
+        this.imageViewProfile.setImage(new Image(img.toURI().toString()));
     }
 }

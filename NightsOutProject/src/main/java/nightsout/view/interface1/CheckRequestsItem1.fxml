@@ -12,7 +12,7 @@
    <children>
       <Label fx:id="labelEventDate" layoutX="211.0" layoutY="52.0" prefHeight="22.0" prefWidth="148.0" text="01 gen 1999" textFill="#e8e7fc">
          <font>
-            <Font name="Arial Bold" size="15.0" />
+            <Font name="Arial" size="13.0" />
          </font>
       </Label>
       <Label layoutX="120.0" layoutY="51.0" prefHeight="22.0" prefWidth="88.0" text="Request date:" textFill="WHITE" AnchorPane.bottomAnchor="27.0">
@@ -37,7 +37,7 @@
             <Font name="Arial Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="buttonEventInfo" layoutX="465.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToEventPage" prefHeight="58.0" prefWidth="62.0" style="-fx-background-color: #ffc266; -fx-background-radius: 14;" text="INFO" textFill="WHITE">
+      <Button fx:id="buttonEventInfo" layoutX="465.0" layoutY="21.0" mnemonicParsing="false" onAction="#goToEventPage" prefHeight="58.0" prefWidth="70.0" style="-fx-background-color: #ffc266; -fx-background-radius: 14;" text="INFO" textFill="WHITE">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>

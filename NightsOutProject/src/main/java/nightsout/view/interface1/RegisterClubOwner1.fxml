@@ -20,7 +20,7 @@
             </DropShadow>
          </effect>
       </AnchorPane>
-      <Button fx:id="buttonBack" layoutX="43.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToChoice" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+      <Button fx:id="buttonBack" layoutX="43.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToChoice" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>

@@ -58,14 +58,29 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneViewClubOwnerPage(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void switchAndSetSceneViewClubOwnerPageFromUser(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
 
 
-            if (fxml.equals("/ViewClubOwnerPage1.fxml")) {
-                ClubOwnerPageSetter1.setterItem(clubOwnerBean, loader.getController());
+            if (fxml.equals("/ViewClubOwnerPageFromUser1.fxml")) {
+                ClubOwnerPageSetter1.setterViewFromUser(clubOwnerBean, loader.getController());
+            }
+            ReplaceScene.showStage(ae, root);
+        } catch (IOException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    public void switchAndSetSceneViewClubOwnerPageFromCO(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+
+
+            if (fxml.equals("/ViewClubOwnerPageFromCO1.fxml")) {
+                ClubOwnerPageSetter1.setterViewFromCO(clubOwnerBean, loader.getController());
             }
             ReplaceScene.showStage(ae, root);
         } catch (IOException e) {

@@ -9,7 +9,7 @@
     <children>
         <GoogleMapView fx:id="location" prefHeight="650.0" prefWidth="1040.0">
          <children>
-              <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="180.0" style="-fx-background-radius: 28; -fx-background-color: #e8e7fc;" text="Back" textFill="#200f54">
+              <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" textFill="#200f54">
                <rotationAxis>
                   <Point3D />
                </rotationAxis>

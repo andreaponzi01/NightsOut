@@ -46,7 +46,7 @@ public class UserItemGUIController1 {
             String type = LoggedClubOwnerBean.checkInstanceType();
             if (clubOwnerBean != null) {
                 ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-                replacer.switchAndSetSceneViewClubOwnerPage(actionEvent, "/ViewClubOwnerPage1.fxml", clubOwnerBean);
+                replacer.switchAndSetSceneViewClubOwnerPageFromUser(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean);
             } else {
                 if (type.equals("FREE")) {
                     ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();

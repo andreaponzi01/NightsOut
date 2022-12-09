@@ -66,5 +66,19 @@
     -fx-line-height: 18px;
     -fx-letter-spacing: -0.01px;
 }
+.text-area {
+    -fx-background-radius: 28;
+    -fx-border-radius: 28;
+    -fx-background-color: white;
+    -fx-wrap-text: true;
+}
 
-
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}

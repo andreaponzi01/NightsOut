@@ -3,6 +3,7 @@ package nightsout.control.guicontroller.interface1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.CreateEventReviewAppController;
 import nightsout.control.guicontroller.MyNotification;
@@ -21,7 +22,7 @@ public class CreateEventReviewGUIController1 {
     @FXML
     private Label labelEventName;
     @FXML
-    private TextField textFieldReview;
+    private TextArea textFieldReview;
     @FXML
     private MenuUserGUIController1 menuController;
 

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -58,7 +60,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="811.0" layoutY="453.0" mnemonicParsing="false" onAction="#loadImage" text="Load image" />
+      <Button layoutX="821.0" layoutY="485.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="77.0" prefWidth="73.0" style="-fx-background-color: white; -fx-background-radius: 30;" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="457.0">
+         <graphic>
+            <ImageView fitHeight="71.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/add-photo.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="imageViewProfile" fitHeight="131.0" fitWidth="131.0" layoutX="853.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="843.0" AnchorPane.topAnchor="431.0" />
       <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="245.0" layoutY="356.0" prefHeight="50.0" prefWidth="550.0" promptText="insert password" style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />

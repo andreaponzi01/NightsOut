@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -46,12 +47,13 @@ import java.util.ResourceBundle;
 public class EventPageDecoratorCOGUIController1 implements Observer, Initializable, MapComponentInitializedListener {
 
     private ClubOwnerBean clubOwnerBean;
+    private ClubOwnerBean clubOwnerBeanEvent;
     private EventBean eventBean;
 
     @FXML
     private Label labelEventName;
     @FXML
-    private Label labelUsername;
+    private Button buttonUsername;
     @FXML
     private Label labelEventPrice;
     @FXML
@@ -83,8 +85,8 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
             this.menuController.setAll();
             this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
             this.eventBean = eventBean;
-            ClubOwnerBean clubOwnerBeanEvent = EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());
-            this.labelUsername.setText(clubOwnerBeanEvent.getName());
+            clubOwnerBeanEvent = EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());
+            this.buttonUsername.setText(clubOwnerBeanEvent.getName());
             this.labelDescription.setText(eventBean.getDescription());
             this.labelEventName.setText(eventBean.getName());
             this.labelEventPrice.setText(String.valueOf(eventBean.getPrice()) + " $");
@@ -99,12 +101,8 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
     private void myStart() throws SystemException {
 
         this.myConcreteComponent = new ConcreteComponent();
-        // Prendere lista di eventi se eventBean appartiene alla mia lista di eventi fare delete
-        List<EventBean> list = EventPageDecoratorAppController.searchEventsByIdClubOwner(clubOwnerBean.getId());
-        boolean isExists = list.contains(this.eventBean);
-        if(!isExists){
+        if(clubOwnerBean.getId()==clubOwnerBeanEvent.getId())
             actionDecorateDelete();
-        }
     }
 
     private void actionDecorateDelete() {
@@ -143,6 +141,20 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneMap(ae, "/MapPage1.fxml", eventBean);
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
+    }
+
+    @FXML
+    public void goToClubOwner(ActionEvent ae) {
+
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            if(clubOwnerBean.getId()==clubOwnerBeanEvent.getId())
+                replacer.switchAndSetScene(ae,"/ClubOwnerPage1.fxml");
+            else
+                replacer.switchAndSetSceneViewClubOwnerPageFromCO(ae, "/ViewClubOwnerPageFromCO1.fxml", clubOwnerBeanEvent);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
