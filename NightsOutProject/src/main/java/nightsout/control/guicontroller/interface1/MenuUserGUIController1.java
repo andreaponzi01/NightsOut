@@ -106,6 +106,7 @@ public class MenuUserGUIController1  implements Initializable {
                 LoggedClubOwnerBean.deleteInstance();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
+
             }
         } catch (SQLException | IOException e) {
             SystemException ex = new SystemException();

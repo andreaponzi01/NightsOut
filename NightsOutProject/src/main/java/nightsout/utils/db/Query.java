@@ -131,7 +131,8 @@ public class Query {
                 userModel.setBirthday(rs.getDate(5).toLocalDate());
 
                 InputStream in = (rs.getBinaryStream(3));
-                String filePath = PATH_EVENTS_IMGS + userModel.getUsername() + "pic" + ".png";
+                // Modificata
+                String filePath = PATH_PROFILE_IMGS + userModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
                 Converter.fromInputStreamToFile(in, file);
                 userModel.setProfileImg(file);
@@ -205,7 +206,8 @@ public class Query {
                 clubOwnerModel.setId(rs.getInt(1));
                 clubOwnerModel.setDiscountVIP(rs.getInt(8));
                 InputStream inputStream = (rs.getBinaryStream(3));
-                String filePath = PATH_EVENTS_IMGS + clubOwnerModel.getUsername() + "pic" + ".png";
+                // Modificata
+                String filePath = PATH_PROFILE_IMGS + clubOwnerModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
                 Converter.fromInputStreamToFile(inputStream, file);
                 clubOwnerModel.setProfileImg(file);
