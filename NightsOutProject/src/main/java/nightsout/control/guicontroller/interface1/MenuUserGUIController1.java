@@ -34,16 +34,11 @@ public class MenuUserGUIController1  implements Initializable {
     @FXML
     protected Circle circleProfile;
 
-    public MenuUserGUIController1() {
-        //ignored
-    }
-
-    public void setLabelUserName(String username) { this.usernameLabel.setText(username); }
 
     public void setAll() {
 
         this.userBean = LoggedUserBean.getInstance();
-        setLabelUserName(userBean.getUsername());
+        this.usernameLabel.setText(userBean.getUsername());
     }
 
     @Override

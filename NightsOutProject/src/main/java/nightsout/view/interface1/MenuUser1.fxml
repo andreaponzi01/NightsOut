@@ -11,7 +11,7 @@
 
 <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.MenuUserGUIController1">
    <children>
-      <Label fx:id="usernameLabel" layoutX="734.0" layoutY="24.0" prefHeight="40.0" prefWidth="179.0" text="Label" textFill="WHITE" AnchorPane.topAnchor="24.0">
+      <Label fx:id="usernameLabel" layoutX="707.0" layoutY="24.0" prefHeight="40.0" prefWidth="205.0" text="Label" textFill="WHITE" AnchorPane.topAnchor="24.0">
          <font>
             <Font size="23.0" />
          </font></Label>
@@ -24,11 +24,6 @@
             </DropShadow>
          </effect></AnchorPane>
       <Button layoutX="322.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToSearchPage" prefHeight="40.0" prefWidth="86.0" styleClass="navBarButton" stylesheets="@style.css" text="Search" textFill="WHITE" AnchorPane.topAnchor="24.0" />
-      <Label layoutX="671.0" layoutY="24.0" prefHeight="40.0" prefWidth="50.0" text="Hello" textFill="WHITE" AnchorPane.topAnchor="24.0">
-         <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
       <Button layoutX="917.0" layoutY="24.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="86.0" styleClass="red-button-rounded" stylesheets="@style.css" text="Logout" textFill="WHITE" AnchorPane.topAnchor="24.0">
          <font>
             <Font size="10.0" />
@@ -38,10 +33,7 @@
       <Button layoutX="546.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToSubscriptionPage" prefHeight="40.0" prefWidth="60.0" styleClass="navBarButton" stylesheets="@style.css" text="VIP" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <Button layoutX="143.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToReviewPage" prefHeight="40.0" prefWidth="179.0" styleClass="navBarButton" stylesheets="@style.css" text="Review Ended Event" textFill="WHITE" AnchorPane.topAnchor="24.0" />
       <Button layoutX="69.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="40.0" prefWidth="76.0" styleClass="navBarButton" stylesheets="@style.css" text="Home" textFill="WHITE" AnchorPane.topAnchor="24.0" />
-      <ImageView fx:id="imageViewProfile" fitHeight="50.0" fitWidth="50.0" layoutX="608.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-         <effect>
-            <DropShadow />
-         </effect></ImageView>
-      <Circle fx:id="circleProfile" fill="#ffffff00" layoutX="658.0" layoutY="42.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="circleProfile" fill="#ffffff00" layoutX="648.0" layoutY="42.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fx:id="imageViewProfile1" fitHeight="50.0" fitWidth="50.0" layoutX="27.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="19.0" />
    </children>
 </AnchorPane>

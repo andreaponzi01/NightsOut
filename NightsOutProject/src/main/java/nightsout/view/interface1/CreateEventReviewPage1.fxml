@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.CreateEventReviewGUIController1">
@@ -52,5 +53,6 @@
             </TextArea>
          </children>
       </AnchorPane>
+      <Line endX="49.2435302734375" endY="-1.52587890625E-5" layoutX="272.0" layoutY="64.00001525878906" startX="-107.01838684082031" startY="-1.52587890625E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="727.0" AnchorPane.topAnchor="53.0" />
    </children>
 </AnchorPane>

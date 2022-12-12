@@ -30,13 +30,13 @@
                   <Font name="Arial Bold" size="50.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewReviews" layoutX="175.0" layoutY="121.0" prefHeight="405.0" prefWidth="700.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="125.0">
+            <ListView fx:id="listViewReviews" layoutX="175.0" layoutY="121.0" prefHeight="405.0" prefWidth="700.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="125.0">
                <effect>
                   <DropShadow />
                </effect>
             </ListView>
          </children>
       </AnchorPane>
-      <Line endX="100.0" layoutX="288.0" layoutY="56.0" startX="-20.664703369140625" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="267.0" AnchorPane.topAnchor="55.0" />
+      <Line endX="100.0" layoutX="288.0" layoutY="56.0" startX="-20.664703369140625" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="267.0" AnchorPane.topAnchor="53.0" />
    </children>
 </AnchorPane>

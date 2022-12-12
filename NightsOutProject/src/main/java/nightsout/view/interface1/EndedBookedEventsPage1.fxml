@@ -36,6 +36,6 @@
                </effect></ListView>
          </children>
       </AnchorPane>
-      <Line endX="49.2435302734375" endY="-1.52587890625E-5" layoutX="284.0" layoutY="54.00001525878906" startX="-107.01838684082031" startY="-1.52587890625E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.topAnchor="53.0" />
+      <Line endX="49.2435302734375" endY="-1.52587890625E-5" layoutX="262.0" layoutY="54.00001525878906" startX="-107.01838684082031" startY="-1.52587890625E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="153.7435302734375" AnchorPane.rightAnchor="727.7564697265625" AnchorPane.topAnchor="53.0" />
    </children>
 </AnchorPane>

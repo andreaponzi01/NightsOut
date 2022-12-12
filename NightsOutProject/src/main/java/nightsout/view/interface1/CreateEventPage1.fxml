@@ -93,7 +93,7 @@
             </TextArea>
          </children>
       </AnchorPane>
-      <Line endX="-1.7311248779296875" endY="-7.62939453125E-6" layoutX="248.0" layoutY="54.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+      <Line endX="-1.7311248779296875" endY="-7.62939453125E-6" layoutX="249.0" layoutY="54.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
       <ImageView fx:id="imageViewProfile" fitHeight="131.0" fitWidth="131.0" layoutX="840.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="40.0" />
    </children>
 </AnchorPane>
