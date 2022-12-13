@@ -37,8 +37,4 @@ public class LoggedUserBean extends UserBean {
         loggedUserBeanInstance = new LoggedUserBean(um);
 
     }
-
-    public static void createInstance(UserModel userModel) {
-        loggedUserBeanInstance = new LoggedUserBean(userModel);
-    }
 }

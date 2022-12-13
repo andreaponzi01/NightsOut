@@ -20,6 +20,9 @@ public class WelcomeGUIController1 {
     private void onSignOnClick(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
 
     @FXML
+    private void switchInterface(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome2.fxml"); }
+
+    @FXML
     private void exit() {
         Stage stage = (Stage) buttonExit.getScene().getWindow();
         stage.close();

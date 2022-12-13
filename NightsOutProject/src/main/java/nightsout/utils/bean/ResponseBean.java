@@ -66,7 +66,6 @@ public class ResponseBean extends Subject {
 
     public void addResponse(ResponseBean responseBean) {
         notify(responseBean);
-
     }
 
 }
