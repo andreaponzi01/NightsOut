@@ -28,7 +28,6 @@ public class UserPageGUIController2 implements Observer {
 
 
     public void setAll() throws SystemException{
-
         NextEventsEngineering.nextEvents(this, LoggedUserBean.getInstance().getId());
     }
 
