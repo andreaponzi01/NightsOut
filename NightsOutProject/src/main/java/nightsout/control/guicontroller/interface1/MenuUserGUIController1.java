@@ -36,9 +36,11 @@ public class MenuUserGUIController1  implements Initializable {
 
 
     public void setAll() {
-
+        /*
         this.userBean = LoggedUserBean.getInstance();
         this.usernameLabel.setText(userBean.getUsername());
+
+         */
     }
 
     @Override
@@ -46,6 +48,8 @@ public class MenuUserGUIController1  implements Initializable {
 
         Image img = new Image(LoggedUserBean.getInstance().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
+        this.userBean = LoggedUserBean.getInstance();
+        this.usernameLabel.setText(userBean.getUsername());
     }
 
     @FXML

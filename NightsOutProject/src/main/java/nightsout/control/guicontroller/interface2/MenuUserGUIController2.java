@@ -44,10 +44,12 @@ public class MenuUserGUIController2 implements Initializable {
     protected Circle circleProfile;
 
 
-    public void setAll() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        Image img = new Image(LoggedUserBean.getInstance().getImg().toURI().toString());
+        circleProfile.setFill(new ImagePattern(img));
         this.userBean = LoggedUserBean.getInstance();
-        System.out.println("\n\nmiao\n\n");
         this.labelUsername.setText(userBean.getUsername());
         this.labelCognome.setText(userBean.getSurname());
         this.labelEmail.setText(userBean.getEmail());
@@ -58,18 +60,11 @@ public class MenuUserGUIController2 implements Initializable {
             this.buttonVip.setText("Diventa un VIP!");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        Image img = new Image(LoggedUserBean.getInstance().getImg().toURI().toString());
-        circleProfile.setFill(new ImagePattern(img));
-    }
-
     @FXML
     private void goToSubscriptionPage(ActionEvent actionEvent) {
 
         try {
-            if (userBean.getVip()) {
+            if(userBean.getVip()) {
                 ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
                 replacer.switchAndSetSceneSubscription(actionEvent, "/SubscriptionedVipPage2.fxml");
             } else {

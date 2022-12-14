@@ -23,20 +23,13 @@ import java.util.Objects;
 
 public class UserPageGUIController2 implements Observer {
 
-    protected UserBean userBean;
-
-    @FXML
-    protected MenuUserGUIController2 menuController;
     @FXML
     private ListView listViewNextEvents;
 
 
     public void setAll() throws SystemException{
 
-        this.userBean = LoggedUserBean.getInstance();
-        System.out.println("\n\nmiao\n\n");
-        this.menuController.setAll();
-        NextEventsEngineering.nextEvents(this, userBean.getId());
+        NextEventsEngineering.nextEvents(this, LoggedUserBean.getInstance().getId());
     }
 
 
