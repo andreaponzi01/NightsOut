@@ -31,6 +31,7 @@ public class ReplaceSceneDynamic1 {
 
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
+            e.printStackTrace();
         }
     }
 

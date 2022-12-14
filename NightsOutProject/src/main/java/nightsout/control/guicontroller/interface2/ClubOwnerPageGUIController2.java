@@ -1,4 +1,4 @@
-package nightsout.control.guicontroller.interface1;
+package nightsout.control.guicontroller.interface2;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,8 +8,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.control.guicontroller.interface1.EventItemGUIController1;
+import nightsout.control.guicontroller.interface1.MenuClubOwnerGUIController1;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedClubOwnerBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
@@ -17,37 +19,40 @@ import nightsout.utils.observer.engineering.CreatedEventsEngineering;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ViewClubOwnerPageFromUserGUIController1 implements Observer {
-
+public class ClubOwnerPageGUIController2 implements Observer {
     @FXML
     private Label labelName;
     @FXML
-    private Label labelUsername;
-    @FXML
-    private Label labelCity;
+    private Label labelWebsite;
     @FXML
     private Label labelAddress;
     @FXML
+    private Label labelDiscountVip;
+    @FXML
     private Label labelEmail;
     @FXML
-    private Label labelDiscountVip;
+    private Label labelCity;
+    @FXML
+    private Label labelUsername;
     @FXML
     private ListView listViewCreatedEvents;
     @FXML
-    private ImageView imageViewProfile;
+    private ImageView imageViewProfilePic;
     @FXML
-    private MenuUserGUIController1 menuController;
+    private MenuClubOwnerGUIController2 menuController;
 
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void setAll() throws SystemException {
+
+        LoggedClubOwnerBean loggedClubOwner = LoggedClubOwnerBean.getInstance();
         this.menuController.setAll();
-        this.labelName.setText(clubOwnerBean.getName());
-        this.labelUsername.setText(clubOwnerBean.getUsername());
-        this.labelCity.setText(clubOwnerBean.getCity());
-        this.labelAddress.setText(clubOwnerBean.getAddress());
-        this.labelEmail.setText(clubOwnerBean.getEmail());
-        this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
-        this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
-        CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
+        labelEmail.setText(loggedClubOwner.getEmail());
+        labelUsername.setText(loggedClubOwner.getUsername());
+        labelName.setText(loggedClubOwner.getName());
+        labelAddress.setText(loggedClubOwner.getAddress());
+        labelCity.setText(loggedClubOwner.getCity());
+        labelDiscountVip.setText(String.valueOf(loggedClubOwner.getDiscountVIP()));
+        CreatedEventsEngineering.createdEvents(this, loggedClubOwner.getId());
+        imageViewProfilePic.setImage(new Image(loggedClubOwner.getImg().toURI().toString()));
     }
 
     @Override
@@ -62,10 +67,10 @@ public class ViewClubOwnerPageFromUserGUIController1 implements Observer {
                 EventItemGUIController1 controller = fxmlLoader.getController();
                 controller.setAll(eBean);
                 this.listViewCreatedEvents.getItems().add(pane);
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 MyNotification.createNotification(e);
             }
-
         }
     }
 }

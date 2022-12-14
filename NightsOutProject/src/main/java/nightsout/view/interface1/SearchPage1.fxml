@@ -14,11 +14,11 @@
       <fx:include fx:id="menu" source="MenuUser1.fxml" />
       <AnchorPane maxHeight="444.0" maxWidth="864.0" minHeight="44.0" minWidth="864.0" prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <ListView fx:id="listView" layoutX="253.0" layoutY="122.0" prefHeight="365.0" prefWidth="600.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="125.0">
+            <ListView fx:id="listView" layoutX="253.0" layoutY="122.0" prefHeight="365.0" prefWidth="600.0" style="-fx-border-color: #200f54; -fx-border-width: 5;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="125.0">
                <effect>
                   <DropShadow />
                </effect></ListView>
-            <TextField fx:id="textFieldSearch" layoutX="206.0" layoutY="42.0" prefHeight="55.0" prefWidth="480.0" promptText="Search event, clubowner, user..." style="-fx-border-color: lightGrey; -fx-border-width: 4; -fx-background-radius: 28; -fx-border-radius: 28;">
+            <TextField fx:id="textFieldSearch" layoutX="206.0" layoutY="42.0" prefHeight="55.0" prefWidth="480.0" promptText="Search event, clubowner, user..." style="-fx-border-color: #80bfff; -fx-border-width: 4; -fx-background-radius: 28; -fx-border-radius: 28;">
                <font>
                   <Font name="Arial" size="25.0" />
                </font>
@@ -47,6 +47,6 @@
             </Button>
          </children>
       </AnchorPane>
-      <Line endX="-33.64897155761719" endY="-1.9073486328125E-5" layoutX="450.0" layoutY="54.41423261165619" startX="-87.00790405273438" startY="-1.52587890625E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.topAnchor="53.0" />
+      <Line endX="-33.64897155761719" endY="-1.9073486328125E-5" layoutX="427.0" layoutY="54.41423261165619" startX="-87.00790405273438" startY="-1.52587890625E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.topAnchor="53.0" />
    </children>
 </AnchorPane>

@@ -23,7 +23,7 @@
                   <Font name="Arial Bold" size="50.0" />
                </font>
             </Label>
-            <Button layoutX="25.0" layoutY="4.0" mnemonicParsing="false" onAction="#backToUserPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+            <Button layoutX="25.0" layoutY="4.0" mnemonicParsing="false" onAction="#backToReviewsPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
@@ -36,6 +36,6 @@
             </Button>
          </children>
       </AnchorPane>
-      <Line endX="1.371002197265625" endY="2.5987625122070312E-5" layoutX="490.0" layoutY="56.414196729660034" startX="-75.60467529296875" startY="1.6808509826660156E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.topAnchor="53.0" />
+      <Line endX="1.371002197265625" endY="2.5987625122070312E-5" layoutX="409.0" layoutY="54.41418755054474" startX="-113.5" startY="2.753734588623047E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="294.0857849121094" AnchorPane.rightAnchor="628.2147827148438" AnchorPane.topAnchor="53.0" />
    </children>
 </AnchorPane>

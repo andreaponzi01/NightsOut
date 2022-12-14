@@ -43,6 +43,6 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Line endX="100.0" layoutX="534.0" layoutY="68.0" startX="51.5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="575.0" AnchorPane.topAnchor="57.0" />
+      <Line endX="79.0" layoutX="510.5" layoutY="54.0" startX="51.5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="561.0" AnchorPane.topAnchor="53.0" />
    </children>
 </AnchorPane>

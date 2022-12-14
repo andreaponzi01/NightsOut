@@ -14,7 +14,7 @@
       <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <Button fx:id="buttonBack1" layoutX="33.0" layoutY="33.0" mnemonicParsing="false" onAction="#backToClubOwnerPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+            <Button layoutX="33.0" layoutY="33.0" mnemonicParsing="false" onAction="#backToClubOwnerPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
@@ -35,8 +35,19 @@
                   <DropShadow />
                </effect>
             </ListView>
+            <Button layoutX="429.0" layoutY="504.0" mnemonicParsing="false" onAction="#goToCommunity" prefHeight="38.0" prefWidth="163.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Community" textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
-      <Line endX="100.0" layoutX="288.0" layoutY="56.0" startX="-20.664703369140625" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="267.0" AnchorPane.topAnchor="53.0" />
+      <Line endX="1.371002197265625" endY="2.5987625122070312E-5" layoutX="419.0" layoutY="64.41418755054474" startX="-113.5" startY="2.753734588623047E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.rightAnchor="628.0" AnchorPane.topAnchor="53.0" />
    </children>
 </AnchorPane>

@@ -32,10 +32,10 @@ public class ReviewAndResponseGUIController1 implements Observer {
 
     }
 
-    public void backToUserPage(ActionEvent actionEvent) {
+    public void backToReviewsPage(ActionEvent actionEvent) {
           try {
               ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-              replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
+              replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
           } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

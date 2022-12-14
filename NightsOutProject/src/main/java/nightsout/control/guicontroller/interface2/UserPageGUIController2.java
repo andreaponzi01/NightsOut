@@ -1,4 +1,4 @@
-package nightsout.control.guicontroller.interface1;
+package nightsout.control.guicontroller.interface2;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
+import nightsout.control.guicontroller.interface1.EventItemGUIController1;
+import nightsout.control.guicontroller.interface1.MenuUserGUIController1;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedUserBean;
 import nightsout.utils.bean.UserBean;
@@ -19,47 +21,22 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class UserPageGUIController1 implements Observer {
-
-    @FXML
-    protected Label labelName;
-    @FXML
-    protected Label labelEmail;
-    @FXML
-    protected Label labelSurname;
-    @FXML
-    protected Label labelBirthday;
-    @FXML
-    protected Label labelVip;
+public class UserPageGUIController2 implements Observer {
 
     protected UserBean userBean;
 
     @FXML
-    protected MenuUserGUIController1 menuController;
+    protected MenuUserGUIController2 menuController;
     @FXML
     private ListView listViewNextEvents;
-    @FXML
-    private Label labelUsername;
-    @FXML
-    private Label labelGender;
-    @FXML
-    private ImageView profileImg;
+
 
     public void setAll() throws SystemException{
-            this.userBean = LoggedUserBean.getInstance();
-            this.menuController.setAll();
-            this.labelEmail.setText(userBean.getEmail());
-            this.labelUsername.setText(userBean.getUsername());
-            this.labelName.setText(userBean.getName());
-            this.labelSurname.setText(userBean.getSurname());
-            if (userBean.getVip())
-                this.labelVip.setText("VIP");
-            else
-                this.labelVip.setText("NO VIP");
-            this.labelGender.setText(userBean.getGender());
-            this.labelBirthday.setText(userBean.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
-            profileImg.setImage(new Image(userBean.getImg().toURI().toString()));
-            NextEventsEngineering.nextEvents(this, userBean.getId());
+
+        this.userBean = LoggedUserBean.getInstance();
+        System.out.println("\n\nmiao\n\n");
+        this.menuController.setAll();
+        NextEventsEngineering.nextEvents(this, userBean.getId());
     }
 
 

@@ -40,6 +40,17 @@ public class EventReviewsClubOwnerGUIController1 implements Observer {
         }
     }
 
+    public void goToCommunity(ActionEvent actionEvent) {
+
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml");
+
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
+    }
+
     @Override
     public void update(Object ob) {
 

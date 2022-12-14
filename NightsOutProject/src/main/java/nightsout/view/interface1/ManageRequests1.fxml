@@ -12,7 +12,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ManageRequestsGUIController1">
    <children>
       <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
-      <Line endX="122.28485107421875" endY="-2.8014183044433594E-5" layoutX="521.0" layoutY="56.414241552352905" startX="-2.349578857421875" startY="-7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" AnchorPane.topAnchor="55.0" />
+      <Line endX="122.28485107421875" endY="-2.8014183044433594E-5" layoutX="459.0" layoutY="56.414241552352905" startX="-2.349578857421875" startY="-7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" AnchorPane.topAnchor="55.0" />
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <Label layoutX="288.0" layoutY="45.0" prefHeight="58.0" prefWidth="443.0" text="Pending Requests" textFill="#ffeecc" AnchorPane.leftAnchor="288.0" AnchorPane.rightAnchor="289.0" AnchorPane.topAnchor="45.0">

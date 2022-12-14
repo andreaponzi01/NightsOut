@@ -38,20 +38,16 @@ public class ViewClubOwnerPageFromCOGUIController1 implements Observer {
     @FXML
     private MenuClubOwnerGUIController1 menuController;
 
-    public void setAll(ClubOwnerBean clubOwnerBean) {
-        try {
-            this.menuController.setAll();
-            this.labelName.setText(clubOwnerBean.getName());
-            this.labelUsername.setText(clubOwnerBean.getUsername());
-            this.labelCity.setText(clubOwnerBean.getCity());
-            this.labelAddress.setText(clubOwnerBean.getAddress());
-            this.labelEmail.setText(clubOwnerBean.getEmail());
-            this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
-            this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
-            CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
-        }
+    public void setAll(ClubOwnerBean clubOwnerBean) throws SystemException {
+        this.menuController.setAll();
+        this.labelName.setText(clubOwnerBean.getName());
+        this.labelUsername.setText(clubOwnerBean.getUsername());
+        this.labelCity.setText(clubOwnerBean.getCity());
+        this.labelAddress.setText(clubOwnerBean.getAddress());
+        this.labelEmail.setText(clubOwnerBean.getEmail());
+        this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
+        this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
+        CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
     }
 
     @Override
