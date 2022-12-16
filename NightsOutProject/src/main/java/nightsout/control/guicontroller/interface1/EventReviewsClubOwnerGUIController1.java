@@ -19,13 +19,10 @@ import java.util.Objects;
 public class EventReviewsClubOwnerGUIController1 implements Observer {
 
     @FXML
-    private MenuClubOwnerGUIController1 menuController;
-    @FXML
     ListView listViewReviews;
 
     public void setAll() throws SystemException {
 
-        this.menuController.setAll();
         ResponseEngineering.eventReviews(this,  LoggedClubOwnerBean.getInstance().getId());
     }
 

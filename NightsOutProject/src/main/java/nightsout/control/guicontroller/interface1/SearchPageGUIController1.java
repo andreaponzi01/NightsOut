@@ -25,13 +25,10 @@ public class SearchPageGUIController1 implements Observer {
     private TextField textFieldSearch;
     @FXML
     private ListView listView;
-    @FXML
-    private MenuUserGUIController1 menuController;
 
     public void setAll() {
 
         LoggedUserBean.getInstance();
-        this.menuController.setAll();
     }
 
     @FXML

@@ -40,15 +40,12 @@ public class MenuClubOwnerGUIController1 implements Initializable {
 
     public void setLabelUserName(String username) { this.usernameLabel.setText(username); }
 
-    public void setAll() {
-        setLabelUserName(LoggedClubOwnerBean.getInstance().getUsername());
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Image img = new Image(LoggedClubOwnerBean.getInstance().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
+        setLabelUserName(LoggedClubOwnerBean.getInstance().getUsername());
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package nightsout.control.guicontroller.interface1;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
+import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -35,11 +37,13 @@ public class ViewClubOwnerPageFromCOGUIController1 implements Observer {
     private ListView listViewCreatedEvents;
     @FXML
     private ImageView imageViewProfile;
-    @FXML
-    private MenuClubOwnerGUIController1 menuController;
+
+    private ClubOwnerBean clubOwnerBean;
 
     public void setAll(ClubOwnerBean clubOwnerBean) throws SystemException {
-        this.menuController.setAll();
+
+        this.clubOwnerBean = clubOwnerBean;
+
         this.labelName.setText(clubOwnerBean.getName());
         this.labelUsername.setText(clubOwnerBean.getUsername());
         this.labelCity.setText(clubOwnerBean.getCity());
@@ -48,6 +52,17 @@ public class ViewClubOwnerPageFromCOGUIController1 implements Observer {
         this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
         CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
+    }
+
+    public void goToCommunity(ActionEvent actionEvent) {
+
+        try {
+            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            replacer.switchAndSetSceneCommunityFromCO(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean);
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
+
     }
 
     @Override

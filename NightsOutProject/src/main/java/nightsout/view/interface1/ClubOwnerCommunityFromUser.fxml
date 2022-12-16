@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ClubOwnerCommunityFromUserGUIController1">
+   <children>
+      <fx:include source="MenuUser1.fxml" />
+      <AnchorPane layoutX="62.0" layoutY="65.0" prefHeight="561.0" prefWidth="888.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
+         <children>
+            <ListView fx:id="listView" layoutX="85.0" layoutY="92.0" maxWidth="850.0" prefHeight="453.0" prefWidth="850.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+               <effect>
+                  <DropShadow />
+               </effect></ListView>
+            <Label layoutX="361.0" layoutY="22.0" prefHeight="30.0" prefWidth="282.0" text="Community" textFill="#ffeecc" AnchorPane.leftAnchor="361.0" AnchorPane.rightAnchor="377.0">
+               <font>
+                  <Font name="Arial Bold" size="50.0" />
+               </font>
+            </Label>
+            <Button layoutX="25.0" layoutY="4.0" mnemonicParsing="false" onAction="#backToViewClubOwnerPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

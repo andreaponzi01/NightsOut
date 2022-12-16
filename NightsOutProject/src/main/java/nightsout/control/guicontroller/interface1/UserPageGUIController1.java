@@ -35,8 +35,6 @@ public class UserPageGUIController1 implements Observer {
     protected UserBean userBean;
 
     @FXML
-    protected MenuUserGUIController1 menuController;
-    @FXML
     private ListView listViewNextEvents;
     @FXML
     private Label labelUsername;
@@ -47,7 +45,6 @@ public class UserPageGUIController1 implements Observer {
 
     public void setAll() throws SystemException{
             this.userBean = LoggedUserBean.getInstance();
-            this.menuController.setAll();
             this.labelEmail.setText(userBean.getEmail());
             this.labelUsername.setText(userBean.getUsername());
             this.labelName.setText(userBean.getName());

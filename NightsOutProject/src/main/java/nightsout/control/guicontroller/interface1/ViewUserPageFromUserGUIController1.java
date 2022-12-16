@@ -45,7 +45,6 @@ public class ViewUserPageFromUserGUIController1 implements Observer {
     public void setAll(UserBean userBean) {
 
         try {
-            this.menuController.setAll();
             this.labelUsername.setText(userBean.getUsername());
             this.labelEmail.setText(userBean.getEmail());
             this.labelName.setText(userBean.getName());

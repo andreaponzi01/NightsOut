@@ -45,13 +45,9 @@ public class CreateEventGUIController1 {
 
     private File img;
 
-    @FXML
-    private MenuClubOwnerGUIController1 menuController;
-
     public void setAll() {
 
         this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
-        this.menuController.setAll();
     }
 
     @FXML

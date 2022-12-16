@@ -13,7 +13,7 @@
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="119.0" text="Your Response:" textFill="#200f54">
+            <Label fx:id="labelName" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="236.0" text="Your Response:" textFill="#200f54">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>

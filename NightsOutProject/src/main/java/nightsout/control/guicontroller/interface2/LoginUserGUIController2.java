@@ -12,10 +12,7 @@ import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
 import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
 import nightsout.utils.scene.ReplaceSceneDynamic2;
-
-import java.util.Objects;
 
 public class LoginUserGUIController2 {
 
@@ -29,6 +26,22 @@ public class LoginUserGUIController2 {
     Button buttonBack;
     @FXML
     CheckBox checkBoxClubOwner;
+
+    private String type;
+
+    public void setAll(String type) {
+
+        /*
+        this.type = type;
+        if(type.equals("Free")) {
+            labelSignIn.setText("Sign in as User");
+            buttonRegister.setOnAction();
+        } else {
+            labelSignIn.setText("Sign in as Club Owner");
+            buttonRegister.setOnAction();
+        }
+        */
+    }
 
     @FXML
     void loginAction(ActionEvent ae) {

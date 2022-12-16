@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.MakeResponseAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.*;
@@ -21,8 +20,6 @@ public class MakeResponseGUIController1 {
     @FXML
     private TextArea textFieldResponse;
     private ReviewBean reviewBean;
-    @FXML
-    private MenuClubOwnerGUIController1 menuController;
 
     public MakeResponseGUIController1() {
         //ignore
@@ -31,7 +28,6 @@ public class MakeResponseGUIController1 {
     public void setAll(UserBean userBean, ReviewBean reviewBean) throws SystemException {
 
         this.clubOwnerBean=LoggedClubOwnerBean.getInstance();
-        this.menuController.setAll();
         this.reviewBean=reviewBean;
         this.labelUsername.setText(userBean.getUsername());
         this.labelEventName.setText(MakeResponseAppController.searchEventbyIdEvent(reviewBean.getIdEvent()).getName());

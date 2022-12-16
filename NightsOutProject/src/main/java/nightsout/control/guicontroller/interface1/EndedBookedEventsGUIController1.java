@@ -31,7 +31,6 @@ public class EndedBookedEventsGUIController1 implements Observer {
     public void setAll() throws SystemException {
 
         this.userBean = LoggedUserBean.getInstance();
-        this.menuController.setAll();
         ReviewEngineering.endedBookedEvents(this, userBean.getId());
     }
 

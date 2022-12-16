@@ -36,13 +36,10 @@ public class ClubOwnerPageGUIController1 implements Observer {
     private ListView listViewCreatedEvents;
     @FXML
     private ImageView imageViewProfilePic;
-    @FXML
-    private MenuClubOwnerGUIController1 menuController;
 
     public void setAll() throws SystemException {
 
         LoggedClubOwnerBean loggedClubOwner = LoggedClubOwnerBean.getInstance();
-        this.menuController.setAll();
         labelEmail.setText(loggedClubOwner.getEmail());
         labelUsername.setText(loggedClubOwner.getUsername());
         labelName.setText(loggedClubOwner.getName());

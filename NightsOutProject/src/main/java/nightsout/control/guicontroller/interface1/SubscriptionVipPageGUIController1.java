@@ -10,8 +10,6 @@ import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 public class SubscriptionVipPageGUIController1 {
 
-    @FXML
-    private MenuUserGUIController1 menuController;
 
     public void backToUserPage(ActionEvent actionEvent) {
         try {
@@ -33,7 +31,5 @@ public class SubscriptionVipPageGUIController1 {
             MyNotification.createNotification(e);
         }
     }
-
-    public void setAll() { this.menuController.setAll(); }
 
 }

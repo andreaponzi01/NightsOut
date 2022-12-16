@@ -40,7 +40,6 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -77,12 +76,9 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
     private AnchorPane root;
     private ConcreteComponent myConcreteComponent;
     private VisualComponent contents;
-    @FXML
-    private MenuClubOwnerGUIController1 menuController;
 
     public void setAll(EventBean eventBean) throws SystemException {
 
-            this.menuController.setAll();
             this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
             this.eventBean = eventBean;
             clubOwnerBeanEvent = EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());

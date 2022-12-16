@@ -134,10 +134,9 @@ public class ReplaceSceneDynamic1 {
             UserBean userBean = LoggedUserBean.getInstance();
 
             if(userBean.getVip()){
-                SubscriptionPageSetter1.setter2(loader.getController());
+                SubscriptionPageSetter1.setter(loader.getController());
                 ReplaceScene.showStage(ae, root);
             } else {
-                SubscriptionPageSetter1.setter1(loader.getController());
                 ReplaceScene.showStage(ae, root);
             }
         } catch (IOException e) {
@@ -292,4 +291,25 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
+    public void switchAndSetSceneCommunityFromUser(ActionEvent actionEvent, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+            CommunityFromUserSetter1.setter(loader.getController(), clubOwnerBean);
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (IOException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    public void switchAndSetSceneCommunityFromCO(ActionEvent actionEvent, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent root = loader.load();
+            CommunityFromCOSetter1.setter(loader.getController(), clubOwnerBean);
+            ReplaceScene.showStage(actionEvent, root);
+        } catch (IOException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
 }

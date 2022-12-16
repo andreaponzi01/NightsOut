@@ -25,13 +25,9 @@ public class CheckPendingRequestsGUIController1 implements Observer {
     @FXML
     ListView listViewPendingRequests;
 
-    @FXML
-    private MenuUserGUIController1 menuController;
-
     public void setAll() {
 
         this.userBean = LoggedUserBean.getInstance();
-        this.menuController.setAll();
         this.checkRequests();
     }
 

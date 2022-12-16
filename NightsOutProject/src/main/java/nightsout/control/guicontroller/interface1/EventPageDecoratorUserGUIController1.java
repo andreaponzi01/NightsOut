@@ -71,12 +71,9 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
     private AnchorPane root;
     private ConcreteComponent myConcreteComponent;
     private VisualComponent contents;
-    @FXML
-    private MenuUserGUIController1 menuController;
 
     public void setAll(EventBean eventBean) throws SystemException {
 
-            this.menuController.setAll();
             this.eventBean = eventBean;
 
             this.userBean = LoggedUserBean.getInstance();

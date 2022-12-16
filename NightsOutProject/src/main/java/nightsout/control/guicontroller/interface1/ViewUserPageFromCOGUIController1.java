@@ -35,17 +35,18 @@ public class ViewUserPageFromCOGUIController1 implements Observer {
     @FXML
     private ListView listViewNextEvents;
     @FXML
-    private MenuClubOwnerGUIController1 menuController;
-    @FXML
     private Label labelSurname;
     @FXML
     ImageView profileImg;
 
+    private UserBean userBean;
+
 
     public void setAll(UserBean userBean) {
 
+        this.userBean = userBean;
+
         try {
-            this.menuController.setAll();
             this.labelUsername.setText(userBean.getUsername());
             this.labelEmail.setText(userBean.getEmail());
             this.labelName.setText(userBean.getName());

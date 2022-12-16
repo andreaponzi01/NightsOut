@@ -23,11 +23,9 @@ public class ManageRequestsGUIController1 implements Observer {
 
     @FXML
     ListView listViewPendingRequests;
-    @FXML
-    private MenuClubOwnerGUIController1 menuController;
 
     public void setAll() {
-        this.menuController.setAll();
+
         this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
         this.manageRequests();
     }

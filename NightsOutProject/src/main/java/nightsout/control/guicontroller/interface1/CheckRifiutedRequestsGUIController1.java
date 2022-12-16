@@ -31,7 +31,6 @@ public class CheckRifiutedRequestsGUIController1 implements Observer {
     public void setAll() {
 
         this.userBean = LoggedUserBean.getInstance();
-        this.menuController.setAll();
         this.checkRifiutedRequests();
     }
 

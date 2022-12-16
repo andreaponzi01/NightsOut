@@ -14,14 +14,11 @@ public class SubscriptionedVipPageGUIController1 {
 
     @FXML
     protected Label labelDate;
-    @FXML
-    private MenuUserGUIController1 menuController;
 
     public void setLabelDate(String date) { this.labelDate.setText(date); }
 
     public void setAll() {
 
-        this.menuController.setAll();
         setLabelDate(LoggedUserBean.getInstance().getCreationDateVIP().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
     }
 

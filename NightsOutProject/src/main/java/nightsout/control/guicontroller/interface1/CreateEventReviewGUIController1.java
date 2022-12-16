@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.CreateEventReviewAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
@@ -35,7 +34,6 @@ public class CreateEventReviewGUIController1 {
 
         this.userBean= LoggedUserBean.getInstance();
         this.eventBean=eventBean;
-        this.menuController.setAll();
         this.labelEventName.setText(eventBean.getName());
     }
 

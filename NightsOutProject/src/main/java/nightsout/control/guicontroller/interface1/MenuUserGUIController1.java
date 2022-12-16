@@ -35,14 +35,6 @@ public class MenuUserGUIController1  implements Initializable {
     protected Circle circleProfile;
 
 
-    public void setAll() {
-        /*
-        this.userBean = LoggedUserBean.getInstance();
-        this.usernameLabel.setText(userBean.getUsername());
-
-         */
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
