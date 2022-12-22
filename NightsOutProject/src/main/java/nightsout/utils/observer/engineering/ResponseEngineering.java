@@ -12,6 +12,7 @@ public class ResponseEngineering {
     }
 
     public static void eventReviews(Observer observer, int idClubOwner) throws SystemException {
+
         ReviewBeanList list = new ReviewBeanList(observer);
         list.addReviewToList(EventReviewsClubOwnerAppController.searchReviewsByIdClubOwner(idClubOwner));
     }

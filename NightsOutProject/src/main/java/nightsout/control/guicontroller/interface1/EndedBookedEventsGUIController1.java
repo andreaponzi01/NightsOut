@@ -7,10 +7,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EndedBookedEventsAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedUserBean;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ReviewEngineering;
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class EndedBookedEventsGUIController1 implements Observer {
-    private UserBean userBean;
+    private UserBean1 userBean1;
 
     @FXML
     ListView listViewEvents;
@@ -30,8 +30,8 @@ public class EndedBookedEventsGUIController1 implements Observer {
 
     public void setAll() throws SystemException {
 
-        this.userBean = LoggedUserBean.getInstance();
-        ReviewEngineering.endedBookedEvents(this, userBean.getId());
+        this.userBean1 = LoggedUserBean1.getInstance();
+        ReviewEngineering.endedBookedEvents(this, userBean1.getId());
     }
 
     public void backToUserPage(ActionEvent actionEvent) {
@@ -51,9 +51,9 @@ public class EndedBookedEventsGUIController1 implements Observer {
         Pane pane = null;
         ReviewBean reviewBean=null;
 
-        if(ob instanceof EventBean eBean) {
+        if(ob instanceof EventBean1 eBean) {
             try {
-                reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
+                reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean1.getId(), eBean.getIdEvent());
                 if(reviewBean != null){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                     EventItemGUIController1 controller = fxmlLoader.getController();

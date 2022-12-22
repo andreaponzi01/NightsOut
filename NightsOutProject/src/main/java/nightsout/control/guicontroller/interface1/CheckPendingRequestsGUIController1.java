@@ -7,10 +7,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.CheckRequestsAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedUserBean;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.bean.RequestBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CheckRequestsEngineering;
@@ -20,14 +20,14 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class CheckPendingRequestsGUIController1 implements Observer {
-    private UserBean userBean;
+    private UserBean1 userBean1;
 
     @FXML
     ListView listViewPendingRequests;
 
     public void setAll() {
 
-        this.userBean = LoggedUserBean.getInstance();
+        this.userBean1 = LoggedUserBean1.getInstance();
         this.checkRequests();
     }
 
@@ -37,7 +37,7 @@ public class CheckPendingRequestsGUIController1 implements Observer {
 
         try {
             this.listViewPendingRequests.getItems().clear();
-            CheckRequestsEngineering.checkPendingRequests(this, this.userBean.getId());
+            CheckRequestsEngineering.checkPendingRequests(this, this.userBean1.getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -65,8 +65,8 @@ public class CheckPendingRequestsGUIController1 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
                 CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
-                EventBean eventBean = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
-                controller.setAll(rBean, eventBean);
+                EventBean1 eventBean1 = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
+                controller.setAll(rBean, eventBean1);
                 this.listViewPendingRequests.getItems().add(pane);
             } catch (SystemException | IOException e) {
                 MyNotification.createNotification(e);

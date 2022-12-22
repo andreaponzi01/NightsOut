@@ -58,4 +58,8 @@ public class Trigger {
     public static void throwPasswordNotCompliantException() throws PasswordNotCompliantException {
         throw new PasswordNotCompliantException();
     }
+
+    public  static void throwGenderException() throws GenderException {
+        throw new GenderException();
+    }
 }

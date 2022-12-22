@@ -6,8 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.myexception.SystemException;
@@ -24,8 +24,8 @@ public class ReviewAndResponseGUIController1 implements Observer {
 
     public void setAll() throws SystemException {
 
-        ClubOwnerBean clubOwnerBean = LoggedClubOwnerBean.getInstance();
-        ReviewAndResponseEngineering.eventReviews(this, clubOwnerBean.getId());
+        ClubOwnerBean1 clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
+        ReviewAndResponseEngineering.eventReviews(this, clubOwnerBean1.getId());
 
     }
 

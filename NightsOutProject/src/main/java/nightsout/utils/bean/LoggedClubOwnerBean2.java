@@ -1,32 +1,33 @@
 package nightsout.utils.bean;
 
 import nightsout.model.ClubOwnerModel;
+import nightsout.utils.bean.interface2.ClubOwnerBean2;
 
-public class LoggedClubOwnerBean extends ClubOwnerBean {
+public class LoggedClubOwnerBean2 extends ClubOwnerBean2 {
 
     private static final String TYPE_FREE = "FREE";
     private static final String TYPE_CLUB_OWNER = "CLUB OWNER";
 
-    private LoggedClubOwnerBean() {
+    private LoggedClubOwnerBean2() {
         super();
     }
 
-    private LoggedClubOwnerBean(ClubOwnerModel um) {
+    private LoggedClubOwnerBean2(ClubOwnerModel um) {
         super(um);
     }
 
-    private static LoggedClubOwnerBean loggedCOBeanInstance;
+    private static LoggedClubOwnerBean2 loggedCOBeanInstance;
 
     //not used
-    public static LoggedClubOwnerBean getInstance() {
+    public static LoggedClubOwnerBean2 getInstance() {
         if (loggedCOBeanInstance == null)
-            loggedCOBeanInstance = new LoggedClubOwnerBean();
+            loggedCOBeanInstance = new LoggedClubOwnerBean2();
         return loggedCOBeanInstance;
     }
 
-    public static LoggedClubOwnerBean getInstance(ClubOwnerModel com) {
+    public static LoggedClubOwnerBean2 getInstance(ClubOwnerModel com) {
         if (loggedCOBeanInstance == null)
-            loggedCOBeanInstance = new LoggedClubOwnerBean(com);
+            loggedCOBeanInstance = new LoggedClubOwnerBean2(com);
         return loggedCOBeanInstance;
     }
 
@@ -44,6 +45,6 @@ public class LoggedClubOwnerBean extends ClubOwnerBean {
     }
 
     public static void createInstance(ClubOwnerModel clubOwnerModel) {
-        loggedCOBeanInstance = new LoggedClubOwnerBean(clubOwnerModel);
+        loggedCOBeanInstance = new LoggedClubOwnerBean2(clubOwnerModel);
     }
 }

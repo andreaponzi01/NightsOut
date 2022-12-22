@@ -3,7 +3,6 @@ package nightsout.control.guicontroller.interface2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.LoginAppController;
@@ -24,24 +23,6 @@ public class LoginUserGUIController2 {
     Button buttonLogin;
     @FXML
     Button buttonBack;
-    @FXML
-    CheckBox checkBoxClubOwner;
-
-    private String type;
-
-    public void setAll(String type) {
-
-        /*
-        this.type = type;
-        if(type.equals("Free")) {
-            labelSignIn.setText("Sign in as User");
-            buttonRegister.setOnAction();
-        } else {
-            labelSignIn.setText("Sign in as Club Owner");
-            buttonRegister.setOnAction();
-        }
-        */
-    }
 
     @FXML
     void loginAction(ActionEvent ae) {
@@ -56,6 +37,18 @@ public class LoginUserGUIController2 {
             MyNotification.createNotification(e);
         }
     }
+
+    @FXML
+    private void goToRegisterPage(ActionEvent actionEvent) {
+
+        try {
+            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+            replacer.switchAndSetScene(actionEvent, "/RegisterUser2.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
+    }
+
 
     @FXML
     protected void backToWelcomePage(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome2.fxml"); }

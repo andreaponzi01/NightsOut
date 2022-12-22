@@ -9,8 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
@@ -38,26 +38,26 @@ public class ViewClubOwnerPageFromUserGUIController1 implements Observer {
     @FXML
     private ImageView imageViewProfile;
 
-    private ClubOwnerBean clubOwnerBean;
+    private ClubOwnerBean1 clubOwnerBean1;
 
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void setAll(ClubOwnerBean1 clubOwnerBean1) throws SystemException {
 
-        this.clubOwnerBean = clubOwnerBean;
-        this.labelName.setText(clubOwnerBean.getName());
-        this.labelUsername.setText(clubOwnerBean.getUsername());
-        this.labelCity.setText(clubOwnerBean.getCity());
-        this.labelAddress.setText(clubOwnerBean.getAddress());
-        this.labelEmail.setText(clubOwnerBean.getEmail());
-        this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
-        this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
-        CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
+        this.clubOwnerBean1 = clubOwnerBean1;
+        this.labelName.setText(clubOwnerBean1.getName());
+        this.labelUsername.setText(clubOwnerBean1.getUsername());
+        this.labelCity.setText(clubOwnerBean1.getCity());
+        this.labelAddress.setText(clubOwnerBean1.getAddress());
+        this.labelEmail.setText(clubOwnerBean1.getEmail());
+        this.labelDiscountVip.setText(String.valueOf(clubOwnerBean1.getDiscountVIP())+"%");
+        this.imageViewProfile.setImage(new Image(clubOwnerBean1.getImg().toURI().toString()));
+        CreatedEventsEngineering.createdEvents(this, clubOwnerBean1.getId());
     }
 
     public void goToCommunity(ActionEvent actionEvent) {
 
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneCommunityFromUser(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean);
+            replacer.switchAndSetSceneCommunityFromUser(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -70,7 +70,7 @@ public class ViewClubOwnerPageFromUserGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof EventBean eBean) {
+        if(ob instanceof EventBean1 eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                 EventItemGUIController1 controller = fxmlLoader.getController();

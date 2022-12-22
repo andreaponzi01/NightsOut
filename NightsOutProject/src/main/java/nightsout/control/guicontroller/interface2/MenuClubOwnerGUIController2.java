@@ -11,12 +11,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.LoggedClubOwnerBean;
-import nightsout.utils.bean.LoggedUserBean;
+import nightsout.utils.bean.LoggedClubOwnerBean2;
+import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceSceneDynamic2;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -28,54 +28,58 @@ import java.util.ResourceBundle;
 public class MenuClubOwnerGUIController2 implements Initializable {
 
     @FXML
-    protected Label usernameLabel;
+    Label labelUsername;
     @FXML
-    protected Circle circleProfile;
+    Label labelName;
     @FXML
-    protected ImageView imageViewProfile;
+    Label labelEmail;
+    @FXML
+    Label labelAddress;
+    @FXML
+    Label labelCity;
+    @FXML
+    Circle circleProfile;
+    @FXML
+    ImageView imageViewProfile;
 
     public MenuClubOwnerGUIController2() {
         //ignored
     }
 
-    public void setLabelUserName(String username) { this.usernameLabel.setText(username); }
-
-    public void setAll() {
-        setLabelUserName(LoggedClubOwnerBean.getInstance().getUsername());
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedClubOwnerBean.getInstance().getImg().toURI().toString());
+        Image img = new Image(LoggedClubOwnerBean2.getInstance().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
+        this.labelUsername.setText(LoggedClubOwnerBean2.getInstance().getUsername());
+        this.labelName.setText(LoggedClubOwnerBean2.getInstance().getName());
+        this.labelAddress.setText(LoggedClubOwnerBean2.getInstance().getAddress());
+        this.labelCity.setText(LoggedClubOwnerBean2.getInstance().getCity());
+        this.labelEmail.setText(LoggedClubOwnerBean2.getInstance().getEmail());
     }
 
     @FXML
-    public void goToCreateEventPage(ActionEvent actionEvent) throws SystemException {
+    public void goToHome(ActionEvent actionEvent) throws SystemException {
 
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneCreateEvent(actionEvent, "/CreateEventPage1.fxml");
+        ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage2.fxml");
     }
 
     @FXML
-    public void goToManageRequestsPage(ActionEvent actionEvent) throws SystemException {
+    public void goToManageEventsPage(ActionEvent actionEvent) throws SystemException {
 
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
-    }
-
-    public void goToResponsePage(ActionEvent actionEvent) throws SystemException {
-
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
+        ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+        replacer.switchAndSetScene(actionEvent, "/ManageEventPage2.fxml");
     }
 
     @FXML
-    public void goToReviewsPage(ActionEvent actionEvent) throws SystemException {
-
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml");
+    public void goToCommunityPage(ActionEvent actionEvent) {
+        try {
+            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+            replacer.switchAndSetScene(actionEvent, "/ReviewsAndMakeResponsePage2.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     @FXML
@@ -88,11 +92,11 @@ public class MenuClubOwnerGUIController2 implements Initializable {
 
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
-                ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
+                ReplaceScene.replaceScene(actionEvent, "/Welcome2.fxml");
                 MySqlConnection.closeConnection();
-                LoggedUserBean.deleteInstance();
-                LoggedClubOwnerBean.deleteInstance();
-                LoggedUserBean.deleteInstance();
+                LoggedUserBean1.deleteInstance();
+                LoggedClubOwnerBean2.deleteInstance();
+                LoggedUserBean1.deleteInstance();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
             } catch (SQLException | IOException e) {
@@ -102,10 +106,5 @@ public class MenuClubOwnerGUIController2 implements Initializable {
             }
         }
     }
-    @FXML
-    public void goToHome(ActionEvent actionEvent) throws SystemException {
 
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
-    }
 }

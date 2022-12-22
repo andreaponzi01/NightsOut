@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.LoggedUserBean;
+import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -19,7 +19,7 @@ public class SubscriptionedVipPageGUIController1 {
 
     public void setAll() {
 
-        setLabelDate(LoggedUserBean.getInstance().getCreationDateVIP().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+        setLabelDate(LoggedUserBean1.getInstance().getCreationDateVIP().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
     }
 
     public void backToUserPage(ActionEvent actionEvent) {

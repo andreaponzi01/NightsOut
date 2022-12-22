@@ -1,18 +1,20 @@
 package nightsout.utils.bean;
 
 import nightsout.model.RequestModel;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.interface1.UserBean1;
 
 import java.io.File;
 import java.time.LocalDate;
 
 public class ManageRequestBean {
 
-    public ManageRequestBean(RequestModel requestModel, UserBean userBean, EventBean eventBean) {
+    public ManageRequestBean(RequestModel requestModel, UserBean1 userBean1, EventBean1 eventBean) {
         this.idRequest = requestModel.getIdRequest();
         this.eventName = eventBean.getName();
         this.requestDate = requestModel.getRequestDate();
-        this.username = userBean.getUsername();
-        this.img=userBean.getImg();
+        this.username = userBean1.getUsername();
+        this.img= userBean1.getImg();
     }
 
     private int idRequest;

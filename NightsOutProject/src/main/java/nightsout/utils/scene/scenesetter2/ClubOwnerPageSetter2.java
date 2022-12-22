@@ -1,10 +1,6 @@
 package nightsout.utils.scene.scenesetter2;
 
-import nightsout.control.guicontroller.interface1.ClubOwnerPageGUIController1;
-import nightsout.control.guicontroller.interface1.ViewClubOwnerPageFromCOGUIController1;
-import nightsout.control.guicontroller.interface1.ViewClubOwnerPageFromUserGUIController1;
 import nightsout.control.guicontroller.interface2.ClubOwnerPageGUIController2;
-import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.exception.myexception.SystemException;
 
 public class ClubOwnerPageSetter2 {

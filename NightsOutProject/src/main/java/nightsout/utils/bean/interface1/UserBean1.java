@@ -1,6 +1,7 @@
-package nightsout.utils.bean;
+package nightsout.utils.bean.interface1;
 
 import nightsout.model.UserModel;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.AdultException;
 import nightsout.utils.exception.myexception.EmptyInputException;
@@ -8,20 +9,15 @@ import nightsout.utils.exception.myexception.EmptyInputException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class UserBean extends ProfileBean {
-
-    //Attributi User
-    protected String surname;
-    protected String gender;
-    protected LocalDate birthday;
-    protected LocalDate creationDateVIP;
-    protected boolean vip;
+public class UserBean1 extends UserBean {
 
 
-    public UserBean(){
+
+
+    public UserBean1(){
     }
 
-    public UserBean(UserModel userModel) {
+    public UserBean1(UserModel userModel) {
         this.surname = userModel.getSurname();
         this.name = userModel.getName();
         this.username = userModel.getUsername();
@@ -34,17 +30,6 @@ public class UserBean extends ProfileBean {
         this.creationDateVIP = userModel.getCreationDateVip();
     }
 
-    // Getter
-    public String getSurname() {return surname;}
-    public String getGender() {return gender;}
-
-    public LocalDate getBirthday() { return birthday;}
-
-    // Setter
-    public void setSurname(String surname) throws EmptyInputException {
-        if (surname.equals(""))
-            Trigger.throwEmptyInputException("Surname");
-        this.surname = surname; }
     public void setGender(String gender) { this.gender = gender; }
 
     public void setBirthday(LocalDate birthday) throws AdultException, EmptyInputException {
@@ -56,21 +41,4 @@ public class UserBean extends ProfileBean {
             this.birthday = birthday;
         }
     }
-
-    public boolean getVip() {
-        return vip;
-    }
-
-    public void setVip(boolean vip) {
-        this.vip = vip;
-    }
-
-    public LocalDate getCreationDateVIP() {
-        return creationDateVIP;
-    }
-
-    public void setCreationDateVIP(LocalDate creationDateVIP) {
-        this.creationDateVIP = creationDateVIP;
-    }
-
 }

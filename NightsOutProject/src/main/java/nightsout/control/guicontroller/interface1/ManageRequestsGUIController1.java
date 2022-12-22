@@ -6,8 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -19,14 +19,14 @@ import java.util.Objects;
 
 public class ManageRequestsGUIController1 implements Observer {
 
-    private ClubOwnerBean clubOwnerBean;
+    private ClubOwnerBean1 clubOwnerBean1;
 
     @FXML
     ListView listViewPendingRequests;
 
     public void setAll() {
 
-        this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
+        this.clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
         this.manageRequests();
     }
 
@@ -35,7 +35,7 @@ public class ManageRequestsGUIController1 implements Observer {
 
         try {
             this.listViewPendingRequests.getItems().clear();
-            ManageRequestsEngineering.manageRequests(this, clubOwnerBean.getId());
+            ManageRequestsEngineering.manageRequests(this, clubOwnerBean1.getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

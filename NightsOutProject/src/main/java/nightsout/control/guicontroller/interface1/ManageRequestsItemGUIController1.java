@@ -8,10 +8,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.ManageRequestsAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ManageRequestsItemGUIController1 {
 
-    ClubOwnerBean clubOwnerBean;
+    ClubOwnerBean1 clubOwnerBean1;
     ManageRequestBean manageRequestBean;
 
     @FXML
@@ -34,7 +34,7 @@ public class ManageRequestsItemGUIController1 {
 
     public void setAll(ManageRequestBean manageRequestBean) {
 
-        this.clubOwnerBean= LoggedClubOwnerBean.getInstance();
+        this.clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
         this.manageRequestBean=manageRequestBean;
         this.buttonUsername.setText(manageRequestBean.getUsername());
         this.labelEventName.setText(String.valueOf(manageRequestBean.getEventName()));
@@ -68,9 +68,9 @@ public class ManageRequestsItemGUIController1 {
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            UserBean userBean = ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername());
+            UserBean1 userBean1 = ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername());
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/ViewUserPageFromCO1.fxml", userBean);
+            replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/ViewUserPageFromCO1.fxml", userBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

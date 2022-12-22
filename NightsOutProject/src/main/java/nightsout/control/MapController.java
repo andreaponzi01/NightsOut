@@ -8,8 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
@@ -27,11 +27,11 @@ import java.util.ResourceBundle;
 
 public class MapController implements Initializable, MapComponentInitializedListener {
 
-    private EventBean eventBean;
+    private EventBean1 eventBean;
     @FXML
     GoogleMapView location;
 
-    public void setAll(EventBean eventBean) {
+    public void setAll(EventBean1 eventBean) {
         this.eventBean = eventBean;
     }
 
@@ -119,7 +119,7 @@ public class MapController implements Initializable, MapComponentInitializedList
     public void back(ActionEvent actionEvent) throws SystemException {
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            String type= LoggedClubOwnerBean.checkInstanceType();
+            String type= LoggedClubOwnerBean1.checkInstanceType();
             if(type.equals("FREE")){
                 replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
             }

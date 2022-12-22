@@ -2,7 +2,7 @@ package nightsout.control.guicontroller.interface1;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.ResponseBean;
 
 public class ResponseItemGUIController1 {
@@ -21,9 +21,9 @@ public class ResponseItemGUIController1 {
         this.labelResponse.setText(responseBean.getResponse());
     }
 
-    public void setAllCommunity(ResponseBean responseBean, ClubOwnerBean clubOwnerBean) {
+    public void setAllCommunity(ResponseBean responseBean, ClubOwnerBean1 clubOwnerBean1) {
 
-        this.labelName.setText("Answer from " + clubOwnerBean.getUsername() + ":");
+        this.labelName.setText("Answer from " + clubOwnerBean1.getUsername() + ":");
         this.labelResponse.setText(responseBean.getResponse());
     }
 }

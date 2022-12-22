@@ -7,7 +7,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.AdultException;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
@@ -38,13 +38,13 @@ public class RegisterUserGUIController1 {
     protected void goToConcludeRegister(ActionEvent actionEvent) {
 
         try {
-            UserBean userBean = new UserBean();
-            userBean.setName(textFieldName.getText());
-            userBean.setSurname(textFieldSurname.getText());
-            userBean.setGender(radioFemale.isSelected() ? "Female" : "Male");
-            userBean.setBirthday(dateBirthday.getValue());
+            UserBean1 userBean1 = new UserBean1();
+            userBean1.setName(textFieldName.getText());
+            userBean1.setSurname(textFieldSurname.getText());
+            userBean1.setGender(radioFemale.isSelected() ? "Female" : "Male");
+            userBean1.setBirthday(dateBirthday.getValue());
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneRegisterUser(actionEvent, "/ConcludeRegisterUser1.fxml", userBean);
+            replacer.switchAndSetSceneRegisterUser(actionEvent, "/ConcludeRegisterUser1.fxml", userBean1);
         } catch (EmptyInputException | SystemException | AdultException e) {
             MyNotification.createNotification(e);
         }

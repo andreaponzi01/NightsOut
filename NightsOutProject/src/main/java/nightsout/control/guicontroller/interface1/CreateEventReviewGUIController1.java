@@ -6,18 +6,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.CreateEventReviewAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedUserBean;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 public class CreateEventReviewGUIController1 {
 
-    private EventBean eventBean;
-    private UserBean userBean;
+    private EventBean1 eventBean1;
+    private UserBean1 userBean1;
     @FXML
     private Label labelEventName;
     @FXML
@@ -30,11 +30,11 @@ public class CreateEventReviewGUIController1 {
         //ignore
     }
 
-    public void setAll(EventBean eventBean) {
+    public void setAll(EventBean1 eventBean1) {
 
-        this.userBean= LoggedUserBean.getInstance();
-        this.eventBean=eventBean;
-        this.labelEventName.setText(eventBean.getName());
+        this.userBean1 = LoggedUserBean1.getInstance();
+        this.eventBean1 = eventBean1;
+        this.labelEventName.setText(eventBean1.getName());
     }
 
     public void createReview(ActionEvent actionEvent) {
@@ -42,8 +42,8 @@ public class CreateEventReviewGUIController1 {
         try {
             ReviewBean reviewBean= new ReviewBean();
             reviewBean.setComment(textFieldReview.getText());
-            reviewBean.setIdUser(userBean.getId());
-            reviewBean.setIdEvent(eventBean.getIdEvent());
+            reviewBean.setIdUser(userBean1.getId());
+            reviewBean.setIdEvent(eventBean1.getIdEvent());
             CreateEventReviewAppController.createEventReview(reviewBean);
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");

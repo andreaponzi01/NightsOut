@@ -7,12 +7,14 @@ import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.MakeResponseAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.*;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 public class MakeResponseGUIController1 {
-    private ClubOwnerBean clubOwnerBean;
+    private ClubOwnerBean1 clubOwnerBean1;
     @FXML
     private Label labelEventName;
     @FXML
@@ -25,11 +27,11 @@ public class MakeResponseGUIController1 {
         //ignore
     }
 
-    public void setAll(UserBean userBean, ReviewBean reviewBean) throws SystemException {
+    public void setAll(UserBean1 userBean1, ReviewBean reviewBean) throws SystemException {
 
-        this.clubOwnerBean=LoggedClubOwnerBean.getInstance();
+        this.clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
         this.reviewBean=reviewBean;
-        this.labelUsername.setText(userBean.getUsername());
+        this.labelUsername.setText(userBean1.getUsername());
         this.labelEventName.setText(MakeResponseAppController.searchEventbyIdEvent(reviewBean.getIdEvent()).getName());
     }
     public void createResponse(ActionEvent actionEvent) {
@@ -37,7 +39,7 @@ public class MakeResponseGUIController1 {
         try {
             ResponseBean responseBean = new ResponseBean();
             responseBean.setResponse(textFieldResponse.getText());
-            responseBean.setIdClubOwner(clubOwnerBean.getId());
+            responseBean.setIdClubOwner(clubOwnerBean1.getId());
             responseBean.setReview(reviewBean.getIdReview());
 
             MakeResponseAppController.makeResponse(responseBean);

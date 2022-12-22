@@ -7,7 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.db.Query;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
@@ -18,11 +18,11 @@ import java.io.IOException;
 
 public class ConcreteDecoratorDelete extends Decorator {
 
-    private EventBean eventBean;
+    private EventBean1 eventBean;
 
     String toWrite;
 
-    public ConcreteDecoratorDelete(VisualComponent component, EventBean eventBean) {
+    public ConcreteDecoratorDelete(VisualComponent component, EventBean1 eventBean) {
 
         super(component);
         this.eventBean = eventBean;

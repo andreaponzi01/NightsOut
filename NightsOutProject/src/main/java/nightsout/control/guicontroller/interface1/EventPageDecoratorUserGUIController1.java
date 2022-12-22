@@ -16,7 +16,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.*;
+import nightsout.utils.bean.LoggedUserBean1;
+import nightsout.utils.bean.RequestBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.*;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
@@ -33,16 +37,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EventPageDecoratorUserGUIController1 implements Observer, Initializable, MapComponentInitializedListener {
 
-    private UserBean userBean;
-    private ClubOwnerBean clubOwnerBeanEvent;
-    private EventBean eventBean;
+    private UserBean1 userBean1;
+    private ClubOwnerBean1 clubOwnerBean1Event;
+    private EventBean1 eventBean1;
 
     @FXML
     private Label labelEventName;
@@ -72,35 +75,35 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
     private ConcreteComponent myConcreteComponent;
     private VisualComponent contents;
 
-    public void setAll(EventBean eventBean) throws SystemException {
+    public void setAll(EventBean1 eventBean1) throws SystemException {
 
-            this.eventBean = eventBean;
+            this.eventBean1 = eventBean1;
 
-            this.userBean = LoggedUserBean.getInstance();
+            this.userBean1 = LoggedUserBean1.getInstance();
 
-            clubOwnerBeanEvent = EventPageDecoratorAppController.getClubOwner(eventBean.getIdClubOwner());
+            clubOwnerBean1Event = EventPageDecoratorAppController.getClubOwner(eventBean1.getIdClubOwner());
 
-            this.buttonUsername.setText(clubOwnerBeanEvent.getName());
-            this.labelEventName.setText(eventBean.getName());
-            this.labelDescription.setText(eventBean.getDescription());
-            Double price= (eventBean.getPrice()-((eventBean.getPrice()*clubOwnerBeanEvent.getDiscountVIP())/100));
-            if(LoggedUserBean.getInstance().getVip())
+            this.buttonUsername.setText(clubOwnerBean1Event.getName());
+            this.labelEventName.setText(eventBean1.getName());
+            this.labelDescription.setText(eventBean1.getDescription());
+            Double price= (eventBean1.getPrice()-((eventBean1.getPrice()* clubOwnerBean1Event.getDiscountVIP())/100));
+            if(LoggedUserBean1.getInstance().getVip())
                 this.labelEventPrice.setText("€" + price);
             else
-                this.labelEventPrice.setText("€" + eventBean.getPrice());
-            this.labelEventDate.setText(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
-            this.labelEventDuration.setText(eventBean.getDuration() +"h");
-            this.labelEventTime.setText(LocalTime.of(eventBean.getHours(), eventBean.getMinutes()).toString());
-            this.eventImg.setImage(new Image(this.eventBean.getImg().toURI().toString()));
+                this.labelEventPrice.setText("€" + eventBean1.getPrice());
+            this.labelEventDate.setText(eventBean1.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+            this.labelEventDuration.setText(eventBean1.getDuration() +"h");
+            this.labelEventTime.setText(eventBean1.getTime().toString());
+            this.eventImg.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
 
-            EventParticipantsEngineering.eventParticipants(this, eventBean.getIdEvent());
+            EventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
             myStart();
     }
 
     private void myStart() throws SystemException {
 
         this.myConcreteComponent = new ConcreteComponent();
-        RequestBean requestBean = EventPageDecoratorAppController.checkRequestStatus(this.userBean, this.eventBean);
+        RequestBean requestBean = EventPageDecoratorAppController.checkRequestStatus(this.userBean1, this.eventBean1);
         if (requestBean == null) {
             actionDecorateSendRequest();
         }
@@ -115,7 +118,7 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
 
     private void actionDecorateSendRequest() {
 
-        ConcreteDecoratorSendRequest concreteDecoratorSendRequest = new ConcreteDecoratorSendRequest(this.myConcreteComponent, this.eventBean);
+        ConcreteDecoratorSendRequest concreteDecoratorSendRequest = new ConcreteDecoratorSendRequest(this.myConcreteComponent, this.eventBean1);
         this.contents = concreteDecoratorSendRequest;
         this.display();
     }
@@ -149,7 +152,7 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof UserBean uBean){
+        if(ob instanceof UserBean1 uBean){
 
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
@@ -167,7 +170,7 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
 
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneMap(ae, "/MapPage1.fxml", eventBean);
+            replacer.switchAndSetSceneMap(ae, "/MapPage1.fxml", eventBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -178,7 +181,7 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
 
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewClubOwnerPageFromUser(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBeanEvent);
+            replacer.switchAndSetSceneViewClubOwnerPageFromUser(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -201,7 +204,7 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
         Double lng = 0.0;
 
         try {
-            address = EventPageDecoratorAppController.getClubAddress(eventBean.getIdEvent());
+            address = EventPageDecoratorAppController.getClubAddress(eventBean1.getIdEvent());
             // Recuperiamo latitudine e longitudine dell'indirizzo del Club nel quale si svolgerà l'evento
             URL url = new URL("https://www.mapquestapi.com/geocoding/v1/address?key=QmskMXX88teOI9qXndnvrgGj4DGETyiF");
 

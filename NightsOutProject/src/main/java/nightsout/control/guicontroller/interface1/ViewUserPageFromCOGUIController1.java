@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.NextEventsEngineering;
@@ -39,27 +39,27 @@ public class ViewUserPageFromCOGUIController1 implements Observer {
     @FXML
     ImageView profileImg;
 
-    private UserBean userBean;
+    private UserBean1 userBean1;
 
 
-    public void setAll(UserBean userBean) {
+    public void setAll(UserBean1 userBean1) {
 
-        this.userBean = userBean;
+        this.userBean1 = userBean1;
 
         try {
-            this.labelUsername.setText(userBean.getUsername());
-            this.labelEmail.setText(userBean.getEmail());
-            this.labelName.setText(userBean.getName());
-            this.labelSurname.setText(userBean.getSurname());
-            if (userBean.getVip())
+            this.labelUsername.setText(userBean1.getUsername());
+            this.labelEmail.setText(userBean1.getEmail());
+            this.labelName.setText(userBean1.getName());
+            this.labelSurname.setText(userBean1.getSurname());
+            if (userBean1.getVip())
                 this.labelVip.setText("VIP");
             else
                 this.labelVip.setText("NON VIP");
-            this.labelBirthday.setText(userBean.getBirthday().toString());
-            this.labelGender.setText(userBean.getGender());
-            this.labelBirthday.setText(userBean.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
-            this.profileImg.setImage(new Image(userBean.getImg().toURI().toString()));
-            NextEventsEngineering.nextEvents(this, userBean.getId());
+            this.labelBirthday.setText(userBean1.getBirthday().toString());
+            this.labelGender.setText(userBean1.getGender());
+            this.labelBirthday.setText(userBean1.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+            this.profileImg.setImage(new Image(userBean1.getImg().toURI().toString()));
+            NextEventsEngineering.nextEvents(this, userBean1.getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -71,7 +71,7 @@ public class ViewUserPageFromCOGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof EventBean eBean) {
+        if(ob instanceof EventBean1 eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                 EventItemGUIController1 controller = fxmlLoader.getController();

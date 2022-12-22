@@ -8,13 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.LoggedClubOwnerBean;
-import nightsout.utils.bean.LoggedUserBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.LoggedClubOwnerBean1;
+import nightsout.utils.bean.LoggedUserBean1;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
@@ -29,7 +28,7 @@ import java.util.ResourceBundle;
 
 public class MenuUserGUIController2 implements Initializable {
 
-    private UserBean userBean;
+    private UserBean1 userBean;
     @FXML
     protected Button buttonVip;
     @FXML
@@ -47,9 +46,9 @@ public class MenuUserGUIController2 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedUserBean.getInstance().getImg().toURI().toString());
+        Image img = new Image(LoggedUserBean1.getInstance().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
-        this.userBean = LoggedUserBean.getInstance();
+        this.userBean = LoggedUserBean1.getInstance();
         this.labelUsername.setText(userBean.getUsername());
         this.labelCognome.setText(userBean.getSurname());
         this.labelEmail.setText(userBean.getEmail());
@@ -96,10 +95,10 @@ public class MenuUserGUIController2 implements Initializable {
 
         try {
             if (alert.showAndWait().get() == ButtonType.OK) {
-                ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
+                ReplaceScene.replaceScene(actionEvent, "/Welcome2.fxml");
                 MySqlConnection.closeConnection();
-                LoggedUserBean.deleteInstance();
-                LoggedClubOwnerBean.deleteInstance();
+                LoggedUserBean1.deleteInstance();
+                LoggedClubOwnerBean1.deleteInstance();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
 

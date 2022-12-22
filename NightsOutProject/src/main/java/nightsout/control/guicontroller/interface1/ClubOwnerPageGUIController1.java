@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
@@ -39,7 +39,7 @@ public class ClubOwnerPageGUIController1 implements Observer {
 
     public void setAll() throws SystemException {
 
-        LoggedClubOwnerBean loggedClubOwner = LoggedClubOwnerBean.getInstance();
+        LoggedClubOwnerBean1 loggedClubOwner = LoggedClubOwnerBean1.getInstance();
         labelEmail.setText(loggedClubOwner.getEmail());
         labelUsername.setText(loggedClubOwner.getUsername());
         labelName.setText(loggedClubOwner.getName());
@@ -56,7 +56,7 @@ public class ClubOwnerPageGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof EventBean eBean) {
+        if(ob instanceof EventBean1 eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                 EventItemGUIController1 controller = fxmlLoader.getController();

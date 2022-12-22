@@ -2,23 +2,17 @@ package nightsout.control.guicontroller.interface2;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.control.guicontroller.interface1.EventItemGUIController1;
-import nightsout.control.guicontroller.interface1.MenuUserGUIController1;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedUserBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.NextEventsEngineering;
 
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class UserPageGUIController2 implements Observer {
@@ -28,7 +22,7 @@ public class UserPageGUIController2 implements Observer {
 
 
     public void setAll() throws SystemException{
-        NextEventsEngineering.nextEvents(this, LoggedUserBean.getInstance().getId());
+        NextEventsEngineering.nextEvents(this, LoggedUserBean1.getInstance().getId());
     }
 
 
@@ -38,7 +32,7 @@ public class UserPageGUIController2 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof EventBean eBean) {
+        if(ob instanceof EventBean1 eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                 EventItemGUIController1 controller = fxmlLoader.getController();

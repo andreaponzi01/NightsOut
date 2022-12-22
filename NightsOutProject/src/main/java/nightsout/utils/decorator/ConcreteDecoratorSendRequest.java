@@ -6,22 +6,22 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.control.appcontroller.RequestAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedUserBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.LoggedUserBean1;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 public class ConcreteDecoratorSendRequest extends Decorator {
 
-    private UserBean userBean;
-    private EventBean eventBean;
+    private UserBean1 userBean;
+    private EventBean1 eventBean;
 
     String toWrite;
 
-    public ConcreteDecoratorSendRequest(VisualComponent component, EventBean eventBean) {
+    public ConcreteDecoratorSendRequest(VisualComponent component, EventBean1 eventBean) {
         super(component);
-        this.userBean = LoggedUserBean.getInstance();
+        this.userBean = LoggedUserBean1.getInstance();
         this.eventBean = eventBean;
     }
 

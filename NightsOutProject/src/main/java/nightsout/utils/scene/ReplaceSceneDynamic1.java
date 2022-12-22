@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import nightsout.utils.bean.*;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
@@ -35,7 +38,7 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneViewUserPageFromCO(ActionEvent ae, String fxml, UserBean userBean) throws SystemException {
+    public void switchAndSetSceneViewUserPageFromCO(ActionEvent ae, String fxml, UserBean1 userBean) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
@@ -47,7 +50,7 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneViewUserPageFromUser(ActionEvent ae, String fxml, UserBean userBean) throws SystemException {
+    public void switchAndSetSceneViewUserPageFromUser(ActionEvent ae, String fxml, UserBean1 userBean) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
@@ -59,14 +62,14 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneViewClubOwnerPageFromUser(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void switchAndSetSceneViewClubOwnerPageFromUser(ActionEvent ae, String fxml, ClubOwnerBean1 clubOwnerBean1) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
 
 
             if (fxml.equals("/ViewClubOwnerPageFromUser1.fxml")) {
-                ClubOwnerPageSetter1.setterViewFromUser(clubOwnerBean, loader.getController());
+                ClubOwnerPageSetter1.setterViewFromUser(clubOwnerBean1, loader.getController());
             }
             ReplaceScene.showStage(ae, root);
         } catch (IOException e) {
@@ -74,14 +77,14 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneViewClubOwnerPageFromCO(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void switchAndSetSceneViewClubOwnerPageFromCO(ActionEvent ae, String fxml, ClubOwnerBean1 clubOwnerBean1) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
 
 
             if (fxml.equals("/ViewClubOwnerPageFromCO1.fxml")) {
-                ClubOwnerPageSetter1.setterViewFromCO(clubOwnerBean, loader.getController());
+                ClubOwnerPageSetter1.setterViewFromCO(clubOwnerBean1, loader.getController());
             }
             ReplaceScene.showStage(ae, root);
         } catch (IOException e) {
@@ -89,7 +92,7 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneRegisterUser(ActionEvent ae, String fxml, UserBean userBean) throws SystemException {
+    public void switchAndSetSceneRegisterUser(ActionEvent ae, String fxml, UserBean1 userBean) throws SystemException {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
@@ -102,12 +105,12 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneRegisterClubOwner(ActionEvent ae, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException, WrongInputTypeException, EmptyInputException {
+    public void switchAndSetSceneRegisterClubOwner(ActionEvent ae, String fxml, ClubOwnerBean1 clubOwnerBean1) throws SystemException, WrongInputTypeException, EmptyInputException {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-            RegisterSetter1.setterClubOwner(clubOwnerBean, loader.getController());
+            RegisterSetter1.setterClubOwner(clubOwnerBean1, loader.getController());
             ReplaceScene.showStage(ae, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
@@ -131,7 +134,7 @@ public class ReplaceSceneDynamic1 {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-            UserBean userBean = LoggedUserBean.getInstance();
+            UserBean1 userBean = LoggedUserBean1.getInstance();
 
             if(userBean.getVip()){
                 SubscriptionPageSetter1.setter(loader.getController());
@@ -208,7 +211,7 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneCreateEventReview(ActionEvent actionEvent, String fxml, EventBean eventBean) throws SystemException {
+    public void switchAndSetSceneCreateEventReview(ActionEvent actionEvent, String fxml, EventBean1 eventBean) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
@@ -232,7 +235,7 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneMakeResponse(ActionEvent actionEvent, String fxml, UserBean userBean, ReviewBean reviewBean) throws SystemException {
+    public void switchAndSetSceneMakeResponse(ActionEvent actionEvent, String fxml, UserBean1 userBean, ReviewBean reviewBean) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
@@ -256,7 +259,7 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneEventUser(ActionEvent ae, String fxml, EventBean eventBean) throws SystemException {
+    public void switchAndSetSceneEventUser(ActionEvent ae, String fxml, EventBean1 eventBean) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
@@ -267,7 +270,7 @@ public class ReplaceSceneDynamic1 {
             ExceptionHandler.handleException(e);
         }
     }
-    public void switchAndSetSceneEventCO(ActionEvent ae, String fxml, EventBean eventBean) throws SystemException {
+    public void switchAndSetSceneEventCO(ActionEvent ae, String fxml, EventBean1 eventBean) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
@@ -279,7 +282,7 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneMap(ActionEvent ae, String fxml, EventBean eventBean) throws SystemException {
+    public void switchAndSetSceneMap(ActionEvent ae, String fxml, EventBean1 eventBean) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
@@ -291,22 +294,22 @@ public class ReplaceSceneDynamic1 {
         }
     }
 
-    public void switchAndSetSceneCommunityFromUser(ActionEvent actionEvent, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void switchAndSetSceneCommunityFromUser(ActionEvent actionEvent, String fxml, ClubOwnerBean1 clubOwnerBean1) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-            CommunityFromUserSetter1.setter(loader.getController(), clubOwnerBean);
+            CommunityFromUserSetter1.setter(loader.getController(), clubOwnerBean1);
             ReplaceScene.showStage(actionEvent, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
     }
 
-    public void switchAndSetSceneCommunityFromCO(ActionEvent actionEvent, String fxml, ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void switchAndSetSceneCommunityFromCO(ActionEvent actionEvent, String fxml, ClubOwnerBean1 clubOwnerBean1) throws SystemException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-            CommunityFromCOSetter1.setter(loader.getController(), clubOwnerBean);
+            CommunityFromCOSetter1.setter(loader.getController(), clubOwnerBean1);
             ReplaceScene.showStage(actionEvent, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);

@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.myexception.SystemException;
@@ -22,18 +22,18 @@ public class ClubOwnerCommunityFromUserGUIController1 implements Observer {
     @FXML
     private ListView listView;
 
-    private ClubOwnerBean clubOwnerBean;
+    private ClubOwnerBean1 clubOwnerBean1;
 
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SystemException {
-        this.clubOwnerBean = clubOwnerBean;
-        ReviewAndResponseEngineering.eventReviews(this, this.clubOwnerBean.getId());
+    public void setAll(ClubOwnerBean1 clubOwnerBean1) throws SystemException {
+        this.clubOwnerBean1 = clubOwnerBean1;
+        ReviewAndResponseEngineering.eventReviews(this, this.clubOwnerBean1.getId());
     }
 
     public void backToViewClubOwnerPage(ActionEvent actionEvent) {
 
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewClubOwnerPageFromUser(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean);
+            replacer.switchAndSetSceneViewClubOwnerPageFromUser(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -63,7 +63,7 @@ public class ClubOwnerCommunityFromUserGUIController1 implements Observer {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ResponseItem1.fxml")).openStream());
 
                 ResponseItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAllCommunity(responseBean, this.clubOwnerBean);
+                controller.setAllCommunity(responseBean, this.clubOwnerBean1);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);

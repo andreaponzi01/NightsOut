@@ -2,7 +2,7 @@ package nightsout.control.appcontroller;
 
 import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
-import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
@@ -41,8 +41,8 @@ public class CheckRequestsAppController {
     return listBean;
     }
 
-    public static EventBean searchEventById(int idEvent) throws SystemException {
+    public static EventBean1 searchEventById(int idEvent) throws SystemException {
        EventModel eventModel = EventDAO.getEventByIdEvent(idEvent);
-        return new EventBean(eventModel);
+        return new EventBean1(eventModel);
     }
 }

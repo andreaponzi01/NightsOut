@@ -6,13 +6,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
 public class EventReviewItemGUIController1 {
 
-    private EventBean eventBean;
+    private EventBean1 eventBean1;
     @FXML
     private Label labelEventName;
 
@@ -24,7 +24,7 @@ public class EventReviewItemGUIController1 {
 
       try {
           ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-          replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+          replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
       } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -35,17 +35,17 @@ public class EventReviewItemGUIController1 {
 
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneCreateEventReview(actionEvent, "/CreateEventReviewPage1.fxml", eventBean);
+            replacer.switchAndSetSceneCreateEventReview(actionEvent, "/CreateEventReviewPage1.fxml", eventBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
     }
 
-    public void setAll(EventBean eventBean) {
+    public void setAll(EventBean1 eventBean1) {
 
-        this.eventBean = eventBean;
-        this.labelEventName.setText(this.eventBean.getName());
-        this.imageViewEvent.setImage(new Image(eventBean.getImg().toURI().toString()));
+        this.eventBean1 = eventBean1;
+        this.labelEventName.setText(this.eventBean1.getName());
+        this.imageViewEvent.setImage(new Image(eventBean1.getImg().toURI().toString()));
     }
 
 }

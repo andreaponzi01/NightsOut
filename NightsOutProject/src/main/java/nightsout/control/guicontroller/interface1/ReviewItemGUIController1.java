@@ -8,7 +8,7 @@ import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -16,7 +16,7 @@ public class ReviewItemGUIController1 {
 
     @FXML
     public Button buttonUsername;
-    private UserBean userBean;
+    private UserBean1 userBean1;
     private ReviewBean reviewBean;
 
     public ReviewItemGUIController1() {
@@ -32,13 +32,13 @@ public class ReviewItemGUIController1 {
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         try {
-            this.userBean = EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser());
+            this.userBean1 = EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser());
 
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
         EventBean eventBean = EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
-        this.buttonUsername.setText(userBean.getUsername());
+        this.buttonUsername.setText(userBean1.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
 
@@ -46,7 +46,7 @@ public class ReviewItemGUIController1 {
 
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean, reviewBean);
+            replacer.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean1, reviewBean);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -56,7 +56,7 @@ public class ReviewItemGUIController1 {
 
         try {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewUserPageFromCO(actionEvent,"/ViewUserPageFromCO1.fxml",userBean);
+            replacer.switchAndSetSceneViewUserPageFromCO(actionEvent,"/ViewUserPageFromCO1.fxml", userBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

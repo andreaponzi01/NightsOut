@@ -1,7 +1,7 @@
 package nightsout.control.appcontroller;
 
 import nightsout.model.ResponseModel;
-import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.ResponseDAO;
@@ -18,8 +18,8 @@ public class MakeResponseAppController {
         ResponseDAO.createResponse(responseModel);
     }
 
-    public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException {
-        return new EventBean(EventDAO.getEventByIdEvent(idEvent));
+    public static EventBean1 searchEventbyIdEvent(int idEvent) throws SystemException {
+        return new EventBean1(EventDAO.getEventByIdEvent(idEvent));
 
     }
 }

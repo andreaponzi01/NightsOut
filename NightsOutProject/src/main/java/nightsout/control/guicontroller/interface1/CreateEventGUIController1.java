@@ -10,9 +10,9 @@ import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.Email;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedClubOwnerBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 
@@ -20,7 +20,7 @@ import java.io.File;
 
 public class CreateEventGUIController1 {
 
-    private ClubOwnerBean clubOwnerBean;
+    private ClubOwnerBean1 clubOwnerBean1;
 
     @FXML
     Button buttonBack;
@@ -47,7 +47,7 @@ public class CreateEventGUIController1 {
 
     public void setAll() {
 
-        this.clubOwnerBean = LoggedClubOwnerBean.getInstance();
+        this.clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
     }
 
     @FXML
@@ -64,31 +64,30 @@ public class CreateEventGUIController1 {
     @FXML
     private void createEvent(ActionEvent actionEvent) {
 
-        EventBean eventBean = new EventBean();
+        EventBean1 eventBean1 = new EventBean1();
 
         try {
-            eventBean.setEventDate(dateEvent.getValue());
-            eventBean.setDuration((int) sliderTime.getValue());
-            eventBean.setHours(textFieldHours.getText());
-            eventBean.setMinutes(textFieldMinutes.getText());
-            eventBean.setName(textFieldName.getText());
-            eventBean.setIdClubOwner(this.clubOwnerBean.getId());
-            eventBean.setDescription(textFieldDescription.getText());
-            eventBean.setPrice(textFieldPrice.getText());
-            eventBean.setImg(this.img);
+            eventBean1.setEventDate(dateEvent.getValue());
+            eventBean1.setDuration((int) sliderTime.getValue());
+            eventBean1.setTime(textFieldHours.getText(), textFieldMinutes.getText());
+            eventBean1.setName(textFieldName.getText());
+            eventBean1.setIdClubOwner(this.clubOwnerBean1.getId());
+            eventBean1.setDescription(textFieldDescription.getText());
+            eventBean1.setPrice(textFieldPrice.getText());
+            eventBean1.setImg(this.img);
 
-            CreateEventAppController.createEvent(eventBean);
+            CreateEventAppController.createEvent(eventBean1);
 
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
 
-        } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException | WrongInputRangeException e) {
-            e.printStackTrace();
+        } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
+                 WrongInputRangeException e) {
             MyNotification.createNotification(e);
         }
 
         try {
-            Email.sendEmail(clubOwnerBean.getEmail(), "Evento creato con successo!", "L'evento " + eventBean.getName() + " è stato creato con successo.");
+            Email.sendEmail(clubOwnerBean1.getEmail(), "Evento creato con successo!", "L'evento " + eventBean1.getName() + " è stato creato con successo.");
         } catch (EmailException e) {
             MyNotification.createNotification(e);
         }

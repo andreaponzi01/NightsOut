@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import nightsout.control.appcontroller.RegisterAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.CredentialsBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.scene.ReplaceScene;
 
@@ -20,7 +20,7 @@ import java.io.File;
 
 public class ConcludeRegisterUserGUIController1 {
 
-    private UserBean userBean;
+    private UserBean1 userBean1;
     @FXML
     TextField textFieldEmail;
     @FXML
@@ -40,13 +40,13 @@ public class ConcludeRegisterUserGUIController1 {
         CredentialsBean credentialsBean;
         try {
             credentialsBean = new CredentialsBean();
-            userBean.setUsername(textFieldUsername.getText());
+            userBean1.setUsername(textFieldUsername.getText());
             credentialsBean.setUsername(textFieldUsername.getText());
             credentialsBean.setPassword(passwordField.getText());
             credentialsBean.setType("Free");
-            userBean.setEmail(textFieldEmail.getText());
-            userBean.setImg(img);
-            RegisterAppController.registerUser(userBean, credentialsBean);
+            userBean1.setEmail(textFieldEmail.getText());
+            userBean1.setImg(img);
+            RegisterAppController.registerUser(userBean1, credentialsBean);
             ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
         } catch (EmptyInputException | EmailNotValidException | SystemException | UsernameAlreadyTakenException |
                  PasswordNotCompliantException e) {
@@ -54,8 +54,8 @@ public class ConcludeRegisterUserGUIController1 {
         }
     }
 
-    public void setAll(UserBean userBean) {
-            this.userBean = userBean;
+    public void setAll(UserBean1 userBean1) {
+            this.userBean1 = userBean1;
     }
 
     public void loadImage() {

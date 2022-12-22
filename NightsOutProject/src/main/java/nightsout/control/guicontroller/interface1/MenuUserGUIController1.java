@@ -10,9 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.LoggedClubOwnerBean;
-import nightsout.utils.bean.LoggedUserBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.LoggedClubOwnerBean1;
+import nightsout.utils.bean.LoggedUserBean1;
+import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceScene;
@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 
 public class MenuUserGUIController1  implements Initializable {
 
-    private UserBean userBean;
+    private UserBean1 userBean1;
 
     @FXML
     protected Label usernameLabel;
@@ -38,17 +38,17 @@ public class MenuUserGUIController1  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedUserBean.getInstance().getImg().toURI().toString());
+        Image img = new Image(LoggedUserBean1.getInstance().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
-        this.userBean = LoggedUserBean.getInstance();
-        this.usernameLabel.setText(userBean.getUsername());
+        this.userBean1 = LoggedUserBean1.getInstance();
+        this.usernameLabel.setText(userBean1.getUsername());
     }
 
     @FXML
     private void goToSubscriptionPage(ActionEvent actionEvent) {
 
         try {
-            if (userBean.getVip()) {
+            if (userBean1.getVip()) {
                 ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
                 replacer.switchAndSetSceneSubscription(actionEvent, "/SubscriptionedVipPage1.fxml");
             } else {
@@ -93,8 +93,8 @@ public class MenuUserGUIController1  implements Initializable {
             if (alert.showAndWait().get() == ButtonType.OK) {
                 ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
                 MySqlConnection.closeConnection();
-                LoggedUserBean.deleteInstance();
-                LoggedClubOwnerBean.deleteInstance();
+                LoggedUserBean1.deleteInstance();
+                LoggedClubOwnerBean1.deleteInstance();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
 

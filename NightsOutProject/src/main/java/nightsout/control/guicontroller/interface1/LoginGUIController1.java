@@ -42,7 +42,7 @@ public class LoginGUIController1 {
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
 
             if (Objects.equals(type, "ClubOwner")) {
-                LoginAppController.loginClubOwner(credentialsBean);
+                LoginAppController.loginClubOwner1(credentialsBean);
                 replacer.switchAndSetScene(ae, "/ClubOwnerPage1.fxml");
             } else {
                 LoginAppController.loginUser(credentialsBean);

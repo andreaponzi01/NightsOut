@@ -1,7 +1,7 @@
 package nightsout.control.appcontroller;
 
 import nightsout.model.EventModel;
-import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -13,13 +13,13 @@ public class ClubOwnerPageAppController {
         //ignore
     }
 
-    public static List<EventBean> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
+    public static List<EventBean1> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
 
         List<EventModel> list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
-        List<EventBean>  listBean = new ArrayList<>();
+        List<EventBean1>  listBean = new ArrayList<>();
 
         for(EventModel eventModel : list){
-            EventBean bean = new EventBean(eventModel);
+            EventBean1 bean = new EventBean1(eventModel);
             listBean.add(bean);
         }
         return listBean;
