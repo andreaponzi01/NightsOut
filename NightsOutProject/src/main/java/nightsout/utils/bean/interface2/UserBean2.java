@@ -24,6 +24,10 @@ public class UserBean2 extends UserBean {
     public UserBean2(){
     }
 
+    public UserBean2(UserBean userBean){
+        super(userBean);
+    }
+
     public UserBean2(UserModel userModel) {
         this.surname = userModel.getSurname();
         this.name = userModel.getName();

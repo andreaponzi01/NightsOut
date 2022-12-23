@@ -21,6 +21,10 @@ public class EventBean2 extends EventBean {
         super();
     }
 
+    public EventBean2(EventBean eventBean){
+        super(eventBean);
+    }
+
     public void setEventDate(String date) throws EmptyInputException, BeforeDateException, WrongInputTypeException {
 
         if (date.equals("")) {

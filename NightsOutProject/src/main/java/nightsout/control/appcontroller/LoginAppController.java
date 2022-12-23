@@ -3,10 +3,7 @@ package nightsout.control.appcontroller;
 import nightsout.model.ClubOwnerModel;
 import nightsout.model.CredentialsModel;
 import nightsout.model.UserModel;
-import nightsout.utils.bean.CredentialsBean;
-import nightsout.utils.bean.LoggedClubOwnerBean1;
-import nightsout.utils.bean.LoggedClubOwnerBean2;
-import nightsout.utils.bean.LoggedUserBean1;
+import nightsout.utils.bean.*;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.LoginDAO;
 import nightsout.utils.dao.UserDAO;
@@ -20,7 +17,7 @@ public class LoginAppController {
         //ignored
     }
 
-    public static void loginUser(CredentialsBean credentialsBean) throws WrongCredentialsException, SystemException {
+    public static void loginUser1(CredentialsBean credentialsBean) throws WrongCredentialsException, SystemException {
 
         UserModel userModel = null;
 
@@ -28,6 +25,20 @@ public class LoginAppController {
         if (LoginDAO.checkIsRegistered(credentialsModel)) {
             userModel = UserDAO.getUserByUsername(credentialsBean.getUsername());
             LoggedUserBean1.getInstance(userModel);
+        } else {
+            Trigger.throwWrongCredentials();
+            LoggedUserBean1.deleteInstance();
+        }
+    }
+
+    public static void loginUser2(CredentialsBean credentialsBean) throws WrongCredentialsException, SystemException {
+
+        UserModel userModel = null;
+
+        CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
+        if (LoginDAO.checkIsRegistered(credentialsModel)) {
+            userModel = UserDAO.getUserByUsername(credentialsBean.getUsername());
+            LoggedUserBean2.getInstance(userModel);
         } else {
             Trigger.throwWrongCredentials();
             LoggedUserBean1.deleteInstance();

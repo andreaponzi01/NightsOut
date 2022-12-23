@@ -1,7 +1,7 @@
 package nightsout.control.appcontroller;
 
 import nightsout.model.EventModel;
-import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -13,30 +13,30 @@ public class UserPageAppController {
         //ignore
     }
 
-    public static List<EventBean1> searchNextEventsByIdUser(int idUser) throws SystemException {
+    public static List<EventBean> searchNextEventsByIdUser(int idUser) throws SystemException {
 
         List<EventModel> list = null;
-        List<EventBean1> listBean = null;
+        List<EventBean> listBean = null;
         list = EventDAO.getNextEventsByIdUser(idUser);
         listBean = new ArrayList<>();
 
         for(EventModel eventModel : list){
-            EventBean1 bean = new EventBean1(eventModel);
+            EventBean bean = new EventBean(eventModel);
             listBean.add(bean);
         }
         return listBean;
 
     }
 
-    public static List<EventBean1> searchEndedEventsByIdUser(int idUser) throws SystemException {
+    public static List<EventBean> searchEndedEventsByIdUser(int idUser) throws SystemException {
 
         List<EventModel> list = null;
-        List<EventBean1> listBean = null;
+        List<EventBean> listBean = null;
         list = EventDAO.getEndedEventsByIdUser(idUser);
         listBean = new ArrayList<>();
 
         for(EventModel eventModel : list){
-            EventBean1 bean = new EventBean1(eventModel);
+            EventBean bean = new EventBean(eventModel);
             listBean.add(bean);
         }
         return listBean;

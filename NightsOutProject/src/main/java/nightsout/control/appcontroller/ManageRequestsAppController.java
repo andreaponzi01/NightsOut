@@ -2,9 +2,9 @@ package nightsout.control.appcontroller;
 
 import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
-import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
 import nightsout.utils.dao.UserDAO;
@@ -25,8 +25,8 @@ public class ManageRequestsAppController {
         List<ManageRequestBean> listBean = new ArrayList<>();
 
         for(RequestModel rm : list){
-            EventBean1 eb= new EventBean1(EventDAO.getEventByIdEvent(rm.getIdEvent()));
-            UserBean1 ub= new UserBean1(UserDAO.getUserByidUser(rm.getIdUser()));
+            EventBean eb = new EventBean(EventDAO.getEventByIdEvent(rm.getIdEvent()));
+            UserBean ub = new UserBean(UserDAO.getUserByidUser(rm.getIdUser()));
             ManageRequestBean bean = new ManageRequestBean(rm,ub,eb);
             listBean.add(bean);
         }
@@ -42,10 +42,10 @@ public class ManageRequestsAppController {
         RequestDAO.updateRequestStatus(idRequest,"declined");
     }
 
-    public static UserBean1 searchUserByUsername(String username) throws SystemException {
+    public static UserBean searchUserByUsername(String username) throws SystemException {
 
         UserModel userModel = UserDAO.getUserByUsername(username);
-        return new UserBean1(userModel);
+        return new UserBean(userModel);
     }
 
 }

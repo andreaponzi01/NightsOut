@@ -41,7 +41,7 @@ public class ReviewItemGUIController2 {
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         try {
-            this.userBean = EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser());
+            this.userBean = new UserBean1(EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser()));
 
         } catch (SystemException e) {
             MyNotification.createNotification(e);

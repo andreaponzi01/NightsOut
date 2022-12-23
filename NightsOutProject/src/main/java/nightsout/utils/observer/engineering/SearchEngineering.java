@@ -1,9 +1,9 @@
 package nightsout.utils.observer.engineering;
 
 import nightsout.control.appcontroller.SearchAppController;
-import nightsout.utils.bean.interface1.ClubOwnerBean1;
-import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.GenericBeanList;
 import nightsout.utils.observer.Observer;
@@ -39,10 +39,10 @@ public class SearchEngineering {
 
     }
 
-    private static List<UserBean1> searchUsers(String input) throws SystemException { return SearchAppController.searchUsersByUsername(input); }
+    private static List<UserBean> searchUsers(String input) throws SystemException { return SearchAppController.searchUsersByUsername(input); }
 
-    private static List<EventBean1> searchEvents(String input) throws SystemException { return SearchAppController.searchEventsByName(input); }
+    private static List<EventBean> searchEvents(String input) throws SystemException { return SearchAppController.searchEventsByName(input); }
 
-    private static List<ClubOwnerBean1> searchClubOwners(String input) throws SystemException { return SearchAppController.searchClubOwnersByUsername(input); }
+    private static List<ClubOwnerBean> searchClubOwners(String input) throws SystemException { return SearchAppController.searchClubOwnersByUsername(input); }
 
 }

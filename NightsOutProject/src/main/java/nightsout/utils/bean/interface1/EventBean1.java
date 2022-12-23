@@ -24,6 +24,10 @@ public class EventBean1 extends EventBean {
         super();
     }
 
+    public EventBean1(EventBean eventBean) {
+        super(eventBean);
+    }
+
     public EventBean1(EventModel eventModel) {
         super(eventModel);
     }

@@ -1,9 +1,9 @@
 package nightsout.utils.observer;
 
-import nightsout.utils.bean.interface1.ClubOwnerBean1;
-import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.GenericBean;
-import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.bean.UserBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,27 +18,27 @@ public class GenericBeanList extends Subject {
         beans = new ArrayList<>();
     }
 
-    public void addUsersToList(List<UserBean1> listBean) {
+    public void addUsersToList(List<UserBean> listBean) {
         if (listBean != null && !listBean.isEmpty()) {
-            for (UserBean1 userBean : listBean) {
+            for (UserBean userBean : listBean) {
                 beans.add(userBean);
                 notify(userBean);
             }
         }
     }
 
-    public void addEventsToList(List<EventBean1> listBean) {
+    public void addEventsToList(List<EventBean> listBean) {
         if (listBean != null && !listBean.isEmpty()) {
-            for (EventBean1 eventBean : listBean) {
+            for (EventBean eventBean : listBean) {
                 beans.add(eventBean);
                 notify(eventBean);
             }
         }
     }
 
-    public void addClubOwnersToList(List<ClubOwnerBean1> listBean) {
+    public void addClubOwnersToList(List<ClubOwnerBean> listBean) {
         if (listBean != null && !listBean.isEmpty()) {
-            for (ClubOwnerBean1 clubOwnerBean1 : listBean) {
+            for (ClubOwnerBean clubOwnerBean1 : listBean) {
                 beans.add(clubOwnerBean1);
                 notify(clubOwnerBean1);
             }

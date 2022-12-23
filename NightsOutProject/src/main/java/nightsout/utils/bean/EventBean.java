@@ -17,6 +17,18 @@ public class EventBean implements GenericBean {
     public EventBean() {
     }
 
+    public EventBean(EventBean eventBean) {
+        this.name = eventBean.getName();
+        this.idEvent = eventBean.getIdEvent();
+        this.idClubOwner = eventBean.getIdClubOwner();
+        this.price = eventBean.getPrice();
+        this.eventDate = eventBean.getEventDate();
+        this.duration = eventBean.getDuration();
+        this.time = eventBean.getTime();
+        this.description = eventBean.getDescription();
+        this.img = eventBean.getImg();
+    }
+
     public EventBean(EventModel eventModel) {
         this.name = eventModel.getName();
         this.idEvent = eventModel.getIdEvent();

@@ -45,7 +45,7 @@ public class LoginGUIController1 {
                 LoginAppController.loginClubOwner1(credentialsBean);
                 replacer.switchAndSetScene(ae, "/ClubOwnerPage1.fxml");
             } else {
-                LoginAppController.loginUser(credentialsBean);
+                LoginAppController.loginUser1(credentialsBean);
                 replacer.switchAndSetScene(ae, "/UserPage1.fxml");
             }
         } catch (SystemException | WrongCredentialsException e) {

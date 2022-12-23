@@ -8,9 +8,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.ManageRequestsAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.*;
-import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.bean.LoggedClubOwnerBean2;
+import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
+import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
 import nightsout.utils.scene.ReplaceSceneDynamic2;
@@ -68,7 +69,7 @@ public class ManageRequestsItemGUIController2 {
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            UserBean1 userBean = ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername());
+            UserBean2 userBean = new UserBean2(ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername()));
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/.fxml", userBean);
         } catch (SystemException e) {

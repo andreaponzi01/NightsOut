@@ -65,7 +65,7 @@ public class CheckPendingRequestsGUIController1 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
                 CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
-                EventBean1 eventBean1 = CheckRequestsAppController.searchEventById(rBean.getIdEvent());
+                EventBean1 eventBean1 = new EventBean1(CheckRequestsAppController.searchEventById(rBean.getIdEvent()));
                 controller.setAll(rBean, eventBean1);
                 this.listViewPendingRequests.getItems().add(pane);
             } catch (SystemException | IOException e) {

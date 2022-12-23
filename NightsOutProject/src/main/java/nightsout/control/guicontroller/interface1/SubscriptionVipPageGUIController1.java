@@ -24,7 +24,7 @@ public class SubscriptionVipPageGUIController1 {
     private void confirmSubscription(ActionEvent actionEvent) {
 
         try {
-            SubscriptionVipAppController.subscription(LoggedUserBean1.getInstance());
+            LoggedUserBean1.updateInstance(SubscriptionVipAppController.subscription(LoggedUserBean1.getInstance()));
             ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {

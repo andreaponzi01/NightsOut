@@ -3,7 +3,7 @@ package nightsout.control.appcontroller;
 import nightsout.model.ReviewModel;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.ReviewDAO;
 import nightsout.utils.dao.UserDAO;
@@ -33,8 +33,8 @@ public class EventReviewsClubOwnerAppController {
         return listBean;
     }
 
-    public static UserBean1 searchUserbyIdUser(int idUser) throws SystemException {
-        return new UserBean1(UserDAO.getUserByidUser(idUser));
+    public static UserBean searchUserbyIdUser(int idUser) throws SystemException {
+        return new UserBean(UserDAO.getUserByidUser(idUser));
     }
 
 

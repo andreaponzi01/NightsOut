@@ -12,22 +12,16 @@ import java.time.temporal.ChronoUnit;
 public class UserBean1 extends UserBean {
 
 
-
-
     public UserBean1(){
+        super();
+    }
+
+    public UserBean1(UserBean userBean) {
+        super(userBean);
     }
 
     public UserBean1(UserModel userModel) {
-        this.surname = userModel.getSurname();
-        this.name = userModel.getName();
-        this.username = userModel.getUsername();
-        this.gender = userModel.getGender();
-        this.email = userModel.getEmail();
-        this.id = userModel.getId();
-        this.img = userModel.getProfileImg();
-        this.birthday = userModel.getBirthday();
-        this.vip = userModel.getVip();
-        this.creationDateVIP = userModel.getCreationDateVip();
+        super(userModel);
     }
 
     public void setGender(String gender) { this.gender = gender; }
