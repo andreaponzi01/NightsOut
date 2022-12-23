@@ -27,7 +27,7 @@ import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.EventParticipantsEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -80,7 +80,7 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
 
             this.clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
             this.eventBean1 = eventBean1;
-            clubOwnerBean1Event = EventPageDecoratorAppController.getClubOwner(eventBean1.getIdClubOwner());
+            clubOwnerBean1Event = new ClubOwnerBean1(EventPageDecoratorAppController.getClubOwner(eventBean1.getIdClubOwner()));
             this.buttonUsername.setText(clubOwnerBean1Event.getName());
             this.labelDescription.setText(eventBean1.getDescription());
             this.labelEventName.setText(eventBean1.getName());
@@ -134,8 +134,8 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
     public void goToMap(ActionEvent ae) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneMap(ae, "/MapPage1.fxml", eventBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -145,11 +145,11 @@ public class EventPageDecoratorCOGUIController1 implements Observer, Initializab
     public void goToClubOwner(ActionEvent ae) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             if(clubOwnerBean1.getId()== clubOwnerBean1Event.getId())
                 replacer.switchAndSetScene(ae,"/ClubOwnerPage1.fxml");
             else
-                replacer.switchAndSetSceneViewClubOwnerPageFromCO(ae, "/ViewClubOwnerPageFromCO1.fxml", clubOwnerBean1Event);
+                replacer.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromCO1.fxml", clubOwnerBean1Event);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

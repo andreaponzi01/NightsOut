@@ -11,7 +11,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ResponseEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -29,7 +29,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer {
     public void backToClubOwnerPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
 
         } catch (SystemException e) {
@@ -40,8 +40,8 @@ public class EventReviewsClubOwnerGUIController1 implements Observer {
     public void goToCommunity(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/ReviewAndResponsePage1.fxml");
 
         } catch (SystemException e) {
             MyNotification.createNotification(e);

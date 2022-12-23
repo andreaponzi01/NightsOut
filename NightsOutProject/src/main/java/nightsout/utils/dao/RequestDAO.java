@@ -26,12 +26,8 @@ public class RequestDAO {
         return Query.searchRequestsByIdClubOwner(idClubOwner);
     }
 
-    public static List<RequestModel> getRifiutedRequestsByIdUser(int idUser) throws SystemException {
-        return Query.searchRifiutedRequestsByIdUser(idUser);
-    }
-
-    public static List<RequestModel> getPendingRequestsByIdUser(int idUser) throws SystemException {
-        return Query.searchPendingRequestsByIdUser(idUser);
+    public static List<RequestModel> getRequestsByIdUser(int idUser) throws SystemException {
+        return Query.searchRequestsByIdUser(idUser);
     }
 
     public static void updateRequestStatus(int idRequest,String status) throws SystemException {

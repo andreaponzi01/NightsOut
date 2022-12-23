@@ -13,7 +13,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ReviewAndResponseEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -32,8 +32,8 @@ public class ReviewAndResponseGUIController1 implements Observer {
     public void backToReviewsPage(ActionEvent actionEvent) {
 
           try {
-              ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-              replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
+              SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+              replacer.switchAndSetScene(actionEvent, "/ReviewResponsePage1.fxml");
           } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

@@ -15,8 +15,9 @@ import nightsout.utils.bean.LoggedClubOwnerBean2;
 import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic2;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
+import nightsout.utils.scene.switchPage.SwitchPage;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -60,26 +61,22 @@ public class MenuClubOwnerGUIController2 implements Initializable {
 
     @FXML
     public void goToHome(ActionEvent actionEvent) throws SystemException {
-
-        ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+        SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
         replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage2.fxml");
     }
 
     @FXML
     public void goToManageEventsPage(ActionEvent actionEvent) throws SystemException {
 
-        ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+        SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
         replacer.switchAndSetScene(actionEvent, "/ManageEventPage2.fxml");
     }
 
     @FXML
-    public void goToCommunityPage(ActionEvent actionEvent) {
-        try {
-            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
-            replacer.switchAndSetScene(actionEvent, "/ReviewsAndMakeResponsePage2.fxml");
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
-        }
+    public void goToCommunityPage(ActionEvent actionEvent) throws SystemException {
+
+        SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
+        replacer.switchAndSetScene(actionEvent, "/ReviewsAndMakeResponsePage2.fxml");
     }
 
     @FXML
@@ -92,7 +89,7 @@ public class MenuClubOwnerGUIController2 implements Initializable {
 
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
-                ReplaceScene.replaceScene(actionEvent, "/Welcome2.fxml");
+                SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");
                 MySqlConnection.closeConnection();
                 LoggedUserBean1.deleteInstance();
                 LoggedClubOwnerBean2.deleteInstance();
@@ -106,5 +103,4 @@ public class MenuClubOwnerGUIController2 implements Initializable {
             }
         }
     }
-
 }

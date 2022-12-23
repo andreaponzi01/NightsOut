@@ -14,7 +14,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ReviewEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -29,15 +29,14 @@ public class EndedBookedEventsGUIController1 implements Observer {
 
 
     public void setAll() throws SystemException {
-
         this.userBean1 = LoggedUserBean1.getInstance();
-        ReviewEngineering.endedBookedEvents(this, userBean1.getId());
+        ReviewEngineering.eventsToReview(this, userBean1.getId());
     }
 
     public void backToUserPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);

@@ -14,21 +14,12 @@ public class CheckRequestsEngineering {
         //ignored
     }
 
-    public static void checkPendingRequests(Observer observer, int idUser) throws SystemException {
+    public static void checkRequests(Observer observer, int idUser) throws SystemException {
         RequestBeanList list = new RequestBeanList(observer);
-        list.addRequestsToList(searchPendingRequests(idUser));
+        list.addRequestsToList(searchRequests(idUser));
     }
 
-    public static void checkRifiutedRequests(Observer observer, int idUser) throws SystemException {
-        RequestBeanList list = new RequestBeanList(observer);
-        list.addRequestsToList(searchRifiutedRequests(idUser));
-    }
-
-    private static List<RequestBean> searchRifiutedRequests(int idUser) throws SystemException {
-        return (CheckRequestsAppController.searchRifiutedRequestsByIdUser(idUser));
-    }
-
-    private static List<RequestBean> searchPendingRequests(int idUser) throws SystemException {
-        return (CheckRequestsAppController.searchPendingRequestsByIdUser(idUser));
+    private static List<RequestBean> searchRequests(int idUser) throws SystemException {
+        return (CheckRequestsAppController.searchRequestsByIdUser(idUser));
     }
 }

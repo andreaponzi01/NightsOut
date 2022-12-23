@@ -14,7 +14,7 @@ import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.exception.myexception.*;
-import nightsout.utils.scene.ReplaceScene;
+import nightsout.utils.scene.switchPage.SwitchPage;
 
 import java.io.File;
 
@@ -61,7 +61,7 @@ public class RegisterClubOwnerGUIController2 {
             clubOwnerBean.setEmail(textFieldEmail.getText());
             clubOwnerBean.setImg(img);
             RegisterAppController.registerClubOwner(clubOwnerBean, credentialsBean);
-            ReplaceScene.replaceScene(actionEvent, "/Welcome2.fxml");
+            SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");
         } catch (EmptyInputException | EmailNotValidException | SystemException | UsernameAlreadyTakenException |
                  PasswordNotCompliantException | WrongInputTypeException e) {
             MyNotification.createNotification(e);
@@ -77,8 +77,5 @@ public class RegisterClubOwnerGUIController2 {
     }
 
     @FXML
-    public void backToLogin(ActionEvent actionEvent) {
-        ReplaceScene.replaceScene(actionEvent, "/LoginClubOwner2.fxml");
-    }
-
+    public void backToLogin(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");}
 }

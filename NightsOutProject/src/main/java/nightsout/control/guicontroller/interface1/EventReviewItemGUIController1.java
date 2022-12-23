@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class EventReviewItemGUIController1 {
 
@@ -23,8 +23,8 @@ public class EventReviewItemGUIController1 {
     private void goToEventPage(ActionEvent actionEvent) {
 
       try {
-          ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-          replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
+          SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+          replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
       } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -34,8 +34,8 @@ public class EventReviewItemGUIController1 {
     private void goToReviewPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneCreateEventReview(actionEvent, "/CreateEventReviewPage1.fxml", eventBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneEvent(actionEvent, "/CreateEventReviewPage1.fxml", eventBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

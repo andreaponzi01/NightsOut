@@ -12,7 +12,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class CreateEventReviewGUIController1 {
 
@@ -21,7 +21,7 @@ public class CreateEventReviewGUIController1 {
     @FXML
     private Label labelEventName;
     @FXML
-    private TextArea textFieldReview;
+    private TextArea textAreaReview;
     @FXML
     private MenuUserGUIController1 menuController;
 
@@ -41,11 +41,11 @@ public class CreateEventReviewGUIController1 {
 
         try {
             ReviewBean reviewBean= new ReviewBean();
-            reviewBean.setComment(textFieldReview.getText());
+            reviewBean.setComment(textAreaReview.getText());
             reviewBean.setIdUser(userBean1.getId());
             reviewBean.setIdEvent(eventBean1.getIdEvent());
             CreateEventReviewAppController.createEventReview(reviewBean);
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException | EmptyInputException e) {
             MyNotification.createNotification(e);
@@ -55,8 +55,8 @@ public class CreateEventReviewGUIController1 {
     public void backToEndedBookedEventsPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEndedBookedEvents(actionEvent, "/EndedBookedEventsPage1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/EndedBookedEventsPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

@@ -11,8 +11,8 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.AdultException;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchPage;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class RegisterUserGUIController1 {
 
@@ -32,7 +32,7 @@ public class RegisterUserGUIController1 {
     DatePicker dateBirthday;
 
     @FXML
-    protected void backToChoice(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml"); }
+    protected void backToChoice(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
 
     @FXML
     protected void goToConcludeRegister(ActionEvent actionEvent) {
@@ -43,8 +43,8 @@ public class RegisterUserGUIController1 {
             userBean1.setSurname(textFieldSurname.getText());
             userBean1.setGender(radioFemale.isSelected() ? "Female" : "Male");
             userBean1.setBirthday(dateBirthday.getValue());
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneRegisterUser(actionEvent, "/ConcludeRegisterUser1.fxml", userBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneUser(actionEvent, "/ConcludeRegisterUser1.fxml", userBean1);
         } catch (EmptyInputException | SystemException | AdultException e) {
             MyNotification.createNotification(e);
         }

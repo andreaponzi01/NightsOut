@@ -3,10 +3,10 @@ package nightsout.utils.scene;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import nightsout.control.guicontroller.interface2.UserPageGUIController2;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.scenesetter2.ClubOwnerPageSetter2;
+import nightsout.utils.scene.initPage2.InitClubOwnerPage2;
+import nightsout.utils.scene.switchPage.SwitchPage;
 
 import java.io.IOException;
 
@@ -18,15 +18,10 @@ public class ReplaceSceneDynamic2 {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
 
-            if (fxml.equals("/UserPage2.fxml")) {
-                //UserPageSetter2.setter(loader.getController());
-                UserPageGUIController2 controller =loader.getController();
-                controller.setAll();
-            }
             if (fxml.equals("/ClubOwnerPage2.fxml")) {
-                ClubOwnerPageSetter2.setter(loader.getController());
+                InitClubOwnerPage2.setter(loader.getController());
             }
-            ReplaceScene.showStage(ae, root);
+            SwitchPage.showStage(ae, root);
 
         } catch (IOException e) {
             ExceptionHandler.handleException(e);

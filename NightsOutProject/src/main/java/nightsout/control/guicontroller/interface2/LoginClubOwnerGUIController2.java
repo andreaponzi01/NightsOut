@@ -10,8 +10,8 @@ import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
-import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic2;
+import nightsout.utils.scene.switchPage.SwitchPage;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
 
 public class LoginClubOwnerGUIController2 {
 
@@ -30,7 +30,7 @@ public class LoginClubOwnerGUIController2 {
         String type = "ClubOwner";
         try {
             CredentialsBean credentialsBean = new CredentialsBean(textFieldUsername.getText(), passwordField.getText(), type);
-            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
             LoginAppController.loginClubOwner2(credentialsBean);
             replacer.switchAndSetScene(ae, "/ClubOwnerPage2.fxml");
         } catch (SystemException | WrongCredentialsException e) {
@@ -39,16 +39,16 @@ public class LoginClubOwnerGUIController2 {
     }
 
     @FXML
+    protected void backToWelcomePage(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml"); }
+
+    @FXML
     private void goToRegisterPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
             replacer.switchAndSetScene(actionEvent, "/RegisterClubOwner2.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
     }
-
-    @FXML
-    private void backToWelcomePage(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome2.fxml"); }
 }

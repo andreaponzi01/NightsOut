@@ -10,7 +10,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class ReviewItemGUIController1 {
 
@@ -45,7 +45,7 @@ public class ReviewItemGUIController1 {
     public void goToResponsePage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean1, reviewBean);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
@@ -55,8 +55,8 @@ public class ReviewItemGUIController1 {
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewUserPageFromCO(actionEvent,"/ViewUserPageFromCO1.fxml", userBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO1.fxml",userBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

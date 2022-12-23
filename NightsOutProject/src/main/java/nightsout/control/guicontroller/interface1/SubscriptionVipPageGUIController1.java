@@ -6,14 +6,14 @@ import nightsout.control.appcontroller.SubscriptionVipAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class SubscriptionVipPageGUIController1 {
 
 
     public void backToUserPage(ActionEvent actionEvent) {
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
@@ -25,7 +25,7 @@ public class SubscriptionVipPageGUIController1 {
 
         try {
             LoggedUserBean1.updateInstance(SubscriptionVipAppController.subscription(LoggedUserBean1.getInstance()));
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);

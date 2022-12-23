@@ -10,8 +10,8 @@ import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongInputRangeException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
-import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchPage;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class RegisterClubOwnerGUIController1 {
 
@@ -29,7 +29,7 @@ public class RegisterClubOwnerGUIController1 {
     TextField textFieldDiscount;
 
     @FXML
-    protected void backToChoice(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
+    protected void backToChoice(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
 
     @FXML
     protected void goToConcludeRegister(ActionEvent actionEvent) {
@@ -40,8 +40,8 @@ public class RegisterClubOwnerGUIController1 {
             clubOwnerBean1.setAddress(textFieldAddress.getText());
             clubOwnerBean1.setCity(textFieldCity.getText());
             clubOwnerBean1.setDiscountVIP(textFieldDiscount.getText());
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneRegisterClubOwner(actionEvent, "/ConcludeRegisterClubOwner1.fxml", clubOwnerBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneClubOwner(actionEvent, "/ConcludeRegisterClubOwner1.fxml", clubOwnerBean1);
         } catch (WrongInputTypeException | EmptyInputException | SystemException | WrongInputRangeException e) {
             MyNotification.createNotification(e);
         }

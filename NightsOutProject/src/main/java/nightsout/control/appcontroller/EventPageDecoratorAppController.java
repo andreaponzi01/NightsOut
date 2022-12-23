@@ -6,8 +6,9 @@ import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
-import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.RequestDAO;
 import nightsout.utils.dao.UserDAO;
@@ -22,7 +23,7 @@ public class EventPageDecoratorAppController {
         //ignored
     }
 
-    public static RequestBean checkRequestStatus(UserBean userBean, EventBean1 eventBean) throws SystemException {
+    public static RequestBean checkRequestStatus(UserBean userBean, EventBean eventBean) throws SystemException {
 
         UserModel userModel = new UserModel(userBean);
         EventModel eventModel = new EventModel(eventBean);
@@ -39,7 +40,7 @@ public class EventPageDecoratorAppController {
     }
 
 
-    public static ClubOwnerBean1 getClubOwner(int idClubOwner) throws SystemException {
+    public static ClubOwnerBean getClubOwner(int idClubOwner) throws SystemException {
 
         ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubOwnerById(idClubOwner);
         return new ClubOwnerBean1(clubOwnerModel);

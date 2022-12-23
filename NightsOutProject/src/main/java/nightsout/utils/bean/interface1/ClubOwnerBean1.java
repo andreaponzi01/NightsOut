@@ -30,14 +30,11 @@ public class ClubOwnerBean1 extends ClubOwnerBean {
     }
 
     public ClubOwnerBean1(ClubOwnerModel clubOwnerModel) {
-        this.username = clubOwnerModel.getUsername();
-        this.name = clubOwnerModel.getClubName();
-        this.address = clubOwnerModel.getAddress();
-        this.city = clubOwnerModel.getCity();
-        this.discountVIP = clubOwnerModel.getDiscountVIP();
-        this.email = clubOwnerModel.getEmail();
-        this.id = clubOwnerModel.getId();
-        this.img = clubOwnerModel.getProfileImg();
+        super(clubOwnerModel);
+    }
+
+    public ClubOwnerBean1(ClubOwnerBean clubOwnerBean) {
+        super(clubOwnerBean);
     }
 
     // Setter

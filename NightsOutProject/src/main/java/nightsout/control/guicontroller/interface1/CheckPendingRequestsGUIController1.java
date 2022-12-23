@@ -14,7 +14,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CheckRequestsEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -28,27 +28,20 @@ public class CheckPendingRequestsGUIController1 implements Observer {
     public void setAll() {
 
         this.userBean1 = LoggedUserBean1.getInstance();
-        this.checkRequests();
-    }
-
-
-    @FXML
-    private void checkRequests() {
-
         try {
-            this.listViewPendingRequests.getItems().clear();
-            CheckRequestsEngineering.checkPendingRequests(this, this.userBean1.getId());
+            CheckRequestsEngineering.checkRequests(this, this.userBean1.getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
     }
 
+
     @FXML
     private void goToRifiutedRequests(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneCheckRifiutedRequests(actionEvent, "/CheckRifiutedRequestsPage1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/CheckRifiutedRequestsPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -62,14 +55,16 @@ public class CheckPendingRequestsGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         if (ob instanceof RequestBean rBean) {
-            try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
-                CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
-                EventBean1 eventBean1 = new EventBean1(CheckRequestsAppController.searchEventById(rBean.getIdEvent()));
-                controller.setAll(rBean, eventBean1);
-                this.listViewPendingRequests.getItems().add(pane);
-            } catch (SystemException | IOException e) {
-                MyNotification.createNotification(e);
+            if(Objects.equals(rBean.getStatus(), "pending")){
+                try {
+                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
+                    CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
+                    EventBean1 eventBean1 = new EventBean1(CheckRequestsAppController.searchEventByIdEvent(rBean.getIdEvent()));
+                    controller.setAll(rBean, eventBean1);
+                    this.listViewPendingRequests.getItems().add(pane);
+                } catch (SystemException | IOException e) {
+                    MyNotification.createNotification(e);
+                }
             }
         }
     }
@@ -78,7 +73,7 @@ public class CheckPendingRequestsGUIController1 implements Observer {
     @FXML
     public void backToUserPage(ActionEvent actionEvent) {
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);

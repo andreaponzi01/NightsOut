@@ -15,8 +15,8 @@ import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchPage;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -51,28 +51,21 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     @FXML
     public void goToCreateEventPage(ActionEvent actionEvent) throws SystemException {
 
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneCreateEvent(actionEvent, "/CreateEventPage1.fxml");
+        SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+        replacer.switchAndSetScene(actionEvent, "/CreateEventPage1.fxml");
     }
 
     @FXML
     public void goToManageRequestsPage(ActionEvent actionEvent) throws SystemException {
 
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
+        SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+        replacer.switchAndSetScene(actionEvent, "/ManageRequests1.fxml");
     }
 
     public void goToResponsePage(ActionEvent actionEvent) throws SystemException {
 
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
-    }
-
-    @FXML
-    public void goToReviewsPage(ActionEvent actionEvent) throws SystemException {
-
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-        replacer.switchAndSetSceneReviewAndResponse(actionEvent, "/ReviewAndResponsePage1.fxml");
+        SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+        replacer.switchAndSetScene(actionEvent, "/ReviewResponsePage1.fxml");
     }
 
     @FXML
@@ -85,7 +78,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
 
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
-                ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
+                SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml");
                 MySqlConnection.closeConnection();
                 LoggedUserBean1.deleteInstance();
                 LoggedClubOwnerBean1.deleteInstance();
@@ -102,7 +95,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     @FXML
     public void goToHome(ActionEvent actionEvent) throws SystemException {
 
-        ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+        SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
         replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
     }
 }

@@ -26,7 +26,7 @@ import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.EventParticipantsEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -81,7 +81,7 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
 
             this.userBean1 = LoggedUserBean1.getInstance();
 
-            clubOwnerBean1Event = EventPageDecoratorAppController.getClubOwner(eventBean1.getIdClubOwner());
+            clubOwnerBean1Event = new ClubOwnerBean1(EventPageDecoratorAppController.getClubOwner(eventBean1.getIdClubOwner()));
 
             this.buttonUsername.setText(clubOwnerBean1Event.getName());
             this.labelEventName.setText(eventBean1.getName());
@@ -118,8 +118,8 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
 
     private void actionDecorateSendRequest() {
 
-        ConcreteDecoratorSendRequest concreteDecoratorSendRequest = new ConcreteDecoratorSendRequest(this.myConcreteComponent, this.eventBean1);
-        this.contents = concreteDecoratorSendRequest;
+        ConcreteDecoratorSendRequest1 concreteDecoratorSendRequest1 = new ConcreteDecoratorSendRequest1(this.myConcreteComponent, this.eventBean1);
+        this.contents = concreteDecoratorSendRequest1;
         this.display();
     }
 
@@ -169,8 +169,8 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
     public void goToMap(ActionEvent ae) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneMap(ae, "/MapPage1.fxml", eventBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -180,8 +180,8 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
     public void goToClubOwner(ActionEvent ae) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewClubOwnerPageFromUser(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

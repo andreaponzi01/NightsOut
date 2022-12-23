@@ -1,7 +1,7 @@
 package nightsout.utils.db;
 
 import nightsout.model.*;
-import nightsout.utils.Converter;
+import nightsout.utils.engineering.ConverterToFile;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -62,7 +62,7 @@ public class Query {
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATH_PROFILE_IMGS + username + "pic" + ".png";
             File file = new File(filePath);
-            Converter.fromInputStreamToFile(inputStream, file);
+            ConverterToFile.fromInputStreamToFile(inputStream, file);
             userModel.setProfileImg(file);
 
             return userModel;
@@ -93,7 +93,7 @@ public class Query {
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATH_PROFILE_IMGS + username + "pic" + ".png";
             File file = new File(filePath);
-            Converter.fromInputStreamToFile(inputStream, file);
+            ConverterToFile.fromInputStreamToFile(inputStream, file);
             clubOwnerModel.setProfileImg(file);
 
             return clubOwnerModel;
@@ -134,7 +134,7 @@ public class Query {
                 // Modificata
                 String filePath = PATH_PROFILE_IMGS + userModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
-                Converter.fromInputStreamToFile(in, file);
+                ConverterToFile.fromInputStreamToFile(in, file);
                 userModel.setProfileImg(file);
 
                 list.add(userModel);
@@ -172,7 +172,7 @@ public class Query {
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATH_PROFILE_IMGS + userModel.getUsername() + "pic" + ".png";
             File file = new File(filePath);
-            Converter.fromInputStreamToFile(inputStream, file);
+            ConverterToFile.fromInputStreamToFile(inputStream, file);
             userModel.setProfileImg(file);
 
             return userModel;
@@ -209,7 +209,7 @@ public class Query {
                 // Modificata
                 String filePath = PATH_PROFILE_IMGS + clubOwnerModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
-                Converter.fromInputStreamToFile(inputStream, file);
+                ConverterToFile.fromInputStreamToFile(inputStream, file);
                 clubOwnerModel.setProfileImg(file);
 
                 list.add(clubOwnerModel);
@@ -251,7 +251,7 @@ public class Query {
                 InputStream inputStream = (rs.getBinaryStream(9));
                 String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
-                Converter.fromInputStreamToFile(inputStream, file);
+                ConverterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
 
                 list.add(eventModel);
@@ -318,7 +318,6 @@ public class Query {
                 requestModel.setIdUser(rs.getInt(2));
 
                 list.add(requestModel);
-
             } while(rs.next());
 
             return list;
@@ -328,16 +327,16 @@ public class Query {
         return list;
     }
 
-    public static List<RequestModel> searchPendingRequestsByIdUser(int idUser) throws SystemException {
+
+    public static List<RequestModel> searchRequestsByIdUser(int idUser) throws SystemException {
 
         List<RequestModel> list = null;
         RequestModel requestModel = null;
-        String query = "SELECT * FROM Requests WHERE user = ? and Requests.status = ?;";
+        String query = "SELECT * FROM Requests WHERE user = ?;";
 
         try (PreparedStatement preparedStatement = MySqlConnection.connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setInt(1, idUser);
-            preparedStatement.setString(2, "pending");
 
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
@@ -353,46 +352,9 @@ public class Query {
                 requestModel.setRequestDate(rs.getDate(5).toLocalDate());
 
                 list.add(requestModel);
-
             } while(rs.next());
 
             return list;
-        } catch (SQLException e) {
-            ExceptionHandler.handleException(e);
-        }
-        return list;
-    }
-
-    public static List<RequestModel> searchRifiutedRequestsByIdUser(int idUser) throws SystemException {
-        List<RequestModel> list = null;
-        RequestModel requestModel = null;
-        String query = "SELECT * FROM Requests WHERE user = ? and Requests.status = ?;";
-
-        try (PreparedStatement preparedStatement = MySqlConnection.connect().prepareStatement(query)) {
-            list = new ArrayList<>();
-            preparedStatement.setInt(1, idUser);
-            preparedStatement.setString(2, "declined");
-
-            ResultSet rs = preparedStatement.executeQuery();
-            assert rs != null;
-            if (!rs.next()) {
-                return list;
-            }
-
-            do{
-                requestModel = new RequestModel();
-                requestModel.setIdRequest(rs.getInt(1));
-                requestModel.setIdEvent(rs.getInt(4));
-                requestModel.setIdUser(rs.getInt(2));
-                requestModel.setStatus(rs.getString(3));
-                requestModel.setRequestDate(rs.getDate(5).toLocalDate());
-
-                list.add(requestModel);
-
-            } while(rs.next());
-
-            return list;
-
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
@@ -421,7 +383,7 @@ public class Query {
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATH_PROFILE_IMGS + clubOwnerModel.getUsername() + "pic" + ".png";
             File file = new File(filePath);
-            Converter.fromInputStreamToFile(inputStream, file);
+            ConverterToFile.fromInputStreamToFile(inputStream, file);
             clubOwnerModel.setProfileImg(file);
 
             return clubOwnerModel;
@@ -524,7 +486,7 @@ public class Query {
                 InputStream inputStream = (rs.getBinaryStream(9));
                 String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
-                Converter.fromInputStreamToFile(inputStream, file);
+                ConverterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
 
 
@@ -571,7 +533,7 @@ public class Query {
                 InputStream inputStream = (rs.getBinaryStream(9));
                 String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
-                Converter.fromInputStreamToFile(inputStream, file);
+                ConverterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
 
                 list.add(eventModel);
@@ -618,7 +580,7 @@ public class Query {
                 InputStream in = (rs.getBinaryStream(3));
                 String filePath = PATH_PROFILE_IMGS+userModel.getUsername()+"pic"+".png";
                 File file = new File(filePath);
-                Converter.fromInputStreamToFile(in, file);
+                ConverterToFile.fromInputStreamToFile(in, file);
                 userModel.setProfileImg(file);
 
                 list.add(userModel);
@@ -664,7 +626,7 @@ public class Query {
                 InputStream inputStream = (rs.getBinaryStream(9));
                 String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
-                Converter.fromInputStreamToFile(inputStream, file);
+                ConverterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
 
                 list.add(eventModel);
@@ -796,7 +758,7 @@ public class Query {
             InputStream inputStream = (rs.getBinaryStream(9));
             String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
             File file = new File(filePath);
-            Converter.fromInputStreamToFile(inputStream, file);
+            ConverterToFile.fromInputStreamToFile(inputStream, file);
             eventModel.setImg(file);
 
 

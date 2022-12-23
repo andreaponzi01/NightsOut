@@ -42,12 +42,12 @@ public class UserBean2 extends UserBean {
     }
 
     public void setGender(String gender) throws GenderException {
+
             if (!(gender.equals("Male")) && !(gender.equals("Female"))) {
                 Trigger.throwGenderException();
             } else {
                 this.gender = gender;
             }
-
     }
 
     public void setBirthday(String birthday) throws AdultException, EmptyInputException, WrongInputTypeException {

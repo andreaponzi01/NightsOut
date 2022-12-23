@@ -14,7 +14,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -57,12 +57,11 @@ public class ViewClubOwnerPageFromCOGUIController1 implements Observer {
     public void goToCommunity(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneCommunityFromCO(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
-
     }
 
     @Override
@@ -70,7 +69,6 @@ public class ViewClubOwnerPageFromCOGUIController1 implements Observer {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
-
         if(ob instanceof EventBean1 eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
@@ -80,7 +78,6 @@ public class ViewClubOwnerPageFromCOGUIController1 implements Observer {
             } catch (IOException e) {
                 MyNotification.createNotification(e);
             }
-
         }
     }
 }

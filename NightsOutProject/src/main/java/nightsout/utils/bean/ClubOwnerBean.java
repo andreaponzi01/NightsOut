@@ -19,6 +19,17 @@ public class ClubOwnerBean  extends ProfileBean {
         this.img = clubOwnerModel.getProfileImg();
     }
 
+    public ClubOwnerBean(ClubOwnerBean clubOwnerBean) {
+        this.username = clubOwnerBean.getUsername();
+        this.name = clubOwnerBean.getName();
+        this.address = clubOwnerBean.getAddress();
+        this.city = clubOwnerBean.getCity();
+        this.discountVIP = clubOwnerBean.getDiscountVIP();
+        this.email = clubOwnerBean.getEmail();
+        this.id = clubOwnerBean.getId();
+        this.img = clubOwnerBean.getImg();
+    }
+
     private static final String FIELD_CITY = "City";
 
     protected String address;
@@ -36,7 +47,4 @@ public class ClubOwnerBean  extends ProfileBean {
             Trigger.throwEmptyInputException(FIELD_CITY);
         this.city = city;
     }
-
-
-
 }

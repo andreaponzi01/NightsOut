@@ -10,7 +10,7 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class UserItemGUIController1 {
 
@@ -45,15 +45,15 @@ public class UserItemGUIController1 {
         try {
             String type = LoggedClubOwnerBean1.checkInstanceType();
             if (clubOwnerBean1 != null) {
-                ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-                replacer.switchAndSetSceneViewClubOwnerPageFromUser(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1);
+                SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+                replacer.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1);
             } else {
                 if (type.equals("FREE")) {
-                    ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-                    replacer.switchAndSetSceneViewUserPageFromUser(actionEvent, "/ViewUserPageFromUser1.fxml", userBean1);
+                    SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+                    replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser1.fxml", userBean1);
                 } else {
-                    ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-                    replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/ViewUserPageFromCO1.fxml", userBean1);
+                    SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+                    replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO1.fxml", userBean1);
                 }
             }
         } catch (SystemException e) {

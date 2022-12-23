@@ -10,7 +10,7 @@ import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.db.Query;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -50,7 +50,7 @@ public class ConcreteDecoratorDelete extends Decorator {
             try {
                 Query.deleteEventById(eventBean.getIdEvent());
                 FileUtils.delete(new File("eventImgs/" + eventBean.getName()));
-                ReplaceSceneDynamic1 replaceSceneDynamic1 = new ReplaceSceneDynamic1();
+                SwitchAndSetPage1 replaceSceneDynamic1 = new SwitchAndSetPage1();
                 replaceSceneDynamic1.switchAndSetScene(ae, "/ClubOwnerPage1.fxml");
             } catch (SystemException e) {
                 MyNotification.createNotification(e);

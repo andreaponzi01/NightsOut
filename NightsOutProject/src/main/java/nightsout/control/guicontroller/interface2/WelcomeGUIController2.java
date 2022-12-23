@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import nightsout.utils.scene.ReplaceScene;
+import nightsout.utils.scene.switchPage.SwitchPage;
 
 public class WelcomeGUIController2 {
 
@@ -12,11 +12,11 @@ public class WelcomeGUIController2 {
     private Button buttonExit;
 
     @FXML
-    private void goToClubOwnerLogin(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/LoginClubOwner2.fxml");}
+    private void goToClubOwnerLogin(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");}
     @FXML
-    private void goToUserLogin(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/LoginUser2.fxml"); }
+    private void goToUserLogin(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/LoginUser2.fxml"); }
     @FXML
-    private void switchInterface(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml"); }
+    private void switchInterface(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
 
     @FXML
     private void exit() {

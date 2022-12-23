@@ -15,14 +15,14 @@ public class ClubOwnerModel extends ProfileModel {
         super();
     }
 
-    public ClubOwnerModel(ClubOwnerBean clubOwnerBean1) {
+    public ClubOwnerModel(ClubOwnerBean clubOwnerBean) {
 
-        super(clubOwnerBean1.getUsername(), clubOwnerBean1.getEmail(), clubOwnerBean1.getId(), clubOwnerBean1.getImg());
-        this.clubName = clubOwnerBean1.getName();
-        this.address = clubOwnerBean1.getAddress();
-        this.city = clubOwnerBean1.getCity();
-        this.discountVIP = clubOwnerBean1.getDiscountVIP();
-        this.profileImg = clubOwnerBean1.getImg();
+        super(clubOwnerBean.getUsername(), clubOwnerBean.getEmail(), clubOwnerBean.getId(), clubOwnerBean.getImg());
+        this.clubName = clubOwnerBean.getName();
+        this.address = clubOwnerBean.getAddress();
+        this.city = clubOwnerBean.getCity();
+        this.discountVIP = clubOwnerBean.getDiscountVIP();
+        this.profileImg = clubOwnerBean.getImg();
     }
 
     public String getClubName() {

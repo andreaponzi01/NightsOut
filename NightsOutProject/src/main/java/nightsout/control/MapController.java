@@ -8,11 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import nightsout.control.appcontroller.EventPageDecoratorAppController;
 import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.bean.LoggedClubOwnerBean2;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -118,13 +119,13 @@ public class MapController implements Initializable, MapComponentInitializedList
     @FXML
     public void back(ActionEvent actionEvent) throws SystemException {
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             String type= LoggedClubOwnerBean1.checkInstanceType();
             if(type.equals("FREE")){
-                replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
             }
             else{
-                replacer.switchAndSetSceneEventCO(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean);
+                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean);
             }
         } catch (SystemException e) {
             MyNotification.createNotification(e);

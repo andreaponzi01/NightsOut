@@ -20,6 +20,7 @@ import nightsout.utils.exception.myexception.*;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
 import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.ReplaceSceneDynamic2;
 
 import java.io.File;
 import java.io.IOException;
@@ -77,7 +78,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
                 MyNotification.createNotification(e);
             }
 
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
             replacer.switchAndSetScene(actionEvent, "/ManageEventPage2.fxml");
 
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException e) {

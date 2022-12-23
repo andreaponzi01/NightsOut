@@ -2,25 +2,24 @@ package nightsout.utils.bean;
 
 import nightsout.model.UserModel;
 import nightsout.utils.exception.Trigger;
+import nightsout.utils.exception.myexception.AdultException;
 import nightsout.utils.exception.myexception.EmptyInputException;
+import nightsout.utils.exception.myexception.GenderException;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class UserBean extends ProfileBean {
 
-    public UserBean() {}
+    //Attributi User
+    protected String surname;
+    protected String gender;
+    protected LocalDate birthday;
+    protected LocalDate creationDateVIP;
+    protected boolean vip;
 
-    public UserBean(UserBean userBean) {
-        this.surname = userBean.getSurname();
-        this.name = userBean.getName();
-        this.username = userBean.getUsername();
-        this.gender = userBean.getGender();
-        this.email = userBean.getEmail();
-        this.id = userBean.getId();
-        //this.img = userBean.getProfileImg();
-        this.birthday = userBean.getBirthday();
-        this.vip = userBean.getVip();
-        //this.creationDateVIP = userBean.getCreationDateVip();
+
+    public UserBean(){
     }
 
     public UserBean(UserModel userModel) {
@@ -36,18 +35,41 @@ public class UserBean extends ProfileBean {
         this.creationDateVIP = userModel.getCreationDateVip();
     }
 
+    public UserBean(UserBean userBean) {
+        this.surname = userBean.getSurname();
+        this.name = userBean.getName();
+        this.username = userBean.getUsername();
+        this.gender = userBean.getGender();
+        this.email = userBean.getEmail();
+        this.id = userBean.getId();
+        this.img = userBean.getImg();
+        this.birthday = userBean.getBirthday();
+        this.vip = userBean.getVip();
+        this.creationDateVIP = userBean.getCreationDateVIP();
+    }
 
-    //Attributi User
-    protected String surname;
-    protected String gender;
-    protected LocalDate birthday;
-    protected LocalDate creationDateVIP;
-    protected boolean vip;
-
+    // Getter
     public String getSurname() {return surname;}
     public String getGender() {return gender;}
 
     public LocalDate getBirthday() { return birthday;}
+
+    // Setter
+    public void setSurname(String surname) throws EmptyInputException {
+        if (surname.equals(""))
+            Trigger.throwEmptyInputException("Surname");
+        this.surname = surname; }
+    public void setGender(String gender) throws GenderException { this.gender = gender; }
+
+    public void setBirthday(LocalDate birthday) throws AdultException, EmptyInputException {
+        if (birthday == null) {
+            Trigger.throwEmptyInputException("Date");
+        } else {
+            if (birthday.until(LocalDate.now(), ChronoUnit.YEARS) < 18)
+                Trigger.throwAdultException();
+            this.birthday = birthday;
+        }
+    }
 
     public boolean getVip() {
         return vip;
@@ -65,8 +87,4 @@ public class UserBean extends ProfileBean {
         this.creationDateVIP = creationDateVIP;
     }
 
-    public void setSurname(String surname) throws EmptyInputException {
-        if (surname.equals(""))
-            Trigger.throwEmptyInputException("Surname");
-        this.surname = surname; }
 }

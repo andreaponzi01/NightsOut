@@ -11,7 +11,7 @@ public class ReviewEngineering {
         //ignored
     }
 
-    public static void endedBookedEvents(Observer observer, int idUser) throws SystemException {
+    public static void eventsToReview(Observer observer, int idUser) throws SystemException {
         GenericBeanList list = new GenericBeanList(observer);
         list.addEventsToList(UserPageAppController.searchEndedEventsByIdUser(idUser));
     }

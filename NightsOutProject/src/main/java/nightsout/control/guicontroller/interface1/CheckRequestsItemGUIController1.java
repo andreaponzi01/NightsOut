@@ -10,7 +10,7 @@ import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.time.format.DateTimeFormatter;
 
@@ -40,8 +40,8 @@ public class CheckRequestsItemGUIController1 {
     private void goToEventPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", this.eventBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", this.eventBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

@@ -7,6 +7,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.LoggedUserBean1;
@@ -14,7 +17,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.SearchEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchPage;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -27,7 +30,6 @@ public class SearchPageGUIController1 implements Observer {
     private ListView listView;
 
     public void setAll() {
-
         LoggedUserBean1.getInstance();
     }
 
@@ -48,34 +50,31 @@ public class SearchPageGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof UserBean1 uBean) {
+        if(ob instanceof UserBean uBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
                 UserItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(uBean);
+                controller.setAll(new UserBean1(uBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);
             }
         }
-
-        if(ob instanceof EventBean1 eBean) {
+        if(ob instanceof EventBean eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                 EventItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(eBean);
+                controller.setAll(new EventBean1(eBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                     MyNotification.createNotification(e);
                 }
-
         }
-
-        if(ob instanceof ClubOwnerBean1 cBean) {
+        if(ob instanceof ClubOwnerBean cBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
                 UserItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(cBean);
+                controller.setAll(new ClubOwnerBean1(cBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);
@@ -85,12 +84,6 @@ public class SearchPageGUIController1 implements Observer {
 
     @FXML
     public void backToUserPage(ActionEvent actionEvent) {
-
-        try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
-        }
+        SwitchPage.replaceScene(actionEvent,"/UserPage2.fxml");
     }
 }

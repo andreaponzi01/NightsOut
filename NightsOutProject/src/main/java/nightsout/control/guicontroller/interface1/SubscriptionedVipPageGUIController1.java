@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.time.format.DateTimeFormatter;
 
@@ -24,7 +24,7 @@ public class SubscriptionedVipPageGUIController1 {
 
     public void backToUserPage(ActionEvent actionEvent) {
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
@@ -34,7 +34,7 @@ public class SubscriptionedVipPageGUIController1 {
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-              ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+              SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
               replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
           } catch (SystemException e) {
             MyNotification.createNotification(e);

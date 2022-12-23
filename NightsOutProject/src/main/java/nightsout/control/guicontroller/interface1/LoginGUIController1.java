@@ -11,8 +11,8 @@ import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
-import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchPage;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.util.Objects;
 
@@ -39,7 +39,7 @@ public class LoginGUIController1 {
 
         try {
             CredentialsBean credentialsBean = new CredentialsBean(textFieldUsername.getText(), passwordField.getText(), type);
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
 
             if (Objects.equals(type, "ClubOwner")) {
                 LoginAppController.loginClubOwner1(credentialsBean);
@@ -54,5 +54,5 @@ public class LoginGUIController1 {
     }
 
     @FXML
-    protected void backToWelcomePage(ActionEvent actionEvent) { ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml"); }
+    protected void backToWelcomePage(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
 }

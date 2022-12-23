@@ -70,8 +70,8 @@ public class ManageRequestsItemGUIController2 {
 
         try {
             UserBean2 userBean = new UserBean2(ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername()));
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/.fxml", userBean);
+            //ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            //replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/.fxml", userBean);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

@@ -3,6 +3,7 @@ package nightsout.control.appcontroller;
 import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
@@ -16,11 +17,11 @@ public class CheckRequestsAppController {
     private CheckRequestsAppController() {
         //ignored
     }
-    public static List<RequestBean> searchRifiutedRequestsByIdUser(int idUser) throws SystemException {
 
-        List<RequestModel> list = RequestDAO.getRifiutedRequestsByIdUser(idUser);
+    public static List<RequestBean> searchRequestsByIdUser(int idUser) throws SystemException {
+
+        List<RequestModel> list = RequestDAO.getRequestsByIdUser(idUser);
         List<RequestBean> listBean = new ArrayList<>();
-
         for(RequestModel rm : list){
             RequestBean bean = new RequestBean(rm);
             listBean.add(bean);
@@ -28,20 +29,7 @@ public class CheckRequestsAppController {
         return listBean;
     }
 
-    public static List<RequestBean> searchPendingRequestsByIdUser(int idUser) throws SystemException {
-
-        List<RequestModel> list = RequestDAO.getPendingRequestsByIdUser(idUser);
-        List<RequestBean> listBean = new ArrayList<>();
-
-        for(RequestModel rm : list){
-            RequestBean bean = new RequestBean(rm);
-            listBean.add(bean);
-        }
-
-    return listBean;
-    }
-
-    public static EventBean searchEventById(int idEvent) throws SystemException {
+    public static EventBean searchEventByIdEvent(int idEvent) throws SystemException {
        EventModel eventModel = EventDAO.getEventByIdEvent(idEvent);
        return new EventBean(eventModel);
     }

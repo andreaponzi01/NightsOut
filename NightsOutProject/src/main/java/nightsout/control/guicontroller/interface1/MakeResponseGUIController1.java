@@ -13,7 +13,7 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class MakeResponseGUIController1 {
     private ClubOwnerBean1 clubOwnerBean1;
@@ -22,7 +22,7 @@ public class MakeResponseGUIController1 {
     @FXML
     private Label labelUsername;
     @FXML
-    private TextArea textFieldResponse;
+    private TextArea textAreaResponse;
     private ReviewBean reviewBean;
 
     public MakeResponseGUIController1() {
@@ -40,14 +40,13 @@ public class MakeResponseGUIController1 {
 
         try {
             ResponseBean responseBean = new ResponseBean();
-            responseBean.setResponse(textFieldResponse.getText());
+            responseBean.setResponse(textAreaResponse.getText());
             responseBean.setIdClubOwner(clubOwnerBean1.getId());
             responseBean.setReview(reviewBean.getIdReview());
 
             MakeResponseAppController.makeResponse(responseBean);
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
-
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/ReviewResponsePage1.fxml");
         } catch (SystemException | EmptyInputException e) {
             MyNotification.createNotification(e);
         }
@@ -56,8 +55,8 @@ public class MakeResponseGUIController1 {
     public void backToReviewsPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneReviewResponse(actionEvent, "/ReviewResponsePage1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/ReviewResponsePage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

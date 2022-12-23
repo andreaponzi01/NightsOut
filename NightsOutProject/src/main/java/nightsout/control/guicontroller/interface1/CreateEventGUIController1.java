@@ -9,12 +9,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.Email;
+import nightsout.utils.engineering.Email;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.exception.myexception.*;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.io.File;
 
@@ -54,7 +54,7 @@ public class CreateEventGUIController1 {
     private void backToWelcomePage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
@@ -78,7 +78,7 @@ public class CreateEventGUIController1 {
 
             CreateEventAppController.createEvent(eventBean1);
 
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage1.fxml");
 
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |

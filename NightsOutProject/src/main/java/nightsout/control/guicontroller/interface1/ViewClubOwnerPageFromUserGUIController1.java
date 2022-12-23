@@ -14,7 +14,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -56,12 +56,11 @@ public class ViewClubOwnerPageFromUserGUIController1 implements Observer {
     public void goToCommunity(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneCommunityFromUser(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
-
     }
 
     @Override

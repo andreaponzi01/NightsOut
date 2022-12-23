@@ -19,5 +19,6 @@ module NightsOutProject {
     opens nightsout.control.guicontroller.interface1 to javafx.fxml ;
     opens nightsout.control.guicontroller.interface2 to javafx.fxml ;
     opens nightsout.control to javafx.fxml;
+    opens nightsout.control.guicontroller.interface2.Item to javafx.fxml;
 
 }

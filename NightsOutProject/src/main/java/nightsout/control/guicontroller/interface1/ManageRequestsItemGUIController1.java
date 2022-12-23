@@ -8,12 +8,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.ManageRequestsAppController;
 import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.bean.UserBean;
-import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.interface1.UserBean1;
+
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.time.format.DateTimeFormatter;
 
@@ -46,8 +47,8 @@ public class ManageRequestsItemGUIController1 {
 
         try {
             ManageRequestsAppController.acceptRequest(manageRequestBean.getIdRequest());
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/ManageRequests1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -58,8 +59,8 @@ public class ManageRequestsItemGUIController1 {
         try {
             //appcontroller
             ManageRequestsAppController.declineRequest(manageRequestBean.getIdRequest());
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneManageRequest(actionEvent, "/ManageRequests1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/ManageRequests1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -68,9 +69,9 @@ public class ManageRequestsItemGUIController1 {
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            UserBean userBean = ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername());
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/ViewUserPageFromCO1.fxml", userBean);
+            UserBean1 userBean = new UserBean1(ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername()));
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO1.fxml", userBean);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

@@ -15,8 +15,8 @@ import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceScene;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchPage;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -49,11 +49,10 @@ public class MenuUserGUIController1  implements Initializable {
 
         try {
             if (userBean1.getVip()) {
-                ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+                SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
                 replacer.switchAndSetSceneSubscription(actionEvent, "/SubscriptionedVipPage1.fxml");
             } else {
-                ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-                replacer.switchAndSetSceneSubscription(actionEvent, "/SubscriptionVipPage1.fxml");
+                SwitchPage.replaceScene(actionEvent,"/SubscriptionVipPage1.fxml");
             }
         } catch (SystemException e) {
             MyNotification.createNotification(e);
@@ -63,8 +62,8 @@ public class MenuUserGUIController1  implements Initializable {
     @FXML
     private void goToSearchPage(ActionEvent actionEvent) {
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneSearch(actionEvent, "/SearchPage1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/SearchPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -73,8 +72,8 @@ public class MenuUserGUIController1  implements Initializable {
     @FXML
     private void goToCheckRequestsPage(ActionEvent actionEvent) {
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneCheckPendingRequests(actionEvent, "/CheckPendingRequestsPage1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/CheckPendingRequestsPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -91,7 +90,7 @@ public class MenuUserGUIController1  implements Initializable {
 
         try {
             if (alert.showAndWait().get() == ButtonType.OK) {
-                ReplaceScene.replaceScene(actionEvent, "/Welcome1.fxml");
+                SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml");
                 MySqlConnection.closeConnection();
                 LoggedUserBean1.deleteInstance();
                 LoggedClubOwnerBean1.deleteInstance();
@@ -110,8 +109,8 @@ public class MenuUserGUIController1  implements Initializable {
     public void goToReviewPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneEndedBookedEvents(actionEvent, "/EndedBookedEventsPage1.fxml");
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetScene(actionEvent, "/EndedBookedEventsPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }
@@ -121,7 +120,7 @@ public class MenuUserGUIController1  implements Initializable {
     public void goToHome(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             replacer.switchAndSetScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);

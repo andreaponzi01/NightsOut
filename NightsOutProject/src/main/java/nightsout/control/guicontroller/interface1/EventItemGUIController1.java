@@ -9,7 +9,7 @@ import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.LoggedClubOwnerBean1;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class EventItemGUIController1 {
 
@@ -27,13 +27,13 @@ public class EventItemGUIController1 {
 
     public void goToEventPage(ActionEvent actionEvent) {
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             String type = LoggedClubOwnerBean1.checkInstanceType();
             if(type.equals("FREE")){
-                replacer.switchAndSetSceneEventUser(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
+                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
             }
             else{
-                replacer.switchAndSetSceneEventCO(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean1);
+                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean1);
             }
         } catch (SystemException e) {
             MyNotification.createNotification(e);

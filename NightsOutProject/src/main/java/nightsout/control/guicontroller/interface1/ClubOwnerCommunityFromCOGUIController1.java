@@ -12,7 +12,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ReviewAndResponseEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -32,8 +32,8 @@ public class ClubOwnerCommunityFromCOGUIController1 implements Observer {
     public void backToViewClubOwnerPage(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            replacer.switchAndSetSceneViewClubOwnerPageFromCO(actionEvent, "/ViewClubOwnerPageFromCO1.fxml", this.clubOwnerBean1);
+            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+            replacer.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromCO1.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

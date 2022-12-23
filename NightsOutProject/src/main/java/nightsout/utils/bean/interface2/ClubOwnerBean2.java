@@ -11,26 +11,22 @@ public class ClubOwnerBean2 extends ClubOwnerBean {
 
     public ClubOwnerBean2() {
     }
+    public ClubOwnerBean2(ClubOwnerModel clubOwnerModel) {
+        super(clubOwnerModel);
+    }
+    public ClubOwnerBean2(ClubOwnerBean clubOwnerBean) {
+        super(clubOwnerBean);
+    }
 
     private static final String FIELD_DISCOUNT = "Discount";
     private static final String FIELD_ADDRESS = "Address";
     private static final String FIELD_CIVIC = "Civic Number";
 
-
     public void setDiscountVIP(int discountVIP) {
         this.discountVIP = discountVIP;
     }
 
-    public ClubOwnerBean2(ClubOwnerModel clubOwnerModel) {
-        this.username = clubOwnerModel.getUsername();
-        this.name = clubOwnerModel.getClubName();
-        this.address = clubOwnerModel.getAddress();
-        this.city = clubOwnerModel.getCity();
-        this.discountVIP = clubOwnerModel.getDiscountVIP();
-        this.email = clubOwnerModel.getEmail();
-        this.id = clubOwnerModel.getId();
-        this.img = clubOwnerModel.getProfileImg();
-    }
+
 
     // Getter
     public String getAddress() {
