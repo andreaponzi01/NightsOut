@@ -10,8 +10,8 @@ import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.control.guicontroller.interface2.Item.EventItemGUIController2;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface2.EventBean2;
+import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.NextEventsEngineering;
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class ViewUserPageFromUserGUIController2 implements Observer {
+public class ViewUserPageFromCOGUIController2 implements Observer {
 
     @FXML
     protected Label labelUsername;
@@ -41,7 +41,7 @@ public class ViewUserPageFromUserGUIController2 implements Observer {
     @FXML
     private ImageView imageViewProfile;
 
-    public void setAll(UserBean userBean) {
+    public void setAll(UserBean2 userBean) {
 
         try {
             this.labelUsername.setText(userBean.getUsername());

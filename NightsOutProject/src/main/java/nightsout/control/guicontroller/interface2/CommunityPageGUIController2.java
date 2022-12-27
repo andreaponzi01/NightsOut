@@ -6,8 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.control.guicontroller.interface1.ResponseItemGUIController1;
-import nightsout.control.guicontroller.interface1.ReviewItemGUIController1;
+import nightsout.control.guicontroller.interface2.Item.ResponseItemGUIController2;
+import nightsout.control.guicontroller.interface2.Item.ReviewItemGUIController2;
 import nightsout.utils.bean.LoggedClubOwnerBean2;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
@@ -33,8 +33,8 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
 
         if (ob instanceof ReviewBean reviewBean) {
             try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewSimpleItem1.fxml")).openStream());
-                ReviewItemGUIController1 controller = fxmlLoader.getController();
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem2.fxml")).openStream());
+                ReviewItemGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(reviewBean);
                 this.listView.getItems().add(pane);
                 ReviewAndResponseEngineering.responseOfOneReview(this, reviewBean.getIdReview());
@@ -45,9 +45,9 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
 
         if(ob instanceof ResponseBean responseBean) {
             try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ResponseItem1.fxml")).openStream());
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ResponseItem2.fxml")).openStream());
 
-                ResponseItemGUIController1 controller = fxmlLoader.getController();
+                ResponseItemGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(responseBean);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {

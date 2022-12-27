@@ -12,6 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.control.guicontroller.MyNotification;
+import nightsout.control.guicontroller.interface2.Item.EventItemGUIController2;
 import nightsout.utils.Email;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedClubOwnerBean2;
@@ -19,8 +20,7 @@ import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CreatedEventsEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
-import nightsout.utils.scene.ReplaceSceneDynamic2;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,7 +78,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
                 MyNotification.createNotification(e);
             }
 
-            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
             replacer.switchAndSetScene(actionEvent, "/ManageEventPage2.fxml");
 
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException e) {
@@ -102,6 +102,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             CreatedEventsEngineering.createdEvents(this, LoggedClubOwnerBean2.getInstance().getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);
+            e.getCause().printStackTrace();
         }
     }
 
@@ -115,7 +116,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
                 EventItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(eBean);
+                controller.setAll(new EventBean2(eBean));
                 this.listViewCreatedEvents.getItems().add(pane);
             }
             catch (IOException e) {

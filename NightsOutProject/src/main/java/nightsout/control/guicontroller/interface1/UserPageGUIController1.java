@@ -8,8 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedUserBean1;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -66,11 +67,11 @@ public class UserPageGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof EventBean1 eBean) {
+        if(ob instanceof EventBean eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                 EventItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(eBean);
+                controller.setAll(new EventBean1(eBean));
                 this.listViewNextEvents.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);

@@ -56,11 +56,11 @@ public class EventParticipantsGUIController2 implements Observer {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
-        if(ob instanceof UserBean2 uBean){
+        if(ob instanceof UserBean uBean){
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
                 UserItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(uBean);
+                controller.setAll(new UserBean2(uBean));
                 this.listViewParticipants.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);

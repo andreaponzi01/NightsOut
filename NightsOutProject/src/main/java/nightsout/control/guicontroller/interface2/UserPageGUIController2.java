@@ -8,6 +8,9 @@ import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.control.guicontroller.interface2.Item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.Item.UserItemGUIController2;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
@@ -42,31 +45,31 @@ public class UserPageGUIController2 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof UserBean2 uBean) {
+        if(ob instanceof UserBean uBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
                 UserItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(uBean);
+                controller.setAll(new UserBean2(uBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);
             }
         }
-        if(ob instanceof EventBean2 eBean) {
+        if(ob instanceof EventBean eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
                 EventItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(eBean);
+                controller.setAll(new EventBean2(eBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);
             }
         }
-        if(ob instanceof ClubOwnerBean2 cBean) {
+        if(ob instanceof ClubOwnerBean cBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
                 UserItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(cBean);
+                controller.setAll(new ClubOwnerBean2(cBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);

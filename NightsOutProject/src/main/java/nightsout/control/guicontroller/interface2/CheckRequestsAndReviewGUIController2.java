@@ -74,18 +74,18 @@ public class CheckRequestsAndReviewGUIController2 implements Observer {
             }
         }//fine requestBean
 
-        if(ob instanceof EventBean2 eBean) {
+        if(ob instanceof EventBean eBean) {
             try {
                 reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
                 if(reviewBean != null){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
                     EventItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(eBean);
+                    controller.setAll(new EventBean2(eBean));
                     this.listViewToReview.getItems().add(pane);
                 } else {
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem2.fxml")).openStream());
                     EventReviewItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(eBean);
+                    controller.setAll(new EventBean2(eBean));
                     this.listViewToReview.getItems().add(pane);
                 }
             } catch (SystemException | IOException e) {

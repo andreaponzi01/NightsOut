@@ -18,6 +18,7 @@ import nightsout.control.appcontroller.EventPageDecoratorAppController;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.bean.RequestBean;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
@@ -152,12 +153,12 @@ public class EventPageDecoratorUserGUIController1 implements Observer, Initializ
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof UserBean1 uBean){
+        if(ob instanceof UserBean uBean){
 
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
                 UserItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(uBean);
+                controller.setAll(new UserBean1(uBean));
                 this.listViewUsers.getItems().add(pane);
             } catch (IOException e) {
                 MyNotification.createNotification(e);

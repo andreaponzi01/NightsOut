@@ -7,9 +7,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EndedBookedEventsAppController;
 import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -50,18 +51,18 @@ public class EndedBookedEventsGUIController1 implements Observer {
         Pane pane = null;
         ReviewBean reviewBean=null;
 
-        if(ob instanceof EventBean1 eBean) {
+        if(ob instanceof EventBean eBean) {
             try {
                 reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean1.getId(), eBean.getIdEvent());
                 if(reviewBean != null){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                     EventItemGUIController1 controller = fxmlLoader.getController();
-                    controller.setAll(eBean);
+                    controller.setAll(new EventBean1(eBean));
                     this.listViewEvents.getItems().add(pane);
                 } else {
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem1.fxml")).openStream());
                     EventReviewItemGUIController1 controller = fxmlLoader.getController();
-                    controller.setAll(eBean);
+                    controller.setAll(new EventBean1(eBean));
                     this.listViewEvents.getItems().add(pane);
                 }
             } catch (SystemException | IOException e) {

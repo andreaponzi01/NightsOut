@@ -10,11 +10,12 @@ import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.control.guicontroller.interface2.Item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.Item.ResponseItemGUIController2;
-import nightsout.control.guicontroller.interface2.Item.ReviewItemToResponseGUIController2;
+import nightsout.control.guicontroller.interface2.Item.ReviewItemGUIController2;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -24,7 +25,7 @@ import nightsout.utils.observer.engineering.ReviewAndResponseEngineering;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ViewCOPageFromUserGUIController2 implements Observer {
+public class ViewCOPageFromCOGUIController2 implements Observer {
 
     @FXML
     private Label labelName;
@@ -47,7 +48,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
 
     private ClubOwnerBean clubOwnerBean;
 
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void setAll(ClubOwnerBean2 clubOwnerBean) throws SystemException {
 
         this.clubOwnerBean = clubOwnerBean;
         this.labelName.setText(clubOwnerBean.getName());
@@ -80,7 +81,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
         if (ob instanceof ReviewBean reviewBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem2.fxml")).openStream());
-                ReviewItemToResponseGUIController2 controller = fxmlLoader.getController();
+                ReviewItemGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(reviewBean);
                 this.listViewCommunity.getItems().add(pane);
                 ReviewAndResponseEngineering.responseOfOneReview(this, reviewBean.getIdReview());

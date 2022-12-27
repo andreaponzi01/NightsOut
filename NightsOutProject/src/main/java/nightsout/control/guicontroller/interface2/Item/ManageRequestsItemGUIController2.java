@@ -1,4 +1,4 @@
-package nightsout.control.guicontroller.interface2;
+package nightsout.control.guicontroller.interface2.Item;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +13,7 @@ import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.ReplaceSceneDynamic1;
-import nightsout.utils.scene.ReplaceSceneDynamic2;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
 
 import java.time.format.DateTimeFormatter;
 
@@ -47,7 +46,7 @@ public class ManageRequestsItemGUIController2 {
 
         try {
             ManageRequestsAppController.acceptRequest(manageRequestBean.getIdRequest());
-            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
@@ -59,7 +58,7 @@ public class ManageRequestsItemGUIController2 {
         try {
             //appcontroller
             ManageRequestsAppController.declineRequest(manageRequestBean.getIdRequest());
-            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
             replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
@@ -70,8 +69,8 @@ public class ManageRequestsItemGUIController2 {
 
         try {
             UserBean2 userBean = new UserBean2(ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername()));
-            //ReplaceSceneDynamic1 replacer = new ReplaceSceneDynamic1();
-            //replacer.switchAndSetSceneViewUserPageFromCO(actionEvent, "/.fxml", userBean);
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
+            replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

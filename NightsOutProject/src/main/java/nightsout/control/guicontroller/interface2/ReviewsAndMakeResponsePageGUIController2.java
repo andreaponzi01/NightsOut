@@ -7,12 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
+import nightsout.control.guicontroller.interface2.Item.ReviewItemGUIController2;
 import nightsout.utils.bean.LoggedClubOwnerBean2;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ResponseEngineering;
-import nightsout.utils.scene.ReplaceSceneDynamic2;
+import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +45,7 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
     public void goToCommunity(ActionEvent actionEvent) {
 
         try {
-            ReplaceSceneDynamic2 replacer = new ReplaceSceneDynamic2();
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
             replacer.switchAndSetScene(actionEvent, "/CommunityPage2.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);

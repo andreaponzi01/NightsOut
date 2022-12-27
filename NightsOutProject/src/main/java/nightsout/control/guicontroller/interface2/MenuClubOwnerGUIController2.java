@@ -15,9 +15,8 @@ import nightsout.utils.bean.LoggedClubOwnerBean2;
 import nightsout.utils.bean.LoggedUserBean1;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
-import nightsout.utils.scene.switchPage.SwitchPage;
 import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
+import nightsout.utils.scene.switchPage.SwitchPage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -66,10 +65,13 @@ public class MenuClubOwnerGUIController2 implements Initializable {
     }
 
     @FXML
-    public void goToManageEventsPage(ActionEvent actionEvent) throws SystemException {
-
-        SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-        replacer.switchAndSetScene(actionEvent, "/ManageEventPage2.fxml");
+    public void goToManageEventsPage(ActionEvent actionEvent) {
+        try {
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
+            replacer.switchAndSetScene(actionEvent, "/ManageEventPage2.fxml");
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
     }
 
     @FXML
