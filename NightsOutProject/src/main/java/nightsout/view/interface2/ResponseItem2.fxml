@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="105.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.Item.ResponseItemGUIController2">
+   <children>
+      <AnchorPane layoutX="324.0" layoutY="-1.0" prefHeight="99.0" prefWidth="375.0" style="-fx-background-color: #3399ff; -fx-background-radius: 50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="labelResponse" alignment="TOP_LEFT" layoutX="17.0" layoutY="43.0" prefHeight="62.0" prefWidth="332.0" text="Comment" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelName" layoutX="17.0" layoutY="14.0" prefHeight="27.0" prefWidth="236.0" text="Your Response:" textFill="#200f54">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

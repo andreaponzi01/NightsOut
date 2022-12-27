@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.CheckRequestsAndReviewGUIController2">
+   <children>
+      <fx:include fx:id="menu" source="MenuUser2.fxml" />
+      <AnchorPane prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="107.0" prefHeight="9.0" prefWidth="575.0" text="CheckRequests" textFill="#ffeecc" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Arial Bold" size="40.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listViewNextEvents" layoutX="5.0" layoutY="58.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="58.0">
+               <effect>
+                  <DropShadow />
+               </effect></ListView>
+            <ListView fx:id="listViewDeclined" layoutX="390.0" layoutY="58.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="347.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="58.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ListView>
+            <ListView fx:id="listViewToReview" layoutX="5.0" layoutY="355.0" prefHeight="283.0" prefWidth="781.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ListView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="287.0" prefHeight="0.0" prefWidth="575.0" text="Ended Booked Event" textFill="#ffeecc">
+               <font>
+                  <Font name="Arial Bold" size="40.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listViewPending" layoutX="268.0" layoutY="58.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="58.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ListView>
+         </children>
+      </AnchorPane>
+      <Line endX="43.165618896484375" fill="BLACK" layoutX="124.58649444580078" layoutY="328.0" startX="-48.920875549316406" strokeWidth="2.0" AnchorPane.leftAnchor="74.66561889648438" AnchorPane.rightAnchor="871.2478866577148" AnchorPane.topAnchor="327.0" />
+   </children>
+</AnchorPane>

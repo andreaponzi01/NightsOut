@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.SubscriptionVipPageGUIController2">
+   <children>
+      <fx:include source="MenuUser2.fxml" />
+      <AnchorPane layoutX="417.0" layoutY="144.0" prefHeight="362.0" prefWidth="456.0" style="-fx-background-color: white; -fx-border-width: 5; -fx-border-color: black; -fx-background-radius: 28;" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="144.0">
+         <children>
+            <Button layoutX="85.0" layoutY="102.0" onAction="#confirmSubscription" prefHeight="67.0" prefWidth="270.0" style="-fx-background-color: #2a009b; -fx-background-radius: 100;" text="Confirm" textFill="WHITE" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="174.0" prefHeight="40.0" prefWidth="31.0" text="Or" textAlignment="CENTER" textFill="#cdc6c6" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="175.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="85.0" layoutY="219.0" onAction="#backToUserPage" prefHeight="67.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: #2a009b; -fx-border-width: 1;" text="Cancel" textFill="#2a009b" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+               <font>
+                  <Font name="Arial Bold" size="30.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="63.0" layoutY="20.0" prefHeight="56.0" prefWidth="321.0" text="Are You Sure?" textFill="#200f54" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="57.0">
+               <font>
+                  <Font name="Arial Bold" size="42.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

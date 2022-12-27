@@ -13,29 +13,29 @@ public class LoggedUserBean2 extends UserBean2 {
         super(um);
     }
 
-    private static LoggedUserBean2 loggedUserBeanInstance;
+    private static LoggedUserBean2 loggedUserBean2Instance;
 
     public static LoggedUserBean2 getInstance() {
 
-        if (loggedUserBeanInstance == null)
-            loggedUserBeanInstance = new LoggedUserBean2();
-        return loggedUserBeanInstance;
+        if (loggedUserBean2Instance == null)
+            loggedUserBean2Instance = new LoggedUserBean2();
+        return loggedUserBean2Instance;
     }
 
     public static LoggedUserBean2 getInstance(UserModel um) {
-        if (loggedUserBeanInstance == null)
-            loggedUserBeanInstance = new LoggedUserBean2(um);
-        return loggedUserBeanInstance;
+        if (loggedUserBean2Instance == null)
+            loggedUserBean2Instance = new LoggedUserBean2(um);
+        return loggedUserBean2Instance;
     }
 
     public static void deleteInstance() {
-        loggedUserBeanInstance = null;
+        loggedUserBean2Instance = null;
     }
 
     public static void updateInstance(UserModel um) {
 
-        loggedUserBeanInstance = null;
-        loggedUserBeanInstance = new LoggedUserBean2(um);
+        loggedUserBean2Instance = null;
+        loggedUserBean2Instance = new LoggedUserBean2(um);
 
     }
 }

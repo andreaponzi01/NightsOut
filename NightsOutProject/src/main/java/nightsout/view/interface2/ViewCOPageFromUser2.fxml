@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.ViewCOPageFromUserGUIController2">
+   <children>
+      <fx:include source="MenuUser2.fxml" />
+      <AnchorPane layoutX="40.0" layoutY="66.0" prefHeight="555.0" prefWidth="960.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label fx:id="labelDiscountVip" layoutX="331.0" layoutY="174.0" prefHeight="26.0" prefWidth="127.0" text="discountvip" textFill="WHITE" AnchorPane.leftAnchor="331.0" AnchorPane.topAnchor="174.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listViewCommunity" layoutX="390.0" layoutY="151.0" prefHeight="176.0" prefWidth="600.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+               <effect>
+                  <DropShadow />
+               </effect></ListView>
+            <Label alignment="CENTER" layoutX="94.0" layoutY="414.0" prefHeight="33.0" prefWidth="601.0" text="Community" textFill="#2e0095" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="95.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelName" layoutX="280.0" layoutY="109.0" prefHeight="33.0" prefWidth="201.0" text="Name" textFill="WHITE" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="109.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelAddress" layoutX="578.0" layoutY="139.0" prefHeight="36.0" prefWidth="188.0" text="Address" textFill="WHITE" AnchorPane.leftAnchor="578.0" AnchorPane.topAnchor="139.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelCity" layoutX="567.0" layoutY="109.0" prefHeight="33.0" prefWidth="136.0" text="city" textFill="WHITE" AnchorPane.leftAnchor="567.0" AnchorPane.topAnchor="109.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelEmail" layoutX="280.0" layoutY="139.0" prefHeight="36.0" prefWidth="232.0" text="email" textFill="WHITE" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="139.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="220.0" layoutY="109.0" prefHeight="33.0" prefWidth="95.0" text="Name:" textFill="WHITE" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="109.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="508.0" layoutY="139.0" prefHeight="36.0" prefWidth="130.0" text="Address:" textFill="WHITE" AnchorPane.leftAnchor="508.0" AnchorPane.topAnchor="139.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="508.0" layoutY="109.0" prefHeight="33.0" prefWidth="130.0" text="City:" textFill="WHITE" AnchorPane.leftAnchor="508.0" AnchorPane.topAnchor="109.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="457.0" layoutY="155.0" prefHeight="36.0" prefWidth="130.0" text="Email:" textFill="WHITE" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="139.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="220.0" layoutY="171.0" prefHeight="36.0" prefWidth="177.0" text="Discount VIP:" textFill="WHITE" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="169.0">
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageViewProfile" fitHeight="190.0" fitWidth="190.0" layoutX="22.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="12.0" />
+            <Label fx:id="labelUsername" alignment="CENTER" layoutX="300.0" layoutY="1.0" prefHeight="69.0" prefWidth="493.0" text="Username" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="1.0">
+               <font>
+                  <Font name="Arial Bold" size="37.0" />
+               </font>
+            </Label>
+            <Line endX="582.8807373046875" endY="-3.0517578125E-5" layoutX="-540.8807373046875" layoutY="212.0" startX="714.6856689453125" startY="-3.0517578125E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="210.99996948242188" />
+            <Label alignment="CENTER" layoutX="220.0" layoutY="69.0" prefHeight="46.0" prefWidth="163.0" text="Information" textFill="#2e0095" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="69.0">
+               <font>
+                  <Font name="Arial Bold" size="29.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listViewCreatedEvents" layoutX="5.0" layoutY="237.0" prefHeight="176.0" prefWidth="351.0" style="-fx-border-color: black;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ListView>
+            <Line endX="582.8807373046875" endY="-3.0517578125E-5" layoutX="-252.39013671875" layoutY="62.0" startX="714.6856689453125" startY="-3.0517578125E-5" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="329.4906005859375" AnchorPane.rightAnchor="326.7044677734375" AnchorPane.topAnchor="60.999969482421875" />
+            <Label alignment="CENTER" layoutX="94.0" layoutY="203.0" prefHeight="29.0" prefWidth="601.0" text="Created Events" textFill="#2e0095" AnchorPane.leftAnchor="94.0" AnchorPane.rightAnchor="95.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <Line endX="714.6856689453125" endY="-152.0" layoutX="-508.0" layoutY="190.0" startX="714.6856689453125" startY="-18.0" stroke="WHITE" strokeWidth="2.0" AnchorPane.leftAnchor="205.6856689453125" AnchorPane.topAnchor="37.0" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
