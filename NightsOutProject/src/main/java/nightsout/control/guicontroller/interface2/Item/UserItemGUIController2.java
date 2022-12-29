@@ -48,7 +48,7 @@ public class UserItemGUIController2 {
             if (clubOwnerBean != null) {
                 replacer.switchAndSetSceneCO(actionEvent, "/ViewCOPageFromUser2.fxml", clubOwnerBean);
             } else {
-                if (type.equals("FREE")) {
+                if (type.equals("FREE")){
                     replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser2.fxml", userBean);
                 } else {
                     replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);

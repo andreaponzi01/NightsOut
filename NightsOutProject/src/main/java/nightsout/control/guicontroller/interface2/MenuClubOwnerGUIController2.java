@@ -59,9 +59,9 @@ public class MenuClubOwnerGUIController2 implements Initializable {
     }
 
     @FXML
-    public void goToHome(ActionEvent actionEvent) throws SystemException {
-        SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-        replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage2.fxml");
+    public void goToHome(ActionEvent actionEvent){
+
+        SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
     }
 
     @FXML

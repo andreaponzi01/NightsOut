@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.CheckRequestsAndReviewGUIController2">
    <children>
-      <fx:include fx:id="menu" source="MenuUser2.fxml" />
+      <fx:include source="MenuUser2.fxml" />
       <AnchorPane prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="107.0" prefHeight="9.0" prefWidth="575.0" text="CheckRequests" textFill="#ffeecc" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">

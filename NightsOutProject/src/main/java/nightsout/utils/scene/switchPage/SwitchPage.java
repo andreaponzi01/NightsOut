@@ -32,6 +32,7 @@ public class SwitchPage {
             } catch (SystemException ex) {
                 MyNotification.createNotification(ex);
             }
+            e.printStackTrace();
         }
         stage.setScene(scene);
         stage.show();

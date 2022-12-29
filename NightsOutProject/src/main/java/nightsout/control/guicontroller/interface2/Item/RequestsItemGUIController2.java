@@ -52,5 +52,4 @@ public class RequestsItemGUIController2 {
             MyNotification.createNotification(e);
         }
     }
-
 }

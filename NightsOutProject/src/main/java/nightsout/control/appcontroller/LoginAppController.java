@@ -41,7 +41,7 @@ public class LoginAppController {
             LoggedUserBean2.getInstance(userModel);
         } else {
             Trigger.throwWrongCredentials();
-            LoggedUserBean1.deleteInstance();
+            LoggedUserBean2.deleteInstance();
         }
     }
 
@@ -69,7 +69,7 @@ public class LoginAppController {
             LoggedClubOwnerBean2.getInstance(clubOwnerModel);
         } else {
             Trigger.throwWrongCredentials();
-            LoggedClubOwnerBean1.deleteInstance();
+            LoggedClubOwnerBean2.deleteInstance();
         }
     }
 }

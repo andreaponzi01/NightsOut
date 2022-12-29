@@ -20,16 +20,16 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class CheckPendingRequestsGUIController1 implements Observer {
-    private UserBean1 userBean1;
+    private UserBean1 userBean;
 
     @FXML
     ListView listViewPendingRequests;
 
     public void setAll() {
 
-        this.userBean1 = LoggedUserBean1.getInstance();
+        this.userBean = LoggedUserBean1.getInstance();
         try {
-            CheckRequestsEngineering.checkRequests(this, this.userBean1.getId());
+            CheckRequestsEngineering.checkRequests(this, this.userBean.getId());
         } catch (SystemException e) {
             MyNotification.createNotification(e);
         }

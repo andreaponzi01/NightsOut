@@ -2,6 +2,7 @@ package nightsout.control.guicontroller.interface2;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.MyNotification;
@@ -13,34 +14,20 @@ import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.ManageRequestsEngineering;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class ClubOwnerPageGUIController2 implements Observer {
+public class ClubOwnerPageGUIController2 implements Observer, Initializable {
 
     @FXML
     private ListView listViewPendingRequests;
-
-    public void setAll() throws SystemException {
-        this.manageRequests();
-    }
-
-    @FXML
-    private void manageRequests() {
-
-        try {
-            this.listViewPendingRequests.getItems().clear();
-            ManageRequestsEngineering.manageRequests(this, LoggedClubOwnerBean2.getInstance().getId());
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
-        }
-    }
 
     @Override
     public void update(Object ob) {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
-
         if(ob instanceof ManageRequestBean mRBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ManageRequestsItem2.fxml")).openStream());
@@ -53,7 +40,15 @@ public class ClubOwnerPageGUIController2 implements Observer {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        try {
+            ManageRequestsEngineering.manageRequests(this, LoggedClubOwnerBean2.getInstance().getId());
+        } catch (SystemException e) {
+            MyNotification.createNotification(e);
+        }
+    }
 }
 
 

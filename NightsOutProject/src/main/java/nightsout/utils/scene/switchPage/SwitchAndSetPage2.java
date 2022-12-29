@@ -22,12 +22,11 @@ public class SwitchAndSetPage2 {
             if (fxml.equals("/CheckRequestsAndReviewPage2.fxml")) {
                 InitCheckRequestsAndReviewPage2.setter(loader.getController());
             }
-            if (fxml.equals("/ClubOwnerPage2.fxml")) {
-                InitClubOwnerPage2.setter(loader.getController());
-            }
+
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
+            e.printStackTrace();
         }
     }
 

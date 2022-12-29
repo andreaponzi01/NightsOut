@@ -31,7 +31,7 @@ public class LoginUserGUIController2 {
         String type = "Free";
         try {
             CredentialsBean credentialsBean = new CredentialsBean(textFieldUsername.getText(), passwordField.getText(), type);
-            LoginAppController.loginUser1(credentialsBean);
+            LoginAppController.loginUser2(credentialsBean);
             SwitchPage.replaceScene(ae,"/UserPage2.fxml");
         } catch (SystemException | WrongCredentialsException e) {
             MyNotification.createNotification(e);

@@ -336,8 +336,8 @@ public class Query {
 
         try (PreparedStatement preparedStatement = MySqlConnection.connect().prepareStatement(query)) {
             list = new ArrayList<>();
-            preparedStatement.setInt(1, idUser);
 
+            preparedStatement.setInt(1, idUser);
             ResultSet rs = preparedStatement.executeQuery();
             if (!rs.next()) {
                 return list;
@@ -760,14 +760,12 @@ public class Query {
             File file = new File(filePath);
             ConverterToFile.fromInputStreamToFile(inputStream, file);
             eventModel.setImg(file);
-
-
             return eventModel;
+
         } catch (SQLException e) {
             ExceptionHandler.handleException(e);
         }
         return eventModel;
-
     }
 
     public static ResponseModel searchResponseByIdReview(int idReview) throws SystemException {

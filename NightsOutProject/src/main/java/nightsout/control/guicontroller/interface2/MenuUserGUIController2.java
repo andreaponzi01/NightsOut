@@ -12,8 +12,10 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.bean.LoggedClubOwnerBean1;
-import nightsout.utils.bean.LoggedUserBean1;
+import nightsout.utils.bean.LoggedUserBean2;
+import nightsout.utils.bean.LoggedUserBean2;
 import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
@@ -30,7 +32,7 @@ import java.util.ResourceBundle;
 
 public class MenuUserGUIController2 implements Initializable {
 
-    private UserBean1 userBean;
+    private UserBean2 userBean;
     @FXML
     protected Button buttonVip;
     @FXML
@@ -50,9 +52,9 @@ public class MenuUserGUIController2 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedUserBean1.getInstance().getImg().toURI().toString());
+        this.userBean = LoggedUserBean2.getInstance();
+        Image img = new Image(userBean.getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
-        this.userBean = LoggedUserBean1.getInstance();
         this.labelUsername.setText(userBean.getUsername());
         this.labelCognome.setText(userBean.getSurname());
         this.labelEmail.setText(userBean.getEmail());
@@ -63,6 +65,7 @@ public class MenuUserGUIController2 implements Initializable {
         }
         else
             this.buttonVip.setText("Diventa un VIP!");
+
     }
 
     @FXML
@@ -80,6 +83,7 @@ public class MenuUserGUIController2 implements Initializable {
             replacer.switchAndSetScene(actionEvent,"/CheckRequestsAndReviewPage2.fxml");
         } catch (SystemException e) {
             MyNotification.createNotification(e);
+            e.printStackTrace();
         }
     }
 
@@ -94,7 +98,7 @@ public class MenuUserGUIController2 implements Initializable {
             if (alert.showAndWait().get() == ButtonType.OK) {
                 SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");
                 MySqlConnection.closeConnection();
-                LoggedUserBean1.deleteInstance();
+                LoggedUserBean2.deleteInstance();
                 LoggedClubOwnerBean1.deleteInstance();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
@@ -106,7 +110,6 @@ public class MenuUserGUIController2 implements Initializable {
         }
     }
     @FXML
-    public void goToHome(ActionEvent actionEvent) {
-        SwitchPage.replaceScene(actionEvent,"/UserPage2.fxml");
+    public void goToHome(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/UserPage2.fxml");
     }
 }

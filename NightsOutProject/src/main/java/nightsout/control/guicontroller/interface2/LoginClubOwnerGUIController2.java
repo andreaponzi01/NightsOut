@@ -30,9 +30,8 @@ public class LoginClubOwnerGUIController2 {
         String type = "ClubOwner";
         try {
             CredentialsBean credentialsBean = new CredentialsBean(textFieldUsername.getText(), passwordField.getText(), type);
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
             LoginAppController.loginClubOwner2(credentialsBean);
-            replacer.switchAndSetScene(ae, "/ClubOwnerPage2.fxml");
+            SwitchPage.replaceScene(ae,"/ClubOwnerPage2.fxml");
         } catch (SystemException | WrongCredentialsException e) {
             MyNotification.createNotification(e);
         }

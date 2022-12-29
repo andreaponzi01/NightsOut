@@ -36,6 +36,5 @@ public class LoggedUserBean2 extends UserBean2 {
 
         loggedUserBean2Instance = null;
         loggedUserBean2Instance = new LoggedUserBean2(um);
-
     }
 }

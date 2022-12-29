@@ -11,6 +11,7 @@ import nightsout.control.guicontroller.interface2.Item.EventReviewItemGUIControl
 import nightsout.control.guicontroller.interface2.Item.RequestsItemGUIController2;
 import nightsout.utils.bean.*;
 import nightsout.utils.bean.interface2.EventBean2;
+import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.engineering.CheckRequestsEngineering;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class CheckRequestsAndReviewGUIController2 implements Observer {
-    private UserBean userBean;
+    private UserBean2 userBean;
     @FXML
     ListView listViewToReview;
     @FXML
@@ -31,10 +32,10 @@ public class CheckRequestsAndReviewGUIController2 implements Observer {
     ListView listViewPending;
 
     public void setAll() throws SystemException {
-
         this.userBean = LoggedUserBean2.getInstance();
         CheckRequestsEngineering.checkRequests(this, this.userBean.getId());
         ReviewEngineering.eventsToReview(this, userBean.getId());
+        System.out.println("\n"+LoggedUserBean2.getInstance().getId());
     }
 
     @Override
@@ -44,6 +45,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer {
         Pane pane = null;
         ReviewBean reviewBean=null;
         if (ob instanceof RequestBean rBean) {
+            System.out.println("\n"+rBean.getStatus());
             if(Objects.equals(rBean.getStatus(), "accepted")){
                 try {
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem2.fxml")).openStream());
@@ -58,6 +60,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer {
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem2.fxml")).openStream());
                     RequestsItemGUIController2 controller = fxmlLoader.getController();
                     controller.setAll(rBean);
+                    System.out.println("\n"+rBean.getIdEvent());
                     this.listViewDeclined.getItems().add(pane);
                 } catch (SystemException | IOException e) {
                     MyNotification.createNotification(e);

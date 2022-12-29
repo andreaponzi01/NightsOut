@@ -18,9 +18,6 @@ import java.util.Date;
 
 public class UserBean2 extends UserBean {
 
-
-
-
     public UserBean2(){
     }
 
