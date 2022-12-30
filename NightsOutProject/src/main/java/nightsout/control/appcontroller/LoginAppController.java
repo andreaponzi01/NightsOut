@@ -4,6 +4,10 @@ import nightsout.model.ClubOwnerModel;
 import nightsout.model.CredentialsModel;
 import nightsout.model.UserModel;
 import nightsout.utils.bean.*;
+import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
+import nightsout.utils.bean.interface1.LoggedUserBean1;
+import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
+import nightsout.utils.bean.interface2.LoggedUserBean2;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.LoginDAO;
 import nightsout.utils.dao.UserDAO;
@@ -16,11 +20,9 @@ public class LoginAppController {
     private LoginAppController() {
         //ignored
     }
-
     public static void loginUser1(CredentialsBean credentialsBean) throws WrongCredentialsException, SystemException {
 
         UserModel userModel = null;
-
         CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
         if (LoginDAO.checkIsRegistered(credentialsModel)) {
             userModel = UserDAO.getUserByUsername(credentialsBean.getUsername());
@@ -30,11 +32,9 @@ public class LoginAppController {
             LoggedUserBean1.deleteInstance();
         }
     }
-
     public static void loginUser2(CredentialsBean credentialsBean) throws WrongCredentialsException, SystemException {
 
         UserModel userModel = null;
-
         CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
         if (LoginDAO.checkIsRegistered(credentialsModel)) {
             userModel = UserDAO.getUserByUsername(credentialsBean.getUsername());
@@ -44,11 +44,9 @@ public class LoginAppController {
             LoggedUserBean2.deleteInstance();
         }
     }
-
     public static void loginClubOwner1(CredentialsBean credentialsBean) throws SystemException, WrongCredentialsException {
 
         ClubOwnerModel clubOwnerModel = null;
-
         CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
         if (LoginDAO.checkIsRegistered(credentialsModel)) {
             clubOwnerModel = ClubOwnerDAO.getClubOwnerByUsername(credentialsBean.getUsername());
@@ -58,11 +56,9 @@ public class LoginAppController {
             LoggedClubOwnerBean1.deleteInstance();
         }
     }
-
     public static void loginClubOwner2(CredentialsBean credentialsBean) throws SystemException, WrongCredentialsException {
 
         ClubOwnerModel clubOwnerModel = null;
-
         CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
         if (LoginDAO.checkIsRegistered(credentialsModel)) {
             clubOwnerModel = ClubOwnerDAO.getClubOwnerByUsername(credentialsBean.getUsername());

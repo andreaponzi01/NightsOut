@@ -6,14 +6,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import nightsout.control.appcontroller.CreateEventReviewAppController;
-import nightsout.control.guicontroller.MyNotification;
+import nightsout.control.appcontroller.MakeReviewAppController;
+import nightsout.utils.bean.interface2.LoggedUserBean2;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.*;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
+import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
+import nightsout.utils.scene.switchpage.SwitchPage;
 
 public class EventReviewItemGUIController2 {
 
@@ -40,7 +41,7 @@ public class EventReviewItemGUIController2 {
           SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
           replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
       } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
       }
     }
     public void sendReview(ActionEvent actionEvent) {
@@ -50,11 +51,10 @@ public class EventReviewItemGUIController2 {
             reviewBean.setComment(textAreaReview.getText());
             reviewBean.setIdUser(LoggedUserBean2.getInstance().getId());
             reviewBean.setIdEvent(eventBean.getIdEvent());
-            CreateEventReviewAppController.createEventReview(reviewBean);
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetScene(actionEvent, "/UserPage2.fxml");
+            MakeReviewAppController.createEventReview(reviewBean);
+            SwitchPage.replaceScene(actionEvent,"/UserPage2.fxml");
         } catch (SystemException | EmptyInputException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
     }
 }

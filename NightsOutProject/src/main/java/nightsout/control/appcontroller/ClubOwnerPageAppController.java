@@ -9,21 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClubOwnerPageAppController {
+
     private ClubOwnerPageAppController(){
         //ignore
     }
-
     public static List<EventBean> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
 
         List<EventModel> list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
         List<EventBean>  listBean = new ArrayList<>();
-
         for(EventModel eventModel : list){
             EventBean bean = new EventBean(eventModel);
             listBean.add(bean);
         }
         return listBean;
-
     }
-
 }

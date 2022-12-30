@@ -5,13 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
-import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchPage.SwitchAndSetPage1;
 
 public class ReviewItemToResponseGUIController2 {
 
@@ -35,7 +33,7 @@ public class ReviewItemToResponseGUIController2 {
         try {
             this.userBean = new UserBean2(EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser()));
         } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
         EventBean eventBean = EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
         this.buttonUsername.setText(userBean.getUsername());

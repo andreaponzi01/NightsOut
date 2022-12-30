@@ -12,14 +12,9 @@ public class MakeResponseAppController {
     private MakeResponseAppController() {
         //ignored
     }
-
     public static void makeResponse(ResponseBean responseBean) throws SystemException {
         ResponseModel responseModel = new ResponseModel(responseBean);
         ResponseDAO.createResponse(responseModel);
     }
-
-    public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException {
-        return new EventBean(EventDAO.getEventByIdEvent(idEvent));
-
-    }
+    public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException {return new EventBean(EventDAO.getEventByIdEvent(idEvent));    }
 }

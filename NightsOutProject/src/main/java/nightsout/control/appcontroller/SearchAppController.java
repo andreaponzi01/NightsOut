@@ -16,8 +16,9 @@ import java.util.List;
 
 public class SearchAppController {
 
-    private SearchAppController() {}
-
+    private SearchAppController() {
+        //ignored
+    }
     public static List<UserBean> searchUsersByUsername(String input) throws SystemException {
 
         List<UserModel> list = null;
@@ -32,14 +33,12 @@ public class SearchAppController {
         }
         return listBean;
     }
-
     public static List<EventBean> searchEventsByName(String input) throws SystemException {
 
         List<EventModel> list = null;
         List<EventBean> listBean = null;
         list = EventDAO.getEventsByName(input);
         listBean = new ArrayList<>();
-
         if (list != null) {
             for (EventModel eventModel : list) {
                 EventBean bean = new EventBean(eventModel);
@@ -48,12 +47,10 @@ public class SearchAppController {
         }
         return listBean;
     }
-
     public static List<ClubOwnerBean> searchClubOwnersByUsername(String input) throws SystemException {
 
         List<ClubOwnerModel> list = ClubOwnerDAO.getClubOwnersByUsername(input);
         List<ClubOwnerBean> listBean = new ArrayList<>();
-
         if (list != null) {
             for (ClubOwnerModel clubOwnerModel : list) {
                 ClubOwnerBean bean = new ClubOwnerBean(clubOwnerModel);

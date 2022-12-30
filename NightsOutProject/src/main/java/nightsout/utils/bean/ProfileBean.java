@@ -14,14 +14,11 @@ public abstract class ProfileBean implements GenericBean {
 
     // Attributi comuni a User e ClubOwner
     protected String username;
-
     // Per gli Users rappresenta il nome (name), mentre per i ClubOwners rappresenta il nome del club (clubName)
     protected String name;
     protected File img;
     protected int id;
     protected String email;
-
-
 
     // Getter
     public String getUsername() {return username;}
@@ -40,7 +37,6 @@ public abstract class ProfileBean implements GenericBean {
             Trigger.throwEmptyInputException("Name");
         this.name = name;
     }
-
 
     public void setEmail(String email) throws EmptyInputException, EmailNotValidException {
         if(email.isEmpty())
@@ -68,7 +64,6 @@ public abstract class ProfileBean implements GenericBean {
         } else {
             this.username = username;
         }
-
     }
     public void setId(int id) {
         this.id = id;

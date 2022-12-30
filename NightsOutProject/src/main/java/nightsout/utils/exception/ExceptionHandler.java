@@ -1,6 +1,5 @@
 package nightsout.utils.exception;
 
-import nightsout.control.guicontroller.MyNotification;
 import nightsout.utils.exception.myexception.SystemException;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class ExceptionHandler {
         } else if (e instanceof IOException) {
             SystemException exception = new SystemException();
             exception.initCause(e);
-            MyNotification.createNotification(exception);
+            CreateNotification.createNotification(exception);
         } else {
             SystemException exception = new SystemException();
             exception.initCause(e);

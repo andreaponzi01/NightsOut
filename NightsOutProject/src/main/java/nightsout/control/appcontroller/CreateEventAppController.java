@@ -11,7 +11,6 @@ public class CreateEventAppController {
         //ignored
     }
     public static void createEvent(EventBean eventBean) throws SystemException {
-
         EventModel eventModel = new EventModel(eventBean);
         EventDAO.createEvent(eventModel);
     }

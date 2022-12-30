@@ -6,14 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.SystemException;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-
-
 public class Main extends Application {
 
     @Override
@@ -32,7 +30,7 @@ public class Main extends Application {
                     } catch (IOException e) {
                         SystemException ex = new SystemException();
                         ex.initCause(e);
-                        MyNotification.createNotification(ex);
+                        CreateNotification.createNotification(ex);
                     }
                 }
             });

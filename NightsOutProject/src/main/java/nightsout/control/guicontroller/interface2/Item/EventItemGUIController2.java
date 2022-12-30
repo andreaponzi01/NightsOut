@@ -5,14 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.CreateNotification;
 
 
-import nightsout.utils.bean.LoggedClubOwnerBean2;
+import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.exception.myexception.SystemException;
 
-import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
+import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 
 public class EventItemGUIController2 {
 
@@ -39,7 +39,7 @@ public class EventItemGUIController2 {
                 replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml", eventBean);
             }
         } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
     }
 }

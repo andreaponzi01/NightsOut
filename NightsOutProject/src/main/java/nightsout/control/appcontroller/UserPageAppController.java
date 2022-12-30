@@ -12,34 +12,28 @@ public class UserPageAppController {
     private UserPageAppController(){
         //ignore
     }
-
     public static List<EventBean> searchNextEventsByIdUser(int idUser) throws SystemException {
 
         List<EventModel> list = null;
         List<EventBean> listBean = null;
         list = EventDAO.getNextEventsByIdUser(idUser);
         listBean = new ArrayList<>();
-
         for(EventModel eventModel : list){
             EventBean bean = new EventBean(eventModel);
             listBean.add(bean);
         }
         return listBean;
-
     }
-
     public static List<EventBean> searchEndedEventsByIdUser(int idUser) throws SystemException {
 
         List<EventModel> list = null;
         List<EventBean> listBean = null;
         list = EventDAO.getEndedEventsByIdUser(idUser);
         listBean = new ArrayList<>();
-
         for(EventModel eventModel : list){
             EventBean bean = new EventBean(eventModel);
             listBean.add(bean);
         }
         return listBean;
-
     }
 }

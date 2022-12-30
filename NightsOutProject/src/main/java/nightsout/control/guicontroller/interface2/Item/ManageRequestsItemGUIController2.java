@@ -6,14 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import nightsout.control.appcontroller.ManageRequestsAppController;
-import nightsout.control.guicontroller.MyNotification;
-import nightsout.utils.bean.LoggedClubOwnerBean2;
+import nightsout.control.appcontroller.JoinEventAppController;
+import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
+import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
+import nightsout.utils.scene.switchpage.SwitchPage;
 
 import java.time.format.DateTimeFormatter;
 
@@ -45,34 +46,31 @@ public class ManageRequestsItemGUIController2 {
     public void acceptRequest(ActionEvent actionEvent) {
 
         try {
-            ManageRequestsAppController.acceptRequest(manageRequestBean.getIdRequest());
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage2.fxml");
+            JoinEventAppController.acceptRequest(manageRequestBean.getIdRequest());
+            SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
     }
 
     public void rejectRequest(ActionEvent actionEvent) {
 
         try {
-            //appcontroller
-            ManageRequestsAppController.declineRequest(manageRequestBean.getIdRequest());
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetScene(actionEvent, "/ClubOwnerPage2.fxml");
+            JoinEventAppController.declineRequest(manageRequestBean.getIdRequest());
+            SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
     }
 
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            UserBean2 userBean = new UserBean2(ManageRequestsAppController.searchUserByUsername(manageRequestBean.getUsername()));
+            UserBean2 userBean = new UserBean2(JoinEventAppController.searchUserByUsername(manageRequestBean.getUsername()));
             SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
             replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
         } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
     }
 

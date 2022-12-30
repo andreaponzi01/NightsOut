@@ -1,6 +1,6 @@
 package nightsout.utils.db;
 
-import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.DBConnectionFailedException;
@@ -29,7 +29,7 @@ public class MySqlConnection {
         } catch (SQLException e) {
             Trigger.throwDBConnectionFailedException(e);
         } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
         return statement;
     }

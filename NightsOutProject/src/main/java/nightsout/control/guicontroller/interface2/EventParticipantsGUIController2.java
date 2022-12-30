@@ -6,22 +6,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.control.guicontroller.interface2.Item.UserItemGUIController2;
 import nightsout.utils.bean.*;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.observer.engineering.EventParticipantsEngineering;
-import nightsout.utils.scene.switchPage.SwitchAndSetPage2;
+import nightsout.utils.engineering.EventParticipantsEngineering;
+import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class EventParticipantsGUIController2 implements Observer {
 
-    private UserBean2 userBean;
     private EventBean2 eventBean;
     @FXML
     ListView listViewParticipants;
@@ -31,7 +31,6 @@ public class EventParticipantsGUIController2 implements Observer {
     public void setAll(EventBean2 eBean) throws SystemException {
 
         this.eventBean=eBean;
-        this.userBean = LoggedUserBean2.getInstance();
         EventParticipantsEngineering.eventParticipants(this, eBean.getIdEvent());
         this.labelEventName.setText("Participants of: "+eBean.getName());
     }
@@ -47,7 +46,7 @@ public class EventParticipantsGUIController2 implements Observer {
                 replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml",eventBean);
             }
         }catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
     }
 
@@ -63,7 +62,7 @@ public class EventParticipantsGUIController2 implements Observer {
                 controller.setAll(new UserBean2(uBean));
                 this.listViewParticipants.getItems().add(pane);
             } catch (IOException e) {
-                MyNotification.createNotification(e);
+                CreateNotification.createNotification(e);
             }
         }
     }

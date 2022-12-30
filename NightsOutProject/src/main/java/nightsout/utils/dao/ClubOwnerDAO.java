@@ -16,24 +16,17 @@ public class ClubOwnerDAO {
     public static ClubOwnerModel getClubOwnerByUsername(String username) throws SystemException {
             return Query.searchClubOwnerByUsername(username);
     }
-
     public static void insertClubOwner(CredentialsModel credentialsModel, ClubOwnerModel clubOwnerModel) throws SystemException {
             Query.insertCredentials(credentialsModel);
             Query.insertClubOwner(clubOwnerModel);
     }
-
     public static List<ClubOwnerModel> getClubOwnersByUsername(String input) throws SystemException {
         return Query.searchClubOwnersByUsername(input);
     }
-
     public static ClubOwnerModel getClubOwnerById(int idClubOwner) throws SystemException {
         return Query.searchClubOwnerById(idClubOwner);
     }
-
-
     public static ClubOwnerModel getClubAddressByIdEvent(int idEvent) throws SystemException {
         return Query.searchClubAddressByEventId(idEvent);
     }
-
-
 }
