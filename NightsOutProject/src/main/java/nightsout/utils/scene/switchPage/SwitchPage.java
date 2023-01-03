@@ -1,4 +1,4 @@
-package nightsout.utils.scene.switchPage;
+package nightsout.utils.scene.switchpage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nightsout.Main;
-import nightsout.control.guicontroller.MyNotification;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -30,14 +30,13 @@ public class SwitchPage {
             try {
                 ExceptionHandler.handleException(e);
             } catch (SystemException ex) {
-                MyNotification.createNotification(ex);
+                CreateNotification.createNotification(ex);
             }
             e.printStackTrace();
         }
         stage.setScene(scene);
         stage.show();
     }
-
     /*
     * Root già caricato, non c'è bisogno di fare il loader.load()
     */

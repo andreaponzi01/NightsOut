@@ -1,7 +1,7 @@
-package nightsout.utils.scene.initPage2;
+package nightsout.utils.scene.initpage2;
 
-import nightsout.control.guicontroller.interface2.ViewUserPageFromCOGUIController2;
-import nightsout.control.guicontroller.interface2.ViewUserPageFromUserGUIController2;
+import nightsout.control.guicontroller.interface2.clubowner.ViewUserPageFromCOGUIController2;
+import nightsout.control.guicontroller.interface2.user.ViewUserPageFromUserGUIController2;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;

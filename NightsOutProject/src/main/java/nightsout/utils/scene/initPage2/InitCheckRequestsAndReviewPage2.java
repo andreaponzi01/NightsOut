@@ -1,6 +1,6 @@
-package nightsout.utils.scene.initPage2;
+package nightsout.utils.scene.initpage2;
 
-import nightsout.control.guicontroller.interface2.CheckRequestsAndReviewGUIController2;
+import nightsout.control.guicontroller.interface2.user.CheckRequestsAndReviewGUIController2;
 import nightsout.utils.exception.myexception.SystemException;
 
 public class InitCheckRequestsAndReviewPage2 {

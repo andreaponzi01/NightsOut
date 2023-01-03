@@ -1,9 +1,7 @@
-package nightsout.utils.scene.initPage1;
+package nightsout.utils.scene.initpage1;
 
-import nightsout.control.guicontroller.interface1.ClubOwnerCommunityFromCOGUIController1;
-import nightsout.control.guicontroller.interface1.ClubOwnerCommunityFromUserGUIController1;
-import nightsout.control.guicontroller.interface1.UserPageGUIController1;
-import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.control.guicontroller.interface1.clubowner.CommunityFromCOGUIController1;
+import nightsout.control.guicontroller.interface1.user.CommunityFromUserGUIController1;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -13,11 +11,11 @@ public class InitCommunityPage {
         //ignored
     }
 
-    public static void setterUser(ClubOwnerCommunityFromUserGUIController1 clubOwnerCommunityFromUserGUIController1, ClubOwnerBean1 clubOwnerBean) throws SystemException {
-        clubOwnerCommunityFromUserGUIController1.setAll(clubOwnerBean);
+    public static void setterUser(CommunityFromUserGUIController1 communityFromUserGUIController1, ClubOwnerBean1 clubOwnerBean) throws SystemException {
+        communityFromUserGUIController1.setAll(clubOwnerBean);
     }
-    public static void setterCO(ClubOwnerCommunityFromCOGUIController1 clubOwnerCommunityFromCOGUIController1, ClubOwnerBean1 clubOwnerBean) throws SystemException {
-        clubOwnerCommunityFromCOGUIController1.setAll(clubOwnerBean);
+    public static void setterCO(CommunityFromCOGUIController1 communityFromCOGUIController1, ClubOwnerBean1 clubOwnerBean) throws SystemException {
+        communityFromCOGUIController1.setAll(clubOwnerBean);
     }
 
 }

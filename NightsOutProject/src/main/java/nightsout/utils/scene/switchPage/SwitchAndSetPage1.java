@@ -1,4 +1,4 @@
-package nightsout.utils.scene.switchPage;
+package nightsout.utils.scene.switchpage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,56 +9,11 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.initPage1.*;
+import nightsout.utils.scene.initpage1.*;
 
 import java.io.IOException;
 
 public class SwitchAndSetPage1 {
-
-    public void switchAndSetScene(ActionEvent ae, String fxml) throws SystemException {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            Parent root = loader.load();
-
-            if (fxml.equals("/CreateEventPage1.fxml")) {
-                CreateEventSetter1.setterCreateEvent(loader.getController());
-            }
-            if (fxml.equals("/UserPage1.fxml")) {
-                UserPageSetter1.setter(loader.getController());
-            }
-            if (fxml.equals("/ClubOwnerPage1.fxml")) {
-                ClubOwnerPageSetter1.setter(loader.getController());
-            }
-            if (fxml.equals("/ReviewAndResponsePage1.fxml")) {
-                ReviewAndResponsePageSetter1.setter(loader.getController());
-            }
-            if (fxml.equals("/ReviewResponsePage1.fxml")) {
-                ResponsePageSetter1.setter(loader.getController());
-            }
-            if (fxml.equals("/EndedBookedEventsPage1.fxml")) {
-                EndedBookedEventsPageSetter1.setter(loader.getController());
-            }
-            if (fxml.equals( "/CheckRifiutedRequestsPage1.fxml")) {
-                RifiutedRequestsPageSetter1.setter(loader.getController());
-            }
-            if (fxml.equals( "/CheckPendingRequestsPage1.fxml")) {
-                PendingRequestsPageSetter1.setter(loader.getController());
-            }
-            if (fxml.equals( "/SearchPage1.fxml")) {
-                SearchPageSetter1.setter( loader.getController());
-            }
-            if (fxml.equals( "/ManageRequests1.fxml")) {
-                ManageRequestSetter1.setter( loader.getController());
-            }
-
-            SwitchPage.showStage(ae, root);
-        } catch (IOException e) {
-            ExceptionHandler.handleException(e);
-            e.printStackTrace();
-        }
-    }
-
 
     public void switchAndSetSceneEvent(ActionEvent ae, String fxml, EventBean1 eventBean) throws SystemException {
 
@@ -78,7 +33,6 @@ public class SwitchAndSetPage1 {
             if (fxml.equals("/CreateEventReviewPage1.fxml")) {
                 ReviewPageSetter1.setter(eventBean, loader.getController());
             }
-
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
@@ -99,7 +53,6 @@ public class SwitchAndSetPage1 {
             if (fxml.equals("/ConcludeRegisterUser1.fxml")) {
                 RegisterSetter1.setterUser(userBean, loader.getController());
             }
-
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
@@ -127,7 +80,6 @@ public class SwitchAndSetPage1 {
             if (fxml.equals("/ClubOwnerCommunityFromCO.fxml")) {
                 InitCommunityPage.setterCO(loader.getController(),clubOwnerBean);
             }
-
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
@@ -141,22 +93,6 @@ public class SwitchAndSetPage1 {
 
             MakeResponsePageSetter1.setter(userBean,reviewBean, loader.getController());
             SwitchPage.showStage(actionEvent, root);
-        } catch (IOException e) {
-            ExceptionHandler.handleException(e);
-        }
-    }
-
-    public void switchAndSetSceneSubscription(ActionEvent ae, String fxml) throws SystemException {
-        try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            Parent root = loader.load();
-            UserBean1 userBean = LoggedUserBean1.getInstance();
-
-            if(userBean.getVip()){
-                SubscriptionPageSetter1.setterSubscriptioned(loader.getController());
-                SwitchPage.showStage(ae, root);
-            }
         } catch (IOException e) {
             ExceptionHandler.handleException(e);
         }
