@@ -17,6 +17,8 @@ import java.util.Date;
 
 public class EventBean2 extends EventBean {
 
+    private static final String EVENT_DATE_FIELD = "Event Date";
+
     public EventBean2(){
         super();
     }
@@ -28,7 +30,7 @@ public class EventBean2 extends EventBean {
     public void setEventDate(String date) throws EmptyInputException, BeforeDateException, WrongInputTypeException {
 
         if (date.equals("")) {
-            Trigger.throwEmptyInputException("Event Date");
+            Trigger.throwEmptyInputException(EVENT_DATE_FIELD);
         } else {
             try {
                 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
@@ -41,9 +43,9 @@ public class EventBean2 extends EventBean {
             } catch (NumberFormatException e) {
                 Trigger.throwWrongInputTypeException(e, "Birthday");
             } catch (DateTimeException e) {
-                Trigger.throwWrongInputTypeException(new NumberFormatException(), "Event Date");
+                Trigger.throwWrongInputTypeException(new NumberFormatException(), EVENT_DATE_FIELD);
             } catch (ParseException e) {
-                Trigger.throwWrongInputTypeException(new NumberFormatException(), "Event Date");
+                Trigger.throwWrongInputTypeException(new NumberFormatException(), EVENT_DATE_FIELD);
             }
         }
     }

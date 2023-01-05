@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.utils.exception.CreateNotification;
-import nightsout.control.guicontroller.interface2.Item.EventItemGUIController2;
+import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;

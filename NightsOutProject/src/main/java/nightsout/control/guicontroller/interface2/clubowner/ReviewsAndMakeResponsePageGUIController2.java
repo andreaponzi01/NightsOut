@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.utils.exception.CreateNotification;
-import nightsout.control.guicontroller.interface2.Item.ReviewItemGUIController2;
+import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
 import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.myexception.SystemException;

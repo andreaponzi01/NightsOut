@@ -49,7 +49,7 @@ public class ClubOwnerPageFromCOGUIController1 implements Observer {
         this.labelCity.setText(clubOwnerBean1.getCity());
         this.labelAddress.setText(clubOwnerBean1.getAddress());
         this.labelEmail.setText(clubOwnerBean1.getEmail());
-        this.labelDiscountVip.setText(String.valueOf(clubOwnerBean1.getDiscountVIP())+"%");
+        this.labelDiscountVip.setText(clubOwnerBean1.getDiscountVIP()+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean1.getImg().toURI().toString()));
         CreatedEventsEngineering.createdEvents(this, clubOwnerBean1.getId());
     }

@@ -11,16 +11,17 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.control.guicontroller.interface2.Item.EventItemGUIController2;
+import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
+import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
+import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.engineering.Email;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.scene.switchpage.SwitchPage;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -56,9 +57,17 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             CreatedEventsEngineering.createdEvents(this, LoggedClubOwnerBean2.getInstance().getId());
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
-            e.getCause().printStackTrace();
         }
     }
+
+    private void sendEmail(String eventName) {
+        try {
+            Email.sendEmail(LoggedClubOwnerBean2.getInstance().getEmail(), "Evento creato con successo!", "L'evento " + eventName + " è stato creato con successo.");
+        } catch (EmailException e) {
+            CreateNotification.createNotification(e);
+        }
+    }
+
     @FXML
     public void createEvent(ActionEvent actionEvent) {
 
@@ -73,15 +82,16 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             eventBean.setPrice(textFieldPrice.getText());
             eventBean.setImg(this.img);
             CreateEventAppController.createEvent(eventBean);
-            try {
-                Email.sendEmail(LoggedClubOwnerBean2.getInstance().getEmail(), "Evento creato con successo!", "L'evento " + eventBean.getName() + " è stato creato con successo.");
-            } catch (EmailException e) {
-                CreateNotification.createNotification(e);
-            }
+
+            sendEmail(eventBean.getName());
+
             SwitchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
+
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException e) {
             CreateNotification.createNotification(e);
         }
+
+
     }
 
     public void loadImage() {

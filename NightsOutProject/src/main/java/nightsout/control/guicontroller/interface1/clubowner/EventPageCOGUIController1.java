@@ -16,19 +16,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.ConcreteComponent;
 import nightsout.utils.decorator.ConcreteDecoratorDelete1;
 import nightsout.utils.decorator.VisualComponent;
+import nightsout.utils.engineering.EventParticipantsEngineering;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.EventParticipantsEngineering;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 import nightsout.utils.scene.switchpage.SwitchPage;
 import org.json.JSONException;
@@ -91,7 +91,6 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
             this.eventImg.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
             EventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
             myStart();
-            //get price,get duratione eget date mi sa che bisogna mettere string of
     }
 
     private void myStart(){
@@ -144,11 +143,16 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
 
     @FXML
     public void goToClubOwner(ActionEvent ae) {
-
-        if(clubOwnerBean1.getId()== clubOwnerBean1Event.getId())
-            SwitchPage.replaceScene(ae,"/ClubOwnerPage1.fxml");
-        else
-            SwitchPage.replaceScene(ae,"/ClubOwnerPage1.fxml");
+        try {
+            if (clubOwnerBean1.getId() == clubOwnerBean1Event.getId())
+                SwitchPage.replaceScene(ae, "/ClubOwnerPage1.fxml");
+            else {
+                SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
+                replacer.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromCO1.fxml", clubOwnerBean1Event);
+            }
+        } catch (SystemException e) {
+            CreateNotification.createNotification(e);
+        }
     }
 
     @Override

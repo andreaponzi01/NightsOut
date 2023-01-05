@@ -25,7 +25,9 @@ public class MakeResponseGUIController1 {
     private TextArea textAreaResponse;
     private ReviewBean reviewBean;
 
-    public MakeResponseGUIController1() {}
+    private MakeResponseGUIController1() {
+        // ignored
+    }
 
     public void setAll(UserBean1 userBean, ReviewBean reviewBean) throws SystemException {
 

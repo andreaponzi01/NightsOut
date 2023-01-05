@@ -12,11 +12,9 @@ import java.time.LocalTime;
 
 public class EventBean1 extends EventBean {
 
-    private static final String FIELD_PRICE = "Price";
     private static final String FIELD_HOURS = "Hours";
     private static final String FIELD_MINUTES = "Minutes";
     private static final String FIELD_DATE = "Date";
-    private static final String FIELD_IMAGE = "Image";
 
 
 
@@ -35,9 +33,9 @@ public class EventBean1 extends EventBean {
 
     public void setTime(String hours, String minutes) throws EmptyInputException, WrongInputRangeException {
         if (hours.equals("")) {
-            Trigger.throwEmptyInputException("Hours");
+            Trigger.throwEmptyInputException(FIELD_HOURS);
         } else if (minutes.equals("")) {
-            Trigger.throwEmptyInputException("Minutes");
+            Trigger.throwEmptyInputException(FIELD_MINUTES);
         } else if (Integer.parseInt(hours) < 0 || Integer.parseInt(hours) > 24) {
             Trigger.throwExceededRangeException(FIELD_HOURS);
         } else if (Integer.parseInt(minutes) < 0 || Integer.parseInt(minutes) > 60) {

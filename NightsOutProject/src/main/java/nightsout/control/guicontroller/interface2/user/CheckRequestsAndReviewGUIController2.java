@@ -6,18 +6,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EndedBookedEventsAppController;
-import nightsout.utils.bean.interface2.LoggedUserBean2;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.control.guicontroller.interface2.Item.EventItemGUIController2;
-import nightsout.control.guicontroller.interface2.Item.EventReviewItemGUIController2;
-import nightsout.control.guicontroller.interface2.Item.RequestsItemGUIController2;
-import nightsout.utils.bean.*;
+import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
+import nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2;
+import nightsout.control.guicontroller.interface2.item.RequestsItemGUIController2;
+import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.RequestBean;
+import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.EventBean2;
+import nightsout.utils.bean.interface2.LoggedUserBean2;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.observer.Observer;
 import nightsout.utils.engineering.CheckRequestsEngineering;
 import nightsout.utils.engineering.ReviewEngineering;
+import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.observer.Observer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +28,9 @@ import java.util.ResourceBundle;
 
 public class CheckRequestsAndReviewGUIController2 implements Observer, Initializable {
     private UserBean2 userBean;
+
+    private static final String REQUEST_ITEM_FXML = "/CheckRequestsItem2.fxml";
+
     @FXML
     ListView listViewToReview;
     @FXML
@@ -35,67 +40,69 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
     @FXML
     ListView listViewPending;
 
-    public void setAll() throws SystemException {
+    private void handleRequest(RequestBean rBean) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Pane pane = null;
+
+        try {
+            if(Objects.equals(rBean.getStatus(), "accepted")){
+
+                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
+                    RequestsItemGUIController2 controller = fxmlLoader.getController();
+                    controller.setAll(rBean);
+                    this.listViewNextEvents.getItems().add(pane);
+            } else if (Objects.equals(rBean.getStatus(), "declined")) {
+
+                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
+                    RequestsItemGUIController2 controller = fxmlLoader.getController();
+                    controller.setAll(rBean);
+                    this.listViewDeclined.getItems().add(pane);
+            } else if (Objects.equals(rBean.getStatus(), "pending")) {
+
+                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
+                    RequestsItemGUIController2 controller = fxmlLoader.getController();
+                    controller.setAll(rBean);
+                    this.listViewPending.getItems().add(pane);
+            }
+        } catch (SystemException | IOException e) {
+            CreateNotification.createNotification(e);
+        }
+    }
+
+    private void handleEvent(EventBean eBean) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Pane pane = null;
+        ReviewBean reviewBean = null;
+
+        try {
+            reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
+            if(reviewBean != null){
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
+                EventItemGUIController2 controller = fxmlLoader.getController();
+                controller.setAll(new EventBean2(eBean));
+                this.listViewToReview.getItems().add(pane);
+            } else {
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem2.fxml")).openStream());
+                EventReviewItemGUIController2 controller = fxmlLoader.getController();
+                controller.setAll(new EventBean2(eBean));
+                this.listViewToReview.getItems().add(pane);
+            }
+        } catch (SystemException | IOException e) {
+            CreateNotification.createNotification(e);
+        }
+
 
     }
 
     @Override
     public void update(Object ob) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        Pane pane = null;
-        ReviewBean reviewBean=null;
-        if (ob instanceof RequestBean rBean) {
-            System.out.println("\n"+rBean.getStatus());
-            if(Objects.equals(rBean.getStatus(), "accepted")){
-                try {
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem2.fxml")).openStream());
-                    RequestsItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(rBean);
-                    this.listViewNextEvents.getItems().add(pane);
-                } catch (SystemException | IOException e) {
-                    CreateNotification.createNotification(e);
-                }
-            } else if (Objects.equals(rBean.getStatus(), "declined")) {
-                try {
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem2.fxml")).openStream());
-                    RequestsItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(rBean);
-                    System.out.println("\n"+rBean.getIdEvent());
-                    this.listViewDeclined.getItems().add(pane);
-                } catch (SystemException | IOException e) {
-                    CreateNotification.createNotification(e);
-                }
-            } else if (Objects.equals(rBean.getStatus(), "pending")) {
-                try {
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem2.fxml")).openStream());
-                    RequestsItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(rBean);
-                    this.listViewPending.getItems().add(pane);
-                } catch (SystemException | IOException e) {
-                    CreateNotification.createNotification(e);
-                }
-            }
-        }//fine requestBean
+        if (ob instanceof RequestBean rBean)
+            handleRequest(rBean);
 
-        if(ob instanceof EventBean eBean) {
-            try {
-                reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
-                if(reviewBean != null){
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
-                    EventItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(new EventBean2(eBean));
-                    this.listViewToReview.getItems().add(pane);
-                } else {
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem2.fxml")).openStream());
-                    EventReviewItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(new EventBean2(eBean));
-                    this.listViewToReview.getItems().add(pane);
-                }
-            } catch (SystemException | IOException e) {
-                CreateNotification.createNotification(e);
-            }
-        }
+        if(ob instanceof EventBean eBean)
+            handleEvent(eBean);
     }
 
     @Override

@@ -33,7 +33,9 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     @FXML
     protected ImageView imageViewProfile;
 
-    public MenuClubOwnerGUIController1() {}
+    private MenuClubOwnerGUIController1() {
+        // ignored
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

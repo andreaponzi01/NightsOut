@@ -2,12 +2,9 @@ package nightsout.utils.bean;
 
 import nightsout.model.UserModel;
 import nightsout.utils.exception.Trigger;
-import nightsout.utils.exception.myexception.AdultException;
 import nightsout.utils.exception.myexception.EmptyInputException;
-import nightsout.utils.exception.myexception.GenderException;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class UserBean extends ProfileBean {
 
@@ -58,17 +55,7 @@ public class UserBean extends ProfileBean {
     public void setSurname(String surname) throws EmptyInputException {
         if (surname.equals(""))
             Trigger.throwEmptyInputException("Surname");
-        this.surname = surname; }
-    public void setGender(String gender) throws GenderException { this.gender = gender; }
-
-    public void setBirthday(LocalDate birthday) throws AdultException, EmptyInputException {
-        if (birthday == null) {
-            Trigger.throwEmptyInputException("Date");
-        } else {
-            if (birthday.until(LocalDate.now(), ChronoUnit.YEARS) < 18)
-                Trigger.throwAdultException();
-            this.birthday = birthday;
-        }
+        this.surname = surname;
     }
 
     public boolean getVip() {

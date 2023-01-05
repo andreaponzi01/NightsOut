@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.Item.ManageRequestsItemGUIController2">
+<AnchorPane prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.ManageRequestsItemGUIController2">
    <children>
       <Line endX="227.71786499023438" layoutX="134.0" layoutY="91.0" startX="-112.66917419433594" startY="-1.1444091796875E-5" stroke="#e8e7fc">
          <effect>

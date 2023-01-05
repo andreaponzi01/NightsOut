@@ -23,7 +23,9 @@ public class MakeReviewGUIController1 {
     @FXML
     private TextArea textAreaReview;
 
-    public MakeReviewGUIController1() {}
+    private MakeReviewGUIController1() {
+        // ignored
+    }
 
     public void setAll(EventBean1 eventBean1) {
 

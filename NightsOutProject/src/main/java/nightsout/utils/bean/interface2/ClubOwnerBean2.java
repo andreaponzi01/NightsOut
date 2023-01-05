@@ -18,19 +18,11 @@ public class ClubOwnerBean2 extends ClubOwnerBean {
         super(clubOwnerBean);
     }
 
-    private static final String FIELD_DISCOUNT = "Discount";
     private static final String FIELD_ADDRESS = "Address";
     private static final String FIELD_CIVIC = "Civic Number";
 
     public void setDiscountVIP(int discountVIP) {
         this.discountVIP = discountVIP;
-    }
-
-
-
-    // Getter
-    public String getAddress() {
-        return address;
     }
 
 

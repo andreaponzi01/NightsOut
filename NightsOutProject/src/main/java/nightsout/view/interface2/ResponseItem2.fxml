@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="105.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.Item.ResponseItemGUIController2">
+<AnchorPane prefHeight="105.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2">
    <children>
       <AnchorPane layoutX="324.0" layoutY="-1.0" prefHeight="99.0" prefWidth="375.0" style="-fx-background-color: #3399ff; -fx-background-radius: 50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

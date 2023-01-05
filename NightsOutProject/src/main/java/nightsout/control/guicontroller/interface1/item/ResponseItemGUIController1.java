@@ -11,7 +11,10 @@ public class ResponseItemGUIController1 {
     private Label labelResponse;
     @FXML
     private Label labelName;
-    public ResponseItemGUIController1() {}
+
+    private ResponseItemGUIController1() {
+        // ignored
+    }
 
     public void setAll(ResponseBean responseBean) {
         this.labelResponse.setText(responseBean.getResponse());

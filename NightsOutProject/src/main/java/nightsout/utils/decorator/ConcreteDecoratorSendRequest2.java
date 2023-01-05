@@ -42,7 +42,6 @@ public class ConcreteDecoratorSendRequest2 extends Decorator {
             replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
         } catch (SystemException e){
             CreateNotification.createNotification(e);
-            e.getCause().printStackTrace();
         }
     }
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="100.0" prefWidth="750.0" style="-fx-background-color: #d97a04; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.Item.EventReviewItemGUIController2">
+<AnchorPane prefHeight="100.0" prefWidth="750.0" style="-fx-background-color: #d97a04; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2">
    <children>
       <ImageView fx:id="imageViewEvent" fitHeight="87.0" fitWidth="87.0" layoutX="47.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="6.0">
          <effect>

@@ -24,7 +24,9 @@ public class ReviewItemGUIController1 {
     @FXML
     public Button buttonUsername;
 
-    public ReviewItemGUIController1() {}
+    private ReviewItemGUIController1() {
+        // ignored
+    }
 
     public void setAll(ReviewBean reviewBean) throws SystemException {
         this.reviewBean = reviewBean;
