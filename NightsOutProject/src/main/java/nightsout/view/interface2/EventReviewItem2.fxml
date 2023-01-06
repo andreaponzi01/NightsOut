@@ -42,7 +42,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextArea fx:id="textAreaReview" layoutX="164.0" layoutY="41.0" prefHeight="52.0" prefWidth="421.0" promptText="Insert your review..." stylesheets="@style.css" wrapText="true" AnchorPane.leftAnchor="150.0">
+      <TextArea fx:id="textAreaReview" layoutX="164.0" layoutY="41.0" prefHeight="52.0" prefWidth="421.0" promptText="Insert your review..." stylesheets="@style2.css" wrapText="true" AnchorPane.leftAnchor="150.0">
          <font>
             <Font size="15.0" />
          </font>

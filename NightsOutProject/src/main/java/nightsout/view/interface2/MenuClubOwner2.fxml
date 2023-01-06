@@ -9,24 +9,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.clubowner.MenuClubOwnerGUIController2">
+<AnchorPane id="bg2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.clubowner.MenuClubOwnerGUIController2">
    <children>
       <Label fx:id="labelUsername" alignment="CENTER" layoutX="16.0" layoutY="159.0" prefHeight="40.0" prefWidth="205.0" text="Username" AnchorPane.topAnchor="159.0">
          <font>
             <Font size="23.0" />
          </font></Label>
       <AnchorPane layoutX="469.0" layoutY="103.0" opacity="0.15" prefHeight="555.0" prefWidth="561.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <Button layoutX="76.0" layoutY="588.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="86.0" styleClass="red-button-rounded" stylesheets="@style.css" text="Logout" textFill="WHITE" AnchorPane.topAnchor="588.0">
+      <Button layoutX="76.0" layoutY="588.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="86.0" styleClass="red-button-rounded" stylesheets="@style2.css" text="Logout" textFill="WHITE" AnchorPane.topAnchor="588.0">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <Button layoutX="80.0" layoutY="227.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="40.0" prefWidth="76.0" styleClass="navBarButton" stylesheets="@style.css" text="Home" AnchorPane.topAnchor="227.0" />
+      <Button layoutX="80.0" layoutY="227.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="40.0" prefWidth="76.0" styleClass="navBarButton" stylesheets="@style2.css" text="Home" AnchorPane.topAnchor="227.0" />
       <Circle fx:id="circleProfile" fill="#ffffff00" layoutX="119.0" layoutY="98.0" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="16.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/logo.png" />
-         </image></ImageView>
+      <AnchorPane id="logo" layoutX="-36.0" layoutY="-39.0" prefHeight="50.0" prefWidth="50.0" stylesheets="@style2.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Label fx:id="labelName" alignment="CENTER" layoutX="17.0" layoutY="407.0" prefHeight="40.0" prefWidth="205.0" text="Nome" textAlignment="CENTER">
          <font>
             <Font size="23.0" />
@@ -39,7 +36,7 @@
       </Label>
       <Line endX="100.0" layoutX="118.0" layoutY="399.0" startX="-100.0" strokeWidth="4.0" AnchorPane.leftAnchor="16.0" />
       <Line endX="100.0" layoutX="119.0" layoutY="215.0" startX="-100.0" strokeWidth="4.0" AnchorPane.leftAnchor="17.0" />
-      <Button layoutX="37.0" layoutY="279.0" mnemonicParsing="false" onAction="#goToManageEventsPage" prefHeight="40.0" prefWidth="163.0" styleClass="navBarButton" stylesheets="@style.css" text="Manage Events" />
+      <Button layoutX="37.0" layoutY="279.0" mnemonicParsing="false" onAction="#goToManageEventsPage" prefHeight="40.0" prefWidth="163.0" styleClass="navBarButton" stylesheets="@style2.css" text="Manage Events" />
       <Label fx:id="labelAddress" alignment="CENTER" layoutX="17.0" layoutY="494.0" prefHeight="40.0" prefWidth="205.0" text="Indirizzo" textAlignment="CENTER">
          <font>
             <Font size="23.0" />
@@ -50,6 +47,6 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Button layoutX="38.0" layoutY="327.0" mnemonicParsing="false" onAction="#goToCommunityPage" prefHeight="40.0" prefWidth="163.0" styleClass="navBarButton" stylesheets="@style.css" text="Community" />
+      <Button layoutX="38.0" layoutY="327.0" mnemonicParsing="false" onAction="#goToCommunityPage" prefHeight="40.0" prefWidth="163.0" styleClass="navBarButton" stylesheets="@style2.css" text="Community" />
    </children>
 </AnchorPane>

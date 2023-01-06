@@ -5,8 +5,8 @@
     -fx-background-repeat: no-repeat;
 }
 
-#bg2{
-    -fx-background-image: url("img/bg2.png");
+#logo{
+    -fx-background-image: url("img/logo.png");
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
@@ -26,6 +26,7 @@
     -fx-border-width: 2;
     -fx-border-radius: 50;
 }
+
 .eventlist{
     -fx-border-width: 0;
     -fx-radius: 20;
@@ -62,10 +63,6 @@
     -fx-font-size: 16px;
     -fx-line-height: 18px;
     -fx-letter-spacing: -0.01px;
-}
-
-.requestItemButton{
-    -fx-background-color: rgba(255,255,255,0.0);
 }
 
 .itemButton{

@@ -8,9 +8,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.clubowner.UserPageFromCOGUIController1">
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.clubowner.UserPageFromCOGUIController1">
    <children>
-      <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
+      <fx:include source="MenuClubOwner1.fxml" />
       <AnchorPane maxHeight="531.0" maxWidth="864.0" minHeight="531.0" minWidth="864.0" prefHeight="531.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <ListView fx:id="listViewNextEvents" layoutX="255.0" layoutY="116.0" prefHeight="374.0" prefWidth="600.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">

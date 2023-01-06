@@ -1,4 +1,4 @@
-package nightsout.control.guicontroller.interface2.Item;
+package nightsout.control.guicontroller.interface2.item;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

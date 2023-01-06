@@ -63,7 +63,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="buttonUsername" layoutX="145.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="47.0" prefWidth="224.0" styleClass="itemButton" stylesheets="@style.css" text="username" textFill="WHITE" underline="true">
+      <Button fx:id="buttonUsername" layoutX="145.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="47.0" prefWidth="224.0" styleClass="itemButton" stylesheets="@style2.css" text="username" textFill="WHITE" underline="true">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>

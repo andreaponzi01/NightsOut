@@ -37,7 +37,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="buttonUsername" alignment="TOP_LEFT" layoutX="74.0" layoutY="-2.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="43.0" prefWidth="174.0" styleClass="itemButton" stylesheets="@style.css" text="username" textFill="#200f54" underline="true">
+            <Button fx:id="buttonUsername" alignment="TOP_LEFT" layoutX="74.0" layoutY="-2.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="43.0" prefWidth="174.0" styleClass="itemButton" stylesheets="@style1.css" text="username" textFill="#200f54" underline="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -32,14 +32,12 @@ public class SwitchPage {
             } catch (SystemException ex) {
                 CreateNotification.createNotification(ex);
             }
-            e.printStackTrace();
         }
         stage.setScene(scene);
         stage.show();
     }
-    /*
-    * Root già caricato, non c'è bisogno di fare il loader.load()
-    */
+
+    // Root già caricato, non c'è bisogno di fare il loader.load()
     public static void showStage(ActionEvent ae, Parent root){
         Stage stage = (Stage) ((Node) ae.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
