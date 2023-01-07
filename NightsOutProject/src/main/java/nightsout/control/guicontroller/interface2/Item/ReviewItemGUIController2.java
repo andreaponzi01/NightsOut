@@ -18,7 +18,6 @@ public class ReviewItemGUIController2 {
     @FXML
     public Button buttonUsername;
     private UserBean2 userBean;
-    private ReviewBean reviewBean;
 
     public ReviewItemGUIController2() {
         //ignore
@@ -33,7 +32,6 @@ public class ReviewItemGUIController2 {
 
     public void setAll(ReviewBean reviewBean) throws SystemException {
 
-        this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         try {
             this.userBean = new UserBean2(EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser()));

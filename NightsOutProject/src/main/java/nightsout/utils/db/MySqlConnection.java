@@ -1,14 +1,13 @@
 package nightsout.utils.db;
 
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.Trigger;
-import nightsout.utils.exception.myexception.DBConnectionFailedException;
 import nightsout.utils.exception.myexception.SystemException;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class MySqlConnection {
@@ -16,22 +15,6 @@ public class MySqlConnection {
 
     private MySqlConnection(){
         //ignore
-    }
-
-    public static Statement tryConnect() throws DBConnectionFailedException {
-        Statement statement = null;
-        try {
-            connect();
-            /*
-            ** ResultSet.CONCUR_READ_ONLY --> ResultSet.CONCUR_UPDATABLE (capire quale sia più indicato!)
-            */
-            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        } catch (SQLException e) {
-            Trigger.throwDBConnectionFailedException(e);
-        } catch (SystemException e) {
-            CreateNotification.createNotification(e);
-        }
-        return statement;
     }
 
     public static Connection connect() throws SystemException {
@@ -55,8 +38,18 @@ public class MySqlConnection {
                 DriverManager.setLoginTimeout(5);
                 connection = DriverManager.getConnection(dbUrl, user, pass);
             }
-        } catch (SQLException | ClassNotFoundException | IOException e) {
-            ExceptionHandler.handleException(e);
+        } catch (SQLException e) {
+            if (e.getErrorCode() == 0)
+                Trigger.throwDBConnectionFailedException(e);
+            else {
+                SystemException ex = new SystemException();
+                ex.initCause(e);
+                throw ex;
+            }
+        } catch (ClassNotFoundException | IOException e) {
+            SystemException ex = new SystemException();
+            ex.initCause(e);
+            throw ex;
         }
         return connection;
     }
