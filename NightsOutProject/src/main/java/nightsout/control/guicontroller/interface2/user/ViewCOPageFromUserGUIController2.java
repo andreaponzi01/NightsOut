@@ -11,7 +11,6 @@ import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
 import nightsout.utils.exception.CreateNotification;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2;
-import nightsout.control.guicontroller.interface2.item.ReviewItemToResponseGUIController2;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ResponseBean;

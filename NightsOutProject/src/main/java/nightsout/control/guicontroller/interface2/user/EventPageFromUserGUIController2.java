@@ -132,7 +132,7 @@ public class EventPageFromUserGUIController2 implements Initializable, MapCompon
 
         try {
             SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetSceneEvent(ae, "/EventParticipantsPage2.fxml", eventBean);
+            replacer.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromUser2.fxml", eventBean);
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

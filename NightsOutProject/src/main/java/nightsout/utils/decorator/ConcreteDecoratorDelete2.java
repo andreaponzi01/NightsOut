@@ -45,7 +45,7 @@ public class ConcreteDecoratorDelete2 extends Decorator {
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
                 Query.deleteEventById(eventBean.getIdEvent());
-                FileUtils.delete(new File("eventImgs/" + eventBean.getName()));
+                FileUtils.delete(new File("eventImgs/" + eventBean.getName()+"pic.png"));
                 SwitchPage.replaceScene(ae,"/ClubOwnerPage2.fxml");
             } catch (SystemException e) {
                 CreateNotification.createNotification(e);

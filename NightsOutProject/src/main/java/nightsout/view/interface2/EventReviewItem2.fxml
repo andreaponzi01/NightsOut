@@ -9,18 +9,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="100.0" prefWidth="750.0" style="-fx-background-color: #d97a04; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2">
+<AnchorPane prefHeight="105.0" prefWidth="750.0" style="-fx-background-color: #c9ec54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2">
    <children>
-      <ImageView fx:id="imageViewEvent" fitHeight="87.0" fitWidth="87.0" layoutX="47.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="6.0">
+      <ImageView fx:id="imageViewEvent" fitHeight="87.0" fitWidth="87.0" layoutX="47.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="7.0">
          <effect>
             <DropShadow />
          </effect></ImageView>
-      <Label fx:id="labelEventName" layoutX="227.0" layoutY="5.0" prefHeight="33.0" prefWidth="342.0" text="Eventname" textFill="WHITE" AnchorPane.leftAnchor="227.0" AnchorPane.topAnchor="5.0">
+      <Label fx:id="labelEventName" layoutX="149.0" layoutY="4.0" prefHeight="33.0" prefWidth="342.0" text="Eventname" AnchorPane.leftAnchor="149.0" AnchorPane.topAnchor="4.0">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="609.0" layoutY="57.0" mnemonicParsing="false" onAction="#goToEventPage" prefHeight="7.0" prefWidth="87.0" style="-fx-background-radius: 28; -fx-background-color: #2e0095;" text="Info" textFill="#e8e7fc" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="57.0">
+      <Button alignment="CENTER" layoutX="609.0" layoutY="60.0" mnemonicParsing="false" onAction="#goToEventPage" prefHeight="7.0" prefWidth="87.0" style="-fx-background-radius: 28; -fx-background-color: white;" text="Info" textFill="#ff5050" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="18.0">
          <font>
             <Font name="Arial Bold" size="17.0" />
          </font>
@@ -31,7 +31,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="CENTER" layoutX="609.0" layoutY="12.0" mnemonicParsing="false" onAction="#sendReview" prefHeight="18.0" prefWidth="87.0" style="-fx-background-radius: 28; -fx-background-color: #ff5050;" text="Send" textFill="#e8e7fc" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="12.0">
+      <Button alignment="CENTER" layoutX="609.0" layoutY="18.0" mnemonicParsing="false" onAction="#sendReview" prefHeight="18.0" prefWidth="87.0" style="-fx-background-radius: 28; -fx-background-color: #ff5050;" text="Send" textFill="#e8e7fc" AnchorPane.bottomAnchor="18.0" AnchorPane.rightAnchor="54.0">
          <font>
             <Font name="Arial Bold" size="17.0" />
          </font>
@@ -47,10 +47,5 @@
             <Font size="15.0" />
          </font>
       </TextArea>
-      <Label layoutX="152.0" layoutY="17.0" prefHeight="29.0" prefWidth="87.0" text="EVENT:" textFill="#2e0095" underline="true" AnchorPane.leftAnchor="142.0" AnchorPane.topAnchor="7.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

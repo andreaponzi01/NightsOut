@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.user.ClubOwnerPageFromUserGUIController1">
    <children>
-      <fx:include fx:id="menu" source="MenuUser1.fxml" />
+      <fx:include source="MenuUser1.fxml" />
       <AnchorPane layoutX="40.0" layoutY="66.0" prefHeight="555.0" prefWidth="960.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <Label fx:id="labelDiscountVip" layoutX="178.0" layoutY="453.0" prefHeight="69.0" prefWidth="156.0" text="discountvip" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="178.0">
@@ -59,7 +59,7 @@
                   <Font name="Arial Bold" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="18.0" layoutY="353.0" prefHeight="69.0" prefWidth="130.0" text="City" textFill="WHITE" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="18.0">
+            <Label layoutX="18.0" layoutY="353.0" prefHeight="69.0" prefWidth="130.0" text="City:" textFill="WHITE" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="18.0">
                <font>
                   <Font name="Arial Bold" size="22.0" />
                </font>

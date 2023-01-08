@@ -37,10 +37,10 @@ public class MakeResponseGUIController1 {
             responseBean.setIdClubOwner(LoggedClubOwnerBean1.getInstance().getId());
             responseBean.setReview(reviewBean.getIdReview());
             MakeResponseAppController.makeResponse(responseBean);
-            SwitchPage.replaceScene(actionEvent,"/ReviewResponsePage1.fxml");
+            SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");
         } catch (SystemException | EmptyInputException e) {
             CreateNotification.createNotification(e);
         }
     }
-    public void backToReviewsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ReviewResponsePage1.fxml");}
+    public void backToReviewsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
 }

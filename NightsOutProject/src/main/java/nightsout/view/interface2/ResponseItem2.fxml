@@ -2,22 +2,24 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="105.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2">
+<AnchorPane prefHeight="105.0" prefWidth="700.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2">
    <children>
-      <AnchorPane layoutX="324.0" layoutY="-1.0" prefHeight="99.0" prefWidth="375.0" style="-fx-background-color: #3399ff; -fx-background-radius: 50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="345.0" prefHeight="105.0" prefWidth="350.0" style="-fx-background-color: #3399ff; -fx-background-radius: 50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="labelResponse" alignment="TOP_LEFT" layoutX="17.0" layoutY="43.0" prefHeight="62.0" prefWidth="332.0" text="Comment" textFill="WHITE" wrapText="true">
+            <Label fx:id="labelResponse" alignment="TOP_LEFT" layoutX="20.0" layoutY="43.0" prefHeight="52.0" prefWidth="269.0" text="Comment" textFill="#200f54" wrapText="true">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="labelName" layoutX="17.0" layoutY="14.0" prefHeight="27.0" prefWidth="236.0" text="Your Response:" textFill="#200f54">
+            <Label fx:id="labelName" layoutX="19.0" layoutY="9.0" prefHeight="27.0" prefWidth="236.0" text="Your Response:" textFill="#200f54">
                <font>
                   <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
+            <Line endX="159.715087890625" endY="7.62939453125E-6" layoutX="178.0" layoutY="36.0" startX="-160.0" stroke="#200f54" strokeWidth="2.0" />
          </children>
       </AnchorPane>
    </children>

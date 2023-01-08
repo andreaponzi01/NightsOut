@@ -38,13 +38,11 @@ public class EventParticipantsGUIController2 implements Observer {
     public void backToUserPage(ActionEvent actionEvent) {
         try{
             String type = LoggedClubOwnerBean2.checkInstanceType();
-            if (type.equals("FREE")) {
-                SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
+            if (type.equals("FREE"))
                 replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml",eventBean);
-            }else {
-                SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
+            else
                 replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml",eventBean);
-            }
         }catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

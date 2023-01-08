@@ -28,7 +28,7 @@ public class ManageRequestsItemGUIController2 {
     @FXML
     Label labelEventDate;
     @FXML
-    Button buttonUsername;
+    Label labelUsername;
     @FXML
     ImageView imageViewProfile;
 
@@ -37,7 +37,7 @@ public class ManageRequestsItemGUIController2 {
 
         this.clubOwnerBean= LoggedClubOwnerBean2.getInstance();
         this.manageRequestBean=manageRequestBean;
-        this.buttonUsername.setText(manageRequestBean.getUsername());
+        this.labelUsername.setText(manageRequestBean.getUsername());
         this.labelEventName.setText(String.valueOf(manageRequestBean.getEventName()));
         this.labelEventDate.setText(manageRequestBean.getRequestDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
         this.imageViewProfile.setImage(new Image(manageRequestBean.getImg().toURI().toString()));

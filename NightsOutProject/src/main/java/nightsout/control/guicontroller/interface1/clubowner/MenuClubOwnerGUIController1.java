@@ -45,7 +45,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     @FXML
     public void goToManageRequestsPage(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/ManageRequests1.fxml");}
     @FXML
-    public void goToResponsePage(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/ReviewResponsePage1.fxml");}
+    public void goToResponsePage(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
     @FXML
     private void logout(ActionEvent actionEvent) {
 

@@ -16,7 +16,7 @@
 <?import com.dlsc.gmapsfx.GoogleMapView?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.clubowner.EventPageCOGUIController1">
    <children>
-      <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
+      <fx:include source="MenuClubOwner1.fxml" />
       <AnchorPane layoutX="270.0" layoutY="150.0" prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <Label layoutX="18.0" layoutY="392.0" text="Duration: " textFill="WHITE" AnchorPane.bottomAnchor="137.0" AnchorPane.leftAnchor="18.0">
@@ -59,7 +59,7 @@
                   <Font name="Arial Bold" size="22.0" />
                </font>
             </Label>
-            <Button layoutX="939.0" layoutY="155.0" mnemonicParsing="false" onAction="#goToMap" prefHeight="51.0" prefWidth="29.0" style="-fx-background-radius: 28; -fx-background-color: #ffeecc;" textFill="#200f54" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="40.0">
+            <Button layoutX="945.0" layoutY="40.0" mnemonicParsing="false" onAction="#goToMap" prefHeight="48.0" prefWidth="60.0" style="-fx-background-radius: 28; -fx-background-color: #ffeecc;" textFill="#200f54" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="40.0">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
@@ -70,11 +70,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/lente.png" />
-                     </image>
-                  </ImageView>
+                  <AnchorPane id="lente" stylesheets="@style1.css" />
                </graphic>
             </Button>
             <Label layoutX="18.0" layoutY="233.0" prefHeight="27.0" prefWidth="142.0" text="Club owner:" textFill="WHITE" AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="18.0">
@@ -101,7 +97,7 @@
                   <Font name="Arial" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="buttonUsername" alignment="TOP_LEFT" layoutX="151.0" layoutY="224.0" mnemonicParsing="false" onAction="#goToClubOwner" prefHeight="43.0" prefWidth="249.0" styleClass="itemButton" stylesheets="@style1.css" text="username" textFill="white" underline="true" AnchorPane.leftAnchor="151.0" AnchorPane.topAnchor="224.0">
+            <Button fx:id="buttonUsername" alignment="TOP_LEFT" layoutX="151.0" layoutY="224.0" mnemonicParsing="false" onAction="#goToClubOwner" prefHeight="43.0" prefWidth="249.0" styleClass="usernameButton" stylesheets="@style1.css" text="username" textFill="white" underline="true" AnchorPane.leftAnchor="151.0" AnchorPane.topAnchor="224.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

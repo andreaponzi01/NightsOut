@@ -19,6 +19,9 @@
                <HBox.margin>
                   <Insets left="30.0" right="20.0" />
                </HBox.margin>
+               <effect>
+                  <DropShadow />
+               </effect>
             </ImageView>
             <VBox alignment="CENTER" prefHeight="138.0" prefWidth="189.0">
                <children>

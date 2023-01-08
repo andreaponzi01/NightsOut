@@ -18,11 +18,9 @@ import java.time.format.DateTimeFormatter;
 public class RequestsItemGUIController2 {
 
     @FXML
-    Button buttonEventInfo;
+    Label labelEventName;
     @FXML
     Label labelEventDate;
-    @FXML
-    Button buttonStatus;
     @FXML
     ImageView userImageView;
 
@@ -31,8 +29,7 @@ public class RequestsItemGUIController2 {
     public void setAll(RequestBean requestBean) throws SystemException {
 
         this.eventBean = new EventBean2(CheckRequestsAppController.searchEventByIdEvent(requestBean.getIdEvent()));
-        this.buttonEventInfo.setText(String.valueOf(eventBean.getName()));
-        this.buttonStatus.setText(requestBean.getStatus());
+        this.labelEventName.setText(String.valueOf(eventBean.getName()));
         this.userImageView.setImage(new Image(eventBean.getImg().toURI().toString()));
         this.labelEventDate.setText(requestBean.getRequestDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
     }

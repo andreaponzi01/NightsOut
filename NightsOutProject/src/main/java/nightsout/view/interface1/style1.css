@@ -27,33 +27,16 @@
     -fx-border-radius: 50;
 }
 
-.eventlist{
-    -fx-border-width: 0;
-    -fx-radius: 20;
-    -fx-background-color: #cbcacf;
-    -fx-background-radius: 12px;
-}
-
-
-.title {
-    -fx-background-color: #77188c;
-    -fx-background-radius: 8px;
-    -fx-font-size: 23px;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-family: "copperplate";
-    -fx-opacity: 0.4;
-}
-
 .red-button-rounded {
     -fx-background-color: #ff2525;
     -fx-background-radius: 30px;
     -fx-font-weight: bold;
+    -fx-font-family: "Arial";
     -fx-font-size: 15px;
     -fx-line-height: 18px;
     -fx-letter-spacing: -0.01px;
 
 }
-
 
 .navBarButton{
     -fx-background-color: rgba(255,255,255,0.0);
@@ -65,7 +48,7 @@
     -fx-letter-spacing: -0.01px;
 }
 
-.itemButton{
+.usernameButton{
     -fx-background-color: rgba(255,255,255,0.0);
     -fx-background-radius: 30px;
     -fx-font-family: "Arial";
@@ -84,9 +67,17 @@
 .text-area .scroll-pane {
     -fx-background-color: transparent;
 }
+
 .text-area .scroll-pane .viewport{
     -fx-background-color: transparent;
 }
+
 .text-area .scroll-pane .content{
     -fx-background-color: transparent;
+}
+
+.zoom:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }

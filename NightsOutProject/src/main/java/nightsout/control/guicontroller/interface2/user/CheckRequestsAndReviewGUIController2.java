@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.CheckRequestsAppController;
 import nightsout.control.appcontroller.EndedBookedEventsAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2;
@@ -12,6 +13,7 @@ import nightsout.control.guicontroller.interface2.item.RequestsItemGUIController
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.LoggedUserBean2;
 import nightsout.utils.bean.interface2.UserBean2;
@@ -23,6 +25,7 @@ import nightsout.utils.observer.Observer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -44,26 +47,27 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
-
         try {
             if(Objects.equals(rBean.getStatus(), "accepted")){
-
+                EventBean2 eventBean= new EventBean2(CheckRequestsAppController.searchEventByIdEvent(rBean.getIdEvent()));
+                if(eventBean.getEventDate().isAfter(LocalDate.now())){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
                     RequestsItemGUIController2 controller = fxmlLoader.getController();
                     controller.setAll(rBean);
                     this.listViewNextEvents.getItems().add(pane);
+                }
             } else if (Objects.equals(rBean.getStatus(), "declined")) {
 
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
-                    RequestsItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(rBean);
-                    this.listViewDeclined.getItems().add(pane);
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
+                RequestsItemGUIController2 controller = fxmlLoader.getController();
+                controller.setAll(rBean);
+                this.listViewDeclined.getItems().add(pane);
             } else if (Objects.equals(rBean.getStatus(), "pending")) {
 
-                    pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
-                    RequestsItemGUIController2 controller = fxmlLoader.getController();
-                    controller.setAll(rBean);
-                    this.listViewPending.getItems().add(pane);
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
+                RequestsItemGUIController2 controller = fxmlLoader.getController();
+                controller.setAll(rBean);
+                this.listViewPending.getItems().add(pane);
             }
         } catch (SystemException | IOException e) {
             CreateNotification.createNotification(e);

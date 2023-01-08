@@ -36,7 +36,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
     @FXML
     public void backToClubOwnerPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
     @FXML
-    public void goToCommunity(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ReviewAndResponsePage1.fxml");}
+    public void goToCommunity(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/MyCommunityPage1.fxml");}
 
     @Override
     public void update(Object ob) {

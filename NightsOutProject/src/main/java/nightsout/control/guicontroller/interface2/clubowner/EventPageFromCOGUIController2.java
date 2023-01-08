@@ -71,7 +71,6 @@ public class EventPageFromCOGUIController2 implements Initializable, MapComponen
         this.eventBean = eventBean;
         this.clubOwnerBean = LoggedClubOwnerBean2.getInstance();
         clubOwnerBeanEvent = new ClubOwnerBean2(EventPageAppController.getClubOwner(eventBean.getIdClubOwner()));
-
         this.buttonUsername.setText(clubOwnerBeanEvent.getName());
         this.labelEventName.setText(eventBean.getName());
         this.labelDescription.setText(eventBean.getDescription());
@@ -96,8 +95,8 @@ public class EventPageFromCOGUIController2 implements Initializable, MapComponen
 
     private void actionDecorateDelete() {
 
-        ConcreteDecoratorDelete2 concreteDecoratorSendRequest2 = new ConcreteDecoratorDelete2(this.myConcreteComponent, this.eventBean);
-        this.contents = concreteDecoratorSendRequest2;
+        ConcreteDecoratorDelete2 concreteDecoratorDelete2 = new ConcreteDecoratorDelete2(this.myConcreteComponent, this.eventBean);
+        this.contents = concreteDecoratorDelete2;
         this.display();
     }
 
@@ -109,7 +108,7 @@ public class EventPageFromCOGUIController2 implements Initializable, MapComponen
 
         try {
             SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetSceneEvent(ae, "/EventParticipantsPage2.fxml", eventBean);
+            replacer.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromCO2.fxml", eventBean);
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

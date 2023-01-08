@@ -40,7 +40,7 @@ public class MyCommunityPageGUIController1 implements Observer, Initializable {
         }
     }
     @FXML
-    public void backToReviewsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ReviewResponsePage1.fxml");}
+    public void backToReviewsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
 
     @Override
     public void update(Object ob) {
@@ -61,7 +61,6 @@ public class MyCommunityPageGUIController1 implements Observer, Initializable {
         if(ob instanceof ResponseBean responseBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ResponseItem1.fxml")).openStream());
-
                 ResponseItemGUIController1 controller = fxmlLoader.getController();
                 controller.setAll(responseBean);
                 this.listView.getItems().add(pane);

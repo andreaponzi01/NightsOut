@@ -13,14 +13,18 @@
       <fx:include source="MenuUser2.fxml" />
       <AnchorPane layoutX="239.0" layoutY="8.0" prefHeight="632.0" prefWidth="791.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label fx:id="labelEventName" alignment="CENTER" layoutX="241.0" layoutY="82.0" prefHeight="58.0" prefWidth="518.0" text="Partecipants" textFill="#ffeecc" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="82.0">
+            <Label fx:id="labelEventName" alignment="CENTER" layoutX="241.0" layoutY="82.0" prefHeight="58.0" prefWidth="518.0" text="Partecipants" textFill="#2e0095" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="82.0">
                <font>
                   <Font name="Arial Bold" size="50.0" />
                </font>
             </Label>
-            <Button layoutX="23.0" layoutY="23.0" mnemonicParsing="false" onAction="#backToUserPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+            <ListView fx:id="listViewParticipants" layoutX="30.0" layoutY="165.0" prefHeight="440.0" prefWidth="706.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="165.0">
+               <effect>
+                  <DropShadow />
+               </effect></ListView>
+            <Button layoutX="98.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToUserPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-color: #d9c923; -fx-background-radius: 28;" styleClass="zoom" text="Back" textFill="#2e0095" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
                <font>
-                  <Font name="Arial Bold" size="21.0" />
+                  <Font name="Arial Bold" size="25.0" />
                </font>
                <effect>
                   <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
@@ -29,10 +33,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ListView fx:id="listViewParticipants" layoutX="30.0" layoutY="165.0" prefHeight="440.0" prefWidth="706.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="165.0">
-               <effect>
-                  <DropShadow />
-               </effect></ListView>
          </children>
       </AnchorPane>
    </children>

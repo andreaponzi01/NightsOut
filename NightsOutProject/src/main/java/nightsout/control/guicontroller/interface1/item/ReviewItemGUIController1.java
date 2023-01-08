@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
 import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
+import nightsout.utils.bean.interface1.LoggedUserBean1;
 import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
@@ -24,14 +25,14 @@ public class ReviewItemGUIController1 {
     @FXML
     private Label labelEventName;
     @FXML
-    public Button buttonUsername;
+    public Label labelUsername;
 
     public void setAll(ReviewBean reviewBean) throws SystemException {
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         this.userBean1 = new UserBean1(EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser()));
         EventBean eventBean = EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
-        this.buttonUsername.setText(userBean1.getUsername());
+        this.labelUsername.setText(userBean1.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
     @FXML
@@ -51,7 +52,7 @@ public class ReviewItemGUIController1 {
             SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
             String type = LoggedClubOwnerBean1.checkInstanceType();
             if (type.equals("FREE")) {
-                if(userBean1.getId()== LoggedClubOwnerBean1.getInstance().getId())
+                if(userBean1.getId()== LoggedUserBean1.getInstance().getId())
                     SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");
                 else
                     replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser1.fxml",userBean1);

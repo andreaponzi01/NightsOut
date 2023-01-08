@@ -11,7 +11,10 @@
 
 <AnchorPane prefHeight="100.0" prefWidth="550.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.item.EventItemGUIController1">
    <children>
-      <ImageView fx:id="imageViewProfilePic" fitHeight="87.0" fitWidth="87.0" layoutX="42.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewProfilePic" fitHeight="87.0" fitWidth="87.0" layoutX="42.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <DropShadow />
+         </effect></ImageView>
       <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="239.0" layoutY="15.0" nodeOrientation="LEFT_TO_RIGHT" text="EVENT" textFill="#2e0095" underline="true" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="274.0">
          <font>
             <Font name="System Bold" size="24.0" />

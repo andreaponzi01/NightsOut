@@ -58,6 +58,7 @@ public class ViewUserPageFromCOGUIController2 implements Observer {
             NextEventsEngineering.nextEvents(this, userBean.getId());
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
+            e.printStackTrace();
         }
     }
 

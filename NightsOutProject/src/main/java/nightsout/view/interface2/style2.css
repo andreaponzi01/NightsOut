@@ -19,6 +19,15 @@
     -fx-background-repeat: no-repeat;
 }
 
+.usernameButton{
+    -fx-background-color: rgba(255,255,255,0.0);
+    -fx-background-radius: 30px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+    -fx-line-height: 18px;
+    -fx-letter-spacing: -0.01px;
+}
 
 .imgutente{
     -fx-border-color: white;
@@ -34,7 +43,6 @@
     -fx-background-radius: 12px;
 }
 
-
 .red-button-rounded {
     -fx-background-color: #ff2525;
     -fx-background-radius: 30px;
@@ -46,7 +54,6 @@
 
 }
 
-
 .navBarButton{
     -fx-background-color: rgba(255,255,255,0.0);
     -fx-background-radius: 30px;
@@ -57,19 +64,6 @@
     -fx-letter-spacing: -0.01px;
 }
 
-.requestItemButton{
-    -fx-background-color: rgba(255,255,255,0.0);
-}
-
-.itemButton{
-    -fx-background-color: rgba(255,255,255,0.0);
-    -fx-background-radius: 30px;
-    -fx-font-family: "Arial";
-    -fx-font-weight: bold;
-    -fx-font-size: 24px;
-    -fx-line-height: 18px;
-    -fx-letter-spacing: -0.01px;
-}
 .text-area {
     -fx-background-radius: 28;
     -fx-border-radius: 28;
@@ -80,13 +74,14 @@
 .text-area .scroll-pane {
     -fx-background-color: transparent;
 }
+
 .text-area .scroll-pane .viewport{
     -fx-background-color: transparent;
 }
+
 .text-area .scroll-pane .content{
     -fx-background-color: transparent;
 }
-
 
 .zoom:hover {
     -fx-scale-x: 1.1;

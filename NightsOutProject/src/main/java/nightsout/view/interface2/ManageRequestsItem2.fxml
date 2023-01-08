@@ -9,9 +9,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.ManageRequestsItemGUIController2">
+<AnchorPane prefHeight="150.0" prefWidth="750.0" style="-fx-background-color: #200f54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.ManageRequestsItemGUIController2">
    <children>
-      <Line endX="227.71786499023438" layoutX="134.0" layoutY="91.0" startX="-112.66917419433594" startY="-1.1444091796875E-5" stroke="#e8e7fc">
+      <Line endX="261.1232604980469" endY="-2.288818359375E-5" layoutX="134.0" layoutY="91.0" startX="-112.66917419433594" startY="-1.1444091796875E-5" stroke="#e8e7fc">
          <effect>
             <DropShadow />
          </effect></Line>
@@ -36,12 +36,12 @@
             <Font name="Arial Bold" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="179.0" layoutY="7.0" prefHeight="22.0" prefWidth="163.0" text="Request made by" textFill="WHITE">
+      <Label layoutX="140.0" layoutY="11.0" prefHeight="22.0" prefWidth="172.0" text="Request made by:" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="19.0" />
          </font>
       </Label>
-      <Button layoutX="391.0" layoutY="39.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #54e589; -fx-background-radius: 14;" text="OK" textFill="WHITE">
+      <Button layoutX="561.0" layoutY="40.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #54e589; -fx-background-radius: 14;" text="OK" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>
@@ -52,7 +52,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="468.0" layoutY="39.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #d00000; -fx-background-radius: 14;" text="X" textFill="WHITE">
+      <Button layoutX="638.0" layoutY="40.0" mnemonicParsing="false" onAction="#rejectRequest" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #d00000; -fx-background-radius: 14;" text="X" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>
@@ -63,7 +63,7 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="buttonUsername" layoutX="145.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="47.0" prefWidth="224.0" styleClass="itemButton" stylesheets="@style2.css" text="username" textFill="WHITE" underline="true">
+      <Button layoutX="421.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="70.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 14;" text="Info" textFill="#200f54">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>
@@ -74,5 +74,15 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Button>
+      <Line endX="-112.66917419433594" endY="-88.03736114501953" layoutX="648.0" layoutY="118.0" startX="-112.66917419433594" startY="-1.1444091796875E-5" stroke="#e8e7fc" AnchorPane.bottomAnchor="30.0" AnchorPane.topAnchor="30.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Line>
+      <Label fx:id="labelUsername" layoutX="140.0" layoutY="44.0" prefHeight="32.0" prefWidth="263.0" text="Username" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="28.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

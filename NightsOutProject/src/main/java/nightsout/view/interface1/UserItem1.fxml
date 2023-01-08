@@ -20,7 +20,10 @@
             <Font name="Arial Bold" size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="imageViewProfilePic" fitHeight="97.0" fitWidth="97.0" layoutX="54.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewProfilePic" fitHeight="97.0" fitWidth="97.0" layoutX="54.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <DropShadow />
+         </effect></ImageView>
       <Button fx:id="buttonUserPage" alignment="CENTER" layoutX="405.0" layoutY="12.0" mnemonicParsing="false" onAction="#goToProfile" prefHeight="75.0" prefWidth="100.0" style="-fx-background-radius: 28; -fx-background-color: #2e0095;" text="Info" textFill="#e8e7fc">
          <font>
             <Font name="Arial Bold" size="17.0" />
