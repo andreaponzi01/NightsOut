@@ -16,18 +16,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.bean.interface1.LoggedUserBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.*;
+import nightsout.utils.engineering.EventParticipantsEngineering;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.EventParticipantsEngineering;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,15 +94,15 @@ public class EventPageUserGUIController1 implements Observer, Initializable, Map
             this.eventImg.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
             EventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
 
-            if(eventBean1.getEventDate().isAfter(LocalDate.now()))
-                myStart();
+            myStart();
     }
     private void myStart() throws SystemException {
 
         this.myConcreteComponent = new ConcreteComponent();
         RequestBean requestBean = EventPageAppController.checkRequestStatus(this.userBean1, this.eventBean1);
         if (requestBean == null) {
-            actionDecorateSendRequest();
+            if(eventBean1.getEventDate().isAfter(LocalDate.now()))
+                actionDecorateSendRequest();
         }
         else if (requestBean.getStatus().equals("pending")) {
             actionDecoratePending();

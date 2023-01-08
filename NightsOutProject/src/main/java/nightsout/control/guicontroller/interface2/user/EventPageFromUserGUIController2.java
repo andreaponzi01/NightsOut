@@ -12,13 +12,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import nightsout.control.appcontroller.EventPageAppController;
-import nightsout.utils.bean.interface2.LoggedUserBean2;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.*;
+import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
+import nightsout.utils.bean.interface2.LoggedUserBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.decorator.*;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
@@ -83,8 +83,7 @@ public class EventPageFromUserGUIController2 implements Initializable, MapCompon
         this.labelEventTime.setText(eventBean.getTime().toString());
         this.eventImg.setImage(new Image(this.eventBean.getImg().toURI().toString()));
 
-        if(eventBean.getEventDate().isAfter(LocalDate.now()))
-            myStart();
+        myStart();
     }
 
     private void myStart() throws SystemException {
@@ -92,7 +91,8 @@ public class EventPageFromUserGUIController2 implements Initializable, MapCompon
         this.myConcreteComponent = new ConcreteComponent();
         RequestBean requestBean = EventPageAppController.checkRequestStatus(this.userBean, this.eventBean);
         if (requestBean == null) {
-            actionDecorateSendRequest();
+                if(eventBean.getEventDate().isAfter(LocalDate.now()))
+                    actionDecorateSendRequest();
         }
         else if (requestBean.getStatus().equals("pending")) {
             actionDecoratePending();
