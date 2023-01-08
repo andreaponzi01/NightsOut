@@ -32,6 +32,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -81,7 +82,9 @@ public class EventPageFromUserGUIController2 implements Initializable, MapCompon
         this.labelEventDuration.setText(eventBean.getDuration() +"h");
         this.labelEventTime.setText(eventBean.getTime().toString());
         this.eventImg.setImage(new Image(this.eventBean.getImg().toURI().toString()));
-        myStart();
+
+        if(eventBean.getEventDate().isAfter(LocalDate.now()))
+            myStart();
     }
 
     private void myStart() throws SystemException {

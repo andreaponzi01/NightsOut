@@ -39,6 +39,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -92,7 +93,9 @@ public class EventPageUserGUIController1 implements Observer, Initializable, Map
             this.labelEventTime.setText(eventBean1.getTime().toString());
             this.eventImg.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
             EventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
-            myStart();
+
+            if(eventBean1.getEventDate().isAfter(LocalDate.now()))
+                myStart();
     }
     private void myStart() throws SystemException {
 
