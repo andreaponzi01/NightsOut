@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
 import nightsout.utils.exception.CreateNotification;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2;
@@ -55,7 +56,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
         this.labelCity.setText(clubOwnerBean.getCity());
         this.labelAddress.setText(clubOwnerBean.getAddress());
         this.labelEmail.setText(clubOwnerBean.getEmail());
-        this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
+        this.labelDiscountVip.setText(clubOwnerBean.getDiscountVIP()+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
         CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
         ReviewAndResponseEngineering.eventReviews(this, this.clubOwnerBean.getId());
@@ -80,7 +81,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
         if (ob instanceof ReviewBean reviewBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem2.fxml")).openStream());
-                ReviewItemToResponseGUIController2 controller = fxmlLoader.getController();
+                ReviewItemGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(reviewBean);
                 this.listViewCommunity.getItems().add(pane);
                 ReviewAndResponseEngineering.responseOfOneReview(this, reviewBean.getIdReview());

@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.clubowner.EventReviewsClubOwnerGUIController1">
    <children>
-      <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
+      <fx:include source="MenuClubOwner1.fxml" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <Button layoutX="33.0" layoutY="33.0" mnemonicParsing="false" onAction="#backToClubOwnerPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="105.0" prefWidth="750.0" style="-fx-background-color: #d97a04; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.UserItemGUIController2">
+<AnchorPane prefHeight="105.0" prefWidth="750.0" style="-fx-background-color: #c9ec54; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.item.UserItemGUIController2">
    <children>
-      <Label fx:id="labelUsername" alignment="CENTER" layoutX="37.0" layoutY="33.0" prefHeight="63.0" prefWidth="675.0" text="Username" textFill="WHITE" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="33.0">
+      <Label fx:id="labelUsername" alignment="CENTER" layoutX="37.0" layoutY="33.0" prefHeight="63.0" prefWidth="675.0" text="Username" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="33.0">
          <font>
             <Font name="Arial Bold" size="28.0" />
          </font>

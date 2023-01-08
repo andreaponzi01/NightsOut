@@ -190,11 +190,7 @@ public class EventPageFromUserGUIController2 implements Initializable, MapCompon
             http.disconnect();
 
         } catch (JSONException | IOException e) {
-            try {
-                ExceptionHandler.handleException(e);
-            } catch (SystemException ex) {
-                CreateNotification.createNotification(e);
-            }
+            ExceptionHandler.handleException(e);
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

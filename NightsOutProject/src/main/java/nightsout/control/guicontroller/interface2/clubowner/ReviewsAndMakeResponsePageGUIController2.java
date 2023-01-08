@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.guicontroller.interface2.item.ReviewItemToResponseGUIController2;
 import nightsout.utils.exception.CreateNotification;
 import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
 import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
@@ -32,8 +33,8 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
         Pane pane = null;
         if(ob instanceof ReviewBean reviewBean) {
             try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem2.fxml")).openStream());
-                ReviewItemGUIController2 controller = fxmlLoader.getController();
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItemToResponse2.fxml")).openStream());
+                ReviewItemToResponseGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(reviewBean);
                 this.listViewReviews.getItems().add(pane);
             } catch (IOException | SystemException e) {

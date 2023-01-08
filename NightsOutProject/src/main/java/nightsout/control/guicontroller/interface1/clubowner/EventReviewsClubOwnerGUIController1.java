@@ -33,7 +33,9 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
             CreateNotification.createNotification(e);
         }
     }
+    @FXML
     public void backToClubOwnerPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
+    @FXML
     public void goToCommunity(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ReviewAndResponsePage1.fxml");}
 
     @Override

@@ -90,7 +90,6 @@ public class SwitchAndSetPage1 {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
-
             MakeResponsePageSetter1.setter(userBean,reviewBean, loader.getController());
             SwitchPage.showStage(actionEvent, root);
         } catch (IOException e) {

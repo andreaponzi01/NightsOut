@@ -3,6 +3,7 @@ package nightsout.utils.scene.switchpage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;

@@ -202,11 +202,7 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
             http.disconnect();
 
         } catch (JSONException | IOException e) {
-            try {
-                ExceptionHandler.handleException(e);
-            } catch (SystemException ex) {
-                CreateNotification.createNotification(e);
-            }
+            ExceptionHandler.handleException(e);
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

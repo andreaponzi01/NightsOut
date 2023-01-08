@@ -35,18 +35,10 @@
 }
 
 
-.title {
-    -fx-background-color: #77188c;
-    -fx-background-radius: 8px;
-    -fx-font-size: 23px;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-family: "copperplate";
-    -fx-opacity: 0.4;
-}
-
 .red-button-rounded {
     -fx-background-color: #ff2525;
     -fx-background-radius: 30px;
+    -fx-font-family: "Arial";
     -fx-font-weight: bold;
     -fx-font-size: 15px;
     -fx-line-height: 18px;
@@ -93,4 +85,11 @@
 }
 .text-area .scroll-pane .content{
     -fx-background-color: transparent;
+}
+
+
+.zoom:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
 }

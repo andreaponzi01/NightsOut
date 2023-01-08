@@ -19,10 +19,6 @@ public class ReviewItemGUIController2 {
     public Button buttonUsername;
     private UserBean2 userBean;
 
-    public ReviewItemGUIController2() {
-        //ignore
-    }
-
     @FXML
     private Label labelComment;
     @FXML
@@ -52,7 +48,6 @@ public class ReviewItemGUIController2 {
             replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml", userBean);
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
-            e.getCause().printStackTrace();
         }
     }
 }

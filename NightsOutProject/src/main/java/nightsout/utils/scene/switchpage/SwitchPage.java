@@ -27,11 +27,8 @@ public class SwitchPage {
         try {
             scene = new Scene(fxmlLoader.load());
         } catch (IOException e) {
-            try {
-                ExceptionHandler.handleException(e);
-            } catch (SystemException ex) {
-                CreateNotification.createNotification(ex);
-            }
+            ExceptionHandler.handleException(e);
+            e.printStackTrace();
         }
         stage.setScene(scene);
         stage.show();

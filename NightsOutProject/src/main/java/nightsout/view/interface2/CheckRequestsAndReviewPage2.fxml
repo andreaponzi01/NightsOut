@@ -12,35 +12,50 @@
       <fx:include source="MenuUser2.fxml" />
       <AnchorPane prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="107.0" prefHeight="9.0" prefWidth="575.0" text="CheckRequests" textFill="#ffeecc" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="107.0" prefHeight="9.0" prefWidth="575.0" text="CheckRequests" textFill="#2e0095" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Arial Bold" size="40.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewNextEvents" layoutX="5.0" layoutY="58.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="58.0">
+            <ListView fx:id="listViewNextEvents" layoutX="5.0" layoutY="82.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="82.0">
                <effect>
                   <DropShadow />
                </effect></ListView>
-            <ListView fx:id="listViewDeclined" layoutX="390.0" layoutY="58.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="347.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="58.0">
+            <ListView fx:id="listViewDeclined" layoutX="530.0" layoutY="82.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="323.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="82.0">
                <effect>
                   <DropShadow />
                </effect>
             </ListView>
-            <ListView fx:id="listViewToReview" layoutX="5.0" layoutY="355.0" prefHeight="283.0" prefWidth="781.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+            <ListView fx:id="listViewToReview" layoutX="5.0" layoutY="355.0" prefHeight="246.0" prefWidth="780.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                <effect>
                   <DropShadow />
                </effect>
             </ListView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="287.0" prefHeight="0.0" prefWidth="575.0" text="Ended Booked Event" textFill="#ffeecc">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="321.0" prefHeight="0.0" prefWidth="575.0" text="Ended Booked Event" textFill="#2e0095">
                <font>
                   <Font name="Arial Bold" size="40.0" />
                </font>
             </Label>
-            <ListView fx:id="listViewPending" layoutX="268.0" layoutY="58.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="58.0">
+            <ListView fx:id="listViewPending" layoutX="268.0" layoutY="82.0" prefHeight="225.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="323.0" AnchorPane.leftAnchor="268.0" AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="82.0">
                <effect>
                   <DropShadow />
                </effect>
             </ListView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="48.0" prefHeight="31.0" prefWidth="255.0" text="Accepted" textFill="#2e0095" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="48.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="58.0" prefHeight="31.0" prefWidth="255.0" text="Pending" textFill="#2e0095" AnchorPane.leftAnchor="268.0" AnchorPane.topAnchor="48.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="68.0" prefHeight="31.0" prefWidth="255.0" text="Declined" textFill="#2e0095" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="48.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Line endX="43.165618896484375" fill="BLACK" layoutX="124.58649444580078" layoutY="328.0" startX="-48.920875549316406" strokeWidth="2.0" AnchorPane.leftAnchor="74.66561889648438" AnchorPane.rightAnchor="871.2478866577148" AnchorPane.topAnchor="327.0" />
