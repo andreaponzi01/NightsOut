@@ -16,16 +16,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.ConcreteComponent;
 import nightsout.utils.decorator.ConcreteDecoratorDelete1;
 import nightsout.utils.decorator.VisualComponent;
 import nightsout.utils.engineering.EventParticipantsEngineering;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -78,7 +77,7 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
 
     public void setAll(EventBean1 eventBean1) throws SystemException {
 
-            this.clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
+            this.clubOwnerBean1 = new ClubOwnerBean1(LoggedBean.getInstance().getClubOwner());
             this.eventBean1 = eventBean1;
             clubOwnerBean1Event = new ClubOwnerBean1(EventPageAppController.getClubOwner(eventBean1.getIdClubOwner()));
             this.buttonUsername.setText(clubOwnerBean1Event.getName());
@@ -124,7 +123,7 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
                 controller.setAll(new UserBean1(userBean));
                 this.listViewUsers.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
 
         }
@@ -134,10 +133,9 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
     public void goToMap(ActionEvent ae) {
 
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
+            SwitchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -147,11 +145,10 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
             if (clubOwnerBean1.getId() == clubOwnerBean1Event.getId())
                 SwitchPage.replaceScene(ae, "/ClubOwnerPage1.fxml");
             else {
-                SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-                replacer.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromCO1.fxml", clubOwnerBean1Event);
+                SwitchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromCO1.fxml", clubOwnerBean1Event);
             }
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -204,7 +201,7 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
         } catch (JSONException | IOException e) {
             ExceptionHandler.handleException(e);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
 
 

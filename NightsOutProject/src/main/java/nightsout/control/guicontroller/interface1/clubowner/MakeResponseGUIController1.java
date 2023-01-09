@@ -5,11 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.MakeResponseAppController;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -34,12 +34,12 @@ public class MakeResponseGUIController1 {
         try {
             ResponseBean responseBean = new ResponseBean();
             responseBean.setResponse(textAreaResponse.getText());
-            responseBean.setIdClubOwner(LoggedClubOwnerBean1.getInstance().getId());
+            responseBean.setIdClubOwner(LoggedBean.getInstance().getClubOwner().getId());
             responseBean.setReview(reviewBean.getIdReview());
             MakeResponseAppController.makeResponse(responseBean);
             SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");
         } catch (SystemException | EmptyInputException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
     public void backToReviewsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}

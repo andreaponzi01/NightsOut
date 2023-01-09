@@ -37,8 +37,7 @@ public class RequestsItemGUIController2 {
     private void goToEventPage(ActionEvent actionEvent) {
 
         try {
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", this.eventBean);
+            SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", this.eventBean);
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

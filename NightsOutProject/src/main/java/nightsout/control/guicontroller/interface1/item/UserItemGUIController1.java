@@ -5,10 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 
@@ -43,21 +43,18 @@ public class UserItemGUIController1 {
     private void goToProfile(ActionEvent actionEvent) {
 
         try {
-            String type = LoggedClubOwnerBean1.checkInstanceType();
+            String type = LoggedBean.getInstance().checkInstanceType();
             if (clubOwnerBean1 != null) {
-                SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-                replacer.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1);
+                SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1);
             } else {
-                if (type.equals("FREE")) {
-                    SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-                    replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser1.fxml", userBean1);
+                if (type.equalsIgnoreCase("Free")) {
+                    SwitchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser1.fxml", this.userBean1);
                 } else {
-                    SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-                    replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO1.fxml", userBean1);
+                    SwitchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO1.fxml", this.userBean1);
                 }
             }
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

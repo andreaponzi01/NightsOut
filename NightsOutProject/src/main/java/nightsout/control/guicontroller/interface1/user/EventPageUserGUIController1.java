@@ -16,15 +16,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.*;
 import nightsout.utils.engineering.EventParticipantsEngineering;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -47,6 +46,7 @@ import java.util.ResourceBundle;
 public class EventPageUserGUIController1 implements Observer, Initializable, MapComponentInitializedListener {
 
     private UserBean1 userBean1;
+    private ClubOwnerBean1 clubOwnerBean1;
     private ClubOwnerBean1 clubOwnerBean1Event;
     private EventBean1 eventBean1;
     @FXML
@@ -78,13 +78,13 @@ public class EventPageUserGUIController1 implements Observer, Initializable, Map
     public void setAll(EventBean1 eventBean1) throws SystemException {
 
             this.eventBean1 = eventBean1;
-            this.userBean1 = LoggedUserBean1.getInstance();
+            this.userBean1 = new UserBean1(LoggedBean.getInstance().getUser());
             clubOwnerBean1Event = new ClubOwnerBean1(EventPageAppController.getClubOwner(eventBean1.getIdClubOwner()));
             this.buttonUsername.setText(clubOwnerBean1Event.getName());
             this.labelEventName.setText(eventBean1.getName());
             this.labelDescription.setText(eventBean1.getDescription());
             Double price= (eventBean1.getPrice()-((eventBean1.getPrice()* clubOwnerBean1Event.getDiscountVIP())/100));
-            if(LoggedUserBean1.getInstance().getVip())
+            if(LoggedBean.getInstance().getUser().getVip())
                 this.labelEventPrice.setText("€" + price);
             else
                 this.labelEventPrice.setText("€" + eventBean1.getPrice());
@@ -98,20 +98,33 @@ public class EventPageUserGUIController1 implements Observer, Initializable, Map
     }
     private void myStart() throws SystemException {
 
-        this.myConcreteComponent = new ConcreteComponent();
-        RequestBean requestBean = EventPageAppController.checkRequestStatus(this.userBean1, this.eventBean1);
-        if (requestBean == null) {
-            if(eventBean1.getEventDate().isAfter(LocalDate.now()))
-                actionDecorateSendRequest();
-        }
-        else if (requestBean.getStatus().equals("pending")) {
-            actionDecoratePending();
-        } else if (requestBean.getStatus().equals("accepted")) {
-            actionDecorateAccepted();
-        } else if (requestBean.getStatus().equals("declined")){
-            actionDecorateDeclined();
+        if (LoggedBean.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
+            this.myConcreteComponent = new ConcreteComponent();
+            RequestBean requestBean = EventPageAppController.checkRequestStatus(this.userBean1, this.eventBean1);
+            if (requestBean == null) {
+                if (eventBean1.getEventDate().isAfter(LocalDate.now()))
+                    actionDecorateSendRequest();
+            } else if (requestBean.getStatus().equals("pending")) {
+                actionDecoratePending();
+            } else if (requestBean.getStatus().equals("accepted")) {
+                actionDecorateAccepted();
+            } else if (requestBean.getStatus().equals("declined")) {
+                actionDecorateDeclined();
+            }
+        } else {
+            this.myConcreteComponent = new ConcreteComponent();
+            if(clubOwnerBean1.getId()== clubOwnerBean1Event.getId())
+                actionDecorateDelete();
         }
     }
+
+    private void actionDecorateDelete() {
+
+        ConcreteDecoratorDelete1 concreteDecoratorDelete = new ConcreteDecoratorDelete1(this.myConcreteComponent, this.eventBean1);
+        this.contents = concreteDecoratorDelete;
+        this.display();
+    }
+
     private void actionDecorateSendRequest() {
 
         ConcreteDecoratorSendRequest1 concreteDecoratorSendRequest1 = new ConcreteDecoratorSendRequest1(this.myConcreteComponent, this.eventBean1);
@@ -142,10 +155,9 @@ public class EventPageUserGUIController1 implements Observer, Initializable, Map
     public void goToMap(ActionEvent ae) {
 
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
+            SwitchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -153,10 +165,9 @@ public class EventPageUserGUIController1 implements Observer, Initializable, Map
     public void goToClubOwner(ActionEvent ae) {
 
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
+            SwitchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -207,7 +218,7 @@ public class EventPageUserGUIController1 implements Observer, Initializable, Map
         } catch (JSONException | IOException e) {
             ExceptionHandler.handleException(e);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
 
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
@@ -247,7 +258,7 @@ public class EventPageUserGUIController1 implements Observer, Initializable, Map
                 controller.setAll(new UserBean1(uBean));
                 this.listViewUsers.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
 
         }

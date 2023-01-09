@@ -9,13 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.db.MySqlConnection;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -44,13 +44,13 @@ public class MenuClubOwnerGUIController2 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedClubOwnerBean2.getInstance().getImg().toURI().toString());
+        Image img = new Image(LoggedBean.getInstance().getClubOwner().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
-        this.labelUsername.setText(LoggedClubOwnerBean2.getInstance().getUsername());
-        this.labelName.setText(LoggedClubOwnerBean2.getInstance().getName());
-        this.labelAddress.setText(LoggedClubOwnerBean2.getInstance().getAddress());
-        this.labelCity.setText(LoggedClubOwnerBean2.getInstance().getCity());
-        this.labelEmail.setText(LoggedClubOwnerBean2.getInstance().getEmail());
+        this.labelUsername.setText(LoggedBean.getInstance().getClubOwner().getUsername());
+        this.labelName.setText(LoggedBean.getInstance().getClubOwner().getName());
+        this.labelAddress.setText(LoggedBean.getInstance().getClubOwner().getAddress());
+        this.labelCity.setText(LoggedBean.getInstance().getClubOwner().getCity());
+        this.labelEmail.setText(LoggedBean.getInstance().getClubOwner().getEmail());
     }
 
     @FXML
@@ -70,9 +70,7 @@ public class MenuClubOwnerGUIController2 implements Initializable {
             try {
                 SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");
                 MySqlConnection.closeConnection();
-                LoggedUserBean1.deleteInstance();
-                LoggedClubOwnerBean2.deleteInstance();
-                LoggedUserBean1.deleteInstance();
+                LoggedBean.getInstance().deleteSession();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
             } catch (SQLException | IOException e) {

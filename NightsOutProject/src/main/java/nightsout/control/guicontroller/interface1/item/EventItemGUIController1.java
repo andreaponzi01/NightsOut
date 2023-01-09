@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 
@@ -20,6 +20,7 @@ public class EventItemGUIController1 {
     ImageView imageViewProfilePic;
 
     public void setAll(EventBean1 eventBean1) {
+
         this.eventBean1 = eventBean1;
         labelEventName.setText(this.eventBean1.getName());
         imageViewProfilePic.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
@@ -28,16 +29,15 @@ public class EventItemGUIController1 {
     @FXML
     public void goToEventPage(ActionEvent actionEvent) {
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            String type = LoggedClubOwnerBean1.checkInstanceType();
-            if(type.equals("FREE")){
-                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
+            String type = LoggedBean.getInstance().checkInstanceType();
+            if(type.equalsIgnoreCase("Free")){
+                SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
             }
             else{
-                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean1);
+                SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean1);
             }
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

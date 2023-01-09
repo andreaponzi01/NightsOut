@@ -5,15 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.engineering.ReviewAndResponseEngineering;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.ReviewAndResponseEngineering;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,7 +39,7 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
                 this.listView.getItems().add(pane);
                 ReviewAndResponseEngineering.responseOfOneReview(this, reviewBean.getIdReview());
             } catch (IOException | SystemException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
 
@@ -51,7 +51,7 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
                 controller.setAll(responseBean);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
 
@@ -61,9 +61,9 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ReviewAndResponseEngineering.eventReviews(this,  LoggedClubOwnerBean2.getInstance().getId());
+            ReviewAndResponseEngineering.eventReviews(this,  LoggedBean.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

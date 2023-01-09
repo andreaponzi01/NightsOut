@@ -9,13 +9,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
+import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.engineering.CreatedEventsEngineering;
+import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.CreatedEventsEngineering;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +45,7 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        LoggedClubOwnerBean1 loggedClubOwner = LoggedClubOwnerBean1.getInstance();
+        ClubOwnerBean1 loggedClubOwner = new ClubOwnerBean1(LoggedBean.getInstance().getClubOwner());
         labelEmail.setText(loggedClubOwner.getEmail());
         labelUsername.setText(loggedClubOwner.getUsername());
         labelName.setText(loggedClubOwner.getName());
@@ -53,7 +55,7 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
         try {
             CreatedEventsEngineering.createdEvents(this, loggedClubOwner.getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
         imageViewProfilePic.setImage(new Image(loggedClubOwner.getImg().toURI().toString()));
     }

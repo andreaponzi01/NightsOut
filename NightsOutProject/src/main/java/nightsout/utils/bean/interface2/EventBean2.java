@@ -42,9 +42,7 @@ public class EventBean2 extends EventBean {
                     this.eventDate = dateLocalDate;
             } catch (NumberFormatException e) {
                 Trigger.throwWrongInputTypeException(e, "Birthday");
-            } catch (DateTimeException e) {
-                Trigger.throwWrongInputTypeException(new NumberFormatException(), EVENT_DATE_FIELD);
-            } catch (ParseException e) {
+            } catch (DateTimeException | ParseException e) {
                 Trigger.throwWrongInputTypeException(new NumberFormatException(), EVENT_DATE_FIELD);
             }
         }

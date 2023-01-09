@@ -8,16 +8,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.engineering.SearchEngineering;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.SearchEngineering;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class SearchPageGUIController1 implements Observer {
             if (!input.isBlank())
                 SearchEngineering.search(this, input);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -54,7 +54,7 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new UserBean1(uBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
         if(ob instanceof EventBean eBean) {
@@ -64,7 +64,7 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new EventBean1(eBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                    CreateNotification.createNotification(e);
+                    ExceptionHandler.handleException(e);
                 }
         }
         if(ob instanceof ClubOwnerBean cBean) {
@@ -74,7 +74,7 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new ClubOwnerBean1(cBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
     }

@@ -10,9 +10,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.RegisterAppController;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
@@ -64,7 +64,7 @@ public class RegisterClubOwnerGUIController2 {
             SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");
         } catch (EmptyInputException | EmailNotValidException | SystemException | UsernameAlreadyTakenException |
                  PasswordNotCompliantException | WrongInputTypeException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 

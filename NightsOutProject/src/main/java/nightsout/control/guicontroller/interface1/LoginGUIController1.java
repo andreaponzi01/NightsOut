@@ -7,8 +7,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.LoginAppController;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.CredentialsBean;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -35,16 +35,14 @@ public class LoginGUIController1 {
         if(checkBoxClubOwner.isSelected()) {type = "ClubOwner";}
         try {
             CredentialsBean credentialsBean = new CredentialsBean(textFieldUsername.getText(), passwordField.getText(), type);
-
+            LoginAppController.login(credentialsBean);
             if (Objects.equals(type, "ClubOwner")) {
-                LoginAppController.loginClubOwner1(credentialsBean);
                 SwitchPage.replaceScene(ae,"/ClubOwnerPage1.fxml");
             } else {
-                LoginAppController.loginUser1(credentialsBean);
                 SwitchPage.replaceScene(ae,"/UserPage1.fxml");
             }
         } catch (SystemException | WrongCredentialsException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 

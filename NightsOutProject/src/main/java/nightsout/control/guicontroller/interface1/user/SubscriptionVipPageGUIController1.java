@@ -3,8 +3,8 @@ package nightsout.control.guicontroller.interface1.user;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import nightsout.control.appcontroller.SubscriptionVipAppController;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
+import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
@@ -17,10 +17,10 @@ public class SubscriptionVipPageGUIController1 {
     private void confirmSubscription(ActionEvent actionEvent) {
 
         try {
-            LoggedUserBean1.updateInstance(SubscriptionVipAppController.subscription(LoggedUserBean1.getInstance()));
+            LoggedBean.getInstance().setUser(SubscriptionVipAppController.subscription(LoggedBean.getInstance().getUser()));
             SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

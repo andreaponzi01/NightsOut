@@ -7,9 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import nightsout.control.appcontroller.EventPageAppController;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
@@ -61,7 +60,7 @@ public class MapGUIController implements Initializable, MapComponentInitializedL
             http.setDoOutput(true);
             http.setRequestProperty("Content-Type", "application/json");
 
-            String data = "{\n  \"location\": \"" + address  + "\",\n  \"options\": {\n    \"thumbMaps\": true\n  }\n}";
+            String data = "{\n  \"location\": \"" + address + "\",\n  \"options\": {\n    \"thumbMaps\": true\n  }\n}";
             byte[] out = data.getBytes(StandardCharsets.UTF_8);
 
             OutputStream stream = http.getOutputStream();
@@ -79,10 +78,8 @@ public class MapGUIController implements Initializable, MapComponentInitializedL
             lng = Double.parseDouble(object.getJSONArray("results").getJSONObject(0).getJSONArray("locations").getJSONObject(0).getJSONObject("latLng").getString("lng"));
             http.disconnect();
 
-        } catch (JSONException | IOException e) {
+        } catch (JSONException | IOException | SystemException e) {
             ExceptionHandler.handleException(e);
-        } catch (SystemException e) {
-            CreateNotification.createNotification(e);
         }
 
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
@@ -114,16 +111,15 @@ public class MapGUIController implements Initializable, MapComponentInitializedL
     @FXML
     public void back(ActionEvent actionEvent) throws SystemException {
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            String type= LoggedClubOwnerBean1.checkInstanceType();
-            if(type.equals("FREE")){
-                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+            String type = LoggedBean.getInstance().checkInstanceType();
+            if(type.equalsIgnoreCase("Free")){
+                SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
             }
             else{
-                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean);
+                SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean);
             }
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

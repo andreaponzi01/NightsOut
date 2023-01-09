@@ -12,9 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import nightsout.control.appcontroller.EventPageAppController;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
-import nightsout.utils.bean.interface2.LoggedUserBean2;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.decorator.ConcreteComponent;
@@ -43,6 +41,14 @@ public class EventPageFromCOGUIController2 implements Initializable, MapComponen
     private EventBean2 eventBean;
 
     @FXML
+    private Label labelEventDuration;
+    @FXML
+    private Label labelDescription;
+    @FXML
+    private GoogleMapView location;
+    @FXML
+    private ImageView eventImg;
+    @FXML
     private Label labelEventName;
     @FXML
     private Button buttonUsername;
@@ -52,14 +58,7 @@ public class EventPageFromCOGUIController2 implements Initializable, MapComponen
     private Label labelEventDate;
     @FXML
     private Label labelEventTime;
-    @FXML
-    private Label labelEventDuration;
-    @FXML
-    private Label labelDescription;
-    @FXML
-    private GoogleMapView location;
-    @FXML
-    private ImageView eventImg;
+
     // Decorator
     @FXML
     private AnchorPane root;
@@ -69,16 +68,12 @@ public class EventPageFromCOGUIController2 implements Initializable, MapComponen
     public void setAll(EventBean2 eventBean) throws SystemException {
 
         this.eventBean = eventBean;
-        this.clubOwnerBean = LoggedClubOwnerBean2.getInstance();
+        this.clubOwnerBean = new ClubOwnerBean2(LoggedBean.getInstance().getClubOwner());
         clubOwnerBeanEvent = new ClubOwnerBean2(EventPageAppController.getClubOwner(eventBean.getIdClubOwner()));
         this.buttonUsername.setText(clubOwnerBeanEvent.getName());
         this.labelEventName.setText(eventBean.getName());
         this.labelDescription.setText(eventBean.getDescription());
-        Double price= (eventBean.getPrice()-((eventBean.getPrice()*clubOwnerBeanEvent.getDiscountVIP())/100));
-        if(LoggedUserBean2.getInstance().getVip())
-            this.labelEventPrice.setText("€" + price);
-        else
-            this.labelEventPrice.setText("€" + eventBean.getPrice());
+        this.labelEventPrice.setText("€" + eventBean.getPrice());
         this.labelEventDate.setText(eventBean.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
         this.labelEventDuration.setText(eventBean.getDuration() +"h");
         this.labelEventTime.setText(eventBean.getTime().toString());
@@ -102,27 +97,27 @@ public class EventPageFromCOGUIController2 implements Initializable, MapComponen
 
     public void display() { this.root.getChildren().add(this.contents.getButton()); }
 
+    @FXML
+    public void goToClubOwner(ActionEvent ae) {
+
+        try {
+            SwitchAndSetPage2.switchAndSetSceneCO(ae, "/ViewCOPageFromCO2.fxml", clubOwnerBeanEvent);
+        } catch (SystemException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
 
     @FXML
     public void goToParticipantsPage(ActionEvent ae) {
 
         try {
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromCO2.fxml", eventBean);
+            SwitchAndSetPage2.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromCO2.fxml", eventBean);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
-    @FXML
-    public void goToClubOwner(ActionEvent ae) {
 
-        try {
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetSceneCO(ae, "/ViewCOPageFromCO2.fxml", clubOwnerBeanEvent);
-        } catch (SystemException e) {
-            CreateNotification.createNotification(e);
-        }
-    }
 
 
     @Override
@@ -169,10 +164,8 @@ public class EventPageFromCOGUIController2 implements Initializable, MapComponen
             lng = Double.parseDouble(object.getJSONArray("results").getJSONObject(0).getJSONArray("locations").getJSONObject(0).getJSONObject("latLng").getString("lng"));
             http.disconnect();
 
-        } catch (JSONException | IOException e) {
+        } catch (JSONException | IOException | SystemException e) {
             ExceptionHandler.handleException(e);
-        } catch (SystemException e) {
-            CreateNotification.createNotification(e);
         }
 
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento

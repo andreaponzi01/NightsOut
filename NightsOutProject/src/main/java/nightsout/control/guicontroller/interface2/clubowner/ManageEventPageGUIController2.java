@@ -13,11 +13,11 @@ import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
 import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.engineering.Email;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -54,17 +54,17 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            CreatedEventsEngineering.createdEvents(this, LoggedClubOwnerBean2.getInstance().getId());
+            CreatedEventsEngineering.createdEvents(this, LoggedBean.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
     private void sendEmail(String eventName) {
         try {
-            Email.sendEmail(LoggedClubOwnerBean2.getInstance().getEmail(), "Evento creato con successo!", "L'evento " + eventName + " è stato creato con successo.");
+            Email.sendEmail(LoggedBean.getInstance().getClubOwner().getEmail(), "Evento creato con successo!", "L'evento " + eventName + " è stato creato con successo.");
         } catch (EmailException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -77,7 +77,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             eventBean.setDuration((int) sliderTime.getValue());
             eventBean.setTime(textFieldEventTime.getText());
             eventBean.setName(textFieldName.getText());
-            eventBean.setIdClubOwner(LoggedClubOwnerBean2.getInstance().getId());
+            eventBean.setIdClubOwner(LoggedBean.getInstance().getClubOwner().getId());
             eventBean.setDescription(textFieldDescription.getText());
             eventBean.setPrice(textFieldPrice.getText());
             eventBean.setImg(this.img);
@@ -88,7 +88,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             SwitchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
 
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
 
 
@@ -117,7 +117,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
                 this.listViewCreatedEvents.getItems().add(pane);
             }
             catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
     }

@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.clubowner.UserPageFromCOGUIController1">
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.ViewUserPageGUIController1">
    <children>
       <fx:include source="MenuClubOwner1.fxml" />
       <AnchorPane maxHeight="531.0" maxWidth="864.0" minHeight="531.0" minWidth="864.0" prefHeight="531.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
@@ -22,7 +22,7 @@
                   <Font name="Arial Bold" size="29.0" />
                </font>
             </Label>
-            <ImageView fx:id="profileImg" fitHeight="190.0" fitWidth="191.0" layoutX="81.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
+            <ImageView fx:id="imageViewProfile" fitHeight="190.0" fitWidth="191.0" layoutX="81.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
             <Label fx:id="labelUsername" layoutX="311.0" layoutY="30.0" prefHeight="69.0" prefWidth="258.0" text="Username" textFill="WHITE" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="Arial Bold" size="40.0" />

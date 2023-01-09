@@ -1,4 +1,4 @@
-package nightsout.control.guicontroller.interface2.user;
+package nightsout.control.guicontroller.interface2;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,24 +7,25 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2;
+import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.observer.Observer;
 import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.engineering.ReviewAndResponseEngineering;
+import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.observer.Observer;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class ViewCOPageFromUserGUIController2 implements Observer {
+public class ViewClubOwnerPageGUIController2 implements Observer {
 
     @FXML
     private Label labelName;
@@ -47,7 +48,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
 
     private ClubOwnerBean clubOwnerBean;
 
-    public void setAll(ClubOwnerBean clubOwnerBean) throws SystemException {
+    public void setAll(ClubOwnerBean2 clubOwnerBean) throws SystemException {
 
         this.clubOwnerBean = clubOwnerBean;
         this.labelName.setText(clubOwnerBean.getName());
@@ -55,7 +56,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
         this.labelCity.setText(clubOwnerBean.getCity());
         this.labelAddress.setText(clubOwnerBean.getAddress());
         this.labelEmail.setText(clubOwnerBean.getEmail());
-        this.labelDiscountVip.setText(clubOwnerBean.getDiscountVIP()+"%");
+        this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
         CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
         ReviewAndResponseEngineering.eventReviews(this, this.clubOwnerBean.getId());
@@ -74,7 +75,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
                 controller.setAll(new EventBean2(eBean));
                 this.listViewCreatedEvents.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
         if (ob instanceof ReviewBean reviewBean) {
@@ -85,7 +86,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
                 this.listViewCommunity.getItems().add(pane);
                 ReviewAndResponseEngineering.responseOfOneReview(this, reviewBean.getIdReview());
             } catch (IOException | SystemException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
         if(ob instanceof ResponseBean responseBean) {
@@ -95,7 +96,7 @@ public class ViewCOPageFromUserGUIController2 implements Observer {
                 controller.setAllCommunity(responseBean, this.clubOwnerBean);
                 this.listViewCommunity.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
     }

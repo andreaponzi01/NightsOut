@@ -7,12 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.engineering.ResponseEngineering;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.ResponseEngineering;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            ResponseEngineering.eventReviews(this,  LoggedClubOwnerBean1.getInstance().getId());
+            ResponseEngineering.eventReviews(this,  LoggedBean.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

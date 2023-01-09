@@ -1,4 +1,4 @@
-package nightsout.control.guicontroller.interface1.clubowner;
+package nightsout.control.guicontroller.interface1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,19 +7,20 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.ResponseItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.engineering.ReviewAndResponseEngineering;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.ReviewAndResponseEngineering;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class CommunityFromCOGUIController1 implements Observer {
+public class ViewCommunityGUIController1 implements Observer {
 
     @FXML
     private ListView listView;
@@ -34,10 +35,12 @@ public class CommunityFromCOGUIController1 implements Observer {
     public void backToViewClubOwnerPage(ActionEvent actionEvent) {
 
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromCO1.fxml", this.clubOwnerBean1);
+            if(LoggedBean.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
+                SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1);
+            else
+                SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromCO1.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -55,9 +58,11 @@ public class CommunityFromCOGUIController1 implements Observer {
                 this.listView.getItems().add(pane);
                 ReviewAndResponseEngineering.responseOfOneReview(this, reviewBean.getIdReview());
             } catch (IOException | SystemException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
+
+
         if(ob instanceof ResponseBean responseBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ResponseItem1.fxml")).openStream());
@@ -66,7 +71,7 @@ public class CommunityFromCOGUIController1 implements Observer {
                 controller.setAllCommunity(responseBean, this.clubOwnerBean1);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
     }

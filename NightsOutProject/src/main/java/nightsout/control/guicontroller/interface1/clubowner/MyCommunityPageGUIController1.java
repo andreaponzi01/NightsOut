@@ -8,10 +8,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.ResponseItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
 import nightsout.utils.engineering.ReviewAndResponseEngineering;
 import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
@@ -31,11 +31,10 @@ public class MyCommunityPageGUIController1 implements Observer, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ClubOwnerBean1 clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
+        ClubOwnerBean1 clubOwnerBean1 = new ClubOwnerBean1(LoggedBean.getInstance().getClubOwner());
         try {
             ReviewAndResponseEngineering.eventReviews(this, clubOwnerBean1.getId());
         } catch (SystemException e) {
-            //CreateNotification.createNotification(e);
             ExceptionHandler.handleException(e);
         }
     }

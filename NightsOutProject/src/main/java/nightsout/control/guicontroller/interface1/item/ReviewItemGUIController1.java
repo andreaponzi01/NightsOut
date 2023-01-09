@@ -2,15 +2,13 @@ package nightsout.control.guicontroller.interface1.item;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -39,28 +37,26 @@ public class ReviewItemGUIController1 {
     public void goToResponsePage(ActionEvent actionEvent) {
 
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean1, reviewBean);
+            SwitchAndSetPage1.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean1, reviewBean);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
     @FXML
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            String type = LoggedClubOwnerBean1.checkInstanceType();
-            if (type.equals("FREE")) {
-                if(userBean1.getId()== LoggedUserBean1.getInstance().getId())
+            String type = LoggedBean.getInstance().checkInstanceType();
+            if (type.equalsIgnoreCase("FREE")) {
+                if(userBean1.getId()== LoggedBean.getInstance().getUser().getId())
                     SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");
                 else
-                    replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser1.fxml",userBean1);
+                    SwitchAndSetPage1.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser1.fxml",userBean1);
             } else {
-                replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO1.fxml",userBean1);
+                SwitchAndSetPage1.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO1.fxml",userBean1);
             }
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

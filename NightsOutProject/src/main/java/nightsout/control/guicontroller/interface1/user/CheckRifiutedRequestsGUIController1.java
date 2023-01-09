@@ -8,11 +8,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.CheckRequestsAppController;
 import nightsout.control.guicontroller.interface1.item.CheckRequestsItemGUIController1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
 import nightsout.utils.engineering.CheckRequestsEngineering;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -30,9 +30,9 @@ public class CheckRifiutedRequestsGUIController1 implements Observer, Initializa
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            CheckRequestsEngineering.checkRequests(this,  LoggedUserBean1.getInstance().getId());
+            CheckRequestsEngineering.checkRequests(this,  LoggedBean.getInstance().getUser().getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
     @FXML
@@ -52,7 +52,7 @@ public class CheckRifiutedRequestsGUIController1 implements Observer, Initializa
                     controller.setAll(rBean, eventBean1);
                     this.listViewRifiutedRequests.getItems().add(pane);
                 } catch(SystemException | IOException e){
-                    CreateNotification.createNotification(e);
+                    ExceptionHandler.handleException(e);
                 }
         }
     }

@@ -1,16 +1,13 @@
 package nightsout.model;
 
 import nightsout.utils.bean.ResponseBean;
-import nightsout.utils.bean.ReviewBean;
 
 public class ResponseModel {
 
-
-
-    private int idAnswer;
-    private int idClubOwner;
     private int review;
     private String response;
+    private int idAnswer;
+    private int idClubOwner;
 
     public ResponseModel() {
 
@@ -26,32 +23,26 @@ public class ResponseModel {
     public int getIdAnswer() {
         return idAnswer;
     }
-
-    public void setIdAnswer(int idAnswer) {
-        this.idAnswer = idAnswer;
+    public String getResponse() {
+        return response;
     }
-
     public int getIdClubOwner() {
         return idClubOwner;
     }
-
-    public void setIdClubOwner(int idClubOwner) {
-        this.idClubOwner = idClubOwner;
-    }
-
     public int getReview() {
         return review;
     }
 
+    public void setResponse(String response) {
+        this.response = response;
+    }
+    public void setIdAnswer(int idAnswer) {
+        this.idAnswer = idAnswer;
+    }
     public void setReview(int review) {
         this.review = review;
     }
-
-    public String getResponse() {
-        return response;
-    }
-
-    public void setResponse(String response) {
-        this.response = response;
+    public void setIdClubOwner(int idClubOwner) {
+        this.idClubOwner = idClubOwner;
     }
 }

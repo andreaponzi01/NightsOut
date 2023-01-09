@@ -6,15 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.control.guicontroller.interface2.item.UserItemGUIController2;
-import nightsout.utils.bean.*;
+import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
+import nightsout.utils.engineering.EventParticipantsEngineering;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.EventParticipantsEngineering;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 
 import java.io.IOException;
@@ -37,12 +37,11 @@ public class EventParticipantsGUIController2 implements Observer {
 
     public void backToUserPage(ActionEvent actionEvent) {
         try{
-            String type = LoggedClubOwnerBean2.checkInstanceType();
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            if (type.equals("FREE"))
-                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml",eventBean);
+            String type = LoggedBean.getInstance().checkInstanceType();
+            if (type.equalsIgnoreCase("FREE"))
+                SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml",eventBean);
             else
-                replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml",eventBean);
+                SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml",eventBean);
         }catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

@@ -9,15 +9,16 @@ import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.EndedBookedEventsAppController;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.EventReviewItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.engineering.ReviewEngineering;
+import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.ReviewEngineering;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
 import java.io.IOException;
@@ -32,11 +33,11 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.userBean1 = LoggedUserBean1.getInstance();
+        this.userBean1 = new UserBean1(LoggedBean.getInstance().getUser());
         try {
             ReviewEngineering.eventsToReview(this, userBean1.getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 

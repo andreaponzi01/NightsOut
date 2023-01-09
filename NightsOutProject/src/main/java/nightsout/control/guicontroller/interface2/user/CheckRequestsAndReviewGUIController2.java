@@ -11,15 +11,14 @@ import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.RequestsItemGUIController2;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.bean.interface2.LoggedUserBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.engineering.CheckRequestsEngineering;
 import nightsout.utils.engineering.ReviewEngineering;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 
@@ -70,7 +69,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
                 this.listViewPending.getItems().add(pane);
             }
         } catch (SystemException | IOException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -93,7 +92,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
                 this.listViewToReview.getItems().add(pane);
             }
         } catch (SystemException | IOException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
 
 
@@ -111,12 +110,12 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.userBean = LoggedUserBean2.getInstance();
+        this.userBean = new UserBean2(LoggedBean.getInstance().getUser());
         try {
             CheckRequestsEngineering.checkRequests(this, this.userBean.getId());
             ReviewEngineering.eventsToReview(this, userBean.getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

@@ -4,14 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongInputRangeException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
-import nightsout.utils.scene.switchpage.SwitchPage;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
+import nightsout.utils.scene.switchpage.SwitchPage;
 
 public class RegisterClubOwnerGUIController1 {
 
@@ -39,10 +39,9 @@ public class RegisterClubOwnerGUIController1 {
             clubOwnerBean1.setAddress(textFieldAddress.getText());
             clubOwnerBean1.setCity(textFieldCity.getText());
             clubOwnerBean1.setDiscountVIP(textFieldDiscount.getText());
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneClubOwner(actionEvent, "/ConcludeRegisterClubOwner1.fxml", clubOwnerBean1);
+            SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ConcludeRegisterClubOwner1.fxml", clubOwnerBean1);
         } catch (WrongInputTypeException | EmptyInputException | SystemException | WrongInputRangeException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

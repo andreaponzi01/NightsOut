@@ -1,4 +1,4 @@
-package nightsout.control.guicontroller.interface1.clubowner;
+package nightsout.control.guicontroller.interface1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,19 +9,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
+import nightsout.utils.engineering.CreatedEventsEngineering;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class ClubOwnerPageFromCOGUIController1 implements Observer {
+public class ViewClubOwnerPageGUIController1 implements Observer {
 
     private ClubOwnerBean1 clubOwnerBean1;
     @FXML
@@ -57,10 +58,12 @@ public class ClubOwnerPageFromCOGUIController1 implements Observer {
     public void goToCommunity(ActionEvent actionEvent) {
 
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
+            if(LoggedBean.getInstance().checkInstanceType().equalsIgnoreCase("ClubOwner"))
+                SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
+            else
+                SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -76,7 +79,7 @@ public class ClubOwnerPageFromCOGUIController1 implements Observer {
                 controller.setAll(new EventBean1(eBean));
                 this.listViewCreatedEvents.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
     }

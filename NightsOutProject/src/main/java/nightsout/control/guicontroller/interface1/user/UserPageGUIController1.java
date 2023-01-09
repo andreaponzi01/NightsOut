@@ -9,14 +9,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.engineering.NextEventsEngineering;
+import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.NextEventsEngineering;
 
 import java.io.IOException;
 import java.net.URL;
@@ -48,7 +49,7 @@ public class UserPageGUIController1 implements Observer, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.userBean1 = LoggedUserBean1.getInstance();
+        this.userBean1 = new UserBean1(LoggedBean.getInstance().getUser());
         this.labelEmail.setText(userBean1.getEmail());
         this.labelUsername.setText(userBean1.getUsername());
         this.labelName.setText(userBean1.getName());
@@ -63,7 +64,7 @@ public class UserPageGUIController1 implements Observer, Initializable {
         try {
             NextEventsEngineering.nextEvents(this, userBean1.getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
     @Override

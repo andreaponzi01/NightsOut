@@ -4,11 +4,11 @@ import nightsout.utils.bean.ReviewBean;
 
 public class ReviewModel {
 
-
-    private int idReview;
-    private int idUser;
     private int idEvent;
     private String comment;
+    private int idReview;
+    private int idUser;
+
 
     public ReviewModel() {
 
@@ -24,33 +24,27 @@ public class ReviewModel {
     public int getIdReview() {
         return idReview;
     }
-
-    public void setIdReview(int idReview) {
-        this.idReview = idReview;
+    public String getComment() {
+        return comment;
     }
-
     public int getIdUser() {
         return idUser;
     }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
     public int getIdEvent() {
         return idEvent;
     }
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+    public void setIdReview(int idReview) {
+        this.idReview = idReview;
+    }
     public void setIdEvent(int idEvent) {
         this.idEvent = idEvent;
     }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
 }

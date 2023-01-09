@@ -10,10 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.db.MySqlConnection;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
@@ -36,9 +35,9 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedClubOwnerBean1.getInstance().getImg().toURI().toString());
+        Image img = new Image(LoggedBean.getInstance().getClubOwner().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
-        this.usernameLabel.setText(LoggedClubOwnerBean1.getInstance().getUsername());
+        this.usernameLabel.setText(LoggedBean.getInstance().getClubOwner().getUsername());
     }
     @FXML
     public void goToCreateEventPage(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/CreateEventPage1.fxml");}
@@ -57,9 +56,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
             try {
                 SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml");
                 MySqlConnection.closeConnection();
-                LoggedUserBean1.deleteInstance();
-                LoggedClubOwnerBean1.deleteInstance();
-                LoggedUserBean1.deleteInstance();
+                LoggedBean.getInstance().deleteSession();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
             } catch (SQLException | IOException e) {

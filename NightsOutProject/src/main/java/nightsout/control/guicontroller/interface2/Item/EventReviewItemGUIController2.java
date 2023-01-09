@@ -7,10 +7,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.MakeReviewAppController;
-import nightsout.utils.bean.interface2.LoggedUserBean2;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.*;
+import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.EventBean2;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
@@ -38,8 +38,7 @@ public class EventReviewItemGUIController2 {
     private void goToEventPage(ActionEvent actionEvent) {
 
       try {
-          SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-          replacer.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
+          SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
       } catch (SystemException e) {
             CreateNotification.createNotification(e);
       }
@@ -49,7 +48,7 @@ public class EventReviewItemGUIController2 {
         try {
             ReviewBean reviewBean= new ReviewBean();
             reviewBean.setComment(textAreaReview.getText());
-            reviewBean.setIdUser(LoggedUserBean2.getInstance().getId());
+            reviewBean.setIdUser(LoggedBean.getInstance().getUser().getId());
             reviewBean.setIdEvent(eventBean.getIdEvent());
             MakeReviewAppController.createEventReview(reviewBean);
             SwitchPage.replaceScene(actionEvent,"/UserPage2.fxml");

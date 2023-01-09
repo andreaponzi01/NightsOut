@@ -9,11 +9,12 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.engineering.Email;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
+import nightsout.utils.engineering.Email;
+import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
@@ -48,7 +49,7 @@ public class CreateEventGUIController1 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.clubOwnerBean1 = LoggedClubOwnerBean1.getInstance();
+        this.clubOwnerBean1 = new ClubOwnerBean1(LoggedBean.getInstance().getClubOwner());
     }
 
     @FXML
@@ -70,7 +71,7 @@ public class CreateEventGUIController1 implements Initializable {
             SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
                  WrongInputRangeException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
         try {
             Email.sendEmail(clubOwnerBean1.getEmail(), "Evento creato con successo!", "L'evento " + eventBean1.getName() + " è stato creato con successo.");

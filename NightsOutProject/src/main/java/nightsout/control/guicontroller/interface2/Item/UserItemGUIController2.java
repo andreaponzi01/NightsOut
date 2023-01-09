@@ -5,10 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.UserBean2;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 
@@ -43,15 +43,14 @@ public class UserItemGUIController2 {
     private void goToProfile(ActionEvent actionEvent) {
 
         try {
-            String type = LoggedClubOwnerBean2.checkInstanceType();
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
+            String type = LoggedBean.getInstance().checkInstanceType();
             if (clubOwnerBean != null) {
-                replacer.switchAndSetSceneCO(actionEvent, "/ViewCOPageFromUser2.fxml", clubOwnerBean);
+                SwitchAndSetPage2.switchAndSetSceneCO(actionEvent, "/ViewCOPageFromUser2.fxml", clubOwnerBean);
             } else {
-                if (type.equals("FREE")){
-                    replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser2.fxml", userBean);
+                if (type.equalsIgnoreCase("FREE")){
+                    SwitchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser2.fxml", userBean);
                 } else {
-                    replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
+                    SwitchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
                 }
             }
         } catch (SystemException e) {

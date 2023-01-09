@@ -7,13 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface2.item.ReviewItemToResponseGUIController2;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.engineering.ResponseEngineering;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.engineering.ResponseEngineering;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
 import java.io.IOException;
@@ -38,7 +37,7 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
                 controller.setAll(reviewBean);
                 this.listViewReviews.getItems().add(pane);
             } catch (IOException | SystemException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.handleException(e);
             }
         }
     }
@@ -50,9 +49,9 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ResponseEngineering.eventReviews(this,  LoggedClubOwnerBean2.getInstance().getId());
+            ResponseEngineering.eventReviews(this,  LoggedBean.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }

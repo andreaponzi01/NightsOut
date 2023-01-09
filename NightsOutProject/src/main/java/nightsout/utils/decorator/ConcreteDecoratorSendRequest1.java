@@ -5,10 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.control.appcontroller.JoinEventAppController;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface1.LoggedUserBean1;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 
@@ -21,7 +21,7 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
 
     public ConcreteDecoratorSendRequest1(VisualComponent component, EventBean1 eventBean) {
         super(component);
-        this.userBean = LoggedUserBean1.getInstance();
+        this.userBean = new UserBean1(LoggedBean.getInstance().getUser());
         this.eventBean = eventBean;
     }
 
@@ -38,8 +38,7 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
     private void sendRequest(ActionEvent actionEvent){
         try {
             JoinEventAppController.sendRequest(userBean, eventBean);
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+            SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
         } catch (SystemException e){
             CreateNotification.createNotification(e);
         }
