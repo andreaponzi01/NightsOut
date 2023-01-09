@@ -43,8 +43,4 @@ public class LoggedClubOwnerBean1 extends ClubOwnerBean1 {
             return TYPE_CLUB_OWNER;
         }
     }
-
-    public static void createInstance(ClubOwnerModel clubOwnerModel) {
-        loggedCOBeanInstance = new LoggedClubOwnerBean1(clubOwnerModel);
-    }
 }

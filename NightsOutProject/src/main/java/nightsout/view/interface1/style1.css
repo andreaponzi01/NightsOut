@@ -5,6 +5,13 @@
     -fx-background-repeat: no-repeat;
 }
 
+#addPhoto{
+    -fx-background-image: url("img/add-photo.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
 #logo{
     -fx-background-image: url("img/logo.png");
     -fx-background-size: cover;

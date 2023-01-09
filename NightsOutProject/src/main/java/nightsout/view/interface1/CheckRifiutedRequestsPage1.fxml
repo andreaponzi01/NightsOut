@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.user.CheckRifiutedRequestsGUIController1">
    <children>
-      <fx:include fx:id="menu" source="MenuUser1.fxml" />
+      <fx:include source="MenuUser1.fxml" />
       <AnchorPane prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <Label layoutX="289.0" layoutY="45.0" prefHeight="58.0" prefWidth="443.0" text="Rifiuted Requests" textFill="#ffeecc" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="288.0" AnchorPane.topAnchor="45.0">

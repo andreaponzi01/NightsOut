@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -16,7 +15,7 @@
 
 <AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.clubowner.CreateEventGUIController1">
    <children>
-      <fx:include fx:id="menu" source="MenuClubOwner1.fxml" />
+      <fx:include source="MenuClubOwner1.fxml" />
       <AnchorPane layoutX="168.0" layoutY="145.0" prefHeight="421.0" prefWidth="749.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <TextField fx:id="textFieldName" alignment="CENTER" layoutX="235.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="283.0" promptText="insert Name " style="-fx-background-radius: 28;" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="502.0">
@@ -77,15 +76,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="697.0" layoutY="435.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="77.0" prefWidth="73.0" style="-fx-background-color: white; -fx-background-radius: 30;" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="435.0">
-               <graphic>
-                  <ImageView fitHeight="71.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/add-photo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <TextArea fx:id="textFieldDescription" layoutX="235.0" layoutY="280.0" prefHeight="135.0" prefWidth="530.0" promptText="Insert Description..." style="-fx-background-color: white;" wrapText="true" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="235.0">
                <font>
                   <Font name="Arial" size="22.0" />
@@ -95,5 +85,10 @@
       </AnchorPane>
       <Line endX="-1.7311248779296875" endY="-7.62939453125E-6" layoutX="261.0" layoutY="54.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
       <ImageView fx:id="imageViewProfile" fitHeight="131.0" fitWidth="131.0" layoutX="840.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="40.0" />
+      <Button layoutX="770.0" layoutY="533.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="77.0" prefWidth="84.0" style="-fx-background-color: white; -fx-background-radius: 30;" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="235.0">
+         <graphic>
+            <AnchorPane id="addPhoto" prefHeight="200.0" prefWidth="200.0" stylesheets="@../interface2/style2.css" />
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

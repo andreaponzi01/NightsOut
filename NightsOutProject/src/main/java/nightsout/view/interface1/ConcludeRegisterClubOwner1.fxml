@@ -23,12 +23,12 @@
             </DropShadow>
          </effect>
       </AnchorPane>
-      <TextField fx:id="textFieldEmail" alignment="CENTER" layoutX="245.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert email" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="198.0">
+      <TextField fx:id="textFieldEmail" alignment="CENTER" layoutX="245.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert email" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="196.0">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </TextField>
-      <Button layoutX="370.0" layoutY="457.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToWelcomePage" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Submit" textFill="WHITE" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="457.0">
+      <Button layoutX="370.0" layoutY="459.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToWelcomePage" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Submit" textFill="WHITE" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="370.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -39,12 +39,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" layoutX="89.0" layoutY="99.0" prefHeight="84.0" prefWidth="862.0" text="Credentials" textFill="#ffeecc" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="89.0" AnchorPane.topAnchor="99.0">
+      <Label alignment="CENTER" layoutX="89.0" layoutY="97.0" prefHeight="84.0" prefWidth="862.0" text="Credentials" textFill="#ffeecc" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="89.0">
          <font>
             <Font name="Arial Bold" size="50.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldUsername" alignment="CENTER" layoutX="265.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert username" style="-fx-background-radius: 28;" AnchorPane.bottomAnchor="322.0" AnchorPane.topAnchor="278.0">
+      <TextField fx:id="textFieldUsername" alignment="CENTER" layoutX="245.0" layoutY="276.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="550.0" promptText="insert username" style="-fx-background-radius: 28;" AnchorPane.bottomAnchor="324.0" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="276.0">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
@@ -60,21 +60,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="811.0" layoutY="493.0" mnemonicParsing="false" onAction="#loadImage" text="Load image" />
-      <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="260.0" layoutY="358.0" prefHeight="50.0" prefWidth="550.0" promptText="insert password" style="-fx-background-radius: 28;">
+      <ImageView fx:id="imageViewProfile" fitHeight="131.0" fitWidth="131.0" layoutX="853.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="843.0" AnchorPane.topAnchor="431.0" />
+      <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="245.0" layoutY="356.0" prefHeight="50.0" prefWidth="550.0" promptText="insert password" style="-fx-background-radius: 28;">
          <font>
             <Font name="Arial" size="25.0" />
          </font>
       </PasswordField>
-      <Button layoutX="811.0" layoutY="475.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="77.0" prefWidth="73.0" style="-fx-background-color: white; -fx-background-radius: 30;" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="457.0">
+      <Button layoutX="723.0" layoutY="532.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="77.0" prefWidth="84.0" style="-fx-background-color: white; -fx-background-radius: 30;" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="457.0">
          <graphic>
-            <ImageView fitHeight="71.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:/Users/alessiomaialetti/Desktop/NightsOut/trunk/NightsOutProject/src/main/java/nightsout/view/img/add-photo.png" />
-               </image>
-            </ImageView>
+            <AnchorPane id="addPhoto" prefHeight="200.0" prefWidth="200.0" stylesheets="@../interface2/style2.css" />
          </graphic>
       </Button>
-      <ImageView fx:id="imageViewProfile" fitHeight="131.0" fitWidth="131.0" layoutX="843.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="843.0" AnchorPane.topAnchor="431.0" />
    </children>
 </AnchorPane>

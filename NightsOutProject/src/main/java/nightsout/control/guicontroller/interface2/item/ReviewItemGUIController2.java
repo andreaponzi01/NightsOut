@@ -2,21 +2,18 @@ package nightsout.control.guicontroller.interface2.item;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
-import nightsout.utils.bean.interface1.LoggedClubOwnerBean1;
 import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
 import nightsout.utils.bean.interface2.LoggedUserBean2;
 import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.UserBean2;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
-import nightsout.utils.scene.switchpage.SwitchPage;
+
 
 public class ReviewItemGUIController2 {
 
