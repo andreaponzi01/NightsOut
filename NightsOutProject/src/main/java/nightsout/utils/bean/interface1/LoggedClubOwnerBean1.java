@@ -17,6 +17,7 @@ public class LoggedClubOwnerBean1 extends ClubOwnerBean1 {
 
     private static LoggedClubOwnerBean1 loggedCOBeanInstance;
 
+
     //not used
     public static LoggedClubOwnerBean1 getInstance() {
         if (loggedCOBeanInstance == null)

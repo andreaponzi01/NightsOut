@@ -3,6 +3,7 @@ package nightsout.utils.scene.switchpage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
@@ -21,7 +22,8 @@ public class SwitchAndSetPage2 {
             Parent root = loader.load();
             if (fxml.equals("/EventPageFromCO2.fxml")) {InitEventPage2.setterCO(eventBean,loader.getController());}
             if (fxml.equals("/EventPageFromUser2.fxml")) {InitEventPage2.setterUser(eventBean,loader.getController());}
-            if (fxml.equals("/EventParticipantsPage2.fxml")) {InitParticipantsPage2.setter(eventBean,loader.getController());}
+            if (fxml.equals("/EventParticipantsPageFromUser2.fxml")) {InitParticipantsPage2.setter(eventBean,loader.getController());}
+            if (fxml.equals("/EventParticipantsPageFromCO2.fxml")) {InitParticipantsPage2.setter(eventBean,loader.getController());}
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
             ExceptionHandler.handleException(e);

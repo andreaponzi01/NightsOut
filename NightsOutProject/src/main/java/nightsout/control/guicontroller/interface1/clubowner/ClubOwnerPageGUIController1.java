@@ -42,6 +42,7 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         LoggedClubOwnerBean1 loggedClubOwner = LoggedClubOwnerBean1.getInstance();
         labelEmail.setText(loggedClubOwner.getEmail());
         labelUsername.setText(loggedClubOwner.getUsername());

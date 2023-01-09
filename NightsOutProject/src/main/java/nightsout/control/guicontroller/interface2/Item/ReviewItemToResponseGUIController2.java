@@ -4,28 +4,33 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
+import nightsout.control.appcontroller.MakeResponseAppController;
+import nightsout.utils.bean.ResponseBean;
+import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
 import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.UserBean2;
+import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
+import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
+import nightsout.utils.scene.switchpage.SwitchPage;
 
 public class ReviewItemToResponseGUIController2 {
 
     @FXML
-    public Button buttonUsername;
+    public Label labelUsername;
     private UserBean2 userBean;
     private ReviewBean reviewBean;
-
-    public ReviewItemToResponseGUIController2() {
-        //ignore
-    }
-
     @FXML
-    private Label labelComment;
+    private TextArea textAreaResponse;
     @FXML
     private Label labelEventName;
+    @FXML
+    private Label labelComment;
 
     public void setAll(ReviewBean reviewBean) throws SystemException {
         this.reviewBean = reviewBean;
@@ -36,33 +41,30 @@ public class ReviewItemToResponseGUIController2 {
             CreateNotification.createNotification(e);
         }
         EventBean eventBean = EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
-        this.buttonUsername.setText(userBean.getUsername());
+        this.labelUsername.setText(userBean.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
-
-    public void goToResponsePage(ActionEvent actionEvent) {
-/*
+    @FXML
+    public void makeResponse(ActionEvent actionEvent) {
         try {
-            //SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            //replacer.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean, reviewBean);
-        } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            ResponseBean responseBean = new ResponseBean();
+            responseBean.setResponse(textAreaResponse.getText());
+            responseBean.setIdClubOwner(LoggedClubOwnerBean2.getInstance().getId());
+            responseBean.setReview(reviewBean.getIdReview());
+            MakeResponseAppController.makeResponse(responseBean);
+            SwitchPage.replaceScene(actionEvent,"/ReviewsAndMakeResponsePage2.fxml");
+        } catch (SystemException | EmptyInputException e) {
+            CreateNotification.createNotification(e);
         }
-
- */
     }
 
+    @FXML
     public void goToUserPage(ActionEvent actionEvent) {
-/*
         try {
-            SwitchAndSetPage1 replacer = new SwitchAndSetPage1();
-            replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO1.fxml",userBean);
+            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
+            replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml",userBean);
         } catch (SystemException e) {
-            MyNotification.createNotification(e);
+            CreateNotification.createNotification(e);
         }
-        */
-
     }
-
-
 }

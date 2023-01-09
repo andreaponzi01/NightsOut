@@ -13,8 +13,9 @@ module NightsOutProject {
     requires org.controlsfx.controls;
     requires java.desktop;
     requires org.apache.commons.io;
-
-
+    requires junit;
+    exports test.junit;
+    exports nightsout.utils.exception.myexception;
     opens nightsout;
     opens nightsout.control.guicontroller.interface1 to javafx.fxml ;
     opens nightsout.control.guicontroller.interface2 to javafx.fxml ;
