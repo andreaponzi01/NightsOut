@@ -2,16 +2,15 @@ package nightsout.control.guicontroller.interface2.item;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.JoinEventAppController;
-import nightsout.utils.exception.CreateNotification;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.UserBean2;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -35,7 +34,7 @@ public class ManageRequestsItemGUIController2 {
 
     public void setAll(ManageRequestBean manageRequestBean) {
 
-        this.clubOwnerBean= LoggedClubOwnerBean2.getInstance();
+        this.clubOwnerBean = new ClubOwnerBean2(LoggedBean.getInstance().getClubOwner());
         this.manageRequestBean=manageRequestBean;
         this.labelUsername.setText(manageRequestBean.getUsername());
         this.labelEventName.setText(String.valueOf(manageRequestBean.getEventName()));
@@ -49,7 +48,7 @@ public class ManageRequestsItemGUIController2 {
             JoinEventAppController.acceptRequest(manageRequestBean.getIdRequest());
             SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -59,7 +58,7 @@ public class ManageRequestsItemGUIController2 {
             JoinEventAppController.declineRequest(manageRequestBean.getIdRequest());
             SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 
@@ -67,10 +66,9 @@ public class ManageRequestsItemGUIController2 {
 
         try {
             UserBean2 userBean = new UserBean2(JoinEventAppController.searchUserByUsername(manageRequestBean.getUsername()));
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
+            SwitchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 

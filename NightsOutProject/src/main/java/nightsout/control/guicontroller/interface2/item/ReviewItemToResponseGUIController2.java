@@ -2,20 +2,18 @@ package nightsout.control.guicontroller.interface2.item;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
 import nightsout.control.appcontroller.MakeResponseAppController;
-import nightsout.utils.bean.ResponseBean;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.UserBean2;
+import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
@@ -49,7 +47,7 @@ public class ReviewItemToResponseGUIController2 {
         try {
             ResponseBean responseBean = new ResponseBean();
             responseBean.setResponse(textAreaResponse.getText());
-            responseBean.setIdClubOwner(LoggedClubOwnerBean2.getInstance().getId());
+            responseBean.setIdClubOwner(LoggedBean.getInstance().getClubOwner().getId());
             responseBean.setReview(reviewBean.getIdReview());
             MakeResponseAppController.makeResponse(responseBean);
             SwitchPage.replaceScene(actionEvent,"/ReviewsAndMakeResponsePage2.fxml");
@@ -61,8 +59,7 @@ public class ReviewItemToResponseGUIController2 {
     @FXML
     public void goToUserPage(ActionEvent actionEvent) {
         try {
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml",userBean);
+            SwitchAndSetPage2.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml",userBean);
         } catch (SystemException e) {
             CreateNotification.createNotification(e);
         }

@@ -1,8 +1,6 @@
 package nightsout.utils.scene.initpage2;
 
-import nightsout.control.guicontroller.interface2.clubowner.ViewUserPageFromCOGUIController2;
-import nightsout.control.guicontroller.interface2.user.ViewUserPageFromUserGUIController2;
-import nightsout.utils.bean.UserBean;
+import nightsout.control.guicontroller.interface2.ViewUserPageGUIController2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -12,12 +10,7 @@ public class InitViewUserPage2 {
         //ignored
     }
 
-    public static void setterCO(UserBean2 userBean, ViewUserPageFromCOGUIController2 viewUserPageFromCOGUIController2) throws SystemException {
-        viewUserPageFromCOGUIController2.setAll(userBean);
-    }
-
-
-    public static void setterUser(UserBean userBean, ViewUserPageFromUserGUIController2 viewUserPageFromUserGUIController2) throws SystemException {
-        viewUserPageFromUserGUIController2.setAll(userBean);
+    public static void setter(UserBean2 userBean, ViewUserPageGUIController2 viewUserPageGUIController2) throws SystemException {
+        viewUserPageGUIController2.setAll(userBean);
     }
 }

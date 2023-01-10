@@ -4,16 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
-import nightsout.utils.bean.interface2.LoggedClubOwnerBean2;
-import nightsout.utils.bean.interface2.LoggedUserBean2;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
-
 
 public class ReviewItemGUIController2 {
 
@@ -32,7 +29,7 @@ public class ReviewItemGUIController2 {
         try {
             this.userBean = new UserBean2(EventReviewsClubOwnerAppController.searchUserbyIdUser(reviewBean.getIdUser()));
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
         EventBean eventBean = EventReviewsClubOwnerAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
         this.labelUsername.setText(userBean.getUsername());
@@ -43,15 +40,14 @@ public class ReviewItemGUIController2 {
     public void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            SwitchAndSetPage2 replacer = new SwitchAndSetPage2();
-            String type = LoggedClubOwnerBean2.checkInstanceType();
-            if (type.equals("FREE")) {
-                replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser2.fxml",userBean);
+            String type = LoggedBean.getInstance().checkInstanceType();
+            if (type.equalsIgnoreCase("FREE")) {
+                SwitchAndSetPage2.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser2.fxml",userBean);
             } else {
-                replacer.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml",userBean);
+                SwitchAndSetPage2.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml",userBean);
             }
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }
