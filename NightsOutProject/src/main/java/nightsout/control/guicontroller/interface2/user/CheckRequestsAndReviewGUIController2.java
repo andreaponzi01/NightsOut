@@ -5,8 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.control.appcontroller.CheckRequestsAppController;
-import nightsout.control.appcontroller.EndedBookedEventsAppController;
+import nightsout.control.appcontroller.JoinEventAppController;
+import nightsout.control.appcontroller.MakeReviewAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.RequestsItemGUIController2;
@@ -48,7 +48,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
         Pane pane = null;
         try {
             if(Objects.equals(rBean.getStatus(), "accepted")){
-                EventBean2 eventBean= new EventBean2(CheckRequestsAppController.searchEventByIdEvent(rBean.getIdEvent()));
+                EventBean2 eventBean= new EventBean2(JoinEventAppController.searchEventByIdEvent(rBean.getIdEvent()));
                 if(eventBean.getEventDate().isAfter(LocalDate.now())){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
                     RequestsItemGUIController2 controller = fxmlLoader.getController();
@@ -79,7 +79,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
         ReviewBean reviewBean = null;
 
         try {
-            reviewBean= EndedBookedEventsAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
+            reviewBean= MakeReviewAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
             if(reviewBean != null){
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
                 EventItemGUIController2 controller = fxmlLoader.getController();

@@ -5,6 +5,7 @@ import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ManageRequestBean;
+import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
@@ -42,4 +43,20 @@ public class JoinEventAppController {
         EventModel eventModel = new EventModel(eventBean);
         RequestDAO.createRequest(userModel, eventModel);
     }
+
+    public static List<RequestBean> searchRequestsByIdUser(int idUser) throws SystemException {
+
+        List<RequestModel> list = RequestDAO.getRequestsByIdUser(idUser);
+        List<RequestBean> listBean = new ArrayList<>();
+        for(RequestModel rm : list){
+            RequestBean bean = new RequestBean(rm);
+            listBean.add(bean);
+        }
+        return listBean;
+    }
+    public static EventBean searchEventByIdEvent(int idEvent) throws SystemException {
+        EventModel eventModel = EventDAO.getEventByIdEvent(idEvent);
+        return new EventBean(eventModel);
+    }
+
 }

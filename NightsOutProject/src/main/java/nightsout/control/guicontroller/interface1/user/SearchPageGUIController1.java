@@ -80,6 +80,6 @@ public class SearchPageGUIController1 implements Observer {
     }
     @FXML
     public void backToUserPage(ActionEvent actionEvent) {
-        SwitchPage.replaceScene(actionEvent,"/UserPage2.fxml");
+        SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");
     }
 }

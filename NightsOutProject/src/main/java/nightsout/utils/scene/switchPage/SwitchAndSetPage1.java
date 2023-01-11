@@ -29,10 +29,10 @@ public class SwitchAndSetPage1 {
                 MapPageSetter1.setter(eventBean, loader.getController());
             }
             if (fxml.equals("/EventPageDecoratorCO1.fxml")) {
-                EventPageSetter1.setterDecorator( eventBean, loader.getController());
+                EventPageSetter1.setter( eventBean, loader.getController());
             }
             if (fxml.equals("/EventPageDecoratorUser1.fxml")) {
-                EventPageSetter1.setterDecorator( eventBean, loader.getController());
+                EventPageSetter1.setter( eventBean, loader.getController());
             }
             if (fxml.equals("/CreateEventReviewPage1.fxml")) {
                 ReviewPageSetter1.setter(eventBean, loader.getController());

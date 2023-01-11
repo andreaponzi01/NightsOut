@@ -18,16 +18,8 @@ public abstract class Subject {
     protected Subject(List<Observer> list) {
         this.observers = list;
     }
-
-
-
     public void attach(Observer obs) {
         this.observers.add(obs);
-    }
-
-
-    public void remove(Observer obs) {
-        this.observers.remove(obs);
     }
 
     public void notify(Object object) {

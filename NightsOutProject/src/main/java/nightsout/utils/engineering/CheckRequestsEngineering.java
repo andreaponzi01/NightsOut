@@ -1,6 +1,6 @@
 package nightsout.utils.engineering;
 
-import nightsout.control.appcontroller.CheckRequestsAppController;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -20,6 +20,6 @@ public class CheckRequestsEngineering {
     }
 
     private static List<RequestBean> searchRequests(int idUser) throws SystemException {
-        return (CheckRequestsAppController.searchRequestsByIdUser(idUser));
+        return (JoinEventAppController.searchRequestsByIdUser(idUser));
     }
 }

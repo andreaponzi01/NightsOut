@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.control.appcontroller.CheckRequestsAppController;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.CheckRequestsItemGUIController1;
 import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.RequestBean;
@@ -48,7 +48,7 @@ public class CheckRifiutedRequestsGUIController1 implements Observer, Initializa
                 try {
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
                     CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
-                    EventBean1 eventBean1 = new EventBean1(CheckRequestsAppController.searchEventByIdEvent(rBean.getIdEvent()));
+                    EventBean1 eventBean1 = new EventBean1(JoinEventAppController.searchEventByIdEvent(rBean.getIdEvent()));
                     controller.setAll(rBean, eventBean1);
                     this.listViewRifiutedRequests.getItems().add(pane);
                 } catch(SystemException | IOException e){

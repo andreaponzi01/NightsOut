@@ -15,4 +15,13 @@ public class MakeReviewAppController {
         ReviewModel reviewModel = new ReviewModel(reviewBean);
         ReviewDAO.createEventReview(reviewModel);
     }
+
+    public static ReviewBean getReviewByIdEventAndIdUser(int idUser,int idEvent) throws SystemException {
+        ReviewModel reviewModel = ReviewDAO.getReviewByIdEventAndIdUser(idEvent,idUser);
+        if(reviewModel == null){
+            return null;
+        } else {
+            return new ReviewBean(reviewModel);
+        }
+    }
 }
