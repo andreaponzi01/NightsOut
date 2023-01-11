@@ -24,7 +24,7 @@
             <Font name="Arial Bold" size="50.0" />
          </font>
       </Label>
-      <Button fx:id="btnBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePane" prefHeight="50.0" prefWidth="100.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePane" prefHeight="50.0" prefWidth="100.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>

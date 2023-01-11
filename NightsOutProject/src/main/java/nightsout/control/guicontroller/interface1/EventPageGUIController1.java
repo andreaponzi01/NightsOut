@@ -24,6 +24,8 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.*;
 import nightsout.utils.engineering.EventParticipantsEngineering;
+import nightsout.utils.engineering.MapEngineering;
+import nightsout.utils.engineering.SearchEngineering;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -77,37 +79,30 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
 
     public void setAll(EventBean1 eventBean1) throws SystemException {
 
+        this.eventBean1 = eventBean1;
+        clubOwnerBean1Event = new ClubOwnerBean1(EventPageAppController.getClubOwner(eventBean1.getIdClubOwner()));
+
         if(LoggedBean.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
-            this.eventBean1 = eventBean1;
             this.userBean1 = new UserBean1(LoggedBean.getInstance().getUser());
-            clubOwnerBean1Event = new ClubOwnerBean1(EventPageAppController.getClubOwner(eventBean1.getIdClubOwner()));
-            this.buttonUsername.setText(clubOwnerBean1Event.getName());
-            this.labelEventName.setText(eventBean1.getName());
-            this.labelDescription.setText(eventBean1.getDescription());
             Double price = (eventBean1.getPrice() - ((eventBean1.getPrice() * clubOwnerBean1Event.getDiscountVIP()) / 100));
             if (LoggedBean.getInstance().getUser().getVip())
                 this.labelEventPrice.setText("€" + price);
             else
                 this.labelEventPrice.setText("€" + eventBean1.getPrice());
-            this.labelEventDate.setText(eventBean1.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
-            this.labelEventDuration.setText(eventBean1.getDuration() + "h");
-            this.labelEventTime.setText(eventBean1.getTime().toString());
         } else {
             this.clubOwnerBean1 = new ClubOwnerBean1(LoggedBean.getInstance().getClubOwner());
-            this.eventBean1 = eventBean1;
-            clubOwnerBean1Event = new ClubOwnerBean1(EventPageAppController.getClubOwner(eventBean1.getIdClubOwner()));
-            this.buttonUsername.setText(clubOwnerBean1Event.getName());
-            this.labelDescription.setText(eventBean1.getDescription());
-            this.labelEventName.setText(eventBean1.getName());
-            this.labelEventPrice.setText(eventBean1.getPrice() + " $");
-            this.labelEventDate.setText(eventBean1.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
-            this.labelEventDuration.setText(eventBean1.getDuration() + " h");
-            this.labelEventTime.setText(String.valueOf(eventBean1.getTime()));
+            this.labelEventPrice.setText(eventBean1.getPrice() + " €");
         }
 
+        this.buttonUsername.setText(clubOwnerBean1Event.getName());
+        this.labelEventName.setText(eventBean1.getName());
+        this.labelDescription.setText(eventBean1.getDescription());
+        this.labelEventDate.setText(eventBean1.getEventDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+        this.labelEventDuration.setText(eventBean1.getDuration() + "h");
+        this.labelEventTime.setText(eventBean1.getTime().toString());
         this.eventImg.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
-        EventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
 
+        EventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
         myStart();
     }
     private void myStart() throws SystemException {
@@ -141,8 +136,8 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
 
     private void actionDecorateSendRequest() {
 
-        ConcreteDecoratorSendRequest1 concreteDecoratorSendRequest1 = new ConcreteDecoratorSendRequest1(this.myConcreteComponent, this.eventBean1);
-        this.contents = concreteDecoratorSendRequest1;
+        ConcreteDecoratorSendRequest1 concreteDecoratorSendRequest = new ConcreteDecoratorSendRequest1(this.myConcreteComponent, this.eventBean1);
+        this.contents = concreteDecoratorSendRequest;
         this.display();
     }
     private void actionDecoratePending() {
@@ -193,50 +188,16 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     @Override
     public void mapInitialized() {
 
-        String address = "";
-
         MapOptions mapOptions = new MapOptions();
-        Double lat = 0.0;
-        Double lng = 0.0;
-
+        Double[] latlong= new Double[2];
         try {
-            address = EventPageAppController.getClubAddress(eventBean1.getIdEvent());
-            // Recuperiamo latitudine e longitudine dell'indirizzo del Club nel quale si svolgerà l'evento
-            URL url = new URL("https://www.mapquestapi.com/geocoding/v1/address?key=QmskMXX88teOI9qXndnvrgGj4DGETyiF");
-
-            URLConnection con = url.openConnection();
-            HttpURLConnection http = (HttpURLConnection) con;
-
-            http.setRequestMethod("POST");
-            http.setDoOutput(true);
-            http.setRequestProperty("Content-Type", "application/json");
-
-            String data = "{\n  \"location\": \"" + address  + "\",\n  \"options\": {\n    \"thumbMaps\": true\n  }\n}";
-            byte[] out = data.getBytes(StandardCharsets.UTF_8);
-
-            OutputStream stream = http.getOutputStream();
-            stream.write(out);
-
-            InputStream in = con.getInputStream();
-            String encoding = con.getContentEncoding();
-            encoding = encoding == null ? "UTF-8" : encoding;
-            // Richiede Java 9 o versioni successive
-            String body = new String(in.readAllBytes(), encoding);
-
-            JSONObject object = new JSONObject(body);
-
-            lat = Double.parseDouble(object.getJSONArray("results").getJSONObject(0).getJSONArray("locations").getJSONObject(0).getJSONObject("latLng").getString("lat"));
-            lng = Double.parseDouble(object.getJSONArray("results").getJSONObject(0).getJSONArray("locations").getJSONObject(0).getJSONObject("latLng").getString("lng"));
-            http.disconnect();
-
-        } catch (JSONException | IOException e) {
-            ExceptionHandler.handleException(e);
+            latlong=EventPageAppController.findLocation(eventBean1.getIdEvent());
         } catch (SystemException e) {
             ExceptionHandler.handleException(e);
         }
 
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
-        mapOptions.center(new LatLong(lat,lng))
+        mapOptions.center(new LatLong(latlong[0],latlong[1]))
                 .mapType(MapTypeIdEnum.HYBRID)
                 .overviewMapControl(false)
                 .panControl(false)
@@ -250,7 +211,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
         // Aggiungiamo il marcatore sulla Mappa
         MarkerOptions markerOptions = new MarkerOptions();
 
-        markerOptions.position(new LatLong(lat, lng))
+        markerOptions.position(new LatLong(latlong[0],latlong[1]))
                 .visible(Boolean.TRUE)
                 .title("Prova1" + "'s Location");
 

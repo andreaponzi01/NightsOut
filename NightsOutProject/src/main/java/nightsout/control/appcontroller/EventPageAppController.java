@@ -12,6 +12,7 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.RequestDAO;
 import nightsout.utils.dao.UserDAO;
+import nightsout.utils.engineering.MapEngineering;
 import nightsout.utils.exception.myexception.SystemException;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class EventPageAppController {
         ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubAddressByIdEvent(idEvent);
         return (clubOwnerModel.getAddress() + ", " + clubOwnerModel.getCity());
     }
+
     public static ClubOwnerBean getClubOwner(int idClubOwner) throws SystemException {
 
         ClubOwnerModel clubOwnerModel = ClubOwnerDAO.getClubOwnerById(idClubOwner);
@@ -51,6 +53,14 @@ public class EventPageAppController {
         }
         return listBean;
     }
+
+    public static Double[] findLocation(int idEvent) throws SystemException {
+        Double[] latlong;
+        latlong= MapEngineering.findLocation(getClubAddress(idEvent));
+
+        return latlong;
+    }
+
 
 
 }

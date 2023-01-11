@@ -10,7 +10,7 @@ public class EventPageSetter1 {
         //ignored
     }
 
-    public static void setterDecorator(EventBean1 eventBean, EventPageGUIController1 eventPageGUIController1) throws SystemException {
+    public static void setter(EventBean1 eventBean, EventPageGUIController1 eventPageGUIController1) throws SystemException {
         eventPageGUIController1.setAll(eventBean);
     }
 }
