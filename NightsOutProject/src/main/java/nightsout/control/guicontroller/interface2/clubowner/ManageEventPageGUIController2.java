@@ -16,9 +16,11 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.CreatedEventsEngineering;
-import nightsout.utils.engineering.Email;
 import nightsout.utils.exception.ExceptionHandler;
-import nightsout.utils.exception.myexception.*;
+import nightsout.utils.exception.myexception.BeforeDateException;
+import nightsout.utils.exception.myexception.EmptyInputException;
+import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.exception.myexception.WrongInputTypeException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
@@ -60,14 +62,6 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
         }
     }
 
-    private void sendEmail(String eventName) {
-        try {
-            Email.sendEmail(LoggedBean.getInstance().getClubOwner().getEmail(), "Evento creato con successo!", "L'evento " + eventName + " è stato creato con successo.");
-        } catch (EmailException e) {
-            ExceptionHandler.handleException(e);
-        }
-    }
-
     @FXML
     public void createEvent(ActionEvent actionEvent) {
 
@@ -82,8 +76,6 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             eventBean.setPrice(textFieldPrice.getText());
             eventBean.setImg(this.img);
             CreateEventAppController.createEvent(eventBean);
-
-            sendEmail(eventBean.getName());
 
             SwitchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
 

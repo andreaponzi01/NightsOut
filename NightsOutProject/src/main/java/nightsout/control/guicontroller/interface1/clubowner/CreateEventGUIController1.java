@@ -12,8 +12,6 @@ import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.engineering.Email;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -72,11 +70,6 @@ public class CreateEventGUIController1 implements Initializable {
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
                  WrongInputRangeException e) {
             ExceptionHandler.handleException(e);
-        }
-        try {
-            Email.sendEmail(clubOwnerBean1.getEmail(), "Evento creato con successo!", "L'evento " + eventBean1.getName() + " è stato creato con successo.");
-        } catch (EmailException e) {
-            CreateNotification.createNotification(e);
         }
     }
 

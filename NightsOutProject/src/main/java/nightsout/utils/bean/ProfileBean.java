@@ -1,7 +1,7 @@
 package nightsout.utils.bean;
 
 import nightsout.control.appcontroller.RegisterAppController;
-import nightsout.utils.engineering.CheckEmail;
+import nightsout.utils.CheckEmail;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmailNotValidException;
 import nightsout.utils.exception.myexception.EmptyInputException;

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.SearchAppController;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
 import nightsout.utils.bean.ClubOwnerBean;
@@ -14,7 +15,6 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.engineering.SearchEngineering;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -24,6 +24,19 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class SearchPageGUIController1 implements Observer {
+
+    /*
+        Subject: è colui che viene osservato. Nel caso specifico si tratta della nostra lista GenericBeanList
+        L'osservato deve mantenere il riferimento ai propri osservatori, così da poterli notificare ogni
+        volta che viene aggiornato lo stato dell'osservato.
+
+        Observer: è colui che osserva. Nel caso specifica si tratta del SearchPageGUIController1, che
+        quando riceve una notifica (cioè, ogni volta che viene aggiunto un User/Event Bean alla lista),
+        aggiunge un Item (fxml) alla pagina.
+
+        Creiamo l'oggetto Subject, aggiugendo sin da subito il riferimento all'observer chiamante, che ci
+        passiamo alla chiamata della funzione search (cioè, SearchPageGUIController1).
+    */
 
     @FXML
     private TextField textFieldSearch;
@@ -35,8 +48,10 @@ public class SearchPageGUIController1 implements Observer {
         try {
             String input = textFieldSearch.getText();
             this.listView.getItems().clear();
-            if (!input.isBlank())
-                SearchEngineering.search(this, input);
+            if (!input.isBlank()) {
+                //SearchEngineering.search(this, input);
+                SearchAppController.search(this, input);
+            }
         } catch (SystemException e) {
             ExceptionHandler.handleException(e);
         }

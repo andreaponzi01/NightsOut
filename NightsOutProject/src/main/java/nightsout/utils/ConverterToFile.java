@@ -1,4 +1,4 @@
-package nightsout.utils.engineering;
+package nightsout.utils;
 
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;

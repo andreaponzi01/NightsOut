@@ -1,4 +1,4 @@
-package nightsout.utils.engineering;
+package nightsout.utils;
 
 public class CheckEmail {
 

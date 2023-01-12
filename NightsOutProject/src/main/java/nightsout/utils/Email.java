@@ -1,5 +1,6 @@
-package nightsout.utils.engineering;
+package nightsout.utils;
 
+import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmailException;
 
@@ -14,8 +15,9 @@ public class Email {
         //ignored
     }
 
-    public static void sendEmail(String recipient, String subject, String text) throws EmailException {
+    public static void sendEmail(String subject, String text) throws EmailException {
 
+        String recipient = LoggedBean.getInstance().getClubOwner().getEmail();
         String from = "ispwproject@virgilio.it";
         String host = "smtp.virgilio.it";
         // Proprietà di sistema

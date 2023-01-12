@@ -1,6 +1,6 @@
 package test.junit;
 
-import nightsout.utils.engineering.CheckEmail;
+import nightsout.utils.CheckEmail;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

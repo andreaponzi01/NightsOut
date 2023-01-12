@@ -10,6 +10,8 @@ import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.UserDAO;
 import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.observer.GenericBeanList;
+import nightsout.utils.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,17 @@ public class SearchAppController {
     private SearchAppController() {
         //ignored
     }
+
+    public static void search(Observer observer, String input) throws SystemException {
+
+        GenericBeanList list = new GenericBeanList(observer);
+
+        list.addEventsToList(SearchAppController.searchEventsByName(input));
+        list.addUsersToList(SearchAppController.searchUsersByUsername(input));
+        list.addClubOwnersToList(SearchAppController.searchClubOwnersByUsername(input));
+
+    }
+
     public static List<UserBean> searchUsersByUsername(String input) throws SystemException {
 
         List<UserModel> list = null;
