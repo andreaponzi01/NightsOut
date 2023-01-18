@@ -3,25 +3,29 @@ package nightsout.control.guicontroller.interface2.user;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import nightsout.control.appcontroller.SubscriptionVipAppController;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
 public class SubscriptionVipPageGUIController2 {
 
+    private SwitchPage switchPage = new SwitchPage();
+
     public void backToUserPage(ActionEvent actionEvent) {
-        SwitchPage.replaceScene(actionEvent,"/UserPage2.fxml");
+        switchPage.replaceScene(actionEvent,"/UserPage2.fxml");
     }
 
     @FXML
     private void confirmSubscription(ActionEvent actionEvent) {
 
+        SubscriptionVipAppController controller;
         try {
-            SubscriptionVipAppController.subscription(LoggedBean.getInstance().getUser());
-            SwitchPage.replaceScene(actionEvent,"/UserPage2.fxml");
+            controller = new SubscriptionVipAppController();
+            controller.subscription(Session.getInstance().getUser());
+            switchPage.replaceScene(actionEvent,"/UserPage2.fxml");
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 

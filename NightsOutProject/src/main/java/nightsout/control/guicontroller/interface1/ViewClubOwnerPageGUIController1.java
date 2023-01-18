@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.engineering.CreatedEventsEngineering;
@@ -25,6 +25,7 @@ import java.util.Objects;
 public class ViewClubOwnerPageGUIController1 implements Observer {
 
     private ClubOwnerBean1 clubOwnerBean1;
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     @FXML
     private Label labelName;
     @FXML
@@ -52,18 +53,19 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
         this.labelEmail.setText(clubOwnerBean1.getEmail());
         this.labelDiscountVip.setText(clubOwnerBean1.getDiscountVIP()+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean1.getImg().toURI().toString()));
-        CreatedEventsEngineering.createdEvents(this, clubOwnerBean1.getId());
+        CreatedEventsEngineering createdEventsEngineering = new CreatedEventsEngineering();
+        createdEventsEngineering.createdEvents(this, clubOwnerBean1.getId());
     }
     @FXML
     public void goToCommunity(ActionEvent actionEvent) {
 
         try {
-            if(LoggedBean.getInstance().checkInstanceType().equalsIgnoreCase("ClubOwner"))
-                SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
+            if(Session.getInstance().checkInstanceType().equalsIgnoreCase("ClubOwner"))
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
             else
-                SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -79,7 +81,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
                 controller.setAll(new EventBean1(eBean));
                 this.listViewCreatedEvents.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }

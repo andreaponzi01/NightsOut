@@ -10,12 +10,13 @@ public class WelcomeGUIController2 {
 
     @FXML
     private Button buttonExit;
+    private SwitchPage switchPage = new SwitchPage();
     @FXML
-    private void goToClubOwnerLogin(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");}
+    private void goToClubOwnerLogin(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");}
     @FXML
-    private void goToUserLogin(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/LoginUser2.fxml"); }
+    private void goToUserLogin(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/LoginUser2.fxml"); }
     @FXML
-    private void switchInterface(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
+    private void switchInterface(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
     @FXML
     private void exit() {
         Stage stage = (Stage) buttonExit.getScene().getWindow();

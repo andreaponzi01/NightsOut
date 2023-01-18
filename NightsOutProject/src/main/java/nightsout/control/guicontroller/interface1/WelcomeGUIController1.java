@@ -10,14 +10,15 @@ public class WelcomeGUIController1 {
 
     @FXML
     private Button buttonExit;
+    private SwitchPage switchPage = new SwitchPage();
     @FXML
     private void onSignInClick(ActionEvent actionEvent) {
-        SwitchPage.replaceScene(actionEvent, "/Login1.fxml");
+        switchPage.replaceScene(actionEvent, "/Login1.fxml");
     }
     @FXML
-    private void onSignOnClick(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
+    private void onSignOnClick(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
     @FXML
-    private void switchInterface(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");}
+    private void switchInterface(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/Welcome2.fxml");}
     @FXML
     private void exit() {
         Stage stage = (Stage) buttonExit.getScene().getWindow();

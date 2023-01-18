@@ -1,6 +1,6 @@
 package test.junit;
 
-import nightsout.control.appcontroller.SearchAppController;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.exception.myexception.SystemException;
 import org.junit.Test;
@@ -14,8 +14,9 @@ public class TestSearchEvent {
     @Test
     public void testSearchEvent() throws SystemException {
 
-        List<EventBean> list1 = SearchAppController.searchEventsByName("king");
-        List<EventBean> list2 = SearchAppController.searchEventsByName("miaomiaomiao");
+        JoinEventAppController controller = new JoinEventAppController();
+        List<EventBean> list1 = controller.searchEventsByName("king");
+        List<EventBean> list2 = controller.searchEventsByName("miaomiaomiao");
 
         int ret1 = 0;
         int ret2 = 0;

@@ -22,26 +22,29 @@ public class ConcludeRegisterUserGUIController1 {
 
     private UserBean1 userBean1;
     private File img;
+    private SwitchPage switchPage = new SwitchPage();
     @FXML
-    TextField textFieldEmail;
+    private TextField textFieldEmail;
     @FXML
-    TextField textFieldUsername;
+    private TextField textFieldUsername;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    ImageView imageViewProfile;
+    private ImageView imageViewProfile;
     @FXML
-    Button buttonBack;
+    private Button buttonBack;
 
     public void setAll(UserBean1 userBean1) {
         this.userBean1 = userBean1;
     }
     @FXML
-    protected void backToRegister(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/RegisterUser1.fxml"); }
+    protected void backToRegister(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/RegisterUser1.fxml"); }
     @FXML
     protected void goToWelcomePage(ActionEvent actionEvent) {
         CredentialsBean credentialsBean;
+        RegisterAppController controller;
         try {
+            controller = new RegisterAppController();
             credentialsBean = new CredentialsBean();
             userBean1.setUsername(textFieldUsername.getText());
             credentialsBean.setUsername(textFieldUsername.getText());
@@ -49,11 +52,11 @@ public class ConcludeRegisterUserGUIController1 {
             credentialsBean.setType("Free");
             userBean1.setEmail(textFieldEmail.getText());
             userBean1.setImg(img);
-            RegisterAppController.registerUser(userBean1, credentialsBean);
-            SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml");
+            controller.registerUser(userBean1, credentialsBean);
+            switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
         } catch (EmptyInputException | EmailNotValidException | SystemException | UsernameAlreadyTakenException |
                  PasswordNotCompliantException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 

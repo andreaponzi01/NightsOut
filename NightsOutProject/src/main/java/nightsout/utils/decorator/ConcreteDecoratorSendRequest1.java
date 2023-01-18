@@ -5,10 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.control.appcontroller.JoinEventAppController;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 
@@ -16,12 +16,12 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
 
     private UserBean1 userBean;
     private EventBean1 eventBean;
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
+    private String toWrite;
 
-    String toWrite;
-
-    public ConcreteDecoratorSendRequest1(VisualComponent component, EventBean1 eventBean) {
+    public ConcreteDecoratorSendRequest1(Component component, EventBean1 eventBean) {
         super(component);
-        this.userBean = new UserBean1(LoggedBean.getInstance().getUser());
+        this.userBean = new UserBean1(Session.getInstance().getUser());
         this.eventBean = eventBean;
     }
 
@@ -36,11 +36,14 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
     }
 
     private void sendRequest(ActionEvent actionEvent){
+
+        JoinEventAppController controller;
         try {
-            JoinEventAppController.sendRequest(userBean, eventBean);
-            SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+            controller = new JoinEventAppController();
+            controller.sendRequest(userBean, eventBean);
+            switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
         } catch (SystemException e){
-            CreateNotification.createNotification(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 

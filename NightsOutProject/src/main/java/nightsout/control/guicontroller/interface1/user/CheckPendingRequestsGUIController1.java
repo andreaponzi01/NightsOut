@@ -6,12 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.CheckRequestAppController;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.CheckRequestsItemGUIController1;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.engineering.CheckRequestsEngineering;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -24,37 +24,44 @@ import java.util.ResourceBundle;
 
 public class CheckPendingRequestsGUIController1 implements Observer, Initializable {
     @FXML
-    ListView listViewPendingRequests;
+    private ListView listViewPendingRequests;
+    private SwitchPage switchPage = new SwitchPage();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        CheckRequestAppController controller;
+
         try {
-            CheckRequestsEngineering.checkRequests(this, LoggedBean.getInstance().getUser().getId());
+            controller = new CheckRequestAppController();
+            controller.checkRequests(this, Session.getInstance().getUser().getId());
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
     @FXML
-    private void goToRifiutedRequests(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/CheckRifiutedRequestsPage1.fxml");}
+    private void goToRifiutedRequests(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/CheckRifiutedRequestsPage1.fxml");}
 
     @Override
     public void update(Object ob) {
-
+        CheckRequestsItemGUIController1 controller;
+        JoinEventAppController appController;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         if (ob instanceof RequestBean rBean && Objects.equals(rBean.getStatus(), "pending")) {
                 try {
+                    appController = new JoinEventAppController();
+                    controller = fxmlLoader.getController();
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
-                    CheckRequestsItemGUIController1 controller = fxmlLoader.getController();
-                    EventBean1 eventBean1 = new EventBean1(JoinEventAppController.searchEventByIdEvent(rBean.getIdEvent()));
+                    fxmlLoader.getController();
+                    EventBean1 eventBean1 = new EventBean1(appController.searchEventByIdEvent(rBean.getIdEvent()));
                     controller.setAll(rBean, eventBean1);
                     this.listViewPendingRequests.getItems().add(pane);
                 } catch (SystemException | IOException e) {
-                    ExceptionHandler.handleException(e);
+                    ExceptionHandler.getInstance().handleException(e);
                 }
         }
     }
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
+    public void backToUserPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
 }

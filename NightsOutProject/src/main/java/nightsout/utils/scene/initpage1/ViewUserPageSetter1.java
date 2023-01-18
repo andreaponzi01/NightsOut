@@ -5,11 +5,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 
 public class ViewUserPageSetter1 {
 
-    private ViewUserPageSetter1() {
-        //ignored
-    }
-
-    public static void setter(UserBean1 userBean, ViewUserPageGUIController1 viewUserPageGUIController1) {
+    public void setter(UserBean1 userBean, ViewUserPageGUIController1 viewUserPageGUIController1) {
         viewUserPageGUIController1.setAll(userBean);
     }
 

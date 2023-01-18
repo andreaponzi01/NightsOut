@@ -6,10 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.control.guicontroller.interface2.item.ReviewItemToResponseGUIController2;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.engineering.ResponseEngineering;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -23,7 +23,8 @@ import java.util.ResourceBundle;
 public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, Observer {
 
     @FXML
-    ListView listViewReviews;
+    private ListView listViewReviews;
+    private SwitchPage switchPage = new SwitchPage();
 
     @Override
     public void update(Object ob) {
@@ -37,21 +38,24 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
                 controller.setAll(reviewBean);
                 this.listViewReviews.getItems().add(pane);
             } catch (IOException | SystemException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }
 
     public void goToCommunity(ActionEvent actionEvent) {
-            SwitchPage.replaceScene(actionEvent,"/CommunityPage2.fxml");
+            switchPage.replaceScene(actionEvent,"/CommunityPage2.fxml");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        ManageReviewAppController controller;
         try {
-            ResponseEngineering.eventReviews(this,  LoggedBean.getInstance().getClubOwner().getId());
+            controller = new ManageReviewAppController();
+            controller.eventReviews(this,  Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

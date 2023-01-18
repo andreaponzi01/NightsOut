@@ -20,30 +20,33 @@ import java.io.File;
 public class RegisterUserGUIController2 {
 
     @FXML
-    TextField textFieldName;
+    private TextField textFieldName;
     @FXML
-    TextField textFieldUsername;
+    private TextField textFieldUsername;
     @FXML
-    TextField textFieldSurname;
+    private TextField textFieldSurname;
     @FXML
-    TextField textFieldEmail;
+    private TextField textFieldEmail;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    TextField textFieldBirthday;
+    private TextField textFieldBirthday;
     @FXML
-    TextField textFieldGender;
+    private TextField textFieldGender;
     @FXML
-    ImageView imageViewProfile;
+    private ImageView imageViewProfile;
     private File img;
+    private SwitchPage switchPage = new SwitchPage();
 
     @FXML
     private void goToWelcomePage(ActionEvent actionEvent) {
 
         UserBean2 userBean;
         CredentialsBean credentialsBean;
+        RegisterAppController controller;
 
         try {
+            controller = new RegisterAppController();
             userBean = new UserBean2();
             userBean.setName(textFieldName.getText());
             userBean.setSurname(textFieldSurname.getText());
@@ -56,11 +59,11 @@ public class RegisterUserGUIController2 {
             credentialsBean.setType("Free");
             userBean.setEmail(textFieldEmail.getText());
             userBean.setImg(img);
-            RegisterAppController.registerUser(userBean, credentialsBean);
-            SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");
+            controller.registerUser(userBean, credentialsBean);
+            switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
         } catch (EmptyInputException | EmailNotValidException | SystemException | UsernameAlreadyTakenException |
                  PasswordNotCompliantException | AdultException | GenderException | WrongInputTypeException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -75,7 +78,7 @@ public class RegisterUserGUIController2 {
 
     @FXML
     public void backToLogin(ActionEvent actionEvent) {
-        SwitchPage.replaceScene(actionEvent, "/LoginUser2.fxml");
+        switchPage.replaceScene(actionEvent, "/LoginUser2.fxml");
     }
 
 }

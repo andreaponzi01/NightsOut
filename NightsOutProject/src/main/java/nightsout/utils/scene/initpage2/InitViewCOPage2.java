@@ -6,11 +6,7 @@ import nightsout.utils.exception.myexception.SystemException;
 
 public class InitViewCOPage2 {
 
-    private InitViewCOPage2() {
-        //ignored
-    }
-
-    public static void setter(ClubOwnerBean2 clubOwnerBean, ViewClubOwnerPageGUIController2 viewClubOwnerPageGUIController2) throws SystemException {
+    public void setter(ClubOwnerBean2 clubOwnerBean, ViewClubOwnerPageGUIController2 viewClubOwnerPageGUIController2) throws SystemException {
         viewClubOwnerPageGUIController2.setAll(clubOwnerBean);
     }
 }

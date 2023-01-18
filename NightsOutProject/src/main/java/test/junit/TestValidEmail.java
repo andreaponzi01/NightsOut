@@ -27,15 +27,15 @@ public class TestValidEmail {
         int case1 = 0;
         int case2 = 0;
 
-
-        if(CheckEmail.validate(email2)){
+        CheckEmail checkEmail = new CheckEmail();
+        if(checkEmail.validate(email2)){
             case2 = 1;
         }
 
         assertEquals(1, case2, 0); //Success
 
 
-        if(CheckEmail.validate(email1)){
+        if(checkEmail.validate(email1)){
             case1 = 1;
         }
 

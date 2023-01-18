@@ -1,13 +1,11 @@
 package nightsout.utils.engineering;
 
-import nightsout.control.appcontroller.SearchAppController;
-import nightsout.utils.bean.ClubOwnerBean;
+import com.dlsc.gmapsfx.GoogleMapView;
+import com.dlsc.gmapsfx.javascript.object.*;
+import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.UserBean;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.observer.GenericBeanList;
-import nightsout.utils.observer.Observer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,15 +16,45 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 public class MapEngineering {
 
-    private MapEngineering() {
-        //ignored
+    public void createMap(EventBean eventBean, GoogleMapView location) {
+
+        EventPageAppController controller;
+        MapOptions mapOptions = new MapOptions();
+        Double[] latlong= new Double[2];
+        try {
+            controller = new EventPageAppController();
+            latlong = findLocation(controller.getClubAddress(eventBean.getIdEvent()));
+        } catch (SystemException e) {
+            ExceptionHandler.getInstance().handleException(e);
+        }
+
+        // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
+        mapOptions.center(new LatLong(latlong[0],latlong[1]))
+                .mapType(MapTypeIdEnum.HYBRID)
+                .overviewMapControl(false)
+                .panControl(false)
+                .rotateControl(false)
+                .scaleControl(false)
+                .streetViewControl(false)
+                .zoomControl(false)
+                .zoom(18);
+
+        GoogleMap map = location.createMap(mapOptions);
+        // Aggiungiamo il marcatore sulla Mappa
+        MarkerOptions markerOptions = new MarkerOptions();
+
+        markerOptions.position(new LatLong(latlong[0],latlong[1]))
+                .visible(Boolean.TRUE)
+                .title("Prova1" + "'s Location");
+
+        Marker marker = new Marker(markerOptions);
+        map.addMarker(marker);
     }
 
-    public static Double[] findLocation(String address) throws SystemException {
+    public Double[] findLocation(String address) throws SystemException {
 
         Double[] latlong= new Double[2];
 
@@ -60,7 +88,7 @@ public class MapEngineering {
 
             http.disconnect();
         } catch (JSONException | IOException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
         return latlong;
     }

@@ -22,24 +22,24 @@ import java.io.File;
 public class RegisterClubOwnerGUIController2 {
 
     @FXML
-    TextField textFieldUsername;
+    private TextField textFieldUsername;
     @FXML
-    TextField textFieldName;
+    private TextField textFieldName;
     @FXML
-    TextField textFieldEmail;
+    private TextField textFieldEmail;
     @FXML
-    TextField textFieldAddress;
+    private TextField textFieldAddress;
     @FXML
-    TextField textFieldCity;
+    private TextField textFieldCity;
     @FXML
-    Slider sliderVIPDiscount;
+    private Slider sliderVIPDiscount;
     @FXML
-    TextField textFieldCivicNumber;
+    private TextField textFieldCivicNumber;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    ImageView imageViewProfile;
-
+    private ImageView imageViewProfile;
+    private SwitchPage switchPage = new SwitchPage();
     private File img;
 
     @FXML
@@ -47,7 +47,9 @@ public class RegisterClubOwnerGUIController2 {
 
         ClubOwnerBean2 clubOwnerBean;
         CredentialsBean credentialsBean;
+        RegisterAppController controller;
         try {
+            controller = new RegisterAppController();
             clubOwnerBean = new ClubOwnerBean2();
             credentialsBean = new CredentialsBean();
             clubOwnerBean.setName(textFieldName.getText());
@@ -60,11 +62,11 @@ public class RegisterClubOwnerGUIController2 {
             credentialsBean.setType("ClubOwner");
             clubOwnerBean.setEmail(textFieldEmail.getText());
             clubOwnerBean.setImg(img);
-            RegisterAppController.registerClubOwner(clubOwnerBean, credentialsBean);
-            SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");
+            controller.registerClubOwner(clubOwnerBean, credentialsBean);
+            switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
         } catch (EmptyInputException | EmailNotValidException | SystemException | UsernameAlreadyTakenException |
                  PasswordNotCompliantException | WrongInputTypeException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -77,5 +79,5 @@ public class RegisterClubOwnerGUIController2 {
     }
 
     @FXML
-    public void backToLogin(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");}
+    public void backToLogin(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");}
 }

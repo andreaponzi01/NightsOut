@@ -1,7 +1,6 @@
 package nightsout.utils.bean;
 
 import nightsout.model.UserModel;
-import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmptyInputException;
 
 import java.time.LocalDate;
@@ -54,7 +53,7 @@ public class UserBean extends ProfileBean {
     // Setter
     public void setSurname(String surname) throws EmptyInputException {
         if (surname.equals(""))
-            Trigger.throwEmptyInputException("Surname");
+            trigger.throwEmptyInputException("Surname");
         this.surname = surname;
     }
 

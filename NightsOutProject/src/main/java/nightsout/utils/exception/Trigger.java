@@ -10,56 +10,53 @@ import java.sql.SQLException;
  */
 public class Trigger {
 
-    private Trigger() {
-        //ignored
-    }
 
-    public static void throwEmptyInputException(String field) throws EmptyInputException {
+    public void throwEmptyInputException(String field) throws EmptyInputException {
         throw new EmptyInputException(field);
     }
-    public static void throwWrongCredentials() throws WrongCredentialsException {
+    public void throwWrongCredentials() throws WrongCredentialsException {
         throw new WrongCredentialsException();
     }
 
-    public static void throwDBConnectionFailedException(SQLException e) throws DBConnectionFailedException {
+    public void throwDBConnectionFailedException(SQLException e) throws DBConnectionFailedException {
         DBConnectionFailedException exception = new DBConnectionFailedException();
         exception.initCause(e);
         throw exception;
     }
 
-    public static void throwWrongInputTypeException(NumberFormatException e, String field) throws WrongInputTypeException {
+    public void throwWrongInputTypeException(NumberFormatException e, String field) throws WrongInputTypeException {
         WrongInputTypeException exception = new WrongInputTypeException(field);
         exception.initCause(e);
         throw exception;
     }
 
-    public static void throwBeforeDateException() throws BeforeDateException {
+    public void throwBeforeDateException() throws BeforeDateException {
         throw new BeforeDateException();
     }
 
-    public static void throwEmailException(MessagingException e) throws EmailException {
+    public void throwEmailException(MessagingException e) throws EmailException {
         EmailException exception = new EmailException();
         exception.initCause(e);
         throw exception;
     }
 
-    public static void throwExceededRangeException(String field) throws WrongInputRangeException {
+    public void throwExceededRangeException(String field) throws WrongInputRangeException {
         throw new WrongInputRangeException(field);
     }
 
-    public static void throwAdultException() throws AdultException {
+    public void throwAdultException() throws AdultException {
         throw new AdultException();
     }
 
-    public static void throwUsernameAlreadyTakenException(String username) throws UsernameAlreadyTakenException {
+    public void throwUsernameAlreadyTakenException(String username) throws UsernameAlreadyTakenException {
         throw new UsernameAlreadyTakenException(username);
     }
 
-    public static void throwPasswordNotCompliantException() throws PasswordNotCompliantException {
+    public void throwPasswordNotCompliantException() throws PasswordNotCompliantException {
         throw new PasswordNotCompliantException();
     }
 
-    public  static void throwGenderException() throws GenderException {
+    public void throwGenderException() throws GenderException {
         throw new GenderException();
     }
 }

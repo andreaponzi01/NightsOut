@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import nightsout.control.appcontroller.MakeReviewAppController;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.control.appcontroller.ManageReviewAppController;
+import nightsout.utils.Session;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
@@ -18,6 +18,7 @@ public class MakeReviewGUIController1 {
 
     private EventBean1 eventBean1;
     private UserBean1 userBean1;
+    private SwitchPage switchPage = new SwitchPage();
     @FXML
     private Label labelEventName;
     @FXML
@@ -29,22 +30,24 @@ public class MakeReviewGUIController1 {
 
     public void setAll(EventBean1 eventBean1) {
 
-        this.userBean1 = new UserBean1(LoggedBean.getInstance().getUser());
+        this.userBean1 = new UserBean1(Session.getInstance().getUser());
         this.eventBean1 = eventBean1;
         this.labelEventName.setText(eventBean1.getName());
     }
     public void createReview(ActionEvent actionEvent) {
 
+        ManageReviewAppController controller;
         try {
+            controller = new ManageReviewAppController();
             ReviewBean reviewBean= new ReviewBean();
             reviewBean.setComment(textAreaReview.getText());
             reviewBean.setIdUser(userBean1.getId());
             reviewBean.setIdEvent(eventBean1.getIdEvent());
-            MakeReviewAppController.createEventReview(reviewBean);
-            SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");
+            controller.createEventReview(reviewBean);
+            switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
         } catch (SystemException | EmptyInputException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
-    public void backToEndedBookedEventsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/EndedBookedEventsPage1.fxml");}
+    public void backToEndedBookedEventsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/EndedBookedEventsPage1.fxml");}
 }

@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import nightsout.control.appcontroller.SearchAppController;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
 import nightsout.utils.bean.ClubOwnerBean;
@@ -25,35 +25,26 @@ import java.util.Objects;
 
 public class SearchPageGUIController1 implements Observer {
 
-    /*
-        Subject: è colui che viene osservato. Nel caso specifico si tratta della nostra lista GenericBeanList
-        L'osservato deve mantenere il riferimento ai propri osservatori, così da poterli notificare ogni
-        volta che viene aggiornato lo stato dell'osservato.
-
-        Observer: è colui che osserva. Nel caso specifica si tratta del SearchPageGUIController1, che
-        quando riceve una notifica (cioè, ogni volta che viene aggiunto un User/Event Bean alla lista),
-        aggiunge un Item (fxml) alla pagina.
-
-        Creiamo l'oggetto Subject, aggiugendo sin da subito il riferimento all'observer chiamante, che ci
-        passiamo alla chiamata della funzione search (cioè, SearchPageGUIController1).
-    */
-
     @FXML
     private TextField textFieldSearch;
     @FXML
     private ListView listView;
 
+    private SwitchPage switchPage = new SwitchPage();
+
     @FXML
     private void search() {
+
+        JoinEventAppController controller;
         try {
+            controller = new JoinEventAppController();
             String input = textFieldSearch.getText();
             this.listView.getItems().clear();
             if (!input.isBlank()) {
-                //SearchEngineering.search(this, input);
-                SearchAppController.search(this, input);
+                controller.search(this, input);
             }
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -69,7 +60,7 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new UserBean1(uBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
         if(ob instanceof EventBean eBean) {
@@ -79,8 +70,8 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new EventBean1(eBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                    ExceptionHandler.handleException(e);
-                }
+                    ExceptionHandler.getInstance().handleException(e);
+            }
         }
         if(ob instanceof ClubOwnerBean cBean) {
             try {
@@ -89,12 +80,12 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new ClubOwnerBean1(cBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }
     @FXML
     public void backToUserPage(ActionEvent actionEvent) {
-        SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");
+        switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
     }
 }

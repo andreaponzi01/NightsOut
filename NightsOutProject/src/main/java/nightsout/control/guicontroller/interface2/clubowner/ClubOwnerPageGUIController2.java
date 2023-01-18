@@ -5,10 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface2.item.ManageRequestsItemGUIController2;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.engineering.ManageRequestsEngineering;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -35,7 +35,7 @@ public class ClubOwnerPageGUIController2 implements Observer, Initializable {
                 controller.setAll(mRBean);
                 this.listViewPendingRequests.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }
@@ -43,10 +43,12 @@ public class ClubOwnerPageGUIController2 implements Observer, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        JoinEventAppController controller;
         try {
-            ManageRequestsEngineering.manageRequests(this, LoggedBean.getInstance().getClubOwner().getId());
+            controller = new JoinEventAppController();
+            controller.manageRequests(this, Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

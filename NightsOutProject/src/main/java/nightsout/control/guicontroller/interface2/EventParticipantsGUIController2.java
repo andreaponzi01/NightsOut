@@ -7,12 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface2.item.UserItemGUIController2;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.engineering.EventParticipantsEngineering;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
@@ -24,26 +24,28 @@ public class EventParticipantsGUIController2 implements Observer {
 
     private EventBean2 eventBean;
     @FXML
-    ListView listViewParticipants;
+    private ListView listViewParticipants;
     @FXML
-    Label labelEventName;
+    private Label labelEventName;
+    private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
 
     public void setAll(EventBean2 eBean) throws SystemException {
 
         this.eventBean=eBean;
-        EventParticipantsEngineering.eventParticipants(this, eBean.getIdEvent());
+        EventParticipantsEngineering eventParticipantsEngineering = new EventParticipantsEngineering();
+        eventParticipantsEngineering.eventParticipants(this, eBean.getIdEvent());
         this.labelEventName.setText("Participants of: "+eBean.getName());
     }
 
     public void backToUserPage(ActionEvent actionEvent) {
         try{
-            String type = LoggedBean.getInstance().checkInstanceType();
+            String type = Session.getInstance().checkInstanceType();
             if (type.equalsIgnoreCase("FREE"))
-                SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml",eventBean);
+                switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml",eventBean);
             else
-                SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml",eventBean);
+                switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml",eventBean);
         }catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -59,7 +61,7 @@ public class EventParticipantsGUIController2 implements Observer {
                 controller.setAll(new UserBean2(uBean));
                 this.listViewParticipants.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }

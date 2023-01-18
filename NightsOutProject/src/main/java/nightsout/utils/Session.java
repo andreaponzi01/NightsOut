@@ -1,25 +1,27 @@
-package nightsout.utils.bean;
+package nightsout.utils;
 
 import nightsout.model.ClubOwnerModel;
 import nightsout.model.UserModel;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.UserBean;
 
-public class LoggedBean {
+public class Session {
 
     private static final String TYPE_FREE = "Free";
     private static final String TYPE_CLUB_OWNER = "ClubOwner";
 
-    private LoggedBean() {}
+    private Session() {}
 
-    private static LoggedBean loggedBeanInstance;
+    private static Session session;
     private UserBean userBean;
     private ClubOwnerBean clubOwnerBean;
     private String type;
 
 
-    public static LoggedBean getInstance() {
-        if (loggedBeanInstance == null)
-            loggedBeanInstance = new LoggedBean();
-        return loggedBeanInstance;
+    public static Session getInstance() {
+        if (session == null)
+            session = new Session();
+        return session;
     }
 
     public ClubOwnerBean getClubOwner() {

@@ -17,14 +17,15 @@ import java.time.format.DateTimeFormatter;
 public class CheckRequestsItemGUIController1 {
 
     @FXML
-    Label labelEventName;
+    private Label labelEventName;
     @FXML
-    Label labelEventDate;
+    private Label labelEventDate;
     @FXML
-    Button buttonStatus;
+    private Button buttonStatus;
     @FXML
-    ImageView userImageView;
+    private ImageView userImageView;
 
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     private EventBean1 eventBean1;
 
     public void setAll(RequestBean requestBean, EventBean1 eventBean1) {
@@ -40,9 +41,9 @@ public class CheckRequestsItemGUIController1 {
     private void goToEventPage(ActionEvent actionEvent) {
 
         try {
-            SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", this.eventBean1);
+            switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", this.eventBean1);
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 

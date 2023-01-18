@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import nightsout.control.appcontroller.MakeResponseAppController;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.control.appcontroller.ManageReviewAppController;
+import nightsout.utils.Session;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
@@ -23,24 +23,30 @@ public class MakeResponseGUIController1 {
     private TextArea textAreaResponse;
     private ReviewBean reviewBean;
 
+    private SwitchPage switchPage = new SwitchPage();
+
     public void setAll(UserBean1 userBean, ReviewBean reviewBean) throws SystemException {
 
+        ManageReviewAppController controller = new ManageReviewAppController();
         this.reviewBean=reviewBean;
         this.labelUsername.setText(userBean.getUsername());
-        this.labelEventName.setText(MakeResponseAppController.searchEventbyIdEvent(reviewBean.getIdEvent()).getName());
+        this.labelEventName.setText(controller.searchEventbyIdEvent(reviewBean.getIdEvent()).getName());
     }
     public void createResponse(ActionEvent actionEvent) {
 
+        ManageReviewAppController controller;
+
         try {
+            controller = new ManageReviewAppController();
             ResponseBean responseBean = new ResponseBean();
             responseBean.setResponse(textAreaResponse.getText());
-            responseBean.setIdClubOwner(LoggedBean.getInstance().getClubOwner().getId());
+            responseBean.setIdClubOwner(Session.getInstance().getClubOwner().getId());
             responseBean.setReview(reviewBean.getIdReview());
-            MakeResponseAppController.makeResponse(responseBean);
-            SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");
+            controller.makeResponse(responseBean);
+            switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");
         } catch (SystemException | EmptyInputException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
-    public void backToReviewsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
+    public void backToReviewsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
 }

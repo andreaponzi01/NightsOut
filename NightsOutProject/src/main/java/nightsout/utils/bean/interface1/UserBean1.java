@@ -28,10 +28,10 @@ public class UserBean1 extends UserBean {
 
     public void setBirthday(LocalDate birthday) throws AdultException, EmptyInputException {
         if (birthday == null) {
-            Trigger.throwEmptyInputException("Date");
+            trigger.throwEmptyInputException("Date");
         } else {
             if (birthday.until(LocalDate.now(), ChronoUnit.YEARS) < 18)
-                Trigger.throwAdultException();
+                trigger.throwAdultException();
             this.birthday = birthday;
         }
     }

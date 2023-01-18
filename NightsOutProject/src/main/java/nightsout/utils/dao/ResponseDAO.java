@@ -6,13 +6,12 @@ import nightsout.utils.exception.myexception.SystemException;
 
 public class ResponseDAO {
 
-    private ResponseDAO() {
-        //ignore
+    Query query = new Query();
+
+    public void createResponse(ResponseModel responseModel) throws SystemException {
+            query.insertResponse(responseModel);
     }
-    public static void createResponse(ResponseModel responseModel) throws SystemException {
-            Query.insertResponse(responseModel);
-    }
-    public static ResponseModel getResponseByIdReview(int idReview) throws SystemException {
-            return Query.searchResponseByIdReview(idReview);
+    public ResponseModel getResponseByIdReview(int idReview) throws SystemException {
+            return query.searchResponseByIdReview(idReview);
     }
 }

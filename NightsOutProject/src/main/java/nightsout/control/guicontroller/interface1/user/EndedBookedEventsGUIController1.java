@@ -6,16 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
-import nightsout.control.appcontroller.MakeReviewAppController;
+import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
-import nightsout.control.guicontroller.interface1.item.EventReviewItemGUIController1;
+import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.engineering.ReviewEngineering;
-import nightsout.utils.exception.CreateNotification;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -28,45 +25,51 @@ import java.util.ResourceBundle;
 
 public class EndedBookedEventsGUIController1 implements Observer, Initializable {
     private UserBean1 userBean1;
+    private SwitchPage switchPage = new SwitchPage();
     @FXML
-    ListView listViewEvents;
+    private ListView listViewEvents;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.userBean1 = new UserBean1(LoggedBean.getInstance().getUser());
+
+        ManageReviewAppController controller;
+        this.userBean1 = new UserBean1(Session.getInstance().getUser());
         try {
-            ReviewEngineering.eventsToReview(this, userBean1.getId());
+            controller = new ManageReviewAppController();
+            controller.eventsToReview(this, userBean1.getId());
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
+    public void backToUserPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
 
     @Override
     public void update(Object ob) {
 
+        ManageReviewAppController appController;
+        EventItemGUIController1 controller;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         ReviewBean reviewBean=null;
 
         if(ob instanceof EventBean eBean) {
             try {
-                reviewBean= MakeReviewAppController.getReviewByIdEventAndIdUser( userBean1.getId(), eBean.getIdEvent());
+                appController = new ManageReviewAppController();
+                reviewBean = appController.getReviewByIdEventAndIdUser( userBean1.getId(), eBean.getIdEvent());
+
                 if(reviewBean != null){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
-                    EventItemGUIController1 controller = fxmlLoader.getController();
-                    controller.setAll(new EventBean1(eBean));
-                    this.listViewEvents.getItems().add(pane);
                 } else {
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem1.fxml")).openStream());
-                    EventReviewItemGUIController1 controller = fxmlLoader.getController();
-                    controller.setAll(new EventBean1(eBean));
-                    this.listViewEvents.getItems().add(pane);
                 }
+
+                controller = fxmlLoader.getController();
+                controller.setAll(new EventBean1(eBean));
+                this.listViewEvents.getItems().add(pane);
             } catch (SystemException | IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }

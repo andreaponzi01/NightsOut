@@ -10,10 +10,12 @@ import static org.junit.Assert.assertEquals;
 public class TestUserByUsernameQuery {
     @Test
     public void testUserByUsernameQuery() throws SystemException {
-        UserModel userModel1 = UserDAO.getUserByUsername("duce");
+
+        UserDAO userDAO = new UserDAO();
+        UserModel userModel1 = userDAO.getUserByUsername("duce");
         int ret1 = userModel1.getId();
 
-        UserModel userModel2 = UserDAO.getUserByUsername("ciao");
+        UserModel userModel2 = userDAO.getUserByUsername("ciao");
         int ret2 = userModel2.getId();
 
         assertEquals(3, ret1, 0); // SUCCESS

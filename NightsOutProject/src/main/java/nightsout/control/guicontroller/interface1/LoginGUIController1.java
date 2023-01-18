@@ -18,34 +18,39 @@ import java.util.Objects;
 public class LoginGUIController1 {
 
     @FXML
-    TextField textFieldUsername;
+    private TextField textFieldUsername;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    Button buttonLogin;
+    private Button buttonLogin;
     @FXML
-    Button buttonBack;
+    private Button buttonBack;
     @FXML
-    CheckBox checkBoxClubOwner;
+    private CheckBox checkBoxClubOwner;
+
+    private SwitchPage switchPage = new SwitchPage();
 
     @FXML
     void loginAction(ActionEvent ae) {
 
         String type = "Free";
+        LoginAppController controller;
         if(checkBoxClubOwner.isSelected()) {type = "ClubOwner";}
         try {
+            controller = new LoginAppController();
+
             CredentialsBean credentialsBean = new CredentialsBean(textFieldUsername.getText(), passwordField.getText(), type);
-            LoginAppController.login(credentialsBean);
+            controller.login(credentialsBean);
             if (Objects.equals(type, "ClubOwner")) {
-                SwitchPage.replaceScene(ae,"/ClubOwnerPage1.fxml");
+                switchPage.replaceScene(ae,"/ClubOwnerPage1.fxml");
             } else {
-                SwitchPage.replaceScene(ae,"/UserPage1.fxml");
+                switchPage.replaceScene(ae,"/UserPage1.fxml");
             }
         } catch (SystemException | WrongCredentialsException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
     @FXML
-    protected void backToWelcomePage(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
+    protected void backToWelcomePage(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
 }

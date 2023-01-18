@@ -8,7 +8,7 @@ public class ConcreteDecoratorPending extends Decorator {
 
     String toWrite;
 
-    public ConcreteDecoratorPending(VisualComponent component) { super(component); }
+    public ConcreteDecoratorPending(Component component) { super(component); }
 
     protected void applyDecorationOne(Button myButton) {
 

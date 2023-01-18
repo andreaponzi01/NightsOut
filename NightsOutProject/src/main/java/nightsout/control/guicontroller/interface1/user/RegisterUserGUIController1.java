@@ -17,22 +17,24 @@ import nightsout.utils.scene.switchpage.SwitchPage;
 public class RegisterUserGUIController1 {
 
     @FXML
-    Button buttonNextStep;
+    private Button buttonNextStep;
     @FXML
-    Button buttonBack;
+    private Button buttonBack;
     @FXML
-    TextField textFieldName;
+    private TextField textFieldName;
     @FXML
-    TextField textFieldSurname;
+    private TextField textFieldSurname;
     @FXML
-    RadioButton radioMale;
+    private RadioButton radioMale;
     @FXML
-    RadioButton radioFemale;
+    private RadioButton radioFemale;
     @FXML
-    DatePicker dateBirthday;
+    private DatePicker dateBirthday;
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
+    private SwitchPage switchPage = new SwitchPage();
 
     @FXML
-    protected void backToChoice(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
+    protected void backToChoice(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent, "/Welcome1.fxml"); }
     @FXML
     protected void goToConcludeRegister(ActionEvent actionEvent) {
 
@@ -42,9 +44,9 @@ public class RegisterUserGUIController1 {
             userBean1.setSurname(textFieldSurname.getText());
             userBean1.setGender(radioFemale.isSelected() ? "Female" : "Male");
             userBean1.setBirthday(dateBirthday.getValue());
-            SwitchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ConcludeRegisterUser1.fxml", userBean1);
+            switchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ConcludeRegisterUser1.fxml", userBean1);
         } catch (EmptyInputException | SystemException | AdultException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

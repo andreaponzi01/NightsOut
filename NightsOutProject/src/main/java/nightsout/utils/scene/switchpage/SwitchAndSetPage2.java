@@ -17,47 +17,67 @@ import java.io.IOException;
 
 public class SwitchAndSetPage2 {
 
-    private SwitchAndSetPage2() {
-        // ignored
-    }
-
-    public static void switchAndSetSceneEvent(ActionEvent ae, String fxml, EventBean2 eventBean) throws SystemException {
+    public void switchAndSetSceneEvent(ActionEvent ae, String fxml, EventBean2 eventBean) throws SystemException {
 
         try {
             FXMLLoader loader = new FXMLLoader(SwitchAndSetPage2.class.getResource(fxml));
             Parent root = loader.load();
-            if (fxml.equals("/EventPageFromCO2.fxml")) {InitEventPage2.setterCO(eventBean,loader.getController());}
-            if (fxml.equals("/EventPageFromUser2.fxml")) {InitEventPage2.setterUser(eventBean,loader.getController());}
-            if (fxml.equals("/EventParticipantsPageFromUser2.fxml")) {InitParticipantsPage2.setter(eventBean,loader.getController());}
-            if (fxml.equals("/EventParticipantsPageFromCO2.fxml")) {InitParticipantsPage2.setter(eventBean,loader.getController());}
+            if (fxml.equals("/EventPageFromCO2.fxml")) {
+                InitEventPage2 initEventPage2 = new InitEventPage2();
+                initEventPage2.setter(eventBean,loader.getController());
+            }
+            if (fxml.equals("/EventPageFromUser2.fxml")) {
+                InitEventPage2 initEventPage2 = new InitEventPage2();
+                initEventPage2.setter(eventBean,loader.getController());
+            }
+            if (fxml.equals("/EventParticipantsPageFromUser2.fxml")) {
+                InitParticipantsPage2 initParticipantsPage2 = new InitParticipantsPage2();
+                initParticipantsPage2.setter(eventBean,loader.getController());
+            }
+            if (fxml.equals("/EventParticipantsPageFromCO2.fxml")) {
+                InitParticipantsPage2 initParticipantsPage2 = new InitParticipantsPage2();
+                initParticipantsPage2.setter(eventBean,loader.getController());
+            }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
-    public static void switchAndSetSceneCO(ActionEvent ae, String fxml, ClubOwnerBean2 clubOwnerBean) throws SystemException {
+    public void switchAndSetSceneCO(ActionEvent ae, String fxml, ClubOwnerBean2 clubOwnerBean) throws SystemException {
 
         try {
             FXMLLoader loader = new FXMLLoader(SwitchAndSetPage2.class.getResource(fxml));
             Parent root = loader.load();
-            if (fxml.equals("/ViewCOPageFromUser2.fxml")) {InitViewCOPage2.setter(clubOwnerBean,loader.getController());}
-            if (fxml.equals("/ViewCOPageFromCO2.fxml")) {InitViewCOPage2.setter(clubOwnerBean,loader.getController());}
+            if (fxml.equals("/ViewCOPageFromUser2.fxml")) {
+                InitViewCOPage2 initViewCOPage2 = new InitViewCOPage2();
+                initViewCOPage2.setter(clubOwnerBean,loader.getController());
+            }
+            if (fxml.equals("/ViewCOPageFromCO2.fxml")) {
+                InitViewCOPage2 initViewCOPage2 = new InitViewCOPage2();
+                initViewCOPage2.setter(clubOwnerBean,loader.getController());
+            }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
-    public static void switchAndSetSceneUser(ActionEvent ae, String fxml, UserBean2 userBean) throws SystemException {
+    public void switchAndSetSceneUser(ActionEvent ae, String fxml, UserBean2 userBean) throws SystemException {
 
         try {
             FXMLLoader loader = new FXMLLoader(SwitchAndSetPage2.class.getResource(fxml));
             Parent root = loader.load();
-            if (fxml.equals("/ViewUserPageFromUser2.fxml")) {InitViewUserPage2.setter(userBean,loader.getController());}
-            if (fxml.equals("/ViewUserPageFromCO2.fxml")) {InitViewUserPage2.setter(userBean,loader.getController());}
+            if (fxml.equals("/ViewUserPageFromUser2.fxml")) {
+                InitViewUserPage2 initViewUserPage2 = new InitViewUserPage2();
+                initViewUserPage2.setter(userBean,loader.getController());
+            }
+            if (fxml.equals("/ViewUserPageFromCO2.fxml")) {
+                InitViewUserPage2 initViewUserPage2 = new InitViewUserPage2();
+                initViewUserPage2.setter(userBean, loader.getController());
+            }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

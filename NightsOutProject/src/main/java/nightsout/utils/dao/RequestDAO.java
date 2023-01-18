@@ -10,22 +10,20 @@ import java.util.List;
 
 public class RequestDAO {
 
-    private RequestDAO() {
-        //ignored
+    Query query = new Query();
+    public void createRequest(UserModel userModel, EventModel eventModel) throws SystemException {
+            query.insertRequest(userModel.getId(), eventModel.getIdEvent());
     }
-    public static void createRequest(UserModel userModel, EventModel eventModel) throws SystemException {
-            Query.insertRequest(userModel.getId(), eventModel.getIdEvent());
+    public RequestModel checkRequestStatus(UserModel userModel, EventModel eventModel) throws SystemException {
+            return query.searchRequest(userModel.getId(), eventModel.getIdEvent());
     }
-    public static RequestModel checkRequestStatus(UserModel userModel, EventModel eventModel) throws SystemException {
-            return Query.searchRequest(userModel.getId(), eventModel.getIdEvent());
+    public List<RequestModel> getRequestsByIdClubOwner(int idClubOwner) throws SystemException {
+        return query.searchRequestsByIdClubOwner(idClubOwner);
     }
-    public static List<RequestModel> getRequestsByIdClubOwner(int idClubOwner) throws SystemException {
-        return Query.searchRequestsByIdClubOwner(idClubOwner);
+    public List<RequestModel> getRequestsByIdUser(int idUser) throws SystemException {
+        return query.searchRequestsByIdUser(idUser);
     }
-    public static List<RequestModel> getRequestsByIdUser(int idUser) throws SystemException {
-        return Query.searchRequestsByIdUser(idUser);
-    }
-    public static void updateRequestStatus(int idRequest,String status) throws SystemException {
-            Query.updateRequest(idRequest,status);
+    public void updateRequestStatus(int idRequest,String status) throws SystemException {
+            query.updateRequest(idRequest,status);
     }
 }

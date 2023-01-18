@@ -3,7 +3,7 @@ package nightsout.utils.decorator;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 
-public class ConcreteComponent implements VisualComponent {
+public class ConcreteComponent implements Component {
     private Button button;
 
     public ConcreteComponent(){

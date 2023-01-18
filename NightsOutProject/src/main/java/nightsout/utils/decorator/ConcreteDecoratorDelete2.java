@@ -19,9 +19,10 @@ import java.io.IOException;
 public class ConcreteDecoratorDelete2 extends Decorator {
 
     private EventBean2 eventBean;
-    String toWrite;
+    private SwitchPage switchPage = new SwitchPage();
+    private String toWrite;
 
-    public ConcreteDecoratorDelete2(VisualComponent component, EventBean2 eventBean) {
+    public ConcreteDecoratorDelete2(Component component, EventBean2 eventBean) {
 
         super(component);
         this.eventBean = eventBean;
@@ -38,21 +39,23 @@ public class ConcreteDecoratorDelete2 extends Decorator {
     }
     private void deleteEvent(ActionEvent ae) {
 
+        Query query;
         var alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Event");
         alert.setHeaderText("You're about to delete the event!");
         alert.setContentText("Are you sure you want to delete the event?: ");
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
-                Query.deleteEventById(eventBean.getIdEvent());
+                query = new Query();
+                query.deleteEventById(eventBean.getIdEvent());
                 FileUtils.delete(new File("eventImgs/" + eventBean.getName()+"pic.png"));
-                SwitchPage.replaceScene(ae,"/ClubOwnerPage2.fxml");
+                switchPage.replaceScene(ae,"/ClubOwnerPage2.fxml");
             } catch (SystemException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             } catch (IOException e) {
                 SystemException ex = new SystemException();
                 ex.initCause(e);
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }

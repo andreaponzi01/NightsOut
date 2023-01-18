@@ -1,4 +1,4 @@
-package nightsout.control.appcontroller;
+package nightsout.utils.engineering;
 
 import nightsout.model.EventModel;
 import nightsout.utils.bean.EventBean;
@@ -8,14 +8,12 @@ import nightsout.utils.exception.myexception.SystemException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClubOwnerPageAppController {
+public class ClubOwnerPageEngineering {
 
-    private ClubOwnerPageAppController(){
-        //ignore
-    }
-    public static List<EventBean> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
+    public List<EventBean> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
 
-        List<EventModel> list = EventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
+        EventDAO eventDAO = new EventDAO();
+        List<EventModel> list = eventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
         List<EventBean>  listBean = new ArrayList<>();
         for(EventModel eventModel : list){
             EventBean bean = new EventBean(eventModel);

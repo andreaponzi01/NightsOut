@@ -10,9 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.db.MySqlConnection;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
@@ -26,25 +26,28 @@ import java.util.ResourceBundle;
 public class MenuClubOwnerGUIController1 implements Initializable {
 
     @FXML
-    protected Label usernameLabel;
+    private Label usernameLabel;
     @FXML
-    protected Circle circleProfile;
+    private Circle circleProfile;
     @FXML
-    protected ImageView imageViewProfile;
+    private ImageView imageViewProfile;
+
+    private SwitchPage switchPage = new SwitchPage();
+    private MySqlConnection mySqlConnection = new MySqlConnection();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedBean.getInstance().getClubOwner().getImg().toURI().toString());
+        Image img = new Image(Session.getInstance().getClubOwner().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
-        this.usernameLabel.setText(LoggedBean.getInstance().getClubOwner().getUsername());
+        this.usernameLabel.setText(Session.getInstance().getClubOwner().getUsername());
     }
     @FXML
-    public void goToCreateEventPage(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/CreateEventPage1.fxml");}
+    public void goToCreateEventPage(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/CreateEventPage1.fxml");}
     @FXML
-    public void goToManageRequestsPage(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/ManageRequests1.fxml");}
+    public void goToManageRequestsPage(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/ManageRequests1.fxml");}
     @FXML
-    public void goToResponsePage(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
+    public void goToResponsePage(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
     @FXML
     private void logout(ActionEvent actionEvent) {
 
@@ -54,18 +57,18 @@ public class MenuClubOwnerGUIController1 implements Initializable {
         alert.setContentText("Are you sure you want to logout?");
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
-                SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml");
-                MySqlConnection.closeConnection();
-                LoggedBean.getInstance().deleteSession();
+                switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
+                mySqlConnection.closeConnection();
+                Session.getInstance().deleteSession();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
             } catch (SQLException | IOException e) {
                 SystemException ex = new SystemException();
                 ex.initCause(e);
-                CreateNotification.createNotification(ex);
+                ExceptionHandler.getInstance().handleException(ex);
             }
         }
     }
     @FXML
-    public void goToHome(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
+    public void goToHome(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
 }

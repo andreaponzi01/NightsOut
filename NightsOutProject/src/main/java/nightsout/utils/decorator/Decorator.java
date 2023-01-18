@@ -2,11 +2,11 @@ package nightsout.utils.decorator;
 
 import javafx.scene.control.Button;
 
-public abstract class Decorator implements VisualComponent {
+public abstract class Decorator implements Component {
 
-    private VisualComponent component;
+    private Component component;
 
-    protected Decorator(VisualComponent component){
+    protected Decorator(Component component){
         this.component = component; /* = myConcreteComponent */
     }
 

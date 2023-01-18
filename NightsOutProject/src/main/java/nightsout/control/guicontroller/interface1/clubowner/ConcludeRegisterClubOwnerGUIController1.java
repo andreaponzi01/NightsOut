@@ -29,13 +29,17 @@ public class ConcludeRegisterClubOwnerGUIController1 {
     @FXML
     TextField textFieldEmail;
     private File img;
+
+    SwitchPage switchPage = new SwitchPage();
     @FXML
-    protected void backToRegister(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/RegisterClubOwner1.fxml"); }
+    protected void backToRegister(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/RegisterClubOwner1.fxml"); }
 
     @FXML
     protected void goToWelcomePage(ActionEvent actionEvent) {
+        RegisterAppController controller;
         CredentialsBean credentialsBean;
         try {
+            controller = new RegisterAppController();
             credentialsBean = new CredentialsBean();
             clubOwnerBean1.setUsername(textFieldUsername.getText());
             credentialsBean.setUsername(textFieldUsername.getText());
@@ -43,11 +47,11 @@ public class ConcludeRegisterClubOwnerGUIController1 {
             credentialsBean.setType("ClubOwner");
             clubOwnerBean1.setEmail(textFieldEmail.getText());
             clubOwnerBean1.setImg(img);
-            RegisterAppController.registerClubOwner(clubOwnerBean1, credentialsBean);
-            SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml");
+            controller.registerClubOwner(clubOwnerBean1, credentialsBean);
+            switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
         } catch (EmptyInputException | EmailNotValidException | SystemException | UsernameAlreadyTakenException |
                  PasswordNotCompliantException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 

@@ -12,14 +12,29 @@ public class ExceptionHandler {
         // ignored
     }
 
-    public static void handleException(Exception e) {
+    private static ExceptionHandler instance = null;
 
-        if (e instanceof SQLException || e instanceof IOException || e instanceof JSONException) {
-                SystemException exception = new SystemException();
-                exception.initCause(e);
-                CreateNotification.createNotification(exception);
-        } else {
-            CreateNotification.createNotification(e);
+    public static ExceptionHandler getInstance() {
+        if (instance == null) {
+            instance = new ExceptionHandler();
+        }
+        return instance;
+    }
+
+    public void handleException(Exception e) {
+        CreateNotification createNotification = new CreateNotification();
+        if (e instanceof SQLException) {
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            ExceptionHandler.getInstance().handleException(exception);
+        } else if (e instanceof IOException || e instanceof JSONException || e instanceof ClassNotFoundException) {
+
+            // Eccezioni gestite solo parzialmente
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            createNotification.createNotification(exception);
+        }else {
+            createNotification.createNotification(e);
         }
     }
 }

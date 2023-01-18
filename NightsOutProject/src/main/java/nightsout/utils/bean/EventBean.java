@@ -11,6 +11,8 @@ import java.time.LocalTime;
 
 public class EventBean implements GenericBean {
 
+    protected Trigger trigger = new Trigger();
+
     private static final String FIELD_PRICE = "Price";
     private static final String FIELD_IMAGE = "Image";
 
@@ -98,7 +100,7 @@ public class EventBean implements GenericBean {
     public void setName(String name) throws EmptyInputException {
 
         if (name.equals(""))
-            Trigger.throwEmptyInputException("Name");
+            trigger.throwEmptyInputException("Name");
         this.name = name;
     }
 
@@ -106,10 +108,10 @@ public class EventBean implements GenericBean {
 
         try {
             if (price.equals(""))
-                Trigger.throwEmptyInputException(FIELD_PRICE);
+                trigger.throwEmptyInputException(FIELD_PRICE);
             this.price = Double.valueOf(price);
         } catch(NumberFormatException e) {
-            Trigger.throwWrongInputTypeException(e, FIELD_PRICE);
+            trigger.throwWrongInputTypeException(e, FIELD_PRICE);
         }
     }
 
@@ -122,7 +124,7 @@ public class EventBean implements GenericBean {
 
     public void setImg(File img) throws EmptyInputException {
         if (img == null) {
-            Trigger.throwEmptyInputException(FIELD_IMAGE);
+            trigger.throwEmptyInputException(FIELD_IMAGE);
         } else {
             this.img = img;
         }

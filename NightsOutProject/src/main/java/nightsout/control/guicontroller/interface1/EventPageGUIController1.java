@@ -2,7 +2,6 @@ package nightsout.control.guicontroller.interface1;
 
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.MapComponentInitializedListener;
-import com.dlsc.gmapsfx.javascript.object.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,9 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.CheckRequestAppController;
 import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
@@ -25,21 +25,13 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.*;
 import nightsout.utils.engineering.EventParticipantsEngineering;
 import nightsout.utils.engineering.MapEngineering;
-import nightsout.utils.engineering.SearchEngineering;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -51,6 +43,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     private ClubOwnerBean1 clubOwnerBean1;
     private ClubOwnerBean1 clubOwnerBean1Event;
     private EventBean1 eventBean1;
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     @FXML
     private Label labelEventName;
     @FXML
@@ -75,22 +68,23 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     @FXML
     private AnchorPane root;
     private ConcreteComponent myConcreteComponent;
-    private VisualComponent contents;
+    private Component contents;
 
     public void setAll(EventBean1 eventBean1) throws SystemException {
 
+        EventPageAppController controller  = new EventPageAppController();
         this.eventBean1 = eventBean1;
-        clubOwnerBean1Event = new ClubOwnerBean1(EventPageAppController.getClubOwner(eventBean1.getIdClubOwner()));
+        clubOwnerBean1Event = new ClubOwnerBean1(controller.getClubOwner(eventBean1.getIdClubOwner()));
 
-        if(LoggedBean.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
-            this.userBean1 = new UserBean1(LoggedBean.getInstance().getUser());
+        if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
+            this.userBean1 = new UserBean1(Session.getInstance().getUser());
             Double price = (eventBean1.getPrice() - ((eventBean1.getPrice() * clubOwnerBean1Event.getDiscountVIP()) / 100));
-            if (LoggedBean.getInstance().getUser().getVip())
+            if (Session.getInstance().getUser().getVip())
                 this.labelEventPrice.setText("€" + price);
             else
                 this.labelEventPrice.setText("€" + eventBean1.getPrice());
         } else {
-            this.clubOwnerBean1 = new ClubOwnerBean1(LoggedBean.getInstance().getClubOwner());
+            this.clubOwnerBean1 = new ClubOwnerBean1(Session.getInstance().getClubOwner());
             this.labelEventPrice.setText(eventBean1.getPrice() + " €");
         }
 
@@ -102,14 +96,17 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
         this.labelEventTime.setText(eventBean1.getTime().toString());
         this.eventImg.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
 
-        EventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
+        EventParticipantsEngineering eventParticipantsEngineering = new EventParticipantsEngineering();
+        eventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
         myStart();
     }
     private void myStart() throws SystemException {
 
-        if (LoggedBean.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
+        CheckRequestAppController controller = new CheckRequestAppController();
+
+        if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
             this.myConcreteComponent = new ConcreteComponent();
-            RequestBean requestBean = EventPageAppController.checkRequestStatus(this.userBean1, this.eventBean1);
+            RequestBean requestBean = controller.checkRequestStatus(this.userBean1, this.eventBean1);
             if (requestBean == null) {
                 if (eventBean1.getEventDate().isAfter(LocalDate.now()))
                     actionDecorateSendRequest();
@@ -164,9 +161,9 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     public void goToMap(ActionEvent ae) {
 
         try {
-            SwitchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
+            switchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -174,9 +171,9 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     public void goToClubOwner(ActionEvent ae) {
 
         try {
-            SwitchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
+            switchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -187,13 +184,15 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
 
     @Override
     public void mapInitialized() {
-
+        MapEngineering mapEngineering = new MapEngineering();
+        mapEngineering.createMap(eventBean1, location);
+    /*
         MapOptions mapOptions = new MapOptions();
         Double[] latlong= new Double[2];
         try {
-            latlong=EventPageAppController.findLocation(eventBean1.getIdEvent());
+            latlong = EventPageAppController.findLocation(eventBean1.getIdEvent());
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
 
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
@@ -217,7 +216,11 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
 
         Marker marker = new Marker(markerOptions);
         map.addMarker(marker);
+
+     */
     }
+
+
 
     @Override
     public void update(Object ob) {
@@ -233,7 +236,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
                 controller.setAll(new UserBean1(uBean));
                 this.listViewUsers.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
 
         }

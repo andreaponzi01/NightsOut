@@ -8,19 +8,18 @@ import java.util.List;
 
 public class ReviewDAO {
 
-    private ReviewDAO() {
-        //ignore
+    Query query = new Query();
+
+    public void createEventReview(ReviewModel reviewModel) throws SystemException {
+        query.insertEventReview(reviewModel);
     }
-    public static void createEventReview(ReviewModel reviewModel) throws SystemException {
-        Query.insertEventReview(reviewModel);
+    public List<ReviewModel> getReviewByIdClubOwner(int idClubOwner) throws SystemException {
+        return query.searchReviewsByIdClubOwner(idClubOwner);
     }
-    public static List<ReviewModel> getReviewByIdClubOwner(int idClubOwner) throws SystemException {
-        return Query.searchReviewsByIdClubOwner(idClubOwner);
+    public List<ReviewModel> getAllReviewByIdClubOwner(int idClubOwner) throws SystemException {
+        return query.searchAllReviewsByIdClubOwner(idClubOwner);
     }
-    public static List<ReviewModel> getAllReviewByIdClubOwner(int idClubOwner) throws SystemException {
-        return Query.searchAllReviewsByIdClubOwner(idClubOwner);
-    }
-    public static ReviewModel getReviewByIdEventAndIdUser(int idEvent,int idUser) throws SystemException {
-        return Query.searchReviewByIdEventAndByIdUser( idUser, idEvent) ;
+    public ReviewModel getReviewByIdEventAndIdUser(int idEvent,int idUser) throws SystemException {
+        return query.searchReviewByIdEventAndByIdUser( idUser, idEvent) ;
     }
 }

@@ -5,19 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.CheckRequestAppController;
 import nightsout.control.appcontroller.JoinEventAppController;
-import nightsout.control.appcontroller.MakeReviewAppController;
+import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
-import nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.RequestsItemGUIController2;
+import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.engineering.CheckRequestsEngineering;
-import nightsout.utils.engineering.ReviewEngineering;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -34,65 +32,71 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
     private static final String REQUEST_ITEM_FXML = "/CheckRequestsItem2.fxml";
 
     @FXML
-    ListView listViewToReview;
+    private ListView listViewToReview;
     @FXML
-    ListView listViewNextEvents;
+    private ListView listViewNextEvents;
     @FXML
-    ListView listViewDeclined;
+    private ListView listViewDeclined;
     @FXML
-    ListView listViewPending;
+    private ListView listViewPending;
 
     private void handleRequest(RequestBean rBean) {
 
+        JoinEventAppController appController;
+        RequestsItemGUIController2 controller;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         try {
+            appController = new JoinEventAppController();
             if(Objects.equals(rBean.getStatus(), "accepted")){
-                EventBean2 eventBean= new EventBean2(JoinEventAppController.searchEventByIdEvent(rBean.getIdEvent()));
+                EventBean2 eventBean= new EventBean2(appController.searchEventByIdEvent(rBean.getIdEvent()));
                 if(eventBean.getEventDate().isAfter(LocalDate.now())){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
-                    RequestsItemGUIController2 controller = fxmlLoader.getController();
+                    controller = fxmlLoader.getController();
                     controller.setAll(rBean);
                     this.listViewNextEvents.getItems().add(pane);
                 }
             } else if (Objects.equals(rBean.getStatus(), "declined")) {
 
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
-                RequestsItemGUIController2 controller = fxmlLoader.getController();
+                controller = fxmlLoader.getController();
                 controller.setAll(rBean);
                 this.listViewDeclined.getItems().add(pane);
             } else if (Objects.equals(rBean.getStatus(), "pending")) {
 
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
-                RequestsItemGUIController2 controller = fxmlLoader.getController();
+                controller = fxmlLoader.getController();
                 controller.setAll(rBean);
                 this.listViewPending.getItems().add(pane);
             }
         } catch (SystemException | IOException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
     private void handleEvent(EventBean eBean) {
+        
+        ManageReviewAppController appController;
+        EventItemGUIController2 controller;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         ReviewBean reviewBean = null;
-
+        
         try {
-            reviewBean= MakeReviewAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
+            appController = new ManageReviewAppController();
+            reviewBean = appController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
+
             if(reviewBean != null){
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
-                EventItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean2(eBean));
-                this.listViewToReview.getItems().add(pane);
             } else {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem2.fxml")).openStream());
-                EventReviewItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean2(eBean));
-                this.listViewToReview.getItems().add(pane);
             }
+
+            controller = fxmlLoader.getController();
+            controller.setAll(new EventBean2(eBean));
+            this.listViewToReview.getItems().add(pane);
         } catch (SystemException | IOException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
 
 
@@ -110,12 +114,19 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.userBean = new UserBean2(LoggedBean.getInstance().getUser());
+
+        CheckRequestAppController controller1;
+        ManageReviewAppController controller2;
+        this.userBean = new UserBean2(Session.getInstance().getUser());
+
         try {
-            CheckRequestsEngineering.checkRequests(this, this.userBean.getId());
-            ReviewEngineering.eventsToReview(this, userBean.getId());
+            controller1 = new CheckRequestAppController();
+            controller2 = new ManageReviewAppController();
+
+            controller1.checkRequests(this, this.userBean.getId());
+            controller2.eventsToReview(this, userBean.getId());
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

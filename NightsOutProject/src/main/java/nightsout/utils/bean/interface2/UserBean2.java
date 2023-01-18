@@ -43,7 +43,7 @@ public class UserBean2 extends UserBean {
     public void setGender(String gender) throws GenderException {
 
             if (!(gender.equals("Male")) && !(gender.equals("Female"))) {
-                Trigger.throwGenderException();
+                trigger.throwGenderException();
             } else {
                 this.gender = gender;
             }
@@ -52,21 +52,21 @@ public class UserBean2 extends UserBean {
     public void setBirthday(String birthday) throws AdultException, EmptyInputException, WrongInputTypeException {
 
         if (birthday.equals("")) {
-            Trigger.throwEmptyInputException("Date");
+            trigger.throwEmptyInputException("Date");
         } else {
             try {
                 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
                 Date birthdayDate = formatter1.parse(birthday);
                 LocalDate birthdayLocalDate = LocalDate.from(birthdayDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
                 if (birthdayLocalDate.until(LocalDate.now(), ChronoUnit.YEARS) < 18)
-                    Trigger.throwAdultException();
+                    trigger.throwAdultException();
                 this.birthday = birthdayLocalDate;
             } catch (NumberFormatException e) {
-                Trigger.throwWrongInputTypeException(e, BIRTHDAY_FIELD);
+                trigger.throwWrongInputTypeException(e, BIRTHDAY_FIELD);
             } catch (DateTimeException e) {
-                Trigger.throwWrongInputTypeException(new NumberFormatException(), BIRTHDAY_FIELD);
+                trigger.throwWrongInputTypeException(new NumberFormatException(), BIRTHDAY_FIELD);
             } catch (ParseException e) {
-                Trigger.throwWrongInputTypeException(new NumberFormatException(), BIRTHDAY_FIELD);
+                trigger.throwWrongInputTypeException(new NumberFormatException(), BIRTHDAY_FIELD);
             }
         }
     }

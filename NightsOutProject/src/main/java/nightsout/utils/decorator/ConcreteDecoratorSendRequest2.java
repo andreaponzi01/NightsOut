@@ -5,10 +5,10 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.control.appcontroller.JoinEventAppController;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 
@@ -16,12 +16,12 @@ public class ConcreteDecoratorSendRequest2 extends Decorator {
 
     private UserBean2 userBean;
     private EventBean2 eventBean;
+    private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
+    private String toWrite;
 
-    String toWrite;
-
-    public ConcreteDecoratorSendRequest2(VisualComponent component, EventBean2 eventBean) {
+    public ConcreteDecoratorSendRequest2(Component component, EventBean2 eventBean) {
         super(component);
-        this.userBean = new UserBean2(LoggedBean.getInstance().getUser());
+        this.userBean = new UserBean2(Session.getInstance().getUser());
         this.eventBean = eventBean;
     }
 
@@ -36,11 +36,15 @@ public class ConcreteDecoratorSendRequest2 extends Decorator {
     }
 
     private void sendRequest(ActionEvent actionEvent){
+
+        JoinEventAppController controller;
+
         try {
-            JoinEventAppController.sendRequest(this.userBean, eventBean);
-            SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
+            controller = new JoinEventAppController();
+            controller.sendRequest(this.userBean, eventBean);
+            switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
         } catch (SystemException e){
-            CreateNotification.createNotification(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 

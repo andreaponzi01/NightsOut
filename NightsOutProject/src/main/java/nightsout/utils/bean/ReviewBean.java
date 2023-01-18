@@ -12,6 +12,8 @@ public class ReviewBean {
     private int idEvent;
     private String comment;
 
+    private Trigger trigger = new Trigger();
+
     public ReviewBean() {
     }
 
@@ -54,7 +56,7 @@ public class ReviewBean {
 
     public void setComment(String comment) throws EmptyInputException {
         if (comment.isEmpty()) {
-            Trigger.throwEmptyInputException("Comment");
+            trigger.throwEmptyInputException("Comment");
         }
         this.comment = comment;
     }

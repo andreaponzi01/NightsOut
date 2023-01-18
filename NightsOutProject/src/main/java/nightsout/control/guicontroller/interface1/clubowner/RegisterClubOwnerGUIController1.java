@@ -16,20 +16,23 @@ import nightsout.utils.scene.switchpage.SwitchPage;
 public class RegisterClubOwnerGUIController1 {
 
     @FXML
-    Button buttonNextStep;
+    private Button buttonNextStep;
     @FXML
-    Button buttonBack;
+    private Button buttonBack;
     @FXML
-    TextField textFieldName;
+    private TextField textFieldName;
     @FXML
-    TextField textFieldCity;
+    private TextField textFieldCity;
     @FXML
-    TextField textFieldAddress;
+    private TextField textFieldAddress;
     @FXML
-    TextField textFieldDiscount;
+    private TextField textFieldDiscount;
+
+    private SwitchPage switchPage = new SwitchPage();
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
 
     @FXML
-    protected void backToChoice(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
+    protected void backToChoice(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
     @FXML
     protected void goToConcludeRegister(ActionEvent actionEvent) {
 
@@ -39,9 +42,9 @@ public class RegisterClubOwnerGUIController1 {
             clubOwnerBean1.setAddress(textFieldAddress.getText());
             clubOwnerBean1.setCity(textFieldCity.getText());
             clubOwnerBean1.setDiscountVIP(textFieldDiscount.getText());
-            SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ConcludeRegisterClubOwner1.fxml", clubOwnerBean1);
+            switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ConcludeRegisterClubOwner1.fxml", clubOwnerBean1);
         } catch (WrongInputTypeException | EmptyInputException | SystemException | WrongInputRangeException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

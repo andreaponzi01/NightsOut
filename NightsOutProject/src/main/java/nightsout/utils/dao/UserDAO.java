@@ -9,30 +9,28 @@ import java.util.List;
 
 public class UserDAO {
 
-    private UserDAO() {
-        //ignored
+    Query query = new Query();
+    public UserModel getUserByUsername(String username) throws SystemException {
+        return query.searchUserByUsername(username);
     }
-    public static UserModel getUserByUsername(String username) throws SystemException {
-        return Query.searchUserByUsername(username);
+    public void insertUser(CredentialsModel credentialsModel, UserModel userModel) throws SystemException {
+        query.insertCredentials(credentialsModel);
+        query.insertUser(userModel);
     }
-    public static void insertUser(CredentialsModel credentialsModel, UserModel userModel) throws SystemException {
-        Query.insertCredentials(credentialsModel);
-        Query.insertUser(userModel);
+    public UserModel subscriptionVip(UserModel userModel) throws SystemException {
+        query.subscriptionVipUser(userModel.getUsername());
+        return query.searchUserByUsername(userModel.getUsername());
     }
-    public static UserModel subscriptionVip(UserModel userModel) throws SystemException {
-        Query.subscriptionVipUser(userModel.getUsername());
-        return Query.searchUserByUsername(userModel.getUsername());
+    public List<UserModel> getUsersByUsername(String username) throws SystemException {
+        return query.searchUsersByUsername(username);
     }
-    public static List<UserModel> getUsersByUsername(String username) throws SystemException {
-        return Query.searchUsersByUsername(username);
+    public List<UserModel> getUsersByIdEvent(int idEvent) throws SystemException {
+        return query.searchUsersByIdEvent(idEvent);
     }
-    public static List<UserModel> getUsersByIdEvent(int idEvent) throws SystemException {
-        return Query.searchUsersByIdEvent(idEvent);
+    public UserModel getUserByidUser(int idUser) throws SystemException {
+        return query.searchUsersByIdUser(idUser);
     }
-    public static UserModel getUserByidUser(int idUser) throws SystemException {
-        return Query.searchUsersByIdUser(idUser);
-    }
-    public static boolean checkUsername(String username) throws SystemException {
-        return Query.checkUsernameAlreadyTaken(username);
+    public boolean checkUsername(String username) throws SystemException {
+        return query.checkUsernameAlreadyTaken(username);
     }
 }

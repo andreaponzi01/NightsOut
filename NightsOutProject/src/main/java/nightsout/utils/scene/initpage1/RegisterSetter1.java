@@ -6,10 +6,6 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 
 public class RegisterSetter1 {
-
-    private RegisterSetter1() {
-        //ignored
-    }
-    public static void setterClubOwner(ClubOwnerBean1 clubOwnerBean, ConcludeRegisterClubOwnerGUIController1 concludeRegisterClubOwnerGUIController1) {concludeRegisterClubOwnerGUIController1.setAll(clubOwnerBean);}
-    public static void setterUser(UserBean1 userBean, ConcludeRegisterUserGUIController1 concludeRegisterUserGUIController1) { concludeRegisterUserGUIController1.setAll(userBean); }
+    public void setterClubOwner(ClubOwnerBean1 clubOwnerBean, ConcludeRegisterClubOwnerGUIController1 concludeRegisterClubOwnerGUIController1) {concludeRegisterClubOwnerGUIController1.setAll(clubOwnerBean);}
+    public void setterUser(UserBean1 userBean, ConcludeRegisterUserGUIController1 concludeRegisterUserGUIController1) { concludeRegisterUserGUIController1.setAll(userBean); }
 }

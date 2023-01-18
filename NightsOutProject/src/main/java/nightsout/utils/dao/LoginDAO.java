@@ -6,10 +6,8 @@ import nightsout.utils.exception.myexception.SystemException;
 
 public class LoginDAO {
 
-    private LoginDAO() {
-        //ignored
-    }
-    public static boolean checkIsRegistered(CredentialsModel credentialsModel) throws SystemException {
-        return Query.searchUserInLogged(credentialsModel);
+    Query query = new Query();
+    public boolean checkIsRegistered(CredentialsModel credentialsModel) throws SystemException {
+        return query.searchUserInLogged(credentialsModel);
     }
 }

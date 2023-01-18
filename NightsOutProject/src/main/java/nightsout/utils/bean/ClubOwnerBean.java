@@ -44,7 +44,7 @@ public class ClubOwnerBean  extends ProfileBean {
 
     public void setCity(String city) throws EmptyInputException {
         if (city.equals(""))
-            Trigger.throwEmptyInputException(FIELD_CITY);
+            trigger.throwEmptyInputException(FIELD_CITY);
         this.city = city;
     }
 }

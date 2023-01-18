@@ -30,9 +30,9 @@ public class ClubOwnerBean2 extends ClubOwnerBean {
     public void setAddress(String partialAddress, String civicNumber) throws EmptyInputException, WrongInputTypeException {
         try {
             if (partialAddress.equals("")) {
-                Trigger.throwEmptyInputException(FIELD_ADDRESS);
+                trigger.throwEmptyInputException(FIELD_ADDRESS);
             } else if (civicNumber.equals("")) {
-                Trigger.throwEmptyInputException(FIELD_CIVIC);
+                trigger.throwEmptyInputException(FIELD_CIVIC);
             } else {
 
                 // Controllo che il numero civico sia effettivamente un intero
@@ -40,7 +40,7 @@ public class ClubOwnerBean2 extends ClubOwnerBean {
                 this.address = partialAddress + ", " + civicNumber;
             }
         } catch (NumberFormatException e) {
-            Trigger.throwWrongInputTypeException(e, FIELD_CIVIC);
+            trigger.throwWrongInputTypeException(e, FIELD_CIVIC);
         }
     }
 }

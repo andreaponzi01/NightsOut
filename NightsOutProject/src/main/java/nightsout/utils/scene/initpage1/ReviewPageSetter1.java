@@ -5,11 +5,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 
 public class ReviewPageSetter1 {
 
-    private ReviewPageSetter1() {
-        //ignored
-    }
-
-    public static void setter(EventBean1 eventBean, MakeReviewGUIController1 makeReviewGUIController1) {
+    public void setter(EventBean1 eventBean, MakeReviewGUIController1 makeReviewGUIController1) {
         makeReviewGUIController1.setAll(eventBean);
     }
 }

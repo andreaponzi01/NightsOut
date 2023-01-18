@@ -12,6 +12,8 @@ import java.io.File;
 
 public abstract class ProfileBean implements GenericBean {
 
+    protected Trigger trigger = new Trigger();
+
     // Attributi comuni a User e ClubOwner
     protected String username;
     // Per gli Users rappresenta il nome (name), mentre per i ClubOwners rappresenta il nome del club (clubName)
@@ -34,14 +36,15 @@ public abstract class ProfileBean implements GenericBean {
     // Setter
     public void setName(String name) throws EmptyInputException {
         if (name.equals(""))
-            Trigger.throwEmptyInputException("Name");
+            trigger.throwEmptyInputException("Name");
         this.name = name;
     }
 
     public void setEmail(String email) throws EmptyInputException, EmailNotValidException {
         if(email.isEmpty())
-            Trigger.throwEmptyInputException("email");
-        boolean correctFormat = CheckEmail.validate(email);
+            trigger.throwEmptyInputException("email");
+        CheckEmail checkEmail = new CheckEmail();
+        boolean correctFormat = checkEmail.validate(email);
         if(correctFormat)
             this.email = email;
         else
@@ -50,17 +53,19 @@ public abstract class ProfileBean implements GenericBean {
 
     public void setImg(File img) throws EmptyInputException {
         if (img == null) {
-            Trigger.throwEmptyInputException("Image");
+            trigger.throwEmptyInputException("Image");
         } else {
             this.img = img;
         }
     }
 
     public void setUsername(String username) throws EmptyInputException, UsernameAlreadyTakenException, SystemException {
+
+        RegisterAppController controller = new RegisterAppController();
         if (username.equals("")) {
-            Trigger.throwEmptyInputException("Username");
-        } else if (RegisterAppController.usernameAlreadyTaken(username)) {
-            Trigger.throwUsernameAlreadyTakenException(username);
+            trigger.throwEmptyInputException("Username");
+        } else if (controller.usernameAlreadyTaken(username)) {
+            trigger.throwUsernameAlreadyTakenException(username);
         } else {
             this.username = username;
         }

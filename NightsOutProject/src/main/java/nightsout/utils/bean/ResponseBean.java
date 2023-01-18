@@ -13,6 +13,8 @@ public class ResponseBean extends Subject {
     private int review;
     private String response;
 
+    private Trigger trigger = new Trigger();
+
     public ResponseBean() {
         super();
 
@@ -60,7 +62,7 @@ public class ResponseBean extends Subject {
 
     public void setResponse(String response) throws EmptyInputException {
         if (response.isBlank())
-            Trigger.throwEmptyInputException("Response");
+            trigger.throwEmptyInputException("Response");
         this.response = response;
     }
 

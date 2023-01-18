@@ -13,9 +13,9 @@ import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 public class EventReviewItemGUIController1 {
 
     private EventBean1 eventBean1;
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     @FXML
     private Label labelEventName;
-
     @FXML
     private ImageView imageViewEvent;
 
@@ -29,18 +29,18 @@ public class EventReviewItemGUIController1 {
     private void goToEventPage(ActionEvent actionEvent) {
 
       try {
-          SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
+          switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
       } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
     @FXML
     private void goToReviewPage(ActionEvent actionEvent) {
 
         try {
-            SwitchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/CreateEventReviewPage1.fxml", eventBean1);
+            switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/CreateEventReviewPage1.fxml", eventBean1);
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

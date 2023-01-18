@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.exception.ExceptionHandler;
@@ -33,32 +33,33 @@ import java.util.ResourceBundle;
 public class ManageEventPageGUIController2 implements Initializable, Observer {
 
     @FXML
-    Button buttonCreateEvent;
+    private Button buttonCreateEvent;
     @FXML
-    Slider sliderTime;
+    private Slider sliderTime;
     @FXML
-    TextField textFieldEventDate;
+    private TextField textFieldEventDate;
     @FXML
-    TextField textFieldEventTime;
+    private TextField textFieldEventTime;
     @FXML
-    TextField textFieldName;
+    private TextField textFieldName;
     @FXML
-    TextField textFieldPrice;
+    private TextField textFieldPrice;
     @FXML
-    TextArea textFieldDescription;
+    private TextArea textFieldDescription;
     @FXML
-    ImageView imageViewProfile;
+    private ImageView imageViewProfile;
     @FXML
-    ListView listViewCreatedEvents;
+    private ListView listViewCreatedEvents;
     private File img;
+    private SwitchPage switchPage = new SwitchPage();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        CreatedEventsEngineering createdEventsEngineering = new CreatedEventsEngineering();
         try {
-            CreatedEventsEngineering.createdEvents(this, LoggedBean.getInstance().getClubOwner().getId());
+            createdEventsEngineering.createdEvents(this, Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -66,21 +67,23 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
     public void createEvent(ActionEvent actionEvent) {
 
         EventBean2 eventBean = new EventBean2();
+        CreateEventAppController controller;
         try {
+            controller = new CreateEventAppController();
             eventBean.setEventDate(textFieldEventDate.getText());
             eventBean.setDuration((int) sliderTime.getValue());
             eventBean.setTime(textFieldEventTime.getText());
             eventBean.setName(textFieldName.getText());
-            eventBean.setIdClubOwner(LoggedBean.getInstance().getClubOwner().getId());
+            eventBean.setIdClubOwner(Session.getInstance().getClubOwner().getId());
             eventBean.setDescription(textFieldDescription.getText());
             eventBean.setPrice(textFieldPrice.getText());
             eventBean.setImg(this.img);
-            CreateEventAppController.createEvent(eventBean);
+            controller.createEvent(eventBean);
 
-            SwitchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
+            switchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
 
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
 
 
@@ -109,7 +112,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
                 this.listViewCreatedEvents.getItems().add(pane);
             }
             catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }

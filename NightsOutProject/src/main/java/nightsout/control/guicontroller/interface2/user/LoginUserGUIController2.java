@@ -2,7 +2,6 @@ package nightsout.control.guicontroller.interface2.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.LoginAppController;
@@ -15,31 +14,32 @@ import nightsout.utils.scene.switchpage.SwitchPage;
 public class LoginUserGUIController2 {
 
     @FXML
-    TextField textFieldUsername;
+    private TextField textFieldUsername;
     @FXML
-    PasswordField passwordField;
-    @FXML
-    Button buttonLogin;
-    @FXML
-    Button buttonBack;
+    private PasswordField passwordField;
+
+    private SwitchPage switchPage = new SwitchPage();
 
     @FXML
     void loginAction(ActionEvent ae) {
 
         String type = "Free";
+        LoginAppController controller;
+
         try {
+            controller = new LoginAppController();
             CredentialsBean credentialsBean = new CredentialsBean(textFieldUsername.getText(), passwordField.getText(), type);
-            LoginAppController.login(credentialsBean);
-            SwitchPage.replaceScene(ae,"/UserPage2.fxml");
+            controller.login(credentialsBean);
+            switchPage.replaceScene(ae,"/UserPage2.fxml");
         } catch (SystemException | WrongCredentialsException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
     @FXML
     private void goToRegisterPage(ActionEvent actionEvent) {
-        SwitchPage.replaceScene(actionEvent,"/RegisterUser2.fxml");
+        switchPage.replaceScene(actionEvent,"/RegisterUser2.fxml");
     }
     @FXML
-    protected void backToWelcomePage(ActionEvent actionEvent) { SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml"); }
+    protected void backToWelcomePage(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/Welcome2.fxml"); }
 }

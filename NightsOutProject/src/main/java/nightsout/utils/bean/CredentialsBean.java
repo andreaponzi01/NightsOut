@@ -6,6 +6,8 @@ import nightsout.utils.exception.myexception.PasswordNotCompliantException;
 
 public class CredentialsBean {
 
+    private Trigger trigger = new Trigger();
+
     public CredentialsBean() {
     }
 
@@ -36,9 +38,9 @@ public class CredentialsBean {
 
     public void setPassword(String password) throws EmptyInputException, PasswordNotCompliantException {
         if (password.equals("")) {
-            Trigger.throwEmptyInputException("Password");
+            trigger.throwEmptyInputException("Password");
         } else if (password.length() < 8) {
-            Trigger.throwPasswordNotCompliantException();
+            trigger.throwPasswordNotCompliantException();
         } else {
             this.password = password;
         }

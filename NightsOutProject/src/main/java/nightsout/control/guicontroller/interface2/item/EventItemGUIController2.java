@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 
@@ -15,9 +15,11 @@ public class EventItemGUIController2 {
 
     private EventBean2 eventBean;
     @FXML
-    Label labelEventName;
+    private Label labelEventName;
     @FXML
-    ImageView imageViewProfilePic;
+    private ImageView imageViewProfilePic;
+
+    private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
 
     public void setAll(EventBean2 eventBean) {
         this.eventBean=eventBean;
@@ -27,15 +29,15 @@ public class EventItemGUIController2 {
 
     public void goToEventPage(ActionEvent actionEvent) {
         try {
-            String type = LoggedBean.getInstance().checkInstanceType();
+            String type = Session.getInstance().checkInstanceType();
             if(type.equalsIgnoreCase("FREE")){
-                SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
+                switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
             }
             else{
-                SwitchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml", eventBean);
+                switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml", eventBean);
             }
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

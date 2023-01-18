@@ -17,7 +17,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.CreatedEventsEngineering;
-import nightsout.utils.engineering.ReviewAndResponseEngineering;
+import nightsout.utils.engineering.CommunityEngineering;
 import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -58,13 +58,16 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
         this.labelEmail.setText(clubOwnerBean.getEmail());
         this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
-        CreatedEventsEngineering.createdEvents(this, clubOwnerBean.getId());
-        ReviewAndResponseEngineering.eventReviews(this, this.clubOwnerBean.getId());
+        CreatedEventsEngineering createdEventsEngineering = new CreatedEventsEngineering();
+        createdEventsEngineering.createdEvents(this, clubOwnerBean.getId());
+        CommunityEngineering communityEngineering = new CommunityEngineering();
+        communityEngineering.eventReviews(this, this.clubOwnerBean.getId());
     }
 
     @Override
     public void update(Object ob) {
 
+        CommunityEngineering communityEngineering;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
@@ -75,18 +78,19 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
                 controller.setAll(new EventBean2(eBean));
                 this.listViewCreatedEvents.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
         if (ob instanceof ReviewBean reviewBean) {
             try {
+                communityEngineering = new CommunityEngineering();
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem2.fxml")).openStream());
                 ReviewItemGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(reviewBean);
                 this.listViewCommunity.getItems().add(pane);
-                ReviewAndResponseEngineering.responseOfOneReview(this, reviewBean.getIdReview());
+                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
             } catch (IOException | SystemException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
         if(ob instanceof ResponseBean responseBean) {
@@ -96,7 +100,7 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
                 controller.setAllCommunity(responseBean, this.clubOwnerBean);
                 this.listViewCommunity.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }

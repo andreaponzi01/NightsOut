@@ -9,9 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.db.MySqlConnection;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
@@ -25,40 +25,40 @@ import java.util.ResourceBundle;
 public class MenuClubOwnerGUIController2 implements Initializable {
 
     @FXML
-    Label labelUsername;
+    private Label labelUsername;
     @FXML
-    Label labelName;
+    private Label labelName;
     @FXML
-    Label labelEmail;
+    private Label labelEmail;
     @FXML
-    Label labelAddress;
+    private Label labelAddress;
     @FXML
-    Label labelCity;
+    private Label labelCity;
     @FXML
-    Circle circleProfile;
+    private Circle circleProfile;
 
-    public MenuClubOwnerGUIController2() {
-        //ignored
-    }
+    private SwitchPage switchPage = new SwitchPage();
+    private MySqlConnection mySqlConnection = new MySqlConnection();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedBean.getInstance().getClubOwner().getImg().toURI().toString());
+        Image img = new Image(Session.getInstance().getClubOwner().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
-        this.labelUsername.setText(LoggedBean.getInstance().getClubOwner().getUsername());
-        this.labelName.setText(LoggedBean.getInstance().getClubOwner().getName());
-        this.labelAddress.setText(LoggedBean.getInstance().getClubOwner().getAddress());
-        this.labelCity.setText(LoggedBean.getInstance().getClubOwner().getCity());
-        this.labelEmail.setText(LoggedBean.getInstance().getClubOwner().getEmail());
+        this.labelUsername.setText(Session.getInstance().getClubOwner().getUsername());
+        this.labelName.setText(Session.getInstance().getClubOwner().getName());
+        this.labelAddress.setText(Session.getInstance().getClubOwner().getAddress());
+        this.labelCity.setText(Session.getInstance().getClubOwner().getCity());
+        this.labelEmail.setText(Session.getInstance().getClubOwner().getEmail());
     }
 
     @FXML
-    public void goToHome(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");}
+    public void goToHome(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");}
     @FXML
-    public void goToManageEventsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent, "/ManageEventPage2.fxml");}
+    public void goToManageEventsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent, "/ManageEventPage2.fxml");}
     @FXML
-    public void goToCommunityPage(ActionEvent actionEvent){SwitchPage.replaceScene(actionEvent, "/ReviewsAndMakeResponsePage2.fxml");}
+    public void goToCommunityPage(ActionEvent actionEvent){switchPage.replaceScene(actionEvent, "/ReviewsAndMakeResponsePage2.fxml");}
     @FXML
     private void logout(ActionEvent actionEvent) {
 
@@ -68,15 +68,15 @@ public class MenuClubOwnerGUIController2 implements Initializable {
         alert.setContentText("Are you sure you want to logout?");
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
-                SwitchPage.replaceScene(actionEvent, "/Welcome2.fxml");
-                MySqlConnection.closeConnection();
-                LoggedBean.getInstance().deleteSession();
+                switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
+                mySqlConnection.closeConnection();
+                Session.getInstance().deleteSession();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
             } catch (SQLException | IOException e) {
                 SystemException ex = new SystemException();
                 ex.initCause(e);
-                CreateNotification.createNotification(ex);
+                ExceptionHandler.getInstance().handleException(ex);
             }
         }
     }

@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ExceptionHandler;
@@ -25,38 +25,42 @@ public class CreateEventGUIController1 implements Initializable {
     private ClubOwnerBean1 clubOwnerBean1;
     private File img;
     @FXML
-    Button buttonBack;
+    private Button buttonBack;
     @FXML
-    Button buttonCreateEvent;
+    private Button buttonCreateEvent;
     @FXML
-    Slider sliderTime;
+    private Slider sliderTime;
     @FXML
-    DatePicker dateEvent;
+    private DatePicker dateEvent;
     @FXML
-    TextField textFieldName;
+    private TextField textFieldName;
     @FXML
-    TextField textFieldPrice;
+    private TextField textFieldPrice;
     @FXML
-    TextField textFieldHours;
+    private TextField textFieldHours;
     @FXML
-    TextField textFieldMinutes;
+    private TextField textFieldMinutes;
     @FXML
-    TextArea textFieldDescription;
+    private TextArea textFieldDescription;
     @FXML
-    ImageView imageViewProfile;
+    private ImageView imageViewProfile;
+
+    private SwitchPage switchPage = new SwitchPage();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.clubOwnerBean1 = new ClubOwnerBean1(LoggedBean.getInstance().getClubOwner());
+        this.clubOwnerBean1 = new ClubOwnerBean1(Session.getInstance().getClubOwner());
     }
 
     @FXML
-    private void backToWelcomePage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
+    private void backToWelcomePage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
     @FXML
     private void createEvent(ActionEvent actionEvent) {
 
         EventBean1 eventBean1 = new EventBean1();
+        CreateEventAppController controller;
         try {
+            controller = new CreateEventAppController();
             eventBean1.setEventDate(dateEvent.getValue());
             eventBean1.setDuration((int) sliderTime.getValue());
             eventBean1.setTime(textFieldHours.getText(), textFieldMinutes.getText());
@@ -65,11 +69,11 @@ public class CreateEventGUIController1 implements Initializable {
             eventBean1.setDescription(textFieldDescription.getText());
             eventBean1.setPrice(textFieldPrice.getText());
             eventBean1.setImg(this.img);
-            CreateEventAppController.createEvent(eventBean1);
-            SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
+            controller.createEvent(eventBean1);
+            switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
                  WrongInputRangeException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 

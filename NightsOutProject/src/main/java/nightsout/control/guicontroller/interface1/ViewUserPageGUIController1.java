@@ -55,9 +55,10 @@ public class ViewUserPageGUIController1 implements Observer {
             this.labelGender.setText(userBean1.getGender());
             this.labelBirthday.setText(userBean1.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
             this.imageViewProfile.setImage(new Image(userBean1.getImg().toURI().toString()));
-            NextEventsEngineering.nextEvents(this, userBean1.getId());
+            NextEventsEngineering nextEventsEngineering = new NextEventsEngineering();
+            nextEventsEngineering.nextEvents(this, userBean1.getId());
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -73,7 +74,7 @@ public class ViewUserPageGUIController1 implements Observer {
                 controller.setAll(new EventBean1(eBean));
                 this.listViewNextEvents.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.handleException(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }

@@ -3,8 +3,8 @@ package nightsout.control.appcontroller;
 import nightsout.model.ClubOwnerModel;
 import nightsout.model.CredentialsModel;
 import nightsout.model.UserModel;
+import nightsout.utils.Session;
 import nightsout.utils.bean.CredentialsBean;
-import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.LoginDAO;
 import nightsout.utils.dao.UserDAO;
@@ -14,34 +14,37 @@ import nightsout.utils.exception.myexception.WrongCredentialsException;
 
 public class LoginAppController {
 
-    private LoginAppController() {
-        //ignored
-    }
-    public static void login(CredentialsBean credentialsBean) throws WrongCredentialsException, SystemException {
+    Trigger trigger = new Trigger();
+
+    public void login(CredentialsBean credentialsBean) throws WrongCredentialsException, SystemException {
+
+        LoginDAO loginDAO = new LoginDAO();
 
         if(credentialsBean.getType().equalsIgnoreCase("Free")) {
 
             UserModel userModel = null;
             CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
-            if (LoginDAO.checkIsRegistered(credentialsModel)) {
-                userModel = UserDAO.getUserByUsername(credentialsBean.getUsername());
-                LoggedBean.getInstance().setUser(userModel);
+            if (loginDAO.checkIsRegistered(credentialsModel)) {
+                UserDAO userDAO = new UserDAO();
+                userModel = userDAO.getUserByUsername(credentialsBean.getUsername());
+                Session.getInstance().setUser(userModel);
             } else {
-                Trigger.throwWrongCredentials();
-                LoggedBean.getInstance().deleteSession();
+                trigger.throwWrongCredentials();
+                Session.getInstance().deleteSession();
             }
 
         } else {
 
             ClubOwnerModel clubOwnerModel = null;
             CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
-            if (LoginDAO.checkIsRegistered(credentialsModel)) {
-                clubOwnerModel = ClubOwnerDAO.getClubOwnerByUsername(credentialsBean.getUsername());
-                LoggedBean.getInstance().setClubOwner(clubOwnerModel);
+            if (loginDAO.checkIsRegistered(credentialsModel)) {
+                ClubOwnerDAO clubOwnerDAO = new ClubOwnerDAO();
+                clubOwnerModel = clubOwnerDAO.getClubOwnerByUsername(credentialsBean.getUsername());
+                Session.getInstance().setClubOwner(clubOwnerModel);
 
             } else {
-                Trigger.throwWrongCredentials();
-                LoggedBean.getInstance().deleteSession();
+                trigger.throwWrongCredentials();
+                Session.getInstance().deleteSession();
             }
         }
     }

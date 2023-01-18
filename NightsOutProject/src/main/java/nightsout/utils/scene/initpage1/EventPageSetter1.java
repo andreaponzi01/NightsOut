@@ -6,11 +6,7 @@ import nightsout.utils.exception.myexception.SystemException;
 
 public class EventPageSetter1 {
 
-    private EventPageSetter1() {
-        //ignored
-    }
-
-    public static void setter(EventBean1 eventBean, EventPageGUIController1 eventPageGUIController1) throws SystemException {
+    public void setter(EventBean1 eventBean, EventPageGUIController1 eventPageGUIController1) throws SystemException {
         eventPageGUIController1.setAll(eventBean);
     }
 }

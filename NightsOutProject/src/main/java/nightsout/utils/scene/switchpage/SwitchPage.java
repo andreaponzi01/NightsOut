@@ -13,11 +13,8 @@ import java.io.IOException;
 
 public class SwitchPage {
 
-    private SwitchPage(){
-        //ignored
-    }
 
-    public static void replaceScene(ActionEvent ae, String fxml){
+    public void replaceScene(ActionEvent ae, String fxml){
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
         Stage stage = (Stage) ((Node) ae.getSource()).getScene().getWindow();
@@ -25,7 +22,7 @@ public class SwitchPage {
         try {
             scene = new Scene(fxmlLoader.load());
         } catch (IOException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
         stage.setScene(scene);
         stage.show();

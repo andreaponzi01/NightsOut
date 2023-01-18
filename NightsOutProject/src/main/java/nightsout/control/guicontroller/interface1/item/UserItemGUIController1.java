@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ExceptionHandler;
@@ -16,12 +16,15 @@ public class UserItemGUIController1 {
 
     private UserBean1 userBean1;
     private ClubOwnerBean1 clubOwnerBean1;
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     @FXML
-    Label labelType;
+    private Label labelType;
     @FXML
-    Label labelUsername;
+    private Label labelUsername;
     @FXML
-    ImageView imageViewProfilePic;
+    private ImageView imageViewProfilePic;
+
+
 
     public void setAll(UserBean1 userBean1) {
 
@@ -43,18 +46,18 @@ public class UserItemGUIController1 {
     private void goToProfile(ActionEvent actionEvent) {
 
         try {
-            String type = LoggedBean.getInstance().checkInstanceType();
+            String type = Session.getInstance().checkInstanceType();
             if (clubOwnerBean1 != null) {
-                SwitchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1);
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1);
             } else {
                 if (type.equalsIgnoreCase("Free")) {
-                    SwitchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser1.fxml", this.userBean1);
+                    switchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser1.fxml", this.userBean1);
                 } else {
-                    SwitchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO1.fxml", this.userBean1);
+                    switchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO1.fxml", this.userBean1);
                 }
             }
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

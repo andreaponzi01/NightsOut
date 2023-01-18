@@ -7,13 +7,10 @@ import nightsout.utils.observer.Observer;
 
 public class EventParticipantsEngineering {
 
-    private EventParticipantsEngineering() {
-        //ignore
-    }
+    public void eventParticipants(Observer observer, int idEvent) throws SystemException {
 
-    public static void eventParticipants(Observer observer, int idEvent) throws SystemException {
-
+        EventPageAppController controller = new EventPageAppController();
         GenericBeanList list= new GenericBeanList(observer);
-        list.addUsersToList(EventPageAppController.searchUsersByIdEvent(idEvent));
+        list.addUsersToList(controller.searchUsersByIdEvent(idEvent));
     }
 }

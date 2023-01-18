@@ -1,6 +1,5 @@
 package nightsout.utils;
 
-import nightsout.utils.bean.LoggedBean;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmailException;
 
@@ -11,13 +10,11 @@ import java.util.Properties;
 
 public class Email {
 
-    private Email(){
-        //ignored
-    }
+    Trigger trigger = new Trigger();
 
-    public static void sendEmail(String subject, String text) throws EmailException {
+    public void sendEmail(String subject, String text) throws EmailException {
 
-        String recipient = LoggedBean.getInstance().getClubOwner().getEmail();
+        String recipient = Session.getInstance().getClubOwner().getEmail();
         String from = "ispwproject@virgilio.it";
         String host = "smtp.virgilio.it";
         // Proprietà di sistema
@@ -41,7 +38,7 @@ public class Email {
          */
 
 
-        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+        javax.mail.Session session = javax.mail.Session.getInstance(properties, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {return new PasswordAuthentication(from, "Project.2022");}
         });
@@ -61,7 +58,7 @@ public class Email {
             Transport.send(message);
 
         } catch (MessagingException e) {
-            Trigger.throwEmailException(e);
+            trigger.throwEmailException(e);
         }
 
     }

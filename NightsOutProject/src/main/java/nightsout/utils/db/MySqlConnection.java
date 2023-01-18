@@ -12,12 +12,9 @@ import java.util.Properties;
 
 public class MySqlConnection {
     private static Connection connection;
+    private Trigger trigger = new Trigger();
 
-    private MySqlConnection(){
-        //ignore
-    }
-
-    public static Connection connect() throws SystemException {
+    public Connection connect() throws SystemException {
 
         String user;
         String pass;
@@ -39,21 +36,14 @@ public class MySqlConnection {
                 connection = DriverManager.getConnection(dbUrl, user, pass);
             }
         } catch (SQLException e) {
-            if (e.getErrorCode() == 0)
-                Trigger.throwDBConnectionFailedException(e);
-            else {
-                SystemException ex = new SystemException();
-                ex.initCause(e);
-                throw ex;
-            }
+            trigger.throwDBConnectionFailedException(e);
         } catch (ClassNotFoundException | IOException e) {
             SystemException ex = new SystemException();
-            ex.initCause(e);
             throw ex;
         }
         return connection;
     }
 
 
-    public static void closeConnection() throws SQLException { connection.close(); }
+    public void closeConnection() throws SQLException { connection.close(); }
 }

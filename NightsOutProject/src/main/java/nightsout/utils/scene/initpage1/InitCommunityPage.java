@@ -6,11 +6,7 @@ import nightsout.utils.exception.myexception.SystemException;
 
 public class InitCommunityPage {
 
-    private InitCommunityPage() {
-        //ignored
-    }
-
-    public static void setter(ViewCommunityGUIController1 viewCommunityGUIController1, ClubOwnerBean1 clubOwnerBean) throws SystemException {
+    public void setter(ViewCommunityGUIController1 viewCommunityGUIController1, ClubOwnerBean1 clubOwnerBean) throws SystemException {
         viewCommunityGUIController1.setAll(clubOwnerBean);
     }
 

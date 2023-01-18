@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.JoinEventAppController;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
@@ -19,21 +19,23 @@ import java.time.format.DateTimeFormatter;
 
 public class ManageRequestsItemGUIController1 {
 
-    ClubOwnerBean1 clubOwnerBean1;
-    ManageRequestBean manageRequestBean;
+    private ClubOwnerBean1 clubOwnerBean1;
+    private ManageRequestBean manageRequestBean;
+    private SwitchPage switchPage = new SwitchPage();
+    private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     @FXML
-    Label labelEventName;
+    private Label labelEventName;
     @FXML
-    Label labelEventDate;
+    private Label labelEventDate;
     @FXML
-    Label labelUsername;
+    private Label labelUsername;
     @FXML
-    ImageView imageViewProfile;
+    private ImageView imageViewProfile;
 
 
     public void setAll(ManageRequestBean manageRequestBean) {
 
-        this.clubOwnerBean1 = new ClubOwnerBean1(LoggedBean.getInstance().getClubOwner());
+        this.clubOwnerBean1 = new ClubOwnerBean1(Session.getInstance().getClubOwner());
         this.manageRequestBean = manageRequestBean;
         this.labelUsername.setText(manageRequestBean.getUsername());
         this.labelEventName.setText(String.valueOf(manageRequestBean.getEventName()));
@@ -43,31 +45,40 @@ public class ManageRequestsItemGUIController1 {
     @FXML
     public void acceptRequest(ActionEvent actionEvent) {
 
+        JoinEventAppController controller;
+
         try {
-            JoinEventAppController.acceptRequest(manageRequestBean.getIdRequest());
-            SwitchPage.replaceScene(actionEvent,"/ManageRequests1.fxml");
+            controller = new JoinEventAppController();
+            controller.acceptRequest(manageRequestBean.getIdRequest());
+            switchPage.replaceScene(actionEvent,"/ManageRequests1.fxml");
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
     public void rejectRequest(ActionEvent actionEvent) {
 
+        JoinEventAppController controller;
+
         try {
-            JoinEventAppController.declineRequest(manageRequestBean.getIdRequest());
-            SwitchPage.replaceScene(actionEvent,"/ManageRequests1.fxml");
+            controller = new JoinEventAppController();
+            controller.declineRequest(manageRequestBean.getIdRequest());
+            switchPage.replaceScene(actionEvent,"/ManageRequests1.fxml");
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
     public void goToUserPage(ActionEvent actionEvent) {
 
+        JoinEventAppController controller;
+
         try {
-            UserBean1 userBean = new UserBean1(JoinEventAppController.searchUserByUsername(manageRequestBean.getUsername()));
-            SwitchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO1.fxml", userBean);
+            controller = new JoinEventAppController();
+            UserBean1 userBean = new UserBean1(controller.searchUserByUsername(manageRequestBean.getUsername()));
+            switchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO1.fxml", userBean);
         } catch (SystemException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

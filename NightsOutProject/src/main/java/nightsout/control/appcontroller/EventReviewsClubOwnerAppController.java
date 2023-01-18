@@ -12,14 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventReviewsClubOwnerAppController {
-
-    private EventReviewsClubOwnerAppController(){
-        //ignore
-    }
-    public static List<ReviewBean> searchReviewsByIdClubOwner(int idClubOwner) throws SystemException {
+    public List<ReviewBean> searchReviewsByIdClubOwner(int idClubOwner) throws SystemException {
         List<ReviewModel> list = null;
         List<ReviewBean> listBean = null;
-        list = ReviewDAO.getReviewByIdClubOwner(idClubOwner);
+        ReviewDAO reviewDAO = new ReviewDAO();
+        list = reviewDAO.getReviewByIdClubOwner(idClubOwner);
         listBean = new ArrayList<>();
         for(ReviewModel reviewModel : list){
             ReviewBean bean = new ReviewBean(reviewModel);
@@ -27,6 +24,10 @@ public class EventReviewsClubOwnerAppController {
         }
         return listBean;
     }
-    public static UserBean searchUserbyIdUser(int idUser) throws SystemException {return new UserBean(UserDAO.getUserByidUser(idUser));}
-    public static EventBean searchEventbyIdEvent(int idEvent) throws SystemException {return new EventBean(EventDAO.getEventByIdEvent(idEvent));}
+    public UserBean searchUserbyIdUser(int idUser) throws SystemException {
+        UserDAO userDAO = new UserDAO();
+        return new UserBean(userDAO.getUserByidUser(idUser));}
+    public EventBean searchEventbyIdEvent(int idEvent) throws SystemException {
+        EventDAO eventDAO = new EventDAO();
+        return new EventBean(eventDAO.getEventByIdEvent(idEvent));}
 }

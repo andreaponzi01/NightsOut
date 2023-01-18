@@ -2,7 +2,6 @@ package nightsout.utils.bean.interface1;
 
 import nightsout.model.ClubOwnerModel;
 import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.WrongInputRangeException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
@@ -18,14 +17,14 @@ public class ClubOwnerBean1 extends ClubOwnerBean {
     public void setDiscountVIP(String discountVIP) throws WrongInputTypeException, EmptyInputException, WrongInputRangeException {
         try {
             if (discountVIP.equals("")) {
-                Trigger.throwEmptyInputException(FIELD_DISCOUNT);
+                trigger.throwEmptyInputException(FIELD_DISCOUNT);
             } else if (Integer.parseInt(discountVIP) > 20 || Integer.parseInt(discountVIP) < 0) {
-                Trigger.throwExceededRangeException(FIELD_DISCOUNT);
+                trigger.throwExceededRangeException(FIELD_DISCOUNT);
             } else {
                 this.discountVIP = Integer.parseInt(discountVIP);
             }
         } catch (NumberFormatException e) {
-            Trigger.throwWrongInputTypeException(e, FIELD_DISCOUNT);
+            trigger.throwWrongInputTypeException(e, FIELD_DISCOUNT);
         }
     }
 
@@ -40,7 +39,7 @@ public class ClubOwnerBean1 extends ClubOwnerBean {
     // Setter
     public void setAddress(String address) throws EmptyInputException {
         if (address.equals(""))
-            Trigger.throwEmptyInputException(FIELD_ADDRESS);
+            trigger.throwEmptyInputException(FIELD_ADDRESS);
         this.address = address;
     }
 

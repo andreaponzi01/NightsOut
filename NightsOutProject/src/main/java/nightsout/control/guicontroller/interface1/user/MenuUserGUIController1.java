@@ -9,10 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.db.MySqlConnection;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
@@ -26,32 +26,34 @@ import java.util.ResourceBundle;
 public class MenuUserGUIController1  implements Initializable {
 
     private UserBean1 userBean1;
+    private SwitchPage switchPage = new SwitchPage();
     @FXML
-    protected Label usernameLabel;
+    private Label usernameLabel;
     @FXML
-    protected Circle circleProfile;
+    private Circle circleProfile;
+    private MySqlConnection mySqlConnection = new MySqlConnection();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Image img = new Image(LoggedBean.getInstance().getUser().getImg().toURI().toString());
+        Image img = new Image(Session.getInstance().getUser().getImg().toURI().toString());
         circleProfile.setFill(new ImagePattern(img));
-        this.userBean1 = new UserBean1(LoggedBean.getInstance().getUser());
+        this.userBean1 = new UserBean1(Session.getInstance().getUser());
         this.usernameLabel.setText(userBean1.getUsername());
     }
     @FXML
     private void goToSubscriptionPage(ActionEvent actionEvent) {
 
         if (userBean1.getVip())
-            SwitchPage.replaceScene(actionEvent,"/SubscriptionedVipPage1.fxml");
+            switchPage.replaceScene(actionEvent,"/SubscriptionedVipPage1.fxml");
         else
-            SwitchPage.replaceScene(actionEvent,"/SubscriptionVipPage1.fxml");
+            switchPage.replaceScene(actionEvent,"/SubscriptionVipPage1.fxml");
     }
     @FXML
-    private void goToSearchPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/SearchPage1.fxml");}
+    private void goToSearchPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/SearchPage1.fxml");}
     @FXML
-    private void goToCheckRequestsPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/CheckPendingRequestsPage1.fxml");}
+    private void goToCheckRequestsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/CheckPendingRequestsPage1.fxml");}
     @FXML
     private void logout(ActionEvent actionEvent) {
 
@@ -62,20 +64,20 @@ public class MenuUserGUIController1  implements Initializable {
 
         try {
             if (alert.showAndWait().get() == ButtonType.OK) {
-                SwitchPage.replaceScene(actionEvent, "/Welcome1.fxml");
-                MySqlConnection.closeConnection();
-                LoggedBean.getInstance().deleteSession();
+                switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
+                mySqlConnection.closeConnection();
+                Session.getInstance().deleteSession();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
             }
         } catch (SQLException | IOException e) {
             SystemException ex = new SystemException();
             ex.initCause(e);
-            CreateNotification.createNotification(ex);
+            ExceptionHandler.getInstance().handleException(ex);
         }
     }
     @FXML
-    public void goToReviewPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/EndedBookedEventsPage1.fxml");}
+    public void goToReviewPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/EndedBookedEventsPage1.fxml");}
     @FXML
-    public void goToHome(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
+    public void goToHome(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
 }

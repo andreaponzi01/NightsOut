@@ -1,7 +1,6 @@
 package nightsout.utils.bean.interface2;
 
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.BeforeDateException;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
@@ -30,32 +29,32 @@ public class EventBean2 extends EventBean {
     public void setEventDate(String date) throws EmptyInputException, BeforeDateException, WrongInputTypeException {
 
         if (date.equals("")) {
-            Trigger.throwEmptyInputException(EVENT_DATE_FIELD);
+            trigger.throwEmptyInputException(EVENT_DATE_FIELD);
         } else {
             try {
                 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");
                 Date dateDate = formatter1.parse(date);
                 LocalDate dateLocalDate = LocalDate.from(dateDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
                 if (dateLocalDate.isBefore(LocalDate.now()))
-                    Trigger.throwBeforeDateException();
+                    trigger.throwBeforeDateException();
                 else
                     this.eventDate = dateLocalDate;
             } catch (NumberFormatException e) {
-                Trigger.throwWrongInputTypeException(e, "Birthday");
+                trigger.throwWrongInputTypeException(e, "Birthday");
             } catch (DateTimeException | ParseException e) {
-                Trigger.throwWrongInputTypeException(new NumberFormatException(), EVENT_DATE_FIELD);
+                trigger.throwWrongInputTypeException(new NumberFormatException(), EVENT_DATE_FIELD);
             }
         }
     }
 
     public void setTime(String time) throws EmptyInputException, WrongInputTypeException {
         if (time.equals("")) {
-            Trigger.throwEmptyInputException("Event Time");
+            trigger.throwEmptyInputException("Event Time");
         } else {
             try {
                 this.time = LocalTime.parse(time);
             } catch (DateTimeParseException e) {
-                Trigger.throwWrongInputTypeException(new NumberFormatException(), "Minutes");
+                trigger.throwWrongInputTypeException(new NumberFormatException(), "Minutes");
             }
         }
     }

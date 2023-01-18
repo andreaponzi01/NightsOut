@@ -10,14 +10,10 @@ import java.io.InputStream;
 
 public class ConverterToFile {
 
-    private ConverterToFile(){
-        //ignore
-    }
 
-    private static final int DEFAULT_BUFFER_SIZE = 8192*4;
+    private final int DEFAULT_BUFFER_SIZE = 8192*4;
 
-
-    public  static void fromInputStreamToFile(InputStream inputStream, File file) throws SystemException {
+    public void fromInputStreamToFile(InputStream inputStream, File file) throws SystemException {
         try (FileOutputStream outputStream = new FileOutputStream(file, false)) {
             int read;
             byte[] bytes = new byte[DEFAULT_BUFFER_SIZE];
@@ -25,7 +21,7 @@ public class ConverterToFile {
                 outputStream.write(bytes, 0, read);
             }
         } catch (IOException e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 }

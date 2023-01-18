@@ -6,11 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.ManageRequestsItemGUIController1;
-import nightsout.utils.bean.LoggedBean;
+import nightsout.utils.Session;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.engineering.ManageRequestsEngineering;
-import nightsout.utils.exception.CreateNotification;
+import nightsout.utils.exception.ExceptionHandler;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -23,15 +23,19 @@ import java.util.ResourceBundle;
 public class ManageRequestsGUIController1 implements Observer, Initializable {
 
     @FXML
-    ListView listViewPendingRequests;
+    private ListView listViewPendingRequests;
+
+    private SwitchPage switchPage = new SwitchPage();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        JoinEventAppController controller = new JoinEventAppController();
         try {
-            ManageRequestsEngineering.manageRequests(this, LoggedBean.getInstance().getClubOwner().getId());
+            controller = new JoinEventAppController();
+            controller.manageRequests(this, Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            CreateNotification.createNotification(e);
+            ExceptionHandler.getInstance().handleException(e);
         }
     }
 
@@ -47,10 +51,10 @@ public class ManageRequestsGUIController1 implements Observer, Initializable {
                 controller.setAll(mRBean);
                 this.listViewPendingRequests.getItems().add(pane);
             } catch (IOException e) {
-                CreateNotification.createNotification(e);
+                ExceptionHandler.getInstance().handleException(e);
             }
         }
     }
     @FXML
-    public void backToClubOwnerPage(ActionEvent actionEvent) {SwitchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
+    public void backToClubOwnerPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
 }

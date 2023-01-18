@@ -9,24 +9,21 @@ import java.util.List;
 
 public class ClubOwnerDAO {
 
-    private ClubOwnerDAO() {
-        //ignored
+    Query query = new Query();
+    public ClubOwnerModel getClubOwnerByUsername(String username) throws SystemException {
+            return query.searchClubOwnerByUsername(username);
     }
-
-    public static ClubOwnerModel getClubOwnerByUsername(String username) throws SystemException {
-            return Query.searchClubOwnerByUsername(username);
+    public void insertClubOwner(CredentialsModel credentialsModel, ClubOwnerModel clubOwnerModel) throws SystemException {
+            query.insertCredentials(credentialsModel);
+            query.insertClubOwner(clubOwnerModel);
     }
-    public static void insertClubOwner(CredentialsModel credentialsModel, ClubOwnerModel clubOwnerModel) throws SystemException {
-            Query.insertCredentials(credentialsModel);
-            Query.insertClubOwner(clubOwnerModel);
+    public List<ClubOwnerModel> getClubOwnersByUsername(String input) throws SystemException {
+        return query.searchClubOwnersByUsername(input);
     }
-    public static List<ClubOwnerModel> getClubOwnersByUsername(String input) throws SystemException {
-        return Query.searchClubOwnersByUsername(input);
+    public ClubOwnerModel getClubOwnerById(int idClubOwner) throws SystemException {
+        return query.searchClubOwnerById(idClubOwner);
     }
-    public static ClubOwnerModel getClubOwnerById(int idClubOwner) throws SystemException {
-        return Query.searchClubOwnerById(idClubOwner);
-    }
-    public static ClubOwnerModel getClubAddressByIdEvent(int idEvent) throws SystemException {
-        return Query.searchClubAddressByEventId(idEvent);
+    public ClubOwnerModel getClubAddressByIdEvent(int idEvent) throws SystemException {
+        return query.searchClubAddressByEventId(idEvent);
     }
 }
