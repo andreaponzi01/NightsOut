@@ -8,7 +8,7 @@ import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.Session;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 
@@ -44,7 +44,7 @@ public class ConcreteDecoratorSendRequest2 extends Decorator {
             controller.sendRequest(this.userBean, eventBean);
             switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
         } catch (SystemException e){
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

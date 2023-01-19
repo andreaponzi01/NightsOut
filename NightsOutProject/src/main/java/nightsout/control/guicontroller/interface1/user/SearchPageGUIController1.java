@@ -15,7 +15,7 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -44,7 +44,7 @@ public class SearchPageGUIController1 implements Observer {
                 controller.search(this, input);
             }
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -60,7 +60,7 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new UserBean1(uBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
         if(ob instanceof EventBean eBean) {
@@ -70,7 +70,7 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new EventBean1(eBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                    ExceptionHandler.getInstance().handleException(e);
+                    ErrorDialog.getInstance().handleException(e);
             }
         }
         if(ob instanceof ClubOwnerBean cBean) {
@@ -80,7 +80,7 @@ public class SearchPageGUIController1 implements Observer {
                 controller.setAll(new ClubOwnerBean1(cBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

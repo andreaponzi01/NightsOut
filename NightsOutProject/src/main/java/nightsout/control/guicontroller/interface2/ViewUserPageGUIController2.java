@@ -12,7 +12,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.engineering.NextEventsEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 
@@ -58,7 +58,7 @@ public class ViewUserPageGUIController2 implements Observer {
             NextEventsEngineering nextEventsEngineering = new NextEventsEngineering();
             nextEventsEngineering.nextEvents(this, userBean.getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -74,7 +74,7 @@ public class ViewUserPageGUIController2 implements Observer {
                 controller.setAll(new EventBean2(eBean));
                 this.listViewNextEvents.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

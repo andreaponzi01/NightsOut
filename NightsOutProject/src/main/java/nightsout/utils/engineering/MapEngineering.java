@@ -4,7 +4,7 @@ import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.javascript.object.*;
 import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.utils.bean.EventBean;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +28,7 @@ public class MapEngineering {
             controller = new EventPageAppController();
             latlong = findLocation(controller.getClubAddress(eventBean.getIdEvent()));
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
 
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
@@ -88,7 +88,7 @@ public class MapEngineering {
 
             http.disconnect();
         } catch (JSONException | IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return latlong;
     }

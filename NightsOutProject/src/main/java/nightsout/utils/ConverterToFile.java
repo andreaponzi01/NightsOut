@@ -1,6 +1,6 @@
 package nightsout.utils;
 
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 
 import java.io.File;
@@ -21,7 +21,7 @@ public class ConverterToFile {
                 outputStream.write(bytes, 0, read);
             }
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

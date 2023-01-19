@@ -10,7 +10,7 @@ import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -35,7 +35,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
             controller = new ManageReviewAppController();
             controller.eventReviews(this,  Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML
@@ -55,7 +55,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
                 controller.setAll(reviewBean);
                 this.listViewReviews.getItems().add(pane);
             } catch (IOException | SystemException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

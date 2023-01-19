@@ -6,17 +6,17 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ExceptionHandler {
+public class ErrorDialog {
 
-    private ExceptionHandler() {
+    private ErrorDialog() {
         // ignored
     }
 
-    private static ExceptionHandler instance = null;
+    private static ErrorDialog instance = null;
 
-    public static ExceptionHandler getInstance() {
+    public static ErrorDialog getInstance() {
         if (instance == null) {
-            instance = new ExceptionHandler();
+            instance = new ErrorDialog();
         }
         return instance;
     }
@@ -26,7 +26,7 @@ public class ExceptionHandler {
         if (e instanceof SQLException) {
             SystemException exception = new SystemException();
             exception.initCause(e);
-            ExceptionHandler.getInstance().handleException(exception);
+            ErrorDialog.getInstance().handleException(exception);
         } else if (e instanceof IOException || e instanceof JSONException || e instanceof ClassNotFoundException) {
 
             // Eccezioni gestite solo parzialmente

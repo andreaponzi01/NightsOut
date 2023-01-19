@@ -10,7 +10,7 @@ import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.ManageRequestsItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -35,7 +35,7 @@ public class ManageRequestsGUIController1 implements Observer, Initializable {
             controller = new JoinEventAppController();
             controller.manageRequests(this, Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -51,7 +51,7 @@ public class ManageRequestsGUIController1 implements Observer, Initializable {
                 controller.setAll(mRBean);
                 this.listViewPendingRequests.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

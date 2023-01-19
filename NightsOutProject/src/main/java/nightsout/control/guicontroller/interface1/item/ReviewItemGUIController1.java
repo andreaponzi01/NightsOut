@@ -8,7 +8,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -45,7 +45,7 @@ public class ReviewItemGUIController1 {
         try {
             switchAndSetPage1.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean1, reviewBean);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML
@@ -62,7 +62,7 @@ public class ReviewItemGUIController1 {
                 switchAndSetPage1.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO1.fxml",userBean1);
             }
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

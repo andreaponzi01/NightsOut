@@ -2,7 +2,7 @@ package nightsout.utils.dao;
 
 import nightsout.model.EventModel;
 import nightsout.utils.db.Query;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.DBConnectionFailedException;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -15,7 +15,7 @@ public class EventDAO {
         try{
             query.insertEvent(eventModel);
         } catch (DBConnectionFailedException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     public List<EventModel> getEventsByName(String name) throws SystemException {

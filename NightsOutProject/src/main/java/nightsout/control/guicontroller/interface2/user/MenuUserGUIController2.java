@@ -13,7 +13,7 @@ import javafx.scene.shape.Circle;
 import nightsout.utils.Session;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.db.MySqlConnection;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
@@ -94,7 +94,7 @@ public class MenuUserGUIController2 implements Initializable {
         } catch (SQLException | IOException e) {
             SystemException ex = new SystemException();
             ex.initCause(e);
-            ExceptionHandler.getInstance().handleException(ex);
+            ErrorDialog.getInstance().handleException(ex);
         }
     }
     @FXML

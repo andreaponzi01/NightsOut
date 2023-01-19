@@ -25,7 +25,7 @@ import nightsout.utils.decorator.ConcreteComponent;
 import nightsout.utils.decorator.ConcreteDecoratorDelete1;
 import nightsout.utils.engineering.EventParticipantsEngineering;
 import nightsout.utils.engineering.MapEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
@@ -121,7 +121,7 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
                 controller.setAll(new UserBean1(userBean));
                 this.listViewUsers.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
 
         }
@@ -133,7 +133,7 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
         try {
             switchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -146,7 +146,7 @@ public class EventPageCOGUIController1 implements Observer, Initializable, MapCo
                 switchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromCO1.fxml", clubOwnerBean1Event);
             }
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

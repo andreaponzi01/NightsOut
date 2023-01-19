@@ -9,7 +9,7 @@ import nightsout.utils.Session;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -45,7 +45,7 @@ public class MakeResponseGUIController1 {
             controller.makeResponse(responseBean);
             switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");
         } catch (SystemException | EmptyInputException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     public void backToReviewsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}

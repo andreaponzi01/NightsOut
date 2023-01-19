@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import nightsout.control.appcontroller.RegisterAppController;
 import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
@@ -63,7 +63,7 @@ public class RegisterUserGUIController2 {
             switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
         } catch (EmptyInputException | EmailNotValidException | SystemException | UsernameAlreadyTakenException |
                  PasswordNotCompliantException | AdultException | GenderException | WrongInputTypeException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

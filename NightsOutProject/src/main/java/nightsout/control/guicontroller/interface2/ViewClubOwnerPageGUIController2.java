@@ -18,7 +18,7 @@ import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.engineering.CommunityEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 
@@ -78,7 +78,7 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
                 controller.setAll(new EventBean2(eBean));
                 this.listViewCreatedEvents.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
         if (ob instanceof ReviewBean reviewBean) {
@@ -90,7 +90,7 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
                 this.listViewCommunity.getItems().add(pane);
                 communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
             } catch (IOException | SystemException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
         if(ob instanceof ResponseBean responseBean) {
@@ -100,7 +100,7 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
                 controller.setAllCommunity(responseBean, this.clubOwnerBean);
                 this.listViewCommunity.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

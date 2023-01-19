@@ -4,7 +4,7 @@ import nightsout.model.EventModel;
 import nightsout.utils.Email;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.dao.EventDAO;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmailException;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -20,7 +20,7 @@ public class CreateEventAppController {
             email = new Email();
             email.sendEmail("Evento creato con successo!", "L'evento " + eventBean.getName() + " è stato creato con successo.");
         } catch (EmailException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

@@ -6,7 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import nightsout.control.appcontroller.LoginAppController;
 import nightsout.utils.bean.CredentialsBean;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -31,7 +31,7 @@ public class LoginClubOwnerGUIController2 {
             controller.login(credentialsBean);
             switchPage.replaceScene(ae,"/ClubOwnerPage2.fxml");
         } catch (SystemException | WrongCredentialsException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

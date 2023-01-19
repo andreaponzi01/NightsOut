@@ -16,7 +16,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.CreatedEventsEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.BeforeDateException;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
@@ -59,7 +59,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
         try {
             createdEventsEngineering.createdEvents(this, Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -83,7 +83,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             switchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
 
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
 
 
@@ -112,7 +112,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
                 this.listViewCreatedEvents.getItems().add(pane);
             }
             catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

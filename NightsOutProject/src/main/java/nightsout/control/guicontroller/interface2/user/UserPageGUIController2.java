@@ -14,7 +14,7 @@ import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 
@@ -38,7 +38,7 @@ public class UserPageGUIController2 implements Observer {
             if (!input.isBlank())
                 controller.search(this, input);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -54,7 +54,7 @@ public class UserPageGUIController2 implements Observer {
                 controller.setAll(new UserBean2(uBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
         if(ob instanceof EventBean eBean) {
@@ -64,7 +64,7 @@ public class UserPageGUIController2 implements Observer {
                 controller.setAll(new EventBean2(eBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
         if(ob instanceof ClubOwnerBean cBean) {
@@ -74,7 +74,7 @@ public class UserPageGUIController2 implements Observer {
                 controller.setAll(new ClubOwnerBean2(cBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

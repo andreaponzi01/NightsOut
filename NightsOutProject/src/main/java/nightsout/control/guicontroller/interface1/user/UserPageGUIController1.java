@@ -14,7 +14,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.engineering.NextEventsEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.GenericBeanList;
 import nightsout.utils.observer.Observer;
@@ -69,7 +69,7 @@ public class UserPageGUIController1 implements Observer, Initializable {
             GenericBeanList list= new GenericBeanList(this);
             list.addEventsToList(nextEventsEngineering.searchNextEventsByIdUser(userBean1.getId()));
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
 
 
@@ -86,7 +86,7 @@ public class UserPageGUIController1 implements Observer, Initializable {
                 controller.setAll(new EventBean1(eBean));
                 this.listViewNextEvents.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

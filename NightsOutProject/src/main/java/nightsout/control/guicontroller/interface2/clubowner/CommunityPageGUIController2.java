@@ -11,7 +11,7 @@ import nightsout.utils.Session;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.engineering.CommunityEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 
@@ -41,7 +41,7 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
                 this.listView.getItems().add(pane);
                 communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
             } catch (IOException | SystemException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
 
@@ -53,7 +53,7 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
                 controller.setAll(responseBean);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
 
@@ -67,7 +67,7 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
             communityEngineering = new CommunityEngineering();
             communityEngineering.eventReviews(this,  Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

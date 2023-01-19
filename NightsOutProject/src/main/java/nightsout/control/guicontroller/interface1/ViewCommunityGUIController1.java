@@ -12,7 +12,7 @@ import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.engineering.CommunityEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
@@ -41,7 +41,7 @@ public class ViewCommunityGUIController1 implements Observer {
             else
                 switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromCO1.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -61,7 +61,7 @@ public class ViewCommunityGUIController1 implements Observer {
                 this.listView.getItems().add(pane);
                 communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
             } catch (IOException | SystemException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
 
@@ -74,7 +74,7 @@ public class ViewCommunityGUIController1 implements Observer {
                 controller.setAllCommunity(responseBean, this.clubOwnerBean1);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

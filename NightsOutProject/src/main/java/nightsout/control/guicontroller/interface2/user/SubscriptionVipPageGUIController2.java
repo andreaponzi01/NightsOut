@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import nightsout.control.appcontroller.SubscriptionVipAppController;
 import nightsout.utils.Session;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
@@ -25,7 +25,7 @@ public class SubscriptionVipPageGUIController2 {
             controller.subscription(Session.getInstance().getUser());
             switchPage.replaceScene(actionEvent,"/UserPage2.fxml");
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

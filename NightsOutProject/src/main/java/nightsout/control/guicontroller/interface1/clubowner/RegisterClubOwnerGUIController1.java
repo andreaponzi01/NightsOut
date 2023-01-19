@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongInputRangeException;
@@ -44,7 +44,7 @@ public class RegisterClubOwnerGUIController1 {
             clubOwnerBean1.setDiscountVIP(textFieldDiscount.getText());
             switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ConcludeRegisterClubOwner1.fxml", clubOwnerBean1);
         } catch (WrongInputTypeException | EmptyInputException | SystemException | WrongInputRangeException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

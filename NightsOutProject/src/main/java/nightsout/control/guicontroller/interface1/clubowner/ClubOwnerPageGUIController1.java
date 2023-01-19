@@ -14,7 +14,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.engineering.CreatedEventsEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 
@@ -56,7 +56,7 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
             createdEventsEngineering = new CreatedEventsEngineering();
             createdEventsEngineering.createdEvents(this, loggedClubOwner.getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         imageViewProfilePic.setImage(new Image(loggedClubOwner.getImg().toURI().toString()));
     }
@@ -74,7 +74,7 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
                 this.listViewCreatedEvents.getItems().add(pane);
             }
             catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

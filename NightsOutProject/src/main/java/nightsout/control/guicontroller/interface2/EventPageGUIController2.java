@@ -19,7 +19,7 @@ import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.decorator.*;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 import org.json.JSONException;
@@ -156,7 +156,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
         try {
             switchAndSetPage2.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromUser2.fxml", eventBean);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML
@@ -165,7 +165,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
         try {
             switchAndSetPage2.switchAndSetSceneCO(ae, "/ViewCOPageFromUser2.fxml", clubOwnerBeanEvent);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -217,7 +217,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
             http.disconnect();
 
         } catch (JSONException | IOException | SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
 
         // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento

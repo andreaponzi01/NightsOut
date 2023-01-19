@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nightsout.Main;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class SwitchPage {
         try {
             scene = new Scene(fxmlLoader.load());
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         stage.setScene(scene);
         stage.show();

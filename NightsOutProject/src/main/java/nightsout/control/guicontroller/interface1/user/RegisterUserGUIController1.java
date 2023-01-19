@@ -7,7 +7,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.AdultException;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
@@ -46,7 +46,7 @@ public class RegisterUserGUIController1 {
             userBean1.setBirthday(dateBirthday.getValue());
             switchAndSetPage1.switchAndSetSceneUser(actionEvent, "/ConcludeRegisterUser1.fxml", userBean1);
         } catch (EmptyInputException | SystemException | AdultException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

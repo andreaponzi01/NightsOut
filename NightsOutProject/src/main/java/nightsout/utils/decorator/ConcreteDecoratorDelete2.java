@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.db.Query;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
@@ -51,11 +51,11 @@ public class ConcreteDecoratorDelete2 extends Decorator {
                 FileUtils.delete(new File("eventImgs/" + eventBean.getName()+"pic.png"));
                 switchPage.replaceScene(ae,"/ClubOwnerPage2.fxml");
             } catch (SystemException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             } catch (IOException e) {
                 SystemException ex = new SystemException();
                 ex.initCause(e);
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

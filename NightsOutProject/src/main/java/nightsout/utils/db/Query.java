@@ -2,7 +2,7 @@ package nightsout.utils.db;
 
 import nightsout.model.*;
 import nightsout.utils.ConverterToFile;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 
 import java.io.File;
@@ -32,7 +32,7 @@ public class Query {
             ResultSet rs = preparedStatement.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
 
         return false;
@@ -66,7 +66,7 @@ public class Query {
 
             return userModel;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return  userModel;
     }
@@ -98,7 +98,7 @@ public class Query {
             return clubOwnerModel;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return clubOwnerModel;
     }
@@ -143,7 +143,7 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -176,7 +176,7 @@ public class Query {
 
             return userModel;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return userModel;
     }
@@ -217,7 +217,7 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -259,7 +259,7 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -288,7 +288,7 @@ public class Query {
             return requestModel;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return requestModel;
     }
@@ -321,7 +321,7 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -355,7 +355,7 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -388,7 +388,7 @@ public class Query {
             return clubOwnerModel;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return clubOwnerModel;
     }
@@ -409,7 +409,7 @@ public class Query {
             preparedStatement.executeUpdate();
 
         } catch (SQLException | FileNotFoundException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -430,7 +430,7 @@ public class Query {
             preparedStatement.executeUpdate();
 
         } catch (SQLException | FileNotFoundException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -451,7 +451,7 @@ public class Query {
             preparedStatement.executeUpdate();
 
         } catch (SQLException | FileNotFoundException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -496,7 +496,7 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -542,7 +542,7 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -588,7 +588,7 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -634,7 +634,7 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -649,7 +649,7 @@ public class Query {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -683,7 +683,7 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -716,7 +716,7 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return list;
     }
@@ -730,7 +730,7 @@ public class Query {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -761,7 +761,7 @@ public class Query {
             return eventModel;
 
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return eventModel;
     }
@@ -784,7 +784,7 @@ public class Query {
 
             return responseModel;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return responseModel;
     }
@@ -813,7 +813,7 @@ public class Query {
 
             return reviewModel;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return reviewModel;
     }
@@ -825,7 +825,7 @@ public class Query {
             preparedStatement.setInt(1, idEvent);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -848,7 +848,7 @@ public class Query {
 
             return clubOwnerModel;
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return clubOwnerModel;
     }
@@ -862,7 +862,7 @@ public class Query {
             ResultSet rs = preparedStatement.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         return true;
     }
@@ -876,7 +876,7 @@ public class Query {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -890,7 +890,7 @@ public class Query {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -900,7 +900,7 @@ public class Query {
             preparedStatement.setString(1, username);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -914,7 +914,7 @@ public class Query {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

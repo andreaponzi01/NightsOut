@@ -12,7 +12,7 @@ import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.scene.switchpage.SwitchPage;
 
@@ -73,7 +73,7 @@ public class CreateEventGUIController1 implements Initializable {
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
                  WrongInputRangeException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

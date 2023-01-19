@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 
@@ -31,7 +31,7 @@ public class EventReviewItemGUIController1 {
       try {
           switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean1);
       } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML
@@ -40,7 +40,7 @@ public class EventReviewItemGUIController1 {
         try {
             switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/CreateEventReviewPage1.fxml", eventBean1);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

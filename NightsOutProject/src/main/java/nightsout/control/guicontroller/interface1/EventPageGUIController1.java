@@ -25,7 +25,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.*;
 import nightsout.utils.engineering.EventParticipantsEngineering;
 import nightsout.utils.engineering.MapEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
@@ -163,7 +163,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
         try {
             switchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -173,7 +173,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
         try {
             switchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -236,7 +236,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
                 controller.setAll(new UserBean1(uBean));
                 this.listViewUsers.getItems().add(pane);
             } catch (IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
 
         }

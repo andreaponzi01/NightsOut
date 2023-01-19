@@ -13,7 +13,7 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -38,7 +38,7 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
             controller = new ManageReviewAppController();
             controller.eventsToReview(this, userBean1.getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -69,7 +69,7 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
                 controller.setAll(new EventBean1(eBean));
                 this.listViewEvents.getItems().add(pane);
             } catch (SystemException | IOException e) {
-                ExceptionHandler.getInstance().handleException(e);
+                ErrorDialog.getInstance().handleException(e);
             }
         }
     }

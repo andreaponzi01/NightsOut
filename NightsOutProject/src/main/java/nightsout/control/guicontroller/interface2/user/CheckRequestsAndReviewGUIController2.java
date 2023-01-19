@@ -16,7 +16,7 @@ import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 
@@ -70,7 +70,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
                 this.listViewPending.getItems().add(pane);
             }
         } catch (SystemException | IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -96,7 +96,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
             controller.setAll(new EventBean2(eBean));
             this.listViewToReview.getItems().add(pane);
         } catch (SystemException | IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
 
 
@@ -126,7 +126,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
             controller1.checkRequests(this, this.userBean.getId());
             controller2.eventsToReview(this, userBean.getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

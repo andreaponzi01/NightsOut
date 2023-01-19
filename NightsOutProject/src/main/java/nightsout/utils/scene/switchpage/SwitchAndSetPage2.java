@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.initpage2.InitEventPage2;
 import nightsout.utils.scene.initpage2.InitParticipantsPage2;
@@ -40,7 +40,7 @@ public class SwitchAndSetPage2 {
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     public void switchAndSetSceneCO(ActionEvent ae, String fxml, ClubOwnerBean2 clubOwnerBean) throws SystemException {
@@ -58,7 +58,7 @@ public class SwitchAndSetPage2 {
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -77,7 +77,7 @@ public class SwitchAndSetPage2 {
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

@@ -7,7 +7,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.initpage1.*;
 
@@ -39,7 +39,7 @@ public class SwitchAndSetPage1 {
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -62,7 +62,7 @@ public class SwitchAndSetPage1 {
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -94,7 +94,7 @@ public class SwitchAndSetPage1 {
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -106,7 +106,7 @@ public class SwitchAndSetPage1 {
             makeResponsePageSetter1.setter(userBean,reviewBean, loader.getController());
             SwitchPage.showStage(actionEvent, root);
         } catch (IOException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

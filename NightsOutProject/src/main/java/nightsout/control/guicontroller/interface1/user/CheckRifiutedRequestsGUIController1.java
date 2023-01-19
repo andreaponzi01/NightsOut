@@ -12,7 +12,7 @@ import nightsout.control.guicontroller.interface1.item.CheckRequestsItemGUIContr
 import nightsout.utils.Session;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -35,7 +35,7 @@ public class CheckRifiutedRequestsGUIController1 implements Observer, Initializa
             controller = new CheckRequestAppController();
             controller.checkRequests(this,  Session.getInstance().getUser().getId());
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML
@@ -58,7 +58,7 @@ public class CheckRifiutedRequestsGUIController1 implements Observer, Initializa
                     controller.setAll(rBean, eventBean1);
                     this.listViewRifiutedRequests.getItems().add(pane);
                 } catch(SystemException | IOException e){
-                    ExceptionHandler.getInstance().handleException(e);
+                    ErrorDialog.getInstance().handleException(e);
                 }
         }
     }

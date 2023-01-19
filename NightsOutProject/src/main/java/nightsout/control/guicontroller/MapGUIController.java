@@ -8,7 +8,7 @@ import javafx.fxml.Initializable;
 import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.engineering.MapEngineering;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
 
@@ -83,7 +83,7 @@ public class MapGUIController implements Initializable, MapComponentInitializedL
                 switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean);
             }
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

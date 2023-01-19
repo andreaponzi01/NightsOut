@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import org.apache.commons.io.FileUtils;
 
@@ -30,7 +30,7 @@ public class Main extends Application {
                     } catch (IOException e) {
                         SystemException ex = new SystemException();
                         ex.initCause(e);
-                        ExceptionHandler.getInstance().handleException(ex);
+                        ErrorDialog.getInstance().handleException(ex);
                     }
                 }
             });
