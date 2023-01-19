@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
+import nightsout.control.guicontroller.interface1.item.EventReviewItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.ReviewBean;
@@ -32,13 +33,17 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        System.out.println("\n\n\nprova1");
         ManageReviewAppController controller;
         this.userBean1 = new UserBean1(Session.getInstance().getUser());
         try {
             controller = new ManageReviewAppController();
+            System.out.println("\n\n\nprova2");
             controller.eventsToReview(this, userBean1.getId());
+
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
+            e.printStackTrace();
         }
     }
 
@@ -49,28 +54,33 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
     public void update(Object ob) {
 
         ManageReviewAppController appController;
-        EventItemGUIController1 controller;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         ReviewBean reviewBean=null;
-
+        System.out.println("\n\n\nprova3");
         if(ob instanceof EventBean eBean) {
             try {
+
                 appController = new ManageReviewAppController();
                 reviewBean = appController.getReviewByIdEventAndIdUser( userBean1.getId(), eBean.getIdEvent());
-
                 if(reviewBean != null){
+                    EventItemGUIController1 controller;
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
+                    controller = fxmlLoader.getController();
+                    controller.setAll(new EventBean1(eBean));
                 } else {
+                    EventReviewItemGUIController1 controller;
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem1.fxml")).openStream());
+                    controller = fxmlLoader.getController();
+                    controller.setAll(new EventBean1(eBean));
                 }
 
-                controller = fxmlLoader.getController();
-                controller.setAll(new EventBean1(eBean));
                 this.listViewEvents.getItems().add(pane);
+                System.out.println("\n\n\nprova4");
             } catch (SystemException | IOException e) {
                 ErrorDialog.getInstance().handleException(e);
             }
         }
+        System.out.println("\n\n\nprova5");
     }
 }

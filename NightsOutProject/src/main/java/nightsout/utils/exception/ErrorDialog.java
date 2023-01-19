@@ -27,14 +27,17 @@ public class ErrorDialog {
             SystemException exception = new SystemException();
             exception.initCause(e);
             ErrorDialog.getInstance().handleException(exception);
+            e.printStackTrace();
         } else if (e instanceof IOException || e instanceof JSONException || e instanceof ClassNotFoundException) {
 
             // Eccezioni gestite solo parzialmente
             SystemException exception = new SystemException();
             exception.initCause(e);
             createNotification.createNotification(exception);
+            e.printStackTrace();
         }else {
             createNotification.createNotification(e);
+            e.printStackTrace();
         }
     }
 }

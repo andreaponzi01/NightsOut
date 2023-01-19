@@ -11,7 +11,7 @@ import nightsout.utils.Session;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
@@ -40,7 +40,7 @@ public class ReviewItemToResponseGUIController2 {
         try {
             this.userBean = new UserBean2(controller.searchUserbyIdUser(reviewBean.getIdUser()));
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
         EventBean eventBean = controller.searchEventbyIdEvent(reviewBean.getIdEvent());
         this.labelUsername.setText(userBean.getUsername());
@@ -59,7 +59,7 @@ public class ReviewItemToResponseGUIController2 {
             controller.makeResponse(responseBean);
             switchPage.replaceScene(actionEvent,"/ReviewsAndMakeResponsePage2.fxml");
         } catch (SystemException | EmptyInputException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -68,7 +68,7 @@ public class ReviewItemToResponseGUIController2 {
         try {
             switchAndSetPage2.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml",userBean);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

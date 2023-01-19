@@ -28,7 +28,7 @@
             <Font name="Arial Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="buttonEventPage" alignment="CENTER" layoutX="405.0" layoutY="12.0" mnemonicParsing="false" onAction="#goToEventPage" prefHeight="75.0" prefWidth="100.0" style="-fx-background-radius: 28; -fx-background-color: #2e0095;" text="Info" textFill="#e8e7fc">
+      <Button alignment="CENTER" layoutX="405.0" layoutY="12.0" mnemonicParsing="false" onAction="#goToEventPage" prefHeight="75.0" prefWidth="100.0" style="-fx-background-radius: 28; -fx-background-color: #2e0095;" text="Info" textFill="#e8e7fc">
          <font>
             <Font name="Arial Bold" size="17.0" />
          </font>

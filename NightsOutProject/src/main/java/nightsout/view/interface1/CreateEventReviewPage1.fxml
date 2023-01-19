@@ -11,7 +11,7 @@
 
 <AnchorPane id="bg" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.user.MakeReviewGUIController1">
    <children>
-      <fx:include fx:id="menu" source="MenuUser1.fxml" />
+      <fx:include source="MenuUser1.fxml" />
       <AnchorPane layoutX="168.0" layoutY="85.0" prefHeight="555.0" prefWidth="1020.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
             <Button layoutX="360.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createReview" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Send Review" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
@@ -35,7 +35,7 @@
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="buttonBack" layoutX="31.0" layoutY="18.0" mnemonicParsing="false" onAction="#backToEndedBookedEventsPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+            <Button layoutX="31.0" layoutY="18.0" mnemonicParsing="false" onAction="#backToEndedBookedEventsPage" prefHeight="50.0" prefWidth="126.0" style="-fx-background-radius: 28; -fx-background-color: #ffc266;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>

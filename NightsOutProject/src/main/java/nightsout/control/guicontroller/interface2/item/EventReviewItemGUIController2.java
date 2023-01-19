@@ -10,7 +10,7 @@ import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.Session;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
@@ -42,7 +42,7 @@ public class EventReviewItemGUIController2 {
       try {
           switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
       } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
       }
     }
     public void sendReview(ActionEvent actionEvent) {
@@ -58,7 +58,7 @@ public class EventReviewItemGUIController2 {
             controller.createEventReview(reviewBean);
             switchPage.replaceScene(actionEvent,"/UserPage2.fxml");
         } catch (SystemException | EmptyInputException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

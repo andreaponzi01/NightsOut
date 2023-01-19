@@ -9,6 +9,7 @@ import nightsout.control.appcontroller.CheckRequestAppController;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
+import nightsout.control.guicontroller.interface2.item.EventReviewItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.RequestsItemGUIController2;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
@@ -77,7 +78,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
     private void handleEvent(EventBean eBean) {
         
         ManageReviewAppController appController;
-        EventItemGUIController2 controller;
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         ReviewBean reviewBean = null;
@@ -87,19 +88,21 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
             reviewBean = appController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
 
             if(reviewBean != null){
+                EventItemGUIController2 controller;
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
+                controller = fxmlLoader.getController();
+                controller.setAll(new EventBean2(eBean));
             } else {
+                EventReviewItemGUIController2 controller;
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem2.fxml")).openStream());
+                controller = fxmlLoader.getController();
+                controller.setAll(new EventBean2(eBean));
             }
 
-            controller = fxmlLoader.getController();
-            controller.setAll(new EventBean2(eBean));
             this.listViewToReview.getItems().add(pane);
         } catch (SystemException | IOException e) {
             ErrorDialog.getInstance().handleException(e);
         }
-
-
     }
 
     @Override
@@ -120,6 +123,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
         this.userBean = new UserBean2(Session.getInstance().getUser());
 
         try {
+
             controller1 = new CheckRequestAppController();
             controller2 = new ManageReviewAppController();
 

@@ -154,7 +154,11 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
     public void goToParticipantsPage(ActionEvent ae) {
 
         try {
-            switchAndSetPage2.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromUser2.fxml", eventBean);
+            if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
+                switchAndSetPage2.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromUser2.fxml", eventBean);
+            else
+                switchAndSetPage2.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromCO2.fxml", eventBean);
+
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
@@ -163,7 +167,10 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
     public void goToClubOwner(ActionEvent ae) {
 
         try {
-            switchAndSetPage2.switchAndSetSceneCO(ae, "/ViewCOPageFromUser2.fxml", clubOwnerBeanEvent);
+            if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
+                switchAndSetPage2.switchAndSetSceneCO(ae, "/ViewCOPageFromUser2.fxml", clubOwnerBeanEvent);
+            else
+                switchAndSetPage2.switchAndSetSceneCO(ae, "/ViewCOPageFromCO2.fxml", clubOwnerBeanEvent);
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

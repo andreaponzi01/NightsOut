@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 
@@ -40,7 +40,7 @@ public class RequestsItemGUIController2 {
         try {
             switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", this.eventBean);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

@@ -10,7 +10,7 @@ import nightsout.utils.Session;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.UserBean2;
-import nightsout.utils.exception.ExceptionHandler;
+import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
 import nightsout.utils.scene.switchpage.SwitchPage;
@@ -53,7 +53,7 @@ public class ManageRequestsItemGUIController2 {
             controller.acceptRequest(manageRequestBean.getIdRequest());
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -66,7 +66,7 @@ public class ManageRequestsItemGUIController2 {
             controller.declineRequest(manageRequestBean.getIdRequest());
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 
@@ -79,7 +79,7 @@ public class ManageRequestsItemGUIController2 {
             UserBean2 userBean = new UserBean2(controller.searchUserByUsername(manageRequestBean.getUsername()));
             switchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
         } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

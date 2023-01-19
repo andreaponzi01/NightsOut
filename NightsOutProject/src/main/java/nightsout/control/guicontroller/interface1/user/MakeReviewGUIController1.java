@@ -24,12 +24,11 @@ public class MakeReviewGUIController1 {
     @FXML
     private TextArea textAreaReview;
 
-    private MakeReviewGUIController1() {
+    public MakeReviewGUIController1() {
         // ignored
     }
 
     public void setAll(EventBean1 eventBean1) {
-
         this.userBean1 = new UserBean1(Session.getInstance().getUser());
         this.eventBean1 = eventBean1;
         this.labelEventName.setText(eventBean1.getName());
