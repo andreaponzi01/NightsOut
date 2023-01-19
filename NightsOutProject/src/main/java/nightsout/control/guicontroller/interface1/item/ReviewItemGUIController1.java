@@ -3,7 +3,7 @@ package nightsout.control.guicontroller.interface1.item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
+import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
 import nightsout.utils.bean.ReviewBean;
@@ -30,8 +30,8 @@ public class ReviewItemGUIController1 {
 
 
     public void setAll(ReviewBean reviewBean) throws SystemException {
-        EventReviewsClubOwnerAppController controller = new EventReviewsClubOwnerAppController();
 
+        ManageReviewAppController controller = new ManageReviewAppController();
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         this.userBean1 = new UserBean1(controller.searchUserbyIdUser(reviewBean.getIdUser()));

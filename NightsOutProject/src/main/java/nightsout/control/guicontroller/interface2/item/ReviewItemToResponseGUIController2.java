@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import nightsout.control.appcontroller.EventReviewsClubOwnerAppController;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
@@ -34,7 +33,7 @@ public class ReviewItemToResponseGUIController2 {
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
 
     public void setAll(ReviewBean reviewBean) throws SystemException {
-        EventReviewsClubOwnerAppController controller = new EventReviewsClubOwnerAppController();
+        ManageReviewAppController controller = new ManageReviewAppController();
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         try {

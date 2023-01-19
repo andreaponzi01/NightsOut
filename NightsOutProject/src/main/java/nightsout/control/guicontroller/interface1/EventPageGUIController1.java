@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.CheckRequestAppController;
-import nightsout.control.appcontroller.EventPageAppController;
+import nightsout.utils.engineering.EventPageEngineering;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.RequestBean;
@@ -70,11 +70,12 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     private ConcreteComponent myConcreteComponent;
     private Component contents;
 
+    private EventPageEngineering eventPageEngineering = new EventPageEngineering();
+
     public void setAll(EventBean1 eventBean1) throws SystemException {
 
-        EventPageAppController controller  = new EventPageAppController();
         this.eventBean1 = eventBean1;
-        clubOwnerBean1Event = new ClubOwnerBean1(controller.getClubOwner(eventBean1.getIdClubOwner()));
+        clubOwnerBean1Event = new ClubOwnerBean1(eventPageEngineering.getClubOwner(eventBean1.getIdClubOwner()));
 
         if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
             this.userBean1 = new UserBean1(Session.getInstance().getUser());
@@ -102,11 +103,9 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     }
     private void myStart() throws SystemException {
 
-        CheckRequestAppController controller = new CheckRequestAppController();
-
         if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
             this.myConcreteComponent = new ConcreteComponent();
-            RequestBean requestBean = controller.checkRequestStatus(this.userBean1, this.eventBean1);
+            RequestBean requestBean = eventPageEngineering.checkRequestStatus(this.userBean1, this.eventBean1);
             if (requestBean == null) {
                 if (eventBean1.getEventDate().isAfter(LocalDate.now()))
                     actionDecorateSendRequest();
@@ -186,42 +185,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     public void mapInitialized() {
         MapEngineering mapEngineering = new MapEngineering();
         mapEngineering.createMap(eventBean1, location);
-    /*
-        MapOptions mapOptions = new MapOptions();
-        Double[] latlong= new Double[2];
-        try {
-            latlong = EventPageAppController.findLocation(eventBean1.getIdEvent());
-        } catch (SystemException e) {
-            ExceptionHandler.getInstance().handleException(e);
-        }
-
-        // Creiamo la mappa centrata sulla latitudine e longitudine corrispondente all'indirizzo del Club nel quale si svolgerà l'evento
-        mapOptions.center(new LatLong(latlong[0],latlong[1]))
-                .mapType(MapTypeIdEnum.HYBRID)
-                .overviewMapControl(false)
-                .panControl(false)
-                .rotateControl(false)
-                .scaleControl(false)
-                .streetViewControl(false)
-                .zoomControl(false)
-                .zoom(18);
-
-        GoogleMap map = location.createMap(mapOptions);
-        // Aggiungiamo il marcatore sulla Mappa
-        MarkerOptions markerOptions = new MarkerOptions();
-
-        markerOptions.position(new LatLong(latlong[0],latlong[1]))
-                .visible(Boolean.TRUE)
-                .title("Prova1" + "'s Location");
-
-        Marker marker = new Marker(markerOptions);
-        map.addMarker(marker);
-
-     */
     }
-
-
-
     @Override
     public void update(Object ob) {
 

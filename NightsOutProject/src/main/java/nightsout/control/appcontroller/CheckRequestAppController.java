@@ -11,23 +11,27 @@ import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
 import nightsout.utils.observer.RequestBeanList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CheckRequestAppController {
 
-    public RequestBean checkRequestStatus(UserBean userBean, EventBean eventBean) throws SystemException {
-
-        UserModel userModel = new UserModel(userBean);
-        EventModel eventModel = new EventModel(eventBean);
-        RequestDAO requestDAO = new RequestDAO();
-        RequestModel requestModel = requestDAO.checkRequestStatus(userModel, eventModel);
-        if(requestModel==null)
-            return null;
-        return (new RequestBean(requestModel));
-    }
 
     public void checkRequests(Observer observer, int idUser) throws SystemException {
 
-        JoinEventAppController controller = new JoinEventAppController();
         RequestBeanList list = new RequestBeanList(observer);
-        list.addRequestsToList(controller.searchRequestsByIdUser(idUser));
+        list.addRequestsToList(searchRequestsByIdUser(idUser));
+    }
+
+    private List<RequestBean> searchRequestsByIdUser(int idUser) throws SystemException {
+
+        RequestDAO requestDAO = new RequestDAO();
+        List<RequestModel> list = requestDAO.getRequestsByIdUser(idUser);
+        List<RequestBean> listBean = new ArrayList<>();
+        for(RequestModel rm : list){
+            RequestBean bean = new RequestBean(rm);
+            listBean.add(bean);
+        }
+        return listBean;
     }
 }

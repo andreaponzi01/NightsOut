@@ -16,10 +16,6 @@ import nightsout.utils.scene.switchpage.SwitchPage;
 public class RegisterClubOwnerGUIController1 {
 
     @FXML
-    private Button buttonNextStep;
-    @FXML
-    private Button buttonBack;
-    @FXML
     private TextField textFieldName;
     @FXML
     private TextField textFieldCity;

@@ -2,7 +2,6 @@ package nightsout.utils.engineering;
 
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.javascript.object.*;
-import nightsout.control.appcontroller.EventPageAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
@@ -21,12 +20,12 @@ public class MapEngineering {
 
     public void createMap(EventBean eventBean, GoogleMapView location) {
 
-        EventPageAppController controller;
+        EventPageEngineering eventPageEngineering;
         MapOptions mapOptions = new MapOptions();
         Double[] latlong= new Double[2];
         try {
-            controller = new EventPageAppController();
-            latlong = findLocation(controller.getClubAddress(eventBean.getIdEvent()));
+            eventPageEngineering = new EventPageEngineering();
+            latlong = findLocation(eventPageEngineering.getClubAddress(eventBean.getIdEvent()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
@@ -54,7 +53,7 @@ public class MapEngineering {
         map.addMarker(marker);
     }
 
-    public Double[] findLocation(String address) throws SystemException {
+    private Double[] findLocation(String address) throws SystemException {
 
         Double[] latlong= new Double[2];
 
@@ -92,4 +91,6 @@ public class MapEngineering {
         }
         return latlong;
     }
+
+
 }

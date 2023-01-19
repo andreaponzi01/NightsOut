@@ -7,10 +7,6 @@ import nightsout.utils.scene.switchpage.SwitchPage;
 
 public class RegisterChoiceGUIController1 {
 
-    @FXML
-    private Button buttonClubOwner;
-    @FXML
-    private Button buttonUser;
     private SwitchPage switchPage = new SwitchPage();
     @FXML
     protected void goToClubOwnerRegister(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/RegisterClubOwner1.fxml"); }

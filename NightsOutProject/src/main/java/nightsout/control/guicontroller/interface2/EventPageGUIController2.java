@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import nightsout.control.appcontroller.CheckRequestAppController;
-import nightsout.control.appcontroller.EventPageAppController;
+import nightsout.utils.engineering.EventPageEngineering;
 import nightsout.utils.Session;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
@@ -66,12 +66,12 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
     private AnchorPane root;
     private ConcreteComponent myConcreteComponent;
     private Component contents;
+    private EventPageEngineering eventPageEngineering = new EventPageEngineering();
 
     public void setAll(EventBean2 eventBean) throws SystemException {
 
-        EventPageAppController controller = new EventPageAppController();
         this.eventBean = eventBean;
-        clubOwnerBeanEvent = new ClubOwnerBean2(controller.getClubOwner(eventBean.getIdClubOwner()));
+        clubOwnerBeanEvent = new ClubOwnerBean2(eventPageEngineering.getClubOwner(eventBean.getIdClubOwner()));
         if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
             this.userBean = new UserBean2(Session.getInstance().getUser());
             Double price = (eventBean.getPrice() - ((eventBean.getPrice() * clubOwnerBeanEvent.getDiscountVIP()) / 100));
@@ -96,11 +96,9 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
 
     private void myStart() throws SystemException {
 
-        CheckRequestAppController controller = new CheckRequestAppController();
-
         this.myConcreteComponent = new ConcreteComponent();
         if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
-            RequestBean requestBean = controller.checkRequestStatus(this.userBean, this.eventBean);
+            RequestBean requestBean = eventPageEngineering.checkRequestStatus(this.userBean, this.eventBean);
             if (requestBean == null) {
                 if (eventBean.getEventDate().isAfter(LocalDate.now()))
                     actionDecorateSendRequest();
@@ -184,7 +182,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
     @Override
     public void mapInitialized() {
 
-        EventPageAppController controller;
+        EventPageEngineering controller;
 
         String address = "";
 
@@ -193,7 +191,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
         Double lng = 0.0;
 
         try {
-            controller = new EventPageAppController();
+            controller = new EventPageEngineering();
             address = controller.getClubAddress(eventBean.getIdEvent());
             // Recuperiamo latitudine e longitudine dell'indirizzo del Club nel quale si svolgerà l'evento
             URL url = new URL("https://www.mapquestapi.com/geocoding/v1/address?key=QmskMXX88teOI9qXndnvrgGj4DGETyiF");

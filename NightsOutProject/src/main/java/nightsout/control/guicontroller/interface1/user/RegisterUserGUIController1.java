@@ -17,15 +17,9 @@ import nightsout.utils.scene.switchpage.SwitchPage;
 public class RegisterUserGUIController1 {
 
     @FXML
-    private Button buttonNextStep;
-    @FXML
-    private Button buttonBack;
-    @FXML
     private TextField textFieldName;
     @FXML
     private TextField textFieldSurname;
-    @FXML
-    private RadioButton radioMale;
     @FXML
     private RadioButton radioFemale;
     @FXML

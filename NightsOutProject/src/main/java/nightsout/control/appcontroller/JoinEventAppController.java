@@ -19,22 +19,7 @@ import java.util.List;
 
 public class JoinEventAppController {
 
-    public List<ManageRequestBean> searchRequestsByIdClubOwner(int idClubOwner) throws SystemException {
 
-        RequestDAO requestDAO = new RequestDAO();
-        List<RequestModel> list = requestDAO.getRequestsByIdClubOwner(idClubOwner);
-        List<ManageRequestBean> listBean = new ArrayList<>();
-        UserDAO userDAO = new UserDAO();
-        EventDAO eventDAO = new EventDAO();
-
-        for(RequestModel rm : list){
-            EventBean eb = new EventBean(eventDAO.getEventByIdEvent(rm.getIdEvent()));
-            UserBean ub = new UserBean(userDAO.getUserByidUser(rm.getIdUser()));
-            ManageRequestBean bean = new ManageRequestBean(rm,ub,eb);
-            listBean.add(bean);
-        }
-        return listBean;
-    }
     public void acceptRequest(int idRequest) throws SystemException {
         RequestDAO requestDAO = new RequestDAO();
         requestDAO.updateRequestStatus(idRequest,"accepted");}
@@ -53,17 +38,6 @@ public class JoinEventAppController {
         requestDAO.createRequest(userModel, eventModel);
     }
 
-    public List<RequestBean> searchRequestsByIdUser(int idUser) throws SystemException {
-
-        RequestDAO requestDAO = new RequestDAO();
-        List<RequestModel> list = requestDAO.getRequestsByIdUser(idUser);
-        List<RequestBean> listBean = new ArrayList<>();
-        for(RequestModel rm : list){
-            RequestBean bean = new RequestBean(rm);
-            listBean.add(bean);
-        }
-        return listBean;
-    }
     public EventBean searchEventByIdEvent(int idEvent) throws SystemException {
         EventDAO eventDAO = new EventDAO();
         EventModel eventModel = eventDAO.getEventByIdEvent(idEvent);
@@ -80,7 +54,7 @@ public class JoinEventAppController {
 
     }
 
-    public List<UserBean> searchUsersByUsername(String input) throws SystemException {
+    private List<UserBean> searchUsersByUsername(String input) throws SystemException {
 
         List<UserModel> list = null;
         List<UserBean> listBean = null;
@@ -90,6 +64,36 @@ public class JoinEventAppController {
         if (list != null) {
             for (UserModel um : list) {
                 UserBean bean = new UserBean(um);
+                listBean.add(bean);
+            }
+        }
+        return listBean;
+    }
+
+    private List<ManageRequestBean> searchRequestsByIdClubOwner(int idClubOwner) throws SystemException {
+
+        RequestDAO requestDAO = new RequestDAO();
+        List<RequestModel> list = requestDAO.getRequestsByIdClubOwner(idClubOwner);
+        List<ManageRequestBean> listBean = new ArrayList<>();
+        UserDAO userDAO = new UserDAO();
+        EventDAO eventDAO = new EventDAO();
+
+        for(RequestModel rm : list){
+            EventBean eb = new EventBean(eventDAO.getEventByIdEvent(rm.getIdEvent()));
+            UserBean ub = new UserBean(userDAO.getUserByidUser(rm.getIdUser()));
+            ManageRequestBean bean = new ManageRequestBean(rm,ub,eb);
+            listBean.add(bean);
+        }
+        return listBean;
+    }
+    private List<ClubOwnerBean> searchClubOwnersByUsername(String input) throws SystemException {
+
+        ClubOwnerDAO clubOwnerDAO = new ClubOwnerDAO();
+        List<ClubOwnerModel> list = clubOwnerDAO.getClubOwnersByUsername(input);
+        List<ClubOwnerBean> listBean = new ArrayList<>();
+        if (list != null) {
+            for (ClubOwnerModel clubOwnerModel : list) {
+                ClubOwnerBean bean = new ClubOwnerBean(clubOwnerModel);
                 listBean.add(bean);
             }
         }
@@ -105,19 +109,6 @@ public class JoinEventAppController {
         if (list != null) {
             for (EventModel eventModel : list) {
                 EventBean bean = new EventBean(eventModel);
-                listBean.add(bean);
-            }
-        }
-        return listBean;
-    }
-    public List<ClubOwnerBean> searchClubOwnersByUsername(String input) throws SystemException {
-
-        ClubOwnerDAO clubOwnerDAO = new ClubOwnerDAO();
-        List<ClubOwnerModel> list = clubOwnerDAO.getClubOwnersByUsername(input);
-        List<ClubOwnerBean> listBean = new ArrayList<>();
-        if (list != null) {
-            for (ClubOwnerModel clubOwnerModel : list) {
-                ClubOwnerBean bean = new ClubOwnerBean(clubOwnerModel);
                 listBean.add(bean);
             }
         }

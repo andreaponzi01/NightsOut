@@ -31,8 +31,6 @@ public class ConcludeRegisterUserGUIController1 {
     private PasswordField passwordField;
     @FXML
     private ImageView imageViewProfile;
-    @FXML
-    private Button buttonBack;
 
     public void setAll(UserBean1 userBean1) {
         this.userBean1 = userBean1;
@@ -41,6 +39,7 @@ public class ConcludeRegisterUserGUIController1 {
     protected void backToRegister(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/RegisterUser1.fxml"); }
     @FXML
     protected void goToWelcomePage(ActionEvent actionEvent) {
+
         CredentialsBean credentialsBean;
         RegisterAppController controller;
         try {
@@ -61,6 +60,7 @@ public class ConcludeRegisterUserGUIController1 {
     }
 
     public void loadImage() {
+
         Stage stage = (Stage) textFieldUsername.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagine Files", "*.png", "*.jpg", "*.jpeg"));

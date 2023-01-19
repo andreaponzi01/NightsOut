@@ -25,10 +25,6 @@ public class CreateEventGUIController1 implements Initializable {
     private ClubOwnerBean1 clubOwnerBean1;
     private File img;
     @FXML
-    private Button buttonBack;
-    @FXML
-    private Button buttonCreateEvent;
-    @FXML
     private Slider sliderTime;
     @FXML
     private DatePicker dateEvent;
@@ -51,7 +47,6 @@ public class CreateEventGUIController1 implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.clubOwnerBean1 = new ClubOwnerBean1(Session.getInstance().getClubOwner());
     }
-
     @FXML
     private void backToWelcomePage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
     @FXML

@@ -22,10 +22,6 @@ public class LoginGUIController1 {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private Button buttonLogin;
-    @FXML
-    private Button buttonBack;
-    @FXML
     private CheckBox checkBoxClubOwner;
 
     private SwitchPage switchPage = new SwitchPage();
@@ -35,6 +31,7 @@ public class LoginGUIController1 {
 
         String type = "Free";
         LoginAppController controller;
+
         if(checkBoxClubOwner.isSelected()) {type = "ClubOwner";}
         try {
             controller = new LoginAppController();
