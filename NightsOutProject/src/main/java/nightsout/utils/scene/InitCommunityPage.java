@@ -1,4 +1,4 @@
-package nightsout.utils.scene.initpage1;
+package nightsout.utils.scene;
 
 import nightsout.control.guicontroller.interface1.ViewCommunityGUIController1;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;

@@ -13,7 +13,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +25,7 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
     @FXML
     private ListView listViewReviews;
     private SwitchPage switchPage = new SwitchPage();
+    private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 
     @Override
     public void update(Object ob) {
@@ -35,7 +36,7 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItemToResponse2.fxml")).openStream());
                 ReviewItemToResponseGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(reviewBean);
+                controller.setAll(reviewBean, manageReviewAppController);
                 this.listViewReviews.getItems().add(pane);
             } catch (IOException | SystemException e) {
                 ErrorDialog.getInstance().handleException(e);
@@ -50,10 +51,8 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        ManageReviewAppController controller;
         try {
-            controller = new ManageReviewAppController();
-            controller.eventReviews(this,  Session.getInstance().getClubOwner().getId());
+            manageReviewAppController.eventReviews(this,  Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

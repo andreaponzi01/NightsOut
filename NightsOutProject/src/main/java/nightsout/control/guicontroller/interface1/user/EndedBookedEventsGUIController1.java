@@ -17,7 +17,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +29,7 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
     private SwitchPage switchPage = new SwitchPage();
     @FXML
     private ListView listViewEvents;
+    private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,16 +54,13 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
     @Override
     public void update(Object ob) {
 
-        ManageReviewAppController appController;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         ReviewBean reviewBean=null;
         System.out.println("\n\n\nprova3");
         if(ob instanceof EventBean eBean) {
             try {
-
-                appController = new ManageReviewAppController();
-                reviewBean = appController.getReviewByIdEventAndIdUser( userBean1.getId(), eBean.getIdEvent());
+                reviewBean = manageReviewAppController.getReviewByIdEventAndIdUser(userBean1.getId(), eBean.getIdEvent());
                 if(reviewBean != null){
                     EventItemGUIController1 controller;
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
@@ -72,7 +70,7 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
                     EventReviewItemGUIController1 controller;
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem1.fxml")).openStream());
                     controller = fxmlLoader.getController();
-                    controller.setAll(new EventBean1(eBean));
+                    controller.setAll(new EventBean1(eBean), manageReviewAppController);
                 }
 
                 this.listViewEvents.getItems().add(pane);

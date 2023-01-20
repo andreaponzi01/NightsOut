@@ -15,7 +15,7 @@ import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

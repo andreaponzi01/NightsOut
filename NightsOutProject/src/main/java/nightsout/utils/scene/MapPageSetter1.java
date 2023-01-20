@@ -1,4 +1,4 @@
-package nightsout.utils.scene.initpage1;
+package nightsout.utils.scene;
 
 import nightsout.control.guicontroller.MapGUIController;
 import nightsout.utils.bean.interface1.EventBean1;
@@ -6,7 +6,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 public class MapPageSetter1 {
 
 
-    public static void setter(EventBean1 eventBean, MapGUIController mapGUIController) {
+    public void setter(EventBean1 eventBean, MapGUIController mapGUIController) {
         mapGUIController.setAll(eventBean);
     }
 }

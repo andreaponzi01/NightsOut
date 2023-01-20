@@ -22,6 +22,7 @@ public class ClubOwnerPageGUIController2 implements Observer, Initializable {
 
     @FXML
     private ListView listViewPendingRequests;
+    private JoinEventAppController joinEventAppController = new JoinEventAppController();
 
     @Override
     public void update(Object ob) {
@@ -32,7 +33,7 @@ public class ClubOwnerPageGUIController2 implements Observer, Initializable {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ManageRequestsItem2.fxml")).openStream());
                 ManageRequestsItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(mRBean);
+                controller.setAll(mRBean, joinEventAppController);
                 this.listViewPendingRequests.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
@@ -43,10 +44,8 @@ public class ClubOwnerPageGUIController2 implements Observer, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        JoinEventAppController controller;
         try {
-            controller = new JoinEventAppController();
-            controller.manageRequests(this, Session.getInstance().getClubOwner().getId());
+            joinEventAppController.manageRequests(this, Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

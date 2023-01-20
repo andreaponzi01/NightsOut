@@ -12,8 +12,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
-import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.exception.ErrorDialog;
@@ -22,7 +22,7 @@ import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,8 +32,6 @@ import java.util.ResourceBundle;
 
 public class ManageEventPageGUIController2 implements Initializable, Observer {
 
-    @FXML
-    private Button buttonCreateEvent;
     @FXML
     private Slider sliderTime;
     @FXML
@@ -95,7 +93,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagine Files", "*.png", "*.jpg", "*.jpeg"));
         img = fileChooser.showOpenDialog(stage).getAbsoluteFile();
-        this.imageViewProfile.setImage(new Image(img.toURI().toString()));
+        imageViewProfile.setImage(new Image(img.toURI().toString()));
     }
 
     @Override

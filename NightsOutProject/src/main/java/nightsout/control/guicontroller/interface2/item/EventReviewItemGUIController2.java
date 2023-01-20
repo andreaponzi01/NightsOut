@@ -13,8 +13,8 @@ import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchAndSetPage2;
+import nightsout.utils.scene.SwitchPage;
 
 public class EventReviewItemGUIController2 {
 
@@ -28,10 +28,12 @@ public class EventReviewItemGUIController2 {
     private ImageView imageViewEvent;
     private SwitchPage switchPage = new SwitchPage();
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
+    private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 
-    public void setAll(EventBean2 eventBean) {
+    public void setAll(EventBean2 eventBean, ManageReviewAppController manageReviewAppController) {
 
         this.eventBean = eventBean;
+        this.manageReviewAppController = manageReviewAppController;
         this.labelEventName.setText(this.eventBean.getName());
         this.imageViewEvent.setImage(new Image(eventBean.getImg().toURI().toString()));
     }
@@ -47,15 +49,12 @@ public class EventReviewItemGUIController2 {
     }
     public void sendReview(ActionEvent actionEvent) {
 
-        ManageReviewAppController controller;
-
         try {
-            controller = new ManageReviewAppController();
             ReviewBean reviewBean= new ReviewBean();
             reviewBean.setComment(textAreaReview.getText());
             reviewBean.setIdUser(Session.getInstance().getUser().getId());
             reviewBean.setIdEvent(eventBean.getIdEvent());
-            controller.createEventReview(reviewBean);
+            manageReviewAppController.createEventReview(reviewBean);
             switchPage.replaceScene(actionEvent,"/UserPage2.fxml");
         } catch (SystemException | EmptyInputException e) {
             ErrorDialog.getInstance().handleException(e);

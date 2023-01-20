@@ -9,7 +9,7 @@ import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 public class LoginClubOwnerGUIController2 {
 

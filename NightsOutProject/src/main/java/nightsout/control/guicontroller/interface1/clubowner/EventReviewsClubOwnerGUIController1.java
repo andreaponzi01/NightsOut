@@ -13,7 +13,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,24 +24,23 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
 
     @FXML
     private ListView listViewReviews;
-
     private SwitchPage switchPage = new SwitchPage();
+    private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ManageReviewAppController controller;
+
         try {
-            controller = new ManageReviewAppController();
-            controller.eventReviews(this,  Session.getInstance().getClubOwner().getId());
+            manageReviewAppController.eventReviews(this,  Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML
-    public void backToClubOwnerPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
+    public void backToClubOwnerPage(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
     @FXML
-    public void goToCommunity(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/MyCommunityPage1.fxml");}
+    public void goToCommunity(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent,"/MyCommunityPage1.fxml");}
 
     @Override
     public void update(Object ob) {
@@ -52,7 +51,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem1.fxml")).openStream());
                 ReviewItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(reviewBean);
+                controller.setAll(reviewBean, manageReviewAppController);
                 this.listViewReviews.getItems().add(pane);
             } catch (IOException | SystemException e) {
                 ErrorDialog.getInstance().handleException(e);

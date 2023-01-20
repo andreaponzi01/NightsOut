@@ -40,17 +40,18 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
     private ListView listViewDeclined;
     @FXML
     private ListView listViewPending;
+    private JoinEventAppController joinEventAppController = new JoinEventAppController();
+    private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 
     private void handleRequest(RequestBean rBean) {
 
-        JoinEventAppController appController;
+
         RequestsItemGUIController2 controller;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         try {
-            appController = new JoinEventAppController();
             if(Objects.equals(rBean.getStatus(), "accepted")){
-                EventBean2 eventBean= new EventBean2(appController.searchEventByIdEvent(rBean.getIdEvent()));
+                EventBean2 eventBean= new EventBean2(joinEventAppController.searchEventByIdEvent(rBean.getIdEvent()));
                 if(eventBean.getEventDate().isAfter(LocalDate.now())){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
                     controller = fxmlLoader.getController();
@@ -77,15 +78,13 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
 
     private void handleEvent(EventBean eBean) {
         
-        ManageReviewAppController appController;
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         ReviewBean reviewBean = null;
         
         try {
-            appController = new ManageReviewAppController();
-            reviewBean = appController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
+            reviewBean = manageReviewAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
 
             if(reviewBean != null){
                 EventItemGUIController2 controller;
@@ -96,7 +95,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
                 EventReviewItemGUIController2 controller;
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventReviewItem2.fxml")).openStream());
                 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean2(eBean));
+                controller.setAll(new EventBean2(eBean), manageReviewAppController);
             }
 
             this.listViewToReview.getItems().add(pane);

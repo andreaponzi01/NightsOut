@@ -2,8 +2,7 @@ package nightsout.control.guicontroller.interface1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 public class RegisterChoiceGUIController1 {
 

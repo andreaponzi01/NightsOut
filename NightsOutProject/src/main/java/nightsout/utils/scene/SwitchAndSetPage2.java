@@ -1,17 +1,14 @@
-package nightsout.utils.scene.switchpage;
+package nightsout.utils.scene;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.initpage2.InitEventPage2;
-import nightsout.utils.scene.initpage2.InitParticipantsPage2;
-import nightsout.utils.scene.initpage2.InitViewCOPage2;
-import nightsout.utils.scene.initpage2.InitViewUserPage2;
 
 import java.io.IOException;
 
@@ -37,6 +34,21 @@ public class SwitchAndSetPage2 {
             if (fxml.equals("/EventParticipantsPageFromCO2.fxml")) {
                 InitParticipantsPage2 initParticipantsPage2 = new InitParticipantsPage2();
                 initParticipantsPage2.setter(eventBean,loader.getController());
+            }
+            SwitchPage.showStage(ae, root);
+        } catch (IOException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
+    public void switchAndSetSceneEvent(ActionEvent ae, String fxml, EventBean2 eventBean, JoinEventAppController joinEventAppController) throws SystemException {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(SwitchAndSetPage2.class.getResource(fxml));
+            Parent root = loader.load();
+            if (fxml.equals("/EventPageFromUser2.fxml")) {
+                InitEventPage2 initEventPage2 = new InitEventPage2();
+                initEventPage2.setter(eventBean, joinEventAppController, loader.getController());
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {

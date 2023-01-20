@@ -15,7 +15,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,8 +51,8 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
         if (ob instanceof RequestBean rBean && Objects.equals(rBean.getStatus(), "pending")) {
                 try {
                     appController = new JoinEventAppController();
-                    controller = fxmlLoader.getController();
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
+                    controller = fxmlLoader.getController();
                     fxmlLoader.getController();
                     EventBean1 eventBean1 = new EventBean1(appController.searchEventByIdEvent(rBean.getIdEvent()));
                     controller.setAll(rBean, eventBean1);

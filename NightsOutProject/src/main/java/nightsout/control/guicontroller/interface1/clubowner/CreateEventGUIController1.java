@@ -3,7 +3,10 @@ package nightsout.control.guicontroller.interface1.clubowner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -14,7 +17,7 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.*;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.File;
 import java.net.URL;
@@ -77,6 +80,6 @@ public class CreateEventGUIController1 implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagine Files", "*.png", "*.jpg", "*.jpeg"));
         img = fileChooser.showOpenDialog(stage).getAbsoluteFile();
-        this.imageViewProfile.setImage(new Image(img.toURI().toString()));
+        imageViewProfile.setImage(new Image(img.toURI().toString()));
     }
 }

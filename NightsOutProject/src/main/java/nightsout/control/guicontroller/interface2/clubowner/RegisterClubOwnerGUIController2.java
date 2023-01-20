@@ -14,7 +14,7 @@ import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.*;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.File;
 
@@ -75,7 +75,7 @@ public class RegisterClubOwnerGUIController2 {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagine Files", "*.png", "*.jpg", "*.jpeg"));
         img = fileChooser.showOpenDialog(stage).getAbsoluteFile();
-        this.imageViewProfile.setImage(new Image(img.toURI().toString()));
+        imageViewProfile.setImage(new Image(img.toURI().toString()));
     }
 
     @FXML

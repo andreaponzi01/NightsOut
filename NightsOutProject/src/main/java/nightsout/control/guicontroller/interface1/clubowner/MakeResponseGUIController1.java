@@ -12,7 +12,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 public class MakeResponseGUIController1 {
     @FXML
@@ -24,25 +24,23 @@ public class MakeResponseGUIController1 {
     private ReviewBean reviewBean;
 
     private SwitchPage switchPage = new SwitchPage();
+    private ManageReviewAppController manageReviewAppController;
 
-    public void setAll(UserBean1 userBean, ReviewBean reviewBean) throws SystemException {
+    public void setAll(ManageReviewAppController manageReviewAppController, UserBean1 userBean, ReviewBean reviewBean) throws SystemException {
 
-        ManageReviewAppController controller = new ManageReviewAppController();
+        this.manageReviewAppController = manageReviewAppController;
         this.reviewBean=reviewBean;
         this.labelUsername.setText(userBean.getUsername());
-        this.labelEventName.setText(controller.searchEventbyIdEvent(reviewBean.getIdEvent()).getName());
+        this.labelEventName.setText(manageReviewAppController.searchEventbyIdEvent(reviewBean.getIdEvent()).getName());
     }
     public void createResponse(ActionEvent actionEvent) {
 
-        ManageReviewAppController controller;
-
         try {
-            controller = new ManageReviewAppController();
             ResponseBean responseBean = new ResponseBean();
             responseBean.setResponse(textAreaResponse.getText());
             responseBean.setIdClubOwner(Session.getInstance().getClubOwner().getId());
             responseBean.setReview(reviewBean.getIdReview());
-            controller.makeResponse(responseBean);
+            manageReviewAppController.makeResponse(responseBean);
             switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");
         } catch (SystemException | EmptyInputException e) {
             ErrorDialog.getInstance().handleException(e);

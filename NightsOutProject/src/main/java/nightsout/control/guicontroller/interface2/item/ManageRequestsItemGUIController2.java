@@ -12,8 +12,8 @@ import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchAndSetPage2;
+import nightsout.utils.scene.SwitchPage;
 
 import java.time.format.DateTimeFormatter;
 
@@ -32,10 +32,12 @@ public class ManageRequestsItemGUIController2 {
     private ImageView imageViewProfile;
     private SwitchPage switchPage = new SwitchPage();
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
+    private JoinEventAppController joinEventAppController;
 
 
-    public void setAll(ManageRequestBean manageRequestBean) {
+    public void setAll(ManageRequestBean manageRequestBean, JoinEventAppController joinEventAppController) {
 
+        this.joinEventAppController = joinEventAppController;
         this.clubOwnerBean = new ClubOwnerBean2(Session.getInstance().getClubOwner());
         this.manageRequestBean=manageRequestBean;
         this.labelUsername.setText(manageRequestBean.getUsername());
@@ -46,11 +48,8 @@ public class ManageRequestsItemGUIController2 {
     @FXML
     public void acceptRequest(ActionEvent actionEvent) {
 
-        JoinEventAppController controller;
-
         try {
-            controller = new JoinEventAppController();
-            controller.acceptRequest(manageRequestBean.getIdRequest());
+            joinEventAppController.acceptRequest(manageRequestBean.getIdRequest());
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
@@ -59,11 +58,8 @@ public class ManageRequestsItemGUIController2 {
 
     public void rejectRequest(ActionEvent actionEvent) {
 
-        JoinEventAppController controller;
-
         try {
-            controller = new JoinEventAppController();
-            controller.declineRequest(manageRequestBean.getIdRequest());
+            joinEventAppController.declineRequest(manageRequestBean.getIdRequest());
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
@@ -72,11 +68,8 @@ public class ManageRequestsItemGUIController2 {
 
     public void goToUserPage(ActionEvent actionEvent) {
 
-        JoinEventAppController controller;
-
         try {
-            controller = new JoinEventAppController();
-            UserBean2 userBean = new UserBean2(controller.searchUserByUsername(manageRequestBean.getUsername()));
+            UserBean2 userBean = new UserBean2(joinEventAppController.searchUserByUsername(manageRequestBean.getUsername()));
             switchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);

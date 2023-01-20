@@ -13,8 +13,8 @@ import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchAndSetPage2;
+import nightsout.utils.scene.SwitchPage;
 
 public class ReviewItemToResponseGUIController2 {
 
@@ -31,31 +31,31 @@ public class ReviewItemToResponseGUIController2 {
 
     private SwitchPage switchPage = new SwitchPage();
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
+    private ManageReviewAppController manageReviewAppController;
 
-    public void setAll(ReviewBean reviewBean) throws SystemException {
-        ManageReviewAppController controller = new ManageReviewAppController();
+    public void setAll(ReviewBean reviewBean, ManageReviewAppController manageReviewAppController) throws SystemException {
+
+        this.manageReviewAppController = manageReviewAppController;
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         try {
-            this.userBean = new UserBean2(controller.searchUserbyIdUser(reviewBean.getIdUser()));
+            this.userBean = new UserBean2(manageReviewAppController.searchUserbyIdUser(reviewBean.getIdUser()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
-        EventBean eventBean = controller.searchEventbyIdEvent(reviewBean.getIdEvent());
+        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
         this.labelUsername.setText(userBean.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
     @FXML
     public void makeResponse(ActionEvent actionEvent) {
 
-        ManageReviewAppController controller;
         try {
-            controller = new ManageReviewAppController();
             ResponseBean responseBean = new ResponseBean();
             responseBean.setResponse(textAreaResponse.getText());
             responseBean.setIdClubOwner(Session.getInstance().getClubOwner().getId());
             responseBean.setReview(reviewBean.getIdReview());
-            controller.makeResponse(responseBean);
+            manageReviewAppController.makeResponse(responseBean);
             switchPage.replaceScene(actionEvent,"/ReviewsAndMakeResponsePage2.fxml");
         } catch (SystemException | EmptyInputException e) {
             ErrorDialog.getInstance().handleException(e);

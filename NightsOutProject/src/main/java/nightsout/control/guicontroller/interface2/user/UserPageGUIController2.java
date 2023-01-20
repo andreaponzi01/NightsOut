@@ -27,16 +27,16 @@ public class UserPageGUIController2 implements Observer {
     private ListView listView;
     @FXML
     private TextField textFieldSearch;
+    private JoinEventAppController joinEventAppController = new JoinEventAppController();
 
     @FXML
     private void search() {
-        JoinEventAppController controller;
+
         try {
-            controller = new JoinEventAppController();
             String input = textFieldSearch.getText();
             this.listView.getItems().clear();
             if (!input.isBlank())
-                controller.search(this, input);
+                joinEventAppController.search(this, input);
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
@@ -61,7 +61,7 @@ public class UserPageGUIController2 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
                 EventItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean2(eBean));
+                controller.setAll(new EventBean2(eBean), joinEventAppController);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);

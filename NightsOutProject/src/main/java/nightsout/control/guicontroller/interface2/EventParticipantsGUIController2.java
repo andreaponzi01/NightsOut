@@ -15,7 +15,7 @@ import nightsout.utils.engineering.EventParticipantsEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
+import nightsout.utils.scene.SwitchAndSetPage2;
 
 import java.io.IOException;
 import java.util.Objects;

@@ -2,7 +2,6 @@ package nightsout.control.guicontroller.interface1.clubowner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.exception.ErrorDialog;
@@ -10,8 +9,8 @@ import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongInputRangeException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchAndSetPage1;
+import nightsout.utils.scene.SwitchPage;
 
 public class RegisterClubOwnerGUIController1 {
 

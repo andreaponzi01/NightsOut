@@ -2,7 +2,6 @@ package nightsout.control.guicontroller.interface1.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -11,8 +10,8 @@ import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.AdultException;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchAndSetPage1;
+import nightsout.utils.scene.SwitchPage;
 
 public class RegisterUserGUIController1 {
 

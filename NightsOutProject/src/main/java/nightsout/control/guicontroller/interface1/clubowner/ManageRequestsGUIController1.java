@@ -13,7 +13,7 @@ import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,14 +26,13 @@ public class ManageRequestsGUIController1 implements Observer, Initializable {
     private ListView listViewPendingRequests;
 
     private SwitchPage switchPage = new SwitchPage();
+    private JoinEventAppController joinEventAppController = new JoinEventAppController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        JoinEventAppController controller = new JoinEventAppController();
         try {
-            controller = new JoinEventAppController();
-            controller.manageRequests(this, Session.getInstance().getClubOwner().getId());
+            joinEventAppController.manageRequests(this, Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
@@ -48,7 +47,7 @@ public class ManageRequestsGUIController1 implements Observer, Initializable {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ManageRequestsItem1.fxml")).openStream());
                 ManageRequestsItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(mRBean);
+                controller.setAll(mRBean, joinEventAppController);
                 this.listViewPendingRequests.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);

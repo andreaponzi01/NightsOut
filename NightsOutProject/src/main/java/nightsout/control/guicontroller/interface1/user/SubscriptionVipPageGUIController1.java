@@ -6,7 +6,7 @@ import nightsout.control.appcontroller.SubscriptionVipAppController;
 import nightsout.utils.Session;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 public class SubscriptionVipPageGUIController1 {
 

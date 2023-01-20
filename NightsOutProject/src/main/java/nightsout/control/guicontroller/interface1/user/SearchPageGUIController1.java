@@ -18,7 +18,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -32,16 +32,18 @@ public class SearchPageGUIController1 implements Observer {
 
     private SwitchPage switchPage = new SwitchPage();
 
+    private JoinEventAppController joinEventAppController = new JoinEventAppController();
+
     @FXML
     private void search() {
 
-        JoinEventAppController controller;
+
         try {
-            controller = new JoinEventAppController();
+            joinEventAppController = new JoinEventAppController();
             String input = textFieldSearch.getText();
             this.listView.getItems().clear();
             if (!input.isBlank()) {
-                controller.search(this, input);
+                joinEventAppController.search(this, input);
             }
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
@@ -67,7 +69,7 @@ public class SearchPageGUIController1 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                 EventItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean1(eBean));
+                controller.setAll(new EventBean1(eBean), joinEventAppController);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                     ErrorDialog.getInstance().handleException(e);

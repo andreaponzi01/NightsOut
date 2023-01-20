@@ -10,8 +10,8 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchAndSetPage1;
+import nightsout.utils.scene.SwitchPage;
 
 public class ReviewItemGUIController1 {
 
@@ -27,15 +27,28 @@ public class ReviewItemGUIController1 {
 
     private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     private SwitchPage switchPage = new SwitchPage();
-
+    private ManageReviewAppController manageReviewAppController;
 
     public void setAll(ReviewBean reviewBean) throws SystemException {
 
-        ManageReviewAppController controller = new ManageReviewAppController();
+        manageReviewAppController = new ManageReviewAppController();
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
-        this.userBean1 = new UserBean1(controller.searchUserbyIdUser(reviewBean.getIdUser()));
-        EventBean eventBean = controller.searchEventbyIdEvent(reviewBean.getIdEvent());
+        this.userBean1 = new UserBean1(manageReviewAppController.searchUserbyIdUser(reviewBean.getIdUser()));
+        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
+        this.labelUsername.setText(userBean1.getUsername());
+        this.labelEventName.setText(eventBean.getName());
+
+    }
+
+
+    public void setAll(ReviewBean reviewBean, ManageReviewAppController manageReviewAppController) throws SystemException {
+
+        this.manageReviewAppController = manageReviewAppController;
+        this.reviewBean = reviewBean;
+        this.labelComment.setText(reviewBean.getComment());
+        this.userBean1 = new UserBean1(manageReviewAppController.searchUserbyIdUser(reviewBean.getIdUser()));
+        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
         this.labelUsername.setText(userBean1.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
@@ -43,7 +56,7 @@ public class ReviewItemGUIController1 {
     public void goToResponsePage(ActionEvent actionEvent) {
 
         try {
-            switchAndSetPage1.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean1, reviewBean);
+            switchAndSetPage1.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean1, reviewBean, manageReviewAppController);
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

@@ -1,4 +1,4 @@
-package nightsout.utils.scene.initpage2;
+package nightsout.utils.scene;
 
 import nightsout.control.guicontroller.interface2.EventParticipantsGUIController2;
 import nightsout.utils.bean.interface2.EventBean2;

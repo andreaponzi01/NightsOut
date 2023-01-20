@@ -10,7 +10,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
+import nightsout.utils.scene.SwitchAndSetPage1;
 
 public class ConcreteDecoratorSendRequest1 extends Decorator {
 
@@ -18,9 +18,11 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
     private EventBean1 eventBean;
     private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     private String toWrite;
+    private JoinEventAppController joinEventAppController;
 
-    public ConcreteDecoratorSendRequest1(Component component, EventBean1 eventBean) {
+    public ConcreteDecoratorSendRequest1(Component component, EventBean1 eventBean, JoinEventAppController joinEventAppController) {
         super(component);
+        this.joinEventAppController = joinEventAppController;
         this.userBean = new UserBean1(Session.getInstance().getUser());
         this.eventBean = eventBean;
     }
@@ -37,11 +39,9 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
 
     private void sendRequest(ActionEvent actionEvent){
 
-        JoinEventAppController controller;
         try {
-            controller = new JoinEventAppController();
-            controller.sendRequest(userBean, eventBean);
-            switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+            joinEventAppController.sendRequest(userBean, eventBean);
+            switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean, joinEventAppController);
         } catch (SystemException e){
             ErrorDialog.getInstance().handleException(e);
         }

@@ -10,7 +10,7 @@ import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
+import nightsout.utils.scene.SwitchAndSetPage1;
 
 import java.time.format.DateTimeFormatter;
 

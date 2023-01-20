@@ -13,8 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import nightsout.control.appcontroller.CheckRequestAppController;
-import nightsout.utils.engineering.EventPageEngineering;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.RequestBean;
@@ -23,12 +22,13 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.decorator.*;
+import nightsout.utils.engineering.EventPageEngineering;
 import nightsout.utils.engineering.EventParticipantsEngineering;
 import nightsout.utils.engineering.MapEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage1;
+import nightsout.utils.scene.SwitchAndSetPage1;
 
 import java.io.IOException;
 import java.net.URL;
@@ -69,7 +69,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     private AnchorPane root;
     private ConcreteComponent myConcreteComponent;
     private Component contents;
-
+    private JoinEventAppController joinEventAppController;
     private EventPageEngineering eventPageEngineering = new EventPageEngineering();
 
     public void setAll(EventBean1 eventBean1) throws SystemException {
@@ -101,6 +101,13 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
         eventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
         myStart();
     }
+
+    public void setAll(EventBean1 eventBean1, JoinEventAppController joinEventAppController) throws SystemException {
+
+        this.joinEventAppController = joinEventAppController;
+        setAll(eventBean1);
+    }
+
     private void myStart() throws SystemException {
 
         if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
@@ -132,7 +139,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
 
     private void actionDecorateSendRequest() {
 
-        ConcreteDecoratorSendRequest1 concreteDecoratorSendRequest = new ConcreteDecoratorSendRequest1(this.myConcreteComponent, this.eventBean1);
+        ConcreteDecoratorSendRequest1 concreteDecoratorSendRequest = new ConcreteDecoratorSendRequest1(this.myConcreteComponent, this.eventBean1, this.joinEventAppController);
         this.contents = concreteDecoratorSendRequest;
         this.display();
     }

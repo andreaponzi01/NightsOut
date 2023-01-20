@@ -7,14 +7,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.db.Query;
+import nightsout.utils.engineering.EventPageEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchPage;
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
+import nightsout.utils.scene.SwitchPage;
 
 public class ConcreteDecoratorDelete1 extends Decorator {
 
@@ -41,22 +37,17 @@ public class ConcreteDecoratorDelete1 extends Decorator {
 
     private void deleteEvent(ActionEvent ae) {
 
-        Query query;
-        var alert = new Alert(Alert.AlertType.CONFIRMATION);
+        EventPageEngineering engineering;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Event");
         alert.setHeaderText("You're about to delete the event!");
         alert.setContentText("Are you sure you want to delete the event?: ");
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
-                query = new Query();
-                query.deleteEventById(eventBean.getIdEvent());
-                FileUtils.delete(new File("eventImgs/" + eventBean.getName()+"pic.png"));
+                engineering = new EventPageEngineering();
+                engineering.deleteEvent(eventBean);
                 switchPage.replaceScene(ae,"/ClubOwnerPage1.fxml");
             } catch (SystemException e) {
-                ErrorDialog.getInstance().handleException(e);
-            } catch (IOException e) {
-                SystemException ex = new SystemException();
-                ex.initCause(e);
                 ErrorDialog.getInstance().handleException(e);
             }
         }

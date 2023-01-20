@@ -1,4 +1,4 @@
-package nightsout.utils.scene.initpage1;
+package nightsout.utils.scene;
 
 import nightsout.control.guicontroller.interface1.clubowner.ConcludeRegisterClubOwnerGUIController1;
 import nightsout.control.guicontroller.interface1.user.ConcludeRegisterUserGUIController1;

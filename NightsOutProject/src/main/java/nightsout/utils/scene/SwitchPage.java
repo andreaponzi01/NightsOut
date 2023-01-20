@@ -1,4 +1,4 @@
-package nightsout.utils.scene.switchpage;
+package nightsout.utils.scene;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

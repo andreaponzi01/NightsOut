@@ -4,7 +4,10 @@ import nightsout.model.ClubOwnerModel;
 import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
-import nightsout.utils.bean.*;
+import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.ManageRequestBean;
+import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
@@ -18,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JoinEventAppController {
-
 
     public void acceptRequest(int idRequest) throws SystemException {
         RequestDAO requestDAO = new RequestDAO();
@@ -120,4 +122,5 @@ public class JoinEventAppController {
         ManageRequestBeanList list = new ManageRequestBeanList(observer);
         list.addRequestsToList(searchRequestsByIdClubOwner(idClubOwner));
     }
+
 }

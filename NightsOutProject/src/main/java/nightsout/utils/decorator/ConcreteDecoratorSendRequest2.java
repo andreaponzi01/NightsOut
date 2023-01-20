@@ -10,7 +10,7 @@ import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
+import nightsout.utils.scene.SwitchAndSetPage2;
 
 public class ConcreteDecoratorSendRequest2 extends Decorator {
 
@@ -18,9 +18,11 @@ public class ConcreteDecoratorSendRequest2 extends Decorator {
     private EventBean2 eventBean;
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
     private String toWrite;
+    private JoinEventAppController joinEventAppController;
 
-    public ConcreteDecoratorSendRequest2(Component component, EventBean2 eventBean) {
+    public ConcreteDecoratorSendRequest2(Component component, EventBean2 eventBean, JoinEventAppController joinEventAppController) {
         super(component);
+        this.joinEventAppController = joinEventAppController;
         this.userBean = new UserBean2(Session.getInstance().getUser());
         this.eventBean = eventBean;
     }
@@ -37,11 +39,8 @@ public class ConcreteDecoratorSendRequest2 extends Decorator {
 
     private void sendRequest(ActionEvent actionEvent){
 
-        JoinEventAppController controller;
-
         try {
-            controller = new JoinEventAppController();
-            controller.sendRequest(this.userBean, eventBean);
+            joinEventAppController.sendRequest(this.userBean, eventBean);
             switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
         } catch (SystemException e){
             ErrorDialog.getInstance().handleException(e);

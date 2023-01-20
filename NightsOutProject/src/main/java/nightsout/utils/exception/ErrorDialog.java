@@ -1,6 +1,8 @@
 package nightsout.utils.exception;
 
 import nightsout.utils.exception.myexception.SystemException;
+import nightsout.utils.factory.Factory;
+import nightsout.utils.factory.MyDialogBox;
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -13,6 +15,7 @@ public class ErrorDialog {
     }
 
     private static ErrorDialog instance = null;
+    private Factory factory = new Factory();
 
     public static ErrorDialog getInstance() {
         if (instance == null) {
@@ -22,21 +25,21 @@ public class ErrorDialog {
     }
 
     public void handleException(Exception e) {
-        CreateNotification createNotification = new CreateNotification();
         if (e instanceof SQLException) {
             SystemException exception = new SystemException();
             exception.initCause(e);
             ErrorDialog.getInstance().handleException(exception);
             e.printStackTrace();
         } else if (e instanceof IOException || e instanceof JSONException || e instanceof ClassNotFoundException) {
-
             // Eccezioni gestite solo parzialmente
             SystemException exception = new SystemException();
             exception.initCause(e);
-            createNotification.createNotification(exception);
+            MyDialogBox myDialogBox = factory.createMyDialogBox(exception);
+            myDialogBox.useMyDialogBox(exception);
             e.printStackTrace();
-        }else {
-            createNotification.createNotification(e);
+        } else {
+            MyDialogBox myDialogBox = factory.createMyDialogBox(e);
+            myDialogBox.useMyDialogBox(e);
             e.printStackTrace();
         }
     }

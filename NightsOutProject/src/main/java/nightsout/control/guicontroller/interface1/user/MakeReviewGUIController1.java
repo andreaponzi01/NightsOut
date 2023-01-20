@@ -12,7 +12,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 public class MakeReviewGUIController1 {
 
@@ -23,26 +23,23 @@ public class MakeReviewGUIController1 {
     private Label labelEventName;
     @FXML
     private TextArea textAreaReview;
+    private ManageReviewAppController manageReviewAppController;
 
-    public MakeReviewGUIController1() {
-        // ignored
-    }
+    public void setAll(EventBean1 eventBean1, ManageReviewAppController manageReviewAppController) {
 
-    public void setAll(EventBean1 eventBean1) {
         this.userBean1 = new UserBean1(Session.getInstance().getUser());
+        this.manageReviewAppController = manageReviewAppController;
         this.eventBean1 = eventBean1;
         this.labelEventName.setText(eventBean1.getName());
     }
     public void createReview(ActionEvent actionEvent) {
 
-        ManageReviewAppController controller;
         try {
-            controller = new ManageReviewAppController();
             ReviewBean reviewBean= new ReviewBean();
             reviewBean.setComment(textAreaReview.getText());
             reviewBean.setIdUser(userBean1.getId());
             reviewBean.setIdEvent(eventBean1.getIdEvent());
-            controller.createEventReview(reviewBean);
+            manageReviewAppController.createEventReview(reviewBean);
             switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
         } catch (SystemException | EmptyInputException e) {
             ErrorDialog.getInstance().handleException(e);

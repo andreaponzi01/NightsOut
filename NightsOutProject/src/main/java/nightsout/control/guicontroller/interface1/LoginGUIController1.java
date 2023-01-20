@@ -2,7 +2,6 @@ package nightsout.control.guicontroller.interface1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -11,7 +10,7 @@ import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
-import nightsout.utils.scene.switchpage.SwitchPage;
+import nightsout.utils.scene.SwitchPage;
 
 import java.util.Objects;
 
