@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import com.dlsc.gmapsfx.GoogleMapView?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.EventPageGUIController2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface2.EventPageGUIController2">
    <children>
       <fx:include source="MenuClubOwner2.fxml" />
       <AnchorPane layoutX="260.0" layoutY="140.0" prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">

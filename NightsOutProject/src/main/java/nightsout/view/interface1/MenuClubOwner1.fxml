@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.clubowner.MenuClubOwnerGUIController1">
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface1.clubowner.MenuClubOwnerGUIController1">
    <children>
       <Label fx:id="usernameLabel" layoutX="723.0" layoutY="24.0" prefHeight="40.0" prefWidth="181.0" text="Label" textFill="WHITE" AnchorPane.leftAnchor="723.0" AnchorPane.topAnchor="24.0">
          <font>

@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1">
+<AnchorPane prefHeight="150.0" prefWidth="550.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1">
    <children>
       <Label layoutX="29.0" layoutY="8.0" prefHeight="21.0" prefWidth="69.0" text="User:" textFill="#200f54" AnchorPane.leftAnchor="26.0">
          <font>

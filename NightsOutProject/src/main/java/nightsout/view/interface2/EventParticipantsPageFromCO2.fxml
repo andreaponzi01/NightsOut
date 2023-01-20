@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.EventParticipantsGUIController2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface2.EventParticipantsGUIController2">
    <children>
       <fx:include source="MenuClubOwner2.fxml" />
       <AnchorPane layoutX="239.0" layoutY="8.0" prefHeight="632.0" prefWidth="791.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">

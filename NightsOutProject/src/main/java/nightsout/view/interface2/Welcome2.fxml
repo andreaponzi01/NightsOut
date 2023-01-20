@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg2" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.WelcomeGUIController2">
+<AnchorPane id="bg2" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface2.WelcomeGUIController2">
    <children>
       <Button layoutX="910.0" layoutY="555.0" onAction="#switchInterface" prefHeight="70.0" prefWidth="103.0" style="-fx-background-color: white; -fx-background-radius: 100;" styleClass="zoom" text="Switch " textFill="#3c00ff">
          <font>

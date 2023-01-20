@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.user.SubscriptionVipPageGUIController2">
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface2.user.SubscriptionVipPageGUIController2">
    <children>
       <fx:include source="MenuUser2.fxml" />
       <AnchorPane layoutX="417.0" layoutY="144.0" prefHeight="362.0" prefWidth="456.0" style="-fx-background-color: white; -fx-border-width: 5; -fx-border-color: black; -fx-background-radius: 28;" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="144.0">
