@@ -11,8 +11,16 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class MySqlConnection {
-    private static Connection connection;
-    private Trigger trigger = new Trigger();
+
+    private static MySqlConnection instance;
+
+    public static MySqlConnection getInstance() {
+        if (instance == null)
+            instance = new MySqlConnection();
+        return instance;
+    }
+
+    private Connection connection;
 
     public Connection connect() throws SystemException {
 
@@ -36,10 +44,10 @@ public class MySqlConnection {
                 connection = DriverManager.getConnection(dbUrl, user, pass);
             }
         } catch (SQLException e) {
+            Trigger trigger = new Trigger();
             trigger.throwDBConnectionFailedException(e);
         } catch (ClassNotFoundException | IOException e) {
-            SystemException ex = new SystemException();
-            throw ex;
+            throw new SystemException();
         }
         return connection;
     }

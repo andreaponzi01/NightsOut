@@ -6,7 +6,7 @@ import javafx.scene.text.FontWeight;
 
 public class ConcreteDecoratorDeclined extends Decorator {
 
-    String toWrite;
+    private String toWrite;
 
     public ConcreteDecoratorDeclined(Component component) { super(component); }
 

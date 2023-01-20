@@ -31,7 +31,6 @@ public class MenuUserGUIController1  implements Initializable {
     private Label usernameLabel;
     @FXML
     private Circle circleProfile;
-    private MySqlConnection mySqlConnection = new MySqlConnection();
 
 
     @Override
@@ -42,20 +41,20 @@ public class MenuUserGUIController1  implements Initializable {
         this.userBean1 = new UserBean1(Session.getInstance().getUser());
         this.usernameLabel.setText(userBean1.getUsername());
     }
-    @FXML
-    private void goToSubscriptionPage(ActionEvent actionEvent) {
+
+    public void goToCheckRequestsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/CheckPendingRequestsPage1.fxml");}
+
+    public void goToSubscriptionPage(ActionEvent actionEvent) {
 
         if (userBean1.getVip())
             switchPage.replaceScene(actionEvent,"/SubscriptionedVipPage1.fxml");
         else
             switchPage.replaceScene(actionEvent,"/SubscriptionVipPage1.fxml");
     }
-    @FXML
-    private void goToSearchPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/SearchPage1.fxml");}
-    @FXML
-    private void goToCheckRequestsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/CheckPendingRequestsPage1.fxml");}
-    @FXML
-    private void logout(ActionEvent actionEvent) {
+
+    public void goToSearchPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/SearchPage1.fxml");}
+
+    public void logout(ActionEvent actionEvent) {
 
         var alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
@@ -65,7 +64,7 @@ public class MenuUserGUIController1  implements Initializable {
         try {
             if (alert.showAndWait().get() == ButtonType.OK) {
                 switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
-                mySqlConnection.closeConnection();
+                MySqlConnection.getInstance().closeConnection();
                 Session.getInstance().deleteSession();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));

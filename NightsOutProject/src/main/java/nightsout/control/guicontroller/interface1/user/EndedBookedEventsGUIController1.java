@@ -34,17 +34,14 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        System.out.println("\n\n\nprova1");
         ManageReviewAppController controller;
         this.userBean1 = new UserBean1(Session.getInstance().getUser());
         try {
             controller = new ManageReviewAppController();
-            System.out.println("\n\n\nprova2");
             controller.eventsToReview(this, userBean1.getId());
 
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
-            e.printStackTrace();
         }
     }
 
@@ -57,7 +54,6 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
         ReviewBean reviewBean=null;
-        System.out.println("\n\n\nprova3");
         if(ob instanceof EventBean eBean) {
             try {
                 reviewBean = manageReviewAppController.getReviewByIdEventAndIdUser(userBean1.getId(), eBean.getIdEvent());
@@ -74,11 +70,9 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
                 }
 
                 this.listViewEvents.getItems().add(pane);
-                System.out.println("\n\n\nprova4");
             } catch (SystemException | IOException e) {
                 ErrorDialog.getInstance().handleException(e);
             }
         }
-        System.out.println("\n\n\nprova5");
     }
 }

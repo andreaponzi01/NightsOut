@@ -38,7 +38,28 @@ public class MenuClubOwnerGUIController2 implements Initializable {
     private Circle circleProfile;
 
     private SwitchPage switchPage = new SwitchPage();
-    private MySqlConnection mySqlConnection = new MySqlConnection();
+
+    @FXML
+    private void logout(ActionEvent actionEvent) {
+
+        var alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("You're about to logout!");
+        alert.setContentText("Are you sure you want to logout?");
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            try {
+                switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
+                MySqlConnection.getInstance().closeConnection();
+                Session.getInstance().deleteSession();
+                FileUtils.cleanDirectory(new File("eventImgs"));
+                FileUtils.cleanDirectory(new File("profileImgs"));
+            } catch (SQLException | IOException e) {
+                SystemException ex = new SystemException();
+                ex.initCause(e);
+                ErrorDialog.getInstance().handleException(ex);
+            }
+        }
+    }
 
 
     @Override
@@ -59,25 +80,5 @@ public class MenuClubOwnerGUIController2 implements Initializable {
     public void goToManageEventsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent, "/ManageEventPage2.fxml");}
     @FXML
     public void goToCommunityPage(ActionEvent actionEvent){switchPage.replaceScene(actionEvent, "/ReviewsAndMakeResponsePage2.fxml");}
-    @FXML
-    private void logout(ActionEvent actionEvent) {
 
-        var alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to logout!");
-        alert.setContentText("Are you sure you want to logout?");
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            try {
-                switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
-                mySqlConnection.closeConnection();
-                Session.getInstance().deleteSession();
-                FileUtils.cleanDirectory(new File("eventImgs"));
-                FileUtils.cleanDirectory(new File("profileImgs"));
-            } catch (SQLException | IOException e) {
-                SystemException ex = new SystemException();
-                ex.initCause(e);
-                ErrorDialog.getInstance().handleException(ex);
-            }
-        }
-    }
 }

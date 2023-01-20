@@ -37,6 +37,15 @@ public class ConcreteDecoratorDelete2 extends Decorator {
         myButton.setStyle("-fx-background-color: #d00000;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
         myButton.setOnAction((ActionEvent ae) -> deleteEvent(ae));
     }
+
+    @Override
+    public Button getButton() {
+        Button myButton = super.getButton();
+        this.toWrite = "Delete";
+        this.applyDecorationDelete(myButton);
+        return myButton;
+    }
+
     private void deleteEvent(ActionEvent ae) {
 
         Query query;
@@ -58,14 +67,6 @@ public class ConcreteDecoratorDelete2 extends Decorator {
                 ErrorDialog.getInstance().handleException(e);
             }
         }
-    }
-
-    @Override
-    public Button getButton() {
-        Button myButton = super.getButton();
-        this.toWrite = "Delete";
-        this.applyDecorationDelete(myButton);
-        return myButton;
     }
 
 }

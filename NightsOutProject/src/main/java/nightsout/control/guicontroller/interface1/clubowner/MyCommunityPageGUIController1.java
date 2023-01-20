@@ -28,18 +28,6 @@ public class MyCommunityPageGUIController1 implements Observer, Initializable {
     private ListView listView;
     private SwitchPage switchPage = new SwitchPage();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        ClubOwnerBean1 clubOwnerBean1 = new ClubOwnerBean1(Session.getInstance().getClubOwner());
-        CommunityEngineering communityEngineering;
-        try {
-            communityEngineering = new CommunityEngineering();
-            communityEngineering.eventReviews(this, clubOwnerBean1.getId());
-        } catch (SystemException e) {
-            ErrorDialog.getInstance().handleException(e);
-        }
-    }
     @FXML
     public void backToReviewsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
 
@@ -72,4 +60,18 @@ public class MyCommunityPageGUIController1 implements Observer, Initializable {
             }
         }
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ClubOwnerBean1 clubOwnerBean1 = new ClubOwnerBean1(Session.getInstance().getClubOwner());
+        CommunityEngineering communityEngineering;
+        try {
+            communityEngineering = new CommunityEngineering();
+            communityEngineering.eventReviews(this, clubOwnerBean1.getId());
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
 }

@@ -56,18 +56,6 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
         CreatedEventsEngineering createdEventsEngineering = new CreatedEventsEngineering();
         createdEventsEngineering.createdEvents(this, clubOwnerBean1.getId());
     }
-    @FXML
-    public void goToCommunity(ActionEvent actionEvent) {
-
-        try {
-            if(Session.getInstance().checkInstanceType().equalsIgnoreCase("ClubOwner"))
-                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
-            else
-                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
-        } catch (SystemException e) {
-            ErrorDialog.getInstance().handleException(e);
-        }
-    }
 
     @Override
     public void update(Object ob) {
@@ -85,6 +73,21 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
             }
         }
     }
+
+    @FXML
+    public void goToCommunity(ActionEvent actionEvent) {
+
+        try {
+            if(Session.getInstance().checkInstanceType().equalsIgnoreCase("ClubOwner"))
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
+            else
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
+
 }
 
 

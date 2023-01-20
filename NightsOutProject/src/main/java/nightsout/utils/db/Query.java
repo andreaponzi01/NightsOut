@@ -15,16 +15,14 @@ import java.util.List;
 
 public class Query {
 
-    private  final String PATH_PROFILE_IMGS = "profileImgs/";
-    private  final String PATH_EVENTS_IMGS = "eventImgs/";
-
-    MySqlConnection mySqlConnection = new MySqlConnection();
+    private static final String PATHPROFILEIMGS = "profileImgs/";
+    private static final String PATHEVENTSIMGS = "eventImgs/";
     ConverterToFile converterToFile = new ConverterToFile();
 
     public boolean searchUserInLogged(CredentialsModel credentialsModel) throws SystemException {
         String query = "SELECT * FROM Credentials WHERE password = ? and username = ? and type = ?";
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)){
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)){
             preparedStatement.setString(1, credentialsModel.getPassword());
             preparedStatement.setString(2, credentialsModel.getUsername());
             preparedStatement.setString(3, credentialsModel.getType());
@@ -41,7 +39,7 @@ public class Query {
     public UserModel searchUserByUsername(String username) throws SystemException {
         String query = "SELECT * FROM Users where username = ?;";
         UserModel userModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)){
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)){
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
@@ -59,7 +57,7 @@ public class Query {
             userModel.setBirthday(rs.getDate(5).toLocalDate());
 
             InputStream inputStream = (rs.getBinaryStream(3));
-            String filePath = PATH_PROFILE_IMGS + username + "pic" + ".png";
+            String filePath = PATHPROFILEIMGS + username + "pic" + ".png";
             File file = new File(filePath);
             converterToFile.fromInputStreamToFile(inputStream, file);
             userModel.setProfileImg(file);
@@ -74,7 +72,7 @@ public class Query {
     public ClubOwnerModel searchClubOwnerByUsername(String username) throws SystemException {
         String query = "SELECT * FROM ClubOwners where username = ?;";
         ClubOwnerModel clubOwnerModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
@@ -90,7 +88,7 @@ public class Query {
             clubOwnerModel.setDiscountVIP(rs.getInt(8));
 
             InputStream inputStream = (rs.getBinaryStream(3));
-            String filePath = PATH_PROFILE_IMGS + username + "pic" + ".png";
+            String filePath = PATHPROFILEIMGS + username + "pic" + ".png";
             File file = new File(filePath);
             converterToFile.fromInputStreamToFile(inputStream, file);
             clubOwnerModel.setProfileImg(file);
@@ -108,7 +106,7 @@ public class Query {
         List<UserModel> list = null;
         UserModel userModel;
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setString(1, username + "%");
             ResultSet rs = preparedStatement.executeQuery();
@@ -131,7 +129,7 @@ public class Query {
 
                 InputStream in = (rs.getBinaryStream(3));
                 // Modificata
-                String filePath = PATH_PROFILE_IMGS + userModel.getUsername() + "pic" + ".png";
+                String filePath = PATHPROFILEIMGS + userModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(in, file);
                 userModel.setProfileImg(file);
@@ -151,7 +149,7 @@ public class Query {
     public UserModel searchUsersByIdUser(int idUser) throws SystemException {
         String query = "SELECT * FROM Users where idUser = ?;";
         UserModel userModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, idUser);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -169,7 +167,7 @@ public class Query {
             userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
             userModel.setBirthday(rs.getDate(5).toLocalDate());
             InputStream inputStream = (rs.getBinaryStream(3));
-            String filePath = PATH_PROFILE_IMGS + userModel.getUsername() + "pic" + ".png";
+            String filePath = PATHPROFILEIMGS + userModel.getUsername() + "pic" + ".png";
             File file = new File(filePath);
             converterToFile.fromInputStreamToFile(inputStream, file);
             userModel.setProfileImg(file);
@@ -185,7 +183,7 @@ public class Query {
         String query = "SELECT * FROM ClubOwners where username like ?;";
         List<ClubOwnerModel> list = null;
         ClubOwnerModel clubOwnerModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setString(1, username + "%");
 
@@ -206,7 +204,7 @@ public class Query {
                 clubOwnerModel.setDiscountVIP(rs.getInt(8));
                 InputStream inputStream = (rs.getBinaryStream(3));
                 // Modificata
-                String filePath = PATH_PROFILE_IMGS + clubOwnerModel.getUsername() + "pic" + ".png";
+                String filePath = PATHPROFILEIMGS + clubOwnerModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(inputStream, file);
                 clubOwnerModel.setProfileImg(file);
@@ -226,7 +224,7 @@ public class Query {
         String query = "SELECT * FROM Events where name like ?;";
         List<EventModel> list = null;
         EventModel eventModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setString(1, name + "%");
             ResultSet rs = preparedStatement.executeQuery();
@@ -248,7 +246,7 @@ public class Query {
                 eventModel.setDescription(rs.getString(11));
 
                 InputStream inputStream = (rs.getBinaryStream(9));
-                String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
+                String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
@@ -269,7 +267,7 @@ public class Query {
         String query = "SELECT * FROM Requests where user = ? and event = ?;";
         RequestModel requestModel = null;
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, idUser);
             preparedStatement.setInt(2, idEvent);
             ResultSet rs = preparedStatement.executeQuery();
@@ -299,7 +297,7 @@ public class Query {
         RequestModel requestModel = null;
         String query = "SELECT R.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent WHERE E.clubOwner = ? and R.status='pending';";
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
 
             preparedStatement.setInt(1, idClubOwner);
@@ -333,7 +331,7 @@ public class Query {
         RequestModel requestModel = null;
         String query = "SELECT * FROM Requests WHERE user = ?;";
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
 
             preparedStatement.setInt(1, idUser);
@@ -365,7 +363,7 @@ public class Query {
 
         ClubOwnerModel clubOwnerModel = null;
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, idClubOwner);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
@@ -380,7 +378,7 @@ public class Query {
             clubOwnerModel.setDiscountVIP(rs.getInt(8));
 
             InputStream inputStream = (rs.getBinaryStream(3));
-            String filePath = PATH_PROFILE_IMGS + clubOwnerModel.getUsername() + "pic" + ".png";
+            String filePath = PATHPROFILEIMGS + clubOwnerModel.getUsername() + "pic" + ".png";
             File file = new File(filePath);
             converterToFile.fromInputStreamToFile(inputStream, file);
             clubOwnerModel.setProfileImg(file);
@@ -397,7 +395,7 @@ public class Query {
 
         String query = "INSERT INTO ClubOwners (username, email, city, address, clubName, VIPdiscount, `profileImg` ) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setString(1,clubOwnerModel.getUsername());
             preparedStatement.setString(2, clubOwnerModel.getEmail());
             preparedStatement.setString(3 , clubOwnerModel.getCity());
@@ -417,7 +415,7 @@ public class Query {
 
         String query = "INSERT INTO `Events` (`clubOwner`, `price`, `name`, `date`, `duration`, `time`, `description`, `img`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1,eventModel.getIdClubOwner());
             preparedStatement.setDouble(2, eventModel.getPrice());
             preparedStatement.setString(3 , eventModel.getName());
@@ -439,7 +437,7 @@ public class Query {
 
         String query = "INSERT INTO `Users`(`username`, `email`, `name`, `surname`, `birthday`, `gender`, `profileImg` ) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setString(1,userModel.getUsername());
             preparedStatement.setString(2, userModel.getEmail());
             preparedStatement.setString(3 , userModel.getName());
@@ -461,7 +459,7 @@ public class Query {
 
         List<EventModel> list = null;
         EventModel eventModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setInt(1, idUser);
             ResultSet rs = preparedStatement.executeQuery();
@@ -483,7 +481,7 @@ public class Query {
                 eventModel.setDescription(rs.getString(11));
 
                 InputStream inputStream = (rs.getBinaryStream(9));
-                String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
+                String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
@@ -507,7 +505,7 @@ public class Query {
         List<EventModel> list = null;
         EventModel eventModel = null;
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setInt(1, idClubOwner);
 
@@ -530,7 +528,7 @@ public class Query {
                 eventModel.setDescription(rs.getString(11));
 
                 InputStream inputStream = (rs.getBinaryStream(9));
-                String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
+                String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
@@ -552,7 +550,7 @@ public class Query {
         List<UserModel> list = null;
         UserModel userModel = null;
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setInt(1, idEvent);
             preparedStatement.setString(2, "accepted");
@@ -576,7 +574,7 @@ public class Query {
                 userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
 
                 InputStream in = (rs.getBinaryStream(3));
-                String filePath = PATH_PROFILE_IMGS+userModel.getUsername()+"pic"+".png";
+                String filePath = PATHPROFILEIMGS +userModel.getUsername()+"pic"+".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(in, file);
                 userModel.setProfileImg(file);
@@ -599,7 +597,7 @@ public class Query {
         List<EventModel> list = null;
         EventModel eventModel = null;
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setInt(1, idUser);
 
@@ -622,7 +620,7 @@ public class Query {
                 eventModel.setDescription(rs.getString(11));
 
                 InputStream inputStream = (rs.getBinaryStream(9));
-                String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
+                String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
@@ -641,7 +639,7 @@ public class Query {
 
     public void insertEventReview(ReviewModel reviewModel) throws SystemException {
         String query = "INSERT INTO Reviews (sender, reviewText, event) VALUES (?, ?, ?);";
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1,reviewModel.getIdUser());
             preparedStatement.setString(2 , reviewModel.getComment());
             preparedStatement.setInt(3, reviewModel.getIdEvent());
@@ -658,7 +656,7 @@ public class Query {
         List<ReviewModel> list = null;
         ReviewModel reviewModel = null;
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setInt(1, idClubOwner);
             preparedStatement.setInt(2, idClubOwner);
@@ -692,7 +690,7 @@ public class Query {
         String query = "SELECT R.* FROM Reviews as R JOIN Events as E ON R.event = E.idEvent JOIN ClubOwners as C ON E.clubOwner = C.idClubOwner WHERE C.idClubOwner = ?;";
         List<ReviewModel> list = null;
         ReviewModel reviewModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             list = new ArrayList<>();
             preparedStatement.setInt(1, idClubOwner);
 
@@ -723,7 +721,7 @@ public class Query {
 
     public void insertResponse(ResponseModel responseModel) throws SystemException {
         String query = "INSERT INTO Responses (clubOwner, review, responseText) VALUES (?, ?, ?);";
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1,responseModel.getIdClubOwner());
             preparedStatement.setInt(2 , responseModel.getReview());
             preparedStatement.setString(3, responseModel.getResponse());
@@ -737,7 +735,7 @@ public class Query {
     public EventModel searchEventByIdEvent(int idEvent) throws SystemException {
         String query = "SELECT * FROM Events where idEvent = ?;";
         EventModel eventModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, idEvent);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -754,7 +752,7 @@ public class Query {
             eventModel.setDescription(rs.getString(11));
 
             InputStream inputStream = (rs.getBinaryStream(9));
-            String filePath = PATH_EVENTS_IMGS + eventModel.getName() + "pic" + ".png";
+            String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
             File file = new File(filePath);
             converterToFile.fromInputStreamToFile(inputStream, file);
             eventModel.setImg(file);
@@ -770,7 +768,7 @@ public class Query {
 
         String query = "SELECT * FROM Responses where review = ?;";
         ResponseModel responseModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, idReview);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -793,7 +791,7 @@ public class Query {
         String query = "SELECT R.* FROM Reviews as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.sender = U.idUser WHERE U.idUser = ? and E.idEvent= ?;";
         //DA FARE QUERY
         ReviewModel reviewModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, idUser);
             preparedStatement.setInt(2, idEvent);
 
@@ -821,7 +819,7 @@ public class Query {
     public void deleteEventById(int idEvent) throws SystemException {
         String query = "DELETE FROM `Events` WHERE `idEvent` = ?";
 
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, idEvent);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -832,7 +830,7 @@ public class Query {
     public ClubOwnerModel searchClubAddressByEventId(int idEvent) throws SystemException {
         String query = "SELECT username, address, city FROM ClubOwners JOIN Events WHERE clubOwner = idClubOwner AND idEvent = ?;";
         ClubOwnerModel clubOwnerModel = null;
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, idEvent);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -856,7 +854,7 @@ public class Query {
     public boolean checkUsernameAlreadyTaken(String username) throws SystemException {
 
         String query = "SELECT username FROM Credentials WHERE username = ?";
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)){
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)){
             preparedStatement.setString(1, username);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -870,7 +868,7 @@ public class Query {
     public void updateRequest(int id, String status) throws SystemException {
 
         String query = "UPDATE `Requests` SET `status` = ? WHERE `idRequest` = ?";
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setString(1, status);
             preparedStatement.setInt(2, id);
 
@@ -883,7 +881,7 @@ public class Query {
     public void insertRequest(int id, int idEvent) throws SystemException {
 
         String query = "INSERT INTO `Requests` (`user`, `event`, `status`) VALUES (?, ?, ?)";
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             preparedStatement.setInt(2, idEvent);
             preparedStatement.setString(3, "pending");
@@ -896,7 +894,7 @@ public class Query {
 
     public void subscriptionVipUser(String username) throws SystemException {
         String query = "UPDATE `Users` SET `VIP` = '1', creationDateVIP=CURRENT_DATE WHERE (`username` = ?)";
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setString(1, username);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -907,7 +905,7 @@ public class Query {
     public void insertCredentials(CredentialsModel credentialsModel) throws SystemException {
 
         String query = "INSERT INTO `Credentials` (`Username`, `Password`, `Type`) VALUES (?, ?, ?);";
-        try (PreparedStatement preparedStatement = mySqlConnection.connect().prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setString(1, credentialsModel.getUsername());
             preparedStatement.setString(2, credentialsModel.getPassword());
             preparedStatement.setString(3, credentialsModel.getType());

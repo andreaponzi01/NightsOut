@@ -29,18 +29,15 @@ public class ErrorDialog {
             SystemException exception = new SystemException();
             exception.initCause(e);
             ErrorDialog.getInstance().handleException(exception);
-            e.printStackTrace();
         } else if (e instanceof IOException || e instanceof JSONException || e instanceof ClassNotFoundException) {
             // Eccezioni gestite solo parzialmente
             SystemException exception = new SystemException();
             exception.initCause(e);
             MyDialogBox myDialogBox = factory.createMyDialogBox(exception);
             myDialogBox.useMyDialogBox(exception);
-            e.printStackTrace();
         } else {
             MyDialogBox myDialogBox = factory.createMyDialogBox(e);
             myDialogBox.useMyDialogBox(e);
-            e.printStackTrace();
         }
     }
 }

@@ -43,8 +43,6 @@ public class MenuUserGUIController2 implements Initializable {
     @FXML
     private Circle circleProfile;
     private SwitchPage switchPage = new SwitchPage();
-    private MySqlConnection mySqlConnection = new MySqlConnection();
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -86,7 +84,7 @@ public class MenuUserGUIController2 implements Initializable {
         try {
             if (alert.showAndWait().get() == ButtonType.OK) {
                 switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
-                mySqlConnection.closeConnection();
+                MySqlConnection.getInstance().closeConnection();
                 Session.getInstance().deleteSession();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));

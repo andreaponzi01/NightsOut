@@ -27,16 +27,6 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
         this.eventBean = eventBean;
     }
 
-    protected void applyDecorationSendRequest(Button myButton) {
-        myButton.setText(toWrite);
-        myButton.setMinHeight(65);
-        myButton.setMinWidth(125);
-        Font font = Font.font("Arial", FontWeight.BOLD, 25);
-        myButton.setFont(font);
-        myButton.setStyle("-fx-background-color: #b3b3ff;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
-        myButton.setOnAction((ActionEvent ae) -> sendRequest(ae));
-    }
-
     private void sendRequest(ActionEvent actionEvent){
 
         try {
@@ -53,6 +43,16 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
         this.toWrite = "Send Request";
         this.applyDecorationSendRequest(myButton);
         return myButton;
+    }
+
+    protected void applyDecorationSendRequest(Button myButton) {
+        myButton.setText(toWrite);
+        myButton.setMinHeight(65);
+        myButton.setMinWidth(125);
+        Font font = Font.font("Arial", FontWeight.BOLD, 25);
+        myButton.setFont(font);
+        myButton.setStyle("-fx-background-color: #b3b3ff;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
+        myButton.setOnAction((ActionEvent ae) -> sendRequest(ae));
     }
 
 }

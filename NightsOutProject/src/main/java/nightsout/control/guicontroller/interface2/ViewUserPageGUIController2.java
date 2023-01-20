@@ -25,11 +25,11 @@ public class ViewUserPageGUIController2 implements Observer {
     @FXML
     protected Label labelUsername;
     @FXML
-    protected Label labelName;
+    protected Label labelVip;
     @FXML
     protected Label labelBirthday;
     @FXML
-    protected Label labelVip;
+    protected Label labelName;
     @FXML
     protected Label labelGender;
     @FXML
@@ -40,6 +40,23 @@ public class ViewUserPageGUIController2 implements Observer {
     private ListView listViewNextEvents;
     @FXML
     private ImageView imageViewProfile;
+
+    @Override
+    public void update(Object ob) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Pane pane = null;
+        if(ob instanceof EventBean eBean) {
+            try {
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
+                EventItemGUIController2 controller = fxmlLoader.getController();
+                controller.setAll(new EventBean2(eBean));
+                this.listViewNextEvents.getItems().add(pane);
+            } catch (IOException e) {
+                ErrorDialog.getInstance().handleException(e);
+            }
+        }
+    }
 
     public void setAll(UserBean2 userBean) {
 
@@ -62,20 +79,4 @@ public class ViewUserPageGUIController2 implements Observer {
         }
     }
 
-    @Override
-    public void update(Object ob) {
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        Pane pane = null;
-        if(ob instanceof EventBean eBean) {
-            try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
-                EventItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean2(eBean));
-                this.listViewNextEvents.getItems().add(pane);
-            } catch (IOException e) {
-                ErrorDialog.getInstance().handleException(e);
-            }
-        }
-    }
 }

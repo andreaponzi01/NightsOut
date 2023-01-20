@@ -6,14 +6,12 @@ import javafx.scene.text.FontWeight;
 
 public class ConcreteDecoratorAccepted extends Decorator {
 
-    String toWrite;
-
-    public ConcreteDecoratorAccepted(Component component) { super(component); }
+    private  String toWrite;
 
     protected void applyDecorationAccepted(Button myButton) {
-        myButton.setText(toWrite);
         myButton.setMinHeight(65);
         myButton.setMinWidth(125);
+        myButton.setText(toWrite);
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
         myButton.setStyle("-fx-background-color: #32a844;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
@@ -21,10 +19,12 @@ public class ConcreteDecoratorAccepted extends Decorator {
 
     @Override
     public Button getButton() {
-        Button myButton = super.getButton();
         this.toWrite = "Accepted";
+        Button myButton = super.getButton();
         this.applyDecorationAccepted(myButton);
         return myButton;
     }
+
+    public ConcreteDecoratorAccepted(Component component) { super(component); }
 
 }

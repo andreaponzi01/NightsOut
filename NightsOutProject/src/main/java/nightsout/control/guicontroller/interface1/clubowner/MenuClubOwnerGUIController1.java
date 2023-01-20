@@ -33,7 +33,6 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     private ImageView imageViewProfile;
 
     private SwitchPage switchPage = new SwitchPage();
-    private MySqlConnection mySqlConnection = new MySqlConnection();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,7 +57,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
                 switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
-                mySqlConnection.closeConnection();
+                MySqlConnection.getInstance().closeConnection();
                 Session.getInstance().deleteSession();
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
