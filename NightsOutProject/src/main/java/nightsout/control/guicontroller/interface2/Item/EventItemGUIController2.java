@@ -5,11 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.Session;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.switchpage.SwitchAndSetPage2;
+import nightsout.utils.switchpage.SwitchAndSetPage2;
 
 public class EventItemGUIController2 {
 
@@ -20,8 +21,18 @@ public class EventItemGUIController2 {
     private ImageView imageViewProfilePic;
 
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
+    private JoinEventAppController joinEventAppController;
 
     public void setAll(EventBean2 eventBean) {
+
+        this.eventBean=eventBean;
+        labelEventName.setText(this.eventBean.getName());
+        imageViewProfilePic.setImage(new Image(this.eventBean.getImg().toURI().toString()));
+    }
+
+    public void setAll(EventBean2 eventBean, JoinEventAppController joinEventAppController) {
+
+        this.joinEventAppController = joinEventAppController;
         this.eventBean=eventBean;
         labelEventName.setText(this.eventBean.getName());
         imageViewProfilePic.setImage(new Image(this.eventBean.getImg().toURI().toString()));
@@ -31,7 +42,7 @@ public class EventItemGUIController2 {
         try {
             String type = Session.getInstance().checkInstanceType();
             if(type.equalsIgnoreCase("FREE")){
-                switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean);
+                switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml", eventBean, joinEventAppController);
             }
             else{
                 switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml", eventBean);

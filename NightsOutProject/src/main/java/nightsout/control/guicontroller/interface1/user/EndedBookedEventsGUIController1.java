@@ -17,7 +17,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,7 +46,13 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
     }
 
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
+    public void backToUserPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/UserPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 
     @Override
     public void update(Object ob) {

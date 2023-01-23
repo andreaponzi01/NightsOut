@@ -18,7 +18,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -88,6 +88,10 @@ public class SearchPageGUIController1 implements Observer {
     }
     @FXML
     public void backToUserPage(ActionEvent actionEvent) {
+        try {
         switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
     }
 }

@@ -6,14 +6,20 @@ import nightsout.control.appcontroller.SubscriptionVipAppController;
 import nightsout.utils.Session;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 public class SubscriptionVipPageGUIController1 {
 
     private SwitchPage switchPage = new SwitchPage();
 
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
+    public void backToUserPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 
     @FXML
     private void confirmSubscription(ActionEvent actionEvent) {

@@ -9,7 +9,7 @@ import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongCredentialsException;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 public class LoginUserGUIController2 {
 
@@ -38,8 +38,18 @@ public class LoginUserGUIController2 {
 
     @FXML
     private void goToRegisterPage(ActionEvent actionEvent) {
-        switchPage.replaceScene(actionEvent,"/RegisterUser2.fxml");
+        try {
+            switchPage.replaceScene(actionEvent, "/RegisterUser2.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
     }
     @FXML
-    protected void backToWelcomePage(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/Welcome2.fxml"); }
+    protected void backToWelcomePage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 }

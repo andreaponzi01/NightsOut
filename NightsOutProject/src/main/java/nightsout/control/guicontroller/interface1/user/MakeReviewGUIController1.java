@@ -12,7 +12,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 public class MakeReviewGUIController1 {
 
@@ -45,5 +45,11 @@ public class MakeReviewGUIController1 {
             ErrorDialog.getInstance().handleException(e);
         }
     }
-    public void backToEndedBookedEventsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/EndedBookedEventsPage1.fxml");}
+    public void backToEndedBookedEventsPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/EndedBookedEventsPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 }

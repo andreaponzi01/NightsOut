@@ -1,8 +1,7 @@
 package nightsout.utils.db;
 
 import nightsout.model.*;
-import nightsout.utils.ConverterToFile;
-import nightsout.utils.exception.ErrorDialog;
+import nightsout.utils.engineering.ConverterToFileEngineering;
 import nightsout.utils.exception.myexception.SystemException;
 
 import java.io.File;
@@ -17,12 +16,12 @@ public class Query {
 
     private static final String PATHPROFILEIMGS = "profileImgs/";
     private static final String PATHEVENTSIMGS = "eventImgs/";
-    ConverterToFile converterToFile = new ConverterToFile();
+    ConverterToFileEngineering converterToFile = new ConverterToFileEngineering();
 
     public boolean searchUserInLogged(CredentialsModel credentialsModel) throws SystemException {
         String query = "SELECT * FROM Credentials WHERE password = ? and username = ? and type = ?";
 
-        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)){
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setString(1, credentialsModel.getPassword());
             preparedStatement.setString(2, credentialsModel.getUsername());
             preparedStatement.setString(3, credentialsModel.getType());
@@ -30,16 +29,18 @@ public class Query {
             ResultSet rs = preparedStatement.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
 
-        return false;
+
     }
 
     public UserModel searchUserByUsername(String username) throws SystemException {
         String query = "SELECT * FROM Users where username = ?;";
         UserModel userModel = null;
-        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)){
+        try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
@@ -64,9 +65,10 @@ public class Query {
 
             return userModel;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return  userModel;
     }
 
     public ClubOwnerModel searchClubOwnerByUsername(String username) throws SystemException {
@@ -96,9 +98,10 @@ public class Query {
             return clubOwnerModel;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return clubOwnerModel;
     }
 
     public List<UserModel> searchUsersByUsername(String username) throws SystemException {
@@ -141,9 +144,10 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public UserModel searchUsersByIdUser(int idUser) throws SystemException {
@@ -174,9 +178,10 @@ public class Query {
 
             return userModel;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return userModel;
     }
 
     public List<ClubOwnerModel> searchClubOwnersByUsername(String username) throws SystemException {
@@ -215,9 +220,10 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public List<EventModel> searchEventsByName(String name) throws SystemException {
@@ -257,9 +263,10 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public RequestModel searchRequest(int idUser, int idEvent) throws SystemException {
@@ -286,9 +293,10 @@ public class Query {
             return requestModel;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return requestModel;
     }
 
     public List<RequestModel> searchRequestsByIdClubOwner(int idClubOwner) throws SystemException {
@@ -319,9 +327,10 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
 
@@ -353,9 +362,10 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public ClubOwnerModel searchClubOwnerById(int idClubOwner) throws SystemException {
@@ -386,9 +396,10 @@ public class Query {
             return clubOwnerModel;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return clubOwnerModel;
     }
 
     public void insertClubOwner(ClubOwnerModel clubOwnerModel) throws SystemException {
@@ -407,7 +418,9 @@ public class Query {
             preparedStatement.executeUpdate();
 
         } catch (SQLException | FileNotFoundException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -428,7 +441,10 @@ public class Query {
             preparedStatement.executeUpdate();
 
         } catch (SQLException | FileNotFoundException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -449,7 +465,10 @@ public class Query {
             preparedStatement.executeUpdate();
 
         } catch (SQLException | FileNotFoundException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -494,9 +513,10 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public List<EventModel> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
@@ -540,9 +560,10 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
     public List<UserModel> searchUsersByIdEvent(int idEvent) throws SystemException {
 
@@ -586,9 +607,10 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public List<EventModel>  searchEndedEventsByIdUser(int idUser) throws SystemException {
@@ -632,9 +654,10 @@ public class Query {
             return list;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public void insertEventReview(ReviewModel reviewModel) throws SystemException {
@@ -647,7 +670,9 @@ public class Query {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -681,9 +706,10 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public List<ReviewModel> searchAllReviewsByIdClubOwner(int idClubOwner) throws SystemException {
@@ -714,9 +740,10 @@ public class Query {
 
             return list;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return list;
     }
 
     public void insertResponse(ResponseModel responseModel) throws SystemException {
@@ -728,7 +755,9 @@ public class Query {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -759,9 +788,10 @@ public class Query {
             return eventModel;
 
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return eventModel;
     }
 
     public ResponseModel searchResponseByIdReview(int idReview) throws SystemException {
@@ -782,9 +812,10 @@ public class Query {
 
             return responseModel;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return responseModel;
     }
 
     public ReviewModel searchReviewByIdEventAndByIdUser(int idUser, int idEvent) throws SystemException {
@@ -811,9 +842,10 @@ public class Query {
 
             return reviewModel;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return reviewModel;
     }
 
     public void deleteEventById(int idEvent) throws SystemException {
@@ -823,7 +855,9 @@ public class Query {
             preparedStatement.setInt(1, idEvent);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -846,9 +880,10 @@ public class Query {
 
             return clubOwnerModel;
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return clubOwnerModel;
     }
 
     public boolean checkUsernameAlreadyTaken(String username) throws SystemException {
@@ -860,9 +895,10 @@ public class Query {
             ResultSet rs = preparedStatement.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
-        return true;
     }
 
     public void updateRequest(int id, String status) throws SystemException {
@@ -874,7 +910,9 @@ public class Query {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -888,7 +926,9 @@ public class Query {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -898,7 +938,9 @@ public class Query {
             preparedStatement.setString(1, username);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 
@@ -912,7 +954,9 @@ public class Query {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 }

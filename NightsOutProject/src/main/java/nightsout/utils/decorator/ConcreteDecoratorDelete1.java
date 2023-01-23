@@ -10,7 +10,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.engineering.EventPageEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 public class ConcreteDecoratorDelete1 extends Decorator {
 

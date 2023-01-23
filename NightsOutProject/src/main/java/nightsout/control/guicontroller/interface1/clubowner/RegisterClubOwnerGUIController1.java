@@ -9,8 +9,8 @@ import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.exception.myexception.WrongInputRangeException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
-import nightsout.utils.scene.SwitchAndSetPage1;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchAndSetPage1;
+import nightsout.utils.switchpage.SwitchPage;
 
 public class RegisterClubOwnerGUIController1 {
 
@@ -27,7 +27,14 @@ public class RegisterClubOwnerGUIController1 {
     private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
 
     @FXML
-    protected void backToChoice(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml"); }
+    protected void backToChoice(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
     @FXML
     protected void goToConcludeRegister(ActionEvent actionEvent) {
 

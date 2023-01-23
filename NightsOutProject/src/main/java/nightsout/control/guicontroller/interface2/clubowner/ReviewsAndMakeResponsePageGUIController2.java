@@ -13,7 +13,7 @@ import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +45,11 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
     }
 
     public void goToCommunity(ActionEvent actionEvent) {
+        try {
             switchPage.replaceScene(actionEvent,"/CommunityPage2.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
     }
 
     @Override

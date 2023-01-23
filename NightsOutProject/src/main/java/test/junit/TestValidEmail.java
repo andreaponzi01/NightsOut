@@ -1,6 +1,6 @@
 package test.junit;
 
-import nightsout.utils.CheckEmail;
+import nightsout.utils.engineering.CheckEmailEngineering;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -27,15 +27,15 @@ public class TestValidEmail {
         int case1 = 0;
         int case2 = 0;
 
-        CheckEmail checkEmail = new CheckEmail();
-        if(checkEmail.validate(email2)){
+        CheckEmailEngineering checkEmailEngineering = new CheckEmailEngineering();
+        if(checkEmailEngineering.validate(email2)){
             case2 = 1;
         }
 
         assertEquals(1, case2, 0); //Success
 
 
-        if(checkEmail.validate(email1)){
+        if(checkEmailEngineering.validate(email1)){
             case1 = 1;
         }
 

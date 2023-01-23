@@ -10,7 +10,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.engineering.MapEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchAndSetPage1;
+import nightsout.utils.switchpage.SwitchAndSetPage1;
 
 import java.net.URL;
 import java.util.ResourceBundle;

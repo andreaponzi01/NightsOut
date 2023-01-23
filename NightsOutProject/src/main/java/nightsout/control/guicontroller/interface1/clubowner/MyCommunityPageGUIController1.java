@@ -16,7 +16,7 @@ import nightsout.utils.engineering.CommunityEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +29,13 @@ public class MyCommunityPageGUIController1 implements Observer, Initializable {
     private SwitchPage switchPage = new SwitchPage();
 
     @FXML
-    public void backToReviewsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
+    public void backToReviewsPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/ReviewsCOPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 
     @Override
     public void update(Object ob) {

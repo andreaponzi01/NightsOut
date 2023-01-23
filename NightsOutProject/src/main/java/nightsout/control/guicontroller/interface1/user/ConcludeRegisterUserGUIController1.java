@@ -13,7 +13,7 @@ import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.*;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.File;
 
@@ -35,7 +35,14 @@ public class ConcludeRegisterUserGUIController1 {
         this.userBean1 = userBean1;
     }
     @FXML
-    protected void backToRegister(ActionEvent actionEvent) { switchPage.replaceScene(actionEvent, "/RegisterUser1.fxml"); }
+    protected void backToRegister(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/RegisterUser1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
     @FXML
     protected void goToWelcomePage(ActionEvent actionEvent) {
 

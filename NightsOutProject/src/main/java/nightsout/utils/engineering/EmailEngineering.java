@@ -1,4 +1,4 @@
-package nightsout.utils;
+package nightsout.utils.engineering;
 
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmailException;
@@ -8,13 +8,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class Email {
+public class EmailEngineering {
 
     Trigger trigger = new Trigger();
 
     public void sendEmail(String subject, String text) throws EmailException {
 
-        String recipient = Session.getInstance().getClubOwner().getEmail();
+        String recipient = nightsout.utils.Session.getInstance().getClubOwner().getEmail();
         String from = "ispwproject@virgilio.it";
         String host = "smtp.virgilio.it";
         // Proprietà di sistema

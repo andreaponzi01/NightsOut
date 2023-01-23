@@ -1,6 +1,6 @@
-package nightsout.utils;
+package nightsout.utils.engineering;
 
-public class CheckEmail {
+public class CheckEmailEngineering {
 
     public boolean validate(String email) {
         return email != null && !email.isEmpty() &&

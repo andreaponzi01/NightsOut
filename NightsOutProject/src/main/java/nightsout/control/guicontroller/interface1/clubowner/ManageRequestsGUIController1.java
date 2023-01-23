@@ -13,7 +13,7 @@ import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,5 +55,11 @@ public class ManageRequestsGUIController1 implements Observer, Initializable {
         }
     }
     @FXML
-    public void backToClubOwnerPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
+    public void backToClubOwnerPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 }

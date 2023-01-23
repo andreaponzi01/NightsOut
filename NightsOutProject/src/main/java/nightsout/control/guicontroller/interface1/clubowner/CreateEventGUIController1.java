@@ -17,7 +17,7 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.*;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.File;
 import java.net.URL;
@@ -51,7 +51,13 @@ public class CreateEventGUIController1 implements Initializable {
         this.clubOwnerBean1 = new ClubOwnerBean1(Session.getInstance().getClubOwner());
     }
     @FXML
-    private void backToWelcomePage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
+    private void backToWelcomePage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
     @FXML
     private void createEvent(ActionEvent actionEvent) {
 
@@ -70,7 +76,7 @@ public class CreateEventGUIController1 implements Initializable {
             controller.createEvent(eventBean1);
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
-                 WrongInputRangeException e) {
+                 WrongInputRangeException | CreateEventEmailException e) {
             ErrorDialog.getInstance().handleException(e);
         }
     }

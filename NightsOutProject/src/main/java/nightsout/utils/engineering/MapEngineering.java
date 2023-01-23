@@ -87,7 +87,9 @@ public class MapEngineering {
 
             http.disconnect();
         } catch (JSONException | IOException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
         return latlong;
     }

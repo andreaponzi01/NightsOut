@@ -34,12 +34,6 @@ public class Trigger {
         throw new BeforeDateException();
     }
 
-    public void throwEmailException(MessagingException e) throws EmailException {
-        EmailException exception = new EmailException();
-        exception.initCause(e);
-        throw exception;
-    }
-
     public void throwExceededRangeException(String field) throws WrongInputRangeException {
         throw new WrongInputRangeException(field);
     }
@@ -58,5 +52,16 @@ public class Trigger {
 
     public void throwGenderException() throws GenderException {
         throw new GenderException();
+    }
+    public void throwEmailException(MessagingException e) throws EmailException {
+        EmailException exception = new EmailException();
+        exception.initCause(e);
+        throw exception;
+    }
+
+    public void throwCreateEventEmailException(EmailException e) throws CreateEventEmailException {
+        CreateEventEmailException exception = new CreateEventEmailException();
+        exception.initCause(e.getCause());
+        throw exception;
     }
 }

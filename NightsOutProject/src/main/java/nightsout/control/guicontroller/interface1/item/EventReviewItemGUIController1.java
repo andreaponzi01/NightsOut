@@ -9,7 +9,7 @@ import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchAndSetPage1;
+import nightsout.utils.switchpage.SwitchAndSetPage1;
 
 public class EventReviewItemGUIController1 {
 
@@ -26,7 +26,7 @@ public class EventReviewItemGUIController1 {
         this.eventBean1 = eventBean1;
         this.manageReviewAppController = manageReviewAppController;
         this.labelEventName.setText(this.eventBean1.getName());
-        this.imageViewEvent.setImage(new Image(eventBean1.getImg().toURI().toString()));
+        this.imageViewEvent.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
     }
     @FXML
     private void goToEventPage(ActionEvent actionEvent) {

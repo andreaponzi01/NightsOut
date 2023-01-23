@@ -17,12 +17,9 @@ import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.CreatedEventsEngineering;
 import nightsout.utils.exception.ErrorDialog;
-import nightsout.utils.exception.myexception.BeforeDateException;
-import nightsout.utils.exception.myexception.EmptyInputException;
-import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.exception.myexception.WrongInputTypeException;
+import nightsout.utils.exception.myexception.*;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -80,7 +77,8 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
 
             switchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
 
-        } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException e) {
+        } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
+                 CreateEventEmailException e) {
             ErrorDialog.getInstance().handleException(e);
         }
 

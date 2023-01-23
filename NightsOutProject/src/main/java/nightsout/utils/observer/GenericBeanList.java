@@ -1,9 +1,6 @@
 package nightsout.utils.observer;
 
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.GenericBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.*;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package nightsout.utils.bean;
 
 import nightsout.control.appcontroller.RegisterAppController;
-import nightsout.utils.CheckEmail;
+import nightsout.utils.engineering.CheckEmailEngineering;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmailNotValidException;
 import nightsout.utils.exception.myexception.EmptyInputException;
@@ -43,8 +43,8 @@ public abstract class ProfileBean implements GenericBean {
     public void setEmail(String email) throws EmptyInputException, EmailNotValidException {
         if(email.isEmpty())
             trigger.throwEmptyInputException("email");
-        CheckEmail checkEmail = new CheckEmail();
-        boolean correctFormat = checkEmail.validate(email);
+        CheckEmailEngineering checkEmailEngineering = new CheckEmailEngineering();
+        boolean correctFormat = checkEmailEngineering.validate(email);
         if(correctFormat)
             this.email = email;
         else

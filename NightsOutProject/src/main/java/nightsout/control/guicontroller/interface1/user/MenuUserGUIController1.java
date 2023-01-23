@@ -14,7 +14,7 @@ import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -42,17 +42,33 @@ public class MenuUserGUIController1  implements Initializable {
         this.usernameLabel.setText(userBean1.getUsername());
     }
 
-    public void goToCheckRequestsPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/CheckPendingRequestsPage1.fxml");}
+    public void goToCheckRequestsPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/CheckPendingRequestsPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 
     public void goToSubscriptionPage(ActionEvent actionEvent) {
 
-        if (userBean1.getVip())
-            switchPage.replaceScene(actionEvent,"/SubscriptionedVipPage1.fxml");
-        else
-            switchPage.replaceScene(actionEvent,"/SubscriptionVipPage1.fxml");
+        try {
+            if (userBean1.getVip())
+                switchPage.replaceScene(actionEvent, "/SubscriptionedVipPage1.fxml");
+            else
+                switchPage.replaceScene(actionEvent, "/SubscriptionVipPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
     }
 
-    public void goToSearchPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/SearchPage1.fxml");}
+    public void goToSearchPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/SearchPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 
     public void logout(ActionEvent actionEvent) {
 
@@ -73,10 +89,25 @@ public class MenuUserGUIController1  implements Initializable {
             SystemException ex = new SystemException();
             ex.initCause(e);
             ErrorDialog.getInstance().handleException(ex);
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML
-    public void goToReviewPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/EndedBookedEventsPage1.fxml");}
+    public void goToReviewPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/EndedBookedEventsPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
     @FXML
-    public void goToHome(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
+    public void goToHome(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/UserPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 }

@@ -15,7 +15,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +40,13 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
         }
     }
     @FXML
-    private void goToRifiutedRequests(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/CheckRifiutedRequestsPage1.fxml");}
+    private void goToRifiutedRequests(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/CheckRifiutedRequestsPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 
     @Override
     public void update(Object ob) {
@@ -63,5 +69,11 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
         }
     }
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/UserPage1.fxml");}
+    public void backToUserPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/UserPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 }

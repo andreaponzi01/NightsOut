@@ -1,6 +1,5 @@
 package nightsout.utils.engineering;
 
-import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.model.ResponseModel;
 import nightsout.model.ReviewModel;
 import nightsout.utils.bean.ResponseBean;

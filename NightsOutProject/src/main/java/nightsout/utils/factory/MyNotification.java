@@ -11,8 +11,8 @@ public class MyNotification implements MyDialogBox {
     }
 
     @Override
-    public void useMyDialogBox(Exception e) {
+    public void useMyDialogBox(String message) {
         Notifications notification = Notifications.create();
-        notify("Warning", notification, e.getMessage());
+        notify("Warning", notification, message);
     }
 }

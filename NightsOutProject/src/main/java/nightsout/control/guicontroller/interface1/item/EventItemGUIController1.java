@@ -10,7 +10,7 @@ import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchAndSetPage1;
+import nightsout.utils.switchpage.SwitchAndSetPage1;
 
 public class EventItemGUIController1 {
 

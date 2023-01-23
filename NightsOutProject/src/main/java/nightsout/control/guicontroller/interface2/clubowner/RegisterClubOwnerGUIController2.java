@@ -14,7 +14,7 @@ import nightsout.utils.bean.CredentialsBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.*;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 
 import java.io.File;
 
@@ -79,5 +79,11 @@ public class RegisterClubOwnerGUIController2 {
     }
 
     @FXML
-    public void backToLogin(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");}
+    public void backToLogin(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 }

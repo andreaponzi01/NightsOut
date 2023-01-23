@@ -10,7 +10,7 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchAndSetPage1;
+import nightsout.utils.switchpage.SwitchAndSetPage1;
 
 public class UserItemGUIController1 {
 

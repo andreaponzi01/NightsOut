@@ -14,7 +14,7 @@ import nightsout.utils.Session;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -42,11 +42,32 @@ public class MenuClubOwnerGUIController1 implements Initializable {
         this.usernameLabel.setText(Session.getInstance().getClubOwner().getUsername());
     }
     @FXML
-    public void goToCreateEventPage(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/CreateEventPage1.fxml");}
+    public void goToCreateEventPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/CreateEventPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
     @FXML
-    public void goToManageRequestsPage(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/ManageRequests1.fxml");}
+    public void goToManageRequestsPage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/ManageRequests1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
     @FXML
-    public void goToResponsePage(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/ReviewsCOPage1.fxml");}
+    public void goToResponsePage(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/ReviewsCOPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
     @FXML
     private void logout(ActionEvent actionEvent) {
 
@@ -65,9 +86,17 @@ public class MenuClubOwnerGUIController1 implements Initializable {
                 SystemException ex = new SystemException();
                 ex.initCause(e);
                 ErrorDialog.getInstance().handleException(ex);
-            }
+            } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
         }
     }
     @FXML
-    public void goToHome(ActionEvent actionEvent){switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");}
+    public void goToHome(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
 }

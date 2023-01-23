@@ -21,7 +21,7 @@ import nightsout.utils.engineering.EventPageEngineering;
 import nightsout.utils.engineering.MapEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchAndSetPage2;
+import nightsout.utils.switchpage.SwitchAndSetPage2;
 
 import java.net.URL;
 import java.time.LocalDate;

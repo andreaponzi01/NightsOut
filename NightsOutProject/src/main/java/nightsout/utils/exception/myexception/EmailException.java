@@ -1,7 +1,7 @@
 package nightsout.utils.exception.myexception;
 
-public class EmailException extends SystemException {
+public class EmailException extends Exception {
     public EmailException() {
-        super("Can't send the email.");
+        super("MimeMessage error.");
     }
 }

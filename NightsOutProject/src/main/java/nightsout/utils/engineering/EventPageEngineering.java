@@ -12,7 +12,6 @@ import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.RequestDAO;
 import nightsout.utils.db.Query;
-import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import org.apache.commons.io.FileUtils;
 
@@ -52,7 +51,9 @@ public class EventPageEngineering {
             query.deleteEventById(eventBean.getIdEvent());
             FileUtils.delete(new File("eventImgs/" + eventBean.getName() + "pic.png"));
         } catch (IOException e) {
-            ErrorDialog.getInstance().handleException(e);
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
         }
     }
 }

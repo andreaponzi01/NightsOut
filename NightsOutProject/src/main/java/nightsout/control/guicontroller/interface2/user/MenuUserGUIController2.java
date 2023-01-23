@@ -15,7 +15,7 @@ import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchPage;
+import nightsout.utils.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -65,13 +65,21 @@ public class MenuUserGUIController2 implements Initializable {
     @FXML
     private void goToSubscriptionPage(ActionEvent actionEvent) {
         if(!userBean.getVip()) {
-            switchPage.replaceScene(actionEvent,"/SubscriptionVipPage2.fxml");
+            try {
+                switchPage.replaceScene(actionEvent,"/SubscriptionVipPage2.fxml");
+            } catch (SystemException e) {
+                ErrorDialog.getInstance().handleException(e);
+            }
         }
     }
 
     @FXML
     private void goToCheckRequestsPage(ActionEvent actionEvent) {
-            switchPage.replaceScene(actionEvent,"/CheckRequestsAndReviewPage2.fxml");
+        try {
+            switchPage.replaceScene(actionEvent, "/CheckRequestsAndReviewPage2.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
     }
 
     @FXML
@@ -93,9 +101,16 @@ public class MenuUserGUIController2 implements Initializable {
             SystemException ex = new SystemException();
             ex.initCause(e);
             ErrorDialog.getInstance().handleException(ex);
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML
-    public void goToHome(ActionEvent actionEvent) {switchPage.replaceScene(actionEvent,"/UserPage2.fxml");
+    public void goToHome(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/UserPage2.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
     }
 }

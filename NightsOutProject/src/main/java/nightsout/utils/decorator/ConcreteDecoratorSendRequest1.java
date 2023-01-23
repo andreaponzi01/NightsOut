@@ -10,7 +10,7 @@ import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
-import nightsout.utils.scene.SwitchAndSetPage1;
+import nightsout.utils.switchpage.SwitchAndSetPage1;
 
 public class ConcreteDecoratorSendRequest1 extends Decorator {
 
@@ -27,7 +27,7 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
         this.eventBean = eventBean;
     }
 
-    private void sendRequest(ActionEvent actionEvent){
+    private void sendRequest(ActionEvent actionEvent) {
 
         try {
             joinEventAppController.sendRequest(userBean, eventBean);
