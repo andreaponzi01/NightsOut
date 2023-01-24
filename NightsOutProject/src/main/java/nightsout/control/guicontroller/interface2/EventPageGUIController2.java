@@ -35,12 +35,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
     private ClubOwnerBean2 clubOwnerBeanEvent;
     private EventBean2 eventBean;
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
-    @FXML
-    private Label labelEventName;
-    @FXML
-    private Button buttonUsername;
-    @FXML
-    private Label labelEventPrice;
+
     @FXML
     private Label labelEventDate;
     @FXML
@@ -48,11 +43,19 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
     @FXML
     private Label labelEventDuration;
     @FXML
+    private Label labelEventPrice;
+    @FXML
     private Label labelDescription;
+    @FXML
+    private Button buttonUsername;
     @FXML
     private GoogleMapView location;
     @FXML
     private ImageView eventImg;
+    @FXML
+    private Label labelEventName;
+
+
     // Decorator
     @FXML
     private AnchorPane root;
@@ -114,10 +117,10 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
         }
     }
 
-    private void actionDecorateSendRequest() {
+    private void actionDecorateAccepted() {
 
-        ConcreteDecoratorSendRequest2 concreteDecoratorSendRequest2 = new ConcreteDecoratorSendRequest2(this.myConcreteComponent, this.eventBean, joinEventAppController);
-        this.contents = concreteDecoratorSendRequest2;
+        ConcreteDecoratorAccepted concreteDecoratorAccepted = new ConcreteDecoratorAccepted(this.myConcreteComponent);
+        this.contents = concreteDecoratorAccepted;
         this.display();
     }
     private void actionDecoratePending() {
@@ -126,12 +129,30 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
         this.contents = concreteDecoratorPending;
         this.display();
     }
-    private void actionDecorateAccepted() {
+    private void actionDecorateDelete() {
 
-        ConcreteDecoratorAccepted concreteDecoratorAccepted = new ConcreteDecoratorAccepted(this.myConcreteComponent);
-        this.contents = concreteDecoratorAccepted;
+        ConcreteDecoratorDelete2 concreteDecoratorDelete = new ConcreteDecoratorDelete2(this.myConcreteComponent, this.eventBean);
+        this.contents = concreteDecoratorDelete;
         this.display();
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        location.addMapInitializedListener(this);
+    }
+
+    @Override
+    public void mapInitialized() {
+        MapEngineering mapEngineering = new MapEngineering();
+        mapEngineering.createMap(eventBean, location);
+    }
+    private void actionDecorateSendRequest() {
+
+        ConcreteDecoratorSendRequest2 concreteDecoratorSendRequest2 = new ConcreteDecoratorSendRequest2(this.myConcreteComponent, this.eventBean, joinEventAppController);
+        this.contents = concreteDecoratorSendRequest2;
+        this.display();
+    }
+
     private void actionDecorateDeclined() {
 
         ConcreteDecoratorDeclined concreteDecoratorDeclined = new ConcreteDecoratorDeclined(this.myConcreteComponent);
@@ -139,12 +160,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
         this.display();
     }
 
-    private void actionDecorateDelete() {
 
-        ConcreteDecoratorDelete2 concreteDecoratorDelete = new ConcreteDecoratorDelete2(this.myConcreteComponent, this.eventBean);
-        this.contents = concreteDecoratorDelete;
-        this.display();
-    }
 
     public void display() { this.root.getChildren().add(this.contents.getButton()); }
     @FXML
@@ -173,14 +189,5 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        location.addMapInitializedListener(this);
-    }
 
-    @Override
-    public void mapInitialized() {
-        MapEngineering mapEngineering = new MapEngineering();
-        mapEngineering.createMap(eventBean, location);
-    }
 }

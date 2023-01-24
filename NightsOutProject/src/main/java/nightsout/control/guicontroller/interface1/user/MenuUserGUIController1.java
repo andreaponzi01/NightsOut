@@ -79,18 +79,20 @@ public class MenuUserGUIController1  implements Initializable {
 
         try {
             if (alert.showAndWait().get() == ButtonType.OK) {
+
+                FileUtils.cleanDirectory(new File("eventImgs"));
+                FileUtils.cleanDirectory(new File("profileImgs"));
                 switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
                 MySqlConnection.getInstance().closeConnection();
                 Session.getInstance().deleteSession();
-                FileUtils.cleanDirectory(new File("eventImgs"));
-                FileUtils.cleanDirectory(new File("profileImgs"));
             }
+
+        }catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
         } catch (SQLException | IOException e) {
             SystemException ex = new SystemException();
             ex.initCause(e);
             ErrorDialog.getInstance().handleException(ex);
-        } catch (SystemException e) {
-            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML

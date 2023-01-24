@@ -29,7 +29,7 @@ public class RegisterUserGUIController1 {
     @FXML
     protected void backToChoice(ActionEvent actionEvent) {
         try {
-            switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
+            switchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml");
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

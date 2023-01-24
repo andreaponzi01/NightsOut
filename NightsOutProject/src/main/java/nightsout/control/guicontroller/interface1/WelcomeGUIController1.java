@@ -13,6 +13,7 @@ public class WelcomeGUIController1 {
     @FXML
     private Button buttonExit;
     private SwitchPage switchPage = new SwitchPage();
+
     @FXML
     private void onSignInClick(ActionEvent actionEvent) {
         try {
@@ -21,6 +22,7 @@ public class WelcomeGUIController1 {
             ErrorDialog.getInstance().handleException(e);
         }
     }
+
     @FXML
     private void onSignOnClick(ActionEvent actionEvent) {
         try {
@@ -29,7 +31,11 @@ public class WelcomeGUIController1 {
             ErrorDialog.getInstance().handleException(e);
         }
     }
-
+    @FXML
+    private void exit() {
+        Stage stage = (Stage) buttonExit.getScene().getWindow();
+        stage.close();
+    }
     @FXML
     private void switchInterface(ActionEvent actionEvent) {
         try {
@@ -37,11 +43,5 @@ public class WelcomeGUIController1 {
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
-    }
-
-    @FXML
-    private void exit() {
-        Stage stage = (Stage) buttonExit.getScene().getWindow();
-        stage.close();
     }
 }

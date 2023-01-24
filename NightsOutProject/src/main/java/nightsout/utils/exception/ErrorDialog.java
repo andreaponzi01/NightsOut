@@ -23,6 +23,7 @@ public class ErrorDialog {
         // ErrorDialog Pattern + Factory Pattern
         MyDialogBox myDialogBox = factory.createMyDialogBox(e);
         myDialogBox.useMyDialogBox(e.getMessage());
+        e.printStackTrace();
     }
 }
 

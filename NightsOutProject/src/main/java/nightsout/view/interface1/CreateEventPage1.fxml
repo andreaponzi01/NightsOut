@@ -23,7 +23,7 @@
                   <Font name="Arial" size="25.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonCreateEvent" layoutX="360.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Create Event" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="444.0">
+            <Button layoutX="360.0" layoutY="444.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createEvent" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #200f54; -fx-background-radius: 28;" text="Create Event" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="444.0">
                <font>
                   <Font name="Arial Bold" size="25.0" />
                </font>
@@ -65,7 +65,7 @@
                   <Font name="Arial Bold" size="50.0" />
                </font>
             </Label>
-            <Button fx:id="buttonBack" layoutX="38.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
+            <Button layoutX="38.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToWelcomePage" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: #ffc266; -fx-background-radius: 28;" text="Back" textFill="#200f54" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="23.0">
                <font>
                   <Font name="Arial Bold" size="25.0" />
                </font>
@@ -87,7 +87,7 @@
       <ImageView fx:id="imageViewProfile" fitHeight="131.0" fitWidth="131.0" layoutX="840.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="40.0" />
       <Button layoutX="770.0" layoutY="533.0" mnemonicParsing="false" onAction="#loadImage" prefHeight="77.0" prefWidth="84.0" style="-fx-background-color: white; -fx-background-radius: 30;" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="235.0">
          <graphic>
-            <AnchorPane id="addPhoto" prefHeight="200.0" prefWidth="200.0" stylesheets="@../interface2/style2.css" />
+            <AnchorPane id="addPhoto" prefHeight="200.0" prefWidth="200.0" stylesheets="style1.css" />
          </graphic>
       </Button>
    </children>

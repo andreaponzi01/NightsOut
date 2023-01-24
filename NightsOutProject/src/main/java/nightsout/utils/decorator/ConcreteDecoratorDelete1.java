@@ -19,8 +19,8 @@ public class ConcreteDecoratorDelete1 extends Decorator {
     private String toWrite;
 
     public ConcreteDecoratorDelete1(Component component, EventBean1 eventBean) {
-
         super(component);
+
         this.eventBean = eventBean;
     }
 

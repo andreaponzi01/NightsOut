@@ -34,6 +34,15 @@ public class MenuClubOwnerGUIController1 implements Initializable {
 
     private SwitchPage switchPage = new SwitchPage();
 
+    @FXML
+    public void goToHome(ActionEvent actionEvent) {
+        try {
+            switchPage.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -51,6 +60,32 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     }
 
     @FXML
+    private void logout(ActionEvent actionEvent) {
+
+        var alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("You're about to logout!");
+        alert.setContentText("Are you sure you want to logout?");
+        alert.setTitle("Logout");
+
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            try {
+                FileUtils.cleanDirectory(new File("profileImgs"));
+                Session.getInstance().deleteSession();
+                MySqlConnection.getInstance().closeConnection();
+                FileUtils.cleanDirectory(new File("eventImgs"));
+                switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
+
+            } catch (SQLException | IOException e) {
+                SystemException ex = new SystemException();
+                ex.initCause(e);
+                ErrorDialog.getInstance().handleException(ex);
+            } catch (SystemException e) {
+                ErrorDialog.getInstance().handleException(e);
+            }
+        }
+    }
+
+    @FXML
     public void goToManageRequestsPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ManageRequests1.fxml");
@@ -63,38 +98,6 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     public void goToResponsePage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ReviewsCOPage1.fxml");
-        } catch (SystemException e) {
-            ErrorDialog.getInstance().handleException(e);
-        }
-    }
-
-    @FXML
-    private void logout(ActionEvent actionEvent) {
-
-        var alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to logout!");
-        alert.setContentText("Are you sure you want to logout?");
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            try {
-                switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
-                MySqlConnection.getInstance().closeConnection();
-                Session.getInstance().deleteSession();
-                FileUtils.cleanDirectory(new File("eventImgs"));
-                FileUtils.cleanDirectory(new File("profileImgs"));
-            } catch (SQLException | IOException e) {
-                SystemException ex = new SystemException();
-                ex.initCause(e);
-                ErrorDialog.getInstance().handleException(ex);
-            } catch (SystemException e) {
-            ErrorDialog.getInstance().handleException(e);
-        }
-        }
-    }
-    @FXML
-    public void goToHome(ActionEvent actionEvent) {
-        try {
-            switchPage.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

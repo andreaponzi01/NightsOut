@@ -48,11 +48,11 @@ public class MenuClubOwnerGUIController2 implements Initializable {
         alert.setContentText("Are you sure you want to logout?");
         if(alert.showAndWait().get() == ButtonType.OK) {
             try {
-                switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
                 MySqlConnection.getInstance().closeConnection();
-                Session.getInstance().deleteSession();
-                FileUtils.cleanDirectory(new File("eventImgs"));
                 FileUtils.cleanDirectory(new File("profileImgs"));
+                switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
+                FileUtils.cleanDirectory(new File("eventImgs"));
+                Session.getInstance().deleteSession();
             } catch (SQLException | IOException e) {
                 SystemException ex = new SystemException();
                 ex.initCause(e);

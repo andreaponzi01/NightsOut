@@ -29,21 +29,8 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
     public void update(Object ob) {
 
         CommunityEngineering communityEngineering;
-        FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
-
-        if (ob instanceof ReviewBean reviewBean) {
-            try {
-                communityEngineering = new CommunityEngineering();
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem2.fxml")).openStream());
-                ReviewItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(reviewBean);
-                this.listView.getItems().add(pane);
-                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
-            } catch (IOException | SystemException e) {
-                ErrorDialog.getInstance().handleException(e);
-            }
-        }
+        FXMLLoader fxmlLoader = new FXMLLoader();
 
         if(ob instanceof ResponseBean responseBean) {
             try {
@@ -56,7 +43,18 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
                 ErrorDialog.getInstance().handleException(e);
             }
         }
-
+        if (ob instanceof ReviewBean reviewBean) {
+            try {
+                communityEngineering = new CommunityEngineering();
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem2.fxml")).openStream());
+                ReviewItemGUIController2 controller = fxmlLoader.getController();
+                controller.setAll(reviewBean);
+                this.listView.getItems().add(pane);
+                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
+            } catch (IOException | SystemException e) {
+                ErrorDialog.getInstance().handleException(e);
+            }
+        }
 
     }
 

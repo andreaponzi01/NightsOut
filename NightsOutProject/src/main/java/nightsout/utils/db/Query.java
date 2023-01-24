@@ -81,13 +81,13 @@ public class Query {
 
             // username
             clubOwnerModel = new ClubOwnerModel();
-            clubOwnerModel.setUsername(rs.getString(2));
-            clubOwnerModel.setClubName(rs.getString(7));
-            clubOwnerModel.setEmail(rs.getString(4));
-            clubOwnerModel.setCity(rs.getString(5));
             clubOwnerModel.setAddress(rs.getString(6));
             clubOwnerModel.setId(rs.getInt(1));
+            clubOwnerModel.setEmail(rs.getString(4));
+            clubOwnerModel.setUsername(rs.getString(2));
+            clubOwnerModel.setCity(rs.getString(5));
             clubOwnerModel.setDiscountVIP(rs.getInt(8));
+            clubOwnerModel.setClubName(rs.getString(7));
 
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATHPROFILEIMGS + username + "pic" + ".png";
@@ -120,23 +120,22 @@ public class Query {
 
             do {
                 userModel = new UserModel();
-                userModel.setUsername(rs.getString(2));
-                userModel.setName(rs.getString(6));
-                userModel.setSurname(rs.getString(8));
+
                 userModel.setGender(rs.getString(7));
-                userModel.setEmail(rs.getString(4));
-                userModel.setId(rs.getInt(1));
-                userModel.setVip(rs.getBoolean(9));
+                InputStream in = (rs.getBinaryStream(3));
+                userModel.setUsername(rs.getString(2));
+                userModel.setSurname(rs.getString(8));
                 userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
                 userModel.setBirthday(rs.getDate(5).toLocalDate());
+                userModel.setName(rs.getString(6));
+                userModel.setEmail(rs.getString(4));
+                userModel.setId(rs.getInt(1));
 
-                InputStream in = (rs.getBinaryStream(3));
-                // Modificata
                 String filePath = PATHPROFILEIMGS + userModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(in, file);
                 userModel.setProfileImg(file);
-
+                userModel.setVip(rs.getBoolean(9));
                 list.add(userModel);
 
             } while(rs.next());
@@ -154,22 +153,22 @@ public class Query {
         String query = "SELECT * FROM Users where idUser = ?;";
         UserModel userModel = null;
         try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
-            preparedStatement.setInt(1, idUser);
-
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-
 
             userModel = new UserModel();
+
+            preparedStatement.setInt(1, idUser);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            rs.next();
+            userModel.setVip(rs.getBoolean(9));
+            userModel.setBirthday(rs.getDate(5).toLocalDate());
+            userModel.setEmail(rs.getString(4));
+            userModel.setGender(rs.getString(7));
             userModel.setUsername(rs.getString(2));
             userModel.setName(rs.getString(6));
-            userModel.setSurname(rs.getString(8));
-            userModel.setGender(rs.getString(7));
-            userModel.setEmail(rs.getString(4));
-            userModel.setId(rs.getInt(1));
-            userModel.setVip(rs.getBoolean(9));
             userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
-            userModel.setBirthday(rs.getDate(5).toLocalDate());
+            userModel.setSurname(rs.getString(8));
+
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATHPROFILEIMGS + userModel.getUsername() + "pic" + ".png";
             File file = new File(filePath);
@@ -208,7 +207,6 @@ public class Query {
                 clubOwnerModel.setId(rs.getInt(1));
                 clubOwnerModel.setDiscountVIP(rs.getInt(8));
                 InputStream inputStream = (rs.getBinaryStream(3));
-                // Modificata
                 String filePath = PATHPROFILEIMGS + clubOwnerModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(inputStream, file);
@@ -238,25 +236,24 @@ public class Query {
             if (!rs.next()) {
                 return list;
             }
-
-
             do {
-                eventModel = new EventModel();
-                eventModel.setName(rs.getString(5));
-                eventModel.setIdEvent(rs.getInt(1));
-                eventModel.setIdClubOwner(rs.getInt(2));
-                eventModel.setTime(rs.getTime(10).toLocalTime());
-                eventModel.setPrice(rs.getDouble(4));
-                eventModel.setDuration(rs.getInt(7));
-                eventModel.setEventDate(rs.getDate(6).toLocalDate());
-                eventModel.setDescription(rs.getString(11));
 
+                eventModel = new EventModel();
+                eventModel.setTime(rs.getTime(10).toLocalTime());
+                eventModel.setIdEvent(rs.getInt(1));
+                eventModel.setName(rs.getString(5));
                 InputStream inputStream = (rs.getBinaryStream(9));
+                eventModel.setDescription(rs.getString(11));
+                eventModel.setPrice(rs.getDouble(4));
+                eventModel.setIdClubOwner(rs.getInt(2));
+                eventModel.setEventDate(rs.getDate(6).toLocalDate());
+                eventModel.setDuration(rs.getInt(7));
+
                 String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(inputStream, file);
-                eventModel.setImg(file);
 
+                eventModel.setImg(file);
                 list.add(eventModel);
 
             } while(rs.next());
@@ -379,15 +376,16 @@ public class Query {
             rs.next();
 
             clubOwnerModel = new ClubOwnerModel();
-            clubOwnerModel.setUsername(rs.getString(2));
-            clubOwnerModel.setClubName(rs.getString(7));
+
             clubOwnerModel.setEmail(rs.getString(4));
-            clubOwnerModel.setCity(rs.getString(5));
-            clubOwnerModel.setAddress(rs.getString(6));
+            InputStream inputStream = (rs.getBinaryStream(3));
             clubOwnerModel.setId(rs.getInt(1));
+            clubOwnerModel.setCity(rs.getString(5));
+            clubOwnerModel.setClubName(rs.getString(7));
+            clubOwnerModel.setAddress(rs.getString(6));
+            clubOwnerModel.setUsername(rs.getString(2));
             clubOwnerModel.setDiscountVIP(rs.getInt(8));
 
-            InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATHPROFILEIMGS + clubOwnerModel.getUsername() + "pic" + ".png";
             File file = new File(filePath);
             converterToFile.fromInputStreamToFile(inputStream, file);
@@ -474,13 +472,15 @@ public class Query {
 
     public List<EventModel> searchNextEventsByIdUser(int idUser) throws SystemException {
 
-        String query = "SELECT E.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE U.idUser = ? and R.status='accepted' and DATEDIFF(E.date, CURRENT_TIMESTAMP)>0 ORDER BY E.date;";
-
         List<EventModel> list = null;
+        String query = "SELECT E.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE U.idUser = ? and R.status='accepted' and DATEDIFF(E.date, CURRENT_TIMESTAMP)>0 ORDER BY E.date;";
+        list = new ArrayList<>();
         EventModel eventModel = null;
+
         try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
-            list = new ArrayList<>();
+
             preparedStatement.setInt(1, idUser);
+
             ResultSet rs = preparedStatement.executeQuery();
             assert rs != null;
             if (!rs.next()) {
@@ -490,22 +490,20 @@ public class Query {
 
             do {
                 eventModel = new EventModel();
-                eventModel.setName(rs.getString(5));
-                eventModel.setIdEvent(rs.getInt(1));
-                eventModel.setIdClubOwner(rs.getInt(2));
-                eventModel.setTime(rs.getTime(10).toLocalTime());
-                eventModel.setPrice(rs.getDouble(4));
-                eventModel.setDuration(rs.getInt(7));
-                eventModel.setEventDate(rs.getDate(6).toLocalDate());
-                eventModel.setDescription(rs.getString(11));
 
+                eventModel.setIdEvent(rs.getInt(1));
+                eventModel.setName(rs.getString(5));
+                eventModel.setIdClubOwner(rs.getInt(2));
+                eventModel.setDescription(rs.getString(11));
                 InputStream inputStream = (rs.getBinaryStream(9));
                 String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
+                eventModel.setDuration(rs.getInt(7));
+                eventModel.setTime(rs.getTime(10).toLocalTime());
+                eventModel.setPrice(rs.getDouble(4));
+                eventModel.setEventDate(rs.getDate(6).toLocalDate());
                 converterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
-
-
                 list.add(eventModel);
 
             } while(rs.next());
@@ -521,12 +519,14 @@ public class Query {
 
     public List<EventModel> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
 
-        String query = "SELECT * FROM Events where clubOwner = ?;";
         List<EventModel> list = null;
-        EventModel eventModel = null;
+        String query = "SELECT * FROM Events where clubOwner = ?;";
+        list = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
-            list = new ArrayList<>();
+            EventModel eventModel = null;
+
+
             preparedStatement.setInt(1, idClubOwner);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -535,24 +535,21 @@ public class Query {
                 return list;
             }
 
-
             do {
                 eventModel = new EventModel();
                 eventModel.setName(rs.getString(5));
-                eventModel.setIdEvent(rs.getInt(1));
-                eventModel.setIdClubOwner(rs.getInt(2));
-                eventModel.setTime(rs.getTime(10).toLocalTime());
-                eventModel.setPrice(rs.getDouble(4));
-                eventModel.setDuration(rs.getInt(7));
-                eventModel.setEventDate(rs.getDate(6).toLocalDate());
-                eventModel.setDescription(rs.getString(11));
-
                 InputStream inputStream = (rs.getBinaryStream(9));
                 String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
+                eventModel.setDuration(rs.getInt(7));
                 File file = new File(filePath);
+                eventModel.setEventDate(rs.getDate(6).toLocalDate());
                 converterToFile.fromInputStreamToFile(inputStream, file);
+                eventModel.setIdClubOwner(rs.getInt(2));
+                eventModel.setTime(rs.getTime(10).toLocalTime());
+                eventModel.setIdEvent(rs.getInt(1));
+                eventModel.setPrice(rs.getDouble(4));
+                eventModel.setDescription(rs.getString(11));
                 eventModel.setImg(file);
-
                 list.add(eventModel);
 
             } while(rs.next());
@@ -567,15 +564,17 @@ public class Query {
     }
     public List<UserModel> searchUsersByIdEvent(int idEvent) throws SystemException {
 
+
         String query = "SELECT U.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE E.idEvent = ? and R.status = ?;"; //GIUSTA??
         List<UserModel> list = null;
-        UserModel userModel = null;
+        list = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
-            list = new ArrayList<>();
-            preparedStatement.setInt(1, idEvent);
             preparedStatement.setString(2, "accepted");
+            UserModel userModel = null;
+            preparedStatement.setInt(1, idEvent);
             ResultSet rs = preparedStatement.executeQuery();
+
             assert rs != null;
             if (!rs.next()) {
                 return list;
@@ -585,20 +584,19 @@ public class Query {
 
                 userModel = new UserModel();
                 userModel.setUsername(rs.getString(2));
-                userModel.setName(rs.getString(6));
-                userModel.setSurname(rs.getString(8));
-                userModel.setGender(rs.getString(7));
-                userModel.setEmail(rs.getString(4));
-                userModel.setId(rs.getInt(1));
-                userModel.setVip(rs.getBoolean(9));
-                userModel.setBirthday(rs.getDate(5).toLocalDate());
                 userModel.setCreationDateVip((rs.getDate(10) == null) ? null : rs.getDate(10).toLocalDate());
-
                 InputStream in = (rs.getBinaryStream(3));
                 String filePath = PATHPROFILEIMGS +userModel.getUsername()+"pic"+".png";
                 File file = new File(filePath);
                 converterToFile.fromInputStreamToFile(in, file);
                 userModel.setProfileImg(file);
+                userModel.setBirthday(rs.getDate(5).toLocalDate());
+                userModel.setId(rs.getInt(1));
+                userModel.setName(rs.getString(6));
+                userModel.setGender(rs.getString(7));
+                userModel.setVip(rs.getBoolean(9));
+                userModel.setEmail(rs.getString(4));
+                userModel.setSurname(rs.getString(8));
 
                 list.add(userModel);
 
@@ -615,14 +613,16 @@ public class Query {
 
     public List<EventModel>  searchEndedEventsByIdUser(int idUser) throws SystemException {
 
-        String query = "SELECT E.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE U.idUser = ? and R.status='accepted' and DATEDIFF(E.date, CURRENT_TIMESTAMP)<0 ;";
-        List<EventModel> list = null;
         EventModel eventModel = null;
 
+        String query = "SELECT E.* FROM Requests as R JOIN Events as E ON R.event = E.idEvent JOIN Users as U ON R.user = U.idUser WHERE U.idUser = ? and R.status='accepted' and DATEDIFF(E.date, CURRENT_TIMESTAMP)<0 ;";
+        List<EventModel> list = null;
+
+
         try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
+
             list = new ArrayList<>();
             preparedStatement.setInt(1, idUser);
-
             ResultSet rs = preparedStatement.executeQuery();
             assert rs != null;
             if (!rs.next()) {
@@ -632,18 +632,17 @@ public class Query {
 
             do {
                 eventModel = new EventModel();
-                eventModel.setName(rs.getString(5));
-                eventModel.setIdEvent(rs.getInt(1));
+                eventModel.setEventDate(rs.getDate(6).toLocalDate());
+                InputStream inputStream = (rs.getBinaryStream(9));
                 eventModel.setIdClubOwner(rs.getInt(2));
+                eventModel.setDuration(rs.getInt(7));
                 eventModel.setTime(rs.getTime(10).toLocalTime());
                 eventModel.setPrice(rs.getDouble(4));
-                eventModel.setDuration(rs.getInt(7));
-                eventModel.setEventDate(rs.getDate(6).toLocalDate());
-                eventModel.setDescription(rs.getString(11));
-
-                InputStream inputStream = (rs.getBinaryStream(9));
+                eventModel.setName(rs.getString(5));
                 String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
+                eventModel.setIdEvent(rs.getInt(1));
+                eventModel.setDescription(rs.getString(11));
                 converterToFile.fromInputStreamToFile(inputStream, file);
                 eventModel.setImg(file);
 
@@ -679,12 +678,13 @@ public class Query {
     public List<ReviewModel> searchReviewsByIdClubOwner(int idClubOwner) throws SystemException {
         String query = "SELECT R.* FROM Reviews as R JOIN Events as E ON R.event = E.idEvent JOIN ClubOwners as C ON E.clubOwner = C.idClubOwner WHERE C.idClubOwner = ? AND R.idReview NOT IN (SELECT Responses.review FROM Responses WHERE Responses.clubOwner = ?);";
         List<ReviewModel> list = null;
-        ReviewModel reviewModel = null;
+
 
         try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
+            preparedStatement.setInt(2, idClubOwner);
             list = new ArrayList<>();
             preparedStatement.setInt(1, idClubOwner);
-            preparedStatement.setInt(2, idClubOwner);
+            ReviewModel reviewModel = null;
 
             ResultSet rs = preparedStatement.executeQuery();
             assert rs != null;
@@ -695,10 +695,10 @@ public class Query {
 
             do {
                 reviewModel = new ReviewModel();
-                reviewModel.setIdReview(rs.getInt(1));
-                reviewModel.setIdEvent(rs.getInt(4));
                 reviewModel.setIdUser(rs.getInt(2));
                 reviewModel.setComment(rs.getString(3));
+                reviewModel.setIdReview(rs.getInt(1));
+                reviewModel.setIdEvent(rs.getInt(4));
 
                 list.add(reviewModel);
 
@@ -713,10 +713,12 @@ public class Query {
     }
 
     public List<ReviewModel> searchAllReviewsByIdClubOwner(int idClubOwner) throws SystemException {
+
         String query = "SELECT R.* FROM Reviews as R JOIN Events as E ON R.event = E.idEvent JOIN ClubOwners as C ON E.clubOwner = C.idClubOwner WHERE C.idClubOwner = ?;";
-        List<ReviewModel> list = null;
         ReviewModel reviewModel = null;
+
         try (PreparedStatement preparedStatement = MySqlConnection.getInstance().connect().prepareStatement(query)) {
+            List<ReviewModel> list = null;
             list = new ArrayList<>();
             preparedStatement.setInt(1, idClubOwner);
 
@@ -729,10 +731,10 @@ public class Query {
 
             do {
                 reviewModel = new ReviewModel();
-                reviewModel.setIdReview(rs.getInt(1));
-                reviewModel.setIdEvent(rs.getInt(4));
                 reviewModel.setIdUser(rs.getInt(2));
+                reviewModel.setIdReview(rs.getInt(1));
                 reviewModel.setComment(rs.getString(3));
+                reviewModel.setIdEvent(rs.getInt(4));
 
                 list.add(reviewModel);
 
@@ -771,18 +773,18 @@ public class Query {
             rs.next();
 
             eventModel = new EventModel();
+
             eventModel.setName(rs.getString(5));
-            eventModel.setIdEvent(rs.getInt(1));
             eventModel.setIdClubOwner(rs.getInt(2));
             eventModel.setTime(rs.getTime(10).toLocalTime());
-            eventModel.setPrice(rs.getDouble(4));
-            eventModel.setDuration(rs.getInt(7));
-            eventModel.setEventDate(rs.getDate(6).toLocalDate());
-            eventModel.setDescription(rs.getString(11));
-
             InputStream inputStream = (rs.getBinaryStream(9));
+            eventModel.setDuration(rs.getInt(7));
             String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
+            eventModel.setIdEvent(rs.getInt(1));
+            eventModel.setEventDate(rs.getDate(6).toLocalDate());
             File file = new File(filePath);
+            eventModel.setPrice(rs.getDouble(4));
+            eventModel.setDescription(rs.getString(11));
             converterToFile.fromInputStreamToFile(inputStream, file);
             eventModel.setImg(file);
             return eventModel;

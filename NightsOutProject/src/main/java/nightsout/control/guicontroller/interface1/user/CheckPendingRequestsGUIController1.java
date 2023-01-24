@@ -23,22 +23,10 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CheckPendingRequestsGUIController1 implements Observer, Initializable {
+
+    private SwitchPage switchPage = new SwitchPage();
     @FXML
     private ListView listViewPendingRequests;
-    private SwitchPage switchPage = new SwitchPage();
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        CheckRequestAppController controller;
-
-        try {
-            controller = new CheckRequestAppController();
-            controller.checkRequests(this, Session.getInstance().getUser().getId());
-        } catch (SystemException e) {
-            ErrorDialog.getInstance().handleException(e);
-        }
-    }
     @FXML
     private void goToRifiutedRequests(ActionEvent actionEvent) {
         try {
@@ -66,6 +54,18 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
                 } catch (SystemException | IOException e) {
                     ErrorDialog.getInstance().handleException(e);
                 }
+        }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        CheckRequestAppController controller;
+
+        try {
+            controller = new CheckRequestAppController();
+            controller.checkRequests(this, Session.getInstance().getUser().getId());
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
         }
     }
     @FXML

@@ -29,39 +29,28 @@ public class UserPageGUIController2 implements Observer {
     private TextField textFieldSearch;
     private JoinEventAppController joinEventAppController = new JoinEventAppController();
 
-    @FXML
-    private void search() {
 
-        try {
-            String input = textFieldSearch.getText();
-            this.listView.getItems().clear();
-            if (!input.isBlank())
-                joinEventAppController.search(this, input);
-        } catch (SystemException e) {
-            ErrorDialog.getInstance().handleException(e);
-        }
-    }
 
     @Override
     public void update(Object ob) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof UserBean uBean) {
-            try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
-                UserItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new UserBean2(uBean));
-                this.listView.getItems().add(pane);
-            } catch (IOException e) {
-                ErrorDialog.getInstance().handleException(e);
-            }
-        }
         if(ob instanceof EventBean eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
                 EventItemGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(new EventBean2(eBean), joinEventAppController);
+                this.listView.getItems().add(pane);
+            } catch (IOException e) {
+                ErrorDialog.getInstance().handleException(e);
+            }
+        }
+        if(ob instanceof UserBean uBean) {
+            try {
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
+                UserItemGUIController2 controller = fxmlLoader.getController();
+                controller.setAll(new UserBean2(uBean));
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
@@ -76,6 +65,18 @@ public class UserPageGUIController2 implements Observer {
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
             }
+        }
+    }
+    @FXML
+    private void search() {
+
+        try {
+            String input = textFieldSearch.getText();
+            this.listView.getItems().clear();
+            if (!input.isBlank())
+                joinEventAppController.search(this, input);
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

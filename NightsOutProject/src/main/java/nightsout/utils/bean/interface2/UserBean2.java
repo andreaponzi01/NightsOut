@@ -28,16 +28,16 @@ public class UserBean2 extends UserBean {
     }
 
     public UserBean2(UserModel userModel) {
+        this.vip = userModel.getVip();
         this.surname = userModel.getSurname();
-        this.name = userModel.getName();
+        this.img = userModel.getProfileImg();
         this.username = userModel.getUsername();
-        this.gender = userModel.getGender();
+        this.creationDateVIP = userModel.getCreationDateVip();
         this.email = userModel.getEmail();
         this.id = userModel.getId();
-        this.img = userModel.getProfileImg();
+        this.gender = userModel.getGender();
         this.birthday = userModel.getBirthday();
-        this.vip = userModel.getVip();
-        this.creationDateVIP = userModel.getCreationDateVip();
+        this.name = userModel.getName();
     }
 
     public void setGender(String gender) throws GenderException {

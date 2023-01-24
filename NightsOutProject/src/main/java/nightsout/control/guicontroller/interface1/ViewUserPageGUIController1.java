@@ -41,6 +41,23 @@ public class ViewUserPageGUIController1 implements Observer {
     @FXML
     protected ImageView imageViewProfile;
 
+    @Override
+    public void update(Object ob) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Pane pane = null;
+        if(ob instanceof EventBean eBean) {
+            try {
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
+
+                EventItemGUIController1 controller = fxmlLoader.getController();
+                controller.setAll(new EventBean1(eBean));
+                this.listViewNextEvents.getItems().add(pane);
+            } catch (IOException e) {
+                ErrorDialog.getInstance().handleException(e);
+            }
+        }
+    }
     public void setAll(UserBean1 userBean1) {
 
         try {
@@ -62,20 +79,5 @@ public class ViewUserPageGUIController1 implements Observer {
         }
     }
 
-    @Override
-    public void update(Object ob) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        Pane pane = null;
-        if(ob instanceof EventBean eBean) {
-            try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
-                EventItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean1(eBean));
-                this.listViewNextEvents.getItems().add(pane);
-            } catch (IOException e) {
-                ErrorDialog.getInstance().handleException(e);
-            }
-        }
-    }
 }

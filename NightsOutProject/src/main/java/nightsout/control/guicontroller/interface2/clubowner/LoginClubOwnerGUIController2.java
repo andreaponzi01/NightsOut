@@ -23,10 +23,9 @@ public class LoginClubOwnerGUIController2 {
     private void loginAction(ActionEvent ae) {
 
         String type = "ClubOwner";
-        LoginAppController controller;
+        LoginAppController controller= new LoginAppController();
 
         try {
-            controller = new LoginAppController();
             CredentialsBean credentialsBean = new CredentialsBean(textFieldUsername.getText(), passwordField.getText(), type);
             controller.login(credentialsBean);
             switchPage.replaceScene(ae,"/ClubOwnerPage2.fxml");
@@ -34,6 +33,7 @@ public class LoginClubOwnerGUIController2 {
             ErrorDialog.getInstance().handleException(e);
         }
     }
+
 
     @FXML
     protected void backToWelcomePage(ActionEvent actionEvent) {

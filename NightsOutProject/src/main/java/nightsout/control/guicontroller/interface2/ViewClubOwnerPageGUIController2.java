@@ -26,27 +26,25 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ViewClubOwnerPageGUIController2 implements Observer {
-
+    @FXML
+    private Label labelCity;
     @FXML
     private Label labelName;
     @FXML
-    private Label labelUsername;
+    private ListView listViewCreatedEvents;
     @FXML
-    private Label labelCity;
+    private ListView listViewCommunity;
+    private ClubOwnerBean clubOwnerBean;
     @FXML
     private Label labelAddress;
     @FXML
     private Label labelEmail;
     @FXML
+    private ImageView imageViewProfile;
+    @FXML
     private Label labelDiscountVip;
     @FXML
-    private ListView listViewCreatedEvents;
-    @FXML
-    private ListView listViewCommunity;
-    @FXML
-    private ImageView imageViewProfile;
-
-    private ClubOwnerBean clubOwnerBean;
+    private Label labelUsername;
 
     public void setAll(ClubOwnerBean2 clubOwnerBean) throws SystemException {
 
@@ -71,16 +69,7 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
-        if(ob instanceof EventBean eBean) {
-            try {
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
-                EventItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean2(eBean));
-                this.listViewCreatedEvents.getItems().add(pane);
-            } catch (IOException e) {
-                ErrorDialog.getInstance().handleException(e);
-            }
-        }
+
         if (ob instanceof ReviewBean reviewBean) {
             try {
                 communityEngineering = new CommunityEngineering();
@@ -90,6 +79,16 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
                 this.listViewCommunity.getItems().add(pane);
                 communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
             } catch (IOException | SystemException e) {
+                ErrorDialog.getInstance().handleException(e);
+            }
+        }
+        if(ob instanceof EventBean eBean) {
+            try {
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
+                EventItemGUIController2 controller = fxmlLoader.getController();
+                controller.setAll(new EventBean2(eBean));
+                this.listViewCreatedEvents.getItems().add(pane);
+            } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
             }
         }

@@ -63,9 +63,8 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
     @Override
     public void update(Object ob) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
-
+        FXMLLoader fxmlLoader = new FXMLLoader();
         if(ob instanceof EventBean eBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());

@@ -33,38 +33,12 @@ public class ViewCommunityGUIController1 implements Observer {
         communityEngineering.eventReviews(this, this.clubOwnerBean1.getId());
     }
 
-    public void backToViewClubOwnerPage(ActionEvent actionEvent) {
-
-        try {
-            if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
-                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1);
-            else
-                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromCO1.fxml", this.clubOwnerBean1);
-        } catch (SystemException e) {
-            ErrorDialog.getInstance().handleException(e);
-        }
-    }
-
     @Override
     public void update(Object ob) {
 
         CommunityEngineering communityEngineering;
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
-
-        if (ob instanceof ReviewBean reviewBean) {
-            try {
-                communityEngineering = new CommunityEngineering();
-                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewSimpleItem1.fxml")).openStream());
-                ReviewItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(reviewBean);
-                this.listView.getItems().add(pane);
-                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
-            } catch (IOException | SystemException e) {
-                ErrorDialog.getInstance().handleException(e);
-            }
-        }
-
 
         if(ob instanceof ResponseBean responseBean) {
             try {
@@ -76,6 +50,34 @@ public class ViewCommunityGUIController1 implements Observer {
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
             }
+        }
+
+        if (ob instanceof ReviewBean reviewBean) {
+            try {
+                pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewSimpleItem1.fxml")).openStream());
+                communityEngineering = new CommunityEngineering();
+                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
+                ReviewItemGUIController1 controller = fxmlLoader.getController();
+                controller.setAll(reviewBean);
+                this.listView.getItems().add(pane);
+
+            } catch (IOException | SystemException e) {
+                ErrorDialog.getInstance().handleException(e);
+            }
+        }
+
+
+
+    }
+    public void backToViewClubOwnerPage(ActionEvent actionEvent) {
+
+        try {
+            if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1);
+            else
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromCO1.fxml", this.clubOwnerBean1);
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 }

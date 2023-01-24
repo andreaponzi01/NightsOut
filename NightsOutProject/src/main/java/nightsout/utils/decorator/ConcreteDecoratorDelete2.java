@@ -22,28 +22,20 @@ public class ConcreteDecoratorDelete2 extends Decorator {
     private SwitchPage switchPage = new SwitchPage();
     private String toWrite;
 
-    public ConcreteDecoratorDelete2(Component component, EventBean2 eventBean) {
-
-        super(component);
-        this.eventBean = eventBean;
-    }
     protected void applyDecorationDelete(Button myButton) {
 
         myButton.setText(toWrite);
-        myButton.setMinHeight(65);
-        myButton.setMinWidth(125);
-        Font font = Font.font("Arial", FontWeight.BOLD, 25);
-        myButton.setFont(font);
-        myButton.setStyle("-fx-background-color: #d00000;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
         myButton.setOnAction((ActionEvent ae) -> deleteEvent(ae));
+        Font font = Font.font("Arial", FontWeight.BOLD, 25);
+        myButton.setMinWidth(125);
+        myButton.setStyle("-fx-background-color: #d00000;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
+        myButton.setFont(font);
+        myButton.setMinHeight(65);
     }
 
-    @Override
-    public Button getButton() {
-        Button myButton = super.getButton();
-        this.toWrite = "Delete";
-        this.applyDecorationDelete(myButton);
-        return myButton;
+    public ConcreteDecoratorDelete2(Component component, EventBean2 eventBean) {
+        super(component);
+        this.eventBean = eventBean;
     }
 
     private void deleteEvent(ActionEvent ae) {
@@ -67,6 +59,13 @@ public class ConcreteDecoratorDelete2 extends Decorator {
                 ErrorDialog.getInstance().handleException(e);
             }
         }
+    }
+    @Override
+    public Button getButton() {
+        Button myButton = super.getButton();
+        this.toWrite = "Delete";
+        this.applyDecorationDelete(myButton);
+        return myButton;
     }
 
 }
