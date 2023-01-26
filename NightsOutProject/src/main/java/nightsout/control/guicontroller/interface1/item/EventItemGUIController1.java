@@ -40,7 +40,7 @@ public class EventItemGUIController1 {
     }
 
     @FXML
-    public void goToEventPage(ActionEvent actionEvent) {
+    private void goToEventPage(ActionEvent actionEvent) {
         try {
             String type = Session.getInstance().checkInstanceType();
             if(type.equalsIgnoreCase("Free")){

@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 public class CommunityPageGUIController2 implements Initializable, Observer {
 
     @FXML
-    ListView listView;
+    private ListView listView;
 
     @Override
     public void update(Object ob) {

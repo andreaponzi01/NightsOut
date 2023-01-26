@@ -10,6 +10,7 @@ import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.UserItemGUIController2;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.SearchBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
@@ -28,7 +29,6 @@ public class UserPageGUIController2 implements Observer {
     @FXML
     private TextField textFieldSearch;
     private JoinEventAppController joinEventAppController = new JoinEventAppController();
-
 
 
     @Override
@@ -56,6 +56,7 @@ public class UserPageGUIController2 implements Observer {
                 ErrorDialog.getInstance().handleException(e);
             }
         }
+
         if(ob instanceof ClubOwnerBean cBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
@@ -67,14 +68,17 @@ public class UserPageGUIController2 implements Observer {
             }
         }
     }
+
     @FXML
     private void search() {
 
         try {
             String input = textFieldSearch.getText();
             this.listView.getItems().clear();
-            if (!input.isBlank())
-                joinEventAppController.search(this, input);
+            if (!input.isBlank()) {
+                SearchBean searchBean = new SearchBean(input);
+                joinEventAppController.search(this, searchBean);
+            }
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

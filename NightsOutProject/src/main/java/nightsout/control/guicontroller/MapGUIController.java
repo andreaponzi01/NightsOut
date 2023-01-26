@@ -38,10 +38,8 @@ public class MapGUIController implements Initializable, MapComponentInitializedL
         mapEngineering.createMap(eventBean, location);
     }
 
-
-
     @FXML
-    public void back(ActionEvent actionEvent) throws SystemException {
+    private void back(ActionEvent actionEvent) throws SystemException {
         try {
             String type = Session.getInstance().checkInstanceType();
             if(type.equalsIgnoreCase("Free")){

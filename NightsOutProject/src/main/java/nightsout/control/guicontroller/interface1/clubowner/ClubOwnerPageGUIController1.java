@@ -13,7 +13,7 @@ import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.engineering.CreatedEventsEngineering;
+import nightsout.utils.engineering.ClubOwnerPageEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -44,7 +44,6 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        CreatedEventsEngineering createdEventsEngineering;
         ClubOwnerBean1 loggedClubOwner = new ClubOwnerBean1(Session.getInstance().getClubOwner());
         labelEmail.setText(loggedClubOwner.getEmail());
         labelUsername.setText(loggedClubOwner.getUsername());
@@ -53,8 +52,8 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
         labelCity.setText(loggedClubOwner.getCity());
         labelDiscountVip.setText(String.valueOf(loggedClubOwner.getDiscountVIP()));
         try {
-            createdEventsEngineering = new CreatedEventsEngineering();
-            createdEventsEngineering.createdEvents(this, loggedClubOwner.getId());
+            ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
+            clubOwnerPageEngineering.createdEvents(this, loggedClubOwner.getId());
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

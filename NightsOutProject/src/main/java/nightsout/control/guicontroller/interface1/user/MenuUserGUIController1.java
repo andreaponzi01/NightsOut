@@ -42,7 +42,8 @@ public class MenuUserGUIController1  implements Initializable {
         this.usernameLabel.setText(userBean1.getUsername());
     }
 
-    public void goToCheckRequestsPage(ActionEvent actionEvent) {
+    @FXML
+    private void goToCheckRequestsPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/CheckPendingRequestsPage1.fxml");
         } catch (SystemException e) {
@@ -50,7 +51,8 @@ public class MenuUserGUIController1  implements Initializable {
         }
     }
 
-    public void goToSubscriptionPage(ActionEvent actionEvent) {
+    @FXML
+    private void goToSubscriptionPage(ActionEvent actionEvent) {
 
         try {
             if (userBean1.getVip())
@@ -62,7 +64,8 @@ public class MenuUserGUIController1  implements Initializable {
         }
     }
 
-    public void goToSearchPage(ActionEvent actionEvent) {
+    @FXML
+    private void goToSearchPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/SearchPage1.fxml");
         } catch (SystemException e) {
@@ -70,7 +73,8 @@ public class MenuUserGUIController1  implements Initializable {
         }
     }
 
-    public void logout(ActionEvent actionEvent) {
+    @FXML
+    private void logout(ActionEvent actionEvent) {
 
         var alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
@@ -96,7 +100,7 @@ public class MenuUserGUIController1  implements Initializable {
         }
     }
     @FXML
-    public void goToReviewPage(ActionEvent actionEvent) {
+    private void goToReviewPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/EndedBookedEventsPage1.fxml");
         } catch (SystemException e) {
@@ -105,7 +109,7 @@ public class MenuUserGUIController1  implements Initializable {
     }
 
     @FXML
-    public void goToHome(ActionEvent actionEvent) {
+    private void goToHome(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {

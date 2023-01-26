@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface2.item.ManageRequestsItemGUIController2;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
@@ -45,7 +46,7 @@ public class ClubOwnerPageGUIController2 implements Observer, Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            joinEventAppController.manageRequests(this, Session.getInstance().getClubOwner().getId());
+            joinEventAppController.manageRequests(this, new IdBean(Session.getInstance().getClubOwner().getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

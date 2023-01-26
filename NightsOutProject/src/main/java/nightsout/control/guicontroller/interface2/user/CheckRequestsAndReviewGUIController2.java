@@ -13,6 +13,7 @@ import nightsout.control.guicontroller.interface2.item.EventReviewItemGUIControl
 import nightsout.control.guicontroller.interface2.item.RequestsItemGUIController2;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.EventBean2;
@@ -51,7 +52,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
         Pane pane = null;
         try {
             if(Objects.equals(rBean.getStatus(), "accepted")){
-                EventBean2 eventBean= new EventBean2(joinEventAppController.searchEventByIdEvent(rBean.getIdEvent()));
+                EventBean2 eventBean= new EventBean2(joinEventAppController.searchEventByIdEvent(new IdBean(rBean.getIdEvent())));
                 if(eventBean.getEventDate().isAfter(LocalDate.now())){
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource(REQUEST_ITEM_FXML)).openStream());
                     controller = fxmlLoader.getController();
@@ -84,7 +85,7 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
         ReviewBean reviewBean = null;
         
         try {
-            reviewBean = manageReviewAppController.getReviewByIdEventAndIdUser( userBean.getId(), eBean.getIdEvent());
+            reviewBean = manageReviewAppController.getReviewByIdEventAndIdUser(new IdBean(userBean.getId()), new IdBean(eBean.getIdEvent()));
 
             if(reviewBean != null){
                 EventItemGUIController2 controller;
@@ -126,8 +127,8 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
             controller1 = new CheckRequestAppController();
             controller2 = new ManageReviewAppController();
 
-            controller1.checkRequests(this, this.userBean.getId());
-            controller2.eventsToReview(this, userBean.getId());
+            controller1.checkRequests(this, new IdBean(userBean.getId()));
+            controller2.eventsToReview(this, new IdBean(userBean.getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

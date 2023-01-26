@@ -27,7 +27,7 @@ public class RegisterUserGUIController1 {
     private SwitchPage switchPage = new SwitchPage();
 
     @FXML
-    protected void backToChoice(ActionEvent actionEvent) {
+    private void backToChoice(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml");
         } catch (SystemException e) {
@@ -36,7 +36,7 @@ public class RegisterUserGUIController1 {
     }
 
     @FXML
-    protected void goToConcludeRegister(ActionEvent actionEvent) {
+    private void goToConcludeRegister(ActionEvent actionEvent) {
 
         try {
             UserBean1 userBean1 = new UserBean1();

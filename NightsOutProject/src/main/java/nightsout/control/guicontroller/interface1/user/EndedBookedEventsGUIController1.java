@@ -11,6 +11,7 @@ import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.EventReviewItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
@@ -38,7 +39,7 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
         this.userBean1 = new UserBean1(Session.getInstance().getUser());
         try {
             controller = new ManageReviewAppController();
-            controller.eventsToReview(this, userBean1.getId());
+            controller.eventsToReview(this, new IdBean(userBean1.getId()));
 
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
@@ -46,7 +47,7 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
     }
 
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {
+    private void backToUserPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {
@@ -62,7 +63,7 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
         ReviewBean reviewBean=null;
         if(ob instanceof EventBean eBean) {
             try {
-                reviewBean = manageReviewAppController.getReviewByIdEventAndIdUser(userBean1.getId(), eBean.getIdEvent());
+                reviewBean = manageReviewAppController.getReviewByIdEventAndIdUser(new IdBean(userBean1.getId()), new IdBean(eBean.getIdEvent()));
                 if(reviewBean != null){
                     EventItemGUIController1 controller;
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());

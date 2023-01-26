@@ -21,18 +21,19 @@ public class ConcludeRegisterClubOwnerGUIController1 {
 
     private ClubOwnerBean1 clubOwnerBean1;
     @FXML
-    TextField textFieldUsername;
+    private TextField textFieldUsername;
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
     @FXML
-    ImageView imageViewProfile;
+    private ImageView imageViewProfile;
     @FXML
-    TextField textFieldEmail;
+    private TextField textFieldEmail;
     private File img;
 
-    SwitchPage switchPage = new SwitchPage();
+    private SwitchPage switchPage = new SwitchPage();
+
     @FXML
-    protected void backToRegister(ActionEvent actionEvent) {
+    private void backToRegister(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/RegisterClubOwner1.fxml");
         } catch (SystemException e) {
@@ -41,7 +42,7 @@ public class ConcludeRegisterClubOwnerGUIController1 {
     }
 
     @FXML
-    protected void goToWelcomePage(ActionEvent actionEvent) {
+    private void goToWelcomePage(ActionEvent actionEvent) {
         RegisterAppController controller;
         CredentialsBean credentialsBean;
         try {
@@ -65,7 +66,8 @@ public class ConcludeRegisterClubOwnerGUIController1 {
         this.clubOwnerBean1 = clubOwnerBean1;
     }
 
-    public void loadImage() {
+    @FXML
+    private void loadImage() {
 
         Stage stage = (Stage) textFieldUsername.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();

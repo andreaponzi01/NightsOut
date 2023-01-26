@@ -13,7 +13,7 @@ public class SubscriptionVipPageGUIController1 {
     private SwitchPage switchPage = new SwitchPage();
 
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {
+    private void backToUserPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
         } catch (SystemException e) {
@@ -26,8 +26,9 @@ public class SubscriptionVipPageGUIController1 {
 
         SubscriptionVipAppController controller = new SubscriptionVipAppController();
         try {
-            Session.getInstance().setUser(controller.subscription(Session.getInstance().getUser()));
-            switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
+           controller.subscription(Session.getInstance().getUser());
+           Session.getInstance().updateVIP();
+           switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

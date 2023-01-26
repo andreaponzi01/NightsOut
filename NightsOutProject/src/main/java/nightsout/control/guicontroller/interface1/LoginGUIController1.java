@@ -26,7 +26,7 @@ public class LoginGUIController1 {
     private SwitchPage switchPage = new SwitchPage();
 
     @FXML
-    void loginAction(ActionEvent ae) {
+    private void loginAction(ActionEvent ae) {
 
         String type = "Free";
         LoginAppController controller;
@@ -48,7 +48,7 @@ public class LoginGUIController1 {
     }
 
     @FXML
-    protected void backToWelcomePage(ActionEvent actionEvent) {
+    private void backToWelcomePage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
         } catch (SystemException e) {

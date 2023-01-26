@@ -10,7 +10,7 @@ public class RegisterChoiceGUIController1 {
 
     private SwitchPage switchPage = new SwitchPage();
     @FXML
-    protected void goToClubOwnerRegister(ActionEvent actionEvent) {
+    private void goToClubOwnerRegister(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/RegisterClubOwner1.fxml");
         } catch (SystemException e) {
@@ -18,7 +18,7 @@ public class RegisterChoiceGUIController1 {
         }
     }
     @FXML
-    protected void goToUserRegister(ActionEvent actionEvent) {
+    private void goToUserRegister(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/RegisterUser1.fxml");
         } catch (SystemException e) {
@@ -26,7 +26,7 @@ public class RegisterChoiceGUIController1 {
         }
     }
     @FXML
-    protected void backToWelcomePane(ActionEvent actionEvent) {
+    private void backToWelcomePane(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/Welcome1.fxml");
         } catch (SystemException e) {

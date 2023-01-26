@@ -35,7 +35,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     private SwitchPage switchPage = new SwitchPage();
 
     @FXML
-    public void goToHome(ActionEvent actionEvent) {
+    private void goToHome(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
         } catch (SystemException e) {
@@ -51,7 +51,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
         this.usernameLabel.setText(Session.getInstance().getClubOwner().getUsername());
     }
     @FXML
-    public void goToCreateEventPage(ActionEvent actionEvent) {
+    private void goToCreateEventPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/CreateEventPage1.fxml");
         } catch (SystemException e) {
@@ -86,7 +86,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     }
 
     @FXML
-    public void goToManageRequestsPage(ActionEvent actionEvent) {
+    private void goToManageRequestsPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ManageRequests1.fxml");
         } catch (SystemException e) {
@@ -95,7 +95,7 @@ public class MenuClubOwnerGUIController1 implements Initializable {
     }
 
     @FXML
-    public void goToResponsePage(ActionEvent actionEvent) {
+    private void goToResponsePage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ReviewsCOPage1.fxml");
         } catch (SystemException e) {

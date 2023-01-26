@@ -59,7 +59,7 @@ public class CreateEventGUIController1 implements Initializable {
         }
     }
     @FXML
-    private void createEvent(ActionEvent actionEvent) {
+    private void createEvent(ActionEvent actionEvent) throws SystemException {
 
         EventBean1 eventBean1 = new EventBean1();
         CreateEventAppController controller;
@@ -76,12 +76,16 @@ public class CreateEventGUIController1 implements Initializable {
             controller.createEvent(eventBean1);
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
-                 WrongInputRangeException | CreateEventEmailException e) {
+                 WrongInputRangeException e) {
             ErrorDialog.getInstance().handleException(e);
+        } catch (CreateEventEmailException e) {
+            ErrorDialog.getInstance().handleException(e);
+            switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
         }
     }
 
-    public void loadImage() {
+    @FXML
+    private void loadImage() {
         Stage stage = (Stage) textFieldName.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagine Files", "*.png", "*.jpg", "*.jpeg"));

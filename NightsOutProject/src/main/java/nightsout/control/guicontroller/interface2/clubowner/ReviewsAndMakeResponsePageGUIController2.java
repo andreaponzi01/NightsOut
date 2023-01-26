@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.control.guicontroller.interface2.item.ReviewItemToResponseGUIController2;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
@@ -44,7 +45,8 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
         }
     }
 
-    public void goToCommunity(ActionEvent actionEvent) {
+    @FXML
+    private void goToCommunity(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent,"/CommunityPage2.fxml");
         } catch (SystemException e) {
@@ -56,7 +58,7 @@ public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, 
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
-            manageReviewAppController.eventReviews(this,  Session.getInstance().getClubOwner().getId());
+            manageReviewAppController.eventReviews(this,  new IdBean(Session.getInstance().getClubOwner().getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

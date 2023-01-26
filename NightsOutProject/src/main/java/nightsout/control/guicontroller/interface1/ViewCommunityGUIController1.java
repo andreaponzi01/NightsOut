@@ -40,6 +40,7 @@ public class ViewCommunityGUIController1 implements Observer {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane pane = null;
 
+
         if(ob instanceof ResponseBean responseBean) {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ResponseItem1.fxml")).openStream());
@@ -56,20 +57,19 @@ public class ViewCommunityGUIController1 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewSimpleItem1.fxml")).openStream());
                 communityEngineering = new CommunityEngineering();
-                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
                 ReviewItemGUIController1 controller = fxmlLoader.getController();
                 controller.setAll(reviewBean);
                 this.listView.getItems().add(pane);
+                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
 
             } catch (IOException | SystemException e) {
                 ErrorDialog.getInstance().handleException(e);
             }
         }
-
-
-
     }
-    public void backToViewClubOwnerPage(ActionEvent actionEvent) {
+
+    @FXML
+    private void backToViewClubOwnerPage(ActionEvent actionEvent) {
 
         try {
             if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))

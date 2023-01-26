@@ -29,7 +29,7 @@ public class MyCommunityPageGUIController1 implements Observer, Initializable {
     private SwitchPage switchPage = new SwitchPage();
 
     @FXML
-    public void backToReviewsPage(ActionEvent actionEvent) {
+    private void backToReviewsPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ReviewsCOPage1.fxml");
         } catch (SystemException e) {

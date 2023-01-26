@@ -106,7 +106,7 @@ public class MenuUserGUIController2 implements Initializable {
         }
     }
     @FXML
-    public void goToHome(ActionEvent actionEvent) {
+    private void goToHome(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/UserPage2.fxml");
         } catch (SystemException e) {

@@ -27,17 +27,17 @@ import java.util.ResourceBundle;
 
 public class UserPageGUIController1 implements Observer, Initializable {
 
-    protected UserBean1 userBean1;
+    private UserBean1 userBean1;
     @FXML
-    protected Label labelName;
+    private Label labelName;
     @FXML
-    protected Label labelEmail;
+    private Label labelEmail;
     @FXML
-    protected Label labelSurname;
+    private Label labelSurname;
     @FXML
-    protected Label labelBirthday;
+    private Label labelBirthday;
     @FXML
-    protected Label labelVip;
+    private Label labelVip;
     @FXML
     private ListView listViewNextEvents;
     @FXML

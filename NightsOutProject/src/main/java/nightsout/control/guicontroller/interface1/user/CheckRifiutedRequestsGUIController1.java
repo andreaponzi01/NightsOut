@@ -10,6 +10,7 @@ import nightsout.control.appcontroller.CheckRequestAppController;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.CheckRequestsItemGUIController1;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
@@ -33,7 +34,7 @@ public class CheckRifiutedRequestsGUIController1 implements Observer, Initializa
         CheckRequestAppController controller;
         try {
             controller = new CheckRequestAppController();
-            controller.checkRequests(this,  Session.getInstance().getUser().getId());
+            controller.checkRequests(this,  new IdBean(Session.getInstance().getUser().getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
@@ -58,9 +59,9 @@ public class CheckRifiutedRequestsGUIController1 implements Observer, Initializa
         if(ob instanceof RequestBean rBean && Objects.equals(rBean.getStatus(), "declined")) {
                 try {
                     appController = new JoinEventAppController();
-                    controller = fxmlLoader.getController();
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
-                    EventBean1 eventBean1 = new EventBean1(appController.searchEventByIdEvent(rBean.getIdEvent()));
+                    controller = fxmlLoader.getController();
+                    EventBean1 eventBean1 = new EventBean1(appController.searchEventByIdEvent(new IdBean(rBean.getIdEvent())));
                     controller.setAll(rBean, eventBean1);
                     this.listViewRifiutedRequests.getItems().add(pane);
                 } catch(SystemException | IOException e){

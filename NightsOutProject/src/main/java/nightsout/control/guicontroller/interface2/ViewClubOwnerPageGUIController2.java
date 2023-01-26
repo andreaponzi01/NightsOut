@@ -16,7 +16,7 @@ import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.engineering.CreatedEventsEngineering;
+import nightsout.utils.engineering.ClubOwnerPageEngineering;
 import nightsout.utils.engineering.CommunityEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
@@ -56,8 +56,8 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
         this.labelEmail.setText(clubOwnerBean.getEmail());
         this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
-        CreatedEventsEngineering createdEventsEngineering = new CreatedEventsEngineering();
-        createdEventsEngineering.createdEvents(this, clubOwnerBean.getId());
+        ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
+        clubOwnerPageEngineering.createdEvents(this, clubOwnerBean.getId());
         CommunityEngineering communityEngineering = new CommunityEngineering();
         communityEngineering.eventReviews(this, this.clubOwnerBean.getId());
     }

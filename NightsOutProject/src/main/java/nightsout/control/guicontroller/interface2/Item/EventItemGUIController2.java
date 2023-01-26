@@ -38,7 +38,8 @@ public class EventItemGUIController2 {
         imageViewProfilePic.setImage(new Image(this.eventBean.getImg().toURI().toString()));
     }
 
-    public void goToEventPage(ActionEvent actionEvent) {
+    @FXML
+    private void goToEventPage(ActionEvent actionEvent) {
         try {
             String type = Session.getInstance().checkInstanceType();
             if(type.equalsIgnoreCase("FREE")){

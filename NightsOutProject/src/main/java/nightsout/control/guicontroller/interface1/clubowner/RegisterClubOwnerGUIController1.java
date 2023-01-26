@@ -27,7 +27,7 @@ public class RegisterClubOwnerGUIController1 {
     private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
 
     @FXML
-    protected void backToChoice(ActionEvent actionEvent) {
+    private void backToChoice(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/RegisterChoice1.fxml");
         } catch (SystemException e) {
@@ -36,7 +36,7 @@ public class RegisterClubOwnerGUIController1 {
     }
 
     @FXML
-    protected void goToConcludeRegister(ActionEvent actionEvent) {
+    private void goToConcludeRegister(ActionEvent actionEvent) {
 
         try {
             ClubOwnerBean1 clubOwnerBean1 = new ClubOwnerBean1();

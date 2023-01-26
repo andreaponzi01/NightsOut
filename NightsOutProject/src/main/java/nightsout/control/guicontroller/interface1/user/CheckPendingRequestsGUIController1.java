@@ -10,6 +10,7 @@ import nightsout.control.appcontroller.CheckRequestAppController;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.CheckRequestsItemGUIController1;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.exception.ErrorDialog;
@@ -27,6 +28,7 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
     private SwitchPage switchPage = new SwitchPage();
     @FXML
     private ListView listViewPendingRequests;
+
     @FXML
     private void goToRifiutedRequests(ActionEvent actionEvent) {
         try {
@@ -48,7 +50,7 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
                     pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/CheckRequestsItem1.fxml")).openStream());
                     controller = fxmlLoader.getController();
                     fxmlLoader.getController();
-                    EventBean1 eventBean1 = new EventBean1(appController.searchEventByIdEvent(rBean.getIdEvent()));
+                    EventBean1 eventBean1 = new EventBean1(appController.searchEventByIdEvent(new IdBean(rBean.getIdEvent())));
                     controller.setAll(rBean, eventBean1);
                     this.listViewPendingRequests.getItems().add(pane);
                 } catch (SystemException | IOException e) {
@@ -56,6 +58,7 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
                 }
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -63,13 +66,14 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
 
         try {
             controller = new CheckRequestAppController();
-            controller.checkRequests(this, Session.getInstance().getUser().getId());
+            controller.checkRequests(this, new IdBean(Session.getInstance().getUser().getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
     }
+
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {
+    private void backToUserPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {

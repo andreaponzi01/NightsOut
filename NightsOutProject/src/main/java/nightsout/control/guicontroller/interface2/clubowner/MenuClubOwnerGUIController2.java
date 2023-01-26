@@ -77,7 +77,7 @@ public class MenuClubOwnerGUIController2 implements Initializable {
     }
 
     @FXML
-    public void goToHome(ActionEvent actionEvent) {
+    private void goToHome(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
@@ -85,7 +85,7 @@ public class MenuClubOwnerGUIController2 implements Initializable {
         }
     }
     @FXML
-    public void goToManageEventsPage(ActionEvent actionEvent) {
+    private void goToManageEventsPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ManageEventPage2.fxml");
         } catch (SystemException e) {
@@ -94,7 +94,7 @@ public class MenuClubOwnerGUIController2 implements Initializable {
     }
 
     @FXML
-    public void goToCommunityPage(ActionEvent actionEvent) {
+    private void goToCommunityPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ReviewsAndMakeResponsePage2.fxml");
         } catch (SystemException e) {

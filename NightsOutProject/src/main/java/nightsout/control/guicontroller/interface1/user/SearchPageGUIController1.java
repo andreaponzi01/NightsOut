@@ -11,6 +11,7 @@ import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
 import nightsout.utils.bean.ClubOwnerBean;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.SearchBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
@@ -43,7 +44,8 @@ public class SearchPageGUIController1 implements Observer {
             String input = textFieldSearch.getText();
             this.listView.getItems().clear();
             if (!input.isBlank()) {
-                joinEventAppController.search(this, input);
+                SearchBean searchBean = new SearchBean(input);
+                joinEventAppController.search(this, searchBean);
             }
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
@@ -87,7 +89,7 @@ public class SearchPageGUIController1 implements Observer {
         }
     }
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {
+    private void backToUserPage(ActionEvent actionEvent) {
         try {
         switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
         } catch (SystemException e) {

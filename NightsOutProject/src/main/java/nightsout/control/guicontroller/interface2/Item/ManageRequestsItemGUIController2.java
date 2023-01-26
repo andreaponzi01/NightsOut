@@ -6,7 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.JoinEventAppController;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ManageRequestBean;
+import nightsout.utils.bean.UsernameBean;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
@@ -42,30 +44,33 @@ public class ManageRequestsItemGUIController2 {
         this.imageViewProfile.setImage(new Image(manageRequestBean.getImg().toURI().toString()));
     }
 
-    public void goToUserPage(ActionEvent actionEvent) {
+    @FXML
+    private void goToUserPage(ActionEvent actionEvent) {
 
         try {
-            UserBean2 userBean = new UserBean2(joinEventAppController.searchUserByUsername(manageRequestBean.getUsername()));
+            UserBean2 userBean = new UserBean2(joinEventAppController.searchUserByUsername(new UsernameBean(manageRequestBean.getUsername())));
             switchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
     }
 
-    public void rejectRequest(ActionEvent actionEvent) {
+    @FXML
+    private void rejectRequest(ActionEvent actionEvent) {
 
         try {
-            joinEventAppController.declineRequest(manageRequestBean.getIdRequest());
+            joinEventAppController.declineRequest(new IdBean(manageRequestBean.getIdRequest()));
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
     }
 
-    public void acceptRequest(ActionEvent actionEvent) {
+    @FXML
+    private void acceptRequest(ActionEvent actionEvent) {
 
         try {
-            joinEventAppController.acceptRequest(manageRequestBean.getIdRequest());
+            joinEventAppController.acceptRequest(new IdBean(manageRequestBean.getIdRequest()));
             switchPage.replaceScene(actionEvent,"/ClubOwnerPage2.fxml");
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);

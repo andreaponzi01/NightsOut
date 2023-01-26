@@ -21,8 +21,9 @@ public class SubscriptionedVipPageGUIController1 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {this.labelDate.setText(Session.getInstance().getUser().getCreationDateVIP().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));}
+
     @FXML
-    public void backToUserPage(ActionEvent actionEvent) {
+    private void backToUserPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/UserPage1.fxml");
         } catch (SystemException e) {

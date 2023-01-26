@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.UserBean2;
 import nightsout.utils.exception.ErrorDialog;
@@ -28,17 +29,18 @@ public class ReviewItemGUIController2 {
         ManageReviewAppController controller = new ManageReviewAppController();
         this.labelComment.setText(reviewBean.getComment());
         try {
-            this.userBean = new UserBean2(controller.searchUserbyIdUser(reviewBean.getIdUser()));
+            this.userBean = new UserBean2(controller.searchUserbyIdUser(new IdBean(reviewBean.getIdUser())));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
-        EventBean eventBean = controller.searchEventbyIdEvent(reviewBean.getIdEvent());
+        EventBean eventBean = controller.searchEventbyIdEvent(new IdBean(reviewBean.getIdEvent()));
         this.labelUsername.setText(userBean.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
 
 
-    public void goToUserPage(ActionEvent actionEvent) {
+    @FXML
+    private void goToUserPage(ActionEvent actionEvent) {
 
         try {
             String type = Session.getInstance().checkInstanceType();

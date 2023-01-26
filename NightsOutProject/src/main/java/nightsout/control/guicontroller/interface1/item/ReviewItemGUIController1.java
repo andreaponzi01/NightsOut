@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.exception.ErrorDialog;
@@ -34,8 +35,8 @@ public class ReviewItemGUIController1 {
         manageReviewAppController = new ManageReviewAppController();
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
-        this.userBean1 = new UserBean1(manageReviewAppController.searchUserbyIdUser(reviewBean.getIdUser()));
-        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
+        this.userBean1 = new UserBean1(manageReviewAppController.searchUserbyIdUser(new IdBean(reviewBean.getIdUser())));
+        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(new IdBean(reviewBean.getIdEvent()));
         this.labelUsername.setText(userBean1.getUsername());
         this.labelEventName.setText(eventBean.getName());
 
@@ -47,13 +48,13 @@ public class ReviewItemGUIController1 {
         this.manageReviewAppController = manageReviewAppController;
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
-        this.userBean1 = new UserBean1(manageReviewAppController.searchUserbyIdUser(reviewBean.getIdUser()));
-        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
+        this.userBean1 = new UserBean1(manageReviewAppController.searchUserbyIdUser(new IdBean(reviewBean.getIdUser())));
+        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(new IdBean(reviewBean.getIdEvent()));
         this.labelUsername.setText(userBean1.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
     @FXML
-    public void goToResponsePage(ActionEvent actionEvent) {
+    private void goToResponsePage(ActionEvent actionEvent) {
 
         try {
             switchAndSetPage1.switchAndSetSceneMakeResponse(actionEvent, "/MakeResponsePage1.fxml", userBean1, reviewBean, manageReviewAppController);
@@ -62,7 +63,7 @@ public class ReviewItemGUIController1 {
         }
     }
     @FXML
-    public void goToUserPage(ActionEvent actionEvent) {
+    private void goToUserPage(ActionEvent actionEvent) {
 
         try {
             String type = Session.getInstance().checkInstanceType();

@@ -23,15 +23,15 @@ import java.util.Objects;
 public class ViewUserPageGUIController2 implements Observer {
 
     @FXML
-    protected Label labelUsername;
+    private Label labelUsername;
     @FXML
-    protected Label labelVip;
+    private Label labelVip;
     @FXML
-    protected Label labelBirthday;
+    private Label labelBirthday;
     @FXML
-    protected Label labelName;
+    private Label labelName;
     @FXML
-    protected Label labelGender;
+    private Label labelGender;
     @FXML
     private Label labelSurname;
     @FXML

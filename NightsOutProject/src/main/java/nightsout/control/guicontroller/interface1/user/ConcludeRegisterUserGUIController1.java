@@ -35,7 +35,7 @@ public class ConcludeRegisterUserGUIController1 {
         this.userBean1 = userBean1;
     }
     @FXML
-    protected void backToRegister(ActionEvent actionEvent) {
+    private void backToRegister(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/RegisterUser1.fxml");
         } catch (SystemException e) {
@@ -44,7 +44,7 @@ public class ConcludeRegisterUserGUIController1 {
     }
 
     @FXML
-    protected void goToWelcomePage(ActionEvent actionEvent) {
+    private void goToWelcomePage(ActionEvent actionEvent) {
 
         CredentialsBean credentialsBean;
         RegisterAppController controller;
@@ -65,7 +65,8 @@ public class ConcludeRegisterUserGUIController1 {
         }
     }
 
-    public void loadImage() {
+    @FXML
+    private void loadImage() {
 
         Stage stage = (Stage) textFieldUsername.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();

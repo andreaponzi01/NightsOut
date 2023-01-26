@@ -36,7 +36,7 @@ public class LoginClubOwnerGUIController2 {
 
 
     @FXML
-    protected void backToWelcomePage(ActionEvent actionEvent) {
+    private void backToWelcomePage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
         } catch (SystemException e) {

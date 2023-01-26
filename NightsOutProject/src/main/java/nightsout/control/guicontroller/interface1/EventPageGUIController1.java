@@ -164,7 +164,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     public void display() { this.root.getChildren().add(this.contents.getButton()); }
 
     @FXML
-    public void goToMap(ActionEvent ae) {
+    private void goToMap(ActionEvent ae) {
 
         try {
             switchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
@@ -174,7 +174,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     }
 
     @FXML
-    public void goToClubOwner(ActionEvent ae) {
+    private void goToClubOwner(ActionEvent ae) {
         try {
             if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
                 switchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);

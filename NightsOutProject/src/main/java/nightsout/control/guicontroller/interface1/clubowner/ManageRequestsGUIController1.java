@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.ManageRequestsItemGUIController1;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ManageRequestBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
@@ -32,7 +33,7 @@ public class ManageRequestsGUIController1 implements Observer, Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            joinEventAppController.manageRequests(this, Session.getInstance().getClubOwner().getId());
+            joinEventAppController.manageRequests(this, new IdBean(Session.getInstance().getClubOwner().getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
@@ -55,7 +56,7 @@ public class ManageRequestsGUIController1 implements Observer, Initializable {
         }
     }
     @FXML
-    public void backToClubOwnerPage(ActionEvent actionEvent) {
+    private void backToClubOwnerPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
         } catch (SystemException e) {

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface1.UserBean1;
@@ -31,9 +32,11 @@ public class MakeResponseGUIController1 {
         this.manageReviewAppController = manageReviewAppController;
         this.reviewBean=reviewBean;
         this.labelUsername.setText(userBean.getUsername());
-        this.labelEventName.setText(manageReviewAppController.searchEventbyIdEvent(reviewBean.getIdEvent()).getName());
+        this.labelEventName.setText(manageReviewAppController.searchEventbyIdEvent(new IdBean(reviewBean.getIdEvent())).getName());
     }
-    public void createResponse(ActionEvent actionEvent) {
+
+    @FXML
+    private void createResponse(ActionEvent actionEvent) {
 
         try {
             ResponseBean responseBean = new ResponseBean();
@@ -46,7 +49,9 @@ public class MakeResponseGUIController1 {
             ErrorDialog.getInstance().handleException(e);
         }
     }
-    public void backToReviewsPage(ActionEvent actionEvent) {
+
+    @FXML
+    private void backToReviewsPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/ReviewsCOPage1.fxml");
         } catch (SystemException e) {

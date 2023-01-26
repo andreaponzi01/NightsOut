@@ -32,7 +32,9 @@ public class MakeReviewGUIController1 {
         this.eventBean1 = eventBean1;
         this.labelEventName.setText(eventBean1.getName());
     }
-    public void createReview(ActionEvent actionEvent) {
+
+    @FXML
+    private void createReview(ActionEvent actionEvent) {
 
         try {
             ReviewBean reviewBean= new ReviewBean();
@@ -45,7 +47,9 @@ public class MakeReviewGUIController1 {
             ErrorDialog.getInstance().handleException(e);
         }
     }
-    public void backToEndedBookedEventsPage(ActionEvent actionEvent) {
+
+    @FXML
+    private void backToEndedBookedEventsPage(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/EndedBookedEventsPage1.fxml");
         } catch (SystemException e) {

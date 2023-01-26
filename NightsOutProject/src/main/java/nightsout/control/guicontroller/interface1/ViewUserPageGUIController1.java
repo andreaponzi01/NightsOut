@@ -23,23 +23,23 @@ import java.util.Objects;
 public class ViewUserPageGUIController1 implements Observer {
 
     @FXML
-    protected Label labelUsername;
+    private Label labelUsername;
     @FXML
-    protected Label labelName;
+    private Label labelName;
     @FXML
-    protected Label labelBirthday;
+    private Label labelBirthday;
     @FXML
-    protected Label labelVip;
+    private Label labelVip;
     @FXML
-    protected Label labelGender;
+    private Label labelGender;
     @FXML
-    protected Label labelSurname;
+    private Label labelSurname;
     @FXML
-    protected Label labelEmail;
+    private Label labelEmail;
     @FXML
-    protected ListView listViewNextEvents;
+    private ListView listViewNextEvents;
     @FXML
-    protected ImageView imageViewProfile;
+    private ImageView imageViewProfile;
 
     @Override
     public void update(Object ob) {
@@ -58,6 +58,7 @@ public class ViewUserPageGUIController1 implements Observer {
             }
         }
     }
+
     public void setAll(UserBean1 userBean1) {
 
         try {

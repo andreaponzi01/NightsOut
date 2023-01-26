@@ -4,7 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -15,7 +18,7 @@ import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface2.EventBean2;
-import nightsout.utils.engineering.CreatedEventsEngineering;
+import nightsout.utils.engineering.ClubOwnerPageEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.*;
 import nightsout.utils.observer.Observer;
@@ -50,16 +53,17 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        CreatedEventsEngineering createdEventsEngineering = new CreatedEventsEngineering();
+
+        ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
         try {
-            createdEventsEngineering.createdEvents(this, Session.getInstance().getClubOwner().getId());
+            clubOwnerPageEngineering.createdEvents(this, Session.getInstance().getClubOwner().getId());
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
     }
 
     @FXML
-    public void createEvent(ActionEvent actionEvent) {
+    public void createEvent(ActionEvent actionEvent) throws SystemException {
 
         EventBean2 eventBean = new EventBean2();
         CreateEventAppController controller;
@@ -74,18 +78,17 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
             eventBean.setPrice(textFieldPrice.getText());
             eventBean.setImg(this.img);
             controller.createEvent(eventBean);
-
             switchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
-
-        } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
-                 CreateEventEmailException e) {
+        } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException e) {
             ErrorDialog.getInstance().handleException(e);
+        } catch (CreateEventEmailException e) {
+            ErrorDialog.getInstance().handleException(e);
+            switchPage.replaceScene(actionEvent,"/ManageEventPage2.fxml");
         }
-
-
     }
 
-    public void loadImage() {
+    @FXML
+    private void loadImage() {
 
         Stage stage = (Stage) textFieldName.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();

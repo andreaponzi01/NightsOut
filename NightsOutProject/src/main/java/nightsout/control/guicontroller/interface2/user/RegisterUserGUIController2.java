@@ -67,7 +67,8 @@ public class RegisterUserGUIController2 {
         }
     }
 
-    public void loadImage() {
+    @FXML
+    private void loadImage() {
 
         Stage stage = (Stage) textFieldUsername.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
@@ -77,7 +78,7 @@ public class RegisterUserGUIController2 {
     }
 
     @FXML
-    public void backToLogin(ActionEvent actionEvent) {
+    private void backToLogin(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/LoginUser2.fxml");
         } catch (SystemException e) {

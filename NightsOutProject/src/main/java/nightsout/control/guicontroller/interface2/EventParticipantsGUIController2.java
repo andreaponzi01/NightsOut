@@ -37,7 +37,8 @@ public class EventParticipantsGUIController2 implements Observer {
         this.labelEventName.setText("Participants of: "+eBean.getName());
     }
 
-    public void backToUserPage(ActionEvent actionEvent) {
+    @FXML
+    private void backToUserPage(ActionEvent actionEvent) {
         try{
             String type = Session.getInstance().checkInstanceType();
             if (type.equalsIgnoreCase("FREE"))

@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
@@ -32,7 +33,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
 
 
         try {
-            manageReviewAppController.eventReviews(this,  Session.getInstance().getClubOwner().getId());
+            manageReviewAppController.eventReviews(this, new IdBean(Session.getInstance().getClubOwner().getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
@@ -46,7 +47,7 @@ public class EventReviewsClubOwnerGUIController1 implements Observer, Initializa
         }
     }
     @FXML
-    public void goToCommunity(ActionEvent actionEvent) {
+    private void goToCommunity(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/MyCommunityPage1.fxml");
         } catch (SystemException e) {

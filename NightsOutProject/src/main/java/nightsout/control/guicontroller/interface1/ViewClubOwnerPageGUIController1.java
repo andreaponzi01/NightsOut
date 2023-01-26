@@ -9,11 +9,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
-import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
+import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
-import nightsout.utils.engineering.CreatedEventsEngineering;
+import nightsout.utils.engineering.ClubOwnerPageEngineering;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -53,8 +53,8 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
         this.labelEmail.setText(clubOwnerBean1.getEmail());
         this.labelDiscountVip.setText(clubOwnerBean1.getDiscountVIP()+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean1.getImg().toURI().toString()));
-        CreatedEventsEngineering createdEventsEngineering = new CreatedEventsEngineering();
-        createdEventsEngineering.createdEvents(this, clubOwnerBean1.getId());
+        ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
+        clubOwnerPageEngineering.createdEvents(this, clubOwnerBean1.getId());
     }
 
     @Override
@@ -75,7 +75,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
     }
 
     @FXML
-    public void goToCommunity(ActionEvent actionEvent) {
+    private void goToCommunity(ActionEvent actionEvent) {
 
         try {
             if(Session.getInstance().checkInstanceType().equalsIgnoreCase("ClubOwner"))

@@ -42,15 +42,17 @@ public class RegisterClubOwnerGUIController2 {
     private SwitchPage switchPage = new SwitchPage();
     private File img;
 
-    public void loadImage() {
+    @FXML
+    private void loadImage() {
         Stage stage = (Stage) textFieldUsername.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagine Files", "*.png", "*.jpg", "*.jpeg"));
         img = fileChooser.showOpenDialog(stage).getAbsoluteFile();
         imageViewProfile.setImage(new Image(img.toURI().toString()));
     }
+
     @FXML
-    protected void goToWelcomePage(ActionEvent actionEvent) {
+    private void goToWelcomePage(ActionEvent actionEvent) {
 
         ClubOwnerBean2 clubOwnerBean;
         CredentialsBean credentialsBean;
@@ -78,7 +80,7 @@ public class RegisterClubOwnerGUIController2 {
     }
 
     @FXML
-    public void backToLogin(ActionEvent actionEvent) {
+    private void backToLogin(ActionEvent actionEvent) {
         try {
             switchPage.replaceScene(actionEvent, "/LoginClubOwner2.fxml");
         } catch (SystemException e) {
