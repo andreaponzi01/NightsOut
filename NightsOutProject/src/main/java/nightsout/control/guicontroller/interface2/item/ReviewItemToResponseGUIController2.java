@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.bean.interface2.UserBean2;
@@ -39,16 +40,16 @@ public class ReviewItemToResponseGUIController2 {
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
         try {
-            this.userBean = new UserBean2(manageReviewAppController.searchUserbyIdUser(reviewBean.getIdUser()));
+            this.userBean = new UserBean2(manageReviewAppController.searchUserbyIdUser(new IdBean(reviewBean.getIdUser())));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
-        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(reviewBean.getIdEvent());
+        EventBean eventBean = manageReviewAppController.searchEventbyIdEvent(new IdBean(reviewBean.getIdEvent()));
         this.labelUsername.setText(userBean.getUsername());
         this.labelEventName.setText(eventBean.getName());
     }
     @FXML
-    public void makeResponse(ActionEvent actionEvent) {
+    private void makeResponse(ActionEvent actionEvent) {
 
         try {
             ResponseBean responseBean = new ResponseBean();
@@ -63,7 +64,7 @@ public class ReviewItemToResponseGUIController2 {
     }
 
     @FXML
-    public void goToUserPage(ActionEvent actionEvent) {
+    private void goToUserPage(ActionEvent actionEvent) {
         try {
             switchAndSetPage2.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml",userBean);
         } catch (SystemException e) {

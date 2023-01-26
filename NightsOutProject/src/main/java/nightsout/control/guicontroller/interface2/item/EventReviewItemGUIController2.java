@@ -47,7 +47,9 @@ public class EventReviewItemGUIController2 {
             ErrorDialog.getInstance().handleException(e);
       }
     }
-    public void sendReview(ActionEvent actionEvent) {
+
+    @FXML
+    private void sendReview(ActionEvent actionEvent) {
 
         try {
             ReviewBean reviewBean= new ReviewBean();

@@ -7,10 +7,6 @@ import nightsout.utils.bean.ResponseBean;
 
 public class ResponseItemGUIController2 {
 
-    public ResponseItemGUIController2() {
-        //ignore
-    }
-
     @FXML
     private Label labelResponse;
     @FXML

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nightsout.control.appcontroller.JoinEventAppController;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.exception.ErrorDialog;
@@ -28,7 +29,7 @@ public class RequestsItemGUIController2 {
     public void setAll(RequestBean requestBean) throws SystemException {
 
         JoinEventAppController controller = new JoinEventAppController();
-        this.eventBean = new EventBean2(controller.searchEventByIdEvent(requestBean.getIdEvent()));
+        this.eventBean = new EventBean2(controller.searchEventByIdEvent(new IdBean(requestBean.getIdEvent())));
         this.labelEventName.setText(String.valueOf(eventBean.getName()));
         this.userImageView.setImage(new Image(eventBean.getImg().toURI().toString()));
         this.labelEventDate.setText(requestBean.getRequestDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
