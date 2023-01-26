@@ -1,6 +1,6 @@
 package nightsout.utils.bean;
 
-import nightsout.control.appcontroller.RegisterAppController;
+import nightsout.utils.engineering.RegistrationEngineering;
 import nightsout.utils.engineering.CheckEmailEngineering;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmailNotValidException;
@@ -61,10 +61,10 @@ public abstract class ProfileBean implements GenericBean {
 
     public void setUsername(String username) throws EmptyInputException, UsernameAlreadyTakenException, SystemException {
 
-        RegisterAppController controller = new RegisterAppController();
+        RegistrationEngineering engineering = new RegistrationEngineering();
         if (username.equals("")) {
             trigger.throwEmptyInputException("Username");
-        } else if (controller.usernameAlreadyTaken(username)) {
+        } else if (engineering.usernameAlreadyTaken(username)) {
             trigger.throwUsernameAlreadyTakenException(username);
         } else {
             this.username = username;

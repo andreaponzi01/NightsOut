@@ -17,9 +17,8 @@ public class UserDAO {
         query.insertCredentials(credentialsModel);
         query.insertUser(userModel);
     }
-    public UserModel subscriptionVip(UserModel userModel) throws SystemException {
+    public void subscriptionVip(UserModel userModel) throws SystemException {
         query.subscriptionVipUser(userModel.getUsername());
-        return query.searchUserByUsername(userModel.getUsername());
     }
     public List<UserModel> getUsersByUsername(String username) throws SystemException {
         return query.searchUsersByUsername(username);

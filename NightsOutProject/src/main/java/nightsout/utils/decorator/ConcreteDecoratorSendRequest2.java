@@ -34,7 +34,7 @@ public class ConcreteDecoratorSendRequest2 extends Decorator {
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
         myButton.setStyle("-fx-background-color: #b3b3ff;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
-        myButton.setOnAction((ActionEvent ae) -> sendRequest(ae));
+        myButton.setOnAction(this::sendRequest);
     }
 
     private void sendRequest(ActionEvent actionEvent){

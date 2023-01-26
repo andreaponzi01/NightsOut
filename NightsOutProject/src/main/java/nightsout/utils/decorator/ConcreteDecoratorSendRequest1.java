@@ -45,7 +45,7 @@ public class ConcreteDecoratorSendRequest1 extends Decorator {
         return myButton;
     }
 
-    protected void applyDecorationSendRequest(Button myButton) {
+    private void applyDecorationSendRequest(Button myButton) {
         myButton.setText(toWrite);
         myButton.setMinHeight(65);
         myButton.setMinWidth(125);

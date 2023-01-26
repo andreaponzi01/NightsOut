@@ -33,13 +33,17 @@ public class Session {
     }
 
     public void setClubOwner(ClubOwnerModel clubOwnerModel) {
-        clubOwnerBean = new ClubOwnerBean(clubOwnerModel);
-        type = TYPE_CLUB_OWNER;
+        if (this.clubOwnerBean == null) {
+            clubOwnerBean = new ClubOwnerBean(clubOwnerModel);
+            type = TYPE_CLUB_OWNER;
+        }
     }
 
     public void setUser(UserModel userModel) {
-        userBean = new UserBean(userModel);
-        type = TYPE_FREE;
+        if (this.userBean == null) {
+            userBean = new UserBean(userModel);
+            type = TYPE_FREE;
+        }
     }
 
     public void deleteSession() {
@@ -50,5 +54,12 @@ public class Session {
 
     public String checkInstanceType() {
         return type;
+    }
+
+    public void updateVIP() {
+        if (userBean != null) {
+            if (this.userBean.getVip() == false)
+                this.userBean.setVip(true);
+        }
     }
 }
