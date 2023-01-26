@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.engineering.NextEventsEngineering;
@@ -37,7 +38,7 @@ public class ViewUserPageGUIController1 implements Observer {
     @FXML
     private Label labelEmail;
     @FXML
-    private ListView listViewNextEvents;
+    private ListView<Pane> listViewNextEvents;
     @FXML
     private ImageView imageViewProfile;
 
@@ -74,7 +75,7 @@ public class ViewUserPageGUIController1 implements Observer {
             this.labelBirthday.setText(userBean1.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
             this.imageViewProfile.setImage(new Image(userBean1.getImg().toURI().toString()));
             NextEventsEngineering nextEventsEngineering = new NextEventsEngineering();
-            nextEventsEngineering.nextEvents(this, userBean1.getId());
+            nextEventsEngineering.nextEvents(this, new IdBean(userBean1.getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

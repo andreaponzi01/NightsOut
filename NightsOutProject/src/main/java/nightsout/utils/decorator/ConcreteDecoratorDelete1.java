@@ -9,8 +9,11 @@ import javafx.scene.text.FontWeight;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.engineering.EventPageEngineering;
 import nightsout.utils.exception.ErrorDialog;
+import nightsout.utils.exception.myexception.AlertNotFoundException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.switchpage.SwitchPage;
+
+import java.util.Optional;
 
 public class ConcreteDecoratorDelete1 extends Decorator {
 
@@ -32,24 +35,31 @@ public class ConcreteDecoratorDelete1 extends Decorator {
         Font font = Font.font("Arial", FontWeight.BOLD, 25);
         myButton.setFont(font);
         myButton.setStyle("-fx-background-color: #d00000;" + "-fx-background-radius: 28;" + "-fx-text-fill: white;");
-        myButton.setOnAction((ActionEvent ae) -> deleteEvent(ae));
+        myButton.setOnAction(this::deleteEvent);
     }
 
     private void deleteEvent(ActionEvent ae) {
 
+        Optional<ButtonType> optional;
         EventPageEngineering engineering;
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Event");
         alert.setHeaderText("You're about to delete the event!");
         alert.setContentText("Are you sure you want to delete the event?: ");
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            try {
+        try {
+
+            optional = alert.showAndWait();
+            if (optional.isEmpty()) {
+                throw new AlertNotFoundException();
+            }
+            ButtonType value = optional.get();
+            if (value == ButtonType.OK) {
                 engineering = new EventPageEngineering();
                 engineering.deleteEvent(eventBean);
-                switchPage.replaceScene(ae,"/ClubOwnerPage1.fxml");
-            } catch (SystemException e) {
-                ErrorDialog.getInstance().handleException(e);
+                switchPage.replaceScene(ae, "/ClubOwnerPage1.fxml");
             }
+        } catch (SystemException | AlertNotFoundException e) {
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

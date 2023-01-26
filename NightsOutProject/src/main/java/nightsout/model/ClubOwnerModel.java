@@ -56,9 +56,5 @@ public class ClubOwnerModel extends ProfileModel {
     public void setDiscountVIP(int discountVIP) {
         this.discountVIP = discountVIP;
     }
-
-    public String getType() {
-        return "Club Owner";
-    }
 }
 

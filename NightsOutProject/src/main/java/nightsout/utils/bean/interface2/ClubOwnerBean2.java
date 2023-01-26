@@ -8,6 +8,9 @@ import nightsout.utils.exception.myexception.WrongInputTypeException;
 
 public class ClubOwnerBean2 extends ClubOwnerBean {
 
+    private static final String FIELD_ADDRESS = "Address";
+    private static final String FIELD_CIVIC = "Civic Number";
+    private final Trigger trigger = new Trigger();
 
     public ClubOwnerBean2() {
     }
@@ -18,8 +21,6 @@ public class ClubOwnerBean2 extends ClubOwnerBean {
         super(clubOwnerBean);
     }
 
-    private static final String FIELD_ADDRESS = "Address";
-    private static final String FIELD_CIVIC = "Civic Number";
 
     public void setDiscountVIP(int discountVIP) {
         this.discountVIP = discountVIP;

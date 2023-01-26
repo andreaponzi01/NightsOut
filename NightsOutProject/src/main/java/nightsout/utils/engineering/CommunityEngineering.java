@@ -2,6 +2,7 @@ package nightsout.utils.engineering;
 
 import nightsout.model.ResponseModel;
 import nightsout.model.ReviewModel;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.dao.ResponseDAO;
@@ -15,16 +16,16 @@ import java.util.List;
 
 public class CommunityEngineering {
 
-    public void responseOfOneReview(Observer observer, int idReview) throws SystemException {
+    public void responseOfOneReview(Observer observer, IdBean idBean) throws SystemException {
 
         ResponseBean response = new ResponseBean(observer);
-        response.addResponse(searchResponseByIdReview(idReview));
+        response.addResponse(searchResponseByIdReview(idBean.getId()));
     }
 
-    public void eventReviews(Observer observer, int idClubOwner) throws SystemException {
+    public void eventReviews(Observer observer, IdBean idBean) throws SystemException {
 
         ReviewBeanList list = new ReviewBeanList(observer);
-        list.addReviewToList(searchReviewsByIdClubOwner(idClubOwner));
+        list.addReviewToList(searchReviewsByIdClubOwner(idBean.getId()));
     }
 
     private List<ReviewBean> searchReviewsByIdClubOwner(int idClubOwner) throws SystemException {

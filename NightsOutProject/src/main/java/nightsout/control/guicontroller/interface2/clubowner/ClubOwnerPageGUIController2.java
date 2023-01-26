@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 public class ClubOwnerPageGUIController2 implements Observer, Initializable {
 
     @FXML
-    private ListView listViewPendingRequests;
+    private ListView<Pane> listViewPendingRequests;
     private JoinEventAppController joinEventAppController = new JoinEventAppController();
 
     @Override

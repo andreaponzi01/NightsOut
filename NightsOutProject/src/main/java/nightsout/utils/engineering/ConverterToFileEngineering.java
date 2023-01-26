@@ -1,5 +1,6 @@
 package nightsout.utils.engineering;
 
+import nightsout.utils.bean.ConverterBean;
 import nightsout.utils.exception.myexception.SystemException;
 
 import java.io.File;
@@ -12,7 +13,10 @@ public class ConverterToFileEngineering {
 
     private static final int DEFAULTBUFFERSIZE = 8192*4;
 
-    public void fromInputStreamToFile(InputStream inputStream, File file) throws SystemException {
+    public void fromInputStreamToFile(ConverterBean converterBean) throws SystemException {
+        InputStream inputStream = converterBean.getInputStream();
+        File file = converterBean.getFile();
+
         try (FileOutputStream outputStream = new FileOutputStream(file, false)) {
             int read;
             byte[] bytes = new byte[DEFAULTBUFFERSIZE];

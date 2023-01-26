@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.engineering.ClubOwnerPageEngineering;
@@ -39,7 +40,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
     @FXML
     private Label labelDiscountVip;
     @FXML
-    private ListView listViewCreatedEvents;
+    private ListView<Pane> listViewCreatedEvents;
     @FXML
     private ImageView imageViewProfile;
 
@@ -54,7 +55,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
         this.labelDiscountVip.setText(clubOwnerBean1.getDiscountVIP()+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean1.getImg().toURI().toString()));
         ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
-        clubOwnerPageEngineering.createdEvents(this, clubOwnerBean1.getId());
+        clubOwnerPageEngineering.createdEvents(this, new IdBean(clubOwnerBean1.getId()));
     }
 
     @Override

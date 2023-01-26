@@ -1,6 +1,7 @@
 package nightsout.control.appcontroller;
 
 import nightsout.model.EventModel;
+import nightsout.utils.bean.EmailBean;
 import nightsout.utils.engineering.EmailEngineering;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.dao.EventDAO;
@@ -21,7 +22,10 @@ public class CreateEventAppController {
         EmailEngineering email;
         try {
             email = new EmailEngineering();
-            email.sendEmail("Evento creato con successo!", "L'evento " + eventBean.getName() + " è stato creato con successo.");
+            EmailBean emailBean = new EmailBean();
+            emailBean.setSubject("Evento creato con successo!");
+            emailBean.setText("L'evento " + eventBean.getName() + " è stato creato con successo.");
+            email.sendEmail(emailBean);
         } catch (EmailException e) {
             trigger.throwCreateEventEmailException(e);
         }

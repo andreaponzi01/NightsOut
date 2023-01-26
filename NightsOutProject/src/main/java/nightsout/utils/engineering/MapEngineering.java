@@ -3,6 +3,7 @@ package nightsout.utils.engineering;
 import com.dlsc.gmapsfx.GoogleMapView;
 import com.dlsc.gmapsfx.javascript.object.*;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
 import org.json.JSONException;
@@ -25,7 +26,7 @@ public class MapEngineering {
         Double[] latlong= new Double[2];
         try {
             eventPageEngineering = new EventPageEngineering();
-            latlong = findLocation(eventPageEngineering.getClubAddress(eventBean.getIdEvent()));
+            latlong = findLocation(eventPageEngineering.getClubAddress(new IdBean(eventBean.getIdEvent())));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

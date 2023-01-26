@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface2.item.UserItemGUIController2;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.bean.interface2.UserBean2;
@@ -24,7 +25,7 @@ public class EventParticipantsGUIController2 implements Observer {
 
     private EventBean2 eventBean;
     @FXML
-    private ListView listViewParticipants;
+    private ListView<Pane> listViewParticipants;
     @FXML
     private Label labelEventName;
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
@@ -33,7 +34,7 @@ public class EventParticipantsGUIController2 implements Observer {
 
         this.eventBean=eBean;
         EventParticipantsEngineering eventParticipantsEngineering = new EventParticipantsEngineering();
-        eventParticipantsEngineering.eventParticipants(this, eBean.getIdEvent());
+        eventParticipantsEngineering.eventParticipants(this, new IdBean(eBean.getIdEvent()));
         this.labelEventName.setText("Participants of: "+eBean.getName());
     }
 

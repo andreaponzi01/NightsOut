@@ -29,7 +29,7 @@ public class EndedBookedEventsGUIController1 implements Observer, Initializable 
     private UserBean1 userBean1;
     private SwitchPage switchPage = new SwitchPage();
     @FXML
-    private ListView listViewEvents;
+    private ListView<Pane> listViewEvents;
     private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 
     @Override

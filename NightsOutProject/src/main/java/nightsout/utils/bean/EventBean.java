@@ -11,8 +11,7 @@ import java.time.LocalTime;
 
 public class EventBean implements GenericBean {
 
-    protected Trigger trigger = new Trigger();
-
+    private final Trigger trigger = new Trigger();
     private static final String FIELD_PRICE = "Price";
     private static final String FIELD_IMAGE = "Image";
 

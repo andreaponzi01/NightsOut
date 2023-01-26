@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class ReviewsAndMakeResponsePageGUIController2 implements Initializable, Observer {
 
     @FXML
-    private ListView listViewReviews;
+    private ListView<Pane> listViewReviews;
     private SwitchPage switchPage = new SwitchPage();
     private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 

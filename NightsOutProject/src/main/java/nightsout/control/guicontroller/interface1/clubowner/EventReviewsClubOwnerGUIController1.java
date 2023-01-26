@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class EventReviewsClubOwnerGUIController1 implements Observer, Initializable {
 
     @FXML
-    private ListView listViewReviews;
+    private ListView<Pane> listViewReviews;
     private SwitchPage switchPage = new SwitchPage();
     private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 

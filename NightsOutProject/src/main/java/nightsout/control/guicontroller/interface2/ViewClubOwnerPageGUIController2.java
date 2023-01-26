@@ -10,10 +10,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.ResponseBean;
-import nightsout.utils.bean.ReviewBean;
+import nightsout.utils.bean.*;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.ClubOwnerPageEngineering;
@@ -31,9 +28,9 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
     @FXML
     private Label labelName;
     @FXML
-    private ListView listViewCreatedEvents;
+    private ListView<Pane> listViewCreatedEvents;
     @FXML
-    private ListView listViewCommunity;
+    private ListView<Pane> listViewCommunity;
     private ClubOwnerBean clubOwnerBean;
     @FXML
     private Label labelAddress;
@@ -57,9 +54,9 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
         this.labelDiscountVip.setText(String.valueOf(clubOwnerBean.getDiscountVIP())+"%");
         this.imageViewProfile.setImage(new Image(clubOwnerBean.getImg().toURI().toString()));
         ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
-        clubOwnerPageEngineering.createdEvents(this, clubOwnerBean.getId());
+        clubOwnerPageEngineering.createdEvents(this, new IdBean(clubOwnerBean.getId()));
         CommunityEngineering communityEngineering = new CommunityEngineering();
-        communityEngineering.eventReviews(this, this.clubOwnerBean.getId());
+        communityEngineering.eventReviews(this, new IdBean(this.clubOwnerBean.getId()));
     }
 
     @Override
@@ -77,7 +74,7 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
                 ReviewItemGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(reviewBean);
                 this.listViewCommunity.getItems().add(pane);
-                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
+                communityEngineering.responseOfOneReview(this, new IdBean(reviewBean.getIdReview()));
             } catch (IOException | SystemException e) {
                 ErrorDialog.getInstance().handleException(e);
             }

@@ -1,5 +1,6 @@
 package test.junit;
 
+import nightsout.utils.bean.EmailBean;
 import nightsout.utils.engineering.CheckEmailEngineering;
 import org.junit.Test;
 
@@ -26,16 +27,18 @@ public class TestValidEmail {
 
         int case1 = 0;
         int case2 = 0;
+        EmailBean emailBean = new EmailBean();
 
         CheckEmailEngineering checkEmailEngineering = new CheckEmailEngineering();
-        if(checkEmailEngineering.validate(email2)){
+        emailBean.setEmail(email2);
+        if(checkEmailEngineering.validate(emailBean)){
             case2 = 1;
         }
 
         assertEquals(1, case2, 0); //Success
 
-
-        if(checkEmailEngineering.validate(email1)){
+        emailBean.setEmail(email1);
+        if(checkEmailEngineering.validate(emailBean)){
             case1 = 1;
         }
 

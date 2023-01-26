@@ -19,6 +19,7 @@ import java.util.Date;
 public class UserBean2 extends UserBean {
 
     private static final String BIRTHDAY_FIELD = "Birthday";
+    private final Trigger trigger = new Trigger();
 
     public UserBean2(){
     }
@@ -63,9 +64,7 @@ public class UserBean2 extends UserBean {
                 this.birthday = birthdayLocalDate;
             } catch (NumberFormatException e) {
                 trigger.throwWrongInputTypeException(e, BIRTHDAY_FIELD);
-            } catch (DateTimeException e) {
-                trigger.throwWrongInputTypeException(new NumberFormatException(), BIRTHDAY_FIELD);
-            } catch (ParseException e) {
+            } catch (DateTimeException | ParseException e) {
                 trigger.throwWrongInputTypeException(new NumberFormatException(), BIRTHDAY_FIELD);
             }
         }

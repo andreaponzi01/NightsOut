@@ -34,13 +34,13 @@ public class CheckRequestsAndReviewGUIController2 implements Observer, Initializ
     private static final String REQUEST_ITEM_FXML = "/CheckRequestsItem2.fxml";
 
     @FXML
-    private ListView listViewToReview;
+    private ListView<Pane> listViewToReview;
     @FXML
-    private ListView listViewNextEvents;
+    private ListView<Pane> listViewNextEvents;
     @FXML
-    private ListView listViewDeclined;
+    private ListView<Pane> listViewDeclined;
     @FXML
-    private ListView listViewPending;
+    private ListView<Pane> listViewPending;
     private JoinEventAppController joinEventAppController = new JoinEventAppController();
     private ManageReviewAppController manageReviewAppController = new ManageReviewAppController();
 

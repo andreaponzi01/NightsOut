@@ -6,6 +6,8 @@ import nightsout.utils.exception.myexception.EmptyInputException;
 
 public class ClubOwnerBean  extends ProfileBean {
 
+    private final Trigger trigger = new Trigger();
+
     public ClubOwnerBean() {}
 
     public ClubOwnerBean(ClubOwnerModel clubOwnerModel) {

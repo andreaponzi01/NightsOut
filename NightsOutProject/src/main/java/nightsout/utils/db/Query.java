@@ -1,6 +1,7 @@
 package nightsout.utils.db;
 
 import nightsout.model.*;
+import nightsout.utils.bean.ConverterBean;
 import nightsout.utils.engineering.ConverterToFileEngineering;
 import nightsout.utils.exception.myexception.SystemException;
 
@@ -60,7 +61,7 @@ public class Query {
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATHPROFILEIMGS + username + "pic" + ".png";
             File file = new File(filePath);
-            converterToFile.fromInputStreamToFile(inputStream, file);
+            converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
             userModel.setProfileImg(file);
 
             return userModel;
@@ -92,7 +93,7 @@ public class Query {
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATHPROFILEIMGS + username + "pic" + ".png";
             File file = new File(filePath);
-            converterToFile.fromInputStreamToFile(inputStream, file);
+            converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
             clubOwnerModel.setProfileImg(file);
 
             return clubOwnerModel;
@@ -133,7 +134,7 @@ public class Query {
 
                 String filePath = PATHPROFILEIMGS + userModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
-                converterToFile.fromInputStreamToFile(in, file);
+                converterToFile.fromInputStreamToFile(new ConverterBean(in, file));
                 userModel.setProfileImg(file);
                 userModel.setVip(rs.getBoolean(9));
                 list.add(userModel);
@@ -172,7 +173,7 @@ public class Query {
             InputStream inputStream = (rs.getBinaryStream(3));
             String filePath = PATHPROFILEIMGS + userModel.getUsername() + "pic" + ".png";
             File file = new File(filePath);
-            converterToFile.fromInputStreamToFile(inputStream, file);
+            converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
             userModel.setProfileImg(file);
 
             return userModel;
@@ -209,7 +210,7 @@ public class Query {
                 InputStream inputStream = (rs.getBinaryStream(3));
                 String filePath = PATHPROFILEIMGS + clubOwnerModel.getUsername() + "pic" + ".png";
                 File file = new File(filePath);
-                converterToFile.fromInputStreamToFile(inputStream, file);
+                converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
                 clubOwnerModel.setProfileImg(file);
 
                 list.add(clubOwnerModel);
@@ -251,7 +252,7 @@ public class Query {
 
                 String filePath = PATHEVENTSIMGS + eventModel.getName() + "pic" + ".png";
                 File file = new File(filePath);
-                converterToFile.fromInputStreamToFile(inputStream, file);
+                converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
 
                 eventModel.setImg(file);
                 list.add(eventModel);
@@ -388,7 +389,7 @@ public class Query {
 
             String filePath = PATHPROFILEIMGS + clubOwnerModel.getUsername() + "pic" + ".png";
             File file = new File(filePath);
-            converterToFile.fromInputStreamToFile(inputStream, file);
+            converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
             clubOwnerModel.setProfileImg(file);
 
             return clubOwnerModel;
@@ -502,7 +503,7 @@ public class Query {
                 eventModel.setTime(rs.getTime(10).toLocalTime());
                 eventModel.setPrice(rs.getDouble(4));
                 eventModel.setEventDate(rs.getDate(6).toLocalDate());
-                converterToFile.fromInputStreamToFile(inputStream, file);
+                converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
                 eventModel.setImg(file);
                 list.add(eventModel);
 
@@ -543,7 +544,7 @@ public class Query {
                 eventModel.setDuration(rs.getInt(7));
                 File file = new File(filePath);
                 eventModel.setEventDate(rs.getDate(6).toLocalDate());
-                converterToFile.fromInputStreamToFile(inputStream, file);
+                converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
                 eventModel.setIdClubOwner(rs.getInt(2));
                 eventModel.setTime(rs.getTime(10).toLocalTime());
                 eventModel.setIdEvent(rs.getInt(1));
@@ -588,7 +589,7 @@ public class Query {
                 InputStream in = (rs.getBinaryStream(3));
                 String filePath = PATHPROFILEIMGS +userModel.getUsername()+"pic"+".png";
                 File file = new File(filePath);
-                converterToFile.fromInputStreamToFile(in, file);
+                converterToFile.fromInputStreamToFile(new ConverterBean(in, file));
                 userModel.setProfileImg(file);
                 userModel.setBirthday(rs.getDate(5).toLocalDate());
                 userModel.setId(rs.getInt(1));
@@ -643,7 +644,7 @@ public class Query {
                 File file = new File(filePath);
                 eventModel.setIdEvent(rs.getInt(1));
                 eventModel.setDescription(rs.getString(11));
-                converterToFile.fromInputStreamToFile(inputStream, file);
+                converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
                 eventModel.setImg(file);
 
                 list.add(eventModel);
@@ -785,7 +786,7 @@ public class Query {
             File file = new File(filePath);
             eventModel.setPrice(rs.getDouble(4));
             eventModel.setDescription(rs.getString(11));
-            converterToFile.fromInputStreamToFile(inputStream, file);
+            converterToFile.fromInputStreamToFile(new ConverterBean(inputStream, file));
             eventModel.setImg(file);
             return eventModel;
 

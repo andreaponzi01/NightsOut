@@ -1,6 +1,7 @@
 package nightsout.utils.bean.interface2;
 
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.BeforeDateException;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
@@ -17,6 +18,7 @@ import java.util.Date;
 public class EventBean2 extends EventBean {
 
     private static final String EVENT_DATE_FIELD = "Event Date";
+    private final Trigger trigger = new Trigger();
 
     public EventBean2(){
         super();

@@ -1,11 +1,14 @@
 package nightsout.utils.bean;
 
 import nightsout.model.UserModel;
+import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmptyInputException;
 
 import java.time.LocalDate;
 
 public class UserBean extends ProfileBean {
+
+    private static Trigger trigger = new Trigger();
 
     //Attributi User
     protected String surname;

@@ -12,7 +12,7 @@ import java.io.File;
 
 public abstract class ProfileBean implements GenericBean {
 
-    protected Trigger trigger = new Trigger();
+    private final Trigger trigger = new Trigger();
 
     // Attributi comuni a User e ClubOwner
     protected String username;
@@ -44,7 +44,9 @@ public abstract class ProfileBean implements GenericBean {
         if(email.isEmpty())
             trigger.throwEmptyInputException("email");
         CheckEmailEngineering checkEmailEngineering = new CheckEmailEngineering();
-        boolean correctFormat = checkEmailEngineering.validate(email);
+        EmailBean emailBean = new EmailBean();
+        emailBean.setEmail(email);
+        boolean correctFormat = checkEmailEngineering.validate(emailBean);
         if(correctFormat)
             this.email = email;
         else
@@ -64,7 +66,7 @@ public abstract class ProfileBean implements GenericBean {
         RegistrationEngineering engineering = new RegistrationEngineering();
         if (username.equals("")) {
             trigger.throwEmptyInputException("Username");
-        } else if (engineering.usernameAlreadyTaken(username)) {
+        } else if (engineering.usernameAlreadyTaken(new UsernameBean(username))) {
             trigger.throwUsernameAlreadyTakenException(username);
         } else {
             this.username = username;

@@ -46,6 +46,8 @@ public class CreateEventGUIController1 implements Initializable {
 
     private SwitchPage switchPage = new SwitchPage();
 
+    private static final String CLUBOWNERPAGE = "/ClubOwnerPage1.fxml";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.clubOwnerBean1 = new ClubOwnerBean1(Session.getInstance().getClubOwner());
@@ -53,7 +55,7 @@ public class CreateEventGUIController1 implements Initializable {
     @FXML
     private void backToWelcomePage(ActionEvent actionEvent) {
         try {
-            switchPage.replaceScene(actionEvent, "/ClubOwnerPage1.fxml");
+            switchPage.replaceScene(actionEvent, CLUBOWNERPAGE);
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
@@ -74,13 +76,13 @@ public class CreateEventGUIController1 implements Initializable {
             eventBean1.setPrice(textFieldPrice.getText());
             eventBean1.setImg(this.img);
             controller.createEvent(eventBean1);
-            switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
+            switchPage.replaceScene(actionEvent,CLUBOWNERPAGE);
         } catch (WrongInputTypeException | EmptyInputException | SystemException | BeforeDateException |
                  WrongInputRangeException e) {
             ErrorDialog.getInstance().handleException(e);
         } catch (CreateEventEmailException e) {
             ErrorDialog.getInstance().handleException(e);
-            switchPage.replaceScene(actionEvent,"/ClubOwnerPage1.fxml");
+            switchPage.replaceScene(actionEvent,CLUBOWNERPAGE);
         }
     }
 

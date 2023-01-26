@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class ManageRequestsGUIController1 implements Observer, Initializable {
 
     @FXML
-    private ListView listViewPendingRequests;
+    private ListView<Pane> listViewPendingRequests;
 
     private SwitchPage switchPage = new SwitchPage();
     private JoinEventAppController joinEventAppController = new JoinEventAppController();

@@ -4,10 +4,7 @@ import nightsout.model.ClubOwnerModel;
 import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.RequestBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.*;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.RequestDAO;
@@ -20,17 +17,17 @@ import java.io.IOException;
 
 public class EventPageEngineering {
 
-    public String getClubAddress(int idEvent) throws SystemException {
+    public String getClubAddress(IdBean idBean) throws SystemException {
 
         ClubOwnerDAO clubOwnerDAO = new ClubOwnerDAO();
-        ClubOwnerModel clubOwnerModel = clubOwnerDAO.getClubAddressByIdEvent(idEvent);
+        ClubOwnerModel clubOwnerModel = clubOwnerDAO.getClubAddressByIdEvent(idBean.getId());
         return (clubOwnerModel.getAddress() + ", " + clubOwnerModel.getCity());
     }
 
-    public ClubOwnerBean getClubOwner(int idClubOwner) throws SystemException {
+    public ClubOwnerBean getClubOwner(IdBean idBean) throws SystemException {
 
         ClubOwnerDAO clubOwnerDAO = new ClubOwnerDAO();
-        ClubOwnerModel clubOwnerModel = clubOwnerDAO.getClubOwnerById(idClubOwner);
+        ClubOwnerModel clubOwnerModel = clubOwnerDAO.getClubOwnerById(idBean.getId());
         return new ClubOwnerBean1(clubOwnerModel);
     }
 

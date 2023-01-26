@@ -25,7 +25,7 @@ import java.util.Objects;
 public class UserPageGUIController2 implements Observer {
 
     @FXML
-    private ListView listView;
+    private ListView<Pane> listView;
     @FXML
     private TextField textFieldSearch;
     private JoinEventAppController joinEventAppController = new JoinEventAppController();

@@ -72,8 +72,4 @@ public class UserModel extends ProfileModel {
     public void setCreationDateVip(LocalDate creationDateVip) {
         this.creationDateVip = creationDateVip;
     }
-
-    public String getType() {
-        return "Free";
-    }
 }

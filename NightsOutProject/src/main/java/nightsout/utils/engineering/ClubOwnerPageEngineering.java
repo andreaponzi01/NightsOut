@@ -2,6 +2,7 @@ package nightsout.utils.engineering;
 
 import nightsout.model.EventModel;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.GenericBeanList;
@@ -12,10 +13,10 @@ import java.util.List;
 
 public class ClubOwnerPageEngineering {
 
-    public List<EventBean> searchCreatedEventsByIdClubOwner(int idClubOwner) throws SystemException {
+    private List<EventBean> searchCreatedEventsByIdClubOwner(int id) throws SystemException {
 
         EventDAO eventDAO = new EventDAO();
-        List<EventModel> list = eventDAO.getCreatedEventsByIdClubOwner(idClubOwner);
+        List<EventModel> list = eventDAO.getCreatedEventsByIdClubOwner(id);
         List<EventBean>  listBean = new ArrayList<>();
         for(EventModel eventModel : list){
             EventBean bean = new EventBean(eventModel);
@@ -24,10 +25,10 @@ public class ClubOwnerPageEngineering {
         return listBean;
     }
 
-    public void createdEvents(Observer observer, int idClubOwner) throws SystemException {
+    public void createdEvents(Observer observer, IdBean idBean) throws SystemException {
 
         GenericBeanList list = new GenericBeanList(observer);
         ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
-        list.addEventsToList(clubOwnerPageEngineering.searchCreatedEventsByIdClubOwner(idClubOwner));
+        list.addEventsToList(clubOwnerPageEngineering.searchCreatedEventsByIdClubOwner(idBean.getId()));
     }
 }

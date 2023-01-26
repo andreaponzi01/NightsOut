@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.bean.interface1.UserBean1;
 import nightsout.utils.engineering.NextEventsEngineering;
@@ -27,7 +28,6 @@ import java.util.ResourceBundle;
 
 public class UserPageGUIController1 implements Observer, Initializable {
 
-    private UserBean1 userBean1;
     @FXML
     private Label labelName;
     @FXML
@@ -39,7 +39,7 @@ public class UserPageGUIController1 implements Observer, Initializable {
     @FXML
     private Label labelVip;
     @FXML
-    private ListView listViewNextEvents;
+    private ListView<Pane> listViewNextEvents;
     @FXML
     private Label labelUsername;
     @FXML
@@ -51,7 +51,7 @@ public class UserPageGUIController1 implements Observer, Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         NextEventsEngineering nextEventsEngineering;
-        this.userBean1 = new UserBean1(Session.getInstance().getUser());
+        UserBean1 userBean1 = new UserBean1(Session.getInstance().getUser());
         this.labelEmail.setText(userBean1.getEmail());
         this.labelUsername.setText(userBean1.getUsername());
         this.labelName.setText(userBean1.getName());
@@ -67,7 +67,7 @@ public class UserPageGUIController1 implements Observer, Initializable {
         try {
             nextEventsEngineering = new NextEventsEngineering();
             GenericBeanList list= new GenericBeanList(this);
-            list.addEventsToList(nextEventsEngineering.searchNextEventsByIdUser(userBean1.getId()));
+            list.addEventsToList(nextEventsEngineering.searchNextEventsByIdUser(new IdBean(userBean1.getId())));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

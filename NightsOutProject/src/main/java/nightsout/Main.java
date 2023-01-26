@@ -1,11 +1,9 @@
 package nightsout;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.ErrorDialog;
 import nightsout.utils.exception.myexception.SystemException;
@@ -25,17 +23,15 @@ public class Main extends Application {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("NightsOut");
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                public void handle(WindowEvent we) {
-                    try {
-                        FileUtils.cleanDirectory(new File("eventImgs"));
-                        FileUtils.cleanDirectory(new File("profileImgs"));
-                        MySqlConnection.getInstance().closeConnection();
-                    } catch (IOException | SQLException e) {
-                        SystemException ex = new SystemException();
-                        ex.initCause(e);
-                        ErrorDialog.getInstance().handleException(ex);
-                    }
+            stage.setOnCloseRequest(we -> {
+                try {
+                    FileUtils.cleanDirectory(new File("eventImgs"));
+                    FileUtils.cleanDirectory(new File("profileImgs"));
+                    MySqlConnection.getInstance().closeConnection();
+                } catch (IOException | SQLException e) {
+                    SystemException ex = new SystemException();
+                    ex.initCause(e);
+                    ErrorDialog.getInstance().handleException(ex);
                 }
             });
         stage.show();

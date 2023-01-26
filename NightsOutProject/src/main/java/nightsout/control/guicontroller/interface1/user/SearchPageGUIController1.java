@@ -29,11 +29,12 @@ public class SearchPageGUIController1 implements Observer {
     @FXML
     private TextField textFieldSearch;
     @FXML
-    private ListView listView;
+    private ListView<Pane> listView;
 
     private SwitchPage switchPage = new SwitchPage();
 
     private JoinEventAppController joinEventAppController = new JoinEventAppController();
+
 
     @FXML
     private void search() {

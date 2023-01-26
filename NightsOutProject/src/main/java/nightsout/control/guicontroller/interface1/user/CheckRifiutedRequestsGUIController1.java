@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class CheckRifiutedRequestsGUIController1 implements Observer, Initializable {
     @FXML
-    private ListView listViewRifiutedRequests;
+    private ListView<Pane> listViewRifiutedRequests;
     private SwitchPage switchPage = new SwitchPage();
 
     @Override

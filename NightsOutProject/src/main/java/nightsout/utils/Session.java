@@ -57,9 +57,7 @@ public class Session {
     }
 
     public void updateVIP() {
-        if (userBean != null) {
-            if (this.userBean.getVip() == false)
+        if (userBean != null && !this.userBean.getVip())
                 this.userBean.setVip(true);
-        }
     }
 }

@@ -1,5 +1,6 @@
 package nightsout.utils.engineering;
 
+import nightsout.utils.bean.EmailBean;
 import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmailException;
 
@@ -12,7 +13,10 @@ public class EmailEngineering {
 
     Trigger trigger = new Trigger();
 
-    public void sendEmail(String subject, String text) throws EmailException {
+    public void sendEmail(EmailBean emailBean) throws EmailException {
+
+        String subject = emailBean.getSubject();
+        String text = emailBean.getText();
 
         String recipient = nightsout.utils.Session.getInstance().getClubOwner().getEmail();
         String from = "ispwproject@virgilio.it";

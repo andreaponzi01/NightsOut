@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.ResponseBean;
 import nightsout.utils.bean.ReviewBean;
 import nightsout.utils.engineering.CommunityEngineering;
@@ -23,7 +24,7 @@ import java.util.ResourceBundle;
 public class CommunityPageGUIController2 implements Initializable, Observer {
 
     @FXML
-    private ListView listView;
+    private ListView<Pane> listView;
 
     @Override
     public void update(Object ob) {
@@ -50,7 +51,7 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
                 ReviewItemGUIController2 controller = fxmlLoader.getController();
                 controller.setAll(reviewBean);
                 this.listView.getItems().add(pane);
-                communityEngineering.responseOfOneReview(this, reviewBean.getIdReview());
+                communityEngineering.responseOfOneReview(this, new IdBean(reviewBean.getIdReview()));
             } catch (IOException | SystemException e) {
                 ErrorDialog.getInstance().handleException(e);
             }
@@ -63,7 +64,7 @@ public class CommunityPageGUIController2 implements Initializable, Observer {
         CommunityEngineering communityEngineering;
         try {
             communityEngineering = new CommunityEngineering();
-            communityEngineering.eventReviews(this,  Session.getInstance().getClubOwner().getId());
+            communityEngineering.eventReviews(this,  new IdBean(Session.getInstance().getClubOwner().getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

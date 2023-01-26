@@ -1,6 +1,7 @@
 package nightsout.utils.engineering;
 
 import nightsout.model.UserModel;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.UserDAO;
 import nightsout.utils.exception.myexception.SystemException;
@@ -12,10 +13,10 @@ import java.util.List;
 
 public class EventParticipantsEngineering {
 
-    public void eventParticipants(Observer observer, int idEvent) throws SystemException {
+    public void eventParticipants(Observer observer, IdBean idBean) throws SystemException {
 
         GenericBeanList list= new GenericBeanList(observer);
-        list.addUsersToList(searchUsersByIdEvent(idEvent));
+        list.addUsersToList(searchUsersByIdEvent(idBean.getId()));
     }
 
     private List<UserBean> searchUsersByIdEvent(int idEvent) throws SystemException {

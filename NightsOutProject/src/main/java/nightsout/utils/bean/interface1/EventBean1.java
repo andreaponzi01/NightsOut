@@ -2,6 +2,7 @@ package nightsout.utils.bean.interface1;
 
 import nightsout.model.EventModel;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.BeforeDateException;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.WrongInputRangeException;
@@ -14,6 +15,7 @@ public class EventBean1 extends EventBean {
     private static final String FIELD_HOURS = "Hours";
     private static final String FIELD_MINUTES = "Minutes";
     private static final String FIELD_DATE = "Date";
+    private final Trigger trigger = new Trigger();
 
 
 

@@ -12,6 +12,7 @@ import javafx.scene.shape.Circle;
 import nightsout.utils.Session;
 import nightsout.utils.db.MySqlConnection;
 import nightsout.utils.exception.ErrorDialog;
+import nightsout.utils.exception.myexception.AlertNotFoundException;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.switchpage.SwitchPage;
 import org.apache.commons.io.FileUtils;
@@ -20,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MenuClubOwnerGUIController2 implements Initializable {
@@ -42,24 +44,31 @@ public class MenuClubOwnerGUIController2 implements Initializable {
     @FXML
     private void logout(ActionEvent actionEvent) {
 
+        Optional<ButtonType> optional;
         var alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
         alert.setHeaderText("You're about to logout!");
         alert.setContentText("Are you sure you want to logout?");
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            try {
+
+        try {
+            optional = alert.showAndWait();
+            if (optional.isEmpty()) {
+                throw new AlertNotFoundException();
+            }
+            ButtonType value = optional.get();
+            if (value == ButtonType.OK) {
                 MySqlConnection.getInstance().closeConnection();
                 FileUtils.cleanDirectory(new File("profileImgs"));
                 switchPage.replaceScene(actionEvent, "/Welcome2.fxml");
                 FileUtils.cleanDirectory(new File("eventImgs"));
                 Session.getInstance().deleteSession();
-            } catch (SQLException | IOException e) {
-                SystemException ex = new SystemException();
-                ex.initCause(e);
-                ErrorDialog.getInstance().handleException(ex);
-            } catch (SystemException e) {
-                ErrorDialog.getInstance().handleException(e);
             }
+        } catch (SQLException | IOException e) {
+            SystemException ex = new SystemException();
+            ex.initCause(e);
+            ErrorDialog.getInstance().handleException(ex);
+        } catch (SystemException | AlertNotFoundException e) {
+            ErrorDialog.getInstance().handleException(e);
         }
     }
 

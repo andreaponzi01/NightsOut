@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.UserItemGUIController1;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.UserBean;
 import nightsout.utils.bean.interface1.ClubOwnerBean1;
@@ -59,7 +60,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     @FXML
     private Label labelDescription;
     @FXML
-    private ListView listViewUsers;
+    private ListView<Pane> listViewUsers;
     @FXML
     private GoogleMapView location;
     @FXML
@@ -75,7 +76,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     public void setAll(EventBean1 eventBean1) throws SystemException {
 
         this.eventBean1 = eventBean1;
-        clubOwnerBean1Event = new ClubOwnerBean1(eventPageEngineering.getClubOwner(eventBean1.getIdClubOwner()));
+        clubOwnerBean1Event = new ClubOwnerBean1(eventPageEngineering.getClubOwner(new IdBean(eventBean1.getIdClubOwner())));
 
         if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
             this.userBean1 = new UserBean1(Session.getInstance().getUser());
@@ -98,7 +99,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
         this.eventImg.setImage(new Image(this.eventBean1.getImg().toURI().toString()));
 
         EventParticipantsEngineering eventParticipantsEngineering = new EventParticipantsEngineering();
-        eventParticipantsEngineering.eventParticipants(this, eventBean1.getIdEvent());
+        eventParticipantsEngineering.eventParticipants(this, new IdBean(eventBean1.getIdEvent()));
         myStart();
     }
 

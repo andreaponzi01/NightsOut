@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.Session;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.RequestBean;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.EventBean2;
@@ -67,7 +68,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
     public void setAll(EventBean2 eventBean) throws SystemException {
 
         this.eventBean = eventBean;
-        clubOwnerBeanEvent = new ClubOwnerBean2(eventPageEngineering.getClubOwner(eventBean.getIdClubOwner()));
+        clubOwnerBeanEvent = new ClubOwnerBean2(eventPageEngineering.getClubOwner(new IdBean(eventBean.getIdClubOwner())));
         if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
             this.userBean = new UserBean2(Session.getInstance().getUser());
             Double price = (eventBean.getPrice() - ((eventBean.getPrice() * clubOwnerBeanEvent.getDiscountVIP()) / 100));

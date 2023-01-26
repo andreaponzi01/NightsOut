@@ -17,6 +17,7 @@ import nightsout.control.appcontroller.CreateEventAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.interface2.EventBean2;
 import nightsout.utils.engineering.ClubOwnerPageEngineering;
 import nightsout.utils.exception.ErrorDialog;
@@ -47,7 +48,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
     @FXML
     private ImageView imageViewProfile;
     @FXML
-    private ListView listViewCreatedEvents;
+    private ListView<Pane> listViewCreatedEvents;
     private File img;
     private SwitchPage switchPage = new SwitchPage();
 
@@ -56,7 +57,7 @@ public class ManageEventPageGUIController2 implements Initializable, Observer {
 
         ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
         try {
-            clubOwnerPageEngineering.createdEvents(this, Session.getInstance().getClubOwner().getId());
+            clubOwnerPageEngineering.createdEvents(this, new IdBean(Session.getInstance().getClubOwner().getId()));
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

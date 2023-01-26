@@ -11,6 +11,7 @@ import java.time.temporal.ChronoUnit;
 
 public class UserBean1 extends UserBean {
 
+    private final Trigger trigger = new Trigger();
 
     public UserBean1(){
         super();

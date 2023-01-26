@@ -2,6 +2,7 @@ package nightsout.utils.bean.interface1;
 
 import nightsout.model.ClubOwnerModel;
 import nightsout.utils.bean.ClubOwnerBean;
+import nightsout.utils.exception.Trigger;
 import nightsout.utils.exception.myexception.EmptyInputException;
 import nightsout.utils.exception.myexception.WrongInputRangeException;
 import nightsout.utils.exception.myexception.WrongInputTypeException;
@@ -13,6 +14,7 @@ public class ClubOwnerBean1 extends ClubOwnerBean {
 
     private static final String FIELD_DISCOUNT = "Discount";
     private static final String FIELD_ADDRESS = "Address";
+    private final Trigger trigger = new Trigger();
 
     public void setDiscountVIP(String discountVIP) throws WrongInputTypeException, EmptyInputException, WrongInputRangeException {
         try {

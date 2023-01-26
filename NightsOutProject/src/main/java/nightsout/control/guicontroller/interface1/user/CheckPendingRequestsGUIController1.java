@@ -27,7 +27,7 @@ public class CheckPendingRequestsGUIController1 implements Observer, Initializab
 
     private SwitchPage switchPage = new SwitchPage();
     @FXML
-    private ListView listViewPendingRequests;
+    private ListView<Pane> listViewPendingRequests;
 
     @FXML
     private void goToRifiutedRequests(ActionEvent actionEvent) {
