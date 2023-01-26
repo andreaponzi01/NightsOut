@@ -25,7 +25,6 @@ public class Main extends Application {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.setTitle("NightsOut");
-            System.out.println("ok");
             stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent we) {
                     try {
