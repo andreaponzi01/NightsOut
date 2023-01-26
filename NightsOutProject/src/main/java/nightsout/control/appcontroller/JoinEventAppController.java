@@ -4,10 +4,7 @@ import nightsout.model.ClubOwnerModel;
 import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
 import nightsout.model.UserModel;
-import nightsout.utils.bean.ClubOwnerBean;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.ManageRequestBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.*;
 import nightsout.utils.dao.ClubOwnerDAO;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.RequestDAO;
@@ -22,15 +19,17 @@ import java.util.List;
 
 public class JoinEventAppController {
 
-    public void acceptRequest(int idRequest) throws SystemException {
+    public void acceptRequest(IdBean idBean) throws SystemException {
         RequestDAO requestDAO = new RequestDAO();
-        requestDAO.updateRequestStatus(idRequest,"accepted");}
-    public void declineRequest(int idRequest) throws SystemException {
+        requestDAO.updateRequestStatus(idBean.getId(),"accepted");}
+
+    public void declineRequest(IdBean idBean) throws SystemException {
         RequestDAO requestDAO = new RequestDAO();
-        requestDAO.updateRequestStatus(idRequest,"declined");}
-    public UserBean searchUserByUsername(String username) throws SystemException {
+        requestDAO.updateRequestStatus(idBean.getId(),"declined");}
+
+    public UserBean searchUserByUsername(UsernameBean usernameBean) throws SystemException {
         UserDAO userDAO = new UserDAO();
-        UserModel userModel = userDAO.getUserByUsername(username);
+        UserModel userModel = userDAO.getUserByUsername(usernameBean.getUsername());
         return new UserBean(userModel);
     }
     public void sendRequest(UserBean userBean, EventBean eventBean) throws SystemException {
@@ -40,20 +39,18 @@ public class JoinEventAppController {
         requestDAO.createRequest(userModel, eventModel);
     }
 
-    public EventBean searchEventByIdEvent(int idEvent) throws SystemException {
+    public EventBean searchEventByIdEvent(IdBean idBean) throws SystemException {
         EventDAO eventDAO = new EventDAO();
-        EventModel eventModel = eventDAO.getEventByIdEvent(idEvent);
+        EventModel eventModel = eventDAO.getEventByIdEvent(idBean.getId());
         return new EventBean(eventModel);
     }
 
-    public void search(Observer observer, String input) throws SystemException {
+    public void search(Observer observer, SearchBean searchBean) throws SystemException {
 
         GenericBeanList list = new GenericBeanList(observer);
-
-        list.addEventsToList(searchEventsByName(input));
-        list.addUsersToList(searchUsersByUsername(input));
-        list.addClubOwnersToList(searchClubOwnersByUsername(input));
-
+        list.addEventsToList(searchEventsByName(searchBean));
+        list.addUsersToList(searchUsersByUsername(searchBean.getSearchText()));
+        list.addClubOwnersToList(searchClubOwnersByUsername(searchBean.getSearchText()));
     }
 
     private List<UserBean> searchUsersByUsername(String input) throws SystemException {
@@ -101,12 +98,13 @@ public class JoinEventAppController {
         }
         return listBean;
     }
-    public List<EventBean> searchEventsByName(String input) throws SystemException {
+
+    public List<EventBean> searchEventsByName(SearchBean searchBean) throws SystemException {
 
         List<EventModel> list = null;
         List<EventBean> listBean = null;
         EventDAO eventDAO = new EventDAO();
-        list = eventDAO.getEventsByName(input);
+        list = eventDAO.getEventsByName(searchBean.getSearchText());
         listBean = new ArrayList<>();
         if (list != null) {
             for (EventModel eventModel : list) {
@@ -117,10 +115,10 @@ public class JoinEventAppController {
         return listBean;
     }
 
-    public void manageRequests(Observer observer, int idClubOwner) throws SystemException {
+    public void manageRequests(Observer observer, IdBean idBean) throws SystemException {
 
         ManageRequestBeanList list = new ManageRequestBeanList(observer);
-        list.addRequestsToList(searchRequestsByIdClubOwner(idClubOwner));
+        list.addRequestsToList(searchRequestsByIdClubOwner(idBean.getId()));
     }
 
 }

@@ -19,6 +19,7 @@ public class RegisterAppController {
         ClubOwnerDAO clubOwnerDAO = new ClubOwnerDAO();
         clubOwnerDAO.insertClubOwner(credentialsModel, clubOwnerModel);
     }
+
     public void registerUser(UserBean userBean, CredentialsBean credentialsBean) throws SystemException {
 
         CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
@@ -26,7 +27,4 @@ public class RegisterAppController {
         UserDAO userDAO = new UserDAO();
         userDAO.insertUser(credentialsModel, userModel);
     }
-    public boolean usernameAlreadyTaken(String username) throws SystemException {
-        UserDAO userDAO = new UserDAO();
-        return userDAO.checkUsername(username);}
 }

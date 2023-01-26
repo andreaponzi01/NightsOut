@@ -3,10 +3,7 @@ package nightsout.control.appcontroller;
 import nightsout.model.EventModel;
 import nightsout.model.ResponseModel;
 import nightsout.model.ReviewModel;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.ResponseBean;
-import nightsout.utils.bean.ReviewBean;
-import nightsout.utils.bean.UserBean;
+import nightsout.utils.bean.*;
 import nightsout.utils.dao.EventDAO;
 import nightsout.utils.dao.ResponseDAO;
 import nightsout.utils.dao.ReviewDAO;
@@ -27,10 +24,12 @@ public class ManageReviewAppController {
         ResponseDAO responseDAO = new ResponseDAO();
         responseDAO.createResponse(responseModel);
     }
-    public EventBean searchEventbyIdEvent(int idEvent) throws SystemException {
+
+    public EventBean searchEventbyIdEvent(IdBean idBean) throws SystemException {
 
         EventDAO eventDAO = new EventDAO();
-        return new EventBean(eventDAO.getEventByIdEvent(idEvent));    }
+        return new EventBean(eventDAO.getEventByIdEvent(idBean.getId()));
+    }
 
     public void createEventReview(ReviewBean reviewBean) throws SystemException {
 
@@ -39,10 +38,10 @@ public class ManageReviewAppController {
         reviewDAO.createEventReview(reviewModel);
     }
 
-    public ReviewBean getReviewByIdEventAndIdUser(int idUser,int idEvent) throws SystemException {
+    public ReviewBean getReviewByIdEventAndIdUser(IdBean idUserBean, IdBean idEventBean) throws SystemException {
 
         ReviewDAO reviewDAO = new ReviewDAO();
-        ReviewModel reviewModel = reviewDAO.getReviewByIdEventAndIdUser(idEvent,idUser);
+        ReviewModel reviewModel = reviewDAO.getReviewByIdEventAndIdUser(idEventBean.getId(), idUserBean.getId());
         if(reviewModel == null){
             return null;
         } else {
@@ -50,10 +49,10 @@ public class ManageReviewAppController {
         }
     }
 
-    public void eventsToReview(Observer observer, int idUser) throws SystemException {
+    public void eventsToReview(Observer observer, IdBean idBean) throws SystemException {
 
         GenericBeanList list = new GenericBeanList(observer);
-        list.addEventsToList(searchEndedEventsByIdUser(idUser));
+        list.addEventsToList(searchEndedEventsByIdUser(idBean.getId()));
     }
 
     private List<EventBean> searchEndedEventsByIdUser(int idUser) throws SystemException {
@@ -70,10 +69,10 @@ public class ManageReviewAppController {
         return listBean;
     }
 
-    public void eventReviews(Observer observer, int idClubOwner) throws SystemException {
+    public void eventReviews(Observer observer, IdBean idBean) throws SystemException {
 
         ReviewBeanList list = new ReviewBeanList(observer);
-        list.addReviewToList(searchReviewsWithoutResponseByIdClubOwner(idClubOwner));
+        list.addReviewToList(searchReviewsWithoutResponseByIdClubOwner(idBean.getId()));
     }
 
     private List<ReviewBean> searchReviewsWithoutResponseByIdClubOwner(int idClubOwner) throws SystemException {
@@ -89,8 +88,8 @@ public class ManageReviewAppController {
         return listBean;
     }
 
-    public UserBean searchUserbyIdUser(int idUser) throws SystemException {
+    public UserBean searchUserbyIdUser(IdBean idBean) throws SystemException {
         UserDAO userDAO = new UserDAO();
-        return new UserBean(userDAO.getUserByidUser(idUser));}
+        return new UserBean(userDAO.getUserByidUser(idBean.getId()));}
 
 }

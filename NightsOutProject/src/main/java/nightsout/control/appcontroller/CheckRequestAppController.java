@@ -1,11 +1,8 @@
 package nightsout.control.appcontroller;
 
-import nightsout.model.EventModel;
 import nightsout.model.RequestModel;
-import nightsout.model.UserModel;
-import nightsout.utils.bean.EventBean;
+import nightsout.utils.bean.IdBean;
 import nightsout.utils.bean.RequestBean;
-import nightsout.utils.bean.UserBean;
 import nightsout.utils.dao.RequestDAO;
 import nightsout.utils.exception.myexception.SystemException;
 import nightsout.utils.observer.Observer;
@@ -17,10 +14,10 @@ import java.util.List;
 public class CheckRequestAppController {
 
 
-    public void checkRequests(Observer observer, int idUser) throws SystemException {
+    public void checkRequests(Observer observer, IdBean idBean) throws SystemException {
 
         RequestBeanList list = new RequestBeanList(observer);
-        list.addRequestsToList(searchRequestsByIdUser(idUser));
+        list.addRequestsToList(searchRequestsByIdUser(idBean.getId()));
     }
 
     private List<RequestBean> searchRequestsByIdUser(int idUser) throws SystemException {

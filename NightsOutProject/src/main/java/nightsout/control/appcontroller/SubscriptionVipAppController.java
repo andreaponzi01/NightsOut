@@ -7,10 +7,10 @@ import nightsout.utils.exception.myexception.SystemException;
 
 public class SubscriptionVipAppController {
 
-    public UserModel subscription(UserBean userBean) throws SystemException {
+    public void subscription(UserBean userBean) throws SystemException {
 
         UserModel userModel = new UserModel(userBean);
         UserDAO userDAO = new UserDAO();
-        return userDAO.subscriptionVip(userModel);
+        userDAO.subscriptionVip(userModel);
     }
 }

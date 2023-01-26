@@ -37,6 +37,7 @@ public class LoginAppController {
 
             ClubOwnerModel clubOwnerModel = null;
             CredentialsModel credentialsModel = new CredentialsModel(credentialsBean);
+
             if (loginDAO.checkIsRegistered(credentialsModel)) {
                 ClubOwnerDAO clubOwnerDAO = new ClubOwnerDAO();
                 clubOwnerModel = clubOwnerDAO.getClubOwnerByUsername(credentialsBean.getUsername());
