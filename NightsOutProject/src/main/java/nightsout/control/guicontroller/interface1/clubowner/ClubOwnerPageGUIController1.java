@@ -51,7 +51,7 @@ public class ClubOwnerPageGUIController1 implements Observer, Initializable {
         labelName.setText(loggedClubOwner.getName());
         labelAddress.setText(loggedClubOwner.getAddress());
         labelCity.setText(loggedClubOwner.getCity());
-        labelDiscountVip.setText(String.valueOf(loggedClubOwner.getDiscountVIP()));
+        labelDiscountVip.setText(String.valueOf(loggedClubOwner.getDiscountVIP())+" %");
         try {
             ClubOwnerPageEngineering clubOwnerPageEngineering = new ClubOwnerPageEngineering();
             clubOwnerPageEngineering.createdEvents(this, new IdBean(loggedClubOwner.getId()));
