@@ -5,6 +5,7 @@ import com.dlsc.gmapsfx.MapComponentInitializedListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.Session;
 import nightsout.utils.bean.interface1.EventBean1;
 import nightsout.utils.engineering.MapEngineering;
@@ -18,12 +19,18 @@ import java.util.ResourceBundle;
 public class MapGUIController implements Initializable, MapComponentInitializedListener {
 
     private EventBean1 eventBean;
+    private JoinEventAppController joinEventAppController;
     @FXML
     private GoogleMapView location;
     private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
 
     public void setAll(EventBean1 eventBean) {
         this.eventBean = eventBean;
+    }
+
+    public void setAll(EventBean1 eventBean, JoinEventAppController joinEventAppController) {
+        this.joinEventAppController = joinEventAppController;
+        setAll(eventBean);
     }
 
     @Override
@@ -43,7 +50,7 @@ public class MapGUIController implements Initializable, MapComponentInitializedL
         try {
             String type = Session.getInstance().checkInstanceType();
             if(type.equalsIgnoreCase("Free")){
-                switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean);
+                switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorUser1.fxml", eventBean, joinEventAppController);
             }
             else{
                 switchAndSetPage1.switchAndSetSceneEvent(actionEvent, "/EventPageDecoratorCO1.fxml", eventBean);

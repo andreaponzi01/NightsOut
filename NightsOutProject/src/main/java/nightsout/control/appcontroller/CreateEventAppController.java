@@ -23,7 +23,7 @@ public class CreateEventAppController {
         try {
             email = new EmailEngineering();
             EmailBean emailBean = new EmailBean();
-            emailBean.setSubject("Evento creato con successo!");
+            emailBean.setSubject("Congratulazioni! Evento creato con successo!");
             emailBean.setText("L'evento " + eventBean.getName() + " è stato creato con successo.");
             email.sendEmail(emailBean);
         } catch (EmailException e) {

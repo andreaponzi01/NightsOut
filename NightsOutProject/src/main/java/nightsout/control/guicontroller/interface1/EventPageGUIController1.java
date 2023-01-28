@@ -168,7 +168,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     private void goToMap(ActionEvent ae) {
 
         try {
-            switchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1);
+            switchAndSetPage1.switchAndSetSceneEvent(ae, "/MapPage1.fxml", eventBean1, joinEventAppController);
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

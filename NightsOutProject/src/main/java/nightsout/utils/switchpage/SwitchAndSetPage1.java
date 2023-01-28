@@ -66,7 +66,11 @@ public class SwitchAndSetPage1 {
                 Parent root = loader.load();
             if (fxml.equals("/EventPageDecoratorUser1.fxml")) {
                 EventPageSetter1 eventPageSetter1 = new EventPageSetter1();
-                eventPageSetter1.setter( eventBean, joinEventAppController, loader.getController());
+                eventPageSetter1.setter(eventBean, joinEventAppController, loader.getController());
+            }
+            if (fxml.equals("/MapPage1.fxml")) {
+                MapPageSetter1 mapPageSetter1 = new MapPageSetter1();
+                mapPageSetter1.setter(eventBean, loader.getController(), joinEventAppController);
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {

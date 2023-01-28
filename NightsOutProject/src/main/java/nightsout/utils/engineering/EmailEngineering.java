@@ -48,7 +48,7 @@ public class EmailEngineering {
         });
 
         // Per il Debug (su terminale)
-        //session.setDebug(true);
+        // session.setDebug(true);
 
         try {
             MimeMessage message = new MimeMessage(session);

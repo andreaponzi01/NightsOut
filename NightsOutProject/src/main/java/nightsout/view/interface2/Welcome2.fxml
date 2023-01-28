@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg2" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface2.WelcomeGUIController2">
+<AnchorPane id="bg2" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nightsout.control.guicontroller.interface2.WelcomeGUIController2">
    <children>
       <Button layoutX="910.0" layoutY="555.0" onAction="#switchInterface" prefHeight="70.0" prefWidth="103.0" style="-fx-background-color: white; -fx-background-radius: 100;" styleClass="zoom" text="Switch " textFill="#3c00ff">
          <font>
             <Font name="Arial Bold" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="buttonExit" layoutX="927.0" layoutY="34.0" mnemonicParsing="false" onAction="#exit" prefHeight="36.0" prefWidth="86.0" stylesheets="@style2.css" text="Exit" textFill="WHITE">
+      <Button fx:id="buttonExit" layoutX="927.0" layoutY="24.0" mnemonicParsing="false" onAction="#exit" prefHeight="36.0" prefWidth="86.0" stylesheets="@style2.css" text="Exit" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="10.0" />
          </font>
@@ -24,7 +24,7 @@
             <String fx:value="zoom" />
          </styleClass>
       </Button>
-      <Button layoutX="211.0" layoutY="209.0" mnemonicParsing="false" onAction="#goToClubOwnerLogin" prefHeight="125.0" prefWidth="282.0" style="-fx-background-color: #d9c923; -fx-background-radius: 60;" styleClass="zoom" stylesheets="@style2.css" text="CLUBOWNER" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="250.0">
+      <Button mnemonicParsing="false" onAction="#goToClubOwnerLogin" prefHeight="125.0" prefWidth="282.0" style="-fx-background-color: #d9c923; -fx-background-radius: 60;" styleClass="zoom" stylesheets="@style2.css" text="CLUBOWNER" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="250.0">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>
@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="557.0" layoutY="217.0" mnemonicParsing="false" onAction="#goToUserLogin" prefHeight="125.0" prefWidth="220.0" style="-fx-background-color: #d9c923; -fx-background-radius: 60;" styleClass="zoom" stylesheets="@style2.css" text="USER" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="250.0">
+      <Button mnemonicParsing="false" onAction="#goToUserLogin" prefHeight="125.0" prefWidth="220.0" style="-fx-background-color: #d9c923; -fx-background-radius: 60;" styleClass="zoom" stylesheets="@style2.css" text="USER" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="250.0">
          <effect>
             <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
          </effect>
@@ -46,22 +46,22 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="507.0" layoutY="300.0" prefHeight="27.0" prefWidth="26.0" text="Or" AnchorPane.bottomAnchor="331.0" AnchorPane.leftAnchor="507.0" AnchorPane.rightAnchor="507.0" AnchorPane.topAnchor="300.0">
+      <Label prefHeight="27.0" prefWidth="26.0" text="Or" AnchorPane.bottomAnchor="331.0" AnchorPane.leftAnchor="507.0" AnchorPane.rightAnchor="507.0" AnchorPane.topAnchor="300.0">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="155.0" layoutY="60.0" prefHeight="90.0" prefWidth="368.0" text="WELCOME" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="50.0">
+      <Label prefHeight="90.0" prefWidth="368.0" text="WELCOME" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font name="Futura Medium" size="68.0" />
          </font>
       </Label>
-      <Label layoutX="519.0" layoutY="115.0" text="To" textFill="#3c00ff" AnchorPane.leftAnchor="509.0" AnchorPane.topAnchor="105.0">
+      <Label text="To" textFill="#3c00ff" AnchorPane.leftAnchor="509.0" AnchorPane.topAnchor="105.0">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
-      <Label layoutX="564.0" layoutY="60.0" prefHeight="81.0" prefWidth="321.0" text="NightsOut" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="50.0">
+      <Label prefHeight="81.0" prefWidth="321.0" text="NightsOut" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font name="Futura Medium" size="68.0" />
          </font>
