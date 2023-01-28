@@ -47,9 +47,6 @@ public class EmailEngineering {
             protected PasswordAuthentication getPasswordAuthentication() {return new PasswordAuthentication(from, "Project.2022");}
         });
 
-        // Per il Debug (su terminale)
-        // session.setDebug(true);
-
         try {
             MimeMessage message = new MimeMessage(session);
 
