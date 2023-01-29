@@ -18,6 +18,8 @@ import static org.junit.Assert.assertTrue;
     Testiamo che  un evento è effettivamente di un ClubOwner.
     Nel test controlliamo che l' evento nel db "Piper Night" con id "95" abbia come proprietario "PiperClub"
     È necessario utilizzare il dump del Database fornito in fase di consegna affinché i test abbiano il risultato sperato.
+
+    @Andrea Ponzi
  */
 
 public class TestEventOfClubOwner {

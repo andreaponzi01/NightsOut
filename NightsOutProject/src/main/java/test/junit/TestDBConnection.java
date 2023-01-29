@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
     Testiamo l'avvenuta connessione con il Database.
     Il test ha successo se la connessione è stabilita.
     Il test fallisce altrimenti.
+
+    @Andrea Galluzzi
  */
 
 public class TestDBConnection {

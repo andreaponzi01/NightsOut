@@ -112,6 +112,10 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     private void myStart() throws SystemException {
 
         if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
+
+            if(joinEventAppController==null)
+                joinEventAppController = new JoinEventAppController();
+
             this.myConcreteComponent = new ConcreteComponent();
             RequestBean requestBean = eventPageEngineering.checkRequestStatus(this.userBean1, this.eventBean1);
             if (requestBean == null) {

@@ -8,6 +8,8 @@ import static org.junit.Assert.assertEquals;
 
 /*
     Test che permette di verificare se una email fornita rispetta il formato corretto.
+
+    @Andrea Galluzzi
  */
 
 public class TestValidEmail {

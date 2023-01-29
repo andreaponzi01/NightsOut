@@ -11,6 +11,8 @@ import static org.junit.Assert.assertEquals;
         Testiamo che ci sia un user con username "andreagalluzzi20", se c'è il test è passato cosi possiamo controllare
         che effettivamente l' utente sta nel db.
         È necessario utilizzare il dump del Database fornito in fase di consegna affinché i test abbiano il risultato sperato.
+
+        @Andrea Ponzi
 */
 
 public class TestUserByUsernameQuery {

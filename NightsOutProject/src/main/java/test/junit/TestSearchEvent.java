@@ -14,6 +14,8 @@ import static org.junit.Assert.assertEquals;
     Testiamo che ci siano risultati di ricerca corrispodenti ad eventi.
     Nel test controlliamo che la ricerca ritorna effettivamente una lista non vuota nel caso in cui cerchiamo un evento presente nel DB nel nostro caso "Piper Night"
     È necessario utilizzare il dump del Database fornito in fase di consegna affinché i test abbiano il risultato sperato.
+
+    @Andrea Galluzzi
  */
 
 public class TestSearchEvent {

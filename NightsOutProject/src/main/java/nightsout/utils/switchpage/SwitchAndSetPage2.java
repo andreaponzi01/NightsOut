@@ -53,7 +53,7 @@ public class SwitchAndSetPage2 {
             }
             if (fxml.equals("/EventParticipantsPageFromUser2.fxml")) {
                 InitParticipantsPage2 initParticipantsPage2 = new InitParticipantsPage2();
-                initParticipantsPage2.setter(eventBean,loader.getController());
+                initParticipantsPage2.setter(eventBean,loader.getController(),joinEventAppController);
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {

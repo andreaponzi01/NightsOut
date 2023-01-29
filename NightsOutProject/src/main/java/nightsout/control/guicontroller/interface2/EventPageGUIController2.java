@@ -101,6 +101,10 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
 
         this.myConcreteComponent = new ConcreteComponent();
         if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free")) {
+
+            if(joinEventAppController==null)
+                joinEventAppController = new JoinEventAppController();
+
             RequestBean requestBean = eventPageEngineering.checkRequestStatus(this.userBean, this.eventBean);
             if (requestBean == null) {
                 if (eventBean.getEventDate().isAfter(LocalDate.now()))

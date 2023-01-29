@@ -10,6 +10,8 @@ import static org.junit.Assert.assertTrue;
 /*
     Testiamo l'effettiva registrazione degli utenti tramite credenziali.
     È necessario utilizzare il dump del Database fornito in fase di consegna affinché i test abbiano il risultato sperato.
+
+    @Andrea Ponzi
  */
 
 public class TestValidRegistration {
