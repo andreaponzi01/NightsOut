@@ -7,21 +7,14 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /*
-NOTA:
-    -Per far partire il test disattivare l'opzione "Delegate IDE build/run actions to Maven
-    che si trova nelle sezione impostazioni: Build, Excecution, Deployment -> Maven -> Runner
-*/
+    Test che permette di verificare se una email fornita rispetta il formato corretto.
+ */
 
 public class TestValidEmail {
 
-    /**
-     * Si vuole testare l'efficacia della funzione "validate" che nel nostro progetto controlla se la mail
-     * inserita da uno user sia sintatticamente corretta
-     */
-    //Success
     @Test
     public void testValidator(){
-        //Non metto apposta il formato giusto della mail per vedere se fallisce il test
+
         String email1 = "testmail";
         String email2 = "test@gmail.com";
 

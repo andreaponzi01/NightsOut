@@ -14,6 +14,7 @@ module NightsOutProject {
     requires java.desktop;
     requires org.apache.commons.io;
     requires junit;
+    requires org.junit.jupiter.api;
     exports test.junit;
     exports nightsout.utils.exception.myexception;
     opens nightsout;
