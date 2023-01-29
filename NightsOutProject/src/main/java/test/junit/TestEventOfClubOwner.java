@@ -1,17 +1,10 @@
 package test.junit;
 
-import nightsout.control.appcontroller.JoinEventAppController;
-import nightsout.model.ClubOwnerModel;
 import nightsout.model.EventModel;
-import nightsout.utils.bean.EventBean;
-import nightsout.utils.bean.SearchBean;
 import nightsout.utils.db.Query;
 import nightsout.utils.exception.myexception.SystemException;
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /*
