@@ -30,10 +30,6 @@ public class SwitchAndSetPage2 {
                 InitEventPage2 initEventPage2 = new InitEventPage2();
                 initEventPage2.setter(eventBean,loader.getController());
             }
-            if (fxml.equals("/EventParticipantsPageFromUser2.fxml")) {
-                InitParticipantsPage2 initParticipantsPage2 = new InitParticipantsPage2();
-                initParticipantsPage2.setter(eventBean,loader.getController());
-            }
             if (fxml.equals("/EventParticipantsPageFromCO2.fxml")) {
                 InitParticipantsPage2 initParticipantsPage2 = new InitParticipantsPage2();
                 initParticipantsPage2.setter(eventBean,loader.getController());
@@ -54,6 +50,10 @@ public class SwitchAndSetPage2 {
             if (fxml.equals("/EventPageFromUser2.fxml")) {
                 InitEventPage2 initEventPage2 = new InitEventPage2();
                 initEventPage2.setter(eventBean, joinEventAppController, loader.getController());
+            }
+            if (fxml.equals("/EventParticipantsPageFromUser2.fxml")) {
+                InitParticipantsPage2 initParticipantsPage2 = new InitParticipantsPage2();
+                initParticipantsPage2.setter(eventBean,loader.getController());
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {

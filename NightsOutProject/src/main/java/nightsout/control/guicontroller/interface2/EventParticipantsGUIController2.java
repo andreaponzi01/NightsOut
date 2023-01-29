@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface2.item.UserItemGUIController2;
 import nightsout.utils.Session;
 import nightsout.utils.bean.IdBean;
@@ -30,6 +31,8 @@ public class EventParticipantsGUIController2 implements Observer {
     private Label labelEventName;
     private SwitchAndSetPage2 switchAndSetPage2 = new SwitchAndSetPage2();
 
+    private JoinEventAppController joinEventAppController;
+
     public void setAll(EventBean2 eBean) throws SystemException {
 
         this.eventBean=eBean;
@@ -38,12 +41,18 @@ public class EventParticipantsGUIController2 implements Observer {
         this.labelEventName.setText("Participants of: "+eBean.getName());
     }
 
+    public void setAll(EventBean2 eBean, JoinEventAppController joinEventAppController) throws SystemException {
+
+        this.joinEventAppController = joinEventAppController;
+        setAll(eBean);
+    }
+
     @FXML
     private void backToUserPage(ActionEvent actionEvent) {
         try{
             String type = Session.getInstance().checkInstanceType();
             if (type.equalsIgnoreCase("FREE"))
-                switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml",eventBean);
+                switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromUser2.fxml",eventBean, joinEventAppController);
             else
                 switchAndSetPage2.switchAndSetSceneEvent(actionEvent, "/EventPageFromCO2.fxml",eventBean);
         }catch (SystemException e) {
@@ -60,7 +69,7 @@ public class EventParticipantsGUIController2 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
                 UserItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new UserBean2(uBean));
+                controller.setAll(new UserBean2(uBean), joinEventAppController);
                 this.listViewParticipants.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);

@@ -169,7 +169,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
 
         try {
             if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
-                switchAndSetPage2.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromUser2.fxml", eventBean);
+                switchAndSetPage2.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromUser2.fxml", eventBean, joinEventAppController);
             else
                 switchAndSetPage2.switchAndSetSceneEvent(ae, "/EventParticipantsPageFromCO2.fxml", eventBean);
 

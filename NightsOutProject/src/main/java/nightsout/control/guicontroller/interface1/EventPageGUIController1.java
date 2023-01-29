@@ -207,7 +207,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem1.fxml")).openStream());
                 UserItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(new UserBean1(uBean));
+                controller.setAll(new UserBean1(uBean), joinEventAppController);
                 this.listViewUsers.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
