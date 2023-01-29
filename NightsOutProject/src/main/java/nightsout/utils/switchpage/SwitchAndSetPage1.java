@@ -152,4 +152,22 @@ public class SwitchAndSetPage1 {
             throw exception;
         }
     }
+    public void switchAndSetSceneClubOwner(ActionEvent ae, String fxml, ClubOwnerBean1 clubOwnerBean, JoinEventAppController joinEventAppController) throws SystemException {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(SwitchAndSetPage1.class.getResource(fxml));
+            Parent root = loader.load();
+
+            if (fxml.equals("/ViewClubOwnerPageFromUser1.fxml")) {
+                ViewClubOwnerPageSetter1 viewClubOwnerPageSetter1 = new ViewClubOwnerPageSetter1();
+                viewClubOwnerPageSetter1.setterView(clubOwnerBean, loader.getController(), joinEventAppController);
+            }
+            SwitchPage.showStage(ae, root);
+        } catch (IOException e) {
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
+        }
+    }
+
 }

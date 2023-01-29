@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.utils.Session;
 import nightsout.utils.bean.EventBean;
@@ -44,6 +45,9 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
     @FXML
     private ImageView imageViewProfile;
 
+    private JoinEventAppController joinEventAppController;
+
+
     public void setAll(ClubOwnerBean1 clubOwnerBean1) throws SystemException {
 
         this.clubOwnerBean1 = clubOwnerBean1;
@@ -58,6 +62,12 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
         clubOwnerPageEngineering.createdEvents(this, new IdBean(clubOwnerBean1.getId()));
     }
 
+    public void setAll(ClubOwnerBean1 clubOwnerBean1, JoinEventAppController joinEventAppController) throws SystemException {
+
+        this.joinEventAppController= joinEventAppController;
+        setAll(clubOwnerBean1);
+    }
+
     @Override
     public void update(Object ob) {
 
@@ -67,7 +77,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
                 EventItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean1(eBean));
+                controller.setAll(new EventBean1(eBean),joinEventAppController);
                 this.listViewCreatedEvents.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);

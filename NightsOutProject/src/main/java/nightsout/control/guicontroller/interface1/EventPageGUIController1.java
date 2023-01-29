@@ -178,7 +178,7 @@ public class EventPageGUIController1 implements Observer, Initializable, MapComp
     private void goToClubOwner(ActionEvent ae) {
         try {
             if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
-                switchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event);
+                switchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromUser1.fxml", clubOwnerBean1Event, joinEventAppController);
             else
                 switchAndSetPage1.switchAndSetSceneClubOwner(ae, "/ViewClubOwnerPageFromCO1.fxml", clubOwnerBean1Event);
         } catch (SystemException e) {
