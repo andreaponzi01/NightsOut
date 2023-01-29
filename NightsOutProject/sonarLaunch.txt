@@ -1,0 +1,1 @@
+mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=andreaponzi01_NightsOut -Dsonar.login=6768befd9fcd25479c171976297a90c18d34873d
