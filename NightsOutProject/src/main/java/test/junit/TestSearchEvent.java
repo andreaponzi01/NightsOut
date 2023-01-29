@@ -12,6 +12,8 @@ import static org.junit.Assert.assertEquals;
 
 /*
     Testiamo che ci siano risultati di ricerca corrispodenti ad eventi.
+    Nel test controlliamo che la ricerca ritorna effettivamente una lista non vuota nel caso in cui cerchiamo un evento presente nel DB nel nostro caso "Piper Night"
+    È necessario utilizzare il dump del Database fornito in fase di consegna affinché i test abbiano il risultato sperato.
  */
 
 public class TestSearchEvent {
@@ -21,26 +23,29 @@ public class TestSearchEvent {
 
         JoinEventAppController controller = new JoinEventAppController();
         List<EventBean> list1 = controller.searchEventsByName(new SearchBean("Piper Night"));
-        List<EventBean> list2 = controller.searchEventsByName(new SearchBean("NightsOut"));
 
         int ret1 = 0;
-        int ret2 = 0;
 
         if (!list1.isEmpty()){
             ret1 = 1;
         }
 
+        assertEquals(1, ret1, 0); // SUCCESS
+    }
+
+    @Test
+    public void testSearchEventFail() throws SystemException {
+
+        JoinEventAppController controller = new JoinEventAppController();
+        List<EventBean> list2 = controller.searchEventsByName(new SearchBean("NightsOut"));
+
+        int ret2 = 0;
+
         if (!list2.isEmpty()){
             ret2 = 1;
         }
 
-        /*
-            Commentare uno dei due assert in modo tale da effettuare il test.
-            L'assert non è stato commentato per non avere code smell.
-         */
-
-        assertEquals(1, ret1, 0); // SUCCESS
-        assertEquals(0, ret2, 0); // SUCCESS
+        assertEquals(1, ret2, 0); // FAIL
     }
 
 }

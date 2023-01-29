@@ -20,27 +20,30 @@ public class TestValidRegistration {
         LoginDAO loginDAO = new LoginDAO();
 
         CredentialsModel credentialsModel1 = new CredentialsModel();
-        CredentialsModel credentialsModel2 = new CredentialsModel();
-
 
         credentialsModel1.setUsername("piperclub65");
         credentialsModel1.setPassword("piperclub65");
         credentialsModel1.setType("ClubOwner");
 
+        boolean ret1 = loginDAO.checkIsRegistered(credentialsModel1);
+
+        assertTrue(ret1);  // SUCCESS
+    }
+
+    @Test
+    public void testRegistrationFail() throws SystemException {
+
+        LoginDAO loginDAO = new LoginDAO();
+        CredentialsModel credentialsModel2 = new CredentialsModel();
+
         credentialsModel2.setUsername("mario");
         credentialsModel2.setPassword("mariorossi");
         credentialsModel2.setType("Free");
 
-        boolean ret1 = loginDAO.checkIsRegistered(credentialsModel1);    // SUCCESS
-        boolean ret2 = loginDAO.checkIsRegistered(credentialsModel2);   // FAILED
+        boolean ret2 = loginDAO.checkIsRegistered(credentialsModel2);
 
-        /*
-            Commentare uno dei due assert in modo tale da effettuare il test.
-            L'assert non è stato commentato per non avere code smell.
-         */
 
-        assertTrue(ret1);
-        assertTrue(ret2);
+        assertTrue(ret2); // FAILED
     }
 
 }
