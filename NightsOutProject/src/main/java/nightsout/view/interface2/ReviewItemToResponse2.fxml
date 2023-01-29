@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="143.0" minHeight="105.0" prefHeight="143.0" prefWidth="750.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface2.item.ReviewItemToResponseGUIController2">
+<AnchorPane maxHeight="143.0" minHeight="105.0" prefHeight="143.0" prefWidth="750.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="nightsout.control.guicontroller.interface2.item.ReviewItemToResponseGUIController2">
    <children>
       <Label layoutX="26.0" layoutY="17.0" prefHeight="21.0" prefWidth="69.0" text="User:" textFill="#200f54" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="17.0">
          <font>
@@ -20,7 +20,10 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <TextArea fx:id="textAreaResponse" layoutX="265.0" layoutY="75.0" prefHeight="62.0" prefWidth="249.0" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="75.0" />
+      <TextArea fx:id="textAreaResponse" layoutX="265.0" layoutY="75.0" prefHeight="62.0" prefWidth="249.0" AnchorPane.leftAnchor="265.0" AnchorPane.topAnchor="75.0">
+         <font>
+            <Font size="15.0" />
+         </font></TextArea>
       <Button alignment="CENTER" layoutX="594.0" layoutY="77.0" mnemonicParsing="false" onAction="#makeResponse" prefHeight="36.0" prefWidth="118.0" style="-fx-background-radius: 28; -fx-background-color: #ff5050;" text="Response" textFill="#e8e7fc" AnchorPane.bottomAnchor="30.0" AnchorPane.topAnchor="77.0">
          <font>
             <Font name="Arial Bold" size="19.0" />
@@ -32,14 +35,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="240.0" layoutY="17.0" prefHeight="26.0" prefWidth="92.0" text="Event:" textFill="#200f54" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="17.0">
+      <Label layoutX="275.0" layoutY="17.0" prefHeight="26.0" prefWidth="92.0" text="Event:" textFill="#200f54" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="17.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelEventName" alignment="TOP_LEFT" layoutX="302.0" layoutY="17.0" prefHeight="29.0" prefWidth="162.0" text="EventName" textFill="#200f54" AnchorPane.leftAnchor="302.0" AnchorPane.topAnchor="17.0">
+      <Label fx:id="labelEventName" alignment="TOP_LEFT" layoutX="337.0" layoutY="17.0" prefHeight="29.0" prefWidth="240.0" text="EventName" textFill="#200f54" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="17.0">
          <font>
-            <Font name="Arial Bold" size="24.0" />
+            <Font name="Arial Bold" size="22.0" />
          </font>
       </Label>
       <Label layoutX="28.0" layoutY="50.0" prefHeight="26.0" prefWidth="92.0" text="Comment:" textFill="#200f54" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="50.0">
@@ -63,9 +66,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="labelUsername" alignment="TOP_LEFT" layoutX="83.0" layoutY="17.0" prefHeight="29.0" prefWidth="162.0" text="Username" textFill="#200f54" AnchorPane.topAnchor="17.0">
+      <Label fx:id="labelUsername" alignment="TOP_LEFT" layoutX="83.0" layoutY="17.0" prefHeight="29.0" prefWidth="184.0" text="Username" textFill="#200f54" AnchorPane.topAnchor="17.0">
          <font>
-            <Font name="Arial Bold" size="24.0" />
+            <Font name="Arial Bold" size="22.0" />
          </font>
       </Label>
    </children>
