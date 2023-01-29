@@ -11,8 +11,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="bg2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface2.clubowner.RegisterClubOwnerGUIController2">
+<AnchorPane id="bg2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style2.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="nightsout.control.guicontroller.interface2.clubowner.RegisterClubOwnerGUIController2">
    <children>
       <TextField fx:id="textFieldEmail" alignment="CENTER" layoutX="375.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="288.0" promptText="insert email" style="-fx-background-radius: 28;" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="377.0">
          <font>
@@ -86,5 +87,6 @@
             <AnchorPane id="addPhoto" prefHeight="200.0" prefWidth="200.0" stylesheets="@style2.css" />
          </graphic>
       </Button>
+      <Text layoutX="350.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Percentage Discount: " />
    </children>
 </AnchorPane>

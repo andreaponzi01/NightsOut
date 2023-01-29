@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1">
+<AnchorPane prefHeight="150.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1">
    <children>
       <AnchorPane prefHeight="150.0" prefWidth="400.0" style="-fx-background-color: #ffc266; -fx-background-radius: 50;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0">
          <children>
@@ -27,23 +27,23 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelEventName" alignment="TOP_LEFT" layoutX="90.0" layoutY="37.0" prefHeight="18.0" prefWidth="162.0" text="EventName" textFill="#200f54" AnchorPane.leftAnchor="90.0">
+            <Label fx:id="labelEventName" alignment="TOP_LEFT" layoutX="90.0" layoutY="38.0" prefHeight="26.0" prefWidth="225.0" text="EventName" textFill="#200f54" AnchorPane.leftAnchor="90.0">
                <font>
-                  <Font name="Arial Bold" size="22.0" />
+                  <Font name="Arial Bold" size="21.0" />
                </font>
             </Label>
-            <Line endX="170.5" layoutX="125.0" layoutY="71.0" startX="-103.5" stroke="#200f54" strokeWidth="2.0" />
+            <Line endX="190.5" layoutX="125.0" layoutY="71.0" startX="-103.5" stroke="#200f54" strokeWidth="2.0" />
             <Label layoutX="29.0" layoutY="69.0" prefHeight="26.0" prefWidth="92.0" text="Comment:" textFill="#200f54" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="69.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="labelUsername" alignment="TOP_LEFT" layoutX="90.0" layoutY="9.0" prefHeight="18.0" prefWidth="162.0" text="Username" textFill="#200f54">
+            <Label fx:id="labelUsername" alignment="TOP_LEFT" layoutX="90.0" layoutY="10.0" prefHeight="26.0" prefWidth="225.0" text="Username" textFill="#200f54">
                <font>
-                  <Font name="Arial Bold" size="22.0" />
+                  <Font name="Arial Bold" size="21.0" />
                </font>
             </Label>
-            <Button layoutX="306.0" layoutY="49.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="42.0" prefWidth="80.0" style="-fx-background-color: white; -fx-background-radius: 14;" text="INFO" textFill="#2e0095">
+            <Button layoutX="328.0" layoutY="49.0" mnemonicParsing="false" onAction="#goToUserPage" prefHeight="42.0" prefWidth="63.0" style="-fx-background-color: white; -fx-background-radius: 14;" text="INFO" textFill="#2e0095">
                <effect>
                   <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
                </effect>

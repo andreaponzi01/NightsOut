@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface1.EventPageGUIController1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="nightsout.control.guicontroller.interface1.EventPageGUIController1">
    <children>
       <fx:include source="MenuUser1.fxml" />
       <AnchorPane layoutX="260.0" layoutY="140.0" prefHeight="444.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
@@ -122,11 +122,11 @@
                <effect>
                   <DropShadow />
                </effect></GoogleMapView>
-            <VBox layoutX="261.0" layoutY="44.0" prefHeight="145.0" prefWidth="297.0" AnchorPane.bottomAnchor="373.0" AnchorPane.leftAnchor="255.0">
+            <VBox layoutX="261.0" layoutY="44.0" prefHeight="145.0" prefWidth="297.0" AnchorPane.bottomAnchor="373.0" AnchorPane.leftAnchor="220.0">
                <children>
                   <Label fx:id="labelEventName" alignment="TOP_LEFT" prefHeight="47.0" prefWidth="300.0" text="Nome Evento" textFill="WHITE">
                      <font>
-                        <Font name="Arial Bold" size="37.0" />
+                        <Font name="Arial Bold" size="33.0" />
                      </font>
                      <padding>
                         <Insets bottom="20.0" />

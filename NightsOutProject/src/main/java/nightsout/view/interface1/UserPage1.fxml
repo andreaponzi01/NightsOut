@@ -8,15 +8,15 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/javafx" fx:controller="nightsout.control.guicontroller.interface1.user.UserPageGUIController1">
+<AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1040.0" stylesheets="@style1.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="nightsout.control.guicontroller.interface1.user.UserPageGUIController1">
    <children>
       <fx:include fx:id="menu" source="MenuUser1.fxml" />
       <Line endX="10.002662658691406" endY="-3.814697265625E-6" layoutX="117.0" layoutY="54.0" startX="-30.5" stroke="WHITE" strokeWidth="2.0" />
       <AnchorPane layoutX="20.0" layoutY="20.0" maxHeight="531.0" maxWidth="864.0" minHeight="531.0" minWidth="864.0" prefHeight="531.0" prefWidth="864.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0">
          <children>
-            <Label fx:id="labelEmail" prefHeight="35.0" prefWidth="299.0" text="Email" textFill="WHITE" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="83.0">
+            <Label fx:id="labelEmail" prefHeight="37.0" prefWidth="353.0" text="Email" textFill="WHITE" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="83.0">
                <font>
-                  <Font name="Arial" size="32.0" />
+                  <Font name="Arial" size="26.0" />
                </font>
             </Label>
             <ListView fx:id="listViewNextEvents" layoutX="255.0" layoutY="116.0" prefHeight="374.0" prefWidth="600.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
@@ -24,13 +24,13 @@
                   <DropShadow />
                </effect>
             </ListView>
-            <Label alignment="CENTER" layoutX="572.0" layoutY="82.0" prefHeight="69.0" prefWidth="601.0" text="Next Events" textFill="#ffeecc" AnchorPane.rightAnchor="30.0">
+            <Label alignment="CENTER" layoutX="389.0" layoutY="113.0" prefHeight="34.0" prefWidth="601.0" text="Next Events" textFill="#ffeecc" AnchorPane.rightAnchor="30.0">
                <font>
                   <Font name="Arial Bold" size="29.0" />
                </font>
             </Label>
             <ImageView fx:id="profileImg" fitHeight="190.0" fitWidth="191.0" layoutX="81.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
-            <Label fx:id="labelUsername" layoutX="311.0" layoutY="30.0" prefHeight="69.0" prefWidth="258.0" text="Username" textFill="WHITE" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="20.0">
+            <Label fx:id="labelUsername" layoutX="311.0" layoutY="30.0" prefHeight="69.0" prefWidth="484.0" text="Username" textFill="WHITE" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="Arial Bold" size="40.0" />
                </font>
