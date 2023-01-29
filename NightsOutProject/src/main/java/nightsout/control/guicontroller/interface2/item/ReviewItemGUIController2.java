@@ -3,6 +3,7 @@ package nightsout.control.guicontroller.interface2.item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
@@ -24,6 +25,8 @@ public class ReviewItemGUIController2 {
     @FXML
     private Label labelUsername;
 
+    private JoinEventAppController joinEventAppController;
+
     public void setAll(ReviewBean reviewBean) throws SystemException {
 
         ManageReviewAppController controller = new ManageReviewAppController();
@@ -38,6 +41,12 @@ public class ReviewItemGUIController2 {
         this.labelEventName.setText(eventBean.getName());
     }
 
+    public void setAll(ReviewBean reviewBean, JoinEventAppController joinEventAppController) throws SystemException {
+
+        this.joinEventAppController = joinEventAppController;
+        setAll(reviewBean);
+    }
+
 
     @FXML
     private void goToUserPage(ActionEvent actionEvent) {
@@ -45,7 +54,7 @@ public class ReviewItemGUIController2 {
         try {
             String type = Session.getInstance().checkInstanceType();
             if (type.equalsIgnoreCase("FREE")) {
-                switchAndSetPage2.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser2.fxml",userBean);
+                switchAndSetPage2.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser2.fxml",userBean, joinEventAppController);
             } else {
                 switchAndSetPage2.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO2.fxml",userBean);
             }

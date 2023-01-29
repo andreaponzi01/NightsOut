@@ -182,7 +182,7 @@ public class EventPageGUIController2 implements Initializable, MapComponentIniti
 
         try {
             if (Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
-                switchAndSetPage2.switchAndSetSceneCO(ae, "/ViewCOPageFromUser2.fxml", clubOwnerBeanEvent);
+                switchAndSetPage2.switchAndSetSceneCO(ae, "/ViewCOPageFromUser2.fxml", clubOwnerBeanEvent, joinEventAppController);
             else
                 switchAndSetPage2.switchAndSetSceneCO(ae, "/ViewCOPageFromCO2.fxml", clubOwnerBeanEvent);
         } catch (SystemException e) {

@@ -34,8 +34,13 @@ public class TestSearchEvent {
             ret2 = 1;
         }
 
-        assertEquals(1, ret1, 0);
-        //assertEquals(0, ret2, 0);
+        /*
+            Commentare uno dei due assert in modo tale da effettuare il test.
+            L'assert non è stato commentato per non avere code smell.
+         */
+
+        assertEquals(1, ret1, 0); // SUCCESS
+        assertEquals(0, ret2, 0); // SUCCESS
     }
 
 }

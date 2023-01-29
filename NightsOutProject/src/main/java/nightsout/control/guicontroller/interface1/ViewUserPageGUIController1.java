@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.EventItemGUIController1;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.IdBean;
@@ -42,6 +43,8 @@ public class ViewUserPageGUIController1 implements Observer {
     @FXML
     private ImageView imageViewProfile;
 
+    private JoinEventAppController joinEventAppController;
+
     @Override
     public void update(Object ob) {
 
@@ -52,7 +55,7 @@ public class ViewUserPageGUIController1 implements Observer {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem1.fxml")).openStream());
 
                 EventItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean1(eBean));
+                controller.setAll(new EventBean1(eBean), joinEventAppController);
                 this.listViewNextEvents.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
@@ -63,6 +66,28 @@ public class ViewUserPageGUIController1 implements Observer {
     public void setAll(UserBean1 userBean1) {
 
         try {
+            this.labelUsername.setText(userBean1.getUsername());
+            this.labelEmail.setText(userBean1.getEmail());
+            this.labelName.setText(userBean1.getName());
+            this.labelSurname.setText(userBean1.getSurname());
+            if (userBean1.getVip())
+                this.labelVip.setText("VIP");
+            else
+                this.labelVip.setText("NO VIP");
+            this.labelGender.setText(userBean1.getGender());
+            this.labelBirthday.setText(userBean1.getBirthday().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+            this.imageViewProfile.setImage(new Image(userBean1.getImg().toURI().toString()));
+            NextEventsEngineering nextEventsEngineering = new NextEventsEngineering();
+            nextEventsEngineering.nextEvents(this, new IdBean(userBean1.getId()));
+        } catch (SystemException e) {
+            ErrorDialog.getInstance().handleException(e);
+        }
+    }
+
+    public void setAll(UserBean1 userBean1, JoinEventAppController joinEventAppController) {
+
+        try {
+            this.joinEventAppController = joinEventAppController;
             this.labelUsername.setText(userBean1.getUsername());
             this.labelEmail.setText(userBean1.getEmail());
             this.labelName.setText(userBean1.getName());

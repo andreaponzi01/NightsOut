@@ -83,6 +83,40 @@ public class SwitchAndSetPage2 {
         }
     }
 
+    public void switchAndSetSceneCO(ActionEvent ae, String fxml, ClubOwnerBean2 clubOwnerBean, JoinEventAppController joinEventAppController) throws SystemException {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(SwitchAndSetPage2.class.getResource(fxml));
+            Parent root = loader.load();
+            if (fxml.equals("/ViewCOPageFromUser2.fxml")) {
+                InitViewCOPage2 initViewCOPage2 = new InitViewCOPage2();
+                initViewCOPage2.setter(clubOwnerBean,loader.getController(), joinEventAppController);
+            }
+            SwitchPage.showStage(ae, root);
+        } catch (IOException e) {
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
+        }
+    }
+
+    public void switchAndSetSceneUser(ActionEvent ae, String fxml, UserBean2 userBean, JoinEventAppController joinEventAppController) throws SystemException {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(SwitchAndSetPage2.class.getResource(fxml));
+            Parent root = loader.load();
+            if (fxml.equals("/ViewUserPageFromUser2.fxml")) {
+                InitViewUserPage2 initViewUserPage2 = new InitViewUserPage2();
+                initViewUserPage2.setter(userBean,loader.getController(), joinEventAppController);
+            }
+            SwitchPage.showStage(ae, root);
+        } catch (IOException e) {
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
+        }
+    }
+
     public void switchAndSetSceneUser(ActionEvent ae, String fxml, UserBean2 userBean) throws SystemException {
 
         try {

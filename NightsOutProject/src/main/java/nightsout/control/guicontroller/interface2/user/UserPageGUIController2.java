@@ -50,7 +50,7 @@ public class UserPageGUIController2 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
                 UserItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new UserBean2(uBean));
+                controller.setAll(new UserBean2(uBean), joinEventAppController);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
@@ -61,7 +61,7 @@ public class UserPageGUIController2 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/UserItem2.fxml")).openStream());
                 UserItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new ClubOwnerBean2(cBean));
+                controller.setAll(new ClubOwnerBean2(cBean), joinEventAppController);
                 this.listView.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);

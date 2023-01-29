@@ -92,7 +92,7 @@ public class ViewClubOwnerPageGUIController1 implements Observer {
             if(Session.getInstance().checkInstanceType().equalsIgnoreCase("ClubOwner"))
                 switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromCO.fxml", this.clubOwnerBean1);
             else
-                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1);
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ClubOwnerCommunityFromUser.fxml", this.clubOwnerBean1, joinEventAppController);
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }

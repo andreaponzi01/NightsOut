@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.utils.Session;
 import nightsout.utils.bean.interface2.ClubOwnerBean2;
 import nightsout.utils.bean.interface2.UserBean2;
@@ -24,12 +25,19 @@ public class UserItemGUIController2 {
     @FXML
     private ImageView imageViewProfilePic;
 
+    private JoinEventAppController joinEventAppController;
+
     public void setAll(UserBean2 userBean) {
 
         this.userBean = userBean;
         labelUsername.setText(this.userBean.getUsername());
         labelType.setText("USER:");
         imageViewProfilePic.setImage(new Image(this.userBean.getImg().toURI().toString()));
+    }
+
+    public void setAll(UserBean2 userBean, JoinEventAppController joinEventAppController) {
+        this.joinEventAppController = joinEventAppController;
+        setAll(userBean);
     }
 
     public void setAll(ClubOwnerBean2 clubOwnerBean) {
@@ -40,16 +48,22 @@ public class UserItemGUIController2 {
         imageViewProfilePic.setImage(new Image(this.clubOwnerBean.getImg().toURI().toString()));
     }
 
+    public void setAll(ClubOwnerBean2 clubOwnerBean, JoinEventAppController joinEventAppController) {
+
+        this.joinEventAppController = joinEventAppController;
+        setAll(clubOwnerBean);
+    }
+
     @FXML
     private void goToProfile(ActionEvent actionEvent) {
 
         try {
             String type = Session.getInstance().checkInstanceType();
             if (clubOwnerBean != null) {
-                switchAndSetPage2.switchAndSetSceneCO(actionEvent, "/ViewCOPageFromUser2.fxml", clubOwnerBean);
+                switchAndSetPage2.switchAndSetSceneCO(actionEvent, "/ViewCOPageFromUser2.fxml", clubOwnerBean, joinEventAppController);
             } else {
                 if (type.equalsIgnoreCase("FREE")){
-                    switchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser2.fxml", userBean);
+                    switchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromUser2.fxml", userBean, joinEventAppController);
                 } else {
                     switchAndSetPage2.switchAndSetSceneUser(actionEvent, "/ViewUserPageFromCO2.fxml", userBean);
                 }

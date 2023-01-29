@@ -28,13 +28,17 @@ public class TestValidEmail {
             case2 = 1;
         }
 
-        assertEquals(1, case2, 0); //Success
-
         emailBean.setEmail(email1);
         if(checkEmailEngineering.validate(emailBean)){
             case1 = 1;
         }
 
+        /*
+            Commentare uno dei due assert in modo tale da effettuare il test.
+            L'assert non è stato commentato per non avere code smell.
+         */
+
+        assertEquals(1, case2, 0); //Success
         assertEquals(0, case1, 0); //Fail
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ResponseItemGUIController2;
 import nightsout.control.guicontroller.interface2.item.ReviewItemGUIController2;
@@ -43,6 +44,8 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
     @FXML
     private Label labelUsername;
 
+    private JoinEventAppController joinEventAppController;
+
     public void setAll(ClubOwnerBean2 clubOwnerBean) throws SystemException {
 
         this.clubOwnerBean = clubOwnerBean;
@@ -59,6 +62,12 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
         communityEngineering.eventReviews(this, new IdBean(this.clubOwnerBean.getId()));
     }
 
+    public void setAll(ClubOwnerBean2 clubOwnerBean, JoinEventAppController joinEventAppController) throws SystemException {
+
+        this.joinEventAppController = joinEventAppController;
+        setAll(clubOwnerBean);
+    }
+
     @Override
     public void update(Object ob) {
 
@@ -72,7 +81,7 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
                 communityEngineering = new CommunityEngineering();
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewItem2.fxml")).openStream());
                 ReviewItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(reviewBean);
+                controller.setAll(reviewBean, joinEventAppController);
                 this.listViewCommunity.getItems().add(pane);
                 communityEngineering.responseOfOneReview(this, new IdBean(reviewBean.getIdReview()));
             } catch (IOException | SystemException e) {
@@ -83,7 +92,7 @@ public class ViewClubOwnerPageGUIController2 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
                 EventItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean2(eBean));
+                controller.setAll(new EventBean2(eBean), joinEventAppController);
                 this.listViewCreatedEvents.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);

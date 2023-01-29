@@ -24,8 +24,12 @@ public class TestUserByUsernameQuery {
         int ret2 = userModel2.getId();
 
 
+        /*
+            Commentare uno dei due assert in modo tale da effettuare il test.
+            L'assert non è stato commentato per non avere code smell.
+         */
 
         assertEquals(4, ret1, 0); // SUCCESS
-        // assertEquals(4, ret2, 0); // FAILED
+        assertEquals(4, ret2, 0); // FAILED
     }
 }

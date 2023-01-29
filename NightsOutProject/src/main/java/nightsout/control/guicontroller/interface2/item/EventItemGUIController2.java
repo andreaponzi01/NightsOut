@@ -33,9 +33,7 @@ public class EventItemGUIController2 {
     public void setAll(EventBean2 eventBean, JoinEventAppController joinEventAppController) {
 
         this.joinEventAppController = joinEventAppController;
-        this.eventBean=eventBean;
-        labelEventName.setText(this.eventBean.getName());
-        imageViewProfilePic.setImage(new Image(this.eventBean.getImg().toURI().toString()));
+        setAll(eventBean);
     }
 
     @FXML

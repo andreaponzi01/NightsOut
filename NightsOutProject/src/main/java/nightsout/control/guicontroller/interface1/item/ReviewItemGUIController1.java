@@ -3,6 +3,7 @@ package nightsout.control.guicontroller.interface1.item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.appcontroller.ManageReviewAppController;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.Session;
@@ -29,6 +30,7 @@ public class ReviewItemGUIController1 {
     private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
     private SwitchPage switchPage = new SwitchPage();
     private ManageReviewAppController manageReviewAppController;
+    private JoinEventAppController joinEventAppController;
 
     public void setAll(ReviewBean reviewBean) throws SystemException {
 
@@ -43,8 +45,12 @@ public class ReviewItemGUIController1 {
     }
 
 
-    public void setAll(ReviewBean reviewBean, ManageReviewAppController manageReviewAppController) throws SystemException {
+    public void setAll(ReviewBean reviewBean, JoinEventAppController joinEventAppController) throws SystemException {
+        this.joinEventAppController = joinEventAppController;
+        setAll(reviewBean);
+    }
 
+    public void setAll(ReviewBean reviewBean, ManageReviewAppController manageReviewAppController) throws SystemException {
         this.manageReviewAppController = manageReviewAppController;
         this.reviewBean = reviewBean;
         this.labelComment.setText(reviewBean.getComment());
@@ -71,7 +77,7 @@ public class ReviewItemGUIController1 {
                 if(userBean1.getId()== Session.getInstance().getUser().getId())
                     switchPage.replaceScene(actionEvent,"/UserPage1.fxml");
                 else
-                    switchAndSetPage1.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser1.fxml",userBean1);
+                    switchAndSetPage1.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromUser1.fxml",userBean1, joinEventAppController);
             } else {
                 switchAndSetPage1.switchAndSetSceneUser(actionEvent,"/ViewUserPageFromCO1.fxml",userBean1);
             }

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface1.item.ResponseItemGUIController1;
 import nightsout.control.guicontroller.interface1.item.ReviewItemGUIController1;
 import nightsout.utils.Session;
@@ -28,10 +29,18 @@ public class ViewCommunityGUIController1 implements Observer {
     private ClubOwnerBean1 clubOwnerBean1;
     private SwitchAndSetPage1 switchAndSetPage1 = new SwitchAndSetPage1();
 
+    private JoinEventAppController joinEventAppController;
+
     public void setAll(ClubOwnerBean1 clubOwnerBean1) throws SystemException {
         this.clubOwnerBean1 = clubOwnerBean1;
         CommunityEngineering communityEngineering = new CommunityEngineering();
         communityEngineering.eventReviews(this, new IdBean(this.clubOwnerBean1.getId()));
+    }
+
+    public void setAll(ClubOwnerBean1 clubOwnerBean1, JoinEventAppController joinEventAppController) throws SystemException {
+
+        this.joinEventAppController = joinEventAppController;
+        setAll(clubOwnerBean1);
     }
 
     @Override
@@ -59,7 +68,7 @@ public class ViewCommunityGUIController1 implements Observer {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/ReviewSimpleItem1.fxml")).openStream());
                 communityEngineering = new CommunityEngineering();
                 ReviewItemGUIController1 controller = fxmlLoader.getController();
-                controller.setAll(reviewBean);
+                controller.setAll(reviewBean, joinEventAppController);
                 this.listView.getItems().add(pane);
                 communityEngineering.responseOfOneReview(this, new IdBean(reviewBean.getIdReview()));
 
@@ -74,7 +83,7 @@ public class ViewCommunityGUIController1 implements Observer {
 
         try {
             if(Session.getInstance().checkInstanceType().equalsIgnoreCase("Free"))
-                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1);
+                switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromUser1.fxml", this.clubOwnerBean1, joinEventAppController);
             else
                 switchAndSetPage1.switchAndSetSceneClubOwner(actionEvent, "/ViewClubOwnerPageFromCO1.fxml", this.clubOwnerBean1);
         } catch (SystemException e) {

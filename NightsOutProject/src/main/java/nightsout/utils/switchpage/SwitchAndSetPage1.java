@@ -105,6 +105,24 @@ public class SwitchAndSetPage1 {
         }
     }
 
+    public void switchAndSetSceneUser(ActionEvent ae, String fxml, UserBean1 userBean, JoinEventAppController joinEventAppController) throws SystemException {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(SwitchAndSetPage1.class.getResource(fxml));
+            Parent root = loader.load();
+
+            if (fxml.equals("/ViewUserPageFromUser1.fxml")) {
+                ViewUserPageSetter1 viewUserPageSetter1 = new ViewUserPageSetter1();
+                viewUserPageSetter1.setter(userBean,loader.getController(), joinEventAppController);
+            }
+            SwitchPage.showStage(ae, root);
+        } catch (IOException e) {
+            SystemException exception = new SystemException();
+            exception.initCause(e);
+            throw exception;
+        }
+    }
+
     public void switchAndSetSceneClubOwner(ActionEvent ae, String fxml, ClubOwnerBean1 clubOwnerBean) throws SystemException {
 
         try {
@@ -161,6 +179,10 @@ public class SwitchAndSetPage1 {
             if (fxml.equals("/ViewClubOwnerPageFromUser1.fxml")) {
                 ViewClubOwnerPageSetter1 viewClubOwnerPageSetter1 = new ViewClubOwnerPageSetter1();
                 viewClubOwnerPageSetter1.setterView(clubOwnerBean, loader.getController(), joinEventAppController);
+            }
+            if (fxml.equals("/ClubOwnerCommunityFromUser.fxml")) {
+                InitCommunityPage1 initCommunityPage1 = new InitCommunityPage1();
+                initCommunityPage1.setter(loader.getController(), clubOwnerBean, joinEventAppController);
             }
             SwitchPage.showStage(ae, root);
         } catch (IOException e) {

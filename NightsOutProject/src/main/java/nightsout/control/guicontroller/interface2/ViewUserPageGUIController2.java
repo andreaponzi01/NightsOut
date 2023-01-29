@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import nightsout.control.appcontroller.JoinEventAppController;
 import nightsout.control.guicontroller.interface2.item.EventItemGUIController2;
 import nightsout.utils.bean.EventBean;
 import nightsout.utils.bean.IdBean;
@@ -41,6 +42,7 @@ public class ViewUserPageGUIController2 implements Observer {
     private ListView<Pane> listViewNextEvents;
     @FXML
     private ImageView imageViewProfile;
+    private JoinEventAppController joinEventAppController;
 
     @Override
     public void update(Object ob) {
@@ -51,7 +53,7 @@ public class ViewUserPageGUIController2 implements Observer {
             try {
                 pane = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/EventItem2.fxml")).openStream());
                 EventItemGUIController2 controller = fxmlLoader.getController();
-                controller.setAll(new EventBean2(eBean));
+                controller.setAll(new EventBean2(eBean), joinEventAppController);
                 this.listViewNextEvents.getItems().add(pane);
             } catch (IOException e) {
                 ErrorDialog.getInstance().handleException(e);
@@ -78,6 +80,11 @@ public class ViewUserPageGUIController2 implements Observer {
         } catch (SystemException e) {
             ErrorDialog.getInstance().handleException(e);
         }
+    }
+
+    public void setAll(UserBean2 userBean, JoinEventAppController joinEventAppController) {
+        this.joinEventAppController = joinEventAppController;
+        setAll(userBean);
     }
 
 }
