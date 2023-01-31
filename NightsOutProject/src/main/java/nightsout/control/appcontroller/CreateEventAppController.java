@@ -15,7 +15,7 @@ public class CreateEventAppController {
     public void createEvent(EventBean eventBean) throws CreateEventEmailException, SystemException {
 
         Trigger trigger = new Trigger();
-
+        int a;
         EventModel eventModel = new EventModel(eventBean);
         EventDAO eventDAO = new EventDAO();
         eventDAO.createEvent(eventModel);
